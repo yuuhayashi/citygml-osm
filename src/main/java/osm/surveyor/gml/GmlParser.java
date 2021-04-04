@@ -1,11 +1,11 @@
 package osm.surveyor.gml;
 
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import osm.surveyor.citygml.CityModelParser;
 import osm.surveyor.citygml.CitygmlFile;
 import osm.surveyor.osm.ElementBounds;
 import osm.surveyor.osm.ElementNode;
@@ -53,7 +53,17 @@ public class GmlParser extends DefaultHandler {
     }
     
     public ElementBounds bounds = null;
-    public ElementWay way = null;
+
+    /*
+     * roofEdge
+     */
+    ElementWay way = null;
+    public ElementWay getWay() {
+    	return way;
+    }
+    public boolean isWay() {
+    	return (way != null);
+    }
     
     /**
      * 要素の開始タグ読み込み時に毎回呼ばれる
@@ -120,10 +130,6 @@ public class GmlParser extends DefaultHandler {
 			// AREAに変更する
 			if (way != null) {
 				way.toArea();
-				if (CityModelParser.roofEdges != null) {
-					CityModelParser.roofEdges.add(way);
-				}
-				way = null;
 			}
 		}
 		else if(qName.equals("gml:posList")){

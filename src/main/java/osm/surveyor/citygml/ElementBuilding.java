@@ -14,6 +14,7 @@ import osm.surveyor.osm.ElementRelation;
  * 
  */
 public class ElementBuilding extends ElementRelation {
+	public String source_ref = null;
     
     public ElementBuilding(long id) {
         super(id);
