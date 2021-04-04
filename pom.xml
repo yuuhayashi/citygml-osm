@@ -3,7 +3,13 @@
   <groupId>haya4</groupId>
   <artifactId>citygml-get</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>citygml-get</name>
+  <name>citygml-osm</name>
+  <scm>
+    <connection>scm:https://github.com/yuuhayashi/citygml-osm.git</connection>
+    <url>https://github.com/yuuhayashi/citygml-osm</url>
+    <developerConnection>scm:git:https://github.com/yuuhayashi/citygml-osm.git</developerConnection>
+    <tag>v0.0.1</tag>
+  </scm>
   
   <licenses>
     <license>
@@ -33,6 +39,42 @@
     <hamcrest.version>1.3</hamcrest.version>
   </properties>
   
+  <repositories>
+    <repository>
+      <id>surveyor.mirror</id>
+      <name>Hayashi Repository</name>
+      <url>http://surveyor.mydns.jp/archiva/repository/mirror/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>surveyor.haya4</id>
+      <name>Hayashi Repository</name>
+      <url>http://surveyor.mydns.jp/archiva/repository/haya4/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>surveyor.snapshots</id>
+      <name>Archiva Managed Snapshot Repository</name>
+      <url>http://surveyor.mydns.jp/archiva/repository/snapshots/</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+  
   <pluginRepositories>
     <pluginRepository>
       <id>com.googlecode.maven-download-plugin</id>
@@ -51,7 +93,8 @@
     <dependency>
       <groupId>com.googlecode.maven-download-plugin</groupId>
       <artifactId>download-maven-plugin</artifactId>
-      <version>1.6.0</version>
+      <version>1.6.1</version>
+      <scope>test</scope>
       <type>jar</type>
     </dependency>
     
@@ -95,6 +138,31 @@
         </configuration>
       </plugin>
 
+      <!-- 実行可能jarファイル用のプラグイン -->
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>3.2.0</version>
+        <configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+          <archive>
+            <manifest>
+              <mainClass>osm.surveyor.citygml.CitygmlFile</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+        <executions>
+          <execution>
+            <id>make-assembly</id> <!-- this is used for inheritance merges -->
+            <phase>package</phase> <!-- bind to the packaging phase -->
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
       <!-- mvn resources -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -105,44 +173,53 @@
         </configuration>
       </plugin>
 
-      <!-- mvn process-resources / resources:resources -->
+      <!-- mvn generate-test-resources:get -->
       <plugin>
         <groupId>com.googlecode.maven-download-plugin</groupId>
         <artifactId>download-maven-plugin</artifactId>
-        <version>1.6.0</version>
+        <version>1.6.1</version>
         <executions>
 
           <execution>
             <id>codelists</id>
-            <phase>process-resources</phase>
+            <phase>generate-test-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
             <configuration>
               <url>https://www.geospatial.jp/ckan/dataset/a48396a3-b76f-4e7d-bc7b-04f354e3e5e9/resource/f9d55efc-9711-4b1a-9e03-b4fcdd0e8987/download/codelists.zip</url>
               <unpack>true</unpack>
-              <outputDirectory>${project.build.directory}/src/main/resources/codelists</outputDirectory>
+              <outputDirectory>${project.build.directory}/src/test/resources/codelists</outputDirectory>
             </configuration>
           </execution>
 
           <!-- https://gic-plateau.s3-ap-northeast-1.amazonaws.com/2020/tokyo23ku/533925.zip -->
           <execution>
             <id>533925</id>
-            <phase>process-resources</phase>
+            <phase>generate-test-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
             <configuration>
               <url>https://gic-plateau.s3-ap-northeast-1.amazonaws.com/2020/tokyo23ku/533925.zip</url>
               <unpack>true</unpack>
-              <outputDirectory>${project.build.directory}/src/main/resources/tokyo23ku/533925</outputDirectory>
+              <outputDirectory>${project.build.directory}/src/test/resources/tokyo23ku/533925</outputDirectory>
             </configuration>
           </execution>
-
         </executions>
       </plugin>
-      
-      
+        
+      <!-- mvn release:prepare -->
+      <!-- mvn release:perform -Dmaven.javadoc.skip -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.5.3</version>
+        <configuration>
+          <releaseProfiles>install</releaseProfiles>
+          <tagNameFormat>v@{project.version}</tagNameFormat>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 

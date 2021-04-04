@@ -13,7 +13,7 @@ package osm.surveyor.osm;
  */
 public class ElementNode {
 	public long id = 0;
-	public String action = null;
+	public String action = "modify";
 	public boolean visible = true;
 	public String lat = null;
 	public String lon = null;

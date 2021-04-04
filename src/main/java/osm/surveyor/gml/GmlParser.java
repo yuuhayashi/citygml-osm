@@ -1,6 +1,5 @@
 package osm.surveyor.gml;
 
-import java.util.ArrayList;
 import java.util.StringTokenizer;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
