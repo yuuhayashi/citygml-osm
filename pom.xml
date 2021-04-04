@@ -39,18 +39,20 @@
     <hamcrest.version>1.3</hamcrest.version>
   </properties>
   
-  <repositories>
+  <!-- DEPLOY先の指定  mvn deploy -->
+  <distributionManagement>
     <repository>
-      <id>surveyor.mirror</id>
-      <name>Hayashi Repository</name>
-      <url>http://surveyor.mydns.jp/archiva/repository/mirror/</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
+      <id>surveyor.haya4</id>
+      <name>Internal Release Repository</name>
+      <url>http://surveyor.mydns.jp/archiva/repository/haya4/</url>
     </repository>
+    <snapshotRepository>
+      <id>surveyor.snapshots</id>
+      <url>http://surveyor.mydns.jp/archiva/repository/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <repositories>
     <repository>
       <id>surveyor.haya4</id>
       <name>Hayashi Repository</name>
@@ -76,6 +78,28 @@
   </repositories>
   
   <pluginRepositories>
+    <pluginRepository>
+      <id>surveyor.haya4</id>
+      <name>haya4</name>
+      <url>http://surveyor.mydns.jp/archiva/repository/haya4/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+    <pluginRepository>
+      <id>surveyor.snapshots</id>
+      <name>Archiva Managed Snapshot Repository</name>
+      <url>http://surveyor.mydns.jp/archiva/repository/snapshots/</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </pluginRepository>
     <pluginRepository>
       <id>com.googlecode.maven-download-plugin</id>
       <url>https://mvnrepository.com/artifact</url>
