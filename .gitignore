@@ -6,12 +6,10 @@
 *.zip
 *.jar
 *.tar.gz
-AdjustTime.ini
 /target/
 /src/test/data/*~
 /src/test/data/*.log
-/src/test/data/cameradata/
-/src/test/data/output
+/src/main/resources/
 nb*.xml
 Thumbs.db
 /nbproject/
