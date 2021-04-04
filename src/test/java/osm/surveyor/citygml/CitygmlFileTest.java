@@ -10,7 +10,7 @@ public class CitygmlFileTest {
 	public void test() {
         try {
 			AppParameters params = new AppParameters();
-			File dir = new File("target/src/main/resources/tokyo23ku/533925");
+			File dir = new File("src/main/resources/tokyo23ku/533925");
 			File file = new File(dir, "53392547_bldg_6697_op2.gml");
 			System.out.println(file.getAbsolutePath());
             assertTrue(file.exists());
