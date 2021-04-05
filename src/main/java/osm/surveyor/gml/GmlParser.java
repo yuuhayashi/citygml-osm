@@ -9,6 +9,7 @@ import osm.surveyor.citygml.CitygmlFile;
 import osm.surveyor.osm.ElementBounds;
 import osm.surveyor.osm.ElementNode;
 import osm.surveyor.osm.ElementWay;
+import osm.surveyor.osm.NodeList;
 import osm.surveyor.osm.OsmFile;
 
 /**
@@ -29,6 +30,7 @@ import osm.surveyor.osm.OsmFile;
 public class GmlParser extends DefaultHandler {
 	public StringBuffer outSb = null;		// TEXT待ちじゃない場合は NULL
 	OsmFile osmfile;
+	public static NodeList nodelist = new NodeList();
 	
     public GmlParser(OsmFile osmfile) {
         super();
@@ -159,7 +161,7 @@ public class GmlParser extends DefaultHandler {
 					if (st.hasMoreTokens()) {
 						height = st.nextToken();
 						if (way != null) {
-							way.addNode(node);
+							way.addNode(nodelist.append(node));
 						}
 					}
 					else {

@@ -4,7 +4,11 @@ CityGMLからOSMデータを生成する
 
 # Release
 
-- [citygml-osm v0.0.4](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/haya4/citygml-get/0.0.4)
+- 2021-04-05 
+
+  - fixed #2 Issue#2を解決
+
+- 2021-04-04 [citygml-osm v0.0.4](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/haya4/citygml-get/0.0.4)
 
 # 使い方
 
