@@ -1,5 +1,9 @@
 package osm.surveyor.osm;
 
+import org.jdom.Element;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+
 /**
  * CityGMLファイルをパースする
  * @param gmlFile
@@ -20,6 +24,16 @@ public class ElementTag {
 		this.v = value;
 	}
 	
+    /*
+		<tag k='height' v='14.072000000000001' />
+     */
+    public Node toNodeNd(Document doc) {
+		Element node = (Element) doc.createElement("tag");
+        node.setAttribute("k", k);
+        node.setAttribute("v", v);
+        return (Node)node;
+    }
+
     public void printout(OsmFile file) {
     	if ((k != null) && (v != null)) {
         	String str = "<tag";

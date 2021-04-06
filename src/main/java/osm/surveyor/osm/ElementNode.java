@@ -1,5 +1,9 @@
 package osm.surveyor.osm;
 
+import org.jdom.Element;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+
 /**
  * CityGMLファイルをパースする
  * @param gmlFile
@@ -36,11 +40,34 @@ public class ElementNode {
     	file.println(str);
     }
     
+    /*
+		<nd ref='-4'/>
+     */
     public void printRd(OsmFile file) {
     	String str2 = "<nd";
     	str2 += out("ref", Long.toString(id));
     	str2 += "/>";
     	file.println(str2);
+    }
+    
+    /*
+		<nd ref='-4'/>
+     */
+    public Node toNodeNd(Document doc) {
+		Element node = (Element) doc.createElement("nd");
+        node.setAttribute("ref", Long.toString(id));
+        return (Node)node;
+    }
+    
+    public Node toNode(Document doc) {
+		Element node = (Element) doc.createElement("node");
+        node.setAttribute("id", Long.toString(id));
+        node.setAttribute("action", action);
+        node.setAttribute("visible", Boolean.toString(visible));
+        node.setAttribute("lat", lat);
+        node.setAttribute("lon", lon);
+        doc.appendChild((Node) node);
+        return (Node)node;
     }
     
     private String out(String key, String value) {

@@ -2,11 +2,11 @@ package osm.surveyor.osm;
 
 import java.util.HashMap;
 
-public class NodeList extends HashMap<String, ElementNode> {
+public class ElementNodeList extends HashMap<String, ElementNode> {
 
 	private static final long serialVersionUID = 3570123486213986940L;
 
-	public NodeList() {
+	public ElementNodeList() {
 		super();
 	}
 

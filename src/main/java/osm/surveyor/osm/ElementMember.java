@@ -1,5 +1,9 @@
 package osm.surveyor.osm;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+
 /**
  * @code{
  *   <member type='way' ref='-102077' role='part' />
@@ -24,6 +28,18 @@ public class ElementMember {
 		this.role = role;
 	}
     
+	/*
+	 * 
+		<member ref='-1655' type='way' role='part' />
+	 */
+    public Node toNode(Document doc) {
+		Element node = doc.createElement("member");
+        node.setAttribute("ref", Long.toString(ref));
+        node.setAttribute("type", type);
+        node.setAttribute("role", role);
+        return (Node)node;
+    }
+
     public void printout(OsmFile file) {
     	String str = "<member";
     	str += out("ref", Long.toString(ref));

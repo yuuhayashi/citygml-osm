@@ -2,6 +2,10 @@ package osm.surveyor.osm;
 
 import java.util.ArrayList;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+
 public class ElementWay {
 	public long id = 0;
 	public String action = "modify";
@@ -47,6 +51,30 @@ public class ElementWay {
 			}
 		}
 	}
+	
+	/*
+	 * 
+		<way id='-2' action='modify' visible='true'>
+			<nd ref='-3'/>
+			<nd ref='-4'/>
+			<nd ref='-5'/>
+			<tag k='height' v='14.072000000000001' />
+			<tag k='building:part' v='yes' />
+		</way>
+	 */
+    public Node toNode(Document doc) {
+		Element node = doc.createElement("way");
+        node.setAttribute("id", Long.toString(id));
+        node.setAttribute("action", action);
+        node.setAttribute("visible", Boolean.toString(visible));
+		for (ElementNode nd : this.nodes) {
+			node.appendChild(nd.toNodeNd(doc));
+		}
+		for (ElementTag tag : this.tags) {
+			node.appendChild(tag.toNodeNd(doc));
+		}
+        return (Node)node;
+    }
 	
     public void printout(OsmFile file) {
 		for (ElementNode node : this.nodes) {
