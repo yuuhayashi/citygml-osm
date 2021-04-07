@@ -1,6 +1,6 @@
 package osm.surveyor.osm;
 
-import org.jdom.Element;
+import org.w3c.dom.Element;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
@@ -32,24 +32,5 @@ public class ElementTag {
         node.setAttribute("k", k);
         node.setAttribute("v", v);
         return (Node)node;
-    }
-
-    public void printout(OsmFile file) {
-    	if ((k != null) && (v != null)) {
-        	String str = "<tag";
-        	str += out("k", k);
-        	str += out("v", v);
-        	str += " />";
-        	System.out.println(str);
-        	file.println(str);
-    	}
-    }
-    
-    private String out(String key, String value) {
-    	String str = "";
-    	if (value != null) {
-    		str = " " + key +"='" + value +"'";
-    	}
-    	return str;
     }
 }

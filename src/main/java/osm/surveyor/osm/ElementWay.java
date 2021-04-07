@@ -75,40 +75,4 @@ public class ElementWay {
 		}
         return (Node)node;
     }
-	
-    public void printout(OsmFile file) {
-		for (ElementNode node : this.nodes) {
-			node.printout(file);
-		}
-    	String str = "<way";
-    	str += out("id", Long.toString(id));
-    	str += out("action", action);
-    	str += out("visible", Boolean.toString(visible));
-    	str += ">";
-
-    	System.out.println(str);
-    	file.println(str);
-    	
-		for (ElementNode node : this.nodes) {
-			node.printRd(file);
-		}
-		if (area) {
-			ElementNode frst = this.nodes.get(0);
-			frst.printRd(file);
-		}
-
-		for (ElementTag tag : this.tags) {
-			tag.printout(file);
-		}
-		
-    	file.println("</way>");
-    }
-    
-    private String out(String key, String value) {
-    	String str = "";
-    	if (value != null) {
-    		str = " " + key +"='" + value +"'";
-    	}
-    	return str;
-    }
 }

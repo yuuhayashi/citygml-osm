@@ -36,10 +36,26 @@ public class OsmDom {
     }
 
     Document doc;
-    ElementBounds bounds = new ElementBounds();
+    ElementBounds bounds = null;
     HashMap<String, ElementNode> nodes = new HashMap<>();
     HashMap<String, ElementWay> ways = new HashMap<>();
     HashMap<String, ElementRelation> relations = new HashMap<>();
+    
+    public void setBounds(ElementBounds bounds) {
+    	this.bounds = bounds;
+    }
+    
+    public void addNode(ElementNode node) {
+    	this.nodes.put(Long.toString(node.id), node);
+    }
+
+    public void addWay(ElementWay way) {
+    	this.ways.put(Long.toString(way.id), way);
+    }
+    
+    public void addRelations(ElementRelation relation) {
+    	this.relations.put(Long.toString(relation.id), relation);
+    }
     
     public void load(File sourcefile) throws ParserConfigurationException, SAXException, IOException {
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -76,7 +92,7 @@ public class OsmDom {
 			Transformer transformer = transformerFactory.newTransformer();
 	        transformer.setOutputProperty("indent", "yes"); //改行指定
 	        transformer.setOutputProperty("encoding", outputEncoding); // エンコーディング
-            transformer.transform(new DOMSource(doc), new StreamResult(out));
+            transformer.transform(new DOMSource(document), new StreamResult(out));
 		}
 		catch (TransformerConfigurationException e) {
 			e.printStackTrace();

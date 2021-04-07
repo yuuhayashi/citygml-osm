@@ -1,27 +1,34 @@
 package osm.surveyor.citygml;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import osm.surveyor.gml.CoreParser;
-import osm.surveyor.gml.GmlParser;
 import osm.surveyor.osm.ElementBounds;
+import osm.surveyor.osm.ElementNode;
+import osm.surveyor.osm.ElementNodeList;
 import osm.surveyor.osm.ElementWay;
-import osm.surveyor.osm.OsmFile;
+import osm.surveyor.osm.OsmDom;
 
 /**
  * CityGMLファイルをパースする
  * @param gmlFile
  * @code{
+	<gml:boundedBy>
+		<gml:Envelope srsName="http://www.opengis.net/def/crs/EPSG/0/6697" srsDimension="3">
+			<gml:lowerCorner>35.54070862164589 139.71245218213994 2.02</gml:lowerCorner>
+			<gml:upperCorner>35.542252321638614 139.7156383865409 40.492</gml:upperCorner>
+		</gml:Envelope>
+	</gml:boundedBy>
  * <core:CityModel>
  *   <core:cityObjectMember/>
  *     <bldg:Building gml:id="BLD_fc50c7d9-76ac-4576-bfbd-f37c74410928">
  *       <bldg:lod0RoofEdge>
+ *         <gml:posList>35.541657275471835 139.7156383865409 14.072000000000001 35.542252321638614 139.71535363948732 14.072000000000001 35.54210367440277 139.7148860223014 14.072000000000001 35.54206164434519 139.71490626649856 14.072000000000001 35.5420440155531 139.7148536858433 14.072000000000001 35.541981356256336 139.7146575788015 14.072000000000001 35.54142914946131 139.71491844541285 14.072000000000001 35.54153100551663 139.71523889596378 14.072000000000001 35.541657275471835 139.7156383865409 14.072000000000001
+ *         </gml:posList>
  *       </bldg:lod0RoofEdge>
  *     </bldg:Building>
  *   <core:cityObjectMember/>
@@ -30,16 +37,13 @@ import osm.surveyor.osm.OsmFile;
  * 
  */
 public class CityModelParser extends DefaultHandler {
-	OsmFile osmfile;
 	public StringBuffer outSb = null;		// TEXT待ちじゃない場合は NULL
 
-	File sourcefile;
-	GmlParser gmlparse;
-	CoreParser xalparse;
+	OsmDom osm;
 	
-    public CityModelParser(File sourcefile) {
+    public CityModelParser(OsmDom osm) {
         super();
-        this.sourcefile = sourcefile;
+        this.osm = osm;
     }
     
 	/**
@@ -47,18 +51,7 @@ public class CityModelParser extends DefaultHandler {
 	 * @throws SAXException 
      */
     public void startDocument() throws SAXException {
-        String name = sourcefile.getName();
-        name = name.substring(0, name.length()-4);
-        osmfile = new OsmFile(name + ".osm");
-        try {
-			osmfile.open();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-        
-		gmlparse = new GmlParser(osmfile);
-		gmlparse.startDocument();
-		xalparse = new CoreParser();
+    	super.startDocument();
     }
  
     /**
@@ -66,10 +59,10 @@ public class CityModelParser extends DefaultHandler {
      * @throws SAXException 
      */
     public void endDocument() throws SAXException {
-    	gmlparse.endDocument();
-    	osmfile.close();
+    	super.endDocument();
     }
     
+	ElementNodeList nodelist = null;
     ElementBounds bounds = null;
 	ElementBuilding building = null;
 
@@ -77,18 +70,52 @@ public class CityModelParser extends DefaultHandler {
      * List<roofEdge>
      */
 	ArrayList<ElementWay> roofEdges = null;
+
+    /*
+     * roofEdge
+     */
+    ElementWay way = null;
+    public ElementWay getWay() {
+    	return way;
+    }
+    public boolean existWay() {
+    	return (way != null);
+    }
+
+    /*
+     * addr:full = *
+     */
+    String localityNameType = null;
+    public String localityName = null;
+    
     
     /**
      * 要素の開始タグ読み込み時に毎回呼ばれる
      */
     public void startElement(String uri,String localName, String qName, Attributes atts) {
-    	if (qName.startsWith("gml:")) {
-    		gmlparse.startElement(uri, localName, qName, atts);
-    	}
-    	else if (qName.startsWith("xAL:")) {
-    		xalparse.startElement(uri, localName, qName, atts);
-    	}
+		if(qName.equals("gml:boundedBy")){
+			bounds = new ElementBounds();
+		}
+		else if(qName.equals("gml:lowerCorner")){
+			outSb = new StringBuffer();
+		}
+		else if(qName.equals("gml:upperCorner")){
+			outSb = new StringBuffer();
+		}
+		
+		else if(qName.equals("gml:LinearRing")){
+			way = new ElementWay(CitygmlFile.getId());
+		}
+		else if(qName.equals("gml:posList")){
+			outSb = new StringBuffer();
+		}
+    	else if(qName.equals("xAL:LocalityName")){
+			// <xAL:LocalityName Type="Town"></xAL:LocalityName>
+			localityNameType = getAttributes("Type", atts);
+	    	outSb = new StringBuffer();
+		}
 		else if(qName.equals("core:CityModel")){
+			nodelist = new ElementNodeList();
 		}
 		else if(qName.equals("core:cityObjectMember")){
 			building = new ElementBuilding(CitygmlFile.getId());
@@ -112,20 +139,105 @@ public class CityModelParser extends DefaultHandler {
      * 要素の終了タグ読み込み時に毎回呼ばれる
      */
     public void endElement(String uri, String localName, String qName) {
-    	if (qName.startsWith("gml:")) {
-    		gmlparse.endElement(uri, localName, qName);
-    	}
-    	else if (qName.startsWith("xAL:")) {
-    		xalparse.endElement(uri, localName, qName);
-    	}
+		if(qName.equals("gml:boundedBy")){
+			osm.setBounds(bounds);
+		}
+		else if(qName.equals("gml:lowerCorner")){
+			// <gml:lowerCorner>35.53956274455546 139.701140502832 1.627</gml:lowerCorner>
+			StringTokenizer st = new StringTokenizer(outSb.toString(), " ");
+			if (st.hasMoreTokens()) {
+				String lat = st.nextToken();
+				bounds.minlat = lat;
+			}
+			if (st.hasMoreTokens()) {
+				String lon = st.nextToken();
+				bounds.minlon = lon;
+			}
+			outSb = null;
+		}
+		else if(qName.equals("gml:upperCorner")){
+			// <gml:upperCorner>35.541755325236224 139.71239981225776 43.802</gml:upperCorner>
+			StringTokenizer st = new StringTokenizer(outSb.toString(), " ");
+			if (st.hasMoreTokens()) {
+				String lat = st.nextToken();
+				bounds.maxlat = lat;
+			}
+			if (st.hasMoreTokens()) {
+				String lon = st.nextToken();
+				bounds.maxlon = lon;
+			}
+			outSb = null;
+		}
+		
+		else if(qName.equals("gml:LinearRing")){
+			// <gml:LinearRing>
+			// <gml:posList>35.541657275471835 139.7156383865409 14.072000000000001 35.542252321638614 139.71535363948732 14.072000000000001 35.54210367440277 139.7148860223014 14.072000000000001 35.54206164434519 139.71490626649856 14.072000000000001 35.5420440155531 139.7148536858433 14.072000000000001 35.541981356256336 139.7146575788015 14.072000000000001 35.54142914946131 139.71491844541285 14.072000000000001 35.54153100551663 139.71523889596378 14.072000000000001 35.541657275471835 139.7156383865409 14.072000000000001</gml:posList>
+			// <gml:LinearRing>
+			// AREAに変更する
+			if (way != null) {
+				way.toArea();
+			}
+		}
+		else if(qName.equals("gml:posList")){
+			// <gml:posList>35.541657275471835 139.7156383865409 14.072000000000001 35.542252321638614 139.71535363948732 14.072000000000001 35.54210367440277 139.7148860223014 14.072000000000001 35.54206164434519 139.71490626649856 14.072000000000001 35.5420440155531 139.7148536858433 14.072000000000001 35.541981356256336 139.7146575788015 14.072000000000001 35.54142914946131 139.71491844541285 14.072000000000001 35.54153100551663 139.71523889596378 14.072000000000001 35.541657275471835 139.7156383865409 14.072000000000001</gml:posList>
+			if (outSb != null) {
+				String height = null;
+				StringTokenizer st = new StringTokenizer(outSb.toString(), " ");
+				while(true) {
+					ElementNode node;
+					// lat
+					if (st.hasMoreTokens()) {
+						node = new ElementNode(CitygmlFile.getId());
+						node.lat = st.nextToken();
+					}
+					else {
+						break;
+					}
+					
+					// lon
+					if (st.hasMoreTokens()) {
+						node.lon = st.nextToken();
+					}
+					else {
+						break;
+					}
+					
+					// height
+					if (st.hasMoreTokens()) {
+						height = st.nextToken();
+						if (way != null) {
+							way.addNode(nodelist.append(node));
+						}
+					}
+					else {
+						break;
+					}
+				}
+				if (way != null) {
+					way.addTag("height", height);
+				}
+			}
+			outSb = null;
+		}
+    	else if(qName.equals("xAL:LocalityName")){
+			// <xAL:LocalityName>東京都大田区南六郷三丁目</xAL:LocalityName>
+			localityName = outSb.toString();
+			outSb = null;
+		}
 
 		else if(qName.equals("core:CityModel")){
+			if (nodelist != null) {
+				for (String key : nodelist.keySet()) {
+					osm.addNode(nodelist.get(key));
+				}
+				nodelist = null;
+			}
         }
 		else if(qName.equals("core:cityObjectMember")){
 			if (building != null) {
-				building.printout(osmfile);
+				osm.addRelations(building);
+				building = null;
 			}
-			building = null;
 		}
 		else if(qName.equals("bldg:Building")){
 			if (building.source_ref != null) {
@@ -133,19 +245,19 @@ public class CityModelParser extends DefaultHandler {
 			}
 			if (roofEdges != null) {
 				for (ElementWay way : this.roofEdges) {
-					way.printout(osmfile);
+					osm.addWay(way);
 					building.addMember(way, "part");
 				}
 		    	this.roofEdges = null;
 			}
-			if (xalparse.localityName != null) {
-				building.addTag("addr:full", xalparse.localityName);
-				xalparse.localityName = null;
+			if (localityName != null) {
+				building.addTag("addr:full", localityName);
+				localityName = null;
 			}
 		}
 		else if(qName.equals("bldg:lod0RoofEdge")){
-			if (gmlparse.isWay()) {
-				ElementWay roofEdge = gmlparse.getWay();
+			if (existWay()) {
+				ElementWay roofEdge = getWay();
 				roofEdge.addTag("building:part", "yes");
 				this.roofEdges.add(roofEdge);
 			}
@@ -158,16 +270,18 @@ public class CityModelParser extends DefaultHandler {
      * テキストデータ読み込み時に毎回呼ばれる
      */
     public void characters(char[] ch, int offset, int length) {
-    	if (gmlparse.outSb != null) {
-    		gmlparse.characters(ch, offset, length);
-    	}
-    	if (xalparse.outSb != null) {
-    		xalparse.characters(ch, offset, length);
-    	}
-    	else if (outSb != null) {
+    	if (outSb != null) {
     		outSb.append(new String(ch, offset, length));
     	}
-    	else {
-    	}
+    }
+    
+    String getAttributes(String key, Attributes atts) {
+		for (int i = 0; i < atts.getLength(); i++) {
+			String aname = atts.getQName(i);
+			if (aname.equals(key)) {
+				return (atts.getValue(i));
+			}
+		}
+    	return null;
     }
 }

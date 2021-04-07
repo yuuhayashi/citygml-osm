@@ -14,16 +14,16 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
+import osm.surveyor.osm.OsmDom;
+
 @SuppressWarnings("serial")
 public class CitygmlFile extends File {
 	CityModelParser gml;
-    AppParameters params;
+    OsmDom osm;
     public static long idno = 0;
     
 	public static void main(String[] args) {
         try {
-			AppParameters params = new AppParameters();
-			
 			File dir = new File(".");
 			Files.list(dir.toPath()).forEach(new Consumer<Path>() {
 				@Override
@@ -34,8 +34,14 @@ public class CitygmlFile extends File {
 						System.out.println(filename);
 						if (filename.endsWith("_op2.gml")) {
 							try {
-					            CitygmlFile target = new CitygmlFile(params, a.toFile());
+								filename = filename.substring(0, filename.length()-4);
+						        
+						        OsmDom osm = new OsmDom();
+					            CitygmlFile target = new CitygmlFile(file, osm);
 					            target.parse();
+					            
+						    	File osmfile = new File(filename + ".osm");
+						    	osm.export(osmfile);
 							} catch (ParserConfigurationException e) {
 								e.printStackTrace();
 							} catch (SAXException e) {
@@ -55,10 +61,10 @@ public class CitygmlFile extends File {
 		}
 	}
 
-    public CitygmlFile(AppParameters params, File file) throws ParserConfigurationException, SAXException, IOException, ParseException {
+    public CitygmlFile(File file, OsmDom osm) throws ParserConfigurationException, SAXException, IOException, ParseException {
         super(file.getParentFile(), file.getName());
-        this.params = params;
-        this.gml = new CityModelParser(file);
+        this.osm = osm;
+        this.gml = new CityModelParser(osm);
     }
     
     public static long getId() {
@@ -77,14 +83,5 @@ public class CitygmlFile extends File {
         try {
 			parser.parse(this, gml);
 		} catch (SAXParseException e) {}
-    }
-    
-    /**
-     * インスタンス状態の表示（parse()実行後に有効になる）
-     * 
-     */
-    public void printinfo() {
-		// 表示
-    	System.out.println(String.format("CityGML file: '%s'", getName()));
     }
 }

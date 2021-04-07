@@ -1,5 +1,9 @@
 package osm.surveyor.osm;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+
 /**
  * CityGMLファイルをパースする
  * @param gmlFile
@@ -18,24 +22,19 @@ public class ElementBounds {
 	public String maxlon = null;
 	String origin = "CGImap 0.8.3 (2061540 spike-08.openstreetmap.org)";
     
-    public void printout(OsmFile file) {
-    	String str = "<bounds";
-    	str += out("minlat", minlat);
-    	str += out("minlon", minlon);
-    	str += out("maxlat", maxlat);
-    	str += out("maxlon", maxlon);
-    	str += out("origin", origin);
-    	str += " />";
-
-    	System.out.println(str);
-    	file.println(str);
-    }
-    
-    private String out(String key, String value) {
-    	String str = "";
-    	if (value != null) {
-    		str = " " + key +"='" + value +"'";
-    	}
-    	return str;
+	/*
+	 * 
+	 	<bounds minlat='35.4345061' minlon='139.410131' 
+	 		maxlat='35.4347116' maxlon='139.4104367' 
+	 		origin='CGImap 0.8.3 (2061540 spike-08.openstreetmap.org)' />
+	 */
+    public Node toNode(Document doc) {
+		Element node = doc.createElement("bounds");
+        node.setAttribute("minlat", minlat);
+        node.setAttribute("minlon", minlon);
+        node.setAttribute("maxlat", maxlat);
+        node.setAttribute("maxlon", maxlon);
+        node.setAttribute("origin", origin);
+        return (Node)node;
     }
 }

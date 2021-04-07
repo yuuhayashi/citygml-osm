@@ -39,22 +39,4 @@ public class ElementMember {
         node.setAttribute("role", role);
         return (Node)node;
     }
-
-    public void printout(OsmFile file) {
-    	String str = "<member";
-    	str += out("ref", Long.toString(ref));
-    	str += out("type", type);
-    	str += out("role", role);
-    	str += " />";
-    	System.out.println(str);
-    	file.println(str);
-    }
-    
-    private String out(String key, String value) {
-    	String str = "";
-    	if (value != null) {
-    		str = " " + key +"='" + value +"'";
-    	}
-    	return str;
-    }
 }
