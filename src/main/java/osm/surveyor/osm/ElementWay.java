@@ -31,22 +31,31 @@ public class ElementWay {
 	/**
 	 * LINEをAREAに変更します
 	 * 最期のノードが最初のノードと同じなら、削除する
+	 * 最期のノードが最初のノードが異なるなら、つなげる
 	 */
 	public void toArea() {
 		int size = nodes.size();
 		ElementNode frst = nodes.get(0);
 		ElementNode last = nodes.get(size - 1);
 		if (size > 3) {
-			if ((frst.lat.equals(last.lat)) && (frst.lon.equals(last.lon))) {
-				nodes.remove(size - 1);
+			if (frst.id != last.id) {
+				if ((frst.lat.equals(last.lat)) && (frst.lon.equals(last.lon))) {
+					nodes.remove(size - 1);
+					nodes.add(frst);
+				}
 			}
 			area = true;
 		}
 		if (size == 3) {
 			if ((frst.lat.equals(last.lat)) && (frst.lon.equals(last.lon))) {
+				nodes.remove(size - 1);
 				area = false;
+				return;
 			}
 			else {
+				if (frst.id != last.id) {
+					nodes.add(frst);
+				}
 				area = true;
 			}
 		}
