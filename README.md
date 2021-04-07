@@ -12,20 +12,20 @@ CityGMLからOSMデータを生成する
 
 ![startup.pu](doc/startup.png)
 
-- 1. [ダウンロード](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/haya4/citygml-get/0.0.4) から 'jar-with-dependencies' を'任意のフォルダ'にダウンロードする<br/> `citygml-get-0.0.4-jar-with-dependencies.jar` がダウンロードされます
+- (1) [ダウンロード](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/haya4/citygml-get/0.0.4) から 'jar-with-dependencies' を'任意のフォルダ'にダウンロードする<br/> `citygml-get-0.0.4-jar-with-dependencies.jar` がダウンロードされます
 
-- 2. [オープンデータ公開サイト](https://www.geospatial.jp/ckan/dataset/plateau)から「3D都市データ」をダウンロードする
+- (2) [オープンデータ公開サイト](https://www.geospatial.jp/ckan/dataset/plateau)から「3D都市データ」をダウンロードする
 
-- 3. ダウンロードしたZIPファイルを'任意のフォルダ'に解凍する。<br/>ファイル末尾が「*.gml」のファイルをため置きます。
+- (3) ダウンロードしたZIPファイルを'任意のフォルダ'に解凍する。<br/>ファイル末尾が「*.gml」のファイルをため置きます。
 
-- 4. コマンドターミナルから実行<br/>「*.osm」ファイルが生成される
+- (4) コマンドターミナルから実行<br/>「*.osm」ファイルが生成される
 
   ```
   $ cd (解凍先フォルダ)
   $ java -jar citygml-get-0.0.4-jar-with-dependencies.jar
   ```
 
-- 5. JOSMを起動して、「*.osm」ファイルをJOSMにドロップしてください。<br/>生成されたデータを確認することができます。
+- (5) JOSMを起動して、「*.osm」ファイルをJOSMにドロップしてください。<br/>生成されたデータを確認することができます。
 
 **絶対にOSMへの「アップロード」は実行しないこと！！**
 
@@ -33,7 +33,7 @@ CityGMLからOSMデータを生成する
 
 ------
 
-- [生成されたOSMファイル](53392547_bldg_6697_op2.osm)
+- 生成されたOSMファイル: [53392547_bldg_6697_op2.osm](53392547_bldg_6697_op2.osm)
 
 - [クラス関連図](doc/class.png)
 
