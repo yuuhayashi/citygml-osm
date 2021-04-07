@@ -4,34 +4,28 @@ CityGMLからOSMデータを生成する
 
 # Release
 
-- 2021-04-05 
-
-  - fixed #2 Issue#2を解決
+- 2021-04-05 fixed #2 / Issue#2を解決
 
 - 2021-04-04 [citygml-osm v0.0.4](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/haya4/citygml-get/0.0.4)
 
 # 使い方
 
-- (1) [ダウンロード](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/haya4/citygml-get/0.0.4) から 'jar-with-dependencies' をダウンロードする
+![startup.pu](doc/startup.png)
 
-- `citygml-get-0.0.4-jar-with-dependencies.jar` がダウンロードされます
+- 1. [ダウンロード](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/haya4/citygml-get/0.0.4) から 'jar-with-dependencies' を'任意のフォルダ'にダウンロードする<br/> `citygml-get-0.0.4-jar-with-dependencies.jar` がダウンロードされます
 
-- (2) [オープンデータ公開サイト](https://www.geospatial.jp/ckan/dataset/plateau)から「3D都市データ」をダウンロードする
+- 2. [オープンデータ公開サイト](https://www.geospatial.jp/ckan/dataset/plateau)から「3D都市データ」をダウンロードする
 
-- (3) 任意のフォルダに解凍する。ファイル末尾が「*.gml」のファイルをため置きます。
+- 3. ダウンロードしたZIPファイルを'任意のフォルダ'に解凍する。<br/>ファイル末尾が「*.gml」のファイルをため置きます。
 
-- (4) 「*.gml」のファイルがあるフォルダに `citygml-get-0.0.4-jar-with-dependencies.jar` を移動させる
-
-- (5) コマンドターミナルから実行
+- 4. コマンドターミナルから実行<br/>「*.osm」ファイルが生成される
 
   ```
   $ cd (解凍先フォルダ)
   $ java -jar citygml-get-0.0.4-jar-with-dependencies.jar
   ```
 
-- (6) 「*.osm」ファイルが生成される
-
-- (7) JOSMを起動して、「*.osm」ファイルをJOSMにドロップしてください。生成されたデータを確認することができます。
+- 5. JOSMを起動して、「*.osm」ファイルをJOSMにドロップしてください。<br/>生成されたデータを確認することができます。
 
 **絶対にOSMへの「アップロード」は実行しないこと！！**
 
