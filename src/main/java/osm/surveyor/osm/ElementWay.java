@@ -84,4 +84,21 @@ public class ElementWay {
 		}
         return (Node)node;
     }
+    
+    /**
+     * sourceと一致するTAGを、destに置き換える
+     * @param source
+     * @param dest
+     */
+    public void replaceTag(ElementTag source, ElementTag dest) {
+    	for (ElementTag tag : tags) {
+    		if (tag.k.equals(source.k)) {
+    			if (tag.v.equals(source.v)) {
+    				tags.add(dest);
+    				tags.remove(tags.indexOf(tag));
+    				return;
+    			}
+    		}
+    	}
+    }
 }

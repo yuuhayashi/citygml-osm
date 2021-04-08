@@ -1,5 +1,6 @@
 package osm.surveyor.osm;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class OsmMargeWay {
@@ -44,4 +45,41 @@ public class OsmMargeWay {
 		}
 		return true;
 	}
+	
+	/**
+	 * メンバーが一つしかないRelation:building を削除する
+	 * @param relations
+	 * @param ways
+	 */
+	public static void relationGabegi(HashMap<String, ElementRelation> relations, HashMap<String, ElementWay> ways) {
+		while (relationRemove(relations, ways));
+	}
+	
+	static boolean relationRemove(HashMap<String, ElementRelation> relations, HashMap<String, ElementWay> ways) {
+		for (String rKey : relations.keySet()) {
+			ElementRelation relation = relations.get(rKey);
+			if (relation.members.size() < 2) {
+				ArrayList<ElementTag> tags = new ArrayList<>();
+				for (ElementTag tag : relation.tags) {
+					if (!tag.k.equals("type")) {
+						tags.add(tag);
+					}
+				}
+				
+				for (ElementMember member : relation.members) {
+					String memberRef = Long.toString(member.ref);
+					ElementWay way = ways.get(memberRef);
+					for (ElementTag tag : tags) {
+						way.addTag(tag.k, tag.v);
+					}
+					way.replaceTag(new ElementTag("building:part", "yes"), new ElementTag("building", "yes"));
+				}
+				
+				relations.remove(rKey);
+				return true;
+			}
+		}
+		return false;
+	}
+	
 }

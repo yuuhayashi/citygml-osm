@@ -172,7 +172,9 @@
         <nd ref="-214"/>
         <nd ref="-211"/>
         <tag k="height" v="4.8655"/>
-        <tag k="building:part" v="yes"/>
+        <tag k="source:ref:id" v="BLD_6061ba8e-adc5-4f92-9490-7ef1a6b1c0f1"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
     </way>
     <way action="modify" id="-253" visible="true">
         <nd ref="-254"/>
@@ -181,7 +183,9 @@
         <nd ref="-257"/>
         <nd ref="-254"/>
         <tag k="height" v="5.127"/>
-        <tag k="building:part" v="yes"/>
+        <tag k="source:ref:id" v="BLD_c567335d-ba57-4436-bc40-5ccf613f40b5"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
     </way>
     <way action="modify" id="-296" visible="true">
         <nd ref="-297"/>
@@ -190,7 +194,9 @@
         <nd ref="-300"/>
         <nd ref="-297"/>
         <tag k="height" v="5.4025"/>
-        <tag k="building:part" v="yes"/>
+        <tag k="source:ref:id" v="BLD_32708324-2cc9-440f-889b-9ae29a9b57d5"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
     </way>
     <way action="modify" id="-890" visible="true">
         <nd ref="-891"/>
@@ -199,7 +205,9 @@
         <nd ref="-894"/>
         <nd ref="-891"/>
         <tag k="height" v="4.992"/>
-        <tag k="building:part" v="yes"/>
+        <tag k="source:ref:id" v="BLD_6822dfa2-d703-4d28-80a4-19c688fedfaa"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
     </way>
     <way action="modify" id="-1181" visible="true">
         <nd ref="-1182"/>
@@ -231,7 +239,9 @@
         <nd ref="-343"/>
         <nd ref="-340"/>
         <tag k="height" v="4.9094999999999995"/>
-        <tag k="building:part" v="yes"/>
+        <tag k="source:ref:id" v="BLD_7aea1c81-2553-454f-b894-d554fe4247d4"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
     </way>
     <way action="modify" id="-933" visible="true">
         <nd ref="-934"/>
@@ -240,7 +250,9 @@
         <nd ref="-937"/>
         <nd ref="-934"/>
         <tag k="height" v="5.113"/>
-        <tag k="building:part" v="yes"/>
+        <tag k="source:ref:id" v="BLD_566a157b-cc25-4ab1-bfaf-bd5a874bce62"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
     </way>
     <way action="modify" id="-976" visible="true">
         <nd ref="-977"/>
@@ -276,7 +288,9 @@
         <nd ref="-1537"/>
         <nd ref="-1534"/>
         <tag k="height" v="4.945"/>
-        <tag k="building:part" v="yes"/>
+        <tag k="source:ref:id" v="BLD_6c9923a4-ee9b-457c-8aa1-d06b84a398c0"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
     </way>
     <way action="modify" id="-1411" visible="true">
         <nd ref="-1412"/>
@@ -285,7 +299,9 @@
         <nd ref="-1415"/>
         <nd ref="-1412"/>
         <tag k="height" v="6.449"/>
-        <tag k="building:part" v="yes"/>
+        <tag k="source:ref:id" v="BLD_a3879a2f-3a08-43e5-911f-111ac3223757"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
     </way>
     <way action="modify" id="-1576" visible="true">
         <nd ref="-1577"/>
@@ -298,7 +314,9 @@
         <nd ref="-1584"/>
         <nd ref="-1577"/>
         <tag k="height" v="23.298000000000002"/>
-        <tag k="building:part" v="yes"/>
+        <tag k="source:ref:id" v="BLD_d5ed1615-6cab-4de8-96d4-71203934bad0"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
     </way>
     <way action="modify" id="-1655" visible="true">
         <nd ref="-1656"/>
@@ -307,7 +325,9 @@
         <nd ref="-1659"/>
         <nd ref="-1656"/>
         <tag k="height" v="8.398"/>
-        <tag k="building:part" v="yes"/>
+        <tag k="source:ref:id" v="BLD_57cd4ea7-0fb7-4b0e-a600-9982cf3b60ca"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
     </way>
     <way action="modify" id="-2" visible="true">
         <nd ref="-3"/>
@@ -320,7 +340,9 @@
         <nd ref="-10"/>
         <nd ref="-3"/>
         <tag k="height" v="14.072000000000001"/>
-        <tag k="building:part" v="yes"/>
+        <tag k="source:ref:id" v="BLD_d61ead86-9f08-4d99-b410-28a576c764f3"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
     </way>
     <way action="modify" id="-81" visible="true">
         <nd ref="-82"/>
@@ -329,7 +351,9 @@
         <nd ref="-85"/>
         <nd ref="-82"/>
         <tag k="height" v="4.973"/>
-        <tag k="building:part" v="yes"/>
+        <tag k="source:ref:id" v="BLD_e638f827-fbb1-4016-9bc4-a24f8a1ca10a"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
     </way>
     <way action="modify" id="-167" visible="true">
         <nd ref="-168"/>
@@ -338,7 +362,9 @@
         <nd ref="-171"/>
         <nd ref="-168"/>
         <tag k="height" v="5.837"/>
-        <tag k="building:part" v="yes"/>
+        <tag k="source:ref:id" v="BLD_d0166b26-7838-4a4f-b5b5-81d29a29b0b2"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
     </way>
     <way action="modify" id="-486" visible="true">
         <nd ref="-487"/>
@@ -351,7 +377,9 @@
         <nd ref="-494"/>
         <nd ref="-487"/>
         <tag k="height" v="5.753500000000001"/>
-        <tag k="building:part" v="yes"/>
+        <tag k="source:ref:id" v="BLD_7e82aed0-1348-45d4-93bb-b1e26c910003"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
     </way>
     <way action="modify" id="-662" visible="true">
         <nd ref="-663"/>
@@ -360,7 +388,9 @@
         <nd ref="-666"/>
         <nd ref="-663"/>
         <tag k="height" v="5.195"/>
-        <tag k="building:part" v="yes"/>
+        <tag k="source:ref:id" v="BLD_579f02b4-7843-4398-905d-107892187346"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
     </way>
     <way action="modify" id="-565" visible="true">
         <nd ref="-566"/>
@@ -375,7 +405,9 @@
         <nd ref="-575"/>
         <nd ref="-566"/>
         <tag k="height" v="5.731"/>
-        <tag k="building:part" v="yes"/>
+        <tag k="source:ref:id" v="BLD_07a37e39-0026-4d92-92a4-000ff290901c"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
     </way>
     <way action="modify" id="-124" visible="true">
         <nd ref="-125"/>
@@ -384,7 +416,9 @@
         <nd ref="-128"/>
         <nd ref="-125"/>
         <tag k="height" v="5.105"/>
-        <tag k="building:part" v="yes"/>
+        <tag k="source:ref:id" v="BLD_9309748b-c3ca-491a-b8d8-e437675a6bfc"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
     </way>
     <way action="modify" id="-443" visible="true">
         <nd ref="-444"/>
@@ -393,7 +427,9 @@
         <nd ref="-447"/>
         <nd ref="-444"/>
         <tag k="height" v="6.84"/>
-        <tag k="building:part" v="yes"/>
+        <tag k="source:ref:id" v="BLD_e61455af-37cd-4d75-ba2b-ab419880b805"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
     </way>
     <way action="modify" id="-382" visible="true">
         <nd ref="-383"/>
@@ -404,7 +440,9 @@
         <nd ref="-388"/>
         <nd ref="-383"/>
         <tag k="height" v="11.669"/>
-        <tag k="building:part" v="yes"/>
+        <tag k="source:ref:id" v="BLD_7cf80dbd-1de7-442f-a3a0-24b8dd981cd5"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
     </way>
     <way action="modify" id="-705" visible="true">
         <nd ref="-706"/>
@@ -413,7 +451,9 @@
         <nd ref="-709"/>
         <nd ref="-706"/>
         <tag k="height" v="9.757"/>
-        <tag k="building:part" v="yes"/>
+        <tag k="source:ref:id" v="BLD_f96ef42c-fad9-444f-9e44-77f7e07726f6"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
     </way>
     <way action="modify" id="-748" visible="true">
         <nd ref="-749"/>
@@ -457,7 +497,9 @@
         <nd ref="-1462"/>
         <nd ref="-1455"/>
         <tag k="height" v="5.689"/>
-        <tag k="building:part" v="yes"/>
+        <tag k="source:ref:id" v="BLD_b5d4a551-2cc1-4500-87d6-f9697bc4bfa2"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
     </way>
     <relation action="modify" id="-1349" visible="true">
         <member ref="-1350" role="part" type="way"/>
@@ -466,147 +508,11 @@
         <tag k="source:ref:id" v="BLD_d152487b-b229-4fe9-a421-02bf68448e0e"/>
         <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
     </relation>
-    <relation action="modify" id="-381" visible="true">
-        <member ref="-382" role="part" type="way"/>
-        <tag k="type" v="building"/>
-        <tag k="source:ref:id" v="BLD_7cf80dbd-1de7-442f-a3a0-24b8dd981cd5"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-    </relation>
-    <relation action="modify" id="-295" visible="true">
-        <member ref="-296" role="part" type="way"/>
-        <tag k="type" v="building"/>
-        <tag k="source:ref:id" v="BLD_32708324-2cc9-440f-889b-9ae29a9b57d5"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-    </relation>
     <relation action="modify" id="-1180" visible="true">
         <member ref="-1181" role="part" type="way"/>
         <member ref="-748" role="part" type="way"/>
         <tag k="type" v="building"/>
         <tag k="source:ref:id" v="BLD_44140760-3271-4cd7-8280-70b89ee0daab"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-    </relation>
-    <relation action="modify" id="-252" visible="true">
-        <member ref="-253" role="part" type="way"/>
-        <tag k="type" v="building"/>
-        <tag k="source:ref:id" v="BLD_c567335d-ba57-4436-bc40-5ccf613f40b5"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-    </relation>
-    <relation action="modify" id="-338" visible="true">
-        <member ref="-339" role="part" type="way"/>
-        <tag k="type" v="building"/>
-        <tag k="source:ref:id" v="BLD_7aea1c81-2553-454f-b894-d554fe4247d4"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-    </relation>
-    <relation action="modify" id="-932" visible="true">
-        <member ref="-933" role="part" type="way"/>
-        <tag k="type" v="building"/>
-        <tag k="source:ref:id" v="BLD_566a157b-cc25-4ab1-bfaf-bd5a874bce62"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-    </relation>
-    <relation action="modify" id="-975" visible="true">
-        <tag k="type" v="building"/>
-        <tag k="source:ref:id" v="BLD_b1d5558f-2919-42dc-a708-b90cde13c75f"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-    </relation>
-    <relation action="modify" id="-1654" visible="true">
-        <member ref="-1655" role="part" type="way"/>
-        <tag k="type" v="building"/>
-        <tag k="source:ref:id" v="BLD_57cd4ea7-0fb7-4b0e-a600-9982cf3b60ca"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-    </relation>
-    <relation action="modify" id="-1532" visible="true">
-        <member ref="-1533" role="part" type="way"/>
-        <tag k="type" v="building"/>
-        <tag k="source:ref:id" v="BLD_6c9923a4-ee9b-457c-8aa1-d06b84a398c0"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-    </relation>
-    <relation action="modify" id="-1" visible="true">
-        <member ref="-2" role="part" type="way"/>
-        <tag k="type" v="building"/>
-        <tag k="source:ref:id" v="BLD_d61ead86-9f08-4d99-b410-28a576c764f3"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-    </relation>
-    <relation action="modify" id="-80" visible="true">
-        <member ref="-81" role="part" type="way"/>
-        <tag k="type" v="building"/>
-        <tag k="source:ref:id" v="BLD_e638f827-fbb1-4016-9bc4-a24f8a1ca10a"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-    </relation>
-    <relation action="modify" id="-123" visible="true">
-        <member ref="-124" role="part" type="way"/>
-        <tag k="type" v="building"/>
-        <tag k="source:ref:id" v="BLD_9309748b-c3ca-491a-b8d8-e437675a6bfc"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-    </relation>
-    <relation action="modify" id="-442" visible="true">
-        <member ref="-443" role="part" type="way"/>
-        <tag k="type" v="building"/>
-        <tag k="source:ref:id" v="BLD_e61455af-37cd-4d75-ba2b-ab419880b805"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-    </relation>
-    <relation action="modify" id="-166" visible="true">
-        <member ref="-167" role="part" type="way"/>
-        <tag k="type" v="building"/>
-        <tag k="source:ref:id" v="BLD_d0166b26-7838-4a4f-b5b5-81d29a29b0b2"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-    </relation>
-    <relation action="modify" id="-485" visible="true">
-        <member ref="-486" role="part" type="way"/>
-        <tag k="type" v="building"/>
-        <tag k="source:ref:id" v="BLD_7e82aed0-1348-45d4-93bb-b1e26c910003"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-    </relation>
-    <relation action="modify" id="-661" visible="true">
-        <member ref="-662" role="part" type="way"/>
-        <tag k="type" v="building"/>
-        <tag k="source:ref:id" v="BLD_579f02b4-7843-4398-905d-107892187346"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-    </relation>
-    <relation action="modify" id="-564" visible="true">
-        <member ref="-565" role="part" type="way"/>
-        <tag k="type" v="building"/>
-        <tag k="source:ref:id" v="BLD_07a37e39-0026-4d92-92a4-000ff290901c"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-    </relation>
-    <relation action="modify" id="-747" visible="true">
-        <tag k="type" v="building"/>
-        <tag k="source:ref:id" v="BLD_37587d5d-7ec1-4012-815b-be282659326d"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-    </relation>
-    <relation action="modify" id="-889" visible="true">
-        <member ref="-890" role="part" type="way"/>
-        <tag k="type" v="building"/>
-        <tag k="source:ref:id" v="BLD_6822dfa2-d703-4d28-80a4-19c688fedfaa"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-    </relation>
-    <relation action="modify" id="-209" visible="true">
-        <member ref="-210" role="part" type="way"/>
-        <tag k="type" v="building"/>
-        <tag k="source:ref:id" v="BLD_6061ba8e-adc5-4f92-9490-7ef1a6b1c0f1"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-    </relation>
-    <relation action="modify" id="-704" visible="true">
-        <member ref="-705" role="part" type="way"/>
-        <tag k="type" v="building"/>
-        <tag k="source:ref:id" v="BLD_f96ef42c-fad9-444f-9e44-77f7e07726f6"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-    </relation>
-    <relation action="modify" id="-1410" visible="true">
-        <member ref="-1411" role="part" type="way"/>
-        <tag k="type" v="building"/>
-        <tag k="source:ref:id" v="BLD_a3879a2f-3a08-43e5-911f-111ac3223757"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-    </relation>
-    <relation action="modify" id="-1575" visible="true">
-        <member ref="-1576" role="part" type="way"/>
-        <tag k="type" v="building"/>
-        <tag k="source:ref:id" v="BLD_d5ed1615-6cab-4de8-96d4-71203934bad0"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-    </relation>
-    <relation action="modify" id="-1453" visible="true">
-        <member ref="-1454" role="part" type="way"/>
-        <tag k="type" v="building"/>
-        <tag k="source:ref:id" v="BLD_b5d4a551-2cc1-4500-87d6-f9697bc4bfa2"/>
         <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
     </relation>
 </osm>

@@ -44,6 +44,9 @@ public class CitygmlFile extends File {
 					            // 各WAYのノードで、他のWAYと共有されたノードを探す
 					            OsmMargeWay.relationMarge(osm.relations, osm.ways);
 					            
+					            // メンバーが一つしかないRelation:building を削除する
+					            OsmMargeWay.relationGabegi(osm.relations, osm.ways);
+					            
 					            // `*.osm`に書き出す
 						    	File osmfile = new File(filename + ".osm");
 						    	osm.export(osmfile);
