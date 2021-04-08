@@ -27,10 +27,6 @@ import org.xml.sax.SAXException;
 public class OsmDom {
 	static final String outputEncoding = "UTF-8";
 	
-	public static void main(String[] args) {
-		
-	}
-
     public OsmDom() {
         super();
     }
@@ -38,8 +34,8 @@ public class OsmDom {
     Document doc;
     ElementBounds bounds = null;
     HashMap<String, ElementNode> nodes = new HashMap<>();
-    HashMap<String, ElementWay> ways = new HashMap<>();
-    HashMap<String, ElementRelation> relations = new HashMap<>();
+    public HashMap<String, ElementWay> ways = new HashMap<>();
+    public HashMap<String, ElementRelation> relations = new HashMap<>();
     
     public void setBounds(ElementBounds bounds) {
     	this.bounds = bounds;
@@ -227,4 +223,6 @@ public class OsmDom {
 			}
 	    }
     }
+    
+    
 }

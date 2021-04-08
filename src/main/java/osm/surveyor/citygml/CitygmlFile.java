@@ -15,6 +15,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
 import osm.surveyor.osm.OsmDom;
+import osm.surveyor.osm.OsmMargeWay;
 
 @SuppressWarnings("serial")
 public class CitygmlFile extends File {
@@ -40,6 +41,10 @@ public class CitygmlFile extends File {
 					            CitygmlFile target = new CitygmlFile(file, osm);
 					            target.parse();
 					            
+					            // 各WAYのノードで、他のWAYと共有されたノードを探す
+					            OsmMargeWay.relationMarge(osm.relations, osm.ways);
+					            
+					            // `*.osm`に書き出す
 						    	File osmfile = new File(filename + ".osm");
 						    	osm.export(osmfile);
 							} catch (ParserConfigurationException e) {
