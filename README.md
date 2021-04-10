@@ -9,17 +9,17 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 # Release
 
-- 2021-04-10 "source='MLIT_PLATEAU'"<br/>"source:name='http://www.opengis.net/def/crs/EPSG/0/6697'"
-- 2021-04-10 fixed #3<br/>自治体コード「全国地方公共団体コード」を"addr:ref"としてタグ付け
-- 2021-04-10 fixed #7<br/>'relasion'メンバーのタグを"building=yes"に修正<br/>"outline"-> "building" には "height"をつけない
-- 2021-04-10 fixed #5<br/>「bouns」を復活
-- 2021-04-10 fixed #4<br/>ロール「outlineがありません（警告）」を解決
+- 2021-04-10<br/> "source='MLIT_PLATEAU'"<br/>"source:name='http://www.opengis.net/def/crs/EPSG/0/6697'"
+- 2021-04-10<br/> fixed #3 / 自治体コード「全国地方公共団体コード」を"addr:ref"としてタグ付け
+- 2021-04-10<br/> fixed #7 / 'relasion'メンバーのタグを"building=yes"に修正<br/>"outline"-> "building" には "height"をつけない
+- 2021-04-10<br/> fixed #5 / 「bouns」を復活
+- 2021-04-10<br/> fixed #4 / ロール「outlineがありません（警告）」を解決
 
-- 2021-04-08 fixed #1 / Issue#1を解決<br/> 接触した建物はリレーション building:part=yes にまとめる、単独の建物は buildhing=yes にする
+- 2021-04-08<br/> fixed #1 / Issue#1を解決<br/> 接触した建物はリレーション building:part=yes にまとめる、単独の建物は buildhing=yes にする
 
-- 2021-04-05 fixed #2 / Issue#2を解決
+- 2021-04-05<br/> fixed #2 / Issue#2を解決
 
-- 2021-04-04 [citygml-osm v0.0.4](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/haya4/citygml-get/0.0.4)
+- 2021-04-04<br/> [citygml-osm v0.0.4](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/haya4/citygml-get/0.0.4)
 
 # 使い方
 
