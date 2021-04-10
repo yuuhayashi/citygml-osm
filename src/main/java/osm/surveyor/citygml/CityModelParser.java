@@ -65,6 +65,12 @@ public class CityModelParser extends DefaultHandler {
 	ElementNodeList nodelist = null;
     ElementBounds bounds = null;
 	ElementBuilding building = null;
+	
+	/*
+	 * <gml:Envelope srsName="http://www.opengis.net/def/crs/EPSG/0/6697">
+	 */
+	String srsName = null;
+	String source = "MLIT_PLATEAU";
 
 	/*
      * List<roofEdge>
@@ -88,6 +94,16 @@ public class CityModelParser extends DefaultHandler {
     String localityNameType = null;
     public String localityName = null;
     
+    /*
+     * 全国地方公共団体コード
+     * addr:ref = 13111058003
+     * 
+     * <gen:stringAttribute name="13_区市町村コード_大字・町コード_町・丁目コード">
+     * 	<gen:value>13111058003</gen:value>
+     * </gen:stringAttribute>
+     */
+    String addr_ref = null;
+    static final String ADDR_REF_CODE13 = "13_区市町村コード_";
     
     /**
      * 要素の開始タグ読み込み時に毎回呼ばれる
@@ -96,18 +112,35 @@ public class CityModelParser extends DefaultHandler {
 		if(qName.equals("gml:boundedBy")){
 			bounds = new ElementBounds();
 		}
+		else if(qName.equals("gml:Envelope")){
+			// <gml:Envelope srsName="http://www.opengis.net/def/crs/EPSG/0/6697">
+			srsName = getAttributes("srsName", atts);
+		}		
 		else if(qName.equals("gml:lowerCorner")){
 			outSb = new StringBuffer();
 		}
 		else if(qName.equals("gml:upperCorner")){
 			outSb = new StringBuffer();
 		}
-		
 		else if(qName.equals("gml:LinearRing")){
 			way = new ElementWay(CitygmlFile.getId());
 		}
 		else if(qName.equals("gml:posList")){
 			outSb = new StringBuffer();
+		}
+    	else if(qName.equals("gen:stringAttribute")){
+			// <gen:stringAttribute name="13_区市町村コード_大字・町コード_町・丁目コード">
+			if (getAttributes("name", atts).startsWith(ADDR_REF_CODE13)) {
+				addr_ref = ADDR_REF_CODE13;
+			}
+	    	outSb = new StringBuffer();
+		}
+    	else if(qName.equals("gen:value")){
+			// <gen:stringAttribute name="13_区市町村コード_大字・町コード_町・丁目コード">
+    		//   <gen:value>13111058003</gen:value>
+			if ((addr_ref != null) && addr_ref.equals(ADDR_REF_CODE13)) {
+		    	outSb = new StringBuffer();
+			}
 		}
     	else if(qName.equals("xAL:LocalityName")){
 			// <xAL:LocalityName Type="Town"></xAL:LocalityName>
@@ -142,6 +175,13 @@ public class CityModelParser extends DefaultHandler {
 		if(qName.equals("gml:boundedBy")){
 			osm.setBounds(bounds);
 		}
+		else if(qName.equals("gml:Envelope")){
+			// <gml:Envelope srsName="http://www.opengis.net/def/crs/EPSG/0/6697">
+			if ((building != null) && (addr_ref != null)) {
+				building.addTag("addr:ref", addr_ref);
+				addr_ref = null;
+			}
+		}		
 		else if(qName.equals("gml:lowerCorner")){
 			// <gml:lowerCorner>35.53956274455546 139.701140502832 1.627</gml:lowerCorner>
 			StringTokenizer st = new StringTokenizer(outSb.toString(), " ");
@@ -220,7 +260,24 @@ public class CityModelParser extends DefaultHandler {
 			}
 			outSb = null;
 		}
-    	else if(qName.equals("xAL:LocalityName")){
+		
+    	else if(qName.equals("gen:stringAttribute")){
+			// <gen:stringAttribute name="13_区市町村コード_大字・町コード_町・丁目コード">
+			if ((building != null) && (addr_ref != null)) {
+				building.addTag("addr:ref", addr_ref);
+				addr_ref = null;
+			}
+		}
+    	else if(qName.equals("gen:value")){
+			// <gen:stringAttribute name="13_区市町村コード_大字・町コード_町・丁目コード">
+    		//   <gen:value>13111058003</gen:value>
+			if ((addr_ref != null) && addr_ref.equals(ADDR_REF_CODE13) && (outSb != null)) {
+				addr_ref = outSb.toString();
+				outSb = null;
+			}
+		}
+
+		else if(qName.equals("xAL:LocalityName")){
 			// <xAL:LocalityName>東京都大田区南六郷三丁目</xAL:LocalityName>
 			localityName = outSb.toString();
 			outSb = null;
@@ -241,6 +298,12 @@ public class CityModelParser extends DefaultHandler {
 			}
 		}
 		else if(qName.equals("bldg:Building")){
+			if (source != null) {
+				building.addTag("source", source);
+			}
+			if (srsName != null) {
+				building.addTag("source:name", srsName);
+			}
 			if (building.source_ref != null) {
 				building.addTag("source:ref:id", building.source_ref);
 			}

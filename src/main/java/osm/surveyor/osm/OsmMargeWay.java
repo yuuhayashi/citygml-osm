@@ -106,9 +106,14 @@ public class OsmMargeWay {
 					aWay.marge(way);
 				}
 			}
+			aWay.replaceTag(new ElementTag("building:part", "yes"), new ElementTag("building", "yes"));
+			for (ElementTag tag : aWay.tags) {
+				if (tag.k.equals("height")) {
+					aWay.tags.remove(aWay.tags.indexOf(tag));
+				}
+			}
 			
 			// WAYをMEMBERとして追加する
-			
 			ElementMember member = new ElementMember();
 			member.setWay(aWay);
 			member.setRole("outline");
