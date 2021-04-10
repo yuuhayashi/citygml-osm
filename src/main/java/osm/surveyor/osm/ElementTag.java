@@ -15,13 +15,23 @@ import org.w3c.dom.Node;
  * }
  * 
  */
-public class ElementTag {
+public class ElementTag implements Cloneable {
 	public String k = null;
 	public String v = null;
 	
 	public ElementTag(String key, String value) {
 		this.k = key;
 		this.v = value;
+	}
+
+	@Override
+	public ElementTag clone() {
+		try {
+			return (ElementTag)super.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
     /*

@@ -17,7 +17,7 @@ public class ElementNodeList extends HashMap<String, ElementNode> {
 	 * @return
 	 */
 	public ElementNode append(ElementNode node) {
-		String key = new String(node.lat +":"+ node.lon);
+		String key = new String(node.point.lat +":"+ node.point.lon);
 		if (this.containsKey(key)) {
 			return this.get(key);
 		}

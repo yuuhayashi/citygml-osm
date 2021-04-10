@@ -501,16 +501,85 @@
         <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
         <tag k="building" v="yes"/>
     </way>
+    <way action="modify" id="-1697" visible="true">
+        <nd ref="-982"/>
+        <nd ref="-1352"/>
+        <nd ref="-1353"/>
+        <nd ref="-1354"/>
+        <nd ref="-1355"/>
+        <nd ref="-983"/>
+        <nd ref="-984"/>
+        <nd ref="-985"/>
+        <nd ref="-986"/>
+        <nd ref="-987"/>
+        <nd ref="-988"/>
+        <nd ref="-989"/>
+        <nd ref="-990"/>
+        <nd ref="-991"/>
+        <nd ref="-992"/>
+        <nd ref="-993"/>
+        <nd ref="-994"/>
+        <nd ref="-995"/>
+        <nd ref="-996"/>
+        <nd ref="-997"/>
+        <nd ref="-998"/>
+        <nd ref="-977"/>
+        <nd ref="-978"/>
+        <nd ref="-979"/>
+        <nd ref="-980"/>
+        <nd ref="-981"/>
+        <nd ref="-982"/>
+        <tag k="height" v="6.58"/>
+        <tag k="building:part" v="yes"/>
+    </way>
     <relation action="modify" id="-1349" visible="true">
         <member ref="-1350" role="part" type="way"/>
         <member ref="-976" role="part" type="way"/>
+        <member ref="-1697" role="outline" type="way"/>
         <tag k="type" v="building"/>
         <tag k="source:ref:id" v="BLD_d152487b-b229-4fe9-a421-02bf68448e0e"/>
         <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
     </relation>
+    <way action="modify" id="-1698" visible="true">
+        <nd ref="-1182"/>
+        <nd ref="-1183"/>
+        <nd ref="-1184"/>
+        <nd ref="-1185"/>
+        <nd ref="-1186"/>
+        <nd ref="-1187"/>
+        <nd ref="-1188"/>
+        <nd ref="-1189"/>
+        <nd ref="-1190"/>
+        <nd ref="-1191"/>
+        <nd ref="-1192"/>
+        <nd ref="-1193"/>
+        <nd ref="-751"/>
+        <nd ref="-752"/>
+        <nd ref="-753"/>
+        <nd ref="-754"/>
+        <nd ref="-755"/>
+        <nd ref="-756"/>
+        <nd ref="-757"/>
+        <nd ref="-758"/>
+        <nd ref="-759"/>
+        <nd ref="-760"/>
+        <nd ref="-761"/>
+        <nd ref="-762"/>
+        <nd ref="-763"/>
+        <nd ref="-749"/>
+        <nd ref="-750"/>
+        <nd ref="-1196"/>
+        <nd ref="-1197"/>
+        <nd ref="-1198"/>
+        <nd ref="-1199"/>
+        <nd ref="-1182"/>
+        <tag k="height" v="17.097"/>
+        <tag k="building:part" v="yes"/>
+    </way>
     <relation action="modify" id="-1180" visible="true">
         <member ref="-1181" role="part" type="way"/>
         <member ref="-748" role="part" type="way"/>
+        <member ref="-1698" role="outline" type="way"/>
         <tag k="type" v="building"/>
         <tag k="source:ref:id" v="BLD_44140760-3271-4cd7-8280-70b89ee0daab"/>
         <tag k="addr:full" v="東京都大田区南六郷三丁目"/>

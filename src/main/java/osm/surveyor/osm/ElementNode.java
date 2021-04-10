@@ -15,16 +15,35 @@ import org.w3c.dom.Node;
  * }
  * 
  */
-public class ElementNode {
+public class ElementNode implements Cloneable {
 	public long id = 0;
 	public String action = "modify";
 	public boolean visible = true;
-	public String lat = null;
-	public String lon = null;
+	public OsmPoint point = null;
 	public String height = null;
 	
 	public ElementNode(long id) {
 		this.id = id;
+		this.point = new OsmPoint();
+	}
+	
+	@Override
+	public ElementNode clone() {
+		ElementNode copy = null;
+		try {
+			copy = (ElementNode)super.clone();
+			if (this.point == null) {
+				copy.point = null;
+			}
+			else {
+				copy.point = this.point.clone();
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			copy = null;
+		}
+		return copy;
 	}
     
     /**
@@ -46,9 +65,55 @@ public class ElementNode {
         node.setAttribute("id", Long.toString(id));
         node.setAttribute("action", action);
         node.setAttribute("visible", Boolean.toString(visible));
-        node.setAttribute("lat", lat);
-        node.setAttribute("lon", lon);
+        node.setAttribute("lat", point.lat);
+        node.setAttribute("lon", point.lon);
         doc.appendChild((Node) node);
         return (Node)node;
     }
+
+    
+    //--------------------------------------
+
+    @Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((action == null) ? 0 : action.hashCode());
+		result = prime * result + ((height == null) ? 0 : height.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((point == null) ? 0 : point.hashCode());
+		result = prime * result + (visible ? 1231 : 1237);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ElementNode other = (ElementNode) obj;
+		if (action == null) {
+			if (other.action != null)
+				return false;
+		} else if (!action.equals(other.action))
+			return false;
+		if (height == null) {
+			if (other.height != null)
+				return false;
+		} else if (!height.equals(other.height))
+			return false;
+		if (id != other.id)
+			return false;
+		if (point == null) {
+			if (other.point != null)
+				return false;
+		} else if (!point.equals(other.point))
+			return false;
+		if (visible != other.visible)
+			return false;
+		return true;
+	}
 }

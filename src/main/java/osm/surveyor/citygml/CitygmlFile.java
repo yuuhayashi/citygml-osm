@@ -47,6 +47,9 @@ public class CitygmlFile extends File {
 					            // メンバーが一つしかないRelation:building を削除する
 					            OsmMargeWay.relationGabegi(osm.relations, osm.ways);
 					            
+					            // Relation->member:role=port のoutlineを作成する
+					            OsmMargeWay.relationOutline(osm.relations);
+					            
 					            // `*.osm`に書き出す
 						    	File osmfile = new File(filename + ".osm");
 						    	osm.export(osmfile);

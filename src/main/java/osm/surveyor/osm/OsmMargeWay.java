@@ -3,6 +3,8 @@ package osm.surveyor.osm;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import osm.surveyor.citygml.CitygmlFile;
+
 public class OsmMargeWay {
 
     /**
@@ -80,6 +82,38 @@ public class OsmMargeWay {
 			}
 		}
 		return false;
+	}
+	
+	/**
+	 * - Relation->member:role=port のoutlineを作成する
+	 * - 
+	 * 
+	 * @param relations
+	 */
+	public static void relationOutline(HashMap<String, ElementRelation> relations) {
+		for (String rKey : relations.keySet()) {
+			ElementRelation relation = relations.get(rKey);
+			ArrayList<ElementWay> ways = relation.getLines();
+			
+			// WAYを他のWAYと合成する;
+			ElementWay aWay = null;
+			for (ElementWay way : ways) {
+				if (aWay == null) {
+					aWay = way;
+					aWay.id = CitygmlFile.getId();
+				}
+				else {
+					aWay.marge(way);
+				}
+			}
+			
+			// WAYをMEMBERとして追加する
+			
+			ElementMember member = new ElementMember();
+			member.setWay(aWay);
+			member.setRole("outline");
+			relation.addMember(aWay, "outline");
+		}
 	}
 	
 }

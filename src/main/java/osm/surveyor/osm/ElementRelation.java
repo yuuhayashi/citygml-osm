@@ -52,4 +52,32 @@ public class ElementRelation {
 		}
         return (Node)node;
     }
+    
+	/**
+	 * member:role="outline"が存在しないリレーションを返す
+	 * @param relation
+	 * @return
+	 */
+	ElementRelation getNoOutline() {
+		for (ElementMember member : members) {
+			String role = member.role;
+			if (role.equals("outline")) {
+				return null;
+			}
+		}
+		return this;
+	}
+	
+	/**
+	 * member->wayのすべてのLINEをListにする
+	 * @param relation
+	 * @return
+	 */
+	ArrayList<ElementWay> getLines() {
+		ArrayList<ElementWay> lineList = new ArrayList<>();
+		for (ElementMember member : members) {
+			lineList.add(member.way.clone());
+		}
+		return lineList;
+	}
 }

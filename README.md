@@ -4,7 +4,9 @@ CityGMLからOSMデータを生成する
 
 # Release
 
-- 2021-04-08 fixed #1 / Issue#1を解決 接触した建物はリレーション building:part=yes にまとめる、単独の建物は buildhing=yes にする
+- 2021-04-10 fixed #4 / ロール「outlineがありません（警告）」を解決
+
+- 2021-04-08 fixed #1 / Issue#1を解決<br/> 接触した建物はリレーション building:part=yes にまとめる、単独の建物は buildhing=yes にする
 
 - 2021-04-05 fixed #2 / Issue#2を解決
 

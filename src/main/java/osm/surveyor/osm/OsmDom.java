@@ -79,7 +79,14 @@ public class OsmDom {
         	osm.appendChild(ways.get(key).toNode(document));
     	}
     	for (String key : relations.keySet()) {
-        	osm.appendChild(relations.get(key).toNode(document));
+    		ElementRelation relation = relations.get(key);
+    		for (ElementMember member : relation.members) {
+    			ElementWay way = member.way;
+    			if (!ways.containsKey(Long.toString(way.id))) {
+    				osm.appendChild(way.toNode(document));
+    			}
+    		}
+        	osm.appendChild(relation.toNode(document));
     	}
     	document.appendChild(osm);
     	
@@ -128,8 +135,8 @@ public class OsmDom {
 				ElementNode node = new ElementNode(Long.parseLong(id));
 				node.action = eElement.getAttribute("action");
 				node.visible = Boolean.valueOf(eElement.getAttribute("visible"));
-				node.lat = eElement.getAttribute("lat");
-				node.lon = eElement.getAttribute("lon");
+				node.point.lat = eElement.getAttribute("lat");
+				node.point.lon = eElement.getAttribute("lon");
 				node.height = eElement.getAttribute("height");
 				nodes.put(String.valueOf(node.id), node);
 			}
