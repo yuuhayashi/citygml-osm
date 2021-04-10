@@ -2,12 +2,14 @@
 
 CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
+- 生成されたOSMファイル: [53392547_bldg_6697_op2.osm](53392547_bldg_6697_op2.osm)
+
 ![Screenshot.png](doc/Screenshot.png)
 
 
 # Release
 
-- 2021-04-10 fixed #5<br/>「boundary」を復活
+- 2021-04-10 fixed #5<br/>「bouns」を復活
 - 2021-04-10 fixed #4<br/>ロール「outlineがありません（警告）」を解決
 
 - 2021-04-08 fixed #1 / Issue#1を解決<br/> 接触した建物はリレーション building:part=yes にまとめる、単独の建物は buildhing=yes にする
