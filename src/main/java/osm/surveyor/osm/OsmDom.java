@@ -72,6 +72,7 @@ public class OsmDom {
 		DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 		Document document = documentBuilder.newDocument();
     	Node osm = (new ElementOsm()).toNode(document);
+    	osm.appendChild(bounds.toNode(document));
     	for (String key : nodes.keySet()) {
         	osm.appendChild(nodes.get(key).toNode(document));
     	}

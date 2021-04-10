@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <osm generator="JOSM" version="0.6">
+    <bounds maxlat="35.542252321638614" maxlon="139.7156383865409" minlat="35.54070862164589" minlon="139.71245218213994" origin="CGImap 0.8.3 (2061540 spike-08.openstreetmap.org)"/>
     <node action="modify" id="-937" lat="35.54150403738886" lon="139.7138040099169" visible="true"/>
     <node action="modify" id="-10" lat="35.54153100551663" lon="139.71523889596378" visible="true"/>
     <node action="modify" id="-255" lat="35.54125637323291" lon="139.7132981681648" visible="true"/>
