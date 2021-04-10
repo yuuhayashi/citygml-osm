@@ -10,7 +10,7 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 # Release
 
 - 2021-04-10<br/> "source='MLIT_PLATEAU'"<br/>"source:name='http://www.opengis.net/def/crs/EPSG/0/6697'"
-- 2021-04-10<br/> fixed #3 / 自治体コード「全国地方公共団体コード」を"addr:ref"としてタグ付け
+- 2021-04-10<br/> fixed #3 / 自治体コード「全国地方公共団体コード」を"addr:ref"としてタグ付け 
 - 2021-04-10<br/> fixed #7 / 'relasion'メンバーのタグを"building=yes"に修正<br/>"outline"-> "building" には "height"をつけない
 - 2021-04-10<br/> fixed #5 / 「bouns」を復活
 - 2021-04-10<br/> fixed #4 / ロール「outlineがありません（警告）」を解決
