@@ -19,7 +19,7 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 - 2021-04-05<br/> fixed #2 / Issue#2を解決
 
-- 2021-04-04<br/> [citygml-osm v0.0.4](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/haya4/citygml-get/0.0.4)
+- 2021-04-04<br/> リリース: [citygml-osm v0.0.4](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/haya4/citygml-get/0.0.4)
 
 # 使い方
 
