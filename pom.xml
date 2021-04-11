@@ -2,13 +2,13 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>osm.surveyor</groupId>
   <artifactId>citygml-osm</artifactId>
-  <version>0.2.0</version>
+  <version>0.2.1-SNAPSHOT</version>
   <name>citygml-osm</name>
   <scm>
     <connection>scm:https://github.com/yuuhayashi/citygml-osm.git</connection>
     <url>https://github.com/yuuhayashi/citygml-osm</url>
     <developerConnection>scm:git:https://github.com/yuuhayashi/citygml-osm.git</developerConnection>
-    <tag>v0.2.0</tag>
+    <tag>v0.1.1</tag>
   </scm>
   
   <licenses>
