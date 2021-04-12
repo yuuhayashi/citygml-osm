@@ -19,13 +19,13 @@ import org.xml.sax.SAXException;
  *
  * @author 68user http://X68000.q-e-d.net/~68user/
  */
-public class HttpGET {
+public class HttpGet {
 	//public static String host = "http://api06.dev.openstreetmap.org";
 	//public static String host = "http://api.openstreetmap.org";
 	public static String host = "https://www.openstreetmap.org";
 	
 	public static void main(String[] args) throws MalformedURLException, ProtocolException, IOException, ParserConfigurationException, SAXException {
-		HttpGET obj = new HttpGET();
+		HttpGet obj = new HttpGet();
 		GetResponse res = obj.getCapabilities();
 		res.printout();
         

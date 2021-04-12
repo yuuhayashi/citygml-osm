@@ -32,13 +32,17 @@ public class OsmDom {
     }
 
     Document doc;
-    ElementBounds bounds = null;
-    HashMap<String, ElementNode> nodes = new HashMap<>();
+    ElementBounds bounds = new ElementBounds();
+    public HashMap<String, ElementNode> nodes = new HashMap<>();
     public HashMap<String, ElementWay> ways = new HashMap<>();
     public HashMap<String, ElementRelation> relations = new HashMap<>();
     
     public void setBounds(ElementBounds bounds) {
     	this.bounds = bounds;
+    }
+
+    public ElementBounds getBounds() {
+    	return bounds;
     }
     
     public void addNode(ElementNode node) {
@@ -53,12 +57,13 @@ public class OsmDom {
     	this.relations.put(Long.toString(relation.id), relation);
     }
     
-    public void load(File sourcefile) throws ParserConfigurationException, SAXException, IOException {
+    public Document load(File sourcefile) throws ParserConfigurationException, SAXException, IOException {
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 	    DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 	    doc = dBuilder.parse(sourcefile);
 	    doc.getDocumentElement().normalize();
 	    load(doc);
+	    return doc;
 	}
     
     public void load(Document doc) throws ParserConfigurationException, SAXException, IOException {
@@ -112,7 +117,8 @@ public class OsmDom {
      * @return
      */
     void loadBounds(Document doc, ElementBounds bounds) {
-	    NodeList nList = doc.getElementsByTagName("bounds");
+    	Element osmElement = doc.getDocumentElement();
+	    NodeList nList = osmElement.getElementsByTagName("bounds");
 	    for (int temp = 0; temp < nList.getLength(); temp++) {
 			Node nNode = nList.item(temp);
 			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
@@ -126,19 +132,17 @@ public class OsmDom {
 	    }
     }
     
+    /**
+     * 
+     * @param doc		入力データ
+     * @param nodes		結果を格納するMAP
+     */
     void loadNodes(Document doc, HashMap<String, ElementNode> nodes) {
 	    NodeList nList = doc.getElementsByTagName("node");
 	    for (int temp = 0; temp < nList.getLength(); temp++) {
 			Node nNode = nList.item(temp);
-			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-				Element eElement = (Element) nNode;
-				String id = eElement.getAttribute("id");
-				ElementNode node = new ElementNode(Long.parseLong(id));
-				node.action = eElement.getAttribute("action");
-				node.visible = Boolean.valueOf(eElement.getAttribute("visible"));
-				node.point.lat = eElement.getAttribute("lat");
-				node.point.lon = eElement.getAttribute("lon");
-				node.height = eElement.getAttribute("height");
+			ElementNode node = (new ElementNode(0)).loadNode(nNode);
+			if (node != null) {
 				nodes.put(String.valueOf(node.id), node);
 			}
 	    }
@@ -217,7 +221,10 @@ public class OsmDom {
 						if (node2.getNodeName().equals("member")) {
 							String ref = e2.getAttribute("ref");
 							String role = e2.getAttribute("role");
-							relation.addMember(ways.get(ref), role);
+							ElementWay w = ways.get(ref);
+							if (w != null) {
+								relation.addMember(ways.get(ref), role);
+							}
 						}
 						if (node2.getNodeName().equals("tag")) {
 							String k = e2.getAttribute("k");
