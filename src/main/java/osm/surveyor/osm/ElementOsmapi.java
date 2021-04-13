@@ -15,7 +15,7 @@ import org.w3c.dom.Node;
  * 
  */
 public class ElementOsmapi implements Cloneable {
-	public long id = -1;
+	public long id = 0;
 	public String action = null;
 	public String timestamp = null;
 	public String uid = null;
