@@ -298,15 +298,18 @@ public class CityModelParser extends DefaultHandler {
 			}
 		}
 		else if(qName.equals("bldg:Building")){
+			String src = "";
 			if (source != null) {
-				building.addTag("source", source);
+				src += source;
 			}
 			if (srsName != null) {
-				building.addTag("source:name", srsName);
+				src += "; "+ srsName;
 			}
 			if (building.source_ref != null) {
-				building.addTag("source:ref:id", building.source_ref);
+				src += " "+ building.source_ref;
 			}
+			building.addTag("source", src);
+
 			if (roofEdges != null) {
 				for (ElementWay way : this.roofEdges) {
 					osm.addWay(way);
