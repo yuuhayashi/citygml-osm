@@ -30,7 +30,7 @@ public class HttpGetTest {
 	@Test
 	public void testVersions() {
 		try {
-			HttpGET obj = new HttpGET();
+			HttpGet obj = new HttpGet();
 			GetResponse res = obj.getVersions();
 			res.printout();
 		} catch (Exception e) {
@@ -42,7 +42,7 @@ public class HttpGetTest {
 	@Test
 	public void testCapabilities() {
 		try {
-			HttpGET obj = new HttpGET();
+			HttpGet obj = new HttpGet();
 			GetResponse res = obj.getCapabilities();
 			res.printout();
 		} catch (Exception e) {
@@ -74,7 +74,7 @@ public class HttpGetTest {
 			double maxlon = 139.4279939d;
 			double minlat = 35.4320438d;
 			double maxlat = 35.4375923d;
-			HttpGET obj = new HttpGET();
+			HttpGet obj = new HttpGet();
 			GetResponse res = obj.getMap(minlon, minlat, maxlon, maxlat);
 			res.printout();
 		} catch (Exception e) {

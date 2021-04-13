@@ -32,7 +32,7 @@ public class OsmDom {
     }
 
     Document doc;
-    ElementBounds bounds = null;
+    ElementBounds bounds = new ElementBounds();
     HashMap<String, ElementNode> nodes = new HashMap<>();
     public HashMap<String, ElementWay> ways = new HashMap<>();
     public HashMap<String, ElementRelation> relations = new HashMap<>();
@@ -41,7 +41,12 @@ public class OsmDom {
     	this.bounds = bounds;
     }
     
-    public void addNode(ElementNode node) {
+    public ElementBounds getBounds() {
+		return bounds;
+	}
+
+
+	public void addNode(ElementNode node) {
     	this.nodes.put(Long.toString(node.id), node);
     }
 
