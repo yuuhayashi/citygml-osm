@@ -58,12 +58,13 @@ public class OsmDom {
     	this.relations.put(Long.toString(relation.id), relation);
     }
     
-    public void load(File sourcefile) throws ParserConfigurationException, SAXException, IOException {
+    public Document load(File sourcefile) throws ParserConfigurationException, SAXException, IOException {
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 	    DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 	    doc = dBuilder.parse(sourcefile);
 	    doc.getDocumentElement().normalize();
 	    load(doc);
+	    return doc;
 	}
     
     public void load(Document doc) throws ParserConfigurationException, SAXException, IOException {
@@ -117,7 +118,8 @@ public class OsmDom {
      * @return
      */
     void loadBounds(Document doc, ElementBounds bounds) {
-	    NodeList nList = doc.getElementsByTagName("bounds");
+    	Element osmElement = doc.getDocumentElement();
+    	NodeList nList = osmElement.getElementsByTagName("bounds");
 	    for (int temp = 0; temp < nList.getLength(); temp++) {
 			Node nNode = nList.item(temp);
 			if (nNode.getNodeType() == Node.ELEMENT_NODE) {

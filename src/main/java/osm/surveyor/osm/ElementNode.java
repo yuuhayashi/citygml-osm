@@ -15,15 +15,12 @@ import org.w3c.dom.Node;
  * }
  * 
  */
-public class ElementNode implements Cloneable {
-	public long id = 0;
-	public String action = "modify";
-	public boolean visible = true;
+public class ElementNode extends ElementOsmapi implements Cloneable {
 	public OsmPoint point = null;
 	public String height = null;
 	
 	public ElementNode(long id) {
-		this.id = id;
+		super(id);
 		this.point = new OsmPoint();
 	}
 	
