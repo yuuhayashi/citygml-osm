@@ -177,7 +177,13 @@ public class OsmDom {
 						Element e2 = (Element) node2;
 						if (node2.getNodeName().equals("nd")) {
 							String ref = e2.getAttribute("ref");
-							way.addNode(nodes.get(ref));
+							ElementNode node = nodes.get(ref);
+							if (node != null) {
+								way.addNode(node);
+							}
+							else {
+								way.addNode((new OsmNd()).loadElement(e2).toElementNode());
+							}
 						}
 						if (node2.getNodeName().equals("tag")) {
 							String k = e2.getAttribute("k");

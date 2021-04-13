@@ -45,6 +45,12 @@ public class ElementNode extends ElementOsmapi implements Cloneable {
 		return copy;
 	}
     
+    public OsmNd toNd() {
+		OsmNd nd = new OsmNd();
+        nd.set(this.id, this.point);
+        return nd;
+    }
+
     /**
      * <nd ref='-4'/>
      */
@@ -64,7 +70,7 @@ public class ElementNode extends ElementOsmapi implements Cloneable {
     	Element node = super.toElement(doc, "node");
         node.setAttribute("lat", point.lat);
         node.setAttribute("lon", point.lon);
-        doc.appendChild((Node) node);
+        //doc.appendChild((Node) node);
         return (Node)node;
     }
 
@@ -73,7 +79,6 @@ public class ElementNode extends ElementOsmapi implements Cloneable {
      * <node id='1803576119' timestamp='2012-06-27T05:23:26Z' uid='618878' user='nakanao' visible='true' version='1' changeset='12032994' lat='35.5420516' lon='139.7149118' />
      * 
      * @param nNode		doc.getElementsByTagName("node")
-     * @param nodes		結果を格納するMAP
      */
     public ElementNode loadNode(Node nNode) {
 		if (nNode.getNodeType() == Node.ELEMENT_NODE) {

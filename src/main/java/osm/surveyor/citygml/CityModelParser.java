@@ -9,7 +9,6 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import osm.surveyor.osm.ElementBounds;
 import osm.surveyor.osm.ElementNode;
-import osm.surveyor.osm.ElementNodeList;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 
@@ -62,7 +61,7 @@ public class CityModelParser extends DefaultHandler {
     	super.endDocument();
     }
     
-	ElementNodeList nodelist = null;
+	//ElementNodeList nodelist = null;
     ElementBounds bounds = null;
 	ElementBuilding building = null;
 	
@@ -81,12 +80,14 @@ public class CityModelParser extends DefaultHandler {
      * roofEdge
      */
     ElementWay way = null;
+    /*
     public ElementWay getWay() {
     	return way;
     }
     public boolean existWay() {
     	return (way != null);
     }
+    */
 
     /*
      * addr:full = *
@@ -123,7 +124,7 @@ public class CityModelParser extends DefaultHandler {
 			outSb = new StringBuffer();
 		}
 		else if(qName.equals("gml:LinearRing")){
-			way = new ElementWay(CitygmlFile.getId());
+			//nodelist = new ElementNodeList();
 		}
 		else if(qName.equals("gml:posList")){
 			outSb = new StringBuffer();
@@ -148,7 +149,6 @@ public class CityModelParser extends DefaultHandler {
 	    	outSb = new StringBuffer();
 		}
 		else if(qName.equals("core:CityModel")){
-			nodelist = new ElementNodeList();
 		}
 		else if(qName.equals("core:cityObjectMember")){
 			building = new ElementBuilding(CitygmlFile.getId());
@@ -163,6 +163,7 @@ public class CityModelParser extends DefaultHandler {
 	    	this.roofEdges = new ArrayList<>();
 		}
 		else if(qName.equals("bldg:lod0RoofEdge")){
+			way = new ElementWay(CitygmlFile.getId());
 		}
 		else {
 		}
@@ -216,6 +217,7 @@ public class CityModelParser extends DefaultHandler {
 			// AREAに変更する
 			if (way != null) {
 				way.toArea();
+				//osm.ways.put(Long.toString(way.id), way);
 			}
 		}
 		else if(qName.equals("gml:posList")){
@@ -247,7 +249,8 @@ public class CityModelParser extends DefaultHandler {
 					if (st.hasMoreTokens()) {
 						height = st.nextToken();
 						if (way != null) {
-							way.addNode(nodelist.append(node));
+							osm.addNode(node);
+							way.addNode(node);
 						}
 					}
 					else {
@@ -284,12 +287,6 @@ public class CityModelParser extends DefaultHandler {
 		}
 
 		else if(qName.equals("core:CityModel")){
-			if (nodelist != null) {
-				for (String key : nodelist.keySet()) {
-					osm.addNode(nodelist.get(key));
-				}
-				nodelist = null;
-			}
         }
 		else if(qName.equals("core:cityObjectMember")){
 			if (building != null) {
@@ -320,10 +317,10 @@ public class CityModelParser extends DefaultHandler {
 			}
 		}
 		else if(qName.equals("bldg:lod0RoofEdge")){
-			if (existWay()) {
-				ElementWay roofEdge = getWay();
-				roofEdge.addTag("building:part", "yes");
-				this.roofEdges.add(roofEdge);
+			if (way != null) {
+				way.addTag("building:part", "yes");
+				this.roofEdges.add(way.clone());
+				way = null;
 			}
 		}
         else {

@@ -41,13 +41,19 @@ public class CitygmlFile extends File {
 					            CitygmlFile target = new CitygmlFile(file, osm);
 					            target.parse();
 					            
+						    	osm.export(new File(filename + ".0.osm"));		// [DEBUG]
+					            
 					            // 各WAYのノードで、他のWAYと共有されたノードを探す
 					            OsmMargeWay.relationMarge(osm.relations, osm.ways);
+					            
+						    	osm.export(new File(filename + ".1.osm"));	// [DEBUG]
 					            
 					            // メンバーが一つしかないRelation:building を削除する
 					            OsmMargeWay.relationGabegi(osm.relations, osm.ways);
 					            
-					            // Relation->member:role=port のoutlineを作成する
+						    	osm.export(new File(filename + ".2.osm"));	// [DEBUG]
+
+						    	// Relation->member:role=port のoutlineを作成する
 					            OsmMargeWay.relationOutline(osm.relations);
 					            
 					            // `*.osm`に書き出す

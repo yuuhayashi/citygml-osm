@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class ElementNodeList extends HashMap<String, ElementNode> {
 
-	private static final long serialVersionUID = 3570123486213986940L;
+	private static final long serialVersionUID = -1094787218273137919L;
 
 	public ElementNodeList() {
 		super();

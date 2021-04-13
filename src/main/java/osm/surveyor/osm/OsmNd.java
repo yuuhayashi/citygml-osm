@@ -1,5 +1,9 @@
 package osm.surveyor.osm;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+
 public class OsmNd implements Cloneable {
 	public long id = 0;
 	public OsmPoint point = null;
@@ -28,7 +32,34 @@ public class OsmNd implements Cloneable {
 		}
 		return copy;
 	}
+	
+    /**
+     * <nd ref='-4'/>
+     */
+    public Node toNodeNd(Document doc) {
+		Element node = (Element) doc.createElement("nd");
+        node.setAttribute("ref", Long.toString(id));
+        return (Node)node;
+    }
+    
+    public ElementNode toElementNode() {
+		ElementNode node = new ElementNode(id);
+		node.point = this.point.clone();
+        return node;
+    }
 
+
+    public OsmNd loadElement(Element eElement) {
+    	String attrKey = "ref";
+		String str = eElement.getAttribute(attrKey);
+		if ((str == null) || !str.isEmpty()) {
+			return null;
+		}
+		this.id = Long.parseLong(str);
+		this.point = null;
+		return this;
+    }
+    
     //--------------------------------------
 
 	@Override
