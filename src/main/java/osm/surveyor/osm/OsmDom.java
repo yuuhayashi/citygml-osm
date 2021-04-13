@@ -54,6 +54,14 @@ public class OsmDom {
     	this.ways.put(Long.toString(way.id), way);
     }
     
+	public ElementWay getWay(long id) {
+		return getWay(Long.toString(id));
+	}
+	
+	public ElementWay getWay(String idStr) {
+		return this.ways.get(idStr);
+	}
+    
     public void addRelations(ElementRelation relation) {
     	this.relations.put(Long.toString(relation.id), relation);
     }
@@ -88,8 +96,8 @@ public class OsmDom {
     	for (String key : relations.keySet()) {
     		ElementRelation relation = relations.get(key);
     		for (ElementMember member : relation.members) {
-    			ElementWay way = member.way;
-    			if (!ways.containsKey(Long.toString(way.id))) {
+    			if (ways.containsKey(Long.toString(member.ref))) {
+        			ElementWay way = ways.get(Long.toString(member.ref));
     				osm.appendChild(way.toNode(document));
     			}
     		}

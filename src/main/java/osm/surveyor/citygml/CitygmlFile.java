@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.util.function.Consumer;
 
@@ -48,7 +49,7 @@ public class CitygmlFile extends File {
 					            OsmMargeWay.relationGabegi(osm.relations, osm.ways);
 					            
 					            // Relation->member:role=port のoutlineを作成する
-					            OsmMargeWay.relationOutline(osm.relations);
+					            OsmMargeWay.relationOutline(osm.relations, osm.ways);
 					            
 					            // `*.osm`に書き出す
 						    	File osmfile = new File(filename + ".osm");

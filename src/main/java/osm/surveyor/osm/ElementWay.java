@@ -5,17 +5,21 @@ import java.util.ArrayList;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
-public class ElementWay implements Cloneable {
-	public long id = 0;
-	public String action = "modify";
-	public boolean visible = true;
+/**
+ * 
+ * <way id='96350144' timestamp='2018-08-25T08:34:33Z' uid='7548722' user='Unnown' visible='true' version='17' changeset='61979354'>
+ * @author hayashi
+ *
+ */
+public class ElementWay extends ElementOsmapi implements Cloneable {
 	public ArrayList<ElementNode> nodes;
 	public ArrayList<ElementTag> tags;
 	boolean area = false;
 	
 	public ElementWay(long id) {
-		this.id = id;
+		super(id);
 		nodes = new ArrayList<ElementNode>();
 		tags = new ArrayList<ElementTag>();
 	}
@@ -88,6 +92,7 @@ public class ElementWay implements Cloneable {
 	
 	/*
 	 * 
+	 * <way id='96350144' timestamp='2018-08-25T08:34:33Z' uid='7548722' user='Unnown' visible='true' version='17' changeset='61979354'>
 		<way id='-2' action='modify' visible='true'>
 			<nd ref='-3'/>
 			<nd ref='-4'/>
@@ -97,10 +102,7 @@ public class ElementWay implements Cloneable {
 		</way>
 	 */
     public Node toNode(Document doc) {
-		Element node = doc.createElement("way");
-        node.setAttribute("id", Long.toString(id));
-        node.setAttribute("action", action);
-        node.setAttribute("visible", Boolean.toString(visible));
+    	Element node = super.toElement(doc, "way");
 		for (ElementNode nd : this.nodes) {
 			node.appendChild(nd.toNodeNd(doc));
 		}
@@ -108,6 +110,44 @@ public class ElementWay implements Cloneable {
 			node.appendChild(tag.toNodeNd(doc));
 		}
         return (Node)node;
+    }
+    
+    /**
+     * 	<way id='-2' action='modify' visible='true'>
+	 * 	  <nd ref='-3'/>
+	 * 	  <nd ref='-4'/>
+	 * 	  <nd ref='-5'/>
+	 * 	  <tag k='height' v='14.072000000000001' />
+	 * 	  <tag k='building:part' v='yes' />
+	 * 	</way>
+     * @param doc
+     * @param ways
+     */
+    ElementWay loadWay(Node nNode) {
+		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+			Element eElement = (Element) nNode;
+			loadElement(eElement);
+			
+			NodeList list2 = nNode.getChildNodes();
+		    for (int temp2 = 0; temp2 < list2.getLength(); temp2++) {
+				Node node2 = list2.item(temp2);
+				if (node2.getNodeType() == Node.ELEMENT_NODE) {
+					Element e2 = (Element) node2;
+					if (node2.getNodeName().equals("nd")) {
+						OsmNd nd = new OsmNd();
+						nd.loadElement(e2);
+						this.addNode(nd.toElementNode());
+					}
+					if (node2.getNodeName().equals("tag")) {
+						String k = e2.getAttribute("k");
+						String v = e2.getAttribute("v");
+						this.addTag(k, v);
+					}
+				}
+		    }
+		    return this;
+		}
+		return null;
     }
     
     /**

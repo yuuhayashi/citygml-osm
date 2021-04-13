@@ -1,20 +1,20 @@
 package osm.surveyor.osm;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-public class ElementRelation {
-	public long id = 0;
-	public String action = "modify";
-	public boolean visible = true;
+import osm.surveyor.citygml.CitygmlFile;
+
+public class ElementRelation extends ElementOsmapi implements Cloneable {
 	public ArrayList<ElementMember> members;
 	public ArrayList<ElementTag> tags;
 	
 	public ElementRelation(long id) {
-		this.id = id;
+		super(id);
 		members = new ArrayList<ElementMember>();
 		tags = new ArrayList<ElementTag>();
 	}
@@ -69,15 +69,104 @@ public class ElementRelation {
 	}
 	
 	/**
+	 * Relation->member:role=port のoutlineを作成する
+	 * @param relation
+	 * @param ways
+	 */
+	public ElementWay createOutline(HashMap<String, ElementWay> ways) {
+		ArrayList<ElementWay> memberway = new ArrayList<>();
+		for (ElementMember member : this.members) {
+			memberway.add(ways.get(Long.toString(member.ref)).clone());
+		}
+		
+		// WAYを他のWAYと合成する;
+		ElementWay aWay = null;
+		for (ElementWay way : memberway) {
+			if (aWay == null) {
+				aWay = way.clone();
+				aWay.id = CitygmlFile.getId();
+			}
+			else {
+				aWay.marge(way.clone());
+			}
+		}
+		aWay.replaceTag(new ElementTag("building:part", "yes"), new ElementTag("building", "yes"));
+		for (ElementTag tag : aWay.tags) {
+			if (tag.k.equals("height")) {
+				aWay.tags.remove(aWay.tags.indexOf(tag));
+			}
+		}
+		return aWay;
+	}
+
+	/**
 	 * member->wayのすべてのLINEをListにする
 	 * @param relation
 	 * @return
-	 */
 	ArrayList<ElementWay> getLines() {
 		ArrayList<ElementWay> lineList = new ArrayList<>();
 		for (ElementMember member : members) {
 			lineList.add(member.way.clone());
 		}
 		return lineList;
+	}
+	 */
+
+	//------------------------------------
+	
+	@Override
+	public ElementRelation clone() {
+		ElementRelation copy = null;
+		try {
+			copy = (ElementRelation)super.clone();
+			copy.members = new ArrayList<ElementMember>();
+			if (copy.members != null) {
+				for (ElementMember member : this.members) {
+					copy.members.add(member.clone());
+				}
+			}
+			copy.tags = new ArrayList<ElementTag>();
+			if (this.tags != null) {
+				for (ElementTag tag : this.tags) {
+					copy.tags.add(tag.clone());
+				}
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			copy = null;
+		}
+		return copy;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((members == null) ? 0 : members.hashCode());
+		result = prime * result + ((tags == null) ? 0 : tags.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ElementRelation other = (ElementRelation) obj;
+		if (members == null) {
+			if (other.members != null)
+				return false;
+		} else if (!members.equals(other.members))
+			return false;
+		if (tags == null) {
+			if (other.tags != null)
+				return false;
+		} else if (!tags.equals(other.tags))
+			return false;
+		return true;
 	}
 }

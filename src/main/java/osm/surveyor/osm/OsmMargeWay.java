@@ -3,8 +3,6 @@ package osm.surveyor.osm;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import osm.surveyor.citygml.CitygmlFile;
-
 public class OsmMargeWay {
 
     /**
@@ -53,11 +51,17 @@ public class OsmMargeWay {
 	 * @param relations
 	 * @param ways
 	 */
-	public static void relationGabegi(HashMap<String, ElementRelation> relations, HashMap<String, ElementWay> ways) {
+	public static void relationGabegi(
+			HashMap<String, ElementRelation> relations, 
+			HashMap<String, ElementWay> ways) 
+	{
 		while (relationRemove(relations, ways));
 	}
 	
-	static boolean relationRemove(HashMap<String, ElementRelation> relations, HashMap<String, ElementWay> ways) {
+	static boolean relationRemove(
+			HashMap<String, ElementRelation> relations, 
+			HashMap<String, ElementWay> ways) 
+	{
 		for (String rKey : relations.keySet()) {
 			ElementRelation relation = relations.get(rKey);
 			if (relation.members.size() < 2) {
@@ -90,35 +94,24 @@ public class OsmMargeWay {
 	 * 
 	 * @param relations
 	 */
-	public static void relationOutline(HashMap<String, ElementRelation> relations) {
+	public static void relationOutline(
+			HashMap<String, ElementRelation> relations,
+			HashMap<String, ElementWay> ways 
+	) {
 		for (String rKey : relations.keySet()) {
 			ElementRelation relation = relations.get(rKey);
-			ArrayList<ElementWay> ways = relation.getLines();
-			
-			// WAYを他のWAYと合成する;
-			ElementWay aWay = null;
-			for (ElementWay way : ways) {
-				if (aWay == null) {
-					aWay = way;
-					aWay.id = CitygmlFile.getId();
-				}
-				else {
-					aWay.marge(way);
-				}
-			}
-			aWay.replaceTag(new ElementTag("building:part", "yes"), new ElementTag("building", "yes"));
-			for (ElementTag tag : aWay.tags) {
-				if (tag.k.equals("height")) {
-					aWay.tags.remove(aWay.tags.indexOf(tag));
-				}
-			}
+			ElementWay aWay = relation.createOutline(ways);
 			
 			// WAYをMEMBERとして追加する
 			ElementMember member = new ElementMember();
 			member.setWay(aWay);
 			member.setRole("outline");
 			relation.addMember(aWay, "outline");
+			
+			// OUTLINEをWAYリストに登録
+			ways.put(Long.toString(aWay.id), aWay);
 		}
 	}
+	
 	
 }

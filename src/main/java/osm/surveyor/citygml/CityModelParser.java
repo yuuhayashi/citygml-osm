@@ -228,6 +228,7 @@ public class CityModelParser extends DefaultHandler {
 					// lat
 					if (st.hasMoreTokens()) {
 						node = new ElementNode(CitygmlFile.getId());
+						node.action = "modify";
 						String lat = st.nextToken();
 						node.point.setLat(lat);
 					}
