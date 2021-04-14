@@ -38,6 +38,24 @@ public class ElementMember implements Cloneable {
         return (Node)node;
     }
     
+    public ElementMember loadElement(Element eElement) {
+		String ref = eElement.getAttribute("ref");
+		String role = eElement.getAttribute("role");
+		if ((ref != null) && !ref.isEmpty()) {
+			this.ref = Long.parseLong(ref);
+		}
+		else {
+			this.ref = 0;
+		}
+		if ((role != null) && !role.isEmpty()) {
+			this.role = role;
+		}
+		else {
+			this.role = null;
+		}
+		return this;
+    }
+    
 	@Override
 	public ElementMember clone() {
 		ElementMember copy = null;

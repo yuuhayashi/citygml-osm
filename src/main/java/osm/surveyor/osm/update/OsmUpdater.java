@@ -56,11 +56,11 @@ public class OsmUpdater {
 		// OSMから<bound>範囲内の現在のデータを取得する
 		Document sdoc = this.loadMap(bounds);
 		sdom.load(sdoc);
-		sdom.export(Paths.get("current1.osm").toFile());
+		sdom.export(Paths.get("current1.osm").toFile());		// [DEBUG]
 		
 		// 取得したデータから不要なオブジェクトを取り除く
 		while (removeNotBuilding(sdom.relations) != null);
-		sdom.export(Paths.get("current2.osm").toFile());
+		sdom.export(Paths.get("current2.osm").toFile());		// [DEBUG]
 		while (removeNotBuildingWay(sdom.ways) != null);
 		/*
 		HashMap<String, ElementWay> ways = new HashMap<>();

@@ -145,21 +145,15 @@ public class OsmDom {
 	    NodeList nList = doc.getElementsByTagName("node");
 	    for (int temp = 0; temp < nList.getLength(); temp++) {
 			Node nNode = nList.item(temp);
-			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-				Element eElement = (Element) nNode;
-				String id = eElement.getAttribute("id");
-				ElementNode node = new ElementNode(Long.parseLong(id));
-				node.action = eElement.getAttribute("action");
-				node.visible = Boolean.valueOf(eElement.getAttribute("visible"));
-				node.point.lat = eElement.getAttribute("lat");
-				node.point.lon = eElement.getAttribute("lon");
-				node.height = eElement.getAttribute("height");
+			ElementNode node = (new ElementNode(0)).loadNode(nNode);
+			if (node != null) {
 				nodes.put(String.valueOf(node.id), node);
 			}
 	    }
     }
 
     /**
+     * <way changeset="61979354" id="96350144" timestamp="2018-08-25T08:34:33Z" uid="7548722" user="Unnown" version="17" visible="true">
      * 	<way id='-2' action='modify' visible='true'>
 	 * 	  <nd ref='-3'/>
 	 * 	  <nd ref='-4'/>
@@ -174,30 +168,8 @@ public class OsmDom {
 	    NodeList nList = doc.getElementsByTagName("way");
 	    for (int temp = 0; temp < nList.getLength(); temp++) {
 			Node nNode = nList.item(temp);
-			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-				Element eElement = (Element) nNode;
-				String id = eElement.getAttribute("id");
-				ElementWay way = new ElementWay(Long.parseLong(id));
-				way.action = eElement.getAttribute("action");
-				way.visible = Boolean.valueOf(eElement.getAttribute("visible"));
-				
-				NodeList list2 = nNode.getChildNodes();
-			    for (int temp2 = 0; temp2 < list2.getLength(); temp2++) {
-					Node node2 = list2.item(temp2);
-					if (node2.getNodeType() == Node.ELEMENT_NODE) {
-						Element e2 = (Element) node2;
-						if (node2.getNodeName().equals("nd")) {
-							String ref = e2.getAttribute("ref");
-							way.addNode(nodes.get(ref));
-						}
-						if (node2.getNodeName().equals("tag")) {
-							String k = e2.getAttribute("k");
-							String v = e2.getAttribute("v");
-							way.addTag(k, v);
-						}
-					}
-			    }
-				
+			ElementWay way = (new ElementWay(0)).loadWay(nNode);
+			if (way != null) {
 			    ways.put(Long.toString(way.id), way);
 			}
 	    }
@@ -221,27 +193,7 @@ public class OsmDom {
 				Element eElement = (Element) nNode;
 				String id = eElement.getAttribute("id");
 				ElementRelation relation = new ElementRelation(Long.parseLong(id));
-				relation.action = eElement.getAttribute("action");
-				relation.visible = Boolean.valueOf(eElement.getAttribute("visible"));
-				
-				NodeList list2 = nNode.getChildNodes();
-			    for (int temp2 = 0; temp2 < list2.getLength(); temp2++) {
-					Node node2 = list2.item(temp2);
-					if (node2.getNodeType() == Node.ELEMENT_NODE) {
-						Element e2 = (Element) node2;
-						if (node2.getNodeName().equals("member")) {
-							String ref = e2.getAttribute("ref");
-							String role = e2.getAttribute("role");
-							relation.addMember(ways.get(ref), role);
-						}
-						if (node2.getNodeName().equals("tag")) {
-							String k = e2.getAttribute("k");
-							String v = e2.getAttribute("v");
-							relation.addTag(k, v);
-						}
-					}
-			    }
-				
+				relation.loadElement(eElement);
 			    relations.put(Long.toString(relation.id), relation);
 			}
 	    }

@@ -102,14 +102,14 @@ public class ElementWay extends ElementOsmapi implements Cloneable {
 		</way>
 	 */
     public Node toNode(Document doc) {
-    	Element node = super.toElement(doc, "way");
+    	Element element = super.toElement(doc, "way");
 		for (ElementNode nd : this.nodes) {
-			node.appendChild(nd.toNodeNd(doc));
+			element.appendChild(nd.toNodeNd(doc));
 		}
 		for (ElementTag tag : this.tags) {
-			node.appendChild(tag.toNodeNd(doc));
+			element.appendChild(tag.toNodeNd(doc));
 		}
-        return (Node)node;
+        return (Node)element;
     }
     
     /**

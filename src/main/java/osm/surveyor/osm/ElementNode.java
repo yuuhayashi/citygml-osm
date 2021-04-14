@@ -58,16 +58,29 @@ public class ElementNode extends ElementOsmapi implements Cloneable {
      * @return
      */
     public Node toNode(Document doc) {
-		Element node = (Element) doc.createElement("node");
-        node.setAttribute("id", Long.toString(id));
-        node.setAttribute("action", action);
-        node.setAttribute("visible", Boolean.toString(visible));
-        node.setAttribute("lat", point.lat);
-        node.setAttribute("lon", point.lon);
-        doc.appendChild((Node) node);
-        return (Node)node;
+    	Element element = toElement(doc, "node");
+    	element.setAttribute("lat", point.lat);
+    	element.setAttribute("lon", point.lon);
+        return (Node)element;
     }
 
+    /**
+     * <node id='-107065' action='modify' visible='true' lat='35.43464696576' lon='139.4102145808' />
+     * <node id='1803576119' timestamp='2012-06-27T05:23:26Z' uid='618878' user='nakanao' visible='true' version='1' changeset='12032994' lat='35.5420516' lon='139.7149118' />
+     * 
+     * @param nNode		doc.getElementsByTagName("node")
+     */
+    public ElementNode loadNode(Node nNode) {
+		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+			Element eElement = (Element) nNode;
+			loadElement(eElement);
+			this.point.lat = eElement.getAttribute("lat");
+			this.point.lon = eElement.getAttribute("lon");
+			this.height = eElement.getAttribute("height");
+			return this;
+		}
+		return null;
+    }
     
     //--------------------------------------
 

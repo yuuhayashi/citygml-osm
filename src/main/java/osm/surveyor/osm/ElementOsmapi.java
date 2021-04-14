@@ -41,7 +41,7 @@ public class ElementOsmapi implements Cloneable {
 		return copy;
 	}
     
-    /**
+	/**
      * <node id='-107065' action='modify' visible='true' lat='35.43464696576' lon='139.4102145808' />
      * <node id='1803576119' timestamp='2012-06-27T05:23:26Z' uid='618878' user='nakanao' visible='true' version='1' changeset='12032994' lat='35.5420516' lon='139.7149118' />
      * @param doc

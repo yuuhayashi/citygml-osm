@@ -19,6 +19,10 @@ public class ElementTag implements Cloneable {
 	public String k = null;
 	public String v = null;
 	
+	public ElementTag() {
+		this(null, null);
+	}
+
 	public ElementTag(String key, String value) {
 		this.k = key;
 		this.v = value;
@@ -43,4 +47,22 @@ public class ElementTag implements Cloneable {
         node.setAttribute("v", v);
         return (Node)node;
     }
+    
+    public ElementTag loadElement(Element eElement) {
+		if (eElement.getNodeName().equals("tag")) {
+			String k = eElement.getAttribute("k");
+			String v = eElement.getAttribute("v");
+			if ((k != null) && !k.isEmpty()) {
+				this.k = k;
+				if ((v != null) && !v.isEmpty()) {
+					this.v = v;
+				}
+				else {
+					this.v = null;
+				}
+				return this;
+			}
+	    }
+		return null;
+    }    
 }

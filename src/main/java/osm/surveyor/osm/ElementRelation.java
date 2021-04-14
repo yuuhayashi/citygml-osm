@@ -6,6 +6,7 @@ import java.util.HashMap;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import osm.surveyor.citygml.CitygmlFile;
 
@@ -98,7 +99,28 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 		}
 		return aWay;
 	}
-
+	
+    public ElementRelation loadElement(Element eElement) {
+    	super.loadElement(eElement);
+    	
+		NodeList list2 = eElement.getChildNodes();
+	    for (int temp2 = 0; temp2 < list2.getLength(); temp2++) {
+			Node node2 = list2.item(temp2);
+			if (node2.getNodeType() == Node.ELEMENT_NODE) {
+				Element e2 = (Element) node2;
+				if (e2.getNodeName().equals("member")) {
+					ElementMember member = new ElementMember();
+					member.loadElement(e2);
+					this.members.add(member);
+				}
+				if (e2.getNodeName().equals("tag")) {
+					this.tags.add((new ElementTag()).loadElement(e2));
+				}
+			}
+	    }
+    	return this;
+    }
+    
 	/**
 	 * member->wayのすべてのLINEをListにする
 	 * @param relation

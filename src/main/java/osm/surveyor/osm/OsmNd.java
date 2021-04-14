@@ -44,7 +44,7 @@ public class OsmNd implements Cloneable {
     
     public ElementNode toElementNode() {
 		ElementNode node = new ElementNode(id);
-		node.point = this.point.clone();
+		node.point = ((this.point == null) ? null : this.point.clone());
         return node;
     }
 
@@ -52,7 +52,7 @@ public class OsmNd implements Cloneable {
     public OsmNd loadElement(Element eElement) {
     	String attrKey = "ref";
 		String str = eElement.getAttribute(attrKey);
-		if ((str == null) || !str.isEmpty()) {
+		if ((str == null) || str.isEmpty()) {
 			return null;
 		}
 		this.id = Long.parseLong(str);
