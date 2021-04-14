@@ -41,17 +41,14 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 		</relation>
 	 */
     public Node toNode(Document doc) {
-		Element node = doc.createElement("relation");
-        node.setAttribute("id", Long.toString(id));
-        node.setAttribute("action", action);
-        node.setAttribute("visible", Boolean.toString(visible));
+    	Element element = super.toElement(doc, "relation");
     	for (ElementMember member : this.members) {
-			node.appendChild(member.toNode(doc));
+    		element.appendChild(member.toNode(doc));
 		}
 		for (ElementTag tag : this.tags) {
-			node.appendChild(tag.toNodeNd(doc));
+			element.appendChild(tag.toNodeNd(doc));
 		}
-        return (Node)node;
+        return (Node)element;
     }
     
 	/**
@@ -100,6 +97,25 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 		return aWay;
 	}
 	
+    /**
+     * 	<relation id='-1654' action='modify' visible='true'>
+     *	  <member ref='-1655' type='way' role='part' />
+     *	  <tag k='type' v='building' />
+     *	  <tag k='source:ref:id' v='BLD_57cd4ea7-0fb7-4b0e-a600-9982cf3b60ca' />
+     *	  <tag k='addr:full' v='東京都大田区南六郷三丁目' />
+     *	</relation>
+     * @param doc
+     * @param relations
+     */
+    public ElementRelation loadRelation(Node nNode) {
+		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+			Element eElement = (Element) nNode;
+			return loadElement(eElement);
+		}
+    	return null;
+    }
+    
+    @Override
     public ElementRelation loadElement(Element eElement) {
     	super.loadElement(eElement);
     	

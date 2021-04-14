@@ -189,15 +189,10 @@ public class OsmDom {
 	    NodeList nList = doc.getElementsByTagName("relation");
 	    for (int temp = 0; temp < nList.getLength(); temp++) {
 			Node nNode = nList.item(temp);
-			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-				Element eElement = (Element) nNode;
-				String id = eElement.getAttribute("id");
-				ElementRelation relation = new ElementRelation(Long.parseLong(id));
-				relation.loadElement(eElement);
+			ElementRelation relation = (new ElementRelation(0)).loadRelation(nNode);
+			if (relation != null) {
 			    relations.put(Long.toString(relation.id), relation);
 			}
 	    }
     }
-    
-    
 }
