@@ -52,6 +52,8 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 - [クラス関連図](doc/class.png)
 
+- [データベース テーブル 関連図](doc/dbTables.png)
+
 ----------------
 
 参考

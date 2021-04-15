@@ -138,6 +138,14 @@
       <type>jar</type>
     </dependency>
     
+    <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>42.2.19</version>
+      <type>jar</type>
+    </dependency>
+    
     <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-release-plugin -->
     <dependency>
       <groupId>org.apache.maven.plugins</groupId>
@@ -146,6 +154,12 @@
       <type>jar</type>
     </dependency>
     
+    <dependency>
+      <groupId>haya4.tools</groupId>
+      <artifactId>hayashilib</artifactId>
+      <version>0.0.4</version>
+      <type>jar</type>
+    </dependency>
   </dependencies>
 
   <build>

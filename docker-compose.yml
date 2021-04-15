@@ -1,0 +1,17 @@
+version: '3'
+services:
+  postgis:
+    image: kartoza/postgis:9.6-2.4
+    container_name: osmdb
+    restart: always
+    volumes:
+      - dbdata:/var/lib/postgresql/
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: alex
+      POSTGRES_PASS: password
+      POSTGRES_DBNAME: osmdb
+      ALLOW_IP_RANGE: 0.0.0.0/0
+volumes:
+  dbdata:

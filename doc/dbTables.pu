@@ -1,0 +1,61 @@
+@startuml
+title Database tables
+
+interface osmObject {
+ id : long
+ action : String
+ timestamp : String
+ uid : long
+ user : String
+ visible : boolean
+ version : int
+ changeset : long
+}
+
+class Relation {
+ id : long
+ orignal : boolean = false
+}
+
+class Member {
+ relationid : long
+ ref : long
+ type : String = "way"
+ role : String
+}
+
+class Way {
+ id : long
+ orignal : boolean = false
+ geom : GEOMETRY(LINESTRING, 4612)
+}
+
+class Nd {
+ wayid : long
+ ref : long
+}
+
+class Node {
+ id : long
+ orignal : boolean = false
+}
+
+class Tag {
+ id : long
+ key : String
+ value : String
+}
+
+osmObject <|-- Relation
+osmObject <|-- Way
+osmObject <|-- Node
+
+Relation - Way
+(Relation, Way) .. Member : [Relation.id=Member.relationid]\n[Way.id=Member.ref] 
+
+Way "2..*" - "1..2" Node
+(Way, Node) .. Nd
+
+Relation "*" -- "1" Tag : [Relation.id=Tag.id]
+Way "*" -- "1" Tag : [Way.id=Tag.id]
+@enduml
