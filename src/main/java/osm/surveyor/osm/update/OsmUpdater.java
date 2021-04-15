@@ -5,7 +5,6 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -13,6 +12,7 @@ import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 import osm.surveyor.osm.ElementBounds;
+import osm.surveyor.osm.ElementMember;
 import osm.surveyor.osm.ElementNode;
 import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementTag;
@@ -35,7 +35,7 @@ public class OsmUpdater {
 		if (args.length > 0) {
 			OsmUpdater updater = new OsmUpdater(args[0]);
 			updater.load();
-			updater.sdom.export(Paths.get("current.osm").toFile());
+			updater.ddom.export(Paths.get("current.osm").toFile());
 		}
 	}
 	
@@ -58,10 +58,24 @@ public class OsmUpdater {
 		// OSMから<bound>範囲内の現在のデータを取得する
 		Document sdoc = this.loadMap(bounds);
 		sdom.load(sdoc);
-		sdom.export(Paths.get("current1.osm").toFile());		// [DEBUG]
 		
 		ddom = new OsmDom();
 		ddom.setBounds(bounds);
+
+		// 取得したデータからRELATION:buildingオブジェクトのみ抽出する
+		for (String rKey : sdom.relations.keySet()) {
+			ElementRelation relation = sdom.relations.get(rKey);
+			if (relation.isBuilding()) {
+				ddom.relations.put(rKey, relation.clone());
+			}
+		}
+		for (String rKey : ddom.relations.keySet()) {
+			ElementRelation relation = ddom.relations.get(rKey);
+			for (ElementMember menber : relation.members) {
+				ElementWay sWay = sdom.ways.get(Long.toString(menber.ref));
+				ddom.addWay(sWay.clone());
+			}
+		}
 
 		// 取得したデータからWAY:buildingオブジェクトのみ抽出する
 		for (String rKey : sdom.ways.keySet()) {
@@ -70,7 +84,6 @@ public class OsmUpdater {
 				ddom.ways.put(rKey, way.clone());
 			}
 		}
-		ddom.export(Paths.get("current2.osm").toFile());		// [DEBUG]
 		
 		for (String rKey : ddom.ways.keySet()) {
 			ElementWay way = ddom.ways.get(rKey);
@@ -79,7 +92,6 @@ public class OsmUpdater {
 				ddom.addNode(sNode.clone());
 			}
 		}
-		ddom.export(Paths.get("current3.osm").toFile());		// [DEBUG]
 		
 
 		//while (removeNotBuilding(sdom.relations) != null);
@@ -94,18 +106,6 @@ public class OsmUpdater {
 		*/
 	}
 	
-	HashMap<String,ElementRelation> getBuildingRelation(HashMap<String,ElementRelation> relations) {
-		
-		for (String rKey : relations.keySet()) {
-			ElementRelation relation = relations.get(rKey);
-			if (isBuildingTag(relation.tags)) {
-				relations.remove(rKey);
-				return relations;
-			}
-		}
-		return null;
-	}
-
 	static boolean isBuildingTag(ArrayList<ElementTag> tags) {
 		for (ElementTag tag : tags) {
 			if (tag.k.startsWith("building")) {

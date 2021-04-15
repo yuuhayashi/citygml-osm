@@ -141,14 +141,25 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 	 * member->wayのすべてのLINEをListにする
 	 * @param relation
 	 * @return
-	ArrayList<ElementWay> getLines() {
-		ArrayList<ElementWay> lineList = new ArrayList<>();
-		for (ElementMember member : members) {
-			lineList.add(member.way.clone());
+		ArrayList<ElementWay> getLines() {
+			ArrayList<ElementWay> lineList = new ArrayList<>();
+			for (ElementMember member : members) {
+				lineList.add(member.way.clone());
+			}
+			return lineList;
 		}
-		return lineList;
-	}
 	 */
+    
+	public boolean isBuilding() {
+		for (ElementTag tag : tags) {
+			if (tag.k.equals("type")) {
+				if (tag.v.equals("building")) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 
 	//------------------------------------
 	

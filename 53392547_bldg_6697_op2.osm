@@ -654,7 +654,7 @@
 <nd ref="-982"/>
 <tag k="building" v="yes"/>
 </way>
-<relation action="" id="-1349" visible="true">
+<relation id="-1349" visible="true">
 <member ref="-1350" role="part" type="way"/>
 <member ref="-976" role="part" type="way"/>
 <member ref="-1697" role="outline" type="way"/>
@@ -741,7 +741,7 @@
 <nd ref="-1182"/>
 <tag k="building" v="yes"/>
 </way>
-<relation action="" id="-1180" visible="true">
+<relation id="-1180" visible="true">
 <member ref="-1181" role="part" type="way"/>
 <member ref="-748" role="part" type="way"/>
 <member ref="-1698" role="outline" type="way"/>
