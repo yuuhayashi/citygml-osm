@@ -13,6 +13,7 @@ import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 import osm.surveyor.osm.ElementBounds;
+import osm.surveyor.osm.ElementNode;
 import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementTag;
 import osm.surveyor.osm.ElementWay;
@@ -40,6 +41,7 @@ public class OsmUpdater {
 	
 	OsmDom dom;
 	OsmDom sdom;
+	OsmDom ddom;
 	
 	public OsmUpdater(String filepath) throws ParserConfigurationException, SAXException, IOException {
 		dom = new OsmDom();
@@ -58,10 +60,29 @@ public class OsmUpdater {
 		sdom.load(sdoc);
 		sdom.export(Paths.get("current1.osm").toFile());		// [DEBUG]
 		
-		// 取得したデータから不要なオブジェクトを取り除く
-		while (removeNotBuilding(sdom.relations) != null);
-		sdom.export(Paths.get("current2.osm").toFile());		// [DEBUG]
-		while (removeNotBuildingWay(sdom.ways) != null);
+		ddom = new OsmDom();
+		ddom.setBounds(bounds);
+
+		// 取得したデータからWAY:buildingオブジェクトのみ抽出する
+		for (String rKey : sdom.ways.keySet()) {
+			ElementWay way = sdom.ways.get(rKey);
+			if (isBuildingTag(way.tags)) {
+				ddom.ways.put(rKey, way.clone());
+			}
+		}
+		ddom.export(Paths.get("current2.osm").toFile());		// [DEBUG]
+		
+		for (String rKey : ddom.ways.keySet()) {
+			ElementWay way = ddom.ways.get(rKey);
+			for (ElementNode nd : way.nodes) {
+				ElementNode sNode = sdom.nodes.get(Long.toString(nd.id));
+				ddom.addNode(sNode.clone());
+			}
+		}
+		ddom.export(Paths.get("current3.osm").toFile());		// [DEBUG]
+		
+
+		//while (removeNotBuilding(sdom.relations) != null);
 		/*
 		HashMap<String, ElementWay> ways = new HashMap<>();
 		for (String wKey : sdom.ways.keySet()) {
@@ -73,23 +94,13 @@ public class OsmUpdater {
 		*/
 	}
 	
-	HashMap<String,ElementRelation> removeNotBuilding(HashMap<String,ElementRelation> relations) {
+	HashMap<String,ElementRelation> getBuildingRelation(HashMap<String,ElementRelation> relations) {
+		
 		for (String rKey : relations.keySet()) {
 			ElementRelation relation = relations.get(rKey);
-			if (!isBuildingTag(relation.tags)) {
+			if (isBuildingTag(relation.tags)) {
 				relations.remove(rKey);
 				return relations;
-			}
-		}
-		return null;
-	}
-
-	HashMap<String,ElementWay> removeNotBuildingWay(HashMap<String,ElementWay> ways) {
-		for (String rKey : ways.keySet()) {
-			ElementWay way = ways.get(rKey);
-			if (!isBuildingTag(way.tags)) {
-				ways.remove(rKey);
-				return ways;
 			}
 		}
 		return null;

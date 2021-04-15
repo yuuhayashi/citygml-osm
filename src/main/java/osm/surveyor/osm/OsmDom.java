@@ -33,7 +33,7 @@ public class OsmDom {
 
     Document doc;
     ElementBounds bounds = new ElementBounds();
-    HashMap<String, ElementNode> nodes = new HashMap<>();
+    public HashMap<String, ElementNode> nodes = new HashMap<>();
     public HashMap<String, ElementWay> ways = new HashMap<>();
     public HashMap<String, ElementRelation> relations = new HashMap<>();
     
