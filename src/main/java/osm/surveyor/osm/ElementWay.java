@@ -21,14 +21,12 @@ import osm.surveyor.osm.update.Postgis;
  */
 public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis {
 	public ArrayList<OsmNd> nds;
-	public ArrayList<ElementTag> tags;
 	boolean area = false;
 	public boolean member = false;
 	
 	public ElementWay(long id) {
 		super(id);
 		nds = new ArrayList<OsmNd>();
-		tags = new ArrayList<ElementTag>();
 	}
 	
 	@Override
@@ -44,22 +42,12 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
 					copy.nds.add(nd.clone());
 				}
 			}
-			copy.tags = new ArrayList<ElementTag>();
-			if (this.tags != null) {
-				for (ElementTag tag : this.tags) {
-					copy.tags.add(tag.clone());
-				}
-			}
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 			copy = null;
 		}
 		return copy;
-	}
-	
-	public void addTag(String k, String v) {
-		this.tags.add(new ElementTag(k, v));
 	}
 	
 	public void addNode(OsmNd node) {
@@ -119,8 +107,11 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
 		for (OsmNd nd : this.nds) {
 			element.appendChild(nd.toNodeNd(doc));
 		}
-		for (ElementTag tag : this.tags) {
-			element.appendChild(tag.toNodeNd(doc));
+		for (String key  : this.tags.keySet()) {
+			ElementTag tag = tags.get(key);
+			if (tag != null) {
+				element.appendChild(tag.toNodeNd(doc));
+			}
 		}
         return (Node)element;
     }
@@ -169,15 +160,12 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
      * @param dest
      */
     public void replaceTag(ElementTag source, ElementTag dest) {
-    	for (ElementTag tag : tags) {
-    		if (tag.k.equals(source.k)) {
-    			if (tag.v.equals(source.v)) {
-    				tags.add(dest);
-    				tags.remove(tags.indexOf(tag));
-    				return;
-    			}
-    		}
-    	}
+		ElementTag tag = tags.get(source.k);
+		if (tag.v.equals(source.v)) {
+			tags.remove(source.k);
+			tags.put(dest.k, dest);
+			return;
+		}
     }
     
     /**
@@ -334,7 +322,14 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
 		return geom;
 	}
 	
-	public boolean isIntersect(Postgis db) throws Exception {
+	/**
+	 * このWAYと重複するWAYが存在するかどうか
+	 * @param db
+	 * @param where
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean isIntersect(Postgis db, String where) throws Exception {
         String geom = getGeomText();
         if (geom == null) {
         	return false;
@@ -343,7 +338,7 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
         String sqlStr = "WITH source AS (SELECT ST_GeometryFromText('"+ geom +"', 4326) AS geo) "
         		+ "SELECT ST_Intersects(s.geo, tWay.geom) AS intersect "
         		+ "FROM tWay, source AS s "
-        		+ "WHERE (tWay.orignal=false)";
+        		+ (where!=null ? where : "" );
         try (Statement st = db.con.createStatement()) {
         	ResultSet resultSet = st.executeQuery(sqlStr);
 			while (resultSet.next()) {
@@ -355,7 +350,35 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
         return false;
 	}
 	
-    //---------------------------------------------------------
+	/**
+	 * このWAYと重複する面積が最大の WAY.id を返す
+	 * @param db
+	 * @param where　例: "WHERE (tWay.orignal=true)"
+	 * @return
+	 * @throws Exception
+	 */
+	public long getIntersect(Postgis db, String where) throws Exception {
+        String geom = getGeomText();
+        if (geom == null) {
+        	return 0;
+        }
+        
+        String sqlStr = "WITH source AS (SELECT ST_GeometryFromText('"+ geom +"', 4326) AS geo) "
+        		+ "SELECT tWay.id as id, ST_AREA(ST_Intersection(s.geo, tWay.geom)) AS area "
+        		+ "FROM tWay, source AS s "
+        		+ (where!=null ? where : "")
+        		+ " ORDER BY area DESC";
+        try (Statement st = db.con.createStatement()) {
+        	ResultSet resultSet = st.executeQuery(sqlStr);
+			while (resultSet.next()) {
+				//float area = resultSet.getFloat("area");
+				return resultSet.getLong("id");
+			}
+        }
+        return 0;
+	}
+
+	//---------------------------------------------------------
     
 	@Override
 	public int hashCode() {

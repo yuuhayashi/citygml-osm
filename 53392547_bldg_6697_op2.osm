@@ -172,11 +172,11 @@
 <nd ref="-213"/>
 <nd ref="-214"/>
 <nd ref="-211"/>
-<tag k="height" v="4.8655"/>
 <tag k="addr:ref" v="13111058003"/>
-<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_6061ba8e-adc5-4f92-9490-7ef1a6b1c0f1"/>
 <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_6061ba8e-adc5-4f92-9490-7ef1a6b1c0f1"/>
 <tag k="building" v="yes"/>
+<tag k="height" v="4.8655"/>
 </way>
 <way id="-253" visible="true">
 <nd ref="-254"/>
@@ -184,11 +184,11 @@
 <nd ref="-256"/>
 <nd ref="-257"/>
 <nd ref="-254"/>
-<tag k="height" v="5.127"/>
 <tag k="addr:ref" v="13111058003"/>
-<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_c567335d-ba57-4436-bc40-5ccf613f40b5"/>
 <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_c567335d-ba57-4436-bc40-5ccf613f40b5"/>
 <tag k="building" v="yes"/>
+<tag k="height" v="5.127"/>
 </way>
 <way id="-296" visible="true">
 <nd ref="-297"/>
@@ -196,11 +196,11 @@
 <nd ref="-299"/>
 <nd ref="-300"/>
 <nd ref="-297"/>
-<tag k="height" v="5.4025"/>
 <tag k="addr:ref" v="13111058003"/>
-<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_32708324-2cc9-440f-889b-9ae29a9b57d5"/>
 <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_32708324-2cc9-440f-889b-9ae29a9b57d5"/>
 <tag k="building" v="yes"/>
+<tag k="height" v="5.4025"/>
 </way>
 <way id="-890" visible="true">
 <nd ref="-891"/>
@@ -208,11 +208,11 @@
 <nd ref="-893"/>
 <nd ref="-894"/>
 <nd ref="-891"/>
-<tag k="height" v="4.992"/>
 <tag k="addr:ref" v="13111058003"/>
-<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_6822dfa2-d703-4d28-80a4-19c688fedfaa"/>
 <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_6822dfa2-d703-4d28-80a4-19c688fedfaa"/>
 <tag k="building" v="yes"/>
+<tag k="height" v="4.992"/>
 </way>
 <way id="-1181" visible="true">
 <nd ref="-1182"/>
@@ -234,8 +234,8 @@
 <nd ref="-1198"/>
 <nd ref="-1199"/>
 <nd ref="-1182"/>
-<tag k="height" v="17.097"/>
 <tag k="building:part" v="yes"/>
+<tag k="height" v="17.097"/>
 </way>
 <way id="-339" visible="true">
 <nd ref="-340"/>
@@ -243,11 +243,11 @@
 <nd ref="-342"/>
 <nd ref="-343"/>
 <nd ref="-340"/>
-<tag k="height" v="4.9094999999999995"/>
 <tag k="addr:ref" v="13111058003"/>
-<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_7aea1c81-2553-454f-b894-d554fe4247d4"/>
 <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_7aea1c81-2553-454f-b894-d554fe4247d4"/>
 <tag k="building" v="yes"/>
+<tag k="height" v="4.9094999999999995"/>
 </way>
 <way id="-933" visible="true">
 <nd ref="-934"/>
@@ -255,11 +255,11 @@
 <nd ref="-936"/>
 <nd ref="-937"/>
 <nd ref="-934"/>
-<tag k="height" v="5.113"/>
 <tag k="addr:ref" v="13111058003"/>
-<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_566a157b-cc25-4ab1-bfaf-bd5a874bce62"/>
 <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_566a157b-cc25-4ab1-bfaf-bd5a874bce62"/>
 <tag k="building" v="yes"/>
+<tag k="height" v="5.113"/>
 </way>
 <way id="-976" visible="true">
 <nd ref="-977"/>
@@ -285,8 +285,8 @@
 <nd ref="-997"/>
 <nd ref="-998"/>
 <nd ref="-977"/>
-<tag k="height" v="40.492"/>
 <tag k="building:part" v="yes"/>
+<tag k="height" v="40.492"/>
 </way>
 <way id="-1533" visible="true">
 <nd ref="-1534"/>
@@ -294,11 +294,11 @@
 <nd ref="-1536"/>
 <nd ref="-1537"/>
 <nd ref="-1534"/>
-<tag k="height" v="4.945"/>
 <tag k="addr:ref" v="13111058003"/>
-<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_6c9923a4-ee9b-457c-8aa1-d06b84a398c0"/>
 <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_6c9923a4-ee9b-457c-8aa1-d06b84a398c0"/>
 <tag k="building" v="yes"/>
+<tag k="height" v="4.945"/>
 </way>
 <way id="-1698" visible="true">
 <nd ref="-1182"/>
@@ -341,11 +341,11 @@
 <nd ref="-1414"/>
 <nd ref="-1415"/>
 <nd ref="-1412"/>
-<tag k="height" v="6.449"/>
 <tag k="addr:ref" v="13111058003"/>
-<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_a3879a2f-3a08-43e5-911f-111ac3223757"/>
 <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_a3879a2f-3a08-43e5-911f-111ac3223757"/>
 <tag k="building" v="yes"/>
+<tag k="height" v="6.449"/>
 </way>
 <way id="-1576" visible="true">
 <nd ref="-1577"/>
@@ -357,10 +357,10 @@
 <nd ref="-1583"/>
 <nd ref="-1584"/>
 <nd ref="-1577"/>
-<tag k="height" v="23.298000000000002"/>
-<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_d5ed1615-6cab-4de8-96d4-71203934bad0"/>
 <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_d5ed1615-6cab-4de8-96d4-71203934bad0"/>
 <tag k="building" v="yes"/>
+<tag k="height" v="23.298000000000002"/>
 </way>
 <way id="-1697" visible="true">
 <nd ref="-982"/>
@@ -398,11 +398,11 @@
 <nd ref="-1658"/>
 <nd ref="-1659"/>
 <nd ref="-1656"/>
-<tag k="height" v="8.398"/>
 <tag k="addr:ref" v="13111058003"/>
-<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_57cd4ea7-0fb7-4b0e-a600-9982cf3b60ca"/>
 <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_57cd4ea7-0fb7-4b0e-a600-9982cf3b60ca"/>
 <tag k="building" v="yes"/>
+<tag k="height" v="8.398"/>
 </way>
 <way id="-2" visible="true">
 <nd ref="-3"/>
@@ -414,11 +414,11 @@
 <nd ref="-9"/>
 <nd ref="-10"/>
 <nd ref="-3"/>
-<tag k="height" v="14.072000000000001"/>
 <tag k="addr:ref" v="13111058003"/>
-<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_d61ead86-9f08-4d99-b410-28a576c764f3"/>
 <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_d61ead86-9f08-4d99-b410-28a576c764f3"/>
 <tag k="building" v="yes"/>
+<tag k="height" v="14.072000000000001"/>
 </way>
 <way id="-81" visible="true">
 <nd ref="-82"/>
@@ -426,11 +426,11 @@
 <nd ref="-84"/>
 <nd ref="-85"/>
 <nd ref="-82"/>
-<tag k="height" v="4.973"/>
 <tag k="addr:ref" v="13111058003"/>
-<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_e638f827-fbb1-4016-9bc4-a24f8a1ca10a"/>
 <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_e638f827-fbb1-4016-9bc4-a24f8a1ca10a"/>
 <tag k="building" v="yes"/>
+<tag k="height" v="4.973"/>
 </way>
 <way id="-167" visible="true">
 <nd ref="-168"/>
@@ -438,11 +438,11 @@
 <nd ref="-170"/>
 <nd ref="-171"/>
 <nd ref="-168"/>
-<tag k="height" v="5.837"/>
 <tag k="addr:ref" v="13111058003"/>
-<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_d0166b26-7838-4a4f-b5b5-81d29a29b0b2"/>
 <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_d0166b26-7838-4a4f-b5b5-81d29a29b0b2"/>
 <tag k="building" v="yes"/>
+<tag k="height" v="5.837"/>
 </way>
 <way id="-486" visible="true">
 <nd ref="-487"/>
@@ -454,11 +454,11 @@
 <nd ref="-493"/>
 <nd ref="-494"/>
 <nd ref="-487"/>
-<tag k="height" v="5.753500000000001"/>
 <tag k="addr:ref" v="13111058003"/>
-<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_7e82aed0-1348-45d4-93bb-b1e26c910003"/>
 <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_7e82aed0-1348-45d4-93bb-b1e26c910003"/>
 <tag k="building" v="yes"/>
+<tag k="height" v="5.753500000000001"/>
 </way>
 <way id="-662" visible="true">
 <nd ref="-663"/>
@@ -466,11 +466,11 @@
 <nd ref="-665"/>
 <nd ref="-666"/>
 <nd ref="-663"/>
-<tag k="height" v="5.195"/>
 <tag k="addr:ref" v="13111058003"/>
-<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_579f02b4-7843-4398-905d-107892187346"/>
 <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_579f02b4-7843-4398-905d-107892187346"/>
 <tag k="building" v="yes"/>
+<tag k="height" v="5.195"/>
 </way>
 <way id="-565" visible="true">
 <nd ref="-566"/>
@@ -484,11 +484,11 @@
 <nd ref="-574"/>
 <nd ref="-575"/>
 <nd ref="-566"/>
-<tag k="height" v="5.731"/>
 <tag k="addr:ref" v="13111058003"/>
-<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_07a37e39-0026-4d92-92a4-000ff290901c"/>
 <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_07a37e39-0026-4d92-92a4-000ff290901c"/>
 <tag k="building" v="yes"/>
+<tag k="height" v="5.731"/>
 </way>
 <way id="-124" visible="true">
 <nd ref="-125"/>
@@ -496,11 +496,11 @@
 <nd ref="-127"/>
 <nd ref="-128"/>
 <nd ref="-125"/>
-<tag k="height" v="5.105"/>
 <tag k="addr:ref" v="13111058003"/>
-<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_9309748b-c3ca-491a-b8d8-e437675a6bfc"/>
 <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_9309748b-c3ca-491a-b8d8-e437675a6bfc"/>
 <tag k="building" v="yes"/>
+<tag k="height" v="5.105"/>
 </way>
 <way id="-443" visible="true">
 <nd ref="-444"/>
@@ -508,11 +508,11 @@
 <nd ref="-446"/>
 <nd ref="-447"/>
 <nd ref="-444"/>
-<tag k="height" v="6.84"/>
 <tag k="addr:ref" v="13111058003"/>
-<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_e61455af-37cd-4d75-ba2b-ab419880b805"/>
 <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_e61455af-37cd-4d75-ba2b-ab419880b805"/>
 <tag k="building" v="yes"/>
+<tag k="height" v="6.84"/>
 </way>
 <way id="-382" visible="true">
 <nd ref="-383"/>
@@ -522,11 +522,11 @@
 <nd ref="-387"/>
 <nd ref="-388"/>
 <nd ref="-383"/>
-<tag k="height" v="11.669"/>
 <tag k="addr:ref" v="13111058003"/>
-<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_7cf80dbd-1de7-442f-a3a0-24b8dd981cd5"/>
 <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_7cf80dbd-1de7-442f-a3a0-24b8dd981cd5"/>
 <tag k="building" v="yes"/>
+<tag k="height" v="11.669"/>
 </way>
 <way id="-705" visible="true">
 <nd ref="-706"/>
@@ -534,10 +534,10 @@
 <nd ref="-708"/>
 <nd ref="-709"/>
 <nd ref="-706"/>
-<tag k="height" v="9.757"/>
-<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_f96ef42c-fad9-444f-9e44-77f7e07726f6"/>
 <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_f96ef42c-fad9-444f-9e44-77f7e07726f6"/>
 <tag k="building" v="yes"/>
+<tag k="height" v="9.757"/>
 </way>
 <way id="-748" visible="true">
 <nd ref="-749"/>
@@ -556,8 +556,8 @@
 <nd ref="-762"/>
 <nd ref="-763"/>
 <nd ref="-749"/>
-<tag k="height" v="6.181"/>
 <tag k="building:part" v="yes"/>
+<tag k="height" v="6.181"/>
 </way>
 <way id="-1350" visible="true">
 <nd ref="-982"/>
@@ -567,8 +567,8 @@
 <nd ref="-1355"/>
 <nd ref="-983"/>
 <nd ref="-982"/>
-<tag k="height" v="6.58"/>
 <tag k="building:part" v="yes"/>
+<tag k="height" v="6.58"/>
 </way>
 <way id="-1454" visible="true">
 <nd ref="-1455"/>
@@ -580,11 +580,11 @@
 <nd ref="-1461"/>
 <nd ref="-1462"/>
 <nd ref="-1455"/>
-<tag k="height" v="5.689"/>
 <tag k="addr:ref" v="13111058003"/>
-<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_b5d4a551-2cc1-4500-87d6-f9697bc4bfa2"/>
 <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_b5d4a551-2cc1-4500-87d6-f9697bc4bfa2"/>
 <tag k="building" v="yes"/>
+<tag k="height" v="5.689"/>
 </way>
 <way id="-1350" visible="true">
 <nd ref="-982"/>
@@ -594,8 +594,8 @@
 <nd ref="-1355"/>
 <nd ref="-983"/>
 <nd ref="-982"/>
-<tag k="height" v="6.58"/>
 <tag k="building:part" v="yes"/>
+<tag k="height" v="6.58"/>
 </way>
 <way id="-976" visible="true">
 <nd ref="-977"/>
@@ -621,8 +621,8 @@
 <nd ref="-997"/>
 <nd ref="-998"/>
 <nd ref="-977"/>
-<tag k="height" v="40.492"/>
 <tag k="building:part" v="yes"/>
+<tag k="height" v="40.492"/>
 </way>
 <way id="-1697" visible="true">
 <nd ref="-982"/>
@@ -658,10 +658,10 @@
 <member ref="-1350" role="part" type="way"/>
 <member ref="-976" role="part" type="way"/>
 <member ref="-1697" role="outline" type="way"/>
-<tag k="type" v="building"/>
 <tag k="addr:ref" v="13111058003"/>
-<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_d152487b-b229-4fe9-a421-02bf68448e0e"/>
 <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_d152487b-b229-4fe9-a421-02bf68448e0e"/>
+<tag k="type" v="building"/>
 </relation>
 <way id="-1181" visible="true">
 <nd ref="-1182"/>
@@ -683,8 +683,8 @@
 <nd ref="-1198"/>
 <nd ref="-1199"/>
 <nd ref="-1182"/>
-<tag k="height" v="17.097"/>
 <tag k="building:part" v="yes"/>
+<tag k="height" v="17.097"/>
 </way>
 <way id="-748" visible="true">
 <nd ref="-749"/>
@@ -703,8 +703,8 @@
 <nd ref="-762"/>
 <nd ref="-763"/>
 <nd ref="-749"/>
-<tag k="height" v="6.181"/>
 <tag k="building:part" v="yes"/>
+<tag k="height" v="6.181"/>
 </way>
 <way id="-1698" visible="true">
 <nd ref="-1182"/>
@@ -745,9 +745,9 @@
 <member ref="-1181" role="part" type="way"/>
 <member ref="-748" role="part" type="way"/>
 <member ref="-1698" role="outline" type="way"/>
-<tag k="type" v="building"/>
 <tag k="addr:ref" v="13111058003"/>
-<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_44140760-3271-4cd7-8280-70b89ee0daab"/>
 <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_44140760-3271-4cd7-8280-70b89ee0daab"/>
+<tag k="type" v="building"/>
 </relation>
 </osm>

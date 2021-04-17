@@ -126,7 +126,7 @@ public class OsmUpdater {
     		ArrayList<ElementWay> killList = new ArrayList<>();
     		for (String rKey : ddom.ways.keySet()) {
     			ElementWay way = ddom.ways.get(rKey);
-    			if (!way.isIntersect(db)) {
+    			if (!way.isIntersect(db, "WHERE (tWay.orignal=false)")) {
     				killList.add(way);
     			}
     		}
@@ -136,6 +136,119 @@ public class OsmUpdater {
     		}
 
     		// インポートデータの内で、既存データと重複しないものを'modify'に確定する
+    		killList = new ArrayList<>();
+    		for (String rKey : dom.ways.keySet()) {
+    			ElementWay way = dom.ways.get(rKey);
+    			if (way.member) {
+    				continue;
+    			}
+    			if (!way.isIntersect(db, "WHERE (tWay.orignal=true) AND (tWay.member=false)")) {
+    				killList.add(way);
+    			}
+    		}
+    		for (ElementWay way : killList) {
+        		for (OsmNd nd : way.nds) {
+        			ElementNode node = dom.nodes.get(Long.toString(nd.id));
+        			node.action = "modify";
+        			node.orignal = false;
+        			ddom.nodes.put(Long.toString(nd.id), node);
+        		}
+    			way.action = "modify";
+    			way.orignal = false;
+    			ddom.ways.put(Long.toString(way.id), way);
+    			dom.ways.remove(Long.toString(way.id));
+    			way.delete(db);
+    		}
+    		
+    		// インポートデータの内で、既存データと重複するWAYを'modify'に確定する
+    		for (String rKey : dom.ways.keySet()) {
+    			ElementWay way = dom.ways.get(rKey);
+    			if (way.member) {
+    				continue;
+    			}
+    			long wayid = way.getIntersect(db, "WHERE (tWay.orignal=true)");
+    			if (wayid > 0) {
+    				ElementWay dWay = ddom.ways.get(Long.toString(wayid));
+    				dWay.action = "modify";
+    				dWay.orignal = false;
+    				dWay.nds = way.nds;
+            		for (OsmNd nd : way.nds) {
+            			ElementNode node = dom.nodes.get(Long.toString(nd.id));
+            			node.action = "modify";
+            			node.orignal = false;
+            			ddom.nodes.put(Long.toString(nd.id), node);
+            		}
+            		for (String k : way.tags.keySet()) {
+            			ElementTag tag = way.tags.get(k);
+            			dWay.tags.put(k, tag);
+            		}
+            		ElementTag tag = dWay.tags.get("fixme");
+            		if (tag != null) {
+            			String fixme = tag.v;
+            			tag.v = fixme +"; PLATEAUデータで更新されています";
+            		}
+            		else {
+            			tag = new ElementTag("fixme", "PLATEAUデータで更新されています");
+            		}
+            		dWay.tags.put("fixme", tag);
+            		dWay.delete(db);
+    			}
+    		}
+    		
+    		// インポートデータの内で、既存データと重複するRELATIONを'modify'に確定する
+    		for (String rKey : dom.relations.keySet()) {
+    			ElementRelation relation = dom.relations.get(rKey);
+    			ElementWay dWay = null;
+    			for (ElementMember member : relation.members) {
+    				if (member.role.equals("outline")) {
+    					ElementWay way = dom.ways.get(Long.toString(member.ref));
+    	    			long wayid = way.getIntersect(db, "WHERE (tWay.orignal=true)");
+    	    			if (wayid > 0) {
+    	    				dWay = ddom.ways.get(Long.toString(wayid));
+    	    				dWay.action = "modify";
+    	    				dWay.orignal = false;
+    	    				dWay.nds = way.nds;
+    	            		for (OsmNd nd : way.nds) {
+    	            			ElementNode node = dom.nodes.get(Long.toString(nd.id));
+    	            			node.action = "modify";
+    	            			node.orignal = false;
+    	            			ddom.nodes.put(Long.toString(nd.id), node);
+    	            		}
+    	            		for (String k : way.tags.keySet()) {
+    	            			ElementTag tag = way.tags.get(k);
+    	            			dWay.tags.put(k, tag);
+    	            		}
+    	            		
+    	            		ElementTag tag = dWay.tags.get("fixme");
+    	            		if (tag != null) {
+    	            			String fixme = tag.v;
+    	            			tag.v = fixme +"; PLATEAUデータで更新されています";
+    	            		}
+    	            		else {
+    	            			tag = new ElementTag("fixme", "PLATEAUデータで更新されています");
+    	            		}
+    	            		dWay.tags.put("fixme", tag);
+    	            		
+    	            		member.ref = dWay.id;
+    	            		for (String k : dWay.tags.keySet()) {
+    	            			tag = dWay.tags.get(k);
+    	            			relation.tags.put(k, tag);
+    	            		}
+    	            		dWay.tags = new HashMap<>();
+    	    			}
+    	    			break;
+    				}
+    			}
+    			if (dWay != null) {
+    				for (ElementMember member : relation.members) {
+    					ElementWay way = dom.ways.get(Long.toString(member.ref));
+    					if (way != null) {
+        					ddom.ways.put(Long.toString(way.id), way);
+    					}
+    				}
+    				ddom.relations.put(Long.toString(relation.id), relation.clone());
+    			}
+    		}
     		
     		
         } catch (ClassNotFoundException e) {
@@ -164,8 +277,9 @@ public class OsmUpdater {
 		}
 	}
 	
-	static boolean isBuildingTag(ArrayList<ElementTag> tags) {
-		for (ElementTag tag : tags) {
+	static boolean isBuildingTag(HashMap<String,ElementTag> tags) {
+		for (String k : tags.keySet()) {
+			ElementTag tag = tags.get(k);
 			if (tag.k.startsWith("building")) {
 				return true;
 			}

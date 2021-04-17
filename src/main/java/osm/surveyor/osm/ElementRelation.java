@@ -12,16 +12,11 @@ import osm.surveyor.citygml.CitygmlFile;
 
 public class ElementRelation extends ElementOsmapi implements Cloneable {
 	public ArrayList<ElementMember> members;
-	public ArrayList<ElementTag> tags;
+	//public ArrayList<ElementTag> tags;
 	
 	public ElementRelation(long id) {
 		super(id);
 		members = new ArrayList<ElementMember>();
-		tags = new ArrayList<ElementTag>();
-	}
-	
-	public void addTag(String k, String v) {
-		this.tags.add(new ElementTag(k, v));
 	}
 	
 	public void addMember(ElementWay way, String role) {
@@ -46,7 +41,8 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
     	for (ElementMember member : this.members) {
     		element.appendChild(member.toNode(doc));
 		}
-		for (ElementTag tag : this.tags) {
+		for (String key  : this.tags.keySet()) {
+			ElementTag tag = tags.get(key);
 			element.appendChild(tag.toNodeNd(doc));
 		}
         return (Node)element;
@@ -91,9 +87,10 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 		}
 		aWay.member = true;
 		aWay.replaceTag(new ElementTag("building:part", "yes"), new ElementTag("building", "yes"));
-		for (ElementTag tag : aWay.tags) {
+		for (String k : aWay.tags.keySet()) {
+			ElementTag tag = aWay.tags.get(k);
 			if (tag.k.equals("height")) {
-				aWay.tags.remove(aWay.tags.indexOf(tag));
+				aWay.tags.remove(k);
 			}
 		}
 		return aWay;
@@ -131,9 +128,6 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 					member.loadElement(e2);
 					this.members.add(member);
 				}
-				if (e2.getNodeName().equals("tag")) {
-					this.tags.add((new ElementTag()).loadElement(e2));
-				}
 			}
 	    }
     	return this;
@@ -153,7 +147,8 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 	 */
     
 	public boolean isBuilding() {
-		for (ElementTag tag : tags) {
+		for (String k : tags.keySet()) {
+			ElementTag tag = tags.get(k);
 			if (tag.k.equals("type")) {
 				if (tag.v.equals("building")) {
 					return true;
@@ -174,12 +169,6 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 			if (copy.members != null) {
 				for (ElementMember member : this.members) {
 					copy.members.add(member.clone());
-				}
-			}
-			copy.tags = new ArrayList<ElementTag>();
-			if (this.tags != null) {
-				for (ElementTag tag : this.tags) {
-					copy.tags.add(tag.clone());
 				}
 			}
 		}

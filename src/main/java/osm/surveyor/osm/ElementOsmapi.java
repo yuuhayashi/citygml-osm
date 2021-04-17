@@ -1,9 +1,10 @@
 package osm.surveyor.osm;
 
+import java.util.HashMap;
 import org.w3c.dom.Element;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  * CityGMLファイルをパースする
@@ -24,9 +25,11 @@ public class ElementOsmapi implements Cloneable {
 	public String version = null;
 	public boolean orignal = false;
 	public String changeset = null;
+	public HashMap<String, ElementTag> tags;
 	
 	public ElementOsmapi(long id) {
 		this.id = id;
+		tags = new HashMap<>();
 	}
 	
 	@Override
@@ -34,6 +37,13 @@ public class ElementOsmapi implements Cloneable {
 		ElementOsmapi copy = null;
 		try {
 			copy = (ElementOsmapi)super.clone();
+			copy.tags = new HashMap<>();
+			if (tags != null) {
+				for (String k : tags.keySet()) {
+					ElementTag tag = tags.get(k);
+					copy.tags.put(k, tag.clone());
+				}
+			}
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -42,6 +52,10 @@ public class ElementOsmapi implements Cloneable {
 		return copy;
 	}
     
+	public void addTag(String k, String v) {
+		this.tags.put(k, new ElementTag(k, v));
+	}
+	
 	/**
      * <node id='-107065' action='modify' visible='true' lat='35.43464696576' lon='139.4102145808' />
      * <node id='1803576119' timestamp='2012-06-27T05:23:26Z' uid='618878' user='nakanao' visible='true' version='1' changeset='12032994' lat='35.5420516' lon='139.7149118' />
@@ -90,6 +104,18 @@ public class ElementOsmapi implements Cloneable {
 		this.visible = Boolean.valueOf(eElement.getAttribute("visible"));
 		this.version = getAttri(eElement, "version");
 		this.changeset = getAttri(eElement, "changeset");
+		
+		NodeList list2 = eElement.getChildNodes();
+	    for (int temp2 = 0; temp2 < list2.getLength(); temp2++) {
+			Node node2 = list2.item(temp2);
+			if (node2.getNodeType() == Node.ELEMENT_NODE) {
+				Element e2 = (Element) node2;
+				if (e2.getNodeName().equals("tag")) {
+					ElementTag tag = (new ElementTag()).loadElement(e2);
+					this.tags.put(tag.k, tag);
+				}
+			}
+	    }
 		return this;
     }
     
@@ -111,6 +137,8 @@ public class ElementOsmapi implements Cloneable {
 		result = prime * result + ((action == null) ? 0 : action.hashCode());
 		result = prime * result + ((changeset == null) ? 0 : changeset.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + (orignal ? 1231 : 1237);
+		result = prime * result + ((tags == null) ? 0 : tags.hashCode());
 		result = prime * result + ((timestamp == null) ? 0 : timestamp.hashCode());
 		result = prime * result + ((uid == null) ? 0 : uid.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
@@ -139,6 +167,13 @@ public class ElementOsmapi implements Cloneable {
 		} else if (!changeset.equals(other.changeset))
 			return false;
 		if (id != other.id)
+			return false;
+		if (orignal != other.orignal)
+			return false;
+		if (tags == null) {
+			if (other.tags != null)
+				return false;
+		} else if (!tags.equals(other.tags))
 			return false;
 		if (timestamp == null) {
 			if (other.timestamp != null)

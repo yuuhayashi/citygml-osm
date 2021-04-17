@@ -67,7 +67,8 @@ public class OsmMargeWay {
 			ElementRelation relation = relations.get(rKey);
 			if (relation.members.size() < 2) {
 				ArrayList<ElementTag> tags = new ArrayList<>();
-				for (ElementTag tag : relation.tags) {
+				for (String k : relation.tags.keySet()) {
+					ElementTag tag = relation.tags.get(k);
 					if (!tag.k.equals("type")) {
 						tags.add(tag);
 					}

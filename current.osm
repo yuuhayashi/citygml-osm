@@ -1,254 +1,767 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <osm generator="JOSM" version="0.6">
 <bounds maxlat="35.5422523" maxlon="139.7156384" minlat="35.5407086" minlon="139.7124522" origin=""/>
-<node changeset="12032994" id="1803575942" lat="35.5406962" lon="139.7126054" timestamp="2012-06-27T05:23:20Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576119" lat="35.5420516" lon="139.7149118" timestamp="2012-06-27T05:23:26Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803575943" lat="35.5407007" lon="139.7126245" timestamp="2012-06-27T05:23:20Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803575941" lat="35.5406615" lon="139.7124574" timestamp="2012-06-27T05:23:20Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576110" lat="35.5420471" lon="139.7148540" timestamp="2012-06-27T05:23:26Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="41678526" id="4365751302" lat="35.5414933" lon="139.7138308" timestamp="2016-08-25T04:37:47Z" uid="1056221" user="kawah64" version="1" visible="true"/>
-<node changeset="12032994" id="1803575948" lat="35.5407424" lon="139.7124287" timestamp="2012-06-27T05:23:20Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803575949" lat="35.5407796" lon="139.7129198" timestamp="2012-06-27T05:23:21Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803575946" lat="35.5407167" lon="139.7126188" timestamp="2012-06-27T05:23:20Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803575947" lat="35.5407380" lon="139.7127834" timestamp="2012-06-27T05:23:20Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803575944" lat="35.5407122" lon="139.7125997" timestamp="2012-06-27T05:23:20Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576108" lat="35.5420352" lon="139.7148597" timestamp="2012-06-27T05:23:26Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576106" lat="35.5419857" lon="139.7146590" timestamp="2012-06-27T05:23:25Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803575964" lat="35.5409500" lon="139.7128263" timestamp="2012-06-27T05:23:21Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803575962" lat="35.5409419" lon="139.7127928" timestamp="2012-06-27T05:23:21Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803575963" lat="35.5409496" lon="139.7133971" timestamp="2012-06-27T05:23:21Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803575960" lat="35.5409029" lon="139.7132906" timestamp="2012-06-27T05:23:21Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576015" lat="35.5413036" lon="139.7147556" timestamp="2012-06-27T05:23:23Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576016" lat="35.5413093" lon="139.7133504" timestamp="2012-06-27T05:23:23Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576013" lat="35.5412844" lon="139.7140197" timestamp="2012-06-27T05:23:23Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576011" lat="35.5412788" lon="139.7137573" timestamp="2012-06-27T05:23:23Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576012" lat="35.5412830" lon="139.7141174" timestamp="2012-06-27T05:23:23Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576010" lat="35.5412779" lon="139.7142828" timestamp="2012-06-27T05:23:23Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803575969" lat="35.5410048" lon="139.7125602" timestamp="2012-06-27T05:23:21Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576008" lat="35.5412497" lon="139.7131024" timestamp="2012-06-27T05:23:23Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803575953" lat="35.5408190" lon="139.7127547" timestamp="2012-06-27T05:23:21Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803575954" lat="35.5408230" lon="139.7127584" timestamp="2012-06-27T05:23:21Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803575951" lat="35.5408027" lon="139.7128437" timestamp="2012-06-27T05:23:21Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576006" lat="35.5412429" lon="139.7139951" timestamp="2012-06-27T05:23:23Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803575952" lat="35.5408177" lon="139.7129059" timestamp="2012-06-27T05:23:21Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576004" lat="35.5412382" lon="139.7139866" timestamp="2012-06-27T05:23:22Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576126" lat="35.5422469" lon="139.7153638" timestamp="2012-06-27T05:23:26Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803575950" lat="35.5407948" lon="139.7126297" timestamp="2012-06-27T05:23:21Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576005" lat="35.5412399" lon="139.7139756" timestamp="2012-06-27T05:23:22Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576002" lat="35.5412261" lon="139.7140184" timestamp="2012-06-27T05:23:22Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576003" lat="35.5412346" lon="139.7134380" timestamp="2012-06-27T05:23:22Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576000" lat="35.5412206" lon="139.7133875" timestamp="2012-06-27T05:23:22Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576001" lat="35.5412220" lon="139.7139986" timestamp="2012-06-27T05:23:22Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576120" lat="35.5420978" lon="139.7148898" timestamp="2012-06-27T05:23:26Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803575959" lat="35.5408871" lon="139.7132255" timestamp="2012-06-27T05:23:21Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803575956" lat="35.5408563" lon="139.7132368" timestamp="2012-06-27T05:23:21Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="41678526" id="4365751300" lat="35.5414766" lon="139.7137666" timestamp="2016-08-25T04:37:47Z" uid="1056221" user="kawah64" version="1" visible="true"/>
-<node changeset="12032994" id="1803576077" lat="35.5416567" lon="139.7156441" timestamp="2012-06-27T05:23:25Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="75597675" id="6873070607" lat="35.5415061" lon="139.7128763" timestamp="2019-10-12T11:07:27Z" uid="9600679" user="Yoqtan" version="1" visible="true"/>
-<node changeset="75597675" id="6873070608" lat="35.5414681" lon="139.7128623" timestamp="2019-10-12T11:07:27Z" uid="9600679" user="Yoqtan" version="1" visible="true"/>
-<node changeset="75597675" id="6873070606" lat="35.5415101" lon="139.7128723" timestamp="2019-10-12T11:07:27Z" uid="9600679" user="Yoqtan" version="1" visible="true"/>
-<node changeset="75597675" id="6873070609" lat="35.5414751" lon="139.7128353" timestamp="2019-10-12T11:07:27Z" uid="9600679" user="Yoqtan" version="1" visible="true"/>
-<node changeset="12032994" id="1803576072" lat="35.5415915" lon="139.7141341" timestamp="2012-06-27T05:23:25Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576069" lat="35.5415732" lon="139.7139612" timestamp="2012-06-27T05:23:24Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576066" lat="35.5415584" lon="139.7139071" timestamp="2012-06-27T05:23:24Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576062" lat="35.5415470" lon="139.7139721" timestamp="2012-06-27T05:23:24Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="41678526" id="4365751296" lat="35.5415936" lon="139.7137913" timestamp="2016-08-25T04:37:47Z" uid="1056221" user="kawah64" version="1" visible="true"/>
-<node changeset="41678526" id="4365751298" lat="35.5415769" lon="139.7137271" timestamp="2016-08-25T04:37:47Z" uid="1056221" user="kawah64" version="1" visible="true"/>
-<node changeset="12032994" id="1803576086" lat="35.5417415" lon="139.7138311" timestamp="2012-06-27T05:23:25Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576091" lat="35.5418009" lon="139.7140471" timestamp="2012-06-27T05:23:25Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="75597675" id="6873070610" lat="35.5414531" lon="139.7128273" timestamp="2019-10-12T11:07:27Z" uid="9600679" user="Yoqtan" version="1" visible="true"/>
-<node changeset="75597675" id="6873070611" lat="35.5414511" lon="139.7128213" timestamp="2019-10-12T11:07:27Z" uid="9600679" user="Yoqtan" version="1" visible="true"/>
-<node changeset="75597675" id="6873070612" lat="35.5414711" lon="139.7127173" timestamp="2019-10-12T11:07:27Z" uid="9600679" user="Yoqtan" version="1" visible="true"/>
-<node changeset="75597675" id="6873070613" lat="35.5415361" lon="139.7127363" timestamp="2019-10-12T11:07:27Z" uid="9600679" user="Yoqtan" version="1" visible="true"/>
-<node changeset="12032994" id="1803575986" lat="35.5411246" lon="139.7139530" timestamp="2012-06-27T05:23:22Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803575985" lat="35.5411065" lon="139.7139588" timestamp="2012-06-27T05:23:22Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803575982" lat="35.5410894" lon="139.7131974" timestamp="2012-06-27T05:23:22Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576038" lat="35.5414420" lon="139.7133297" timestamp="2012-06-27T05:23:24Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803575981" lat="35.5410835" lon="139.7131605" timestamp="2012-06-27T05:23:22Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576033" lat="35.5414223" lon="139.7137583" timestamp="2012-06-27T05:23:24Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576034" lat="35.5414299" lon="139.7149230" timestamp="2012-06-27T05:23:24Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576030" lat="35.5413847" lon="139.7142321" timestamp="2012-06-27T05:23:23Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803575988" lat="35.5411396" lon="139.7140246" timestamp="2012-06-27T05:23:22Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803575975" lat="35.5410432" lon="139.7132393" timestamp="2012-06-27T05:23:21Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576028" lat="35.5413834" lon="139.7135368" timestamp="2012-06-27T05:23:23Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803575973" lat="35.5410330" lon="139.7126889" timestamp="2012-06-27T05:23:21Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803575974" lat="35.5410369" lon="139.7132135" timestamp="2012-06-27T05:23:21Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803575972" lat="35.5410282" lon="139.7128289" timestamp="2012-06-27T05:23:21Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576025" lat="35.5413382" lon="139.7133728" timestamp="2012-06-27T05:23:23Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803575970" lat="35.5410213" lon="139.7128003" timestamp="2012-06-27T05:23:21Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576022" lat="35.5413244" lon="139.7144307" timestamp="2012-06-27T05:23:23Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576023" lat="35.5413329" lon="139.7137957" timestamp="2012-06-27T05:23:23Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576020" lat="35.5413178" lon="139.7137410" timestamp="2012-06-27T05:23:23Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803575977" lat="35.5410599" lon="139.7133426" timestamp="2012-06-27T05:23:22Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576058" lat="35.5415173" lon="139.7146542" timestamp="2012-06-27T05:23:24Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576053" lat="35.5414913" lon="139.7140867" timestamp="2012-06-27T05:23:24Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576054" lat="35.5414921" lon="139.7140319" timestamp="2012-06-27T05:23:24Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576051" lat="35.5414840" lon="139.7140006" timestamp="2012-06-27T05:23:24Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576052" lat="35.5414871" lon="139.7134937" timestamp="2012-06-27T05:23:24Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576050" lat="35.5414835" lon="139.7140317" timestamp="2012-06-27T05:23:24Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="15780370" id="2272261812" lat="35.5413159" lon="139.7156227" timestamp="2013-04-19T04:12:40Z" uid="621319" user="hayashi" version="1" visible="true"/>
-<node changeset="15780370" id="2272261813" lat="35.5412795" lon="139.7155092" timestamp="2013-04-19T04:12:40Z" uid="621319" user="hayashi" version="1" visible="true"/>
-<node changeset="12032994" id="1803575997" lat="35.5411950" lon="139.7134546" timestamp="2012-06-27T05:23:22Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803575993" lat="35.5411709" lon="139.7127767" timestamp="2012-06-27T05:23:22Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576046" lat="35.5414702" lon="139.7140862" timestamp="2012-06-27T05:23:24Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="12032994" id="1803576045" lat="35.5414696" lon="139.7141217" timestamp="2012-06-27T05:23:24Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<node changeset="15780370" id="2272261804" lat="35.5413080" lon="139.7154954" timestamp="2013-04-19T04:12:40Z" uid="621319" user="hayashi" version="1" visible="true"/>
-<node changeset="15780370" id="2272261806" lat="35.5413445" lon="139.7156088" timestamp="2013-04-19T04:12:40Z" uid="621319" user="hayashi" version="1" visible="true"/>
-<node changeset="12032994" id="1803575999" lat="35.5412174" lon="139.7144814" timestamp="2012-06-27T05:23:22Z" uid="618878" user="nakanao" version="1" visible="true"/>
-<way changeset="12032994" id="169195181" timestamp="2012-06-27T05:23:32Z" uid="618878" user="nakanao" version="1" visible="true">
-<nd ref="1803576016"/>
-<nd ref="1803576033"/>
-<nd ref="1803576023"/>
-<nd ref="1803576020"/>
-<nd ref="1803576011"/>
-<nd ref="1803575997"/>
-<nd ref="1803576003"/>
-<nd ref="1803576000"/>
-<nd ref="1803576016"/>
+<node action="modify" id="-893" lat="35.54119482260233" lon="139.7140850341186" visible="true"/>
+<node action="modify" id="-892" lat="35.54122603209489" lon="139.7141978096723" visible="true"/>
+<node action="modify" id="-894" lat="35.541170495190364" lon="139.71409532664407" visible="true"/>
+<node action="modify" id="-891" lat="35.54120170467339" lon="139.71420810216776" visible="true"/>
+<node action="modify" id="-664" lat="35.541274819215964" lon="139.71428834899584" visible="true"/>
+<node action="modify" id="-300" lat="35.54134475361942" lon="139.7131160656475" visible="true"/>
+<node action="modify" id="-663" lat="35.54124994630491" lon="139.71429941316995" visible="true"/>
+<node action="modify" id="-666" lat="35.541243217593504" lon="139.71427676832317" visible="true"/>
+<node action="modify" id="-665" lat="35.5412680896011" lon="139.71426570414434" visible="true"/>
+<node action="modify" id="-1182" lat="35.541068157663524" lon="139.71315750440556" visible="true"/>
+<node action="modify" id="-1184" lat="35.5412280556082" lon="139.71296768563553" visible="true"/>
+<node action="modify" id="-1183" lat="35.54125670905719" lon="139.71309237542178" visible="true"/>
+<node action="modify" id="-1186" lat="35.54118378558464" lon="139.71277552479435" visible="true"/>
+<node action="modify" id="-1185" lat="35.54121108119853" lon="139.7128942610742" visible="true"/>
+<node action="modify" id="-1188" lat="35.54103831598691" lon="139.71279063095028" visible="true"/>
+<node action="modify" id="-1187" lat="35.54104578486628" lon="139.7128230435479" visible="true"/>
+<node action="modify" id="-1189" lat="35.54094208017937" lon="139.71282352953085" visible="true"/>
+<node action="modify" id="-444" lat="35.541382218917" lon="139.7135361971285" visible="true"/>
+<node action="modify" id="-1191" lat="35.540812017080775" lon="139.7128313337254" visible="true"/>
+<node action="modify" id="-1190" lat="35.54093420402065" lon="139.71278946331242" visible="true"/>
+<node action="modify" id="-1193" lat="35.54079167658971" lon="139.71290746052026" visible="true"/>
+<node action="modify" id="-1192" lat="35.54082668340064" lon="139.71289516659633" visible="true"/>
+<node action="modify" id="-1197" lat="35.541038490867244" lon="139.713236953812" visible="true"/>
+<node action="modify" id="-1196" lat="35.54088008037469" lon="139.7132914500394" visible="true"/>
+<node action="modify" id="-567" lat="35.5417997080234" lon="139.71404575922477" visible="true"/>
+<node action="modify" id="-446" lat="35.5414416376926" lon="139.7133266766337" visible="true"/>
+<node action="modify" id="-1199" lat="35.54107494809391" lon="139.7131876020765" visible="true"/>
+<node action="modify" id="-566" lat="35.541591032283854" lon="139.7141334144839" visible="true"/>
+<node action="modify" id="-445" lat="35.54148871794623" lon="139.71349038054228" visible="true"/>
+<node action="modify" id="-1198" lat="35.54103061482526" lon="139.71320288751207" visible="true"/>
+<node action="modify" id="-569" lat="35.54156538752602" lon="139.71390549197884" visible="true"/>
+<node action="modify" id="-568" lat="35.541739734209926" lon="139.71383211396727" visible="true"/>
+<node action="modify" id="-447" lat="35.54133500351648" lon="139.71337249361054" visible="true"/>
+<node action="modify" id="-211" lat="35.541248635711" lon="139.71326741011697" visible="true"/>
+<node action="modify" id="-574" lat="35.54157831122697" lon="139.71412185331073" visible="true"/>
+<node action="modify" id="-573" lat="35.54156447153297" lon="139.71407290695987" visible="true"/>
+<node action="modify" id="-213" lat="35.541415121124885" lon="139.71317518392723" visible="true"/>
+<node action="modify" id="-212" lat="35.541422725768555" lon="139.7132082582225" visible="true"/>
+<node action="modify" id="-575" lat="35.54158669056377" lon="139.71411820148353" visible="true"/>
+<node action="modify" id="-570" lat="35.54157963455137" lon="139.71395609198288" visible="true"/>
+<node action="modify" id="-572" lat="35.54157312128553" lon="139.71406925472792" visible="true"/>
+<node action="modify" id="-571" lat="35.54154544118005" lon="139.71397070035476" visible="true"/>
+<node action="modify" id="-214" lat="35.541241031083466" lon="139.7132343358875" visible="true"/>
+<node action="modify" id="-343" lat="35.540888677667766" lon="139.71335466897793" visible="true"/>
+<node action="modify" id="-342" lat="35.54113062176147" lon="139.7132745725591" visible="true"/>
+<node action="modify" id="-341" lat="35.54113659761786" lon="139.71330136292485" visible="true"/>
+<node action="modify" id="-340" lat="35.540894653506456" lon="139.7133814592693" visible="true"/>
+<node action="modify" id="-491" lat="35.54123501526781" lon="139.71343914447652" visible="true"/>
+<node action="modify" id="-490" lat="35.54122063281673" lon="139.71338854498205" visible="true"/>
+<node action="modify" id="-488" lat="35.54142732424439" lon="139.71375383356497" visible="true"/>
+<node action="modify" id="-125" lat="35.5414799627116" lon="139.71379643593485" visible="true"/>
+<node action="modify" id="-487" lat="35.54133474471467" lon="139.71379268113824" visible="true"/>
+<node action="modify" id="-127" lat="35.54157520572637" lon="139.71371655807323" visible="true"/>
+<node action="modify" id="-489" lat="35.541313211888045" lon="139.71334936614474" visible="true"/>
+<node action="modify" id="-126" lat="35.5415848357262" lon="139.7137469826227" visible="true"/>
+<node action="modify" id="-128" lat="35.541470332724145" lon="139.713766011419" visible="true"/>
+<node action="modify" id="-937" lat="35.54150403738886" lon="139.7138040099169" visible="true"/>
+<node action="modify" id="-10" lat="35.54153100551663" lon="139.71523889596378" visible="true"/>
+<node action="modify" id="-255" lat="35.54125637323291" lon="139.7132981681648" visible="true"/>
+<node action="modify" id="-254" lat="35.541162172990724" lon="139.71333867286907" visible="true"/>
+<node action="modify" id="-257" lat="35.541145348837674" lon="139.71328013655102" visible="true"/>
+<node action="modify" id="-256" lat="35.54123968459845" lon="139.71323996244044" visible="true"/>
+<node action="modify" id="-493" lat="35.54127914248125" lon="139.7137610014878" visible="true"/>
+<node action="modify" id="-492" lat="35.541193388442984" lon="139.71345674176507" visible="true"/>
+<node action="modify" id="-494" lat="35.54132076935018" lon="139.71374340433744" visible="true"/>
+<node action="modify" id="-934" lat="35.54151204355187" lon="139.71383311343172" visible="true"/>
+<node action="modify" id="-936" lat="35.541591617152896" lon="139.71376814740879" visible="true"/>
+<node action="modify" id="-935" lat="35.5415996233245" lon="139.71379725095164" visible="true"/>
+<node action="modify" id="-1577" lat="35.54077294079812" lon="139.71276276539515" visible="true"/>
+<node action="modify" id="-1456" lat="35.5415369124557" lon="139.712736947809" visible="true"/>
+<node action="modify" id="-1455" lat="35.54152076217255" lon="139.71281174561736" visible="true"/>
+<node action="modify" id="-1579" lat="35.54083347153819" lon="139.71253712725172" visible="true"/>
+<node action="modify" id="-1458" lat="35.54144965632675" lon="139.7128257479667" visible="true"/>
+<node action="modify" id="-1578" lat="35.54087778005558" lon="139.71272593661917" visible="true"/>
+<node action="modify" id="-1457" lat="35.54147334356041" lon="139.7127161990047" visible="true"/>
+<node action="modify" id="-707" lat="35.54133788986974" lon="139.71560624176954" visible="true"/>
+<node action="modify" id="-706" lat="35.541310888473944" lon="139.71561897175823" visible="true"/>
+<node action="modify" id="-1459" lat="35.54147237864774" lon="139.712832992822" visible="true"/>
+<node action="modify" id="-709" lat="35.541276002798384" lon="139.71550821361615" visible="true"/>
+<node action="modify" id="-708" lat="35.541303003280085" lon="139.71549548249433" visible="true"/>
+<node action="modify" id="-387" lat="35.54134957321918" lon="139.71443154222655" visible="true"/>
+<node action="modify" id="-386" lat="35.54130183126393" lon="139.714281073262" visible="true"/>
+<node action="modify" id="-388" lat="35.541225779839095" lon="139.71449028637193" visible="true"/>
+<node action="modify" id="-383" lat="35.54131041252268" lon="139.71475683139562" visible="true"/>
+<node action="modify" id="-385" lat="35.5413910271429" lon="139.71423859184893" visible="true"/>
+<node action="modify" id="-384" lat="35.54152340205619" lon="139.71465560657532" visible="true"/>
+<node action="modify" id="-1580" lat="35.540850547813456" lon="139.7125311286294" visible="true"/>
+<node action="modify" id="-1582" lat="35.54082607627865" lon="139.7125098958281" visible="true"/>
+<node action="modify" id="-1461" lat="35.54150703370132" lon="139.71287462893292" visible="true"/>
+<node action="modify" id="-1581" lat="35.54084408065918" lon="139.7125035704688" visible="true"/>
+<node action="modify" id="-1460" lat="35.54146618747908" lon="139.71286145574626" visible="true"/>
+<node action="modify" id="-1584" lat="35.54070862164589" lon="139.7124886845105" visible="true"/>
+<node action="modify" id="-1583" lat="35.54081253271364" lon="139.71245218213994" visible="true"/>
+<node action="modify" id="-1462" lat="35.541514167036006" lon="139.71284186344832" visible="true"/>
+<node action="modify" id="-170" lat="35.541143014322714" lon="139.71419826329537" visible="true"/>
+<node action="modify" id="-171" lat="35.54111747100356" lon="139.71420955014332" visible="true"/>
+<node action="modify" id="-169" lat="35.541162822093874" lon="139.7142663901982" visible="true"/>
+<node action="modify" id="-168" lat="35.5411374136504" lon="139.71427734597282" visible="true"/>
+<node action="modify" id="-1353" lat="35.54129242555891" lon="139.713930379965" visible="true"/>
+<node action="modify" id="-1352" lat="35.54129367060523" lon="139.7139588317228" visible="true"/>
+<node action="modify" id="-1355" lat="35.54127846401389" lon="139.71389499908867" visible="true"/>
+<node action="modify" id="-1354" lat="35.541287405476595" lon="139.7139128520468" visible="true"/>
+<node action="modify" id="-299" lat="35.54139516763394" lon="139.71309713161" visible="true"/>
+<node action="modify" id="-298" lat="35.54141077895425" lon="139.71315964015625" visible="true"/>
+<node action="modify" id="-297" lat="35.5413605001386" lon="139.71317857395672" visible="true"/>
+<node action="modify" id="-978" lat="35.54150304722172" lon="139.71403296422943" visible="true"/>
+<node action="modify" id="-977" lat="35.54150107210343" lon="139.71408656594016" visible="true"/>
+<node action="modify" id="-979" lat="35.54149412279802" lon="139.71403231573208" visible="true"/>
+<node action="modify" id="-1412" lat="35.541112315426226" lon="139.71419169159097" visible="true"/>
+<node action="modify" id="-1535" lat="35.54093143105161" lon="139.7135345514793" visible="true"/>
+<node action="modify" id="-1414" lat="35.54116145158618" lon="139.71411089022885" visible="true"/>
+<node action="modify" id="-1656" lat="35.54086066432969" lon="139.71334573903766" visible="true"/>
+<node action="modify" id="-1534" lat="35.540907913951706" lon="139.71354385036943" visible="true"/>
+<node action="modify" id="-1413" lat="35.54117570539155" lon="139.71416843796854" visible="true"/>
+<node action="modify" id="-1537" lat="35.54087846517793" lon="139.71343471229" visible="true"/>
+<node action="modify" id="-1658" lat="35.54089902868296" lon="139.71331061135066" visible="true"/>
+<node action="modify" id="-1536" lat="35.5409019819405" lon="139.71342508251772" visible="true"/>
+<node action="modify" id="-1415" lat="35.54109819716753" lon="139.7141344745469" visible="true"/>
+<node action="modify" id="-1657" lat="35.540903645531564" lon="139.7133304557272" visible="true"/>
+<node action="modify" id="-3" lat="35.541657275471835" lon="139.7156383865409" visible="true"/>
+<node action="modify" id="-1659" lat="35.540855912604165" lon="139.71332622572578" visible="true"/>
+<node action="modify" id="-4" lat="35.542252321638614" lon="139.71535363948732" visible="true"/>
+<node action="modify" id="-5" lat="35.54210367440277" lon="139.7148860223014" visible="true"/>
+<node action="modify" id="-6" lat="35.54206164434519" lon="139.71490626649856" visible="true"/>
+<node action="modify" id="-7" lat="35.5420440155531" lon="139.7148536858433" visible="true"/>
+<node action="modify" id="-8" lat="35.541981356256336" lon="139.7146575788015" visible="true"/>
+<node action="modify" id="-9" lat="35.54142914946131" lon="139.71491844541285" visible="true"/>
+<node action="modify" id="-981" lat="35.54125759708146" lon="139.71398634619936" visible="true"/>
+<node action="modify" id="-980" lat="35.54149530792287" lon="139.71400022087923" visible="true"/>
+<node action="modify" id="-983" lat="35.541235347206424" lon="139.71390995151518" visible="true"/>
+<node action="modify" id="-982" lat="35.541252848734416" lon="139.71397014130528" visible="true"/>
+<node action="modify" id="-989" lat="35.541113365653175" lon="139.7134777047117" visible="true"/>
+<node action="modify" id="-988" lat="35.541184593263374" lon="139.7137224317394" visible="true"/>
+<node action="modify" id="-749" lat="35.54084723764115" lon="139.71316875213742" visible="true"/>
+<node action="modify" id="-985" lat="35.54121721660215" lon="139.7137607625451" visible="true"/>
+<node action="modify" id="-984" lat="35.541194781810944" lon="139.71377072150702" visible="true"/>
+<node action="modify" id="-987" lat="35.54119137699125" lon="139.71374591240297" visible="true"/>
+<node action="modify" id="-986" lat="35.54121043320529" lon="139.71373761272775" visible="true"/>
+<node action="modify" id="-750" lat="35.54085142746041" lon="139.71316709161786" visible="true"/>
+<node action="modify" id="-992" lat="35.54114595043809" lon="139.7140225748187" visible="true"/>
+<node action="modify" id="-991" lat="35.54096496481712" lon="139.71340050554153" visible="true"/>
+<node action="modify" id="-752" lat="35.54079971797653" lon="139.71297163414053" visible="true"/>
+<node action="modify" id="-994" lat="35.54124207689941" lon="139.71401548448782" visible="true"/>
+<node action="modify" id="-751" lat="35.54080593493194" lon="139.71296897802156" visible="true"/>
+<node action="modify" id="-993" lat="35.541233122682655" lon="139.7139847281788" visible="true"/>
+<node action="modify" id="-990" lat="35.54107659876772" lon="139.71335170367303" visible="true"/>
+<node action="modify" id="-758" lat="35.54080287366528" lon="139.71301761810838" visible="true"/>
+<node action="modify" id="-757" lat="35.54077297374116" lon="139.71299880410083" visible="true"/>
+<node action="modify" id="-759" lat="35.54080628358483" lon="139.71304738986194" visible="true"/>
+<node action="modify" id="-754" lat="35.54078459210938" lon="139.71298919198784" visible="true"/>
+<node action="modify" id="-996" lat="35.541295449224876" lon="139.71411664733156" visible="true"/>
+<node action="modify" id="-753" lat="35.54080136887468" lon="139.713000085103" visible="true"/>
+<node action="modify" id="-995" lat="35.541299273749615" lon="139.7140190391891" visible="true"/>
+<node action="modify" id="-756" lat="35.5407638748099" lon="139.71295878439753" visible="true"/>
+<node action="modify" id="-998" lat="35.54148119545439" lon="139.71408560279195" visible="true"/>
+<node action="modify" id="-755" lat="35.540776715006594" lon="139.71295413325993" visible="true"/>
+<node action="modify" id="-997" lat="35.541479614492594" lon="139.7141276239222" visible="true"/>
+<node action="modify" id="-82" lat="35.541437548301566" lon="139.7139744996351" visible="true"/>
+<node action="modify" id="-83" lat="35.541438333025894" lon="139.71394769910043" visible="true"/>
+<node action="modify" id="-84" lat="35.54136531676588" lon="139.71394416788792" visible="true"/>
+<node action="modify" id="-85" lat="35.54136453204228" lon="139.71397096839829" visible="true"/>
+<node action="modify" id="-761" lat="35.540818507459264" lon="139.71310262421133" visible="true"/>
+<node action="modify" id="-760" lat="35.540811584768285" lon="139.71307550452556" visible="true"/>
+<node action="modify" id="-763" lat="35.540837214069214" lon="139.71315057011978" visible="true"/>
+<node action="modify" id="-762" lat="35.54082637165783" lon="139.71312477968803" visible="true"/>
+<way action="modify" changeset="12032994" id="169195181" timestamp="2012-06-27T05:23:32Z" uid="618878" user="nakanao" version="1" visible="true">
+<nd ref="-487"/>
+<nd ref="-488"/>
+<nd ref="-489"/>
+<nd ref="-490"/>
+<nd ref="-491"/>
+<nd ref="-492"/>
+<nd ref="-493"/>
+<nd ref="-494"/>
+<nd ref="-487"/>
+<tag k="addr:ref" v="13111058003"/>
+<tag k="fixme" v="PLATEAUデータで更新されています"/>
+<tag k="addr:full" v="東京都大田区南六郷三丁目"/>
 <tag k="amenity" v="parking"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_7e82aed0-1348-45d4-93bb-b1e26c910003"/>
 <tag k="building" v="yes"/>
-<tag k="source" v="Bing"/>
+<tag k="height" v="5.753500000000001"/>
 </way>
-<way changeset="36849875" id="169195180" timestamp="2016-01-28T04:01:25Z" uid="1056221" user="kawah64" version="2" visible="true">
-<nd ref="1803576106"/>
-<nd ref="1803576034"/>
-<nd ref="1803576077"/>
-<nd ref="1803576126"/>
-<nd ref="1803576120"/>
-<nd ref="1803576119"/>
-<nd ref="1803576108"/>
-<nd ref="1803576110"/>
-<nd ref="1803576106"/>
-<tag k="building" v="yes"/>
+<way action="modify" changeset="36849875" id="169195180" timestamp="2016-01-28T04:01:25Z" uid="1056221" user="kawah64" version="2" visible="true">
+<nd ref="-3"/>
+<nd ref="-4"/>
+<nd ref="-5"/>
+<nd ref="-6"/>
+<nd ref="-7"/>
+<nd ref="-8"/>
+<nd ref="-9"/>
+<nd ref="-10"/>
+<nd ref="-3"/>
+<tag k="addr:ref" v="13111058003"/>
+<tag k="fixme" v="PLATEAUデータで更新されています"/>
+<tag k="addr:full" v="東京都大田区南六郷三丁目"/>
 <tag k="name" v="東京都下水道局 雑色ポンプ所"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_d61ead86-9f08-4d99-b410-28a576c764f3"/>
+<tag k="building" v="yes"/>
+<tag k="height" v="14.072000000000001"/>
+</way>
+<way action="modify" id="-210" visible="true">
+<nd ref="-211"/>
+<nd ref="-212"/>
+<nd ref="-213"/>
+<nd ref="-214"/>
+<nd ref="-211"/>
+<tag k="addr:ref" v="13111058003"/>
+<tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_6061ba8e-adc5-4f92-9490-7ef1a6b1c0f1"/>
+<tag k="building" v="yes"/>
+<tag k="height" v="4.8655"/>
+</way>
+<way action="modify" changeset="41678526" id="438929454" timestamp="2016-08-25T04:37:47Z" uid="1056221" user="kawah64" version="1" visible="true">
+<nd ref="-934"/>
+<nd ref="-935"/>
+<nd ref="-936"/>
+<nd ref="-937"/>
+<nd ref="-934"/>
+<tag k="addr:ref" v="13111058003"/>
+<tag k="fixme" v="PLATEAUデータで更新されています"/>
+<tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_566a157b-cc25-4ab1-bfaf-bd5a874bce62"/>
+<tag k="building" v="yes"/>
+<tag k="height" v="5.113"/>
+</way>
+<way action="modify" id="-253" visible="true">
+<nd ref="-254"/>
+<nd ref="-255"/>
+<nd ref="-256"/>
+<nd ref="-257"/>
+<nd ref="-254"/>
+<tag k="addr:ref" v="13111058003"/>
+<tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_c567335d-ba57-4436-bc40-5ccf613f40b5"/>
+<tag k="building" v="yes"/>
+<tag k="height" v="5.127"/>
+</way>
+<way action="modify" id="-296" visible="true">
+<nd ref="-297"/>
+<nd ref="-298"/>
+<nd ref="-299"/>
+<nd ref="-300"/>
+<nd ref="-297"/>
+<tag k="addr:ref" v="13111058003"/>
+<tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_32708324-2cc9-440f-889b-9ae29a9b57d5"/>
+<tag k="building" v="yes"/>
+<tag k="height" v="5.4025"/>
+</way>
+<way action="modify" id="-890" visible="true">
+<nd ref="-891"/>
+<nd ref="-892"/>
+<nd ref="-893"/>
+<nd ref="-894"/>
+<nd ref="-891"/>
+<tag k="addr:ref" v="13111058003"/>
+<tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_6822dfa2-d703-4d28-80a4-19c688fedfaa"/>
+<tag k="building" v="yes"/>
+<tag k="height" v="4.992"/>
+</way>
+<way id="-1181" visible="true">
+<nd ref="-1182"/>
+<nd ref="-1183"/>
+<nd ref="-1184"/>
+<nd ref="-1185"/>
+<nd ref="-1186"/>
+<nd ref="-1187"/>
+<nd ref="-1188"/>
+<nd ref="-1189"/>
+<nd ref="-1190"/>
+<nd ref="-1191"/>
+<nd ref="-1192"/>
+<nd ref="-1193"/>
+<nd ref="-751"/>
+<nd ref="-750"/>
+<nd ref="-1196"/>
+<nd ref="-1197"/>
+<nd ref="-1198"/>
+<nd ref="-1199"/>
+<nd ref="-1182"/>
+<tag k="building:part" v="yes"/>
+<tag k="height" v="17.097"/>
+</way>
+<way action="modify" id="-339" visible="true">
+<nd ref="-340"/>
+<nd ref="-341"/>
+<nd ref="-342"/>
+<nd ref="-343"/>
+<nd ref="-340"/>
+<tag k="addr:ref" v="13111058003"/>
+<tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_7aea1c81-2553-454f-b894-d554fe4247d4"/>
+<tag k="building" v="yes"/>
+<tag k="height" v="4.9094999999999995"/>
+</way>
+<way id="-976" visible="true">
+<nd ref="-977"/>
+<nd ref="-978"/>
+<nd ref="-979"/>
+<nd ref="-980"/>
+<nd ref="-981"/>
+<nd ref="-982"/>
+<nd ref="-983"/>
+<nd ref="-984"/>
+<nd ref="-985"/>
+<nd ref="-986"/>
+<nd ref="-987"/>
+<nd ref="-988"/>
+<nd ref="-989"/>
+<nd ref="-990"/>
+<nd ref="-991"/>
+<nd ref="-992"/>
+<nd ref="-993"/>
+<nd ref="-994"/>
+<nd ref="-995"/>
+<nd ref="-996"/>
+<nd ref="-997"/>
+<nd ref="-998"/>
+<nd ref="-977"/>
+<tag k="building:part" v="yes"/>
+<tag k="height" v="40.492"/>
+</way>
+<way action="modify" id="-1533" visible="true">
+<nd ref="-1534"/>
+<nd ref="-1535"/>
+<nd ref="-1536"/>
+<nd ref="-1537"/>
+<nd ref="-1534"/>
+<tag k="addr:ref" v="13111058003"/>
+<tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_6c9923a4-ee9b-457c-8aa1-d06b84a398c0"/>
+<tag k="building" v="yes"/>
+<tag k="height" v="4.945"/>
+</way>
+<way action="modify" changeset="12032994" id="169195173" timestamp="2012-06-27T05:23:31Z" uid="618878" user="nakanao" version="1" visible="true">
+<nd ref="-125"/>
+<nd ref="-126"/>
+<nd ref="-127"/>
+<nd ref="-128"/>
+<nd ref="-125"/>
+<tag k="addr:ref" v="13111058003"/>
+<tag k="fixme" v="PLATEAUデータで更新されています"/>
+<tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_9309748b-c3ca-491a-b8d8-e437675a6bfc"/>
+<tag k="building" v="yes"/>
+<tag k="height" v="5.105"/>
+</way>
+<way action="modify" id="-1411" visible="true">
+<nd ref="-1412"/>
+<nd ref="-1413"/>
+<nd ref="-1414"/>
+<nd ref="-1415"/>
+<nd ref="-1412"/>
+<tag k="addr:ref" v="13111058003"/>
+<tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_a3879a2f-3a08-43e5-911f-111ac3223757"/>
+<tag k="building" v="yes"/>
+<tag k="height" v="6.449"/>
+</way>
+<way action="modify" id="-1655" visible="true">
+<nd ref="-1656"/>
+<nd ref="-1657"/>
+<nd ref="-1658"/>
+<nd ref="-1659"/>
+<nd ref="-1656"/>
+<tag k="addr:ref" v="13111058003"/>
+<tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_57cd4ea7-0fb7-4b0e-a600-9982cf3b60ca"/>
+<tag k="building" v="yes"/>
+<tag k="height" v="8.398"/>
+</way>
+<way action="modify" changeset="12032994" id="169195170" timestamp="2012-06-27T05:23:31Z" uid="618878" user="nakanao" version="1" visible="true">
+<nd ref="-444"/>
+<nd ref="-445"/>
+<nd ref="-446"/>
+<nd ref="-447"/>
+<nd ref="-444"/>
+<tag k="addr:ref" v="13111058003"/>
+<tag k="fixme" v="PLATEAUデータで更新されています"/>
+<tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_e61455af-37cd-4d75-ba2b-ab419880b805"/>
+<tag k="building" v="yes"/>
+<tag k="height" v="6.84"/>
+</way>
+<way action="modify" changeset="12032994" id="169195172" timestamp="2012-06-27T05:23:31Z" uid="618878" user="nakanao" version="1" visible="true">
+<nd ref="-1182"/>
+<nd ref="-1183"/>
+<nd ref="-1184"/>
+<nd ref="-1185"/>
+<nd ref="-1186"/>
+<nd ref="-1187"/>
+<nd ref="-1188"/>
+<nd ref="-1189"/>
+<nd ref="-1190"/>
+<nd ref="-1191"/>
+<nd ref="-1192"/>
+<nd ref="-1193"/>
+<nd ref="-751"/>
+<nd ref="-752"/>
+<nd ref="-753"/>
+<nd ref="-754"/>
+<nd ref="-755"/>
+<nd ref="-756"/>
+<nd ref="-757"/>
+<nd ref="-758"/>
+<nd ref="-759"/>
+<nd ref="-760"/>
+<nd ref="-761"/>
+<nd ref="-762"/>
+<nd ref="-763"/>
+<nd ref="-749"/>
+<nd ref="-750"/>
+<nd ref="-1196"/>
+<nd ref="-1197"/>
+<nd ref="-1198"/>
+<nd ref="-1199"/>
+<nd ref="-1182"/>
+</way>
+<way action="modify" id="-81" visible="true">
+<nd ref="-82"/>
+<nd ref="-83"/>
+<nd ref="-84"/>
+<nd ref="-85"/>
+<nd ref="-82"/>
+<tag k="addr:ref" v="13111058003"/>
+<tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_e638f827-fbb1-4016-9bc4-a24f8a1ca10a"/>
+<tag k="building" v="yes"/>
+<tag k="height" v="4.973"/>
+</way>
+<way action="modify" changeset="41678543" id="169195171" timestamp="2016-08-25T04:39:25Z" uid="1056221" user="kawah64" version="2" visible="true">
+<nd ref="-982"/>
+<nd ref="-1352"/>
+<nd ref="-1353"/>
+<nd ref="-1354"/>
+<nd ref="-1355"/>
+<nd ref="-983"/>
+<nd ref="-984"/>
+<nd ref="-985"/>
+<nd ref="-986"/>
+<nd ref="-987"/>
+<nd ref="-988"/>
+<nd ref="-989"/>
+<nd ref="-990"/>
+<nd ref="-991"/>
+<nd ref="-992"/>
+<nd ref="-993"/>
+<nd ref="-994"/>
+<nd ref="-995"/>
+<nd ref="-996"/>
+<nd ref="-997"/>
+<nd ref="-998"/>
+<nd ref="-977"/>
+<nd ref="-978"/>
+<nd ref="-979"/>
+<nd ref="-980"/>
+<nd ref="-981"/>
+<nd ref="-982"/>
+</way>
+<way action="modify" changeset="12032994" id="169195178" timestamp="2012-06-27T05:23:32Z" uid="618878" user="nakanao" version="1" visible="true">
+<nd ref="-566"/>
+<nd ref="-567"/>
+<nd ref="-568"/>
+<nd ref="-569"/>
+<nd ref="-570"/>
+<nd ref="-571"/>
+<nd ref="-572"/>
+<nd ref="-573"/>
+<nd ref="-574"/>
+<nd ref="-575"/>
+<nd ref="-566"/>
+<tag k="addr:ref" v="13111058003"/>
+<tag k="fixme" v="PLATEAUデータで更新されています"/>
+<tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="amenity" v="parking"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_07a37e39-0026-4d92-92a4-000ff290901c"/>
+<tag k="building" v="yes"/>
+<tag k="height" v="5.731"/>
+</way>
+<way action="modify" changeset="12032994" id="169195177" timestamp="2012-06-27T05:23:32Z" uid="618878" user="nakanao" version="1" visible="true">
+<nd ref="-383"/>
+<nd ref="-384"/>
+<nd ref="-385"/>
+<nd ref="-386"/>
+<nd ref="-387"/>
+<nd ref="-388"/>
+<nd ref="-383"/>
+<tag k="addr:ref" v="13111058003"/>
+<tag k="fixme" v="PLATEAUデータで更新されています"/>
+<tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_7cf80dbd-1de7-442f-a3a0-24b8dd981cd5"/>
+<tag k="building" v="yes"/>
+<tag k="height" v="11.669"/>
+</way>
+<way action="modify" changeset="12032994" id="169195179" timestamp="2012-06-27T05:23:32Z" uid="618878" user="nakanao" version="1" visible="true">
+<nd ref="-1577"/>
+<nd ref="-1578"/>
+<nd ref="-1579"/>
+<nd ref="-1580"/>
+<nd ref="-1581"/>
+<nd ref="-1582"/>
+<nd ref="-1583"/>
+<nd ref="-1584"/>
+<nd ref="-1577"/>
+<tag k="fixme" v="PLATEAUデータで更新されています"/>
+<tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_d5ed1615-6cab-4de8-96d4-71203934bad0"/>
+<tag k="building" v="yes"/>
+<tag k="height" v="23.298000000000002"/>
+</way>
+<way action="modify" changeset="15780370" id="217920228" timestamp="2013-04-19T04:12:40Z" uid="621319" user="hayashi" version="1" visible="true">
+<nd ref="-706"/>
+<nd ref="-707"/>
+<nd ref="-708"/>
+<nd ref="-709"/>
+<nd ref="-706"/>
+<tag k="fixme" v="PLATEAUデータで更新されています"/>
+<tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_f96ef42c-fad9-444f-9e44-77f7e07726f6"/>
+<tag k="building" v="yes"/>
+<tag k="height" v="9.757"/>
+</way>
+<way action="modify" id="-167" visible="true">
+<nd ref="-168"/>
+<nd ref="-169"/>
+<nd ref="-170"/>
+<nd ref="-171"/>
+<nd ref="-168"/>
+<tag k="addr:ref" v="13111058003"/>
+<tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_d0166b26-7838-4a4f-b5b5-81d29a29b0b2"/>
+<tag k="building" v="yes"/>
+<tag k="height" v="5.837"/>
+</way>
+<way action="modify" id="-662" visible="true">
+<nd ref="-663"/>
+<nd ref="-664"/>
+<nd ref="-665"/>
+<nd ref="-666"/>
+<nd ref="-663"/>
+<tag k="addr:ref" v="13111058003"/>
+<tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_579f02b4-7843-4398-905d-107892187346"/>
+<tag k="building" v="yes"/>
+<tag k="height" v="5.195"/>
+</way>
+<way action="modify" changeset="75597675" id="733860311" timestamp="2019-10-12T11:07:27Z" uid="9600679" user="Yoqtan" version="1" visible="true">
+<nd ref="-1455"/>
+<nd ref="-1456"/>
+<nd ref="-1457"/>
+<nd ref="-1458"/>
+<nd ref="-1459"/>
+<nd ref="-1460"/>
+<nd ref="-1461"/>
+<nd ref="-1462"/>
+<nd ref="-1455"/>
+<tag k="addr:ref" v="13111058003"/>
+<tag k="fixme" v="PLATEAUデータで更新されています"/>
+<tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_b5d4a551-2cc1-4500-87d6-f9697bc4bfa2"/>
+<tag k="building" v="yes"/>
+<tag k="height" v="5.689"/>
+</way>
+<way id="-748" visible="true">
+<nd ref="-749"/>
+<nd ref="-750"/>
+<nd ref="-751"/>
+<nd ref="-752"/>
+<nd ref="-753"/>
+<nd ref="-754"/>
+<nd ref="-755"/>
+<nd ref="-756"/>
+<nd ref="-757"/>
+<nd ref="-758"/>
+<nd ref="-759"/>
+<nd ref="-760"/>
+<nd ref="-761"/>
+<nd ref="-762"/>
+<nd ref="-763"/>
+<nd ref="-749"/>
+<tag k="building:part" v="yes"/>
+<tag k="height" v="6.181"/>
+</way>
+<way id="-1350" visible="true">
+<nd ref="-982"/>
+<nd ref="-1352"/>
+<nd ref="-1353"/>
+<nd ref="-1354"/>
+<nd ref="-1355"/>
+<nd ref="-983"/>
+<nd ref="-982"/>
+<tag k="building:part" v="yes"/>
+<tag k="height" v="6.58"/>
+</way>
+<way id="-1181" visible="true">
+<nd ref="-1182"/>
+<nd ref="-1183"/>
+<nd ref="-1184"/>
+<nd ref="-1185"/>
+<nd ref="-1186"/>
+<nd ref="-1187"/>
+<nd ref="-1188"/>
+<nd ref="-1189"/>
+<nd ref="-1190"/>
+<nd ref="-1191"/>
+<nd ref="-1192"/>
+<nd ref="-1193"/>
+<nd ref="-751"/>
+<nd ref="-750"/>
+<nd ref="-1196"/>
+<nd ref="-1197"/>
+<nd ref="-1198"/>
+<nd ref="-1199"/>
+<nd ref="-1182"/>
+<tag k="building:part" v="yes"/>
+<tag k="height" v="17.097"/>
+</way>
+<way id="-748" visible="true">
+<nd ref="-749"/>
+<nd ref="-750"/>
+<nd ref="-751"/>
+<nd ref="-752"/>
+<nd ref="-753"/>
+<nd ref="-754"/>
+<nd ref="-755"/>
+<nd ref="-756"/>
+<nd ref="-757"/>
+<nd ref="-758"/>
+<nd ref="-759"/>
+<nd ref="-760"/>
+<nd ref="-761"/>
+<nd ref="-762"/>
+<nd ref="-763"/>
+<nd ref="-749"/>
+<tag k="building:part" v="yes"/>
+<tag k="height" v="6.181"/>
+</way>
+<way action="modify" changeset="12032994" id="169195172" timestamp="2012-06-27T05:23:31Z" uid="618878" user="nakanao" version="1" visible="true">
+<nd ref="-1182"/>
+<nd ref="-1183"/>
+<nd ref="-1184"/>
+<nd ref="-1185"/>
+<nd ref="-1186"/>
+<nd ref="-1187"/>
+<nd ref="-1188"/>
+<nd ref="-1189"/>
+<nd ref="-1190"/>
+<nd ref="-1191"/>
+<nd ref="-1192"/>
+<nd ref="-1193"/>
+<nd ref="-751"/>
+<nd ref="-752"/>
+<nd ref="-753"/>
+<nd ref="-754"/>
+<nd ref="-755"/>
+<nd ref="-756"/>
+<nd ref="-757"/>
+<nd ref="-758"/>
+<nd ref="-759"/>
+<nd ref="-760"/>
+<nd ref="-761"/>
+<nd ref="-762"/>
+<nd ref="-763"/>
+<nd ref="-749"/>
+<nd ref="-750"/>
+<nd ref="-1196"/>
+<nd ref="-1197"/>
+<nd ref="-1198"/>
+<nd ref="-1199"/>
+<nd ref="-1182"/>
+</way>
+<relation id="-1180" visible="true">
+<member ref="-1181" role="part" type="way"/>
+<member ref="-748" role="part" type="way"/>
+<member ref="169195172" role="outline" type="way"/>
+<tag k="addr:ref" v="13111058003"/>
+<tag k="fixme" v="PLATEAUデータで更新されています"/>
+<tag k="addr:full" v="東京都大田区南六郷三丁目"/>
 <tag k="source" v="Bing"/>
-</way>
-<way changeset="41678526" id="438929454" timestamp="2016-08-25T04:37:47Z" uid="1056221" user="kawah64" version="1" visible="true">
-<nd ref="4365751298"/>
-<nd ref="4365751296"/>
-<nd ref="4365751302"/>
-<nd ref="4365751300"/>
-<nd ref="4365751298"/>
+<tag k="type" v="building"/>
 <tag k="building" v="yes"/>
-<tag k="source" v="GSI/KIBAN 2500; NARO"/>
+</relation>
+<way id="-1350" visible="true">
+<nd ref="-982"/>
+<nd ref="-1352"/>
+<nd ref="-1353"/>
+<nd ref="-1354"/>
+<nd ref="-1355"/>
+<nd ref="-983"/>
+<nd ref="-982"/>
+<tag k="building:part" v="yes"/>
+<tag k="height" v="6.58"/>
 </way>
-<way changeset="12032994" id="169195173" timestamp="2012-06-27T05:23:31Z" uid="618878" user="nakanao" version="1" visible="true">
-<nd ref="1803576038"/>
-<nd ref="1803576052"/>
-<nd ref="1803576028"/>
-<nd ref="1803576025"/>
-<nd ref="1803576038"/>
-<tag k="building" v="yes"/>
-<tag k="source" v="Bing"/>
+<way id="-976" visible="true">
+<nd ref="-977"/>
+<nd ref="-978"/>
+<nd ref="-979"/>
+<nd ref="-980"/>
+<nd ref="-981"/>
+<nd ref="-982"/>
+<nd ref="-983"/>
+<nd ref="-984"/>
+<nd ref="-985"/>
+<nd ref="-986"/>
+<nd ref="-987"/>
+<nd ref="-988"/>
+<nd ref="-989"/>
+<nd ref="-990"/>
+<nd ref="-991"/>
+<nd ref="-992"/>
+<nd ref="-993"/>
+<nd ref="-994"/>
+<nd ref="-995"/>
+<nd ref="-996"/>
+<nd ref="-997"/>
+<nd ref="-998"/>
+<nd ref="-977"/>
+<tag k="building:part" v="yes"/>
+<tag k="height" v="40.492"/>
 </way>
-<way changeset="12032994" id="169195170" timestamp="2012-06-27T05:23:31Z" uid="618878" user="nakanao" version="1" visible="true">
-<nd ref="1803575962"/>
-<nd ref="1803575951"/>
-<nd ref="1803575952"/>
-<nd ref="1803575949"/>
-<nd ref="1803575956"/>
-<nd ref="1803575959"/>
-<nd ref="1803575960"/>
-<nd ref="1803575975"/>
-<nd ref="1803575974"/>
-<nd ref="1803575982"/>
-<nd ref="1803575981"/>
-<nd ref="1803576008"/>
-<nd ref="1803575993"/>
-<nd ref="1803575972"/>
-<nd ref="1803575970"/>
-<nd ref="1803575964"/>
-<nd ref="1803575962"/>
-<tag k="building" v="yes"/>
-<tag k="source" v="Bing"/>
+<way action="modify" changeset="41678543" id="169195171" timestamp="2016-08-25T04:39:25Z" uid="1056221" user="kawah64" version="2" visible="true">
+<nd ref="-982"/>
+<nd ref="-1352"/>
+<nd ref="-1353"/>
+<nd ref="-1354"/>
+<nd ref="-1355"/>
+<nd ref="-983"/>
+<nd ref="-984"/>
+<nd ref="-985"/>
+<nd ref="-986"/>
+<nd ref="-987"/>
+<nd ref="-988"/>
+<nd ref="-989"/>
+<nd ref="-990"/>
+<nd ref="-991"/>
+<nd ref="-992"/>
+<nd ref="-993"/>
+<nd ref="-994"/>
+<nd ref="-995"/>
+<nd ref="-996"/>
+<nd ref="-997"/>
+<nd ref="-998"/>
+<nd ref="-977"/>
+<nd ref="-978"/>
+<nd ref="-979"/>
+<nd ref="-980"/>
+<nd ref="-981"/>
+<nd ref="-982"/>
 </way>
-<way changeset="12032994" id="169195172" timestamp="2012-06-27T05:23:31Z" uid="618878" user="nakanao" version="1" visible="true">
-<nd ref="1803575969"/>
-<nd ref="1803575973"/>
-<nd ref="1803575954"/>
-<nd ref="1803575950"/>
-<nd ref="1803575969"/>
-<tag k="building" v="yes"/>
-<tag k="source" v="Bing"/>
-</way>
-<way changeset="41678543" id="169195171" timestamp="2016-08-25T04:39:25Z" uid="1056221" user="kawah64" version="2" visible="true">
-<nd ref="1803575977"/>
-<nd ref="1803576005"/>
-<nd ref="1803576004"/>
-<nd ref="1803576006"/>
-<nd ref="1803576051"/>
-<nd ref="1803576050"/>
-<nd ref="1803576054"/>
-<nd ref="1803576053"/>
-<nd ref="1803576046"/>
-<nd ref="1803576045"/>
-<nd ref="1803576012"/>
-<nd ref="1803576013"/>
-<nd ref="1803576002"/>
-<nd ref="1803576001"/>
-<nd ref="1803575988"/>
-<nd ref="1803575986"/>
-<nd ref="1803575985"/>
-<nd ref="1803575963"/>
-<nd ref="1803575977"/>
-<tag k="building" v="yes"/>
+<relation id="-1349" visible="true">
+<member ref="-1350" role="part" type="way"/>
+<member ref="-976" role="part" type="way"/>
+<member ref="169195171" role="outline" type="way"/>
+<tag k="addr:ref" v="13111058003"/>
+<tag k="fixme" v="PLATEAUデータで更新されています"/>
+<tag k="addr:full" v="東京都大田区南六郷三丁目"/>
 <tag k="name" v="南六郷住宅"/>
 <tag k="source" v="Bing"/>
-</way>
-<way changeset="12032994" id="169195178" timestamp="2012-06-27T05:23:32Z" uid="618878" user="nakanao" version="1" visible="true">
-<nd ref="1803576086"/>
-<nd ref="1803576091"/>
-<nd ref="1803576072"/>
-<nd ref="1803576062"/>
-<nd ref="1803576069"/>
-<nd ref="1803576066"/>
-<nd ref="1803576086"/>
-<tag k="amenity" v="parking"/>
+<tag k="type" v="building"/>
 <tag k="building" v="yes"/>
-<tag k="source" v="Bing"/>
-</way>
-<way changeset="12032994" id="169195177" timestamp="2012-06-27T05:23:32Z" uid="618878" user="nakanao" version="1" visible="true">
-<nd ref="1803576030"/>
-<nd ref="1803576058"/>
-<nd ref="1803576015"/>
-<nd ref="1803575999"/>
-<nd ref="1803576022"/>
-<nd ref="1803576010"/>
-<nd ref="1803576030"/>
-<tag k="building" v="yes"/>
-<tag k="source" v="Bing"/>
-</way>
-<way changeset="12032994" id="169195179" timestamp="2012-06-27T05:23:32Z" uid="618878" user="nakanao" version="1" visible="true">
-<nd ref="1803575948"/>
-<nd ref="1803575953"/>
-<nd ref="1803575947"/>
-<nd ref="1803575943"/>
-<nd ref="1803575946"/>
-<nd ref="1803575944"/>
-<nd ref="1803575942"/>
-<nd ref="1803575941"/>
-<nd ref="1803575948"/>
-<tag k="building" v="yes"/>
-<tag k="source" v="Bing"/>
-</way>
-<way changeset="15780370" id="217920228" timestamp="2013-04-19T04:12:40Z" uid="621319" user="hayashi" version="1" visible="true">
-<nd ref="2272261804"/>
-<nd ref="2272261813"/>
-<nd ref="2272261812"/>
-<nd ref="2272261806"/>
-<nd ref="2272261804"/>
-<tag k="building" v="yes"/>
-</way>
-<way changeset="75597675" id="733860311" timestamp="2019-10-12T11:07:27Z" uid="9600679" user="Yoqtan" version="1" visible="true">
-<nd ref="6873070613"/>
-<nd ref="6873070612"/>
-<nd ref="6873070611"/>
-<nd ref="6873070610"/>
-<nd ref="6873070609"/>
-<nd ref="6873070608"/>
-<nd ref="6873070607"/>
-<nd ref="6873070606"/>
-<nd ref="6873070613"/>
-<tag k="building" v="yes"/>
-</way>
+</relation>
 </osm>
