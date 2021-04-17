@@ -1,6 +1,8 @@
 package osm.surveyor.osm;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import org.w3c.dom.Document;
@@ -328,7 +330,28 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
 		}
 		return geom;
 	}
-    
+	
+	public boolean isIntersect(Postgis db) throws Exception {
+        String geom = getGeomText();
+        if (geom == null) {
+        	return false;
+        }
+        
+        String sqlStr = "WITH source AS (SELECT ST_GeometryFromText('"+ geom +"', 4326) AS geo) "
+        		+ "SELECT ST_Intersects(s.geo, tWay.geom) AS intersect "
+        		+ "FROM tWay, source AS s "
+        		+ "WHERE (tWay.orignal=false)";
+        try (Statement st = db.con.createStatement()) {
+        	ResultSet resultSet = st.executeQuery(sqlStr);
+			while (resultSet.next()) {
+				if (resultSet.getBoolean("intersect")) {
+					return true;
+				}
+			}
+        }
+        return false;
+	}
+	
     //---------------------------------------------------------
     
 	@Override
@@ -405,6 +428,15 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
             ps.setString(7, version);		// version
             ps.setString(8, changeset);	// changeset
             ps.setBoolean(9, orignal);       // orignal
+            ps.executeUpdate();
+        }
+	}
+	
+	public void delete(Postgis db) throws Exception {
+        String sqlStr = "DELETE FROM "+ tableName 
+                +" WHERE (id=?)";
+        try (PreparedStatement ps = db.con.prepareStatement(sqlStr)) {
+            ps.setLong(1, id);   // id
             ps.executeUpdate();
         }
 	}

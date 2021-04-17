@@ -214,15 +214,6 @@
 <node changeset="12032994" id="1803575999" lat="35.5412174" lon="139.7144814" timestamp="2012-06-27T05:23:22Z" uid="618878" user="nakanao" version="1" visible="true"/>
 <node changeset="75597675" id="6873070373" lat="35.5423075" lon="139.7139743" timestamp="2019-10-12T11:07:27Z" uid="9600679" user="Yoqtan" version="1" visible="true"/>
 <node changeset="75597675" id="6873070374" lat="35.5423105" lon="139.7139553" timestamp="2019-10-12T11:07:27Z" uid="9600679" user="Yoqtan" version="1" visible="true"/>
-<way changeset="32297526" id="357285462" timestamp="2015-06-30T00:38:57Z" uid="1056221" user="kawah64" version="1" visible="true">
-<nd ref="3626021647"/>
-<nd ref="3626021687"/>
-<nd ref="3626021643"/>
-<nd ref="3626021686"/>
-<nd ref="3626021647"/>
-<tag k="building" v="yes"/>
-<tag k="source" v="GSI/KIBAN 2500; NARO"/>
-</way>
 <way changeset="12032994" id="169195181" timestamp="2012-06-27T05:23:32Z" uid="618878" user="nakanao" version="1" visible="true">
 <nd ref="1803576016"/>
 <nd ref="1803576033"/>
@@ -251,34 +242,6 @@
 <tag k="name" v="東京都下水道局 雑色ポンプ所"/>
 <tag k="source" v="Bing"/>
 </way>
-<way changeset="41776751" id="439702559" timestamp="2016-08-29T12:57:02Z" uid="1056221" user="kawah64" version="1" visible="true">
-<nd ref="4373923534"/>
-<nd ref="4373923517"/>
-<nd ref="4373923567"/>
-<nd ref="4373923511"/>
-<nd ref="4373923534"/>
-<tag k="building" v="yes"/>
-<tag k="source" v="GSI/KIBAN 2500; NARO"/>
-</way>
-<way changeset="12032994" id="169195169" timestamp="2012-06-27T05:23:31Z" uid="618878" user="nakanao" version="1" visible="true">
-<nd ref="1803576082"/>
-<nd ref="1803576087"/>
-<nd ref="1803576094"/>
-<nd ref="1803576093"/>
-<nd ref="1803576100"/>
-<nd ref="1803576105"/>
-<nd ref="1803576099"/>
-<nd ref="1803576101"/>
-<nd ref="1803576096"/>
-<nd ref="1803576095"/>
-<nd ref="1803576089"/>
-<nd ref="1803576088"/>
-<nd ref="1803576079"/>
-<nd ref="1803576064"/>
-<nd ref="1803576082"/>
-<tag k="building" v="yes"/>
-<tag k="source" v="Bing"/>
-</way>
 <way changeset="41678526" id="438929454" timestamp="2016-08-25T04:37:47Z" uid="1056221" user="kawah64" version="1" visible="true">
 <nd ref="4365751298"/>
 <nd ref="4365751296"/>
@@ -288,101 +251,12 @@
 <tag k="building" v="yes"/>
 <tag k="source" v="GSI/KIBAN 2500; NARO"/>
 </way>
-<way changeset="41678526" id="438929453" timestamp="2016-08-25T04:37:47Z" uid="1056221" user="kawah64" version="1" visible="true">
-<nd ref="4365751299"/>
-<nd ref="4365751301"/>
-<nd ref="4365751303"/>
-<nd ref="4365751297"/>
-<nd ref="4365751304"/>
-<nd ref="4365751299"/>
-<tag k="building" v="yes"/>
-<tag k="source" v="GSI/KIBAN 2500; NARO"/>
-</way>
-<way changeset="75597675" id="733860285" timestamp="2019-10-12T11:07:27Z" uid="9600679" user="Yoqtan" version="1" visible="true">
-<nd ref="6873070455"/>
-<nd ref="6873070454"/>
-<nd ref="6873070453"/>
-<nd ref="6873070452"/>
-<nd ref="6873070451"/>
-<nd ref="6873070450"/>
-<nd ref="6873070455"/>
-<tag k="building" v="yes"/>
-</way>
-<way changeset="75597675" id="733860286" timestamp="2019-10-12T11:07:27Z" uid="9600679" user="Yoqtan" version="1" visible="true">
-<nd ref="6873070459"/>
-<nd ref="6873070458"/>
-<nd ref="6873070457"/>
-<nd ref="6873070456"/>
-<nd ref="6873070459"/>
-<tag k="building" v="yes"/>
-</way>
-<way changeset="75597675" id="733860287" timestamp="2019-10-12T11:07:27Z" uid="9600679" user="Yoqtan" version="1" visible="true">
-<nd ref="6873070466"/>
-<nd ref="6873070465"/>
-<nd ref="6873070464"/>
-<nd ref="6873070463"/>
-<nd ref="6873070462"/>
-<nd ref="6873070461"/>
-<nd ref="6873070460"/>
-<nd ref="6873070466"/>
-<tag k="building" v="yes"/>
-</way>
-<way changeset="75597675" id="733860281" timestamp="2019-10-12T11:07:27Z" uid="9600679" user="Yoqtan" version="1" visible="true">
-<nd ref="6873070437"/>
-<nd ref="6873070436"/>
-<nd ref="6873070435"/>
-<nd ref="6873070434"/>
-<nd ref="6873070437"/>
-<tag k="building" v="yes"/>
-</way>
-<way changeset="75597675" id="733860282" timestamp="2019-10-12T11:07:27Z" uid="9600679" user="Yoqtan" version="1" visible="true">
-<nd ref="6873070441"/>
-<nd ref="6873070440"/>
-<nd ref="6873070439"/>
-<nd ref="6873070438"/>
-<nd ref="6873070441"/>
-<tag k="building" v="yes"/>
-</way>
-<way changeset="75597675" id="733860283" timestamp="2019-10-12T11:07:27Z" uid="9600679" user="Yoqtan" version="1" visible="true">
-<nd ref="6873070445"/>
-<nd ref="6873070444"/>
-<nd ref="6873070443"/>
-<nd ref="6873070442"/>
-<nd ref="6873070445"/>
-<tag k="building" v="yes"/>
-</way>
-<way changeset="75597675" id="733860284" timestamp="2019-10-12T11:07:27Z" uid="9600679" user="Yoqtan" version="1" visible="true">
-<nd ref="6873070449"/>
-<nd ref="6873070448"/>
-<nd ref="6873070447"/>
-<nd ref="6873070446"/>
-<nd ref="6873070449"/>
-<tag k="building" v="yes"/>
-</way>
 <way changeset="12032994" id="169195173" timestamp="2012-06-27T05:23:31Z" uid="618878" user="nakanao" version="1" visible="true">
 <nd ref="1803576038"/>
 <nd ref="1803576052"/>
 <nd ref="1803576028"/>
 <nd ref="1803576025"/>
 <nd ref="1803576038"/>
-<tag k="building" v="yes"/>
-<tag k="source" v="Bing"/>
-</way>
-<way changeset="12032994" id="169195176" timestamp="2012-06-27T05:23:32Z" uid="618878" user="nakanao" version="1" visible="true">
-<nd ref="1803575971"/>
-<nd ref="1803575979"/>
-<nd ref="1803575957"/>
-<nd ref="1803575955"/>
-<nd ref="1803575971"/>
-<tag k="building" v="yes"/>
-<tag k="source" v="Bing"/>
-</way>
-<way changeset="12032994" id="169195175" timestamp="2012-06-27T05:23:32Z" uid="618878" user="nakanao" version="1" visible="true">
-<nd ref="1803575991"/>
-<nd ref="1803575994"/>
-<nd ref="1803575980"/>
-<nd ref="1803575976"/>
-<nd ref="1803575991"/>
 <tag k="building" v="yes"/>
 <tag k="source" v="Bing"/>
 </way>
@@ -484,15 +358,6 @@
 <nd ref="2272261804"/>
 <tag k="building" v="yes"/>
 </way>
-<way changeset="75597675" id="733860278" timestamp="2019-10-12T11:07:27Z" uid="9600679" user="Yoqtan" version="1" visible="true">
-<nd ref="6873070414"/>
-<nd ref="6873070413"/>
-<nd ref="6873070412"/>
-<nd ref="6873070411"/>
-<nd ref="6873070410"/>
-<nd ref="6873070414"/>
-<tag k="building" v="yes"/>
-</way>
 <way changeset="75597675" id="733860311" timestamp="2019-10-12T11:07:27Z" uid="9600679" user="Yoqtan" version="1" visible="true">
 <nd ref="6873070613"/>
 <nd ref="6873070612"/>
@@ -503,80 +368,6 @@
 <nd ref="6873070607"/>
 <nd ref="6873070606"/>
 <nd ref="6873070613"/>
-<tag k="building" v="yes"/>
-</way>
-<way changeset="75597675" id="733860279" timestamp="2019-10-12T11:07:27Z" uid="9600679" user="Yoqtan" version="1" visible="true">
-<nd ref="6873070423"/>
-<nd ref="6873070422"/>
-<nd ref="6873070421"/>
-<nd ref="6873070420"/>
-<nd ref="6873070419"/>
-<nd ref="6873070418"/>
-<nd ref="6873070417"/>
-<nd ref="6873070416"/>
-<nd ref="6873070415"/>
-<nd ref="6873070423"/>
-<tag k="building" v="yes"/>
-</way>
-<way changeset="75597675" id="733860313" timestamp="2019-10-12T11:07:27Z" uid="9600679" user="Yoqtan" version="1" visible="true">
-<nd ref="6873070621"/>
-<nd ref="6873070620"/>
-<nd ref="6873070619"/>
-<nd ref="6873070618"/>
-<nd ref="6873070621"/>
-<tag k="building" v="yes"/>
-</way>
-<way changeset="75597675" id="733860314" timestamp="2019-10-12T11:07:27Z" uid="9600679" user="Yoqtan" version="1" visible="true">
-<nd ref="6873070625"/>
-<nd ref="6873070624"/>
-<nd ref="6873070623"/>
-<nd ref="6873070622"/>
-<nd ref="6873070625"/>
-<tag k="building" v="yes"/>
-</way>
-<way changeset="75597675" id="733860297" timestamp="2019-10-12T11:07:27Z" uid="9600679" user="Yoqtan" version="1" visible="true">
-<nd ref="6873070517"/>
-<nd ref="6873070516"/>
-<nd ref="6873070515"/>
-<nd ref="6873070514"/>
-<nd ref="6873070513"/>
-<nd ref="6873070512"/>
-<nd ref="6873070517"/>
-<tag k="building" v="yes"/>
-</way>
-<way changeset="75597675" id="733860277" timestamp="2019-10-12T11:07:27Z" uid="9600679" user="Yoqtan" version="1" visible="true">
-<nd ref="6873070409"/>
-<nd ref="6873070408"/>
-<nd ref="6873070407"/>
-<nd ref="6873070406"/>
-<nd ref="6873070409"/>
-<tag k="building" v="yes"/>
-</way>
-<way changeset="75597675" id="733860293" timestamp="2019-10-12T11:07:27Z" uid="9600679" user="Yoqtan" version="1" visible="true">
-<nd ref="6873070499"/>
-<nd ref="6873070498"/>
-<nd ref="6873070497"/>
-<nd ref="6873070496"/>
-<nd ref="6873070499"/>
-<tag k="building" v="yes"/>
-</way>
-<way changeset="75597675" id="733860271" timestamp="2019-10-12T11:07:27Z" uid="9600679" user="Yoqtan" version="1" visible="true">
-<nd ref="6873070383"/>
-<nd ref="6873070382"/>
-<nd ref="6873070381"/>
-<nd ref="6873070380"/>
-<nd ref="6873070379"/>
-<nd ref="6873070378"/>
-<nd ref="6873070377"/>
-<nd ref="6873070376"/>
-<nd ref="6873070375"/>
-<nd ref="6873070374"/>
-<nd ref="6873070373"/>
-<nd ref="6873070372"/>
-<nd ref="6873070371"/>
-<nd ref="6873070370"/>
-<nd ref="6873070369"/>
-<nd ref="6873070383"/>
 <tag k="building" v="yes"/>
 </way>
 </osm>

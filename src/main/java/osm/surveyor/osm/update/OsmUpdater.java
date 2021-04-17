@@ -107,20 +107,33 @@ public class OsmUpdater {
         try (Postgis db = new Postgis("osmdb")) {
             db.initTable();		// データベースの初期化
             
-            // インポートデータをPOSTGISへセットする
+            // 既存データをPOSTGISへセットする
     		for (String rKey : ddom.ways.keySet()) {
     			ElementWay way = ddom.ways.get(rKey);
     			way.orignal = true;
     			way.insertTable(db);
     		}
             
-            // 既存データをPOSTGISへセットする
+            // インポートデータをPOSTGISへセットする
     		for (String rKey : dom.ways.keySet()) {
     			ElementWay way = dom.ways.get(rKey);
     			way.orignal = false;
     			way.insertTable(db);
     		}
             
+    		// 既存データの内で、インポートデータと重複しないものを削除
+    		ArrayList<ElementWay> killList = new ArrayList<>();
+    		for (String rKey : ddom.ways.keySet()) {
+    			ElementWay way = ddom.ways.get(rKey);
+    			if (!way.isIntersect(db)) {
+    				killList.add(way);
+    			}
+    		}
+    		for (ElementWay way : killList) {
+    			way.delete(db);
+    			ddom.ways.remove(Long.toString(way.id));
+    		}
+    		
             
         } catch (ClassNotFoundException e) {
 			e.printStackTrace();
