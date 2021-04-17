@@ -6,6 +6,7 @@ import java.net.ProtocolException;
 import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -134,7 +135,24 @@ public class OsmUpdater {
     			ddom.ways.remove(Long.toString(way.id));
     		}
     		
-            
+    		// 既存データの内で、WAYに所属しないNODEを削除
+    		HashMap<String,ElementNode> killNodes = new HashMap<>();
+    		for (String rKey : ddom.nodes.keySet()) {
+    			ElementNode node = ddom.nodes.get(rKey);
+    			killNodes.put(rKey, node);
+    		}
+    		for (String rKey : ddom.ways.keySet()) {
+    			ElementWay way = ddom.ways.get(rKey);
+        		for (OsmNd nd : way.nds) {
+        			killNodes.remove(Long.toString(nd.id));
+        		}
+    		}
+    		for (String rKey : killNodes.keySet()) {
+    			ElementNode node = killNodes.get(rKey);
+    			ddom.nodes.remove(Long.toString(node.id));
+    		}
+
+    		
         } catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
