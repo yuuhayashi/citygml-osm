@@ -29,6 +29,7 @@ public class OsmMargeWay {
 						String v = ndMap.get(ndId);
 						ElementRelation destRelation = relations.get(v);
 						if (!relationId.equals(v)) {
+							way.member = true;
 							destRelation.addMember(way, "part");
 							
 							// カレントリレーションからメンバーを削除
@@ -75,6 +76,7 @@ public class OsmMargeWay {
 				for (ElementMember member : relation.members) {
 					String memberRef = Long.toString(member.ref);
 					ElementWay way = ways.get(memberRef);
+					way.member = true;
 					for (ElementTag tag : tags) {
 						way.addTag(tag.k, tag.v);
 					}
@@ -103,6 +105,7 @@ public class OsmMargeWay {
 			ElementWay aWay = relation.createOutline(ways);
 			
 			// WAYをMEMBERとして追加する
+			aWay.member = true;
 			ElementMember member = new ElementMember();
 			member.setWay(aWay);
 			member.setRole("outline");

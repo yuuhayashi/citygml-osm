@@ -80,6 +80,18 @@ public class OsmDom {
 	    loadNodes(doc, nodes);
 	    loadWays(doc, ways);
 	    loadRelations(doc, relations);
+
+	    // Relation->member->WAY は、WAY.member=true にする
+		for (String rKey : relations.keySet()) {
+			ElementRelation relation = relations.get(rKey);
+			for (ElementMember menber : relation.members) {
+				ElementWay sWay = ways.get(Long.toString(menber.ref));
+				if (sWay != null) {
+					sWay.member = true;
+					ways.put(Long.toString(menber.ref), sWay);
+				}
+			}
+		}
 	}
 
     public void export(File out) throws ParserConfigurationException {

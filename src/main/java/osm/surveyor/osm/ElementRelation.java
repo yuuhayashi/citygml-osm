@@ -26,6 +26,7 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 	
 	public void addMember(ElementWay way, String role) {
 		ElementMember member = new ElementMember();
+		way.member = true;
 		member.setWay(way);
 		member.setRole(role);
 		this.members.add(member);
@@ -88,6 +89,7 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 				aWay.marge(way.clone());
 			}
 		}
+		aWay.member = true;
 		aWay.replaceTag(new ElementTag("building:part", "yes"), new ElementTag("building", "yes"));
 		for (ElementTag tag : aWay.tags) {
 			if (tag.k.equals("height")) {

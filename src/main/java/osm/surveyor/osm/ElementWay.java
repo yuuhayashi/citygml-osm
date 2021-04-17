@@ -23,6 +23,7 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
 	public ArrayList<OsmNd> nds;
 	public ArrayList<ElementTag> tags;
 	boolean area = false;
+	public boolean member = false;
 	
 	public ElementWay(long id) {
 		super(id);
@@ -35,6 +36,8 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
 		ElementWay copy = null;
 		try {
 			copy = (ElementWay)super.clone();
+			copy.area = area;
+			copy.member = member;
 			copy.nds = new ArrayList<OsmNd>();
 			if (this.nds != null) {
 				for (OsmNd nd : this.nds) {
@@ -359,7 +362,9 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + (area ? 1231 : 1237);
+		result = prime * result + (member ? 1231 : 1237);
 		result = prime * result + ((nds == null) ? 0 : nds.hashCode());
+		result = prime * result + ((tableName == null) ? 0 : tableName.hashCode());
 		result = prime * result + ((tags == null) ? 0 : tags.hashCode());
 		return result;
 	}
@@ -375,10 +380,17 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
 		ElementWay other = (ElementWay) obj;
 		if (area != other.area)
 			return false;
+		if (member != other.member)
+			return false;
 		if (nds == null) {
 			if (other.nds != null)
 				return false;
 		} else if (!nds.equals(other.nds))
+			return false;
+		if (tableName == null) {
+			if (other.tableName != null)
+				return false;
+		} else if (!tableName.equals(other.tableName))
 			return false;
 		if (tags == null) {
 			if (other.tags != null)
@@ -405,6 +417,7 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
                 + "version varchar(8), "
                 + "changeset varchar(16), "
                 + "orignal boolean, "
+                + "member boolean, "
                 + "geom GEOMETRY(POLYGON, 4326)"
             + ");");
         db.sql("CREATE INDEX ix_"+ tableName +"_geom ON "+ tableName +" USING GiST (geom);");
@@ -416,8 +429,8 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
         geom = (geom==null ? null : "ST_GeomFromText('"+ geom +"',4326)");
         
         String sqlStr = "INSERT INTO "+ tableName 
-                +" (id,action,timestamp,uid,username,visible,version,changeset,orignal"+ (geom==null ? "" : ",geom") +") "
-                + "VALUES (?,?,?,?,?,?,?,?,?"+ (geom==null ? "" : (","+ geom)) +")";
+                +" (id,action,timestamp,uid,username,visible,version,changeset,orignal,member"+ (geom==null ? "" : ",geom") +") "
+                + "VALUES (?,?,?,?,?,?,?,?,?,?"+ (geom==null ? "" : (","+ geom)) +")";
         try (PreparedStatement ps = db.con.prepareStatement(sqlStr)) {
             ps.setLong(1, id);   // id
             ps.setString(2, action);   // action
@@ -428,6 +441,7 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
             ps.setString(7, version);		// version
             ps.setString(8, changeset);	// changeset
             ps.setBoolean(9, orignal);       // orignal
+            ps.setBoolean(10, member);       // member
             ps.executeUpdate();
         }
 	}
