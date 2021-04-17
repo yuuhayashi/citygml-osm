@@ -2,59 +2,57 @@
 title Database tables
 
 interface osmObject {
- id : long
- action : String
- timestamp : String
- uid : long
- user : String
+ id : integer
+ action : string=[null,"modify"]
+ timestamp : string
+ uid : string
+ username : string
  visible : boolean
- version : int
- changeset : long
-}
-
-class Relation {
- id : long
+ version : string
+ changeset : string
  orignal : boolean = false
 }
 
+class Relation {
+ +id : integer
+}
+
 class Member {
- relationid : long
- ref : long
+ +relationid : integer
+ ref : integer
  type : String = "way"
  role : String
 }
 
 class Way {
- id : long
- orignal : boolean = false
- geom : GEOMETRY(LINESTRING, 4612)
+ +id : integer
+ geom : GEOMETRY(POLYGON, 4612)
 }
 
 class Nd {
- wayid : long
- ref : long
+ wayid : integer
+ ref : integer
 }
 
 class Node {
- id : long
- orignal : boolean = false
+ +id : integer
 }
 
 class Tag {
- id : long
- key : String
- value : String
+ +id : integer
+ key : string
+ value : string　
 }
 
 osmObject <|-- Relation
 osmObject <|-- Way
 osmObject <|-- Node
 
-Relation - Way
+Relation "*" - "*" Way
 (Relation, Way) .. Member : [Relation.id=Member.relationid]\n[Way.id=Member.ref] 
 
 Way "2..*" - "1..2" Node
-(Way, Node) .. Nd
+(Way, Node) .. Nd : [Way.id=Nd.wayid]\n[Node.id=Nd.ref]
 
 Relation "*" -- "1" Tag : [Relation.id=Tag.id]
 Way "*" -- "1" Tag : [Way.id=Tag.id]

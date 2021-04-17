@@ -27,6 +27,21 @@ public class OsmPoint implements Cloneable {
 		this.lon = lon;
 	}
 	
+	public String getGeomText() {
+		String str = getGeom();
+		if (str != null) {
+			return new String("POINT("+ str +")");
+		}
+		return null;
+	}
+
+	public String getGeom() {
+		if ((lon != null) && (lat != null)) {
+			return new String(lon +" "+ lat);
+		}
+		return null;
+	}
+	
     //--------------------------------------
 
 	@Override

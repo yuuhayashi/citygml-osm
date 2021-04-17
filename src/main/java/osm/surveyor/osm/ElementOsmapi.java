@@ -22,6 +22,7 @@ public class ElementOsmapi implements Cloneable {
 	public String user = null;
 	public boolean visible = true;
 	public String version = null;
+	public boolean orignal = false;
 	public String changeset = null;
 	
 	public ElementOsmapi(long id) {

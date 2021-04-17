@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.nio.file.Paths;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -93,17 +94,31 @@ public class OsmUpdater {
 			}
 		}
 		
-
-		//while (removeNotBuilding(sdom.relations) != null);
-		/*
-		HashMap<String, ElementWay> ways = new HashMap<>();
-		for (String wKey : sdom.ways.keySet()) {
-			ElementWay way = sdom.ways.get(wKey);
-			for (ElementNode node : way.nodes) {
-				
-			}
+        try (Postgis db = new Postgis("osmdb")) {
+            db.initTable();		// データベースの初期化
+            
+            // インポートデータをPOSTGISへセットする
+    		for (String rKey : ddom.ways.keySet()) {
+    			ElementWay way = ddom.ways.get(rKey);
+    			way.orignal = true;
+    			way.insertTable(db);
+    		}
+            
+            // 既存データをPOSTGISへセットする
+    		for (String rKey : dom.ways.keySet()) {
+    			ElementWay way = dom.ways.get(rKey);
+    			way.orignal = false;
+    			way.insertTable(db);
+    		}
+            
+            
+        } catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		*/
 	}
 	
 	static boolean isBuildingTag(ArrayList<ElementTag> tags) {

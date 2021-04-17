@@ -1,5 +1,6 @@
 package osm.surveyor.osm;
 
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
 import org.w3c.dom.Document;
@@ -7,13 +8,16 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import osm.surveyor.osm.update.ImplPostgis;
+import osm.surveyor.osm.update.Postgis;
+
 /**
  * 
  * <way id='96350144' timestamp='2018-08-25T08:34:33Z' uid='7548722' user='Unnown' visible='true' version='17' changeset='61979354'>
  * @author hayashi
  *
  */
-public class ElementWay extends ElementOsmapi implements Cloneable {
+public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis {
 	public ArrayList<ElementNode> nodes;
 	public ArrayList<ElementTag> tags;
 	boolean area = false;
@@ -298,4 +302,104 @@ public class ElementWay extends ElementOsmapi implements Cloneable {
     	return false;
     }
     
+	public String getGeomText() {
+		String geom = null;
+		for (ElementNode node : this.nodes) {
+			String str = node.point.getGeom();
+			if (str == null) {
+				return null;
+			}
+			if (geom == null) {
+				geom = "POLYGOM((" + str;
+			}
+			else {
+				geom += ", "+ str;
+			}
+		}
+		if (geom != null) {
+			geom += "))";
+		}
+		return geom;
+	}
+    
+    //---------------------------------------------------------
+    
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + (area ? 1231 : 1237);
+		result = prime * result + ((nodes == null) ? 0 : nodes.hashCode());
+		result = prime * result + ((tags == null) ? 0 : tags.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ElementWay other = (ElementWay) obj;
+		if (area != other.area)
+			return false;
+		if (nodes == null) {
+			if (other.nodes != null)
+				return false;
+		} else if (!nodes.equals(other.nodes))
+			return false;
+		if (tags == null) {
+			if (other.tags != null)
+				return false;
+		} else if (!tags.equals(other.tags))
+			return false;
+		return true;
+	}
+
+    String tableName = "tWay";
+
+    @Override
+	public void initTable(Postgis db) throws Exception {
+        db.sql("DROP INDEX IF EXISTS ix_"+ tableName +" CASCADE;");
+        db.sql("DROP TABLE IF EXISTS "+ tableName +" CASCADE;");
+        db.sql("CREATE TABLE "+ tableName 
+            +" ("
+                + "id SERIAL PRIMARY KEY, "
+                + "action varchar(24), "
+                + "timestamp varchar(36), "
+                + "uid varchar(16), "
+                + "username varchar(64), "
+                + "visible boolean, "
+                + "version varchar(8), "
+                + "changeset varchar(16), "
+                + "orignal boolean, "
+                + "geom GEOMETRY(POLYGON, 4612)"
+            + ");");
+        db.sql("CREATE INDEX ix_"+ tableName +"_geom ON "+ tableName +" USING GiST (geom);");
+	}
+    
+	@Override
+	public void insertTable(Postgis db) throws Exception {
+        String sqlStr = "INSERT INTO "+ tableName 
+                +" (id,action,timestamp,uid,username,visible,version,changeset,orignal,geom) "
+                + "VALUES (?,?,?,?,?,?,?,?,?,?)";
+        try (PreparedStatement ps = db.con.prepareStatement(sqlStr)) {
+            ps.setLong(1, id);   // id
+            ps.setString(2, action);   // action
+            ps.setString(3, timestamp);       // timestamp
+            ps.setString(4, uid);      // uid
+            ps.setString(5, user);		// username
+            ps.setBoolean(6, visible);       // visible
+            ps.setString(7, version);		// version
+            ps.setString(8, changeset);	// changeset
+            ps.setBoolean(9, orignal);       // orignal
+            
+            String geom = getGeomText();
+            ps.setString(10, (geom==null ? null : "ST_GeomFromText('"+ geom +"')"));	// geom
+            
+            ps.executeUpdate();
+        }
+	}
 }
