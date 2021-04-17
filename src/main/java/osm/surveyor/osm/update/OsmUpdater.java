@@ -19,6 +19,7 @@ import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementTag;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
+import osm.surveyor.osm.OsmNd;
 import osm.surveyor.osm.api.GetResponse;
 import osm.surveyor.osm.api.HttpGet;
 
@@ -88,9 +89,18 @@ public class OsmUpdater {
 		
 		for (String rKey : ddom.ways.keySet()) {
 			ElementWay way = ddom.ways.get(rKey);
-			for (ElementNode nd : way.nodes) {
+			for (OsmNd nd : way.nds) {
 				ElementNode sNode = sdom.nodes.get(Long.toString(nd.id));
-				ddom.addNode(sNode.clone());
+				ElementNode node = sNode.clone();
+				nd.point = node.point;
+				ddom.addNode(node);
+			}
+		}
+		for (String rKey : dom.ways.keySet()) {
+			ElementWay way = dom.ways.get(rKey);
+			for (OsmNd nd : way.nds) {
+				ElementNode sNode = dom.nodes.get(Long.toString(nd.id));
+				nd.point = sNode.point;
 			}
 		}
 		

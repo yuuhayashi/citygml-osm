@@ -18,13 +18,13 @@ import osm.surveyor.osm.update.Postgis;
  *
  */
 public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis {
-	public ArrayList<ElementNode> nodes;
+	public ArrayList<OsmNd> nds;
 	public ArrayList<ElementTag> tags;
 	boolean area = false;
 	
 	public ElementWay(long id) {
 		super(id);
-		nodes = new ArrayList<ElementNode>();
+		nds = new ArrayList<OsmNd>();
 		tags = new ArrayList<ElementTag>();
 	}
 	
@@ -33,10 +33,10 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
 		ElementWay copy = null;
 		try {
 			copy = (ElementWay)super.clone();
-			copy.nodes = new ArrayList<ElementNode>();
-			if (this.nodes != null) {
-				for (ElementNode node : this.nodes) {
-					copy.nodes.add(node.clone());
+			copy.nds = new ArrayList<OsmNd>();
+			if (this.nds != null) {
+				for (OsmNd nd : this.nds) {
+					copy.nds.add(nd.clone());
 				}
 			}
 			copy.tags = new ArrayList<ElementTag>();
@@ -57,37 +57,41 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
 		this.tags.add(new ElementTag(k, v));
 	}
 	
-	public void addNode(ElementNode node) {
-		this.nodes.add(node);
+	public void addNode(OsmNd node) {
+		this.nds.add(node);
 	}
 	
+	public void addNode(ElementNode node) {
+		this.nds.add((new OsmNd()).set(node.id, node.point));
+	}
+
 	/**
 	 * LINEをAREAに変更します
 	 * 最期のノードが最初のノードと同じなら、削除する
 	 * 最期のノードが最初のノードが異なるなら、つなげる
 	 */
 	public void toArea() {
-		int size = nodes.size();
-		ElementNode frst = nodes.get(0);
-		ElementNode last = nodes.get(size - 1);
+		int size = nds.size();
+		OsmNd frst = nds.get(0);
+		OsmNd last = nds.get(size - 1);
 		if (size > 3) {
 			if (frst.id != last.id) {
 				if ((frst.point.lat.equals(last.point.lat)) && (frst.point.lon.equals(last.point.lon))) {
-					nodes.remove(size - 1);
-					nodes.add(frst);
+					nds.remove(size - 1);
+					nds.add(frst);
 				}
 			}
 			area = true;
 		}
 		if (size == 3) {
 			if ((frst.point.lat.equals(last.point.lat)) && (frst.point.lon.equals(last.point.lon))) {
-				nodes.remove(size - 1);
+				nds.remove(size - 1);
 				area = false;
 				return;
 			}
 			else {
 				if (frst.id != last.id) {
-					nodes.add(frst);
+					nds.add(frst);
 				}
 				area = true;
 			}
@@ -107,7 +111,7 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
 	 */
     public Node toNode(Document doc) {
     	Element element = super.toElement(doc, "way");
-		for (ElementNode nd : this.nodes) {
+		for (OsmNd nd : this.nds) {
 			element.appendChild(nd.toNodeNd(doc));
 		}
 		for (ElementTag tag : this.tags) {
@@ -140,7 +144,7 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
 					if (node2.getNodeName().equals("nd")) {
 						OsmNd nd = new OsmNd();
 						nd.loadElement(e2);
-						this.addNode(nd.toElementNode());
+						this.addNode(nd);
 					}
 					if (node2.getNodeName().equals("tag")) {
 						String k = e2.getAttribute("k");
@@ -176,9 +180,9 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
      */
     public ArrayList<TwoPoint> getPointList() {
     	ArrayList<TwoPoint> pointlist = new ArrayList<>();
-    	ElementNode a = null;
-    	ElementNode b = null;
-    	for (ElementNode node : this.nodes) {
+    	OsmNd a = null;
+    	OsmNd b = null;
+    	for (OsmNd node : this.nds) {
     		if (a == null) {
     			a = node;
     		}
@@ -230,7 +234,7 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
      * @param segment
      * @return 接続可能なsegment, 存在しなければnull
      */
-    private TwoPoint getAndRemoveConnectableSegments(ArrayList<TwoPoint> list, ElementNode point) {
+    private TwoPoint getAndRemoveConnectableSegments(ArrayList<TwoPoint> list, OsmNd point) {
     	for (TwoPoint p : list) {
     		if (p.a.equals(point) || p.b.equals(point)) {
     			list.remove(list.indexOf(p));
@@ -274,12 +278,12 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
     	while (connectSegments(sList, aList) != null);
     	
     	// wayのLINEを sList に書き換える
-    	this.nodes = new ArrayList<>();
+    	this.nds = new ArrayList<>();
     	for (TwoPoint segment : sList) {
-    		if (this.nodes.isEmpty()) {
-    			this.nodes.add(segment.a);
+    		if (this.nds.isEmpty()) {
+    			this.nds.add(segment.a);
     		}
-			this.nodes.add(segment.b);
+			this.nds.add(segment.b);
     	}
     }
 
@@ -304,16 +308,19 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
     
 	public String getGeomText() {
 		String geom = null;
-		for (ElementNode node : this.nodes) {
+		for (OsmNd node : this.nds) {
+			if (node.point == null) {
+				return null;
+			}
 			String str = node.point.getGeom();
 			if (str == null) {
 				return null;
 			}
 			if (geom == null) {
-				geom = "POLYGOM((" + str;
+				geom = "POLYGON((" + str;
 			}
 			else {
-				geom += ", "+ str;
+				geom += ","+ str;
 			}
 		}
 		if (geom != null) {
@@ -329,7 +336,7 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + (area ? 1231 : 1237);
-		result = prime * result + ((nodes == null) ? 0 : nodes.hashCode());
+		result = prime * result + ((nds == null) ? 0 : nds.hashCode());
 		result = prime * result + ((tags == null) ? 0 : tags.hashCode());
 		return result;
 	}
@@ -345,10 +352,10 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
 		ElementWay other = (ElementWay) obj;
 		if (area != other.area)
 			return false;
-		if (nodes == null) {
-			if (other.nodes != null)
+		if (nds == null) {
+			if (other.nds != null)
 				return false;
-		} else if (!nodes.equals(other.nodes))
+		} else if (!nds.equals(other.nds))
 			return false;
 		if (tags == null) {
 			if (other.tags != null)
@@ -375,16 +382,19 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
                 + "version varchar(8), "
                 + "changeset varchar(16), "
                 + "orignal boolean, "
-                + "geom GEOMETRY(POLYGON, 4612)"
+                + "geom GEOMETRY(POLYGON, 4326)"
             + ");");
         db.sql("CREATE INDEX ix_"+ tableName +"_geom ON "+ tableName +" USING GiST (geom);");
 	}
     
 	@Override
 	public void insertTable(Postgis db) throws Exception {
+        String geom = getGeomText();
+        geom = (geom==null ? null : "ST_GeomFromText('"+ geom +"',4326)");
+        
         String sqlStr = "INSERT INTO "+ tableName 
-                +" (id,action,timestamp,uid,username,visible,version,changeset,orignal,geom) "
-                + "VALUES (?,?,?,?,?,?,?,?,?,?)";
+                +" (id,action,timestamp,uid,username,visible,version,changeset,orignal"+ (geom==null ? "" : ",geom") +") "
+                + "VALUES (?,?,?,?,?,?,?,?,?"+ (geom==null ? "" : (","+ geom)) +")";
         try (PreparedStatement ps = db.con.prepareStatement(sqlStr)) {
             ps.setLong(1, id);   // id
             ps.setString(2, action);   // action
@@ -395,10 +405,6 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
             ps.setString(7, version);		// version
             ps.setString(8, changeset);	// changeset
             ps.setBoolean(9, orignal);       // orignal
-            
-            String geom = getGeomText();
-            ps.setString(10, (geom==null ? null : "ST_GeomFromText('"+ geom +"')"));	// geom
-            
             ps.executeUpdate();
         }
 	}

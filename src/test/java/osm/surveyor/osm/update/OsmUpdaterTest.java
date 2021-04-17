@@ -42,7 +42,7 @@ public class OsmUpdaterTest {
 		catch (ParserConfigurationException | SAXException | IOException e) {
 			e.printStackTrace();
 			fail();
-		}	
+		}
 	}
 
 }

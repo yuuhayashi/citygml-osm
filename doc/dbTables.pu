@@ -26,7 +26,7 @@ class Member {
 
 class Way {
  +id : integer
- geom : GEOMETRY(POLYGON, 4612)
+ geom : GEOMETRY(POLYGON, 4326)
 }
 
 class Nd {

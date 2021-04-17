@@ -22,7 +22,7 @@ public class OsmMargeWay {
 			for (ElementMember member : relation.members) {
 				String memberRef = Long.toString(member.ref);
 				ElementWay way = ways.get(memberRef);
-				for (ElementNode node : way.nodes) {
+				for (OsmNd node : way.nds) {
 					String ndId = Long.toString(node.id);
 					if (ndMap.containsKey(ndId)) {
 						// カレントメンバーをVリレーションへ追加

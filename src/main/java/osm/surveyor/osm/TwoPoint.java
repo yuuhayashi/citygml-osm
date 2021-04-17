@@ -1,8 +1,8 @@
 package osm.surveyor.osm;
 
 public class TwoPoint implements Cloneable {
-	ElementNode a;
-	ElementNode b;
+	OsmNd a;
+	OsmNd b;
 	
 	public TwoPoint() {
 		this.a = null;
@@ -34,14 +34,14 @@ public class TwoPoint implements Cloneable {
 		return copy;
 	}
 	
-	public TwoPoint set(ElementNode a, ElementNode b) {
+	public TwoPoint set(OsmNd a, OsmNd b) {
 		this.a = a;
 		this.b = b;
 		return this;
 	}
 	
 	public TwoPoint reverse() {
-		ElementNode t = this.a.clone();
+		OsmNd t = this.a.clone();
 		this.a = this.b.clone();
 		this.b = t;
 		return this;
@@ -53,7 +53,7 @@ public class TwoPoint implements Cloneable {
 	 * @param node
 	 * @return
 	 */
-	public boolean isConnectable(ElementNode node) {
+	public boolean isConnectable(OsmNd node) {
 		if (node == null) {
 			return false;
 		}
