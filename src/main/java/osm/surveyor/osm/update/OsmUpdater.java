@@ -1,12 +1,16 @@
 package osm.surveyor.osm.update;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.function.Consumer;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -35,10 +39,37 @@ public class OsmUpdater {
 	 * @throws ParserConfigurationException 
 	 */
 	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
-		if (args.length > 0) {
-			OsmUpdater updater = new OsmUpdater(args[0]);
-			updater.load();
-			updater.ddom.export(Paths.get("current.osm").toFile());
+		String suffix1 = ".osm";
+        try {
+			File dir = new File(".");
+			Files.list(dir.toPath()).forEach(new Consumer<Path>() {
+				@Override
+				public void accept(Path a) {
+					if (Files.isRegularFile(a)) {
+						File file = a.toFile();
+						String filename = file.getName();
+						System.out.println(filename);
+						if (filename.endsWith("_op2.osm")) {
+							try {
+								filename = filename.substring(0, filename.length() - suffix1.length());
+
+								OsmUpdater updater = new OsmUpdater(file);
+								updater.load();
+								updater.ddom.export(Paths.get(filename + ".mrg.osm").toFile());
+							} catch (ParserConfigurationException e) {
+								e.printStackTrace();
+							} catch (SAXException e) {
+								e.printStackTrace();
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+						}
+					}
+				}
+			});
+            
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -47,8 +78,12 @@ public class OsmUpdater {
 	OsmDom ddom;
 	
 	public OsmUpdater(String filepath) throws ParserConfigurationException, SAXException, IOException {
+		this(Paths.get(filepath).toFile());
+	}
+
+	public OsmUpdater(File file) throws ParserConfigurationException, SAXException, IOException {
 		dom = new OsmDom();
-		dom.load(Paths.get(filepath).toFile());
+		dom.load(file);
 	}
 	
 	public void load() throws MalformedURLException, ProtocolException, IOException, ParserConfigurationException, SAXException {
