@@ -111,7 +111,9 @@ public class OsmUpdater {
 			ElementRelation relation = ddom.relations.get(rKey);
 			for (ElementMember menber : relation.members) {
 				ElementWay sWay = sdom.ways.get(Long.toString(menber.ref));
-				ddom.addWay(sWay.clone());
+				if (sWay != null) {
+					ddom.addWay(sWay.clone());
+				}
 			}
 		}
 

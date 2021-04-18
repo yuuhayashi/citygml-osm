@@ -1,34 +1,40 @@
 @startuml
-title CityGML-OSM の実行環境イメージ
+title CityGML-OSM 第一段階の実行環境イメージ
 
-node "3D都市モデル\nポータルサイト" as zipsite
-() "2.download" as zipdownload
-() "3.unzip" as unzip
-file ".zip" as zip
-
-node "変換プログラム\nダウンロードサイト" as jarsite
-() "1.download" as jardownload
-
-folder 任意のフォルダ {
- file "citygml-get-0.0.4-jar-with-dependencies.jar" as jar
- collections ".gml" as gml
- 
- () "4.cmd" as cmd
- 
- collections ".osm" as osm
+cloud Internet {
+ node "3D都市モデル\nポータルサイト" as zipsite
+ node "変換プログラム\nダウンロードサイト" as jarsite
 }
 
-() "5.drop" as drop
-
-node JOSM
-
+() "1.download" as jardownload
 jarsite .. jardownload
-jardownload --> jar
 
+() "2.download" as zipdownload
 zipsite .. zipdownload
-zipdownload -> zip
+
+file ".zip" as zip
+() "3. unzip" as unzip
 zip .. unzip
-unzip -> gml
+
+node PC {
+
+ folder 任意のフォルダ {
+  file "citygml-get-0.0.4-jar-with-dependencies.jar" as jar
+  collections "*_op2.gml" as gml
+ 
+  unzip --> gml
+  () "4.cmd" as cmd
+ 
+  collections "*_op2.osm\n第一段階生成物" as osm
+ }
+
+ node JOSM
+ () "5.drop" as drop
+
+}
+
+jardownload --> jar
+zipdownload --> zip
 
 jar .. cmd
 gml .. cmd

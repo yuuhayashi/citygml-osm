@@ -2,14 +2,21 @@
 
 CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
-- 生成されたOSMファイル: [53392547_bldg_6697_op2.osm](53392547_bldg_6697_op2.osm)
-
 ![Screenshot.png](doc/Screenshot.png)
+
+## 生成物の例
+
+- 第一段階生成ファイル: [53392547_bldg_6697_op2.osm](53392547_bldg_6697_op2.osm) ... CityGMLファイルからOSMファイルへ変換
+
+- 第二段階生成ファイル: [53392547_bldg_6697_op2.mrg.osm](53392547_bldg_6697_op2.mrg.osm) ... 既存のOSMデータとマージしたOSMファイル
 
 
 # Release
 
+- 2021-04-18 リリース v1.2.2 / [citygml-osm v1.2.2](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/osm.surveyor/citygml-osm/1.2.2)<br/>既存データとの重複をチェックして、既存データと重複する場合には既存データを修復する。
+
 - 2021-04-11 リリース v0.2.0 fixed #7 / [citygml-osm v0.2.0](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/osm.surveyor/citygml-osm/0.2.0)<br/>JOSMと同じ"Java8"で実行可能
+
 - 2021-04-10 リリース v0.1.1 [citygml-osm v0.1.1](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/osm.surveyor/citygml-osm/0.1.1)
 - 2021-04-10<br/> "source='MLIT_PLATEAU'"<br/>"source:name='http://www.opengis.net/def/crs/EPSG/0/6697'"
 - 2021-04-10<br/> fixed #3 / 自治体コード「全国地方公共団体コード」を"addr:ref"としてタグ付け 
@@ -23,32 +30,57 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 - 2021-04-04<br/> リリース: 'citygml-osm v0.0.4'
 
+
 # 使い方
+
+## 第一段階
 
 ![startup.pu](doc/startup.png)
 
-- (1) [ダウンロード](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/osm.surveyor/citygml-osm/0.2.0) から 'jar-with-dependencies' を'任意のフォルダ'にダウンロードする<br/> `citygml-get-0.2.0-jar-with-dependencies.jar` がダウンロードされます
+- (1) [ダウンロード](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/osm.surveyor/citygml-osm/1.2.2) から 'jar-with-dependencies' を'任意のフォルダ'にダウンロードする<br/> `citygml-get-1.2.2-jar-with-dependencies.jar` がダウンロードされます
 
 - (2) [オープンデータ公開サイト](https://www.geospatial.jp/ckan/dataset/plateau)から「3D都市データ」をダウンロードする
 
-- (3) ダウンロードしたZIPファイルを'任意のフォルダ'に解凍する。<br/>ファイル末尾が「*.gml」のファイルをため置きます。
+- (3) ダウンロードしたZIPファイルを'任意のフォルダ'に解凍する。<br/>ファイル末尾が「*_op2.gml」のファイルをため置きます。
 
-- (4) コマンドターミナルから実行<br/>「*.osm」ファイルが生成される
+- (4) コマンドターミナルから実行<br/>「*_op2.osm」ファイルが生成される
 
   ```
   $ cd (解凍先フォルダ)
-  $ java -jar citygml-get-0.2.0-jar-with-dependencies.jar
+  $ java -jar citygml-osm-1.2.2-jar-with-dependencies.jar
   ```
 
 - (5) JOSMを起動して、「*.osm」ファイルをJOSMにドロップしてください。<br/>生成されたデータを確認することができます。
+
+
+## 第二段階
+
+![startup2nd.pu](doc/startup2nd.png)
+
+- (1) [Github citygml-osm](https://github.com/yuuhayashi/citygml-osm) から 'docker-compose.yml' と 'osmdb.properties' を'任意のフォルダ'にダウンロードする
+
+- (2) 'docker-compose'コマンドで'PostGIS'サーバを起動する<br/>※ 事前に「Docker」環境を用意しておく
+
+  ```
+  $ docker-compose up -d
+  ```
+
+- (3) コマンドターミナルから実行<br/>「*_op2.mrg.osm」ファイルが生成される
+
+  ```
+  $ cd (解凍先フォルダ)
+  $ java -cp citygml-osm-1.2.2-jar-with-dependencies.jar osm.surveyor.osm.update.OsmUpdater
+  ```
+
+- (4) JOSMを起動して、「*_op2.mrg.osm」ファイルをJOSMにドロップしてください。<br/>生成されたデータを確認することができます。
+
+
 
 **絶対にOSMへの「アップロード」は実行しないこと！！**
 
 **確認のみ！！  確認し終わったら破棄すること！！**
 
 ------
-
-- 生成されたOSMファイル: [53392547_bldg_6697_op2.osm](53392547_bldg_6697_op2.osm)
 
 - [クラス関連図](doc/class.png)
 
@@ -61,5 +93,7 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 - [210327PLATEAUを触ってみよう](https://hackmd.io/@geopythonjp/HkZOmNpqL/%2FhfZTkl5FQGy8YHrgzc7ohQ)
 
 - [オープンデータ公開サイト](https://www.geospatial.jp/ckan/dataset/plateau)
+
+- [GitHub yuuhayashi/citygml-osm](https://github.com/yuuhayashi/citygml-osm)
 
  
