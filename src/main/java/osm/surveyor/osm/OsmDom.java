@@ -33,9 +33,9 @@ public class OsmDom {
 
     Document doc;
     ElementBounds bounds = new ElementBounds();
-    public HashMap<String, ElementNode> nodes = new HashMap<>();
-    public HashMap<String, ElementWay> ways = new HashMap<>();
-    public HashMap<String, ElementRelation> relations = new HashMap<>();
+    public HashMap<String, ElementNode> nodes = new HashMap<>();	// k= node.id
+    public HashMap<String, ElementWay> ways = new HashMap<>();		// k= way.id
+    public HashMap<String, ElementRelation> relations = new HashMap<>();	// k= relation.id
     
     public void setBounds(ElementBounds bounds) {
     	this.bounds = bounds;
