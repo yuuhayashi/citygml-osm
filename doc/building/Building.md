@@ -18,6 +18,15 @@
 ## (2) "building :リレーション" を作る
 
 - 先程作成した multipolygon をメンバー登録[role=outline]する
-- 構成する建物部位をメッンー登録[role=part]する
+- 構成する建物部位をメンバー登録[role=part]する
 
 ![building :リレーション](building.png)
+
+----
+
+### 参考
+
+ - [JA:基本的な3Dの建物](https://wiki.openstreetmap.org/wiki/JA:%E5%9F%BA%E6%9C%AC%E7%9A%84%E3%81%AA3D%E3%81%AE%E5%BB%BA%E7%89%A9)
+ 
+ - [JA:Relation:multipolygon](https://wiki.openstreetmap.org/wiki/JA:Relation:multipolygon)
+
