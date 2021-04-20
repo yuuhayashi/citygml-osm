@@ -22,6 +22,11 @@ public class ElementMember implements Cloneable {
 		this.type = "way";
 	}
 	
+	public void setRelation(ElementRelation relation) {
+		this.ref = relation.id;
+		this.type = "";
+	}
+
 	public void setRole(String role) {
 		this.role = role;
 	}

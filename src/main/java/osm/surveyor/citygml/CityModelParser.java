@@ -15,6 +15,7 @@ import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementTag;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
+import osm.surveyor.osm.RelationMultipolygon;
 
 /**
  * CityGMLファイルをパースする
@@ -68,6 +69,7 @@ public class CityModelParser extends DefaultHandler {
     
     ElementBounds bounds = null;
 	ElementRelation relation = null;			// <bldg:Building/>
+	RelationMultipolygon multipolygon = null;		// <gml:Polygon/>
 	ArrayList<ElementMember> roofmembers = null;	// <bldg:lod0RoofEdge/>
 	ElementMember member = null;				// <gml:Polygon/>
     ElementWay way = null;
@@ -152,14 +154,19 @@ public class CityModelParser extends DefaultHandler {
 				roofmembers = new ArrayList<>();
 			}
 		}
+		else if(qName.equals("gml:Polygon")){
+			if (relation != null) {
+				multipolygon = new RelationMultipolygon(CitygmlFile.getId());
+			}
+		}
 		else if(qName.equals("gml:exterior")){
-			if (roofmembers != null) {
+			if (multipolygon != null) {
 				member = new ElementMember();
-				member.setRole("part");
+				member.setRole("outer");
 			}
 		}
 		else if(qName.equals("gml:interior")){
-			if (roofmembers != null) {
+			if (multipolygon != null) {
 				member = new ElementMember();
 				member.setRole("inner");
 			}
@@ -276,6 +283,9 @@ public class CityModelParser extends DefaultHandler {
 			}
 		}
 		else if(qName.equals("gml:Polygon")){
+			if ((multipolygon != null) && (relation != null)) {
+				relation.addMember(multipolygon, "contains");
+			}
 		}
 		else if (qName.equals("gml:exterior")){
 			if ((way != null) && (member != null)) {

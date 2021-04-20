@@ -1,0 +1,55 @@
+@startuml
+map "building : Relation" as building {
+ type => building
+ building => yes
+ height => 29.9
+}
+
+map "multipolygon :Relation" as multipolygon {
+ type => multipolygon
+ building => yes
+}
+
+map "輪郭線 :Area" as outer {
+}
+
+map "a- :Area" as a {
+}
+map "e- :Area" as e {
+}
+
+map "A :Area" as A {
+ building:part => yes
+ height => 29.3
+}
+map "B :Area" as B {
+ building:part => yes
+ height => 6
+}
+
+map "C :Area" as C {
+ building:part => yes
+ hieght => 6.3
+}
+
+map "D :Area" as D {
+ building:part => yes
+ height => 6
+}
+
+map "building : Relation" as building {
+ type => building
+ building => yes
+ 
+}
+
+building o-- multipolygon : member\n[role=outline]
+building o-- A : member\n[role=part]
+building o-- B : member\n[role=part]
+building o-- C : member\n[role=part]
+building o-- D : member\n[role=part]
+
+multipolygon  o-- outer : member\n[role=outer]
+multipolygon  o-- a : member\n[role=inner]
+multipolygon  o-- e : member\n[role=inner]
+@enduml

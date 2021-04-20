@@ -1,0 +1,18 @@
+@startuml
+map "multipolygon :Relation" as multipolygon {
+ type => multipolygon
+ building => yes
+}
+
+map "輪郭線 :Area" as outer {
+}
+
+map "a- :Area" as a {
+}
+map "e- :Area" as e {
+}
+
+multipolygon o-- outer : member\n[role=outer]
+multipolygon o-- a : member\n[role=inner]
+multipolygon o-- e : member\n[role=inner]
+@enduml

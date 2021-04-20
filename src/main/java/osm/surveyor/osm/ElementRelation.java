@@ -12,7 +12,6 @@ import osm.surveyor.citygml.CitygmlFile;
 
 public class ElementRelation extends ElementOsmapi implements Cloneable {
 	public ArrayList<ElementMember> members;
-	//public ArrayList<ElementTag> tags;
 	
 	public ElementRelation(long id) {
 		super(id);
@@ -23,6 +22,13 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 		ElementMember member = new ElementMember();
 		way.member = true;
 		member.setWay(way);
+		member.setRole(role);
+		this.members.add(member);
+	}
+
+	public void addMember(ElementRelation relation, String role) {
+		ElementMember member = new ElementMember();
+		member.setRelation(relation);
 		member.setRole(role);
 		this.members.add(member);
 	}

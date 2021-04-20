@@ -80,6 +80,12 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 **確認のみ！！  確認し終わったら破棄すること！！**
 
+----
+
+## 中空部分がある複合ビルディングの書き方
+
+- [中空部分がある複合ビルディングの書き方](doc/building/Building.md)
+
 ------
 
 - [クラス関連図](doc/class.png)
@@ -88,7 +94,7 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 ----------------
 
-参考
+## 参考
 
 - [210327PLATEAUを触ってみよう](https://hackmd.io/@geopythonjp/HkZOmNpqL/%2FhfZTkl5FQGy8YHrgzc7ohQ)
 
