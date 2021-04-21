@@ -49,7 +49,7 @@ public class Postgis implements AutoCloseable
         sql("CREATE INDEX ix_"+ tableName +" ON "+ tableName +" (id);");
         
         // Way ElementWay.initTable(db)
-        (new ElementWay(0)).initTable(this);
+        (new ElementWay()).initTable(this);
         
         // Node
         tableName = "tNode";

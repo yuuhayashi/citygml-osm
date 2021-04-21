@@ -157,7 +157,7 @@ public class OsmDom {
 	    NodeList nList = doc.getElementsByTagName("node");
 	    for (int temp = 0; temp < nList.getLength(); temp++) {
 			Node nNode = nList.item(temp);
-			ElementNode node = (new ElementNode(0)).loadNode(nNode);
+			ElementNode node = (new ElementNode()).loadNode(nNode);
 			if (node != null) {
 				nodes.put(String.valueOf(node.id), node);
 			}
@@ -180,7 +180,7 @@ public class OsmDom {
 	    NodeList nList = doc.getElementsByTagName("way");
 	    for (int temp = 0; temp < nList.getLength(); temp++) {
 			Node nNode = nList.item(temp);
-			ElementWay way = (new ElementWay(0)).loadWay(nNode);
+			ElementWay way = (new ElementWay()).loadWay(nNode);
 			if (way != null) {
 			    ways.put(Long.toString(way.id), way);
 			}
@@ -201,9 +201,9 @@ public class OsmDom {
 	    NodeList nList = doc.getElementsByTagName("relation");
 	    for (int temp = 0; temp < nList.getLength(); temp++) {
 			Node nNode = nList.item(temp);
-			ElementRelation relation = (new ElementRelation(0)).loadRelation(nNode);
+			ElementRelation relation = (new ElementRelation()).loadRelation(nNode);
 			if (relation != null) {
-			    relations.put(Long.toString(relation.id), relation);
+			    relations.put(relation.getIdstr(), relation);
 			}
 	    }
     }

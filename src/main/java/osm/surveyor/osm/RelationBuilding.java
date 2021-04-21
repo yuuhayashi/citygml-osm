@@ -8,8 +8,8 @@ package osm.surveyor.osm;
  */
 public class RelationBuilding extends ElementRelation implements Cloneable {
 	
-	public RelationBuilding(long id) {
-		super(id);
+	public RelationBuilding() {
+		super();
 		addTag("type", "building");
 	}
 	

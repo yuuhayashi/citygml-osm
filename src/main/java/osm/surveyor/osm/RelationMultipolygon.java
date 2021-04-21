@@ -7,8 +7,8 @@ package osm.surveyor.osm;
  */
 public class RelationMultipolygon extends ElementRelation implements Cloneable {
 	
-	public RelationMultipolygon(long id) {
-		super(id);
+	public RelationMultipolygon() {
+		super();
 		addTag("type", "multipolygon");
 	}
 	

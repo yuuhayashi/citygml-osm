@@ -11,11 +11,11 @@ import org.xml.sax.helpers.DefaultHandler;
 import osm.surveyor.osm.ElementBounds;
 import osm.surveyor.osm.ElementMember;
 import osm.surveyor.osm.ElementNode;
-import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementTag;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 import osm.surveyor.osm.RelationMultipolygon;
+import osm.surveyor.osm.RelationBuilding;
 
 /**
  * CityGMLファイルをパースする
@@ -68,7 +68,7 @@ public class CityModelParser extends DefaultHandler {
     }
     
     ElementBounds bounds = null;
-	ElementRelation relation = null;			// <bldg:Building/>
+	RelationBuilding building = null;			// <bldg:Building/>
 	RelationMultipolygon multipolygon = null;		// <gml:Polygon/>
 	ArrayList<ElementMember> roofmembers = null;	// <bldg:lod0RoofEdge/>
 	ElementMember member = null;				// <gml:Polygon/>
@@ -124,13 +124,13 @@ public class CityModelParser extends DefaultHandler {
 		}
 		
 		else if(qName.equals("bldg:Building")){
-			relation = new ElementRelation(CitygmlFile.getId());
-			relation.addTag("type", "building");
-			relation.addTag("building:part", "yes");
+			building = new RelationBuilding();
+			building.addTag("type", "building");
+			building.addTag("building:part", "yes");
 			for (int i = 0; i < atts.getLength(); i++) {
 				String aname = atts.getQName(i);
 				if (aname.equals("gml:id")) {
-					relation.addTag("source_ref", atts.getValue(i));
+					building.addTag("source_ref", atts.getValue(i));
 				}
 			}
 		}
@@ -150,13 +150,13 @@ public class CityModelParser extends DefaultHandler {
 		}
 		
 		else if(qName.equals("bldg:lod0RoofEdge")){
-			if (relation != null) {
+			if (building != null) {
 				roofmembers = new ArrayList<>();
 			}
 		}
 		else if(qName.equals("gml:Polygon")){
-			if (relation != null) {
-				multipolygon = new RelationMultipolygon(CitygmlFile.getId());
+			if (building != null) {
+				multipolygon = new RelationMultipolygon();
 			}
 		}
 		else if(qName.equals("gml:exterior")){
@@ -172,7 +172,7 @@ public class CityModelParser extends DefaultHandler {
 			}
 		}
 		else if(qName.equals("gml:LinearRing")){
-			way = new ElementWay(CitygmlFile.getId());
+			way = new ElementWay();
 		}
 		else if(qName.equals("gml:posList")){
 			outSb = new StringBuffer();
@@ -202,8 +202,8 @@ public class CityModelParser extends DefaultHandler {
 		}
 		else if(qName.equals("gml:Envelope")){
 			// <gml:Envelope srsName="http://www.opengis.net/def/crs/EPSG/0/6697">
-			if ((relation != null) && (addr_ref != null)) {
-				relation.addTag("addr:ref", addr_ref);
+			if ((building != null) && (addr_ref != null)) {
+				building.addTag("addr:ref", addr_ref);
 				addr_ref = null;
 			}
 		}		
@@ -235,7 +235,7 @@ public class CityModelParser extends DefaultHandler {
 		}
 
 		else if(qName.equals("bldg:Building")){
-			if (relation != null) {
+			if (building != null) {
 				String src = "";
 				if (source != null) {
 					src += source;
@@ -243,25 +243,25 @@ public class CityModelParser extends DefaultHandler {
 				if (srsName != null) {
 					src += "; "+ srsName;
 				}
-				ElementTag tag_ref = relation.tags.get("source_ref");
+				ElementTag tag_ref = building.tags.get("source_ref");
 				if (tag_ref != null) {
 					src += " "+ tag_ref.v;
-					relation.tags.remove("source_ref");
+					building.tags.remove("source_ref");
 				}
-				relation.addTag("source", src);
+				building.addTag("source", src);
 
 				if (localityName != null) {
-					relation.addTag("addr:full", localityName);
+					building.addTag("addr:full", localityName);
 					localityName = null;
 				}
-				osm.addRelations(relation.clone());
-				relation = null;
+				osm.addRelations(building.clone());
+				building = null;
 			}
 		}
     	else if(qName.equals("gen:stringAttribute")){
 			// <gen:stringAttribute name="13_区市町村コード_大字・町コード_町・丁目コード">
-			if ((relation != null) && (addr_ref != null)) {
-				relation.addTag("addr:ref", addr_ref);
+			if ((building != null) && (addr_ref != null)) {
+				building.addTag("addr:ref", addr_ref);
 				addr_ref = null;
 			}
 		}
@@ -275,16 +275,16 @@ public class CityModelParser extends DefaultHandler {
 		}
 		
     	else if(qName.equals("bldg:lod0RoofEdge")){
-			if ((roofmembers != null) && (relation != null)) {
+			if ((roofmembers != null) && (building != null)) {
 				for (ElementMember member : roofmembers) {
-					relation.members.add(member.clone());
+					building.members.add(member.clone());
 				}
 				roofmembers = null;
 			}
 		}
 		else if(qName.equals("gml:Polygon")){
-			if ((multipolygon != null) && (relation != null)) {
-				relation.addMember(multipolygon, "contains");
+			if ((multipolygon != null) && (building != null)) {
+				building.addMember(multipolygon, "contains");
 			}
 		}
 		else if (qName.equals("gml:exterior")){
@@ -330,7 +330,7 @@ public class CityModelParser extends DefaultHandler {
 					ElementNode node;
 					// lat
 					if (st.hasMoreTokens()) {
-						node = new ElementNode(CitygmlFile.getId());
+						node = new ElementNode();
 						node.action = "modify";
 						String lat = st.nextToken();
 						node.point.setLat(lat);

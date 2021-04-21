@@ -24,8 +24,8 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
 	boolean area = false;
 	public boolean member = false;
 	
-	public ElementWay(long id) {
-		super(id);
+	public ElementWay() {
+		super();
 		nds = new ArrayList<OsmNd>();
 	}
 	

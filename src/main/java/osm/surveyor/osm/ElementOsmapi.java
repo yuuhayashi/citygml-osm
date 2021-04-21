@@ -6,6 +6,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import osm.surveyor.citygml.CitygmlFile;
+
 /**
  * CityGMLファイルをパースする
  * @param gmlFile
@@ -26,12 +28,21 @@ public class ElementOsmapi implements Cloneable {
 	public boolean orignal = false;
 	public String changeset = null;
 	public HashMap<String, ElementTag> tags;
-	
-	public ElementOsmapi(long id) {
-		this.id = id;
+
+	public ElementOsmapi() {
+		this.id = CitygmlFile.getId();
 		tags = new HashMap<>();
 	}
 	
+	public String getIdstr() {
+		return Long.toString(id);
+	}
+
+	public void setIdstr(String id) {
+		this.id = Long.parseLong(id);
+	}
+
+
 	@Override
 	public ElementOsmapi clone() {
 		ElementOsmapi copy = null;

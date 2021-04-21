@@ -13,8 +13,8 @@ import osm.surveyor.citygml.CitygmlFile;
 public class ElementRelation extends ElementOsmapi implements Cloneable {
 	public ArrayList<ElementMember> members;
 	
-	public ElementRelation(long id) {
-		super(id);
+	public ElementRelation() {
+		super();
 		members = new ArrayList<ElementMember>();
 	}
 	
@@ -56,7 +56,7 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
     
 	/**
 	 * member:role="outline"が存在しないリレーションを返す
-	 * @param relation
+	 * @param building
 	 * @return
 	 */
 	ElementRelation getNoOutline() {
@@ -71,7 +71,7 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 	
 	/**
 	 * Relation->member:role=port のoutlineを作成する
-	 * @param relation
+	 * @param building
 	 * @param ways
 	 */
 	public ElementWay createOutline(HashMap<String, ElementWay> ways) {
@@ -141,7 +141,7 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
     
 	/**
 	 * member->wayのすべてのLINEをListにする
-	 * @param relation
+	 * @param building
 	 * @return
 		ArrayList<ElementWay> getLines() {
 			ArrayList<ElementWay> lineList = new ArrayList<>();
