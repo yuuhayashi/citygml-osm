@@ -77,7 +77,9 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 	public ElementWay createOutline(HashMap<String, ElementWay> ways) {
 		ArrayList<ElementWay> memberway = new ArrayList<>();
 		for (ElementMember member : this.members) {
-			memberway.add(ways.get(Long.toString(member.ref)).clone());
+			if (member.role.equals("part")) {
+				memberway.add(ways.get(Long.toString(member.ref)).clone());
+			}
 		}
 		
 		// WAYを他のWAYと合成する;
@@ -90,6 +92,9 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 			else {
 				aWay.marge(way.clone());
 			}
+		}
+		if (aWay == null) {
+			return null;
 		}
 		aWay.member = true;
 		aWay.replaceTag(new ElementTag("building:part", "yes"), new ElementTag("building", "yes"));

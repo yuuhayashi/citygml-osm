@@ -1,6 +1,5 @@
 package osm.surveyor.citygml;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
@@ -11,6 +10,7 @@ import org.xml.sax.helpers.DefaultHandler;
 import osm.surveyor.osm.ElementBounds;
 import osm.surveyor.osm.ElementMember;
 import osm.surveyor.osm.ElementNode;
+import osm.surveyor.osm.ElementOsmapi;
 import osm.surveyor.osm.ElementTag;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
@@ -67,23 +67,18 @@ public class CityModelParser extends DefaultHandler {
     	super.endDocument();
     }
     
-    ElementBounds bounds = null;
-	RelationBuilding building = null;			// <bldg:Building/>
+    ElementBounds bounds = null;					// <gml:boundedBy/>
+	RelationBuilding building = null;				// <bldg:Building/>
+	RelationBuilding roof = null;					// <bldg:lod0RoofEdge/>
 	RelationMultipolygon multipolygon = null;		// <gml:Polygon/>
-	ArrayList<ElementMember> roofmembers = null;	// <bldg:lod0RoofEdge/>
-	ElementMember member = null;				// <gml:Polygon/>
-    ElementWay way = null;
+	ElementMember member = null;					// <gml:Polygon/>
+    ElementWay way = null;							// <gml:LinearRing/>
 	
 	/*
 	 * <gml:Envelope srsName="http://www.opengis.net/def/crs/EPSG/0/6697">
 	 */
 	String srsName = null;
 	String source = "MLIT_PLATEAU";
-
-	/*
-     * List<roofEdge>
-     */
-	//ArrayList<ElementWay> roofEdges = null;
 
     /*
      * addr:full = *
@@ -150,12 +145,10 @@ public class CityModelParser extends DefaultHandler {
 		}
 		
 		else if(qName.equals("bldg:lod0RoofEdge")){
-			if (building != null) {
-				roofmembers = new ArrayList<>();
-			}
+			roof = new RelationBuilding();
 		}
 		else if(qName.equals("gml:Polygon")){
-			if (building != null) {
+			if (roof != null) {
 				multipolygon = new RelationMultipolygon();
 			}
 		}
@@ -236,27 +229,16 @@ public class CityModelParser extends DefaultHandler {
 
 		else if(qName.equals("bldg:Building")){
 			if (building != null) {
-				String src = "";
-				if (source != null) {
-					src += source;
+				if (!building.members.isEmpty()) {
+					updateSourceTag(building);
+					if (localityName != null) {
+						building.addTag("addr:full", localityName);
+						localityName = null;
+					}
+					osm.addRelations(building.clone());
 				}
-				if (srsName != null) {
-					src += "; "+ srsName;
-				}
-				ElementTag tag_ref = building.tags.get("source_ref");
-				if (tag_ref != null) {
-					src += " "+ tag_ref.v;
-					building.tags.remove("source_ref");
-				}
-				building.addTag("source", src);
-
-				if (localityName != null) {
-					building.addTag("addr:full", localityName);
-					localityName = null;
-				}
-				osm.addRelations(building.clone());
-				building = null;
 			}
+			building = null;
 		}
     	else if(qName.equals("gen:stringAttribute")){
 			// <gen:stringAttribute name="13_区市町村コード_大字・町コード_町・丁目コード">
@@ -275,42 +257,44 @@ public class CityModelParser extends DefaultHandler {
 		}
 		
     	else if(qName.equals("bldg:lod0RoofEdge")){
-			if ((roofmembers != null) && (building != null)) {
-				for (ElementMember member : roofmembers) {
-					building.members.add(member.clone());
+			if (roof != null) {
+				for (ElementMember mem : roof.members) {
+					building.members.add(mem);
 				}
-				roofmembers = null;
 			}
+			roof = null;
 		}
 		else if(qName.equals("gml:Polygon")){
 			if ((multipolygon != null) && (building != null)) {
-				building.addMember(multipolygon, "contains");
+				if (!multipolygon.members.isEmpty()) {
+					updateSourceTag(multipolygon);
+					osm.addRelations(multipolygon);
+					roof.addMember(multipolygon.clone(), "outline");
+				}
 			}
+			multipolygon = null;
 		}
 		else if (qName.equals("gml:exterior")){
 			if ((way != null) && (member != null)) {
 				way.member = true;
 				way.addTag("building:part", "yes");
-				member.setWay(way);
-				osm.ways.put(Long.toString(way.id), way.clone());
-				way = null;
-				if (roofmembers != null) {
-					roofmembers.add(member.clone());
-					member = null;
+				if (roof != null) {
+					osm.addWay(way.clone());
+					roof.addMember(way.clone(), "part");
 				}
 			}
+			way = null;
+			member = null;
 		}
 		else if (qName.equals("gml:interior")){
 			if ((way != null) && (member != null)) {
-				way.member = true;
-				member.setWay(way);
-				osm.ways.put(Long.toString(way.id), way.clone());
-				way = null;
-				if (roofmembers != null) {
-					roofmembers.add(member.clone());
-					member = null;
+				if (multipolygon != null) {
+					osm.addWay(way.clone());
+					multipolygon.addMember(way.clone(), "inner");
 				}
 			}
+			way = null;
+			member = null;
 		}
 		else if(qName.equals("gml:LinearRing")){
 			// <gml:LinearRing>
@@ -331,7 +315,6 @@ public class CityModelParser extends DefaultHandler {
 					// lat
 					if (st.hasMoreTokens()) {
 						node = new ElementNode();
-						node.action = "modify";
 						String lat = st.nextToken();
 						node.point.setLat(lat);
 					}
@@ -379,6 +362,29 @@ public class CityModelParser extends DefaultHandler {
         else {
         }
     }
+    
+    /**
+     * 
+     * @param poi
+     * @return
+     */
+    String updateSourceTag(ElementOsmapi poi) {
+    	String src = "";
+    	if (source != null) {
+    		src += source;
+    	}
+    	if (srsName != null) {
+    		src += "; "+ srsName;
+    	}
+    	ElementTag tag_ref = poi.tags.get("source_ref");
+    	if (tag_ref != null) {
+    		src += " "+ tag_ref.v;
+    		poi.tags.remove("source_ref");
+    	}
+		poi.addTag("source", src);
+    	return src;
+    }
+
 
     /**
      * テキストデータ読み込み時に毎回呼ばれる

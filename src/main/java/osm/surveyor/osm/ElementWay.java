@@ -161,6 +161,9 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
      */
     public void replaceTag(ElementTag source, ElementTag dest) {
 		ElementTag tag = tags.get(source.k);
+		if (tag == null) {
+			return;
+		}
 		if (tag.v.equals(source.v)) {
 			tags.remove(source.k);
 			tags.put(dest.k, dest);

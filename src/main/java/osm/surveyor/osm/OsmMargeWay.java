@@ -14,21 +14,28 @@ public class OsmMargeWay {
 	}
 	
 	static boolean relationMarge1(HashMap<String, ElementRelation> relations, HashMap<String, ElementWay> ways) {
-		HashMap<String, String> ndMap = new HashMap<>();
+		HashMap<String, String> ndMap = new HashMap<>();	// ndMap(key= node.id, v= relation.id)
 		
 		for (String rKey : relations.keySet()) {
 			ElementRelation relation = relations.get(rKey);
-			String relationId = Long.toString(relation.id);
+			ElementTag typeTag = relation.tags.get("type");
+			if ((typeTag == null) || !typeTag.v.equals("building")) {
+				continue;
+			}
 			for (ElementMember member : relation.members) {
+				if (!member.role.equals("part")) {
+					continue;
+				}
 				String memberRef = Long.toString(member.ref);
 				ElementWay way = ways.get(memberRef);
 				for (OsmNd node : way.nds) {
 					String ndId = Long.toString(node.id);
 					if (ndMap.containsKey(ndId)) {
-						// カレントメンバーをVリレーションへ追加
-						String v = ndMap.get(ndId);
+						/* 'node :OsmNd'は、他のリレーションのWAYノードと共有している */
+						// カレントリレーションのメンバーを共有先リレーション(v)へ追加
+						String v = ndMap.get(ndId);	// 共有先のrelation.idstr
 						ElementRelation destRelation = relations.get(v);
-						if (!relationId.equals(v)) {
+						if (!relation.getIdstr().equals(v)) {
 							way.member = true;
 							destRelation.addMember(way, "part");
 							
@@ -39,7 +46,7 @@ public class OsmMargeWay {
 						}
 					}
 					else {
-						ndMap.put(ndId, relationId);
+						ndMap.put(ndId, relation.getIdstr());
 					}
 				}
 			}
@@ -65,16 +72,23 @@ public class OsmMargeWay {
 	{
 		for (String rKey : relations.keySet()) {
 			ElementRelation relation = relations.get(rKey);
+			if (relation.members.size() < 1) {
+				relations.remove(rKey);
+				return true;
+			}
 			if (relation.members.size() < 2) {
-				ArrayList<ElementTag> tags = new ArrayList<>();
-				for (String k : relation.tags.keySet()) {
-					ElementTag tag = relation.tags.get(k);
-					if (!tag.k.equals("type")) {
-						tags.add(tag);
-					}
-				}
-				
 				for (ElementMember member : relation.members) {
+					if (!member.role.equals("part")) {
+						break;
+					}
+					ArrayList<ElementTag> tags = new ArrayList<>();
+					for (String k : relation.tags.keySet()) {
+						ElementTag tag = relation.tags.get(k);
+						if (!tag.k.equals("type")) {
+							tags.add(tag);
+						}
+					}
+					
 					String memberRef = Long.toString(member.ref);
 					ElementWay way = ways.get(memberRef);
 					way.member = true;
@@ -82,10 +96,9 @@ public class OsmMargeWay {
 						way.addTag(tag.k, tag.v);
 					}
 					way.replaceTag(new ElementTag("building:part", "yes"), new ElementTag("building", "yes"));
+					relations.remove(rKey);
+					return true;
 				}
-				
-				relations.remove(rKey);
-				return true;
 			}
 		}
 		return false;
@@ -104,6 +117,9 @@ public class OsmMargeWay {
 		for (String rKey : relations.keySet()) {
 			ElementRelation relation = relations.get(rKey);
 			ElementWay aWay = relation.createOutline(ways);
+			if (aWay == null) {
+				continue;
+			}
 			
 			// WAYをMEMBERとして追加する
 			aWay.member = true;

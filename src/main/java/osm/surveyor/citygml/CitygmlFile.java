@@ -23,56 +23,51 @@ public class CitygmlFile extends File {
     OsmDom osm;
     public static long idno = 0;
     
-	public static void main(String[] args) {
-        try {
-			File dir = new File(".");
-			Files.list(dir.toPath()).forEach(new Consumer<Path>() {
-				@Override
-				public void accept(Path a) {
-					if (Files.isRegularFile(a)) {
-						File file = a.toFile();
-						String filename = file.getName();
-						System.out.println(filename);
-						if (filename.endsWith("_op2.gml")) {
-							try {
-								filename = filename.substring(0, filename.length()-4);
-						        
-						        OsmDom osm = new OsmDom();
-					            CitygmlFile target = new CitygmlFile(file, osm);
-					            target.parse();
-						    	osm.export(new File(filename + "_0.osm"));
-					            
-					            // 各WAYのノードで、他のWAYと共有されたノードを探す
-					            OsmMargeWay.relationMarge(osm.relations, osm.ways);
-						    	osm.export(new File(filename + "_1.osm"));
-					            
-					            // メンバーが一つしかないRelation:building を削除する
-					            OsmMargeWay.relationGabegi(osm.relations, osm.ways);
-						    	osm.export(new File(filename + "_2.osm"));
-					            
-					            // Relation->member:role=port のoutlineを作成する
-					            OsmMargeWay.relationOutline(osm.relations, osm.ways);
-					            
-					            // `*.osm`に書き出す
-						    	File osmfile = new File(filename + ".osm");
-						    	osm.export(osmfile);
-							} catch (ParserConfigurationException e) {
-								e.printStackTrace();
-							} catch (SAXException e) {
-								e.printStackTrace();
-							} catch (IOException e) {
-								e.printStackTrace();
-							} catch (ParseException e) {
-								e.printStackTrace();
-							}
+	public static void main(String[] args) throws Exception {
+		File dir = new File(".");
+		Files.list(dir.toPath()).forEach(new Consumer<Path>() {
+			@Override
+			public void accept(Path a) {
+				if (Files.isRegularFile(a)) {
+					File file = a.toFile();
+					String filename = file.getName();
+					System.out.println(filename);
+					if (filename.endsWith("_op2.gml")) {
+						try {
+							filename = filename.substring(0, filename.length()-4);
+					        
+					        OsmDom osm = new OsmDom();
+				            CitygmlFile target = new CitygmlFile(file, osm);
+				            target.parse();
+					    	osm.export(new File(filename + "_0.osm"));
+				            
+				            // 各WAYのノードで、他のWAYと共有されたノードを探す
+				            OsmMargeWay.relationMarge(osm.relations, osm.ways);
+					    	osm.export(new File(filename + "_1.osm"));
+				            
+				            // メンバーが一つしかないRelation:building を削除する
+				            OsmMargeWay.relationGabegi(osm.relations, osm.ways);
+					    	osm.export(new File(filename + "_2.osm"));
+				            
+				            // Relation->member:role=port のoutlineを作成する
+				            OsmMargeWay.relationOutline(osm.relations, osm.ways);
+				            
+				            // `*.osm`に書き出す
+					    	File osmfile = new File(filename + ".osm");
+					    	osm.export(osmfile);
+						} catch (ParserConfigurationException e) {
+							e.printStackTrace();
+						} catch (SAXException e) {
+							e.printStackTrace();
+						} catch (IOException e) {
+							e.printStackTrace();
+						} catch (ParseException e) {
+							e.printStackTrace();
 						}
 					}
 				}
-			});
-            
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+			}
+		});
 	}
 
     public CitygmlFile(File file, OsmDom osm) throws ParserConfigurationException, SAXException, IOException, ParseException {
