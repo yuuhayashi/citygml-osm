@@ -22,6 +22,13 @@ public class OsmMargeWay {
 			if ((typeTag == null) || !typeTag.v.equals("building")) {
 				continue;
 			}
+			ElementMember polygonMember = null;
+			for (ElementMember member : relation.members) {
+				if (member.role.equals("outline")) {
+					polygonMember = member;
+					break;
+				}
+			}
 			for (ElementMember member : relation.members) {
 				if (!member.role.equals("part")) {
 					continue;
@@ -38,10 +45,16 @@ public class OsmMargeWay {
 						if (!relation.getIdstr().equals(v)) {
 							way.member = true;
 							destRelation.addMember(way, "part");
-							
-							// カレントリレーションからメンバーを削除
-							int i = relation.members.indexOf(member);
+							int i = relation.members.indexOf(member);	// カレントリレーションからメンバーを削除
 							relation.members.remove(i);
+
+							if (polygonMember != null) {
+								RelationMultipolygon polygon = (RelationMultipolygon)relations.get(Long.toString(polygonMember.ref));
+								destRelation.addMember(polygon, "outline");
+								i = relation.members.indexOf(polygonMember);	// カレントリレーションからメンバーを削除
+								relation.members.remove(i);
+							}
+							
 							return false;
 						}
 					}
