@@ -69,6 +69,7 @@ public class CityModelParser extends DefaultHandler {
     
     ElementBounds bounds = null;					// <gml:boundedBy/>
 	RelationBuilding building = null;				// <bldg:Building/>
+	String maxheight = "0";
 	RelationBuilding roof = null;					// <bldg:lod0RoofEdge/>
 	RelationMultipolygon multipolygon = null;		// <gml:Polygon/>
 	ElementMember member = null;					// <gml:Polygon/>
@@ -145,6 +146,7 @@ public class CityModelParser extends DefaultHandler {
 		}
 		
 		else if(qName.equals("bldg:lod0RoofEdge")){
+			maxheight = "0";
 			roof = new RelationBuilding();
 		}
 		else if(qName.equals("gml:Polygon")){
@@ -259,10 +261,12 @@ public class CityModelParser extends DefaultHandler {
 		
     	else if(qName.equals("bldg:lod0RoofEdge")){
 			if (roof != null) {
+				building.addTag("height", maxheight);
 				for (ElementMember mem : roof.members) {
 					building.members.add(mem);
 				}
 			}
+			maxheight = "0";
 			roof = null;
 		}
 		else if(qName.equals("gml:Polygon")){
@@ -335,6 +339,9 @@ public class CityModelParser extends DefaultHandler {
 					// height
 					if (st.hasMoreTokens()) {
 						height = st.nextToken();
+						if (Float.parseFloat(height) > Float.parseFloat(maxheight)) {
+							maxheight = height;
+						}
 						if (way != null) {
 							way.addNode(putNode(node.clone()));
 						}

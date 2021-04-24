@@ -378,6 +378,40 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
 		return result;
 	}
 
+	/**
+	 * 同じ位置WAYかどうか
+	 * @param obj
+	 * @return
+	 */
+	public boolean isSame(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		ElementWay other = (ElementWay) obj;
+		if (nds == null) {
+			if (other.nds != null) {
+				return false;
+			}
+		}
+		else if (nds.equals(other.nds)) {
+			return true;
+		}
+		else if (this.nds.size() == other.nds.size()) {
+			for (int i = 0; i < this.nds.size(); i++) {
+				OsmNd nda = this.nds.get(i);
+				OsmNd ndb = other.nds.get(i);
+				if (nda.id != ndb.id) {
+					return false;
+				}
+				if (!nda.point.equals(ndb.point)) {
+					return false;
+				}
+			}
+			return true;
+		}
+		return false;
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

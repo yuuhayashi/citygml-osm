@@ -136,6 +136,7 @@ public class OsmMargeWay {
 			HashMap<String, ElementWay> ways) 
 	{
 		while (partRemove(relations, ways));
+		while (outlineRemove(relations, ways));
 	}
 	
 	static boolean partRemove(
@@ -144,26 +145,41 @@ public class OsmMargeWay {
 	{
 		for (String rKey : relations.keySet()) {
 			ElementRelation relation = relations.get(rKey);
+			RelationMultipolygon polygon = null;
 			ElementWay outline = null;
 			for (ElementMember member : relation.members) {
 				if (member.role.equals("outline") && member.type.equals("relation")) {
-					RelationMultipolygon polygon = (RelationMultipolygon)relations.get(Long.toString(member.ref));
+					polygon = (RelationMultipolygon)relations.get(Long.toString(member.ref));
 					for (ElementMember plgMem : polygon.members) {
 						if (plgMem.role.equals("outer") && plgMem.type.equals("way")) {
-							outline = ways.get(Long.toString(plgMem.ref)).clone();
+							outline = ways.get(Long.toString(plgMem.ref));
 							break;
 						}
 					}
 				}
 			}
 			if (outline != null) {
-				outline.tags = new HashMap<String,ElementTag>();
 				for (ElementMember member : relation.members) {
 					if (member.role.equals("part") && member.type.equals("way")) {
-						ElementWay partWay = ways.get(Long.toString(member.ref)).clone();
-						partWay.tags = new HashMap<String,ElementTag>();
-						if (partWay.equals(outline)) {
+						ElementWay partWay = ways.get(Long.toString(member.ref));
+						if (partWay.isSame(outline)) {
+							ElementTag ele = partWay.tags.get("height");
+							if (ele != null) {
+								outline.addTag("height", ele.v);
+								polygon.addTag("height", ele.v);
+							}
+							if (partWay.id != outline.id) {
+								ways.remove(partWay.getIdstr());
+							}
 							relation.members.remove(member);
+							if (relation.members.isEmpty()) {
+								for (String key : relation.tags.keySet()) {
+									ElementTag tag = relation.tags.get(key);
+									polygon.tags.put(key, tag);
+									polygon.replaceTag(relation.tags.get("building:part"), new ElementTag("building", "yes"));
+								}
+								relations.remove(relation.getIdstr());
+							}
 							return true;
 						}
 					}
@@ -173,6 +189,51 @@ public class OsmMargeWay {
 		return false;
 	}
 	
+	/**
+	 * "outline"しかない"building:part"を削除する
+	 * @param relations
+	 * @param ways
+	 * @return
+	 */
+	static boolean outlineRemove(
+			HashMap<String, ElementRelation> relations, 
+			HashMap<String, ElementWay> ways) 
+	{
+		for (String rKey : relations.keySet()) {
+			ElementRelation relation = relations.get(rKey);
+			RelationMultipolygon polygon = null;
+			ElementWay outline = null;
+			if (relation.members.size() == 1) {
+				for (ElementMember member : relation.members) {
+					if (member.role.equals("outline") && member.type.equals("relation")) {
+						polygon = (RelationMultipolygon)relations.get(Long.toString(member.ref));
+						for (ElementMember plgMem : polygon.members) {
+							if (plgMem.role.equals("outer") && plgMem.type.equals("way")) {
+								outline = ways.get(Long.toString(plgMem.ref));
+								break;
+							}
+						}
+					}
+				}
+				if (outline != null) {
+					for (String key : relation.tags.keySet()) {
+						ElementTag tag = relation.tags.get(key);
+						if (tag.k.equals("type")) {
+						}
+						else if (tag.k.equals("building:part")) {
+						}
+						else {
+							polygon.addTag(key, tag.v);
+						}
+					}
+					relations.remove(relation.getIdstr());
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 	/**
 	 * - Relation->member:role=port のoutlineを作成する
 	 * - 
