@@ -290,6 +290,7 @@ public class CityModelParser extends DefaultHandler {
 		else if (qName.equals("gml:interior")){
 			if ((way != null) && (member != null)) {
 				if (multipolygon != null) {
+					way.tags.remove("height");
 					osm.addWay(way.clone());
 					multipolygon.addMember(way.clone(), "inner");
 				}
