@@ -66,6 +66,23 @@ public class ElementOsmapi implements Cloneable {
 	public void addTag(String k, String v) {
 		this.tags.put(k, new ElementTag(k, v));
 	}
+
+	/**
+     * sourceと一致するTAGを、destに置き換える
+     * @param source
+     * @param dest
+     */
+    public void replaceTag(ElementTag source, ElementTag dest) {
+		ElementTag tag = tags.get(source.k);
+		if (tag == null) {
+			return;
+		}
+		if (tag.v.equals(source.v)) {
+			tags.remove(source.k);
+			tags.put(dest.k, dest);
+			return;
+		}
+    }
 	
 	/**
      * <node id='-107065' action='modify' visible='true' lat='35.43464696576' lon='139.4102145808' />

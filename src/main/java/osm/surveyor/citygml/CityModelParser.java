@@ -150,6 +150,7 @@ public class CityModelParser extends DefaultHandler {
 		else if(qName.equals("gml:Polygon")){
 			if (roof != null) {
 				multipolygon = new RelationMultipolygon();
+				multipolygon.addTag("building", "yes");
 			}
 		}
 		else if(qName.equals("gml:exterior")){

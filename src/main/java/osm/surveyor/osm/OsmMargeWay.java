@@ -78,9 +78,6 @@ public class OsmMargeWay {
 			}
 			if (relation.members.size() < 2) {
 				for (ElementMember member : relation.members) {
-					if (!member.role.equals("part")) {
-						break;
-					}
 					ArrayList<ElementTag> tags = new ArrayList<>();
 					for (String k : relation.tags.keySet()) {
 						ElementTag tag = relation.tags.get(k);
@@ -90,14 +87,73 @@ public class OsmMargeWay {
 					}
 					
 					String memberRef = Long.toString(member.ref);
-					ElementWay way = ways.get(memberRef);
-					way.member = true;
-					for (ElementTag tag : tags) {
-						way.addTag(tag.k, tag.v);
+					if (member.role.equals("part")) {
+						ElementWay way = ways.get(memberRef);
+						way.member = true;
+						for (ElementTag tag : tags) {
+							way.addTag(tag.k, tag.v);
+						}
+						way.replaceTag(new ElementTag("building:part", "yes"), new ElementTag("building", "yes"));
+						relations.remove(rKey);
+						return true;
 					}
-					way.replaceTag(new ElementTag("building:part", "yes"), new ElementTag("building", "yes"));
-					relations.remove(rKey);
-					return true;
+					if (member.role.equals("outline")) {
+						RelationMultipolygon polygon = (RelationMultipolygon)relations.get(memberRef);
+						for (ElementTag tag : tags) {
+							polygon.addTag(tag.k, tag.v);
+						}
+						polygon.addTag("building", "yes");
+						polygon.replaceTag(new ElementTag("building:part", "yes"), new ElementTag("building", "yes"));
+						relations.remove(rKey);
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * "outline"と"part"が重複している`part` を削除する
+	 * @param relations
+	 * @param ways
+	 */
+	public static void partGabegi(
+			HashMap<String, ElementRelation> relations, 
+			HashMap<String, ElementWay> ways) 
+	{
+		while (partRemove(relations, ways));
+	}
+	
+	static boolean partRemove(
+			HashMap<String, ElementRelation> relations, 
+			HashMap<String, ElementWay> ways) 
+	{
+		for (String rKey : relations.keySet()) {
+			ElementRelation relation = relations.get(rKey);
+			ElementWay outline = null;
+			for (ElementMember member : relation.members) {
+				if (member.role.equals("outline") && member.type.equals("relation")) {
+					RelationMultipolygon polygon = (RelationMultipolygon)relations.get(Long.toString(member.ref));
+					for (ElementMember plgMem : polygon.members) {
+						if (plgMem.role.equals("outer") && plgMem.type.equals("way")) {
+							outline = ways.get(Long.toString(plgMem.ref)).clone();
+							break;
+						}
+					}
+				}
+			}
+			if (outline != null) {
+				outline.tags = new HashMap<String,ElementTag>();
+				for (ElementMember member : relation.members) {
+					if (member.role.equals("part") && member.type.equals("way")) {
+						ElementWay partWay = ways.get(Long.toString(member.ref)).clone();
+						partWay.tags = new HashMap<String,ElementTag>();
+						if (partWay.equals(outline)) {
+							relation.members.remove(member);
+							return true;
+						}
+					}
 				}
 			}
 		}
@@ -145,6 +201,4 @@ public class OsmMargeWay {
 			}
 		}
 	}
-	
-	
 }

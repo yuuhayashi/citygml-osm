@@ -155,23 +155,6 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
     }
     
     /**
-     * sourceと一致するTAGを、destに置き換える
-     * @param source
-     * @param dest
-     */
-    public void replaceTag(ElementTag source, ElementTag dest) {
-		ElementTag tag = tags.get(source.k);
-		if (tag == null) {
-			return;
-		}
-		if (tag.v.equals(source.v)) {
-			tags.remove(source.k);
-			tags.put(dest.k, dest);
-			return;
-		}
-    }
-    
-    /**
      * 線分(TwoPoint)リスト
      */
     public ArrayList<TwoPoint> getPointList() {
