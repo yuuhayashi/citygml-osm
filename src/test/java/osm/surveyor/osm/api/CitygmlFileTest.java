@@ -42,9 +42,18 @@ public class CitygmlFileTest {
 	}
 
 	@Test
-	public void test53392547_0() {
-		
+	public void test53392547() {
 		File file = new File("53392547_bldg_6697_op2.gml");
+		test(file);
+	}
+
+	@Test
+	public void test53392588() {
+		File file = new File("53392588_bldg_6697_op2.gml");
+		test(file);
+	}
+
+	public void test(File file) {
 		String filename = file.getName();
 		System.out.println(filename);
 		if (filename.endsWith("_op2.gml")) {
@@ -76,5 +85,4 @@ public class CitygmlFileTest {
 			}
 		}
 	}
-
 }
