@@ -50,6 +50,12 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
 		return copy;
 	}
 	
+	public ElementWay copy() {
+		ElementWay copy = this.clone();
+		copy.id = ElementWay.getNewId();
+		return copy;
+	}
+
 	public void addNode(OsmNd node) {
 		this.nds.add(node);
 	}

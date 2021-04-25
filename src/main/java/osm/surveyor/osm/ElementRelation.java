@@ -8,8 +8,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import osm.surveyor.citygml.CitygmlFile;
-
 public class ElementRelation extends ElementOsmapi implements Cloneable {
 	public ArrayList<ElementMember> members;
 	
@@ -86,8 +84,7 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 		ElementWay aWay = null;
 		for (ElementWay way : memberway) {
 			if (aWay == null) {
-				aWay = way.clone();
-				aWay.id = CitygmlFile.getId();
+				aWay = way.copy();
 			}
 			else {
 				aWay.marge(way.clone());

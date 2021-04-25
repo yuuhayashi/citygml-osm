@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <bounds minlat='35.4342395' minlon='139.409506' maxlat='35.4349061' maxlon='139.4111851' origin='CGImap 0.8.3 (3075162 spike-08.openstreetmap.org)' />
+  <node id='-1216397' visible='true' lat='35.43471675598' lon='139.41023747777' />
+  <node id='-1216398' visible='true' lat='35.4345837922' lon='139.41023496714' />
+  <node id='-1216399' visible='true' lat='35.43458191708' lon='139.41039606528' />
+  <node id='-1216400' visible='true' lat='35.43471692645' lon='139.41039773903' />
+  <node id='-1216401' visible='true' lat='35.43463953474' lon='139.41026049178' />
+  <node id='-1216402' visible='true' lat='35.43460544145' lon='139.41026132866' />
+  <node id='-1216403' visible='true' lat='35.43460885079' lon='139.41031154106' />
+  <node id='-1216404' visible='true' lat='35.43468624252' lon='139.4103575691' />
+  <node id='-1216405' visible='true' lat='35.43465964977' lon='139.41035673223' />
+  <node id='-1216406' visible='true' lat='35.4346610135' lon='139.41038016469' />
+  <node id='-1216407' visible='true' lat='35.43469033371' lon='139.41037932781' />
+  <node id='-1216408' visible='true' lat='35.43471714086' lon='139.41032533794' />
+  <node id='-1216409' visible='true' lat='35.43458252277' lon='139.41032739591' />
+  <node id='-1216410' visible='true' lat='35.4346460197' lon='139.41039685998' />
+  <node id='-1216411' visible='true' lat='35.43471684578' lon='139.41037932385' />
+  <node id='-1216412' visible='true' lat='35.43468487838' lon='139.41032997696' />
+  <way id='-837653' visible='true'>
+    <nd ref='-1216397' />
+    <nd ref='-1216398' />
+    <nd ref='-1216409' />
+    <nd ref='-1216399' />
+    <nd ref='-1216410' />
+    <nd ref='-1216400' />
+    <nd ref='-1216411' />
+    <nd ref='-1216408' />
+    <nd ref='-1216397' />
+  </way>
+  <way id='-837654' visible='true'>
+    <nd ref='-1216401' />
+    <nd ref='-1216402' />
+    <nd ref='-1216403' />
+    <nd ref='-1216401' />
+  </way>
+  <way id='-837655' visible='true'>
+    <nd ref='-1216404' />
+    <nd ref='-1216405' />
+    <nd ref='-1216406' />
+    <nd ref='-1216407' />
+    <nd ref='-1216404' />
+  </way>
+  <way id='-837656' visible='true'>
+    <nd ref='-1216408' />
+    <nd ref='-1216412' />
+    <nd ref='-1216409' />
+    <nd ref='-1216398' />
+    <nd ref='-1216397' />
+    <nd ref='-1216408' />
+    <tag k='buildin:part' v='yes' />
+  </way>
+  <way id='-837657' visible='true'>
+    <nd ref='-1216408' />
+    <nd ref='-1216411' />
+    <nd ref='-1216407' />
+    <nd ref='-1216404' />
+    <nd ref='-1216412' />
+    <nd ref='-1216408' />
+    <tag k='buildin:part' v='yes' />
+  </way>
+  <way id='-837658' visible='true'>
+    <nd ref='-1216412' />
+    <nd ref='-1216404' />
+    <nd ref='-1216405' />
+    <nd ref='-1216406' />
+    <nd ref='-1216407' />
+    <nd ref='-1216411' />
+    <nd ref='-1216400' />
+    <nd ref='-1216399' />
+    <nd ref='-1216409' />
+    <nd ref='-1216412' />
+    <tag k='buildin:part' v='yes' />
+  </way>
+  <relation id='-769232' visible='true'>
+    <member type='way' ref='-837658' role='part' />
+    <member type='way' ref='-837656' role='part' />
+    <member type='way' ref='-837657' role='part' />
+    <member type='relation' ref='-769233' role='outline' />
+    <tag k='addr:full' v='東京都大田区大森西三丁目' />
+    <tag k='addr:ref' v='13111006003' />
+    <tag k='building' v='yes' />
+    <tag k='height' v='6.038' />
+    <tag k='source' v='MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_4ebf61e7-bbc4-493c-aa9c-5afc8f7b975d' />
+    <tag k='type' v='building' />
+  </relation>
+  <relation id='-769233' visible='true'>
+    <member type='way' ref='-837655' role='inner' />
+    <member type='way' ref='-837654' role='inner' />
+    <member type='way' ref='-837653' role='outer' />
+    <tag k='building' v='yes' />
+    <tag k='source' v='MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697' />
+    <tag k='type' v='multipolygon' />
+  </relation>
+</osm>

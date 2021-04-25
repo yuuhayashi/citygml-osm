@@ -238,7 +238,7 @@ public class CityModelParser extends DefaultHandler {
 						building.addTag("addr:full", localityName);
 						localityName = null;
 					}
-					osm.addRelations(building.clone());
+					osm.addRelations(building);
 				}
 			}
 			building = null;
@@ -260,7 +260,7 @@ public class CityModelParser extends DefaultHandler {
 		}
 		
     	else if(qName.equals("bldg:lod0RoofEdge")){
-			if (roof != null) {
+			if ((roof != null) && (building != null)) {
 				building.addTag("height", maxheight);
 				for (ElementMember mem : roof.members) {
 					building.members.add(mem);
@@ -270,22 +270,21 @@ public class CityModelParser extends DefaultHandler {
 			roof = null;
 		}
 		else if(qName.equals("gml:Polygon")){
-			if ((multipolygon != null) && (building != null)) {
+			if ((multipolygon != null) && (roof != null)) {
 				if (!multipolygon.members.isEmpty()) {
 					updateSourceTag(multipolygon);
 					osm.addRelations(multipolygon);
-					roof.addMember(multipolygon.clone(), "outline");
+					roof.addMember(multipolygon, "outline");
 				}
 			}
 			multipolygon = null;
 		}
 		else if (qName.equals("gml:exterior")){
 			if ((way != null) && (member != null)) {
-				way.member = true;
 				way.addTag("building:part", "yes");
 				if (roof != null) {
-					osm.addWay(way.clone());
-					roof.addMember(way.clone(), "part");
+					osm.addWay(way);
+					roof.addMember(way, "part");
 				}
 			}
 			way = null;
@@ -295,8 +294,8 @@ public class CityModelParser extends DefaultHandler {
 			if ((way != null) && (member != null)) {
 				if (multipolygon != null) {
 					way.tags.remove("height");
-					osm.addWay(way.clone());
-					multipolygon.addMember(way.clone(), "inner");
+					osm.addWay(way);
+					multipolygon.addMember(way, "inner");
 				}
 			}
 			way = null;

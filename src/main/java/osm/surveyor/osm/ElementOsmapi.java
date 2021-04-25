@@ -18,6 +18,8 @@ import osm.surveyor.citygml.CitygmlFile;
  * 
  */
 public class ElementOsmapi implements Cloneable {
+    public static long idno = 0;
+	
 	public long id = 0;
 	public String action = null;
 	public String timestamp = null;
@@ -30,10 +32,14 @@ public class ElementOsmapi implements Cloneable {
 	public HashMap<String, ElementTag> tags;
 
 	public ElementOsmapi() {
-		this.id = CitygmlFile.getId();
+		this.id = ElementOsmapi.getNewId();
 		tags = new HashMap<>();
 	}
 	
+    public static long getNewId() {
+    	return --ElementOsmapi.idno;
+    }
+    
 	public String getIdstr() {
 		return Long.toString(id);
 	}

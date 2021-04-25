@@ -88,7 +88,7 @@ public class OsmDom {
 				ElementWay sWay = ways.get(Long.toString(menber.ref));
 				if (sWay != null) {
 					sWay.member = true;
-					ways.put(Long.toString(menber.ref), sWay);
+					//ways.put(Long.toString(menber.ref), sWay);
 				}
 			}
 		}
@@ -106,14 +106,7 @@ public class OsmDom {
         	osm.appendChild(ways.get(key).toNode(document));
     	}
     	for (String key : relations.keySet()) {
-    		ElementRelation relation = relations.get(key);
-    		for (ElementMember member : relation.members) {
-    			if (ways.containsKey(Long.toString(member.ref))) {
-        			ElementWay way = ways.get(Long.toString(member.ref));
-    				osm.appendChild(way.toNode(document));
-    			}
-    		}
-        	osm.appendChild(relation.toNode(document));
+        	osm.appendChild(relations.get(key).toNode(document));
     	}
     	document.appendChild(osm);
     	
