@@ -39,6 +39,11 @@ public class CitygmlFileTest {
 	}
 
 	@Test
+	public void testSample() {
+		test(Paths.get(".","sample_bldg_6697_op2.gml"));
+	}
+
+	@Test
 	public void test53392547() {
 		test(Paths.get(".","53392547_bldg_6697_op2.gml"));
 	}

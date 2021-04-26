@@ -11,7 +11,6 @@ import osm.surveyor.osm.ElementBounds;
 import osm.surveyor.osm.ElementMember;
 import osm.surveyor.osm.ElementNode;
 import osm.surveyor.osm.ElementOsmapi;
-import osm.surveyor.osm.ElementTag;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 import osm.surveyor.osm.RelationMultipolygon;
@@ -69,6 +68,7 @@ public class CityModelParser extends DefaultHandler {
     
     ElementBounds bounds = null;					// <gml:boundedBy/>
 	RelationBuilding building = null;				// <bldg:Building/>
+	String buildingId = null;						// <bldg:Building gml:id="buildingId" />
 	String maxheight = "0";
 	RelationBuilding roof = null;					// <bldg:lod0RoofEdge/>
 	RelationMultipolygon multipolygon = null;		// <gml:Polygon/>
@@ -122,11 +122,11 @@ public class CityModelParser extends DefaultHandler {
 		else if(qName.equals("bldg:Building")){
 			building = new RelationBuilding();
 			building.addTag("type", "building");
-			building.addTag("building:part", "yes");
+			building.addTag("building", "yes");
 			for (int i = 0; i < atts.getLength(); i++) {
 				String aname = atts.getQName(i);
 				if (aname.equals("gml:id")) {
-					building.addTag("source_ref", atts.getValue(i));
+					buildingId = atts.getValue(i);
 				}
 			}
 		}
@@ -242,6 +242,7 @@ public class CityModelParser extends DefaultHandler {
 				}
 			}
 			building = null;
+			buildingId = null;
 		}
     	else if(qName.equals("gen:stringAttribute")){
 			// <gen:stringAttribute name="13_区市町村コード_大字・町コード_町・丁目コード">
@@ -281,6 +282,7 @@ public class CityModelParser extends DefaultHandler {
 		}
 		else if (qName.equals("gml:exterior")){
 			if ((way != null) && (member != null)) {
+				updateSourceTag(way);
 				way.addTag("building:part", "yes");
 				if (roof != null) {
 					osm.addWay(way);
@@ -292,6 +294,7 @@ public class CityModelParser extends DefaultHandler {
 		}
 		else if (qName.equals("gml:interior")){
 			if ((way != null) && (member != null)) {
+				updateSourceTag(way);
 				if (multipolygon != null) {
 					way.tags.remove("height");
 					osm.addWay(way);
@@ -384,10 +387,8 @@ public class CityModelParser extends DefaultHandler {
     	if (srsName != null) {
     		src += "; "+ srsName;
     	}
-    	ElementTag tag_ref = poi.tags.get("source_ref");
-    	if (tag_ref != null) {
-    		src += " "+ tag_ref.v;
-    		poi.tags.remove("source_ref");
+    	if (buildingId != null) {
+    		src += " "+ buildingId;
     	}
 		poi.addTag("source", src);
     	return src;
