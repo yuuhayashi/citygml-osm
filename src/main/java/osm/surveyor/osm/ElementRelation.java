@@ -94,7 +94,7 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 			return null;
 		}
 		aWay.member = true;
-		aWay.replaceTag(new ElementTag("building:part", "yes"), new ElementTag("building", "yes"));
+		aWay.replaceTag("building:part", new ElementTag("building", "yes"));
 		for (String k : aWay.tags.keySet()) {
 			ElementTag tag = aWay.tags.get(k);
 			if (tag.k.equals("height")) {

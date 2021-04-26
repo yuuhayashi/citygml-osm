@@ -267,6 +267,7 @@ public class OsmMargeWay {
 			// OUTLINEをWAYリストに登録
 			aWay.member = true;
 			aWay.tags = new HashMap<String,ElementTag>();
+			copyTag(relation.tags, aWay);
 			ways.put(Long.toString(aWay.id), aWay);
 			
 			// "outline"が存在する場合は、マルチポリゴンにaWayを追加する
@@ -275,6 +276,7 @@ public class OsmMargeWay {
 				if (mem.type.equals("relation")) {
 					RelationMultipolygon multi = (RelationMultipolygon)relations.get(Long.toString(mem.ref));
 					if (multi != null) {
+						aWay.replaceTag("building:part",new ElementTag("building", aWay.tags.get("building").v));
 						multi.addMember(aWay, "outer");
 						done = true;
 					}
@@ -282,7 +284,6 @@ public class OsmMargeWay {
 			}
 			if (!done) {
 				// "outline"が存在しない場合は、WAYをMEMBERとして追加する
-				aWay.addTag("building:part", "yes");
 				relation.addMember(aWay, "outline");
 			}
 		}

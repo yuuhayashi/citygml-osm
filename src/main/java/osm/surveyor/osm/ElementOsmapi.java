@@ -76,15 +76,14 @@ public class ElementOsmapi implements Cloneable {
      * @param source
      * @param dest
      */
-    public void replaceTag(ElementTag source, ElementTag dest) {
-		ElementTag tag = tags.get(source.k);
+    public void replaceTag(String key, ElementTag dest) {
+		ElementTag tag = tags.get(key);
 		if (tag == null) {
 			return;
 		}
-		if (tag.v.equals(source.v)) {
-			tags.remove(source.k);
+		tags.remove(key);
+		if (dest != null) {
 			tags.put(dest.k, dest);
-			return;
 		}
     }
 	
