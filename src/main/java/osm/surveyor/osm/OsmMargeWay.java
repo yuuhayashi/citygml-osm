@@ -29,6 +29,7 @@ public class OsmMargeWay {
 					break;
 				}
 			}
+			String maxheight = "0";
 			for (ElementMember member : relation.members) {
 				if (!member.role.equals("part")) {
 					continue;
@@ -44,6 +45,11 @@ public class OsmMargeWay {
 						ElementRelation destRelation = relations.get(v);
 						if (!relation.getIdstr().equals(v)) {
 							way.member = true;
+							ElementTag height = way.tags.get("height");
+							if (Double.parseDouble(height.v) > Double.parseDouble(maxheight)) {
+								maxheight = height.v;
+								destRelation.addTag("height", maxheight);
+							}
 							destRelation.addMember(way, "part");
 							int i = relation.members.indexOf(member);	// カレントリレーションからメンバーを削除
 							relation.members.remove(i);
