@@ -1,6 +1,5 @@
 package osm.surveyor.osm;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class OsmMargeWay {
@@ -97,32 +96,17 @@ public class OsmMargeWay {
 			}
 			if (relation.members.size() < 2) {
 				for (ElementMember member : relation.members) {
-					ArrayList<ElementTag> tags = new ArrayList<>();
-					for (String k : relation.tags.keySet()) {
-						ElementTag tag = relation.tags.get(k);
-						if (!tag.k.equals("type")) {
-							tags.add(tag);
-						}
-					}
-					
 					String memberRef = Long.toString(member.ref);
 					if (member.role.equals("part")) {
 						ElementWay way = ways.get(memberRef);
 						way.member = true;
-						for (ElementTag tag : tags) {
-							way.addTag(tag.k, tag.v);
-						}
-						way.replaceTag(new ElementTag("building:part", "yes"), new ElementTag("building", "yes"));
+						copyTag(relation.tags, way);
 						relations.remove(rKey);
 						return true;
 					}
 					if (member.role.equals("outline")) {
 						RelationMultipolygon polygon = (RelationMultipolygon)relations.get(memberRef);
-						for (ElementTag tag : tags) {
-							polygon.addTag(tag.k, tag.v);
-						}
-						polygon.addTag("building", "yes");
-						polygon.replaceTag(new ElementTag("building:part", "yes"), new ElementTag("building", "yes"));
+						copyTag(relation.tags, polygon);
 						relations.remove(rKey);
 						return true;
 					}
@@ -179,11 +163,7 @@ public class OsmMargeWay {
 							}
 							relation.members.remove(member);
 							if (relation.members.isEmpty()) {
-								for (String key : relation.tags.keySet()) {
-									ElementTag tag = relation.tags.get(key);
-									polygon.tags.put(key, tag);
-									polygon.replaceTag(relation.tags.get("building:part"), new ElementTag("building", "yes"));
-								}
+								copyTag(relation.tags, polygon);
 								relations.remove(relation.getIdstr());
 							}
 							return true;
@@ -222,22 +202,49 @@ public class OsmMargeWay {
 					}
 				}
 				if (outline != null) {
-					for (String key : relation.tags.keySet()) {
-						ElementTag tag = relation.tags.get(key);
-						if (tag.k.equals("type")) {
-						}
-						else if (tag.k.equals("building:part")) {
-						}
-						else {
-							polygon.addTag(key, tag.v);
-						}
-					}
+					copyTag(relation.tags, polygon);
 					relations.remove(relation.getIdstr());
 					return true;
 				}
 			}
 		}
 		return false;
+	}
+	
+	/**
+	 * タグをdestへ移す
+	 * 	- "type"はコピーしない
+	 *  - コピー先に"building:part=*"が存在すれば"building=*"とする
+	 * 	- コピー先とコピー元に"bilding"が存在しなければ"building=yes"を補完する
+	 * 	- "source"はコピーしない
+	 * @param tags
+	 * @param dest
+	 */
+	static void copyTag(HashMap<String, ElementTag> tags, ElementOsmapi dest) {
+		if (tags == null) {
+			return;
+		}
+		ElementTag buildingPartTag = dest.tags.get("building:part");
+		if (buildingPartTag != null) {
+			dest.tags.remove("building:part");
+			dest.addTag("building", buildingPartTag.v);
+		}
+		for (String key : tags.keySet()) {
+			ElementTag tag = tags.get(key);
+			if (tag.k.equals("type")) {
+			}
+			else if (tag.k.equals("building:part")) {
+			}
+			else if (tag.k.equals("source")) {
+			}
+			else {
+				dest.addTag(key, tag.v);
+			}
+		}
+		ElementTag buildingTag = dest.tags.get("building");
+		if (buildingTag == null) {
+			dest.addTag("building", "yes");
+		}
 	}
 
 	/**
