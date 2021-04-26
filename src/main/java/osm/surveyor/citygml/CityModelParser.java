@@ -231,6 +231,7 @@ public class CityModelParser extends DefaultHandler {
 		else if(qName.equals("bldg:Building")){
 			if (building != null) {
 				if (!building.members.isEmpty()) {
+					buildingId = null;
 					updateSourceTag(building);
 					if (localityName != null) {
 						building.addTag("addr:full", localityName);
