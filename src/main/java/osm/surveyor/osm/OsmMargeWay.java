@@ -271,18 +271,35 @@ public class OsmMargeWay {
 			ways.put(Long.toString(aWay.id), aWay);
 			
 			// "outline"が存在する場合は、マルチポリゴンにaWayを追加する
-			boolean done = false;
+			String polygonRef = null;
+			String maxheight = "0";
 			for (ElementMember mem : relation.members) {
 				if (mem.type.equals("relation")) {
 					RelationMultipolygon multi = (RelationMultipolygon)relations.get(Long.toString(mem.ref));
 					if (multi != null) {
-						aWay.replaceTag("building:part",new ElementTag("building", aWay.tags.get("building").v));
-						multi.addMember(aWay, "outer");
-						done = true;
+						polygonRef = Long.toString(mem.ref);
+					}
+				}
+				if (mem.type.equals("way")) {
+					ElementWay way = ways.get(Long.toString(mem.ref));
+					ElementTag ele = way.tags.get("height");
+					if (ele != null) {
+						if (Double.parseDouble(maxheight) < Double.parseDouble(ele.v)) {
+							maxheight = ele.v;
+						}
 					}
 				}
 			}
-			if (!done) {
+			aWay.addTag("height", maxheight);
+			if (polygonRef != null) {
+				// "outline"が存在する場合は、マルチポリゴンにaWayを追加する
+				RelationMultipolygon multi = (RelationMultipolygon)relations.get(polygonRef);
+				if (multi != null) {
+					aWay.replaceTag("building:part",new ElementTag("building", aWay.tags.get("building").v));
+					multi.addMember(aWay, "outer");
+				}
+			}
+			else {
 				// "outline"が存在しない場合は、WAYをMEMBERとして追加する
 				relation.addMember(aWay, "outline");
 			}
