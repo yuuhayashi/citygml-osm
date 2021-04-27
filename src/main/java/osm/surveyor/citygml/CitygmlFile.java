@@ -55,22 +55,22 @@ public class CitygmlFile extends File {
 			        OsmDom osm = new OsmDom();
 		            CitygmlFile target = new CitygmlFile(file, osm);
 		            target.parse();
-			    	//osm.export(new File(filename + "_0.osm"));
+			    	osm.export(new File(filename + "_0.osm"));
 		            
 		            // 各WAYのノードで、他のWAYと共有されたノードを探す
-		            OsmMargeWay.relationMarge(osm.relations, osm.ways);
+		            OsmMargeWay.relationMarge(osm);
 			    	//osm.export(new File(filename + "_1.osm"));
 		            
 		            // メンバーが一つしかないRelation:building を削除する
-		            OsmMargeWay.relationGabegi(osm.relations, osm.ways);
+		            OsmMargeWay.relationGabegi(osm);
 			    	//osm.export(new File(filename + "_2.osm"));
 		            
 		            // Relation->member:role=port のoutlineを作成する
-		            OsmMargeWay.relationOutline(osm.relations, osm.ways);
+		            OsmMargeWay.relationOutline(osm);
 			    	//osm.export(new File(filename + "_3.osm"));
 
 		            // "outline"と"part"が重複しているPART を削除する
-		            OsmMargeWay.partGabegi(osm.relations, osm.ways);
+		            OsmMargeWay.partGabegi(osm);
 			    	osm.export(new File(filename + ".osm"));
 				} catch (ParserConfigurationException e) {
 					e.printStackTrace();

@@ -33,6 +33,8 @@ public class OsmDom {
 
     Document doc;
     ElementBounds bounds = new ElementBounds();
+	public String source = null;
+    public String srsName = null;
     public HashMap<String, ElementNode> nodes = new HashMap<>();	// k= node.id
     public HashMap<String, ElementWay> ways = new HashMap<>();		// k= way.id
     public HashMap<String, ElementRelation> relations = new HashMap<>();	// k= relation.id
@@ -44,7 +46,6 @@ public class OsmDom {
     public ElementBounds getBounds() {
 		return bounds;
 	}
-
 
 	public void addNode(ElementNode node) {
     	this.nodes.put(Long.toString(node.id), node);
@@ -88,7 +89,6 @@ public class OsmDom {
 				ElementWay sWay = ways.get(Long.toString(menber.ref));
 				if (sWay != null) {
 					sWay.member = true;
-					//ways.put(Long.toString(menber.ref), sWay);
 				}
 			}
 		}
@@ -199,5 +199,21 @@ public class OsmDom {
 			    relations.put(relation.getIdstr(), relation);
 			}
 	    }
+    }
+    
+    /**
+     * 
+     * @param poi
+     * @return
+     */
+    public String getSource() {
+    	String src = "";
+    	if (this.source != null) {
+    		src += this.source;
+    	}
+    	if (this.srsName != null) {
+    		src += "; "+ this.srsName;
+    	}
+    	return src;
     }
 }

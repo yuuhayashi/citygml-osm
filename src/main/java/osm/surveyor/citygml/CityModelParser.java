@@ -10,7 +10,6 @@ import org.xml.sax.helpers.DefaultHandler;
 import osm.surveyor.osm.ElementBounds;
 import osm.surveyor.osm.ElementMember;
 import osm.surveyor.osm.ElementNode;
-import osm.surveyor.osm.ElementOsmapi;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 import osm.surveyor.osm.RelationMultipolygon;
@@ -33,6 +32,10 @@ import osm.surveyor.osm.RelationBuilding;
  *         <gml:posList>35.541657275471835 139.7156383865409 14.072000000000001 35.542252321638614 139.71535363948732 14.072000000000001 35.54210367440277 139.7148860223014 14.072000000000001 35.54206164434519 139.71490626649856 14.072000000000001 35.5420440155531 139.7148536858433 14.072000000000001 35.541981356256336 139.7146575788015 14.072000000000001 35.54142914946131 139.71491844541285 14.072000000000001 35.54153100551663 139.71523889596378 14.072000000000001 35.541657275471835 139.7156383865409 14.072000000000001
  *         </gml:posList>
  *       </bldg:lod0RoofEdge>
+ *       <gen:stringAttribute name="13_区市町村コード_大字・町コード_町・丁目コード">
+ * 	       <gen:value>13111058003</gen:value>
+ *       </gen:stringAttribute>
+ *       <xAL:LocalityName Type="Town"></xAL:LocalityName>
  *     </bldg:Building>
  *   <core:cityObjectMember/>
  * </core:CityModel>
@@ -48,6 +51,7 @@ public class CityModelParser extends DefaultHandler {
     public CityModelParser(OsmDom osm) {
         super();
         this.osm = osm;
+        this.osm.source = "MLIT_PLATEAU";
     }
     
 	/**
@@ -74,18 +78,6 @@ public class CityModelParser extends DefaultHandler {
 	ElementMember member = null;					// <gml:Polygon/>
     ElementWay way = null;							// <gml:LinearRing/>
 	
-	/*
-	 * <gml:Envelope srsName="http://www.opengis.net/def/crs/EPSG/0/6697">
-	 */
-	String srsName = null;
-	String source = "MLIT_PLATEAU";
-
-    /*
-     * addr:full = *
-     */
-    String localityNameType = null;
-    public String localityName = null;
-    
     /*
      * 全国地方公共団体コード
      * addr:ref = 13111058003
@@ -109,8 +101,8 @@ public class CityModelParser extends DefaultHandler {
 		}
 		else if(qName.equals("gml:Envelope")){
 			// <gml:Envelope srsName="http://www.opengis.net/def/crs/EPSG/0/6697">
-			srsName = getAttributes("srsName", atts);
-		}		
+			osm.srsName = getAttributes("srsName", atts);
+		}
 		else if(qName.equals("gml:lowerCorner")){
 			outSb = new StringBuffer();
 		}
@@ -174,7 +166,7 @@ public class CityModelParser extends DefaultHandler {
 
 		else if(qName.equals("xAL:LocalityName")){
 			// <xAL:LocalityName Type="Town"></xAL:LocalityName>
-			localityNameType = getAttributes("Type", atts);
+			//localityNameType = getAttributes("Type", atts);
 	    	outSb = new StringBuffer();
 		}
 		else {
@@ -195,11 +187,6 @@ public class CityModelParser extends DefaultHandler {
 			osm.setBounds(bounds);
 		}
 		else if(qName.equals("gml:Envelope")){
-			// <gml:Envelope srsName="http://www.opengis.net/def/crs/EPSG/0/6697">
-			if ((building != null) && (addr_ref != null)) {
-				building.addTag("addr:ref", addr_ref);
-				addr_ref = null;
-			}
 		}		
 		else if(qName.equals("gml:lowerCorner")){
 			// <gml:lowerCorner>35.53956274455546 139.701140502832 1.627</gml:lowerCorner>
@@ -230,25 +217,29 @@ public class CityModelParser extends DefaultHandler {
 
 		else if(qName.equals("bldg:Building")){
 			if (building != null) {
-				if (!building.members.isEmpty()) {
-					buildingId = null;
-					updateSourceTag(building);
-					if (localityName != null) {
-						building.addTag("addr:full", localityName);
-						localityName = null;
+				for (ElementMember mem : building.members) {
+					if (mem.role.equals("part") && mem.type.equals("way")) {
+						ElementWay way = osm.ways.get(Long.toString(mem.ref));
+						way.addTag("addr:ref", building.tags.get("addr:ref").v);
+						way.addTag("addr:full", building.tags.get("addr:full").v);
 					}
-					osm.addRelations(building);
 				}
+				building.tags.remove("addr:ref");
+				building.tags.remove("addr:full");
+				building.addTag("source", getSourceStr());
+				osm.addRelations(building);
 			}
 			building = null;
 			buildingId = null;
 		}
     	else if(qName.equals("gen:stringAttribute")){
 			// <gen:stringAttribute name="13_区市町村コード_大字・町コード_町・丁目コード">
-			if ((building != null) && (addr_ref != null)) {
-				building.addTag("addr:ref", addr_ref);
-				addr_ref = null;
+			if (addr_ref != null) {
+				if (building != null) {
+					building.addTag("addr:ref", addr_ref);
+				}
 			}
+			addr_ref = null;
 		}
     	else if(qName.equals("gen:value")){
 			// <gen:stringAttribute name="13_区市町村コード_大字・町コード_町・丁目コード">
@@ -270,7 +261,7 @@ public class CityModelParser extends DefaultHandler {
 		else if(qName.equals("gml:Polygon")){
 			if ((multipolygon != null) && (roof != null)) {
 				if (!multipolygon.members.isEmpty()) {
-					updateSourceTag(multipolygon);
+					multipolygon.addTag("source", getSourceStr(buildingId));
 					osm.addRelations(multipolygon);
 					roof.addMember(multipolygon, "outline");
 				}
@@ -279,7 +270,7 @@ public class CityModelParser extends DefaultHandler {
 		}
 		else if (qName.equals("gml:exterior")){
 			if ((way != null) && (member != null)) {
-				updateSourceTag(way);
+				way.addTag("source", getSourceStr(buildingId));
 				way.addTag("building:part", "yes");
 				if (roof != null) {
 					osm.addWay(way);
@@ -291,7 +282,7 @@ public class CityModelParser extends DefaultHandler {
 		}
 		else if (qName.equals("gml:interior")){
 			if ((way != null) && (member != null)) {
-				updateSourceTag(way);
+				way.addTag("source", getSourceStr(buildingId));
 				if (multipolygon != null) {
 					way.tags.remove("height");
 					osm.addWay(way);
@@ -356,7 +347,11 @@ public class CityModelParser extends DefaultHandler {
 
 		else if(qName.equals("xAL:LocalityName")){
 			// <xAL:LocalityName>東京都大田区南六郷三丁目</xAL:LocalityName>
-			localityName = outSb.toString();
+			if (outSb != null) {
+				if (building != null) {
+					building.addTag("addr:full", outSb.toString());
+				}
+			}
 			outSb = null;
 		}
 
@@ -373,21 +368,16 @@ public class CityModelParser extends DefaultHandler {
      * @param poi
      * @return
      */
-    String updateSourceTag(ElementOsmapi poi) {
-    	String src = "";
-    	if (source != null) {
-    		src += source;
-    	}
-    	if (srsName != null) {
-    		src += "; "+ srsName;
-    	}
+    String getSourceStr(String buildingId) {
+    	String src = osm.getSource();
     	if (buildingId != null) {
-    		src += " "+ buildingId;
+    		src += "; "+ buildingId;
     	}
-		poi.addTag("source", src);
     	return src;
     }
-
+    String getSourceStr() {
+    	return osm.getSource();
+    }
 
     /**
      * テキストデータ読み込み時に毎回呼ばれる
