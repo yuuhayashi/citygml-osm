@@ -2,39 +2,53 @@
 map "building : Relation" as building {
  type => building
  building => yes
- height => 29.9
+ height => 32.852000000000004
+ addr:ref => 13111006003
+ addr:full => 東京都大田区大森西三丁目
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697
 }
 
 map "multipolygon :Relation" as multipolygon {
  type => multipolygon
  building => yes
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n BLD_4ba3c7be-18a0-461a-9305-464fa2cfc57f
 }
 
-map "輪郭線 :Area" as outer {
+map "outline :Area" as outer {
+ building => yes
+ height => 32.852000000000004
+ addr:ref => 13111006003
+ addr:full => 東京都大田区大森西三丁目
 }
 
 map "a- :Area" as a {
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n BLD_4ba3c7be-18a0-461a-9305-464fa2cfc57f
 }
 map "e- :Area" as e {
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n BLD_4ba3c7be-18a0-461a-9305-464fa2cfc57f
 }
 
 map "A :Area" as A {
  building:part => yes
  height => 29.3
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n BLD_4ba3c7be-18a0-461a-9305-464fa2cfc57f
 }
 map "B :Area" as B {
  building:part => yes
- height => 6
+ height => 6.038
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n BLD_4ebf61e7-bbc4-493c-aa9c-5afc8f7b975d
 }
 
 map "C :Area" as C {
  building:part => yes
  hieght => 6.3
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n BLD_4ebf61e7-bbc4-493c-aa9c-5afc8f7b975e
 }
 
 map "D :Area" as D {
  building:part => yes
  height => 6
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n BLD_4ebf61e7-bbc4-493c-aa9c-5afc8f7b975a
 }
 
 map "building : Relation" as building {

@@ -80,11 +80,50 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 **確認のみ！！  確認し終わったら破棄すること！！**
 
-----
 
-## 中空部分がある複合ビルディングの書き方
+# データフォーマット変換
+
+## CityGMLフォーマット
+
+![citygml](doc/citygml.mind.png)
+
+
+## "building" フォーマットへの変換
+
+### a. 単純ビルディング
+
+他のビルディングと接触しないもの
+
+![SimpleBuilding](doc/building/SimpleBuilding.png)
+
+ - 一つのWAYのみで完結させる
+
+### b. 中空部を持つビルディング
+
+中空部分('gml:interior')があるビルディングで、他のビルディングと接触しないもの
+
+ - マルチポリゴン・リレーションでビルディングを描く
+
+![InnerBuilding](doc/building/InnerBuilding.png)
+
+### c. 複数のビルディングが接触しているもの
+
+中空部分('gml:interior')がない建物同士が、接触しているもの。
+
+ - ビルディング・リレーションを使って描く
+
+![BuildingRelation](doc/building/BuildingRelation.png)
+ 
+### d. 中空部分がある複合ビルディング
+
+他のビルディングと接触しているビルディングで、中空部分を含む場合。
+
+ - ビルディング・リレーションのOutlineに、マルチポリゴン・リレーションを使って描く
+
+![building :リレーション](doc/building/building.png)
 
 - [中空部分がある複合ビルディングの書き方](doc/building/Building.md)
+
 
 ------
 
@@ -96,10 +135,15 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 ## 参考
 
-- [210327PLATEAUを触ってみよう](https://hackmd.io/@geopythonjp/HkZOmNpqL/%2FhfZTkl5FQGy8YHrgzc7ohQ)
+ - [210327PLATEAUを触ってみよう](https://hackmd.io/@geopythonjp/HkZOmNpqL/%2FhfZTkl5FQGy8YHrgzc7ohQ)
 
-- [オープンデータ公開サイト](https://www.geospatial.jp/ckan/dataset/plateau)
+ - [オープンデータ公開サイト](https://www.geospatial.jp/ckan/dataset/plateau)
 
-- [GitHub yuuhayashi/citygml-osm](https://github.com/yuuhayashi/citygml-osm)
+ - [GitHub yuuhayashi/citygml-osm](https://github.com/yuuhayashi/citygml-osm)
 
+ - [中空部分がある複合ビルディングの書き方](doc/building/Building.md)
+
+ - [JA:基本的な3Dの建物](https://wiki.openstreetmap.org/wiki/JA:%E5%9F%BA%E6%9C%AC%E7%9A%84%E3%81%AA3D%E3%81%AE%E5%BB%BA%E7%89%A9)
  
+ - [JA:Relation:multipolygon](https://wiki.openstreetmap.org/wiki/JA:Relation:multipolygon)
+

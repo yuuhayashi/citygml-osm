@@ -1,0 +1,28 @@
+@startmindmap
+title CityGML 構造
+
+* core:CityModel
+** gml:boundedBy
+*** gml:Envelope
+****_ srsName="http://www.opengis.net/def/crs/EPSG/0/6697"
+**** gml:lowerCorner
+**** gml:upperCorner
+** core:cityObjectMember
+*** bldg:Building
+****_ gml:id="BLD_4ebf61e7-bbc4-493c-aa9c-5afc8f7b975d"
+**** gen:stringAttribute
+*****_ name="13_区市町村コード_大字・町コード_町・丁目コード"
+***** gen:value
+**** bldg:lod0RoofEdge
+***** gml:Polygon
+****** gml:exterior
+******* gml:LinearRing
+******** gml:posList
+****** gml:interior
+******* gml:LinearRing
+******** gml:posList
+**** xAL:LocalityName
+*****_ Type="Town"
+*****_ "東京都大田区大森西三丁目"
+
+@endmindmap
