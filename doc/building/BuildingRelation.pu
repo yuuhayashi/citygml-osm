@@ -11,8 +11,6 @@ map "building :Relation" as building {
 map "outline :Area" as outline {
  building => yes
  height => 17.097
- addr:ref => 13111058003
- addr:full => 東京都大田区南六郷三丁目
 }
 map "A :Area" as A {
  building:part => yes

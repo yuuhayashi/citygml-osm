@@ -67,6 +67,7 @@ public class CitygmlFile extends File {
 		            
 		            // Relation->member:role=port のoutlineを作成する
 		            OsmMargeWay.relationOutline(osm);
+		            OsmMargeWay.removeHeightFromOuter(osm);
 			    	//osm.export(new File(filename + "_3.osm"));
 
 		            // "outline"と"part"が重複しているPART を削除する

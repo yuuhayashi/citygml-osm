@@ -10,6 +10,7 @@ public class OsmMargeWay {
      */
 	public static void relationMarge(OsmDom osm) {
 		while(!relationMarge1(osm));
+		setHeightToOutline(osm);
 	}
 
 	static boolean relationMarge1(OsmDom osm) {
@@ -70,6 +71,78 @@ public class OsmMargeWay {
 			}
 		}
 		return true;
+	}
+	
+	/**
+	 * Relation:multipolygon の MaxHeightを outline->Multipolygonへ設定する
+	 */
+	public static void removeHeightFromOuter(OsmDom osm) {
+		for (String rKey : osm.relations.keySet()) {
+			ElementRelation relation = osm.relations.get(rKey);
+			ElementTag typeTag = relation.tags.get("type");
+			if ((typeTag != null) && typeTag.v.equals("multipolygon")) {
+				for (ElementMember member : relation.members) {
+					if (member.role.equals("outer") && member.type.equals("way")) {
+						ElementWay way = osm.ways.get(Long.toString(member.ref));
+						way.tags.remove("height");
+					}
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Relation:multipolygon の MaxHeightを outline->Multipolygonへ設定する
+	 */
+	static void setHeightToOutline(OsmDom osm) {
+		for (String rKey : osm.relations.keySet()) {
+			ElementRelation relation = osm.relations.get(rKey);
+			ElementTag typeTag = relation.tags.get("type");
+			if ((typeTag != null) && typeTag.v.equals("building")) {
+				String ele = getMaxHeight(relation, osm);
+				RelationMultipolygon polygon = getOutline(relation, osm);
+				if (polygon != null) {
+					polygon.addTag("height", ele);
+				}
+			}
+		}
+	}
+	
+	/**
+	 * "role->outline->Relation"を取得する
+	 */
+	static RelationMultipolygon getOutline(ElementRelation relation, OsmDom osm) {
+		for (ElementMember member : relation.members) {
+			if (member.role.equals("outline") && member.type.equals("relation")) {
+				return (RelationMultipolygon)osm.relations.get(Long.toString(member.ref));
+			}
+		}
+		return null;
+	}
+	
+	static String getMaxHeight(ElementRelation relation, OsmDom osm) {
+		String maxheight = "0";
+		for (ElementMember member : relation.members) {
+			if (member.role.equals("part")) {
+				ElementWay way = osm.ways.get(Long.toString(member.ref));
+				String ele = getHeight(way);
+				if (ele != null) {
+					if (Double.parseDouble(ele) > Double.parseDouble(maxheight)) {
+						maxheight = ele;
+					}
+				}
+			}
+		}
+		return maxheight;
+	}
+	
+	static String getHeight(ElementWay way) {
+		ElementTag tag = way.tags.get("height");
+		if (tag == null) {
+			return null;
+		}
+		return tag.v;
+		
 	}
 	
 	/**

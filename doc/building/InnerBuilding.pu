@@ -1,0 +1,19 @@
+@startuml
+map "multipolygon :Relation" as multipolygon {
+ type => multipolygon
+ building => yes
+ height => 17.582
+ addr:ref => 13111006005
+ addr:full => 東京都大田区大森西五丁目
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n BLD_4c761afc-755e-445c-bcd8-e80e08152724
+}
+map "outer :Area" as outer {
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n BLD_4c761afc-755e-445c-bcd8-e80e08152724
+}
+map "inner :Area" as a {
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n BLD_4c761afc-755e-445c-bcd8-e80e08152724
+}
+
+multipolygon o-- outer : member\n[role=outer]
+multipolygon o-- a : member\n[role=inner]
+@enduml

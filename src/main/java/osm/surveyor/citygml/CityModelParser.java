@@ -261,7 +261,7 @@ public class CityModelParser extends DefaultHandler {
 		else if(qName.equals("gml:Polygon")){
 			if ((multipolygon != null) && (roof != null)) {
 				if (!multipolygon.members.isEmpty()) {
-					multipolygon.addTag("source", getSourceStr(buildingId));
+					multipolygon.addTag("source", getSourceStr());
 					osm.addRelations(multipolygon);
 					roof.addMember(multipolygon, "outline");
 				}

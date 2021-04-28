@@ -46,6 +46,7 @@ public class ElementMember implements Cloneable {
     public ElementMember loadElement(Element eElement) {
 		String ref = eElement.getAttribute("ref");
 		String role = eElement.getAttribute("role");
+		String type = eElement.getAttribute("type");
 		if ((ref != null) && !ref.isEmpty()) {
 			this.ref = Long.parseLong(ref);
 		}
@@ -57,6 +58,12 @@ public class ElementMember implements Cloneable {
 		}
 		else {
 			this.role = null;
+		}
+		if ((type != null) && !type.isEmpty()) {
+			this.type = type;
+		}
+		else {
+			this.type = null;
 		}
 		return this;
     }
