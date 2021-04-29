@@ -1,5 +1,4 @@
 @startuml
-title (C) Sample pattern
 map "A :建物" as A {
  bldg:Building:id => BLD_b1d5558f-2919-42dc-a708-b90cde13c75f
  bldg:Building:stringAttribute[name="建物ID"] => 13111-bldg-473

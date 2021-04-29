@@ -1,10 +1,9 @@
 @startuml
-title Simple Building
 map "building :Area" as building {
  building => yes
  height => 5.4025
  addr:ref => 13111058003
  addr:full => 東京都大田区南六郷三丁目
- source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n BLD_32708324-2cc9-440f-889b-9ae29a9b57d5
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-466
 }
 @enduml

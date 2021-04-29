@@ -16,12 +16,12 @@ map "outline :Way" as outline {
 map "A :Area" as A {
  building:part => yes
  height => 40.492
- source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n BLD_b1d5558f-2919-42dc-a708-b90cde13c75f
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-473
 }
 map "B :Area" as B {
  building:part => yes
  height => 6.58
- source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n BLD_d152487b-b229-4fe9-a421-02bf68448e0e
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-386
 }
 
 building o-- outline : member\n[role=outline]
