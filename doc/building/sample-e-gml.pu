@@ -1,0 +1,20 @@
+@startuml
+map "A :建物" as A {
+ bldg:Building:id => BLD_7b7ea393-86ee-43c0-adfd-da0dff6f69b4
+ bldg:Building.name => 大田病院
+ bldg:Building:stringAttribute[name="建物ID"] => 13111-bldg-56522
+ bldg:Building:stringAttribute[name="13_区市町村コード_大字・町コード_町・丁目コード"] => 13111007004
+ bldg:lod0RoofEdge:Polygon:posList:height => 17.199
+ LocalityName[type="Town"] => 東京都大田区大森東四丁目
+ Envelope:srsName => http://www.opengis.net/def/crs/EPSG/0/6697
+}
+map "B :建物" as B {
+ bldg:Building:id => BLD_badd7611-fe0b-4be8-935d-095bba500da7
+ bldg:Building:stringAttribute[name="建物ID"] => 13111-bldg-55333
+ bldg:Building:stringAttribute[name="13_区市町村コード_大字・町コード_町・丁目コード"] => 13111007004
+ bldg:lod0RoofEdge:Polygon:posList:height => 5.5360000000000005
+ LocalityName[type="Town"] => 東京都大田区大森東四丁目
+ Envelope:srsName => http://www.opengis.net/def/crs/EPSG/0/6697
+}
+A -[hidden]- B
+@enduml

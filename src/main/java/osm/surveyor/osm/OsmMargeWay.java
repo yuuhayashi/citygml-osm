@@ -6,10 +6,15 @@ public class OsmMargeWay {
 
     /**
      * 各WAYのノードで、他のWAYと共有されたノードを探す
+     * 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる
+     * Relation:multipolygon の MaxHeightを outline->Multipolygonへ設定する
      * OsmDom osm
      */
 	public static void relationMarge(OsmDom osm) {
+		// 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる
 		while(!relationMarge1(osm));
+		
+		// Relation:multipolygon の MaxHeightを outline->Multipolygonへ設定する
 		setHeightToOutline(osm);
 	}
 

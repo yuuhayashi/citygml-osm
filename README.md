@@ -94,35 +94,59 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 他のビルディングと接触しないもの
 
-![SimpleBuilding](doc/building/SimpleBuilding.png)
+![sample a GML](doc/building/sample-a-gml.png)
 
  - 一つのWAYのみで完結させる
 
-### b. 中空部を持つビルディング
+![sample a OSM](doc/building/sample-a-osm.png)
+
+
+### b. 中空部を持つ単一ビルディング
 
 中空部分('gml:interior')があるビルディングで、他のビルディングと接触しないもの
 
+![sample b GML](doc/building/sample-b-gml.png)
+
  - マルチポリゴン・リレーションでビルディングを描く
 
-![InnerBuilding](doc/building/InnerBuilding.png)
+![InnerBuilding](doc/building/sample-b-osm.png)
 
-### c. 複数のビルディングが接触しているもの
+
+### c. 複数のビルディングが接触しているもの（連接ビルディング）
 
 中空部分('gml:interior')がない建物同士が、接触しているもの。
 
+![sample c GML](doc/building/sample-c-gml.png)
+
  - ビルディング・リレーションを使って描く
 
-![BuildingRelation](doc/building/BuildingRelation.png)
+![sample c OSM](doc/building/sample-c-osm.png)
  
-### d. 中空部分がある複合ビルディング
+
+### d. 中空部分がある連接ビルディング
 
 他のビルディングと接触しているビルディングで、中空部分を含む場合。
 
+![sample d GML](doc/building/sample-d-gml.png)
+
  - ビルディング・リレーションのOutlineに、マルチポリゴン・リレーションを使って描く
 
-![building :リレーション](doc/building/building.png)
+![building :リレーション](doc/building/sample-d-osm.png)
 
 - [中空部分がある複合ビルディングの書き方](doc/building/Building.md)
+
+
+### e. 空白部分がある連接ビルディング
+
+連接ビルディングに囲まれた「空白」ができたもの
+
+![sample e GML](doc/building/sample-e-gml.png)
+
+- "outline:way"(外郭線)を補完する
+- "inner:way"（空白部分）をインナーラインとして補完する
+- "name=..."の継承
+
+![sample e OSM](doc/building/sample-e-osm.png)
 
 
 ------
