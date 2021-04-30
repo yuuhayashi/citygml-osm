@@ -10,6 +10,7 @@ import org.xml.sax.helpers.DefaultHandler;
 import osm.surveyor.osm.ElementBounds;
 import osm.surveyor.osm.ElementMember;
 import osm.surveyor.osm.ElementNode;
+import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 import osm.surveyor.osm.RelationMultipolygon;
@@ -73,6 +74,7 @@ public class CityModelParser extends DefaultHandler {
     ElementBounds bounds = null;					// <gml:boundedBy/>
 	RelationBuilding building = null;				// <bldg:Building/>
 	String buildingId = null;						// <bldg:Building gml:id="buildingId" />
+	String name = null;								// <gml:name/>
 	RelationBuilding roof = null;					// <bldg:lod0RoofEdge/>
 	RelationMultipolygon multipolygon = null;		// <gml:Polygon/>
 	ElementMember member = null;					// <gml:Polygon/>
@@ -88,6 +90,7 @@ public class CityModelParser extends DefaultHandler {
      */
     String addr_ref = null;
     static final String ADDR_REF_CODE13 = "13_区市町村コード_";
+    static final String BLDG_ID = "建物ID";
     
     /**
      * 要素の開始タグ読み込み時に毎回呼ばれる
@@ -126,7 +129,9 @@ public class CityModelParser extends DefaultHandler {
 			if (getAttributes("name", atts).startsWith(ADDR_REF_CODE13)) {
 				addr_ref = ADDR_REF_CODE13;
 			}
-	    	outSb = new StringBuffer();
+			if (getAttributes("name", atts).startsWith(BLDG_ID)) {
+				buildingId = "";
+			}
 		}
     	else if(qName.equals("gen:value")){
 			// <gen:stringAttribute name="13_区市町村コード_大字・町コード_町・丁目コード">
@@ -134,8 +139,15 @@ public class CityModelParser extends DefaultHandler {
 			if ((addr_ref != null) && addr_ref.equals(ADDR_REF_CODE13)) {
 		    	outSb = new StringBuffer();
 			}
+			if (buildingId != null) {
+		    	outSb = new StringBuffer();
+			}
 		}
 		
+		else if(qName.equals("gml:name")){
+			name = "";
+	    	outSb = new StringBuffer();
+		}
 		else if(qName.equals("bldg:lod0RoofEdge")){
 			roof = new RelationBuilding();
 		}
@@ -218,36 +230,57 @@ public class CityModelParser extends DefaultHandler {
 		else if(qName.equals("bldg:Building")){
 			if (building != null) {
 				for (ElementMember mem : building.members) {
-					if (mem.role.equals("part") && mem.type.equals("way")) {
+					if (mem.type.equals("way")) {
 						ElementWay way = osm.ways.get(Long.toString(mem.ref));
 						way.addTag("addr:ref", building.tags.get("addr:ref").v);
 						way.addTag("addr:full", building.tags.get("addr:full").v);
+						way.addTag("source", getSourceStr(buildingId));
+						if ((name != null) && !name.isEmpty()) {
+							way.addTag("name", name);
+						}
+					}
+					else if (mem.type.equals("relation")) {
+						ElementRelation relation = osm.relations.get(Long.toString(mem.ref));
+						relation.addTag("addr:ref", building.tags.get("addr:ref").v);
+						relation.addTag("addr:full", building.tags.get("addr:full").v);
+						relation.addTag("source", getSourceStr(buildingId));
+						if ((name != null) && !name.isEmpty()) {
+							relation.addTag("name", name);
+						}
 					}
 				}
-				building.tags.remove("addr:ref");
-				building.tags.remove("addr:full");
-				building.addTag("source", getSourceStr());
+				building.addTag("source", getSourceStr(buildingId));
 				osm.addRelations(building);
 			}
 			building = null;
-			buildingId = null;
+			buildingId = "";
+			name = "";
 		}
     	else if(qName.equals("gen:stringAttribute")){
-			// <gen:stringAttribute name="13_区市町村コード_大字・町コード_町・丁目コード">
-			if (addr_ref != null) {
-				if (building != null) {
+			if (building != null) {
+				// <gen:stringAttribute name="13_区市町村コード_大字・町コード_町・丁目コード">
+				if (addr_ref != null) {
 					building.addTag("addr:ref", addr_ref);
+					addr_ref = null;
 				}
 			}
-			addr_ref = null;
+		}
+    	else if(qName.equals("gml:name")){
+			if ((name != null) && (name.isEmpty()) && (outSb != null)) {
+				name = outSb.toString();
+			}
+			outSb = null;
 		}
     	else if(qName.equals("gen:value")){
 			// <gen:stringAttribute name="13_区市町村コード_大字・町コード_町・丁目コード">
     		//   <gen:value>13111058003</gen:value>
 			if ((addr_ref != null) && addr_ref.equals(ADDR_REF_CODE13) && (outSb != null)) {
 				addr_ref = outSb.toString();
-				outSb = null;
 			}
+			if ((buildingId != null) && (buildingId.isEmpty()) && (outSb != null)) {
+				buildingId = outSb.toString();
+			}
+			outSb = null;
 		}
 		
     	else if(qName.equals("bldg:lod0RoofEdge")){
@@ -261,7 +294,6 @@ public class CityModelParser extends DefaultHandler {
 		else if(qName.equals("gml:Polygon")){
 			if ((multipolygon != null) && (roof != null)) {
 				if (!multipolygon.members.isEmpty()) {
-					multipolygon.addTag("source", getSourceStr());
 					osm.addRelations(multipolygon);
 					roof.addMember(multipolygon, "outline");
 				}
@@ -270,8 +302,11 @@ public class CityModelParser extends DefaultHandler {
 		}
 		else if (qName.equals("gml:exterior")){
 			if ((way != null) && (member != null)) {
-				way.addTag("source", getSourceStr(buildingId));
 				way.addTag("building:part", "yes");
+				way.addTag("source", getSourceStr(buildingId));
+				if ((name != null) && !name.isEmpty()) {
+					way.addTag("name", name);
+				}
 				if (roof != null) {
 					osm.addWay(way);
 					roof.addMember(way, "part");
@@ -282,9 +317,9 @@ public class CityModelParser extends DefaultHandler {
 		}
 		else if (qName.equals("gml:interior")){
 			if ((way != null) && (member != null)) {
-				way.addTag("source", getSourceStr(buildingId));
 				if (multipolygon != null) {
 					way.tags.remove("height");
+					way.addTag("source", getSourceStr(buildingId));
 					osm.addWay(way);
 					multipolygon.addMember(way, "inner");
 				}

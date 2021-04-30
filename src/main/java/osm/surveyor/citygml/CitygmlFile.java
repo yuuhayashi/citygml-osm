@@ -55,11 +55,13 @@ public class CitygmlFile extends File {
 			        OsmDom osm = new OsmDom();
 		            CitygmlFile target = new CitygmlFile(file, osm);
 		            target.parse();
+			    	osm.export(new File(filename + "_0.osm"));
 		            
 		            // 各WAYのノードで、他のWAYと共有されたノードを探す
 			    	// 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる
 			    	// Relation:multipolygon の MaxHeightを outline->Multipolygonへ設定する
 		            OsmMargeWay.relationMarge(osm);
+			    	osm.export(new File(filename + "_1.osm"));
 		            
 		            // メンバーが一つしかないRelation:building を削除する
 		            OsmMargeWay.relationGabegi(osm);
@@ -67,9 +69,10 @@ public class CitygmlFile extends File {
 		            // Relation:building->member:role=port のWay:outlineを作成する
 		            // Relation:multipolygon->outerにWay:outline
 		            OsmMargeWay.relationOutline(osm);
+			    	osm.export(new File(filename + "_2.osm"));
 		            
 		            // Relation:multipolygon の MaxHeightを outline->Multipolygonへ設定する
-		            OsmMargeWay.removeHeightFromOuter(osm);
+		            //OsmMargeWay.removeHeightFromOuter(osm);
 
 		            // "outline"と"part"が重複しているPART を削除する
 		            OsmMargeWay.partGabegi(osm);
