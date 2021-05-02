@@ -949,7 +949,7 @@ public class CitygmlFileTest {
 		test(Paths.get(".","53392588_bldg_6697_op2.gml"));
 	}
 
-	public void test(Path a) {
+	public static void test(Path a) {
 		CitygmlFile.doConvert(a);
 	}
 

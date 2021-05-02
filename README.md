@@ -85,7 +85,7 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 ## CityGMLフォーマット
 
-![citygml](doc/citygml.mind.png)
+![citygml](doc/citygml/citygml.mind.png)
 
 
 ## "building" フォーマットへの変換
@@ -94,33 +94,33 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 他のビルディングと接触しないもの
 
-![sample a GML](doc/building/sample-a-gml.png)
+![sample a GML](doc/building/sample-a/sample-a-gml.png)
 
 一つのWAYのみで完結させる
 
-- Step 1. parse GML file [sample-a-osm1](doc/building/sample-a-osm1.png)
+- Step 1. parse GML file [sample-a-osm1](doc/building/sample-a/sample-a-osm1.png)
 
 - Step 2. 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる (Step1から変化なし)
 
-- Step 3. メンバーが一つしかないRelation:building を削除する [sample-a-osm3](doc/building/sample-a-osm3.png)
+- Step 3. メンバーが一つしかないRelation:building を削除する [sample-a-osm3](doc/building/sample-a/sample-a-osm3.png)
 
 - Step 4. Relation:building->member:role=port のWay:outlineを作成する
 - Step 4. Relation:multipolygon->outerにWay:outline (Step3から変化なし)
 
 - Step 5. 不要なPOIを削除する　(Step3から変化なし)
 
-![sample a OSM](doc/building/sample-a-osm.png)
+![sample a OSM](doc/building/sample-a/sample-a-osm.png)
 
 
 ### b. 中空部を持つ単一ビルディング
 
 中空部分('gml:interior')があるビルディングで、他のビルディングと接触しないもの
 
-![sample b GML](doc/building/sample-b-gml.png)
+![sample b GML](doc/building/sample-b/sample-b-gml.png)
 
 マルチポリゴン・リレーションでビルディングを描く
 
-- Step 1. parse GML file [sample-a-osm1.png](doc/building/sample-a-osm1.png)
+- Step 1. parse GML file [sample-b-osm1.png](doc/building/sample-b/sample-b-osm1.png)
 
 - Step 2. 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる (Step1から変化なし)
 
@@ -130,31 +130,43 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 - Step 4. メンバーが一つしかないRelation:building を削除する (Step1から変化なし)
 
-- Step 5. 不要なPOIを削除する　[sample a OSM](doc/building/sample-a-osm.pu.png)
+- Step 5. 不要なPOIを削除する　[sample a OSM](doc/building/sample-b/sample-b-osm.pu.png)
 
-![InnerBuilding](doc/building/sample-b-osm.png)
+![InnerBuilding](doc/building/sample-b/sample-b-osm.png)
 
 
 ### c. 複数のビルディングが接触しているもの（連接ビルディング）
 
 中空部分('gml:interior')がない建物同士が、接触しているもの。
 
-![sample c GML](doc/building/sample-c-gml.png)
+![sample c GML](doc/building/sample-c/gml.png)
 
- - ビルディング・リレーションを使って描く
+ビルディング・リレーションを使って描く
 
-![sample c OSM](doc/building/sample-c-osm.png)
+- Step 1. parse GML file "[sample-c-osm1](doc/building/sample-c/osm1-parse.png)"
+
+- Step 2. 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる (Step1から変化なし)
+
+- Step 3. Relation:building->member:role=port のWay:outlineを作成する
+
+- Step 3. Relation:multipolygon->outerにWay:outline (Step1から変化なし)
+
+- Step 4. メンバーが一つしかないRelation:building を削除する (Step1から変化なし)
+
+- Step 5. 不要なPOIを削除する　"[sample a OSM](doc/building/sample-c/osm.pu.png)"
+
+![sample c OSM](doc/building/sample-c/osm.png)
  
 
 ### d. 中空部分がある連接ビルディング
 
 他のビルディングと接触しているビルディングで、中空部分を含む場合。
 
-![sample d GML](doc/building/sample-d-gml.png)
+![sample d GML](doc/building/sample-d/sample-d-gml.png)
 
  - ビルディング・リレーションのOutlineに、マルチポリゴン・リレーションを使って描く
 
-![building :リレーション](doc/building/sample-d-osm.png)
+![building :リレーション](doc/building/sample-d/sample-d-osm.png)
 
 - [中空部分がある複合ビルディングの書き方](doc/building/Building.md)
 
@@ -163,20 +175,20 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 連接ビルディングに囲まれた「空白」ができたもの
 
-![sample e GML](doc/building/sample-e-gml.png)
+![sample e GML](doc/building/sample-e/sample-e-gml.png)
 
 - "outline:way"(外郭線)を補完する
 - "inner:way"（空白部分）をインナーラインとして補完する
 - "name=..."の継承
 
-![sample e OSM](doc/building/sample-e-osm.png)
+![sample e OSM](doc/building/sample-e/sample-e-osm.png)
 
 
 ------
 
-- [クラス関連図](doc/class.png)
+- [クラス関連図](doc/citygml/class.png)
 
-- [データベース テーブル 関連図](doc/dbTables.png)
+- [データベース テーブル 関連図](doc/citygml/dbTables.png)
 
 ----------------
 

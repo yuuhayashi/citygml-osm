@@ -1,6 +1,6 @@
 # 中空部分を持つ建物の書き方
 
-![例題](buildingPart1.png)
+![例題](images/buildingPart1.png)
 
 - 「A」「B」「C」「D」の４つの建物部位で構成される建物
 - 「a~」は、「A」の中空部分
@@ -8,7 +8,7 @@
 
 ## (1) 全体を Maltipolygon にする
 
-![1.outline](buildingPart2.png)
+![1.outline](images/buildingPart2.png)
 
 まずはじめに、建物部位全体を囲む **outline** と、中空部分／空白部分をメンバーに持つ **Relation:Multipolygon** を作成する。
 
@@ -16,14 +16,14 @@
 - 輪郭線のロールは 'outer'
 - 中空エリア、空白エリアのロールは、'inner'
 
-![multipolygon](multipolygon.png)
+![multipolygon](images/multipolygon.png)
 
 ## (2) "building :リレーション" を作る
 
 - 先程作成した multipolygon をメンバー登録[role=outline]する
 - 構成する建物部位をメンバー登録[role=part]する
 
-![building :リレーション](building.png)
+![building :リレーション](images/building.png)
 
 ----
 
