@@ -96,7 +96,18 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 ![sample a GML](doc/building/sample-a-gml.png)
 
- - 一つのWAYのみで完結させる
+一つのWAYのみで完結させる
+
+- Step 1. parse GML file [sample-a-osm1](doc/building/sample-a-osm1.png)
+
+- Step 2. 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる (Step1から変化なし)
+
+- Step 3. メンバーが一つしかないRelation:building を削除する [sample-a-osm3](doc/building/sample-a-osm3.png)
+
+- Step 4. Relation:building->member:role=port のWay:outlineを作成する
+- Step 4. Relation:multipolygon->outerにWay:outline (Step3から変化なし)
+
+- Step 5. 不要なPOIを削除する　(Step3から変化なし)
 
 ![sample a OSM](doc/building/sample-a-osm.png)
 
@@ -107,7 +118,19 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 ![sample b GML](doc/building/sample-b-gml.png)
 
- - マルチポリゴン・リレーションでビルディングを描く
+マルチポリゴン・リレーションでビルディングを描く
+
+- Step 1. parse GML file [sample-a-osm1.png](doc/building/sample-a-osm1.png)
+
+- Step 2. 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる (Step1から変化なし)
+
+- Step 3. Relation:building->member:role=port のWay:outlineを作成する
+
+- Step 3. Relation:multipolygon->outerにWay:outline (Step1から変化なし)
+
+- Step 4. メンバーが一つしかないRelation:building を削除する (Step1から変化なし)
+
+- Step 5. 不要なPOIを削除する　[sample a OSM](doc/building/sample-a-osm.pu.png)
 
 ![InnerBuilding](doc/building/sample-b-osm.png)
 

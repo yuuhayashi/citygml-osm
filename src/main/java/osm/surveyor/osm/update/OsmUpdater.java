@@ -112,7 +112,7 @@ public class OsmUpdater {
 			for (ElementMember menber : relation.members) {
 				ElementWay sWay = sdom.ways.get(Long.toString(menber.ref));
 				if (sWay != null) {
-					ddom.addWay(sWay.clone());
+					ddom.ways.put(sWay.clone());
 				}
 			}
 		}
@@ -131,7 +131,7 @@ public class OsmUpdater {
 				ElementNode sNode = sdom.nodes.get(Long.toString(nd.id));
 				ElementNode node = sNode.clone();
 				nd.point = node.point;
-				ddom.addNode(node);
+				ddom.nodes.put(node);
 			}
 		}
 		for (String rKey : dom.ways.keySet()) {

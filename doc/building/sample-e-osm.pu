@@ -4,6 +4,8 @@ map "building : Relation" as building {
  building => yes
  name => 大田病院
  height => 17.199
+ addr:ref => 13111007004
+ addr:full => 東京都大田区大森東四丁目
  source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697
 }
 
@@ -12,6 +14,8 @@ map "multipolygon :Relation" as multipolygon {
  building => yes
  name => 大田病院
  height => 17.199
+ addr:ref => 13111007004
+ addr:full => 東京都大田区大森東四丁目
  source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697
 }
 

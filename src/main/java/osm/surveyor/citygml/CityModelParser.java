@@ -250,7 +250,7 @@ public class CityModelParser extends DefaultHandler {
 					}
 				}
 				building.addTag("source", getSourceStr(buildingId));
-				osm.addRelations(building);
+				osm.relations.put(building);
 			}
 			building = null;
 			buildingId = "";
@@ -288,13 +288,14 @@ public class CityModelParser extends DefaultHandler {
 				for (ElementMember mem : roof.members) {
 					building.members.add(mem);
 				}
+				building.copyTag(roof);
 			}
 			roof = null;
 		}
 		else if(qName.equals("gml:Polygon")){
 			if ((multipolygon != null) && (roof != null)) {
 				if (!multipolygon.members.isEmpty()) {
-					osm.addRelations(multipolygon);
+					osm.relations.put(multipolygon);
 					roof.addMember(multipolygon, "outline");
 				}
 			}
@@ -302,14 +303,23 @@ public class CityModelParser extends DefaultHandler {
 		}
 		else if (qName.equals("gml:exterior")){
 			if ((way != null) && (member != null)) {
-				way.addTag("building:part", "yes");
 				way.addTag("source", getSourceStr(buildingId));
-				if ((name != null) && !name.isEmpty()) {
-					way.addTag("name", name);
-				}
 				if (roof != null) {
-					osm.addWay(way);
-					roof.addMember(way, "part");
+					ElementWay part = way.copy();
+					if ((name != null) && !name.isEmpty()) {
+						part.addTag("name", name);
+					}
+					part.addTag("building:part", "yes");
+					osm.ways.put(part);
+					roof.copyTag(part);
+					roof.addMember(part, "part");
+				}
+				if (multipolygon != null) {
+					ElementWay outer = way.copy();
+					multipolygon.copyTag(outer);
+					outer.tags.remove("height");
+					osm.ways.put(outer);
+					multipolygon.addMember(outer, "outer");
 				}
 			}
 			way = null;
@@ -320,7 +330,7 @@ public class CityModelParser extends DefaultHandler {
 				if (multipolygon != null) {
 					way.tags.remove("height");
 					way.addTag("source", getSourceStr(buildingId));
-					osm.addWay(way);
+					osm.ways.put(way);
 					multipolygon.addMember(way, "inner");
 				}
 			}

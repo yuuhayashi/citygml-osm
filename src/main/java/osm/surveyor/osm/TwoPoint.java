@@ -1,8 +1,8 @@
 package osm.surveyor.osm;
 
 public class TwoPoint implements Cloneable {
-	OsmNd a;
-	OsmNd b;
+	public OsmNd a;
+	public OsmNd b;
 	
 	public TwoPoint() {
 		this.a = null;
@@ -57,7 +57,7 @@ public class TwoPoint implements Cloneable {
 		if (node == null) {
 			return false;
 		}
-		if (!node.point.equals(this.a) && !node.point.equals(this.b)) {
+		if (!node.point.equals(a) && !node.point.equals(b)) {
 			return false;
 		}
 		return true;

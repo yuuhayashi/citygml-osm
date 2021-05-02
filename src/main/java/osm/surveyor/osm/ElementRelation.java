@@ -1,12 +1,13 @@
 package osm.surveyor.osm;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import osm.surveyor.osm.marge.MargeFactory;
 
 public class ElementRelation extends ElementOsmapi implements Cloneable {
 	public ArrayList<ElementMember> members;
@@ -72,36 +73,18 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 	 * @param building
 	 * @param ways
 	 */
-	public ElementWay createOutline(HashMap<String, ElementWay> ways) {
-		ArrayList<ElementWay> memberway = new ArrayList<>();
+	public MargeFactory createOutline(WayMap ways) {
+		WayMap memberways = new WayMap();
 		for (ElementMember member : this.members) {
 			if (member.role.equals("part")) {
-				memberway.add(ways.get(Long.toString(member.ref)).clone());
+				memberways.put(ways.get(member.ref).clone());
 			}
 		}
 		
 		// WAYを他のWAYと合成する;
-		ElementWay aWay = null;
-		for (ElementWay way : memberway) {
-			if (aWay == null) {
-				aWay = way.copy();
-			}
-			else {
-				aWay.marge(way.clone());
-			}
-		}
-		if (aWay == null) {
-			return null;
-		}
-		aWay.member = true;
-		aWay.replaceTag("building:part", new ElementTag("building", "yes"));
-		for (String k : aWay.tags.keySet()) {
-			ElementTag tag = aWay.tags.get(k);
-			if (tag.k.equals("height")) {
-				aWay.tags.remove(k);
-			}
-		}
-		return aWay;
+		MargeFactory factory = new MargeFactory(memberways);
+		factory.marge();
+		return factory;
 	}
 	
     /**
@@ -110,7 +93,7 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
      *	  <tag k='type' v='building' />
      *	  <tag k='source:ref:id' v='BLD_57cd4ea7-0fb7-4b0e-a600-9982cf3b60ca' />
      *	  <tag k='addr:full' v='東京都大田区南六郷三丁目' />
-     *	</relation>
+     *	</relation>wayMap
      * @param doc
      * @param relations
      */
@@ -140,7 +123,21 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 	    }
     	return this;
     }
-    
+
+	/**
+	 * メンバーの中から member:type="relation" のIDを返す
+	 * @return	リレーションメンバーが存在しない場合はNULL
+	 */
+	String getRelationMemberId() {
+		for (ElementMember mem : members) {
+			if (mem.type.equals("relation")) {
+				return Long.toString(mem.ref);
+			}
+		}
+		return null;
+	}
+	
+
 	/**
 	 * member->wayのすべてのLINEをListにする
 	 * @param building
@@ -159,6 +156,18 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 			ElementTag tag = tags.get(k);
 			if (tag.k.equals("type")) {
 				if (tag.v.equals("building")) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	public boolean isMultipolygon() {
+		for (String k : tags.keySet()) {
+			ElementTag tag = tags.get(k);
+			if (tag.k.equals("type")) {
+				if (tag.v.equals("multipolygon")) {
 					return true;
 				}
 			}

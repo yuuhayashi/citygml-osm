@@ -16,6 +16,8 @@ import org.xml.sax.SAXParseException;
 
 import osm.surveyor.osm.OsmDom;
 import osm.surveyor.osm.OsmMargeWay;
+import osm.surveyor.osm.marge.BuildingGarbage;
+import osm.surveyor.osm.marge.RelationMarge;
 
 @SuppressWarnings("serial")
 public class CitygmlFile extends File {
@@ -55,21 +57,19 @@ public class CitygmlFile extends File {
 			        OsmDom osm = new OsmDom();
 		            CitygmlFile target = new CitygmlFile(file, osm);
 		            target.parse();
-			    	osm.export(new File(filename + "_0.osm"));
 		            
 		            // 各WAYのノードで、他のWAYと共有されたノードを探す
 			    	// 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる
 			    	// Relation:multipolygon の MaxHeightを outline->Multipolygonへ設定する
-		            OsmMargeWay.relationMarge(osm);
-			    	osm.export(new File(filename + "_1.osm"));
+			    	RelationMarge.relationMarge(osm);
 		            
 		            // メンバーが一つしかないRelation:building を削除する
-		            OsmMargeWay.relationGabegi(osm);
+			    	// メンバーが一つしかないRelation:multipolygon と polygon:member を削除する
+			    	BuildingGarbage.garbage(osm);
 		            
 		            // Relation:building->member:role=port のWay:outlineを作成する
 		            // Relation:multipolygon->outerにWay:outline
-		            OsmMargeWay.relationOutline(osm);
-			    	osm.export(new File(filename + "_2.osm"));
+		            osm.relationOutline();
 		            
 		            // Relation:multipolygon の MaxHeightを outline->Multipolygonへ設定する
 		            //OsmMargeWay.removeHeightFromOuter(osm);

@@ -5,13 +5,13 @@ map "multipolygon :Relation" as multipolygon {
  height => 17.582
  addr:ref => 13111006005
  addr:full => 東京都大田区大森西五丁目
- source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-61384
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697
 }
 map "outer :Area" as outer {
- source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-61384
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697
 }
 map "inner :Area" as a {
- source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-61384
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697;\n 13111-bldg-61384
 }
 
 multipolygon o-- outer : member\n[role=outer]

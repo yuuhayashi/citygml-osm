@@ -163,8 +163,8 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
     /**
      * 線分(TwoPoint)リスト
      */
-    public ArrayList<TwoPoint> getPointList() {
-    	ArrayList<TwoPoint> pointlist = new ArrayList<>();
+    public OsmLine getPointList() {
+    	OsmLine pointlist = new OsmLine();
     	OsmNd a = null;
     	OsmNd b = null;
     	for (OsmNd node : this.nds) {
@@ -188,107 +188,17 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
     }
     
     /**
-     * WAYを他のWAYと合成する;
+     * wayのLINEを OsmLine に書き換える
+     * @param newline
      */
-    public ElementWay marge(ElementWay bWay) {
-    	// ２つのWAYから共通する線分を削除する
-		removeDuplicatedSegment(bWay);
-    	return this;
-    }
-    
-    /**
-     * slistの末尾に接続可能な線分をalistから取り出してslistに追加する
-     */
-    private TwoPoint connectSegments(ArrayList<TwoPoint> slist, ArrayList<TwoPoint> alist) {
-    	TwoPoint p;
-    	TwoPoint segment = slist.get(slist.size()-1);
-    	while ((p = getAndRemoveConnectableSegments(alist, segment.b)) != null) {
-    		if (!p.a.equals(segment.b)) {
-    			p.reverse();
-    		}
-    		slist.add(p);
-    		return p;
-    	}
-    	return null;
-    }
-    
-    /**
-     * 'segment.b'に接続可能なsegmentを'list'から取得,
-     * 取得したsegmentはlistから削除される
-     * @param list
-     * @param segment
-     * @return 接続可能なsegment, 存在しなければnull
-     */
-    private TwoPoint getAndRemoveConnectableSegments(ArrayList<TwoPoint> list, OsmNd point) {
-    	for (TwoPoint p : list) {
-    		if (p.a.equals(point) || p.b.equals(point)) {
-    			list.remove(list.indexOf(p));
-    			return p;
-    		}
-    	}
-    	return null;
-    }
-    
-    /**
-     * ２つのWAYから共通する線分を削除する
-     * @param sList		対象のライン
-     * @param segment	削除するセグメント
-     * @return	削除したらTrue
-     */
-    private void removeDuplicatedSegment(ElementWay bWay) {
-    	ArrayList<TwoPoint> list = new ArrayList<>();
-    	ArrayList<TwoPoint> aList = getPointList();
-    	ArrayList<TwoPoint> bList = bWay.getPointList();
-    	for (TwoPoint aSegment : aList) {
-    		list.add(aSegment);
-    	}
-    	for (TwoPoint aSegment : list) {
-    		while (removeSegment(bList, aSegment)) {
-        		while (removeSegment(aList, aSegment));
-    		}
-    	}
-
-		// aListにbWayを統合する
-    	for (TwoPoint bSegment : bList) {
-    		aList.add(bSegment);
-    	}
-
-    	ArrayList<TwoPoint> sList = new ArrayList<>();
-    	for (TwoPoint aSegment : aList) {
-    		// 先頭の線分をLISTから取り出す。
-    		sList.add(aSegment);
-    		aList.remove(aList.indexOf(aSegment));
-        	break;
-    	}
-    	while (connectSegments(sList, aList) != null);
-    	
-    	// wayのLINEを sList に書き換える
+    public void replaceNds(OsmLine newline) {
     	this.nds = new ArrayList<>();
-    	for (TwoPoint segment : sList) {
+    	for (TwoPoint segment : newline) {
     		if (this.nds.isEmpty()) {
     			this.nds.add(segment.a);
     		}
 			this.nds.add(segment.b);
     	}
-    }
-
-    /**
-     * List<LineSegment>から指定されたセグメントを削除する
-     * @param sList		対象のライン
-     * @param segment	削除するセグメント
-     * @return	削除したらTrue
-     */
-    private boolean removeSegment(ArrayList<TwoPoint> sList, TwoPoint segment) {
-    	if (sList == null) {
-    		return false;
-    	}
-    	for (TwoPoint sPoint : sList) {
-    		if (sPoint.equal(segment)) {
-    			sList.remove(sList.indexOf(sPoint));
-    			return true;
-    		}
-    	}
-    	return false;
     }
     
 	public String getGeomText() {
