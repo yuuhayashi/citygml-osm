@@ -215,6 +215,19 @@ public class OsmDom {
 		}
 	}
 	
+    public ArrayList<ElementRelation> getParents(ElementOsmapi obj) {
+    	ArrayList<ElementRelation> list = new ArrayList<>();
+    	for (String id : relations.keySet()) {
+    		ElementRelation relation = relations.get(id);
+    		for (ElementMember mem : relation.members) {
+    			if (mem.ref == obj.id) {
+    				list.add(relation);
+    			}
+    		}
+    	}
+    	return list;
+    }
+	
 	String getMaxHeight(ElementRelation relation) {
 		String maxheight = "0";
 		for (ElementMember member : relation.members) {

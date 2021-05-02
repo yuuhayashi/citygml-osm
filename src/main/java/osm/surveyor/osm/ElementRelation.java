@@ -137,6 +137,15 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 		return null;
 	}
 	
+	public void removeMember(long id) {
+		for (ElementMember mem : members) {
+			if (mem.ref == id) {
+				members.remove(members.indexOf(mem));
+				return;
+			}
+		}
+	}
+	
 
 	/**
 	 * member->wayのすべてのLINEをListにする

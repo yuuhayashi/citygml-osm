@@ -551,7 +551,6 @@ public class CitygmlFileTest {
         try {
 			osm.load(Paths.get("sample_b_bldg_6697_op2.osm").toFile());
 			
-			assertThat(osm.relations.size(), is(1));
 			for (String id : osm.relations.keySet()) {
 				ElementRelation relation = osm.relations.get(id);
 				assertThat(relation, notNullValue());
@@ -597,6 +596,9 @@ public class CitygmlFileTest {
 					assertThat(type, is("multipolygon"));
 				}
 			}
+			assertThat(osm.relations.size(), is(1));
+			assertThat(osm.ways.size(), is(2));
+			
 		} catch (Exception e) {
 			e.fillInStackTrace();
 			fail(e.toString());

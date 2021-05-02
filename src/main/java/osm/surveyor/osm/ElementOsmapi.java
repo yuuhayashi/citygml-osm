@@ -176,6 +176,7 @@ public class ElementOsmapi implements Cloneable {
 		}
 		return null;
     }
+    
 
     
     //--------------------------------------

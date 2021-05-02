@@ -1,5 +1,6 @@
 package osm.surveyor.osm;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class OsmMargeWay {
@@ -59,35 +60,37 @@ public class OsmMargeWay {
 		for (String rKey : osm.relations.keySet()) {
 			ElementRelation relation = osm.relations.get(rKey);
 			RelationMultipolygon polygon = null;
-			ElementWay outline = null;
-			for (ElementMember member : relation.members) {
-				if (member.role.equals("outline") && member.type.equals("relation")) {
-					polygon = (RelationMultipolygon)osm.relations.get(member.ref);
-					for (ElementMember plgMem : polygon.members) {
-						if (plgMem.role.equals("outer") && plgMem.type.equals("way")) {
-							outline = osm.ways.get(Long.toString(plgMem.ref));
-							break;
-						}
+			ElementWay outer = null;
+			if (relation.isMultipolygon()) {
+				polygon = (RelationMultipolygon)osm.relations.get(rKey);
+				for (ElementMember plgMem : polygon.members) {
+					if (plgMem.role.equals("outer") && plgMem.type.equals("way")) {
+						outer = osm.ways.get(Long.toString(plgMem.ref));
+						break;
 					}
 				}
 			}
-			if (outline != null) {
-				for (ElementMember member : relation.members) {
-					if (member.role.equals("part") && member.type.equals("way")) {
-						ElementWay partWay = osm.ways.get(Long.toString(member.ref));
-						if (partWay.isSame(outline)) {
+
+			if (polygon != null) {
+				for (String wayid : osm.ways.keySet()) {
+					ElementWay partWay = osm.ways.get(wayid);
+					if (partWay.id != outer.id) {
+						if (partWay.isSame(outer)) {
 							ElementTag ele = partWay.tags.get("height");
 							if (ele != null) {
 								polygon.addTag("height", ele.v);
 							}
-							if (partWay.id != outline.id) {
-								osm.ways.remove(partWay.getIdstr());
+							ArrayList<ElementRelation> list = osm.getParents(partWay);
+							for (ElementRelation parent : list) {
+								if (parent.isBuilding()) {
+									parent.removeMember(partWay.id);
+									if (parent.members.isEmpty()) {
+										copyTag(parent.tags, polygon);
+										osm.relations.remove(parent.getIdstr());
+									}
+								}
 							}
-							relation.members.remove(member);
-							if (relation.members.isEmpty()) {
-								copyTag(relation.tags, polygon);
-								osm.relations.remove(relation.getIdstr());
-							}
+							osm.ways.remove(partWay);
 							return true;
 						}
 					}
