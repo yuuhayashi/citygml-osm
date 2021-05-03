@@ -1,0 +1,82 @@
+@startuml
+map "building A :Relation" as buildingA {
+ type => building
+ building => yes
+ height => 32.852000000000004
+ addr:ref => 13111006003
+ addr:full => 東京都大田区大森西三丁目
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-72601
+}
+
+map "multipolygon A :Relation" as polygonA {
+ type => multipolygon
+ building => yes
+ height => 32.852000000000004
+ addr:ref => 13111006003
+ addr:full => 東京都大田区大森西三丁目
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-72601
+}
+
+map "part A :Area" as partA {
+ building:part => yes
+ height => 32.852000000000004
+ addr:ref => 13111006003
+ addr:full => 東京都大田区大森西三丁目
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-72601
+}
+
+map "outer A :Area" as outerA {
+ height => 32.852000000000004
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-72601
+}
+
+map "inner a1 :Area" as a1 {
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-72601
+}
+
+map "inner a2 :Area" as a2 {
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-72601
+}
+
+buildingA o-- partA : member\n[role=part]
+buildingA o-- polygonA : member\n[role=outline]
+polygonA o-- outerA : member\n[role=outer]
+polygonA o-- a1 : member\n[role=inner]
+polygonA o-- a2 : member\n[role=inner]
+
+
+map "building B :Relation" as buildingB {
+ type => building
+ building => yes
+ height => 6.038
+ addr:ref => 13111006003
+ addr:full => 東京都大田区大森西三丁目
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-71799
+}
+
+map "multipolygon B :Relation" as polygonB {
+ type => multipolygon
+ building => yes
+ height => 6.038
+ addr:ref => 13111006003
+ addr:full => 東京都大田区大森西三丁目
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-71799
+}
+
+map "B :Area" as partB {
+ building:part => yes
+ height => 6.038
+ addr:ref => 13111006003
+ addr:full => 東京都大田区大森西三丁目
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-71799
+}
+
+map "outer B :Area" as outerB {
+ height => 6.038
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-71799
+}
+
+buildingB o-- partB : member\n[role=part]
+buildingB o-- polygonB : member\n[role=outline]
+polygonB o-- outerB : member\n[role=outer]
+@enduml

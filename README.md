@@ -164,7 +164,19 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 ![sample d GML](doc/building/sample-d/sample-d-gml.png)
 
- - ビルディング・リレーションのOutlineに、マルチポリゴン・リレーションを使って描く
+ビルディング・リレーションのOutlineに、マルチポリゴン・リレーションを使って描く
+
+- Step 1. parse GML file "[sample-D Parse](doc/building/sample-d/osm1-parse.png)"
+
+- Step 2. 接触しているBUILDINGのWAYを"Relation:building"にまとめる "[osm2 RelationMarge](doc/building/sample-c/osm2-RelationMarge.png)"
+
+- Step 3. メンバーが一つしかないRelation:building を削除する "[osm3 RemoveSinglePart](doc/building/sample-c/osm3-RemoveSinglePart.png)"
+
+- Step 4. Relation:building->member:role=port のWay:outlineを作成する
+
+- Step 4. Relation:multipolygon->outerにWay:outline "[osm4 Create Outline](doc/building/sample-c/osm4-CreateOutline.png)"
+
+- Step 5. 不要なPOIを削除する　"[sample a OSM](doc/building/sample-c/osm.pu.png)"
 
 ![building :リレーション](doc/building/sample-d/sample-d-osm.png)
 

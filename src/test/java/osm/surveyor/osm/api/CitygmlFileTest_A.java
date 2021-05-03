@@ -2,7 +2,6 @@ package osm.surveyor.osm.api;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.CoreMatchers.startsWith;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
@@ -16,7 +15,6 @@ import org.junit.Test;
 
 import osm.surveyor.osm.ElementMember;
 import osm.surveyor.osm.ElementRelation;
-import osm.surveyor.osm.ElementTag;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 
