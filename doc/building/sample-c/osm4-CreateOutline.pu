@@ -1,6 +1,6 @@
 @startuml
 
-map "building :Relation" as building {
+map "building B :Relation" as buildingB {
  type => building
  building => yes
  height => 40.492
@@ -9,7 +9,7 @@ map "building :Relation" as building {
  source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697
 }
 
-map "outline :Way" as outline {
+map "outline :Area" as outline {
  building => yes
  height => 40.492
  addr:ref => 13111058003
@@ -17,7 +17,7 @@ map "outline :Way" as outline {
  source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697
 }
 
-map "A :Area" as A {
+map "part A :Area" as partA {
  building:part => yes
  height => 40.492
  addr:ref => 13111058003
@@ -25,7 +25,7 @@ map "A :Area" as A {
  source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-473
 }
 
-map "B :Area" as B {
+map "B :Area" as partB {
  building:part => yes
  height => 6.58
  addr:ref => 13111058003
@@ -33,7 +33,7 @@ map "B :Area" as B {
  source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-386
 }
 
-building o-- outline : member\n[role=outline]
-building o-- A : member\n[role=part]
-building o-- B : member\n[role=part]
+buildingB o-- outline : member\n[role=outline]
+buildingB o-- partA : member\n[role=part]
+buildingB o-- partB : member\n[role=part]
 @enduml

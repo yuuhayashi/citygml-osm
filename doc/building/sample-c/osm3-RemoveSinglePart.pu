@@ -1,0 +1,29 @@
+@startuml
+map "part A :Area" as partA {
+ building:part => yes
+ height => 40.492
+ addr:ref => 13111058003
+ addr:full => 東京都大田区南六郷三丁目
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-473
+}
+
+map "building B :Relation" as buildingB {
+ type => building
+ building => yes
+ height => 40.492
+ addr:ref => 13111058003
+ addr:full => 東京都大田区南六郷三丁目
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697
+}
+
+map "B :Area" as partB {
+ building:part => yes
+ height => 6.58
+ addr:ref => 13111058003
+ addr:full => 東京都大田区南六郷三丁目
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-386
+}
+
+buildingB o-- partA : member\n[role=part]
+buildingB o-- partB : member\n[role=part]
+@enduml

@@ -26,22 +26,22 @@ public class BuildingGarbage {
 		for (String rKey : osm.relations.keySet()) {
 			ElementRelation relation = osm.relations.get(rKey);
 			if (relation.members.size() < 1) {
+				preDeleteMembers(osm, Long.parseLong(rKey));
 				osm.relations.remove(rKey);
 				return true;
 			}
 			else if (relation.members.size() < 2) {
-				if (relation.isBuilding()) {
-					osm.relations.remove(rKey);
-					return true;
-				}
 				if (relation.isMultipolygon()) {
 					for (ElementMember member : relation.members) {
 						ElementWay way = osm.ways.get(member.ref);
-						osm.ways.remove(way);
-						osm.relations.remove(rKey);
-						return true;
+						if (way != null) {
+							osm.ways.remove(way);
+						}
 					}
 				}
+				preDeleteMembers(osm, Long.parseLong(rKey));
+				osm.relations.remove(rKey);
+				return true;
 			}
 			else if (relation.members.size() == 2) {
 				if (relation.isBuilding()) {
@@ -57,9 +57,31 @@ public class BuildingGarbage {
 						ElementWay way = osm.ways.get(wayid);
 						way.member = true;
 						copyTag(relation.tags, way);
+						preDeleteMembers(osm, Long.parseLong(rKey));
 						osm.relations.remove(rKey);
 						return true;
 					}
+				}
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * IDをリレーションのメンバーから外す
+	 * @param osm
+	 * @param id
+	 */
+	private static void preDeleteMembers(OsmDom osm, long id) {
+		while(preDeleteMember(osm, id));
+	}
+	private static boolean preDeleteMember(OsmDom osm, long id) {
+		for (String relationid : osm.relations.keySet()) {
+			ElementRelation relation = osm.relations.get(relationid);
+			for (ElementMember member : relation.members) {
+				if (member.ref == id) {
+					relation.removeMember(id);
+					return true;
 				}
 			}
 		}

@@ -189,6 +189,9 @@ public class OsmDom {
 			}
 			else {
 				// "outline"が存在しない場合は、"bulding:Relation"にWAYをMEMBERとして追加する
+				aWay.copyTag(building);
+				aWay.tags.remove("type");
+				aWay.tags.remove("building:part");
 				aWay.addTag("height", maxheight);
 				building.addMember(aWay, "outline");
 			}
