@@ -55,6 +55,8 @@ public class CitygmlFile extends File {
 					filename = filename.substring(0, filename.length()-4);
 			        
 			        OsmDom osm = new OsmDom();
+			        
+			        // (1) GMLファイルをパースする
 		            CitygmlFile target = new CitygmlFile(file, osm);
 		            target.parse();
 		            

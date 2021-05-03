@@ -145,7 +145,7 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 - Step 1. parse GML file "[sample-c-osm1](doc/building/sample-c/osm1-parse.png)"
 
-- Step 2. 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる (Step1から変化なし)
+- Step 2. 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる "[osm2 RelationMarge](doc/building/sample-c/osm2-RelationMarge.png)"
 
 - Step 3. Relation:building->member:role=port のWay:outlineを作成する
 

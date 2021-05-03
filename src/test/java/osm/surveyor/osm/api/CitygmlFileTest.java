@@ -252,7 +252,7 @@ public class CitygmlFileTest {
 
 	@Test
 	public void testSample_a2_margePart() {
-		test_doMargePart(Paths.get(".","sample_a_bldg_6697_op2.gml"));
+		test_doRelationMarge(Paths.get(".","sample_a_bldg_6697_op2.gml"));
         OsmDom osm = new OsmDom();
         try {
 			osm.load(Paths.get("sample_a_bldg_6697_op2_2.osm").toFile());
@@ -985,7 +985,7 @@ public class CitygmlFileTest {
      * 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる
      * @param a
      */
-    public static void test_doMargePart(Path a) {
+    public static void test_doRelationMarge(Path a) {
 		if (Files.isRegularFile(a)) {
 			File file = a.toFile();
 			String filename = file.getName();
@@ -1003,41 +1003,6 @@ public class CitygmlFileTest {
 			    	// Relation:multipolygon の MaxHeightを outline->Multipolygonへ設定する
 			    	RelationMarge.relationMarge(osm);
 			    	osm.export(new File(filename + "_2.osm"));
-				} catch (Exception e) {
-					e.printStackTrace();
-					fail(e.toString());
-				}
-			}
-		}
-    }
-
-    /**
-     * (4) メイン処理
-     * Relation:building->member:role=port のWay:outlineを作成する
-     * Relation:multipolygon->outerにWay:outline
-     * @param a
-     */
-    public static void test_doCreateOutline(Path a) {
-		if (Files.isRegularFile(a)) {
-			File file = a.toFile();
-			String filename = file.getName();
-			System.out.println(filename);
-			if (filename.endsWith("_op2.gml")) {
-				try {
-					filename = filename.substring(0, filename.length()-4);
-			        
-			        OsmDom osm = new OsmDom();
-		            CitygmlFile target = new CitygmlFile(file, osm);
-		            target.parse();
-		            
-			    	RelationMarge.relationMarge(osm);
-
-			    	BuildingGarbage.garbage(osm);
-
-		            // Relation:building->member:role=port のWay:outlineを作成する
-		            // Relation:multipolygon->outerにWay:outline
-		            osm.relationOutline();
-			    	osm.export(new File(filename + "_4.osm"));
 			    	
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -1046,7 +1011,6 @@ public class CitygmlFileTest {
 			}
 		}
     }
-
 
     /**
      * (3) メイン処理
@@ -1083,6 +1047,44 @@ public class CitygmlFileTest {
     }
 
     /**
+     * (4) メイン処理
+     * Relation:building->member:role=port のWay:outlineを作成する
+     * Relation:multipolygon->outerにWay:outline
+     * @param a
+     */
+    public static void test_doCreateOutline(Path a) {
+		if (Files.isRegularFile(a)) {
+			File file = a.toFile();
+			String filename = file.getName();
+			System.out.println(filename);
+			if (filename.endsWith("_op2.gml")) {
+				try {
+					filename = filename.substring(0, filename.length()-4);
+			        
+			        OsmDom osm = new OsmDom();
+		            CitygmlFile target = new CitygmlFile(file, osm);
+		            target.parse();
+		            
+			    	RelationMarge.relationMarge(osm);
+
+		            // (3) メンバーが一つしかないRelation:building を削除する
+			    	// (3) メンバーが一つしかないRelation:multipolygon と polygon:member を削除する
+			    	BuildingGarbage.garbage(osm);
+
+		            // Relation:building->member:role=port のWay:outlineを作成する
+		            // Relation:multipolygon->outerにWay:outline
+		            osm.relationOutline();
+			    	osm.export(new File(filename + "_4.osm"));
+			    	
+				} catch (Exception e) {
+					e.printStackTrace();
+					fail(e.toString());
+				}
+			}
+		}
+    }
+
+    /**
      * メイン処理
      * 指定されたGMLファイルをOSMファイルに変換する
      * @param a
@@ -1091,6 +1093,7 @@ public class CitygmlFileTest {
 		if (Files.isRegularFile(a)) {
 			File file = a.toFile();
 			String filename = file.getName();
+			
 			System.out.println(filename);
 			if (filename.endsWith("_op2.gml")) {
 				try {

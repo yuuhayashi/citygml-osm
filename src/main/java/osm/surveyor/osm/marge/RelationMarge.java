@@ -72,6 +72,7 @@ public class RelationMarge {
 									destRelation.addTag("name", maxname);
 								}
 							}
+							destRelation.addTag("source", osm.getSource());
 							destRelation.addMember(way, "part");
 							int i = relation.members.indexOf(member);	// カレントリレーションからメンバーを削除
 							relation.members.remove(i);
