@@ -266,12 +266,12 @@ public class CitygmlFileTest {
     }
 
     /**
-     * (4) メイン処理
+     * (4) OUTLINEを作成
      * Relation:building->member:role=port のWay:outlineを作成する
      * Relation:multipolygon->outerにWay:outline
      * @param a
      */
-    public static void test_doCreateOutline(Path a) {
+    public static void test4_doCreateOutline(Path a) {
 		if (Files.isRegularFile(a)) {
 			File file = a.toFile();
 			String filename = file.getName();

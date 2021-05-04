@@ -413,7 +413,7 @@ public class CitygmlFileTest_A {
 
 	@Test
 	public void testSample_a4_createOutline() {
-		CitygmlFileTest.test_doCreateOutline(Paths.get(".","sample_a_bldg_6697_op2.gml"));
+		CitygmlFileTest.test4_doCreateOutline(Paths.get(".","sample_a_bldg_6697_op2.gml"));
         OsmDom osm = new OsmDom();
         try {
 			osm.load(Paths.get("sample_a_bldg_6697_op2_4.osm").toFile());

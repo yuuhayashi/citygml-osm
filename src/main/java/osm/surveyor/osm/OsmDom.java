@@ -165,7 +165,6 @@ public class OsmDom {
 			if (outer == null) {
 				continue;
 			}
-
 			
 			// Relationのメンバーから"height"の最大値を取得
 			String maxheight = getMaxHeight(building);
@@ -181,6 +180,12 @@ public class OsmDom {
 				// "outline"が存在する場合は、マルチポリゴンにaWayを追加する
 				RelationMultipolygon multi = (RelationMultipolygon)relations.get(polygonRef);
 				if (multi != null) {
+					for (ElementMember mem : multi.members) {
+						if (mem.role.equals("outer")) {
+							multi.removeMember(mem.ref);
+							break;
+						}
+					}
 					aWay.addTag("source", getSource());
 					multi.addMember(aWay, "outer");
 					multi.addTag("height", maxheight);

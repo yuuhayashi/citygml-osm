@@ -404,7 +404,7 @@ public class CitygmlFileTest_D {
 
 	@Test
 	public void testSample_d4_createOutline() {
-		CitygmlFileTest.test_doCreateOutline(Paths.get(".","sample_d_bldg_6697_op2.gml"));
+		CitygmlFileTest.test4_doCreateOutline(Paths.get(".","sample_d_bldg_6697_op2.gml"));
 		
         OsmDom osm = new OsmDom();
         try {
@@ -576,7 +576,7 @@ public class CitygmlFileTest_D {
 					assertThat(relation.getTagValue("addr:full"), is("東京都大田区大森西三丁目"));
 					assertThat(relation.getTagValue("addr:ref"), is("13111006003"));
 					assertThat(relation.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697"));
-					assertThat(relation.members.size(), is(5));
+					assertThat(relation.tags.size(), is(6));
 					int outerCnt = 0;
 					int innerCnt = 0;
 					for (ElementMember mem : relation.members) {
@@ -599,6 +599,7 @@ public class CitygmlFileTest_D {
 					}
 					assertThat(outerCnt, is(1));
 					assertThat(innerCnt, is(2));
+					assertThat(relation.members.size(), is(3));
 				}
 			}
 			assertThat(osm.relations.size(), is(2));

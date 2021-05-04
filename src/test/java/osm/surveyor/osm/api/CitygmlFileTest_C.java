@@ -425,7 +425,7 @@ public class CitygmlFileTest_C {
 
 	@Test
 	public void testSample_c4_createOutline() {
-		CitygmlFileTest.test_doCreateOutline(Paths.get(".","sample_c_bldg_6697_op2.gml"));
+		CitygmlFileTest.test4_doCreateOutline(Paths.get(".","sample_c_bldg_6697_op2.gml"));
 		
         OsmDom osm = new OsmDom();
         try {
