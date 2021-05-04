@@ -183,6 +183,7 @@ public class OsmDom {
 					for (ElementMember mem : multi.members) {
 						if (mem.role.equals("outer")) {
 							multi.removeMember(mem.ref);
+							ways.remove(ways.get(mem.ref));
 							break;
 						}
 					}

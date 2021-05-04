@@ -603,6 +603,7 @@ public class CitygmlFileTest_D {
 				}
 			}
 			assertThat(osm.relations.size(), is(2));
+			assertThat(osm.ways.size(), is(5));
 		} catch (Exception e) {
 			e.fillInStackTrace();
 			fail(e.toString());
