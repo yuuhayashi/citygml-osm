@@ -213,6 +213,7 @@ public class OsmDom {
 				}
 			}
 			
+			building.tags.remove("building:part");
 			building.addTag("source", getSource());
 			building.addTag("height", maxheight);
 		}

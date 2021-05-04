@@ -37,7 +37,7 @@ map "building B :Relation" as buildingB {
  height => 6.038
  addr:ref => 13111006003
  addr:full => 東京都大田区大森西三丁目
- source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-71799
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697
 }
 
 map "B :Area" as partB {

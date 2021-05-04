@@ -252,8 +252,8 @@ public class CitygmlFileTest {
 		            
 			    	RelationMarge.relationMarge(osm);
 		            
-		            // メンバーが一つしかないRelation:building を削除する
-			    	// メンバーが一つしかないRelation:multipolygon と polygon:member を削除する
+		            // (3) メンバーが一つしかないRelation:building を削除する
+			    	// (3) メンバーが一つしかないRelation:multipolygon と polygon:member を削除する
 			    	BuildingGarbage.garbage(osm);
 			    	osm.export(new File(filename + "_3.osm"));
 		            
@@ -286,12 +286,10 @@ public class CitygmlFileTest {
 		            
 			    	RelationMarge.relationMarge(osm);
 
-		            // (3) メンバーが一つしかないRelation:building を削除する
-			    	// (3) メンバーが一つしかないRelation:multipolygon と polygon:member を削除する
 			    	BuildingGarbage.garbage(osm);
 
-		            // Relation:building->member:role=port のWay:outlineを作成する
-		            // Relation:multipolygon->outerにWay:outline
+		            // (4) Relation:building->member:role=port のWay:outlineを作成する
+		            // (4) Relation:multipolygon->outerにWay:outline
 		            osm.relationOutline();
 			    	osm.export(new File(filename + "_4.osm"));
 			    	
@@ -318,8 +316,9 @@ public class CitygmlFileTest {
 				try {
 					filename = filename.substring(0, filename.length()-4);
 			        
-					// (1) パース
 			        OsmDom osm = new OsmDom();
+
+			        // (1) GMLファイルをパースする
 		            CitygmlFile target = new CitygmlFile(file, osm);
 		            target.parse();
 		            

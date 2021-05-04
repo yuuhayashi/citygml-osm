@@ -97,11 +97,7 @@ public class MargeFactory {
     	}
     	
     	// 削除する線分がなくなるまで続ける
-    	for (TwoPoint aSegment : list) {
-    		while (removeSegment(bList, aSegment)) {
-        		while (removeSegment(aList, aSegment));
-    		}
-    	}
+    	while (removeSegment(aList, bList));
 
 		// listにbWayを統合する
     	for (TwoPoint bSegment : bList) {
@@ -141,6 +137,24 @@ public class MargeFactory {
     	return null;
     }
 
+    /**
+     * List<LineSegment>から指定されたセグメントをひとつ削除する
+     * @param sList		対象のライン
+     * @param segment	削除するセグメント
+     * @return	削除したらTrue
+     */
+    private boolean removeSegment(OsmLine aList, OsmLine bList) {
+    	for (TwoPoint aSegment : list) {
+    		while (removeSegment(bList, aSegment)) {
+        		while (removeSegment(aList, aSegment)) {
+        			list.remove(list.indexOf(aSegment));
+        			return true;
+        		}
+    		}
+    	}
+    	return false;
+    }
+    
     /**
      * List<LineSegment>から指定されたセグメントを削除する
      * @param sList		対象のライン
