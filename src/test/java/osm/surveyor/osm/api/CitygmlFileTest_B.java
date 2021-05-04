@@ -7,10 +7,6 @@ import static org.junit.Assert.fail;
 
 import java.nio.file.Paths;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import osm.surveyor.osm.ElementMember;
@@ -19,22 +15,6 @@ import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 
 public class CitygmlFileTest_B {
-
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
 
 	@Test
 	public void testSample_b() {

@@ -13,6 +13,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import osm.surveyor.osm.ElementMember;
 import osm.surveyor.osm.ElementRelation;
@@ -38,6 +39,7 @@ public class CitygmlFileTest_E {
 	}
 
 	@Test
+	@Category(DetailTests.class)
 	public void testSample_e1_parse() {
 		CitygmlFileTest.test_doParse(Paths.get("src/test/resources","sample_e_bldg_6697_op2.gml"));
         OsmDom osm = new OsmDom();
@@ -206,6 +208,7 @@ public class CitygmlFileTest_E {
 	
 
 	@Test
+	@Category(DetailTests.class)
 	public void testSample_e2_margePart() {
 		CitygmlFileTest.test_doRelationMarge(Paths.get("src/test/resources","sample_e_bldg_6697_op2.gml"));
 		
@@ -323,6 +326,7 @@ public class CitygmlFileTest_E {
 	}
 	
 	@Test
+	@Category(DetailTests.class)
 	public void testSample_e3_removeSinglePart() {
 		CitygmlFileTest.test_doRemoveSinglePart(Paths.get("src/test/resources","sample_e_bldg_6697_op2.gml"));
 		
@@ -392,6 +396,7 @@ public class CitygmlFileTest_E {
 	}
 
 	@Test
+	@Category(DetailTests.class)
 	public void testSample_e4_createOutline() {
 		CitygmlFileTest.test4_doCreateOutline(Paths.get("src/test/resources","sample_e_bldg_6697_op2.gml"));
 		

@@ -48,6 +48,11 @@ public class CitygmlFileTest {
 		test_do(Paths.get("src/test/resources","53392588_bldg_6697_op2.gml"));
 	}
 
+	@Test
+	public void test53392589() {
+		test_do(Paths.get("src/test/resources","53392589_bldg_6697_op2.gml"));
+	}
+
 	public static void test(Path a) {
 		CitygmlFile.doConvert(a);
 	}

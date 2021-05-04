@@ -11,15 +11,6 @@
 			<gen:stringAttribute name="建物ID">
 				<gen:value>13111-bldg-466</gen:value>
 			</gen:stringAttribute>
-			<gen:stringAttribute name="大字・町コード">
-				<gen:value>58</gen:value>
-			</gen:stringAttribute>
-			<gen:stringAttribute name="町・丁目コード">
-				<gen:value>3</gen:value>
-			</gen:stringAttribute>
-			<gen:stringAttribute name="13_区市町村コード_大字・町コード_町・丁目コード">
-				<gen:value>13111058003</gen:value>
-			</gen:stringAttribute>
 			<gen:genericAttributeSet name="多摩水系多摩川、浅川、大栗川洪水浸水想定区域（計画規模）">
 				<gen:stringAttribute name="規模">
 					<gen:value>L1</gen:value>

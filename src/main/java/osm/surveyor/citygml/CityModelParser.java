@@ -128,7 +128,7 @@ public class CityModelParser extends DefaultHandler {
     	else if(qName.equals("gen:stringAttribute")){
 			// <gen:stringAttribute name="13_区市町村コード_大字・町コード_町・丁目コード">
 			if (getAttributes("name", atts).startsWith(ADDR_REF_CODE13)) {
-				addr_ref = ADDR_REF_CODE13;
+				addr_ref = "";
 			}
 			if (getAttributes("name", atts).startsWith(BLDG_ID)) {
 				buildingId = "";
@@ -137,10 +137,10 @@ public class CityModelParser extends DefaultHandler {
     	else if(qName.equals("gen:value")){
 			// <gen:stringAttribute name="13_区市町村コード_大字・町コード_町・丁目コード">
     		//   <gen:value>13111058003</gen:value>
-			if ((addr_ref != null) && addr_ref.equals(ADDR_REF_CODE13)) {
+			if ((addr_ref != null) && addr_ref.isEmpty()) {
 		    	outSb = new StringBuffer();
 			}
-			if (buildingId != null) {
+			if ((buildingId != null) && buildingId.isEmpty()) {
 		    	outSb = new StringBuffer();
 			}
 		}
@@ -260,7 +260,7 @@ public class CityModelParser extends DefaultHandler {
     	else if(qName.equals("gen:stringAttribute")){
 			if (building != null) {
 				// <gen:stringAttribute name="13_区市町村コード_大字・町コード_町・丁目コード">
-				if (addr_ref != null) {
+				if ((addr_ref != null) && !addr_ref.isEmpty()) {
 					building.addTag("addr:ref", addr_ref);
 					addr_ref = null;
 				}
@@ -275,8 +275,11 @@ public class CityModelParser extends DefaultHandler {
     	else if(qName.equals("gen:value")){
 			// <gen:stringAttribute name="13_区市町村コード_大字・町コード_町・丁目コード">
     		//   <gen:value>13111058003</gen:value>
-			if ((addr_ref != null) && addr_ref.equals(ADDR_REF_CODE13) && (outSb != null)) {
+			if ((addr_ref != null) && addr_ref.isEmpty() && (outSb != null)) {
 				addr_ref = outSb.toString();
+				if (addr_ref.isEmpty()) {
+					addr_ref = null;
+				}
 			}
 			if ((buildingId != null) && (buildingId.isEmpty()) && (outSb != null)) {
 				buildingId = outSb.toString();
