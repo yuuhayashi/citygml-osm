@@ -103,16 +103,21 @@ public class BuildingGarbage {
 		if (tags == null) {
 			return;
 		}
+		String building = "yes";
 		ElementTag buildingPartTag = dest.tags.get("building:part");
 		if (buildingPartTag != null) {
+			building = buildingPartTag.v;
 			dest.tags.remove("building:part");
-			dest.addTag("building", buildingPartTag.v);
 		}
 		for (String key : tags.keySet()) {
 			ElementTag tag = tags.get(key);
 			if (tag.k.equals("type")) {
 			}
 			else if (tag.k.equals("building:part")) {
+				building = tag.v;
+			}
+			else if (tag.k.equals("building")) {
+				building = tag.v;
 			}
 			else if (tag.k.equals("addr:full")) {
 			}
@@ -126,10 +131,9 @@ public class BuildingGarbage {
 				dest.addTag(key, tag.v);
 			}
 		}
-		ElementTag buildingTag = dest.tags.get("building");
+		String buildingTag = dest.getTagValue("building");
 		if (buildingTag == null) {
-			dest.addTag("building", "yes");
+			dest.addTag("building", building);
 		}
 	}
-
 }

@@ -128,7 +128,7 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 	 * メンバーの中から member:type="relation" のIDを返す
 	 * @return	リレーションメンバーが存在しない場合はNULL
 	 */
-	String getRelationMemberId() {
+	public String getRelationMemberId() {
 		for (ElementMember mem : members) {
 			if (mem.type.equals("relation")) {
 				return Long.toString(mem.ref);

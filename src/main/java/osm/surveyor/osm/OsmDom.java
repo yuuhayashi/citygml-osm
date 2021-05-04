@@ -20,8 +20,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import osm.surveyor.osm.marge.MargeFactory;
-
 /**
  * Osmファイルをドムる
  * 
@@ -147,85 +145,8 @@ public class OsmDom {
     	return src;
     }
     
-	/**
-	 * - Relation->member:role=port のoutlineを作成する
-	 * - 
-	 * 
-	 * @param relations
-	 */
-	public void relationOutline() {
-		for (String rKey : relations.keySet()) {
-			ElementRelation relation = relations.get(rKey);
-			if (!relation.isBuilding()) {
-				continue;
-			}
-			RelationBuilding building = (RelationBuilding)relation;
-			MargeFactory factory = building.createOutline(ways);
-			OsmLine outer = factory.getOuter();
-			if (outer == null) {
-				continue;
-			}
-			
-			// Relationのメンバーから"height"の最大値を取得
-			String maxheight = getMaxHeight(building);
 
-			// OUTLINEをWAYリストに登録
-			ElementWay aWay = new ElementWay();
-			aWay.replaceNds(outer);
-			aWay.member = true;
-			ways.put(aWay);
-			
-			String polygonRef = building.getRelationMemberId();
-			if (polygonRef != null) {
-				// "outline"が存在する場合は、マルチポリゴンにaWayを追加する
-				RelationMultipolygon multi = (RelationMultipolygon)relations.get(polygonRef);
-				if (multi != null) {
-					for (ElementMember mem : multi.members) {
-						if (mem.role.equals("outer")) {
-							multi.removeMember(mem.ref);
-							ways.remove(ways.get(mem.ref));
-							break;
-						}
-					}
-					aWay.addTag("source", getSource());
-					multi.addMember(aWay, "outer");
-					multi.addTag("height", maxheight);
-					multi.addTag("source", getSource());
-				}
-			}
-			else {
-				// "outline"が存在しない場合は、"bulding:Relation"にWAYをMEMBERとして追加する
-				aWay.copyTag(building);
-				aWay.tags.remove("type");
-				aWay.tags.remove("building:part");
-				aWay.addTag("height", maxheight);
-				building.addMember(aWay, "outline");
-			}
-			
-			// マルチポリゴンにINNERを追加する
-			ArrayList<OsmLine> inners = factory.getInners();
-			for (OsmLine inner : inners) {
-				ElementWay iWay = new ElementWay();
-				iWay.replaceNds(inner);
-				iWay.member = true;
-				ways.put(iWay);
-				
-				if (polygonRef != null) {
-					RelationMultipolygon multi = (RelationMultipolygon)relations.get(polygonRef);
-					if (multi != null) {
-						iWay.addTag("source", getSource());
-						multi.addMember(iWay, "inner");
-					}
-				}
-			}
-			
-			building.tags.remove("building:part");
-			building.addTag("source", getSource());
-			building.addTag("height", maxheight);
-		}
-	}
-	
-    public ArrayList<ElementRelation> getParents(ElementOsmapi obj) {
+	public ArrayList<ElementRelation> getParents(ElementOsmapi obj) {
     	ArrayList<ElementRelation> list = new ArrayList<>();
     	for (String id : relations.keySet()) {
     		ElementRelation relation = relations.get(id);
@@ -238,7 +159,7 @@ public class OsmDom {
     	return list;
     }
 	
-	String getMaxHeight(ElementRelation relation) {
+	public String getMaxHeight(ElementRelation relation) {
 		String maxheight = "0";
 		for (ElementMember member : relation.members) {
 			if (member.role.equals("part")) {

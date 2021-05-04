@@ -12,7 +12,7 @@ map "building A :Relation" as buildingA {
 map "multipolygon A :Relation" as polygonA {
  type => multipolygon
  building => yes
- name => 大田病院
+ building:name => 大田病院
  height => 17.199
  addr:ref => 13111007004
  addr:full => 東京都大田区大森東四丁目

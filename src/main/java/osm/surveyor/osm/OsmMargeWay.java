@@ -51,9 +51,10 @@ public class OsmMargeWay {
 	 * @param relations
 	 * @param ways
 	 */
-	public static void partGabegi(OsmDom osm) {
+	public static OsmDom partGabegi(OsmDom osm) {
 		while (partRemove(osm));
 		while (outlineRemove(osm));
+		return osm;
 	}
 	
 	static boolean partRemove(OsmDom osm) {
@@ -71,27 +72,29 @@ public class OsmMargeWay {
 				}
 			}
 
-			if (polygon != null) {
+			if (outer != null) {
 				for (String wayid : osm.ways.keySet()) {
 					ElementWay partWay = osm.ways.get(wayid);
-					if (partWay.id != outer.id) {
-						if (partWay.isSame(outer)) {
-							ElementTag ele = partWay.tags.get("height");
-							if (ele != null) {
-								polygon.addTag("height", ele.v);
-							}
-							ArrayList<ElementRelation> list = osm.getParents(partWay);
-							for (ElementRelation parent : list) {
-								if (parent.isBuilding()) {
-									parent.removeMember(partWay.id);
-									if (parent.members.isEmpty()) {
-										copyTag(parent.tags, polygon);
-										osm.relations.remove(parent.getIdstr());
+					if ((partWay != null) && (outer != null)) {
+						if (partWay.id != outer.id) {
+							if (partWay.isSame(outer)) {
+								ElementTag ele = partWay.tags.get("height");
+								if (ele != null) {
+									polygon.addTag("height", ele.v);
+								}
+								ArrayList<ElementRelation> list = osm.getParents(partWay);
+								for (ElementRelation parent : list) {
+									if (parent.isBuilding()) {
+										parent.removeMember(partWay.id);
+										if (parent.members.isEmpty()) {
+											copyTag(parent.tags, polygon);
+											osm.relations.remove(parent.getIdstr());
+										}
 									}
 								}
+								osm.ways.remove(partWay);
+								return true;
 							}
-							osm.ways.remove(partWay);
-							return true;
 						}
 					}
 				}

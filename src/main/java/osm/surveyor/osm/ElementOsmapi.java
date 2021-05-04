@@ -80,6 +80,12 @@ public class ElementOsmapi implements Cloneable {
 		if (tag == null) {
 			return null;
 		}
+		if (tag.v == null) {
+			return null;
+		}
+		if (tag.v.isEmpty()) {
+			return null;
+		}
 		return tag.v;
 	}
 
@@ -93,7 +99,7 @@ public class ElementOsmapi implements Cloneable {
 			return;
 		}
 		for (String key : source.tags.keySet()) {
-			ElementTag tag = source.tags.get(key);
+			ElementTag tag = source.tags.get(key).clone();
 			addTag(tag);
 		}
 	}

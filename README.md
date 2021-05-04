@@ -193,17 +193,17 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 * "inner:way"（空白部分）をインナーラインとして補完する
 * "name=..."の継承
 
-- Step 1. parse GML file "[sample-D Parse](doc/building/sample-e/osm1.png)"
+- Step 1. parse GML file "[sample-D Parse](doc/building/sample-e/osm1-parse.png)"
 
-- Step 2. 接触しているBUILDINGのWAYを"Relation:building"にまとめる "[osm2 RelationMarge](doc/building/sample-c/osm2-RelationMarge.png)"
+- Step 2. 接触しているBUILDINGのWAYを"Relation:building"にまとめる "[osm2 RelationMarge](doc/building/sample-e/osm2-RelationMarge.png)"
 
-- Step 3. メンバーが一つしかないRelation:building を削除する "[osm3 RemoveSinglePart](doc/building/sample-c/osm3-RemoveSinglePart.png)"
+- Step 3. メンバーが一つしかないRelation:building を削除する "[osm3 RemoveSinglePart](doc/building/sample-e/osm3-RemoveSinglePart.png)"
 
 - Step 4. Relation:building->member:role=port のWay:outlineを作成する
 
-- Step 4. Relation:multipolygon->outerにWay:outline "[osm4 Create Outline](doc/building/sample-c/osm4-CreateOutline.png)"
+- Step 4. Relation:multipolygon->outerにWay:outline "[osm4 Create Outline](doc/building/sample-e/osm4-CreateOutline.png)"
 
-- Step 5. 不要なPOIを削除する　"[sample a OSM](doc/building/sample-c/osm.pu.png)"
+- Step 5. 不要なPOIを削除する　(変更なし)
 
 ![sample e OSM](doc/building/sample-e/sample-e-osm.png)
 

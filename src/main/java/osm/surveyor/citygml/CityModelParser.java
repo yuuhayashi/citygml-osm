@@ -233,8 +233,8 @@ public class CityModelParser extends DefaultHandler {
 				for (ElementMember mem : building.members) {
 					if (mem.type.equals("way")) {
 						ElementWay way = osm.ways.get(Long.toString(mem.ref));
-						way.addTag("addr:ref", building.tags.get("addr:ref").v);
-						way.addTag("addr:full", building.tags.get("addr:full").v);
+						way.addTag("addr:ref", building.getTagValue("addr:ref"));
+						way.addTag("addr:full", building.getTagValue("addr:full"));
 						way.addTag("source", getSourceStr(buildingId));
 						if ((name != null) && !name.isEmpty()) {
 							way.addTag("name", name);
@@ -242,8 +242,8 @@ public class CityModelParser extends DefaultHandler {
 					}
 					else if (mem.type.equals("relation")) {
 						ElementRelation relation = osm.relations.get(Long.toString(mem.ref));
-						relation.addTag("addr:ref", building.tags.get("addr:ref").v);
-						relation.addTag("addr:full", building.tags.get("addr:full").v);
+						relation.addTag("addr:ref", building.getTagValue("addr:ref"));
+						relation.addTag("addr:full", building.getTagValue("addr:full"));
 						relation.addTag("source", getSourceStr(buildingId));
 						if ((name != null) && !name.isEmpty()) {
 							relation.addTag("name", name);

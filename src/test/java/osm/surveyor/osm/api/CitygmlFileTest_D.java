@@ -39,7 +39,7 @@ public class CitygmlFileTest_D {
 
 	@Test
 	public void testSample_d1_parse() {
-		CitygmlFileTest.test_doParse(Paths.get(".","sample_d_bldg_6697_op2.gml"));
+		CitygmlFileTest.test_doParse(Paths.get("src/test/resources","sample_d_bldg_6697_op2.gml"));
         OsmDom osm = new OsmDom();
         try {
 			osm.load(Paths.get("sample_d_bldg_6697_op2_1.osm").toFile());
@@ -206,7 +206,7 @@ public class CitygmlFileTest_D {
 
 	@Test
 	public void testSample_d2_margePart() {
-		CitygmlFileTest.test_doRelationMarge(Paths.get(".","sample_d_bldg_6697_op2.gml"));
+		CitygmlFileTest.test_doRelationMarge(Paths.get("src/test/resources","sample_d_bldg_6697_op2.gml"));
 		
         OsmDom osm = new OsmDom();
         try {
@@ -321,7 +321,7 @@ public class CitygmlFileTest_D {
 	
 	@Test
 	public void testSample_d3_removeSinglePart() {
-		CitygmlFileTest.test_doRemoveSinglePart(Paths.get(".","sample_d_bldg_6697_op2.gml"));
+		CitygmlFileTest.test_doRemoveSinglePart(Paths.get("src/test/resources","sample_d_bldg_6697_op2.gml"));
 		
         OsmDom osm = new OsmDom();
         try {
@@ -404,7 +404,7 @@ public class CitygmlFileTest_D {
 
 	@Test
 	public void testSample_d4_createOutline() {
-		CitygmlFileTest.test4_doCreateOutline(Paths.get(".","sample_d_bldg_6697_op2.gml"));
+		CitygmlFileTest.test4_doCreateOutline(Paths.get("src/test/resources","sample_d_bldg_6697_op2.gml"));
 		
         OsmDom osm = new OsmDom();
         try {
@@ -499,7 +499,7 @@ public class CitygmlFileTest_D {
     
 	@Test
 	public void testSample_d() {
-		CitygmlFileTest.test(Paths.get(".","sample_d_bldg_6697_op2.gml"));
+		CitygmlFileTest.test(Paths.get("src/test/resources","sample_d_bldg_6697_op2.gml"));
 		
         OsmDom osm = new OsmDom();
         try {

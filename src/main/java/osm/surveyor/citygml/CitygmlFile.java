@@ -17,6 +17,7 @@ import org.xml.sax.SAXParseException;
 import osm.surveyor.osm.OsmDom;
 import osm.surveyor.osm.OsmMargeWay;
 import osm.surveyor.osm.marge.BuildingGarbage;
+import osm.surveyor.osm.marge.OutlineFactory;
 import osm.surveyor.osm.marge.RelationMarge;
 
 @SuppressWarnings("serial")
@@ -71,16 +72,17 @@ public class CitygmlFile extends File {
 		            
 		            // (4) Relation:building->member:role=port のWay:outlineを作成する
 		            // (4) Relation:multipolygon->outerにWay:outline
-		            osm.relationOutline();
+			    	OsmDom osm4 = OutlineFactory.relationOutline(osm);
 		            
 		            // Relation:multipolygon の MaxHeightを outline->Multipolygonへ設定する
 		            //OsmMargeWay.removeHeightFromOuter(osm);
 
 		            // (5) "outline"と"part"が重複しているPART を削除する
-		            OsmMargeWay.partGabegi(osm);
+		            OsmDom osm5 = OsmMargeWay.partGabegi(osm4);
 		            
 		            // ファイルへエクスポートする
-			    	osm.export(new File(filename + ".osm"));
+			    	osm5.export(new File(filename + ".osm"));
+			    	
 				} catch (ParserConfigurationException e) {
 					e.printStackTrace();
 				} catch (SAXException e) {

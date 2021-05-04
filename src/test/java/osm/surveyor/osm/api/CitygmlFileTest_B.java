@@ -38,7 +38,7 @@ public class CitygmlFileTest_B {
 
 	@Test
 	public void testSample_b() {
-		CitygmlFileTest.test(Paths.get(".","sample_b_bldg_6697_op2.gml"));
+		CitygmlFileTest.test(Paths.get("src/test/resources","sample_b_bldg_6697_op2.gml"));
         OsmDom osm = new OsmDom();
         try {
 			osm.load(Paths.get("sample_b_bldg_6697_op2.osm").toFile());
