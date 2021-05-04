@@ -11,6 +11,7 @@ import osm.surveyor.osm.ElementBounds;
 import osm.surveyor.osm.ElementMember;
 import osm.surveyor.osm.ElementNode;
 import osm.surveyor.osm.ElementRelation;
+import osm.surveyor.osm.ElementTag;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 import osm.surveyor.osm.RelationMultipolygon;
@@ -312,6 +313,7 @@ public class CityModelParser extends DefaultHandler {
 					part.addTag("building:part", "yes");
 					osm.ways.put(part);
 					roof.copyTag(part);
+					roof.replaceTag("building:part", new ElementTag("building", "yes"));
 					roof.addMember(part, "part");
 				}
 				if (multipolygon != null) {
