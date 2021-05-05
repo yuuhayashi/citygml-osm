@@ -13,6 +13,8 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 # Release
 
+- 2021-05-05 リリース v1.2.3 / [citygml-osm v1.2.3](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/osm.surveyor/citygml-osm/1.2.3)<br/>第一段階（OSMへの変換）／複数の建物が接触している場合の変換に対応した。
+
 - 2021-04-18 リリース v1.2.2 / [citygml-osm v1.2.2](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/osm.surveyor/citygml-osm/1.2.2)<br/>既存データとの重複をチェックして、既存データと重複する場合には既存データを修復する。
 
 - 2021-04-11 リリース v0.2.0 fixed #7 / [citygml-osm v0.2.0](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/osm.surveyor/citygml-osm/0.2.0)<br/>JOSMと同じ"Java8"で実行可能
