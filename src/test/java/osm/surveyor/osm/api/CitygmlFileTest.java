@@ -68,7 +68,7 @@ public class CitygmlFileTest {
 			File file = a.toFile();
 			String filename = file.getName();
 			System.out.println(filename);
-			if (filename.endsWith("_op2.gml")) {
+			if (filename.endsWith(".gml")) {
 				try {
 					filename = filename.substring(0, filename.length()-4);
 			        
@@ -94,7 +94,7 @@ public class CitygmlFileTest {
 			File file = a.toFile();
 			String filename = file.getName();
 			System.out.println(filename);
-			if (filename.endsWith("_op2.gml")) {
+			if (filename.endsWith(".gml")) {
 				try {
 					filename = filename.substring(0, filename.length()-4);
 			        
@@ -127,7 +127,7 @@ public class CitygmlFileTest {
 			File file = a.toFile();
 			String filename = file.getName();
 			System.out.println(filename);
-			if (filename.endsWith("_op2.gml")) {
+			if (filename.endsWith(".gml")) {
 				try {
 					filename = filename.substring(0, filename.length()-4);
 			        
@@ -162,7 +162,7 @@ public class CitygmlFileTest {
 			File file = a.toFile();
 			String filename = file.getName();
 			System.out.println(filename);
-			if (filename.endsWith("_op2.gml")) {
+			if (filename.endsWith(".gml")) {
 				try {
 					filename = filename.substring(0, filename.length()-4);
 			        
@@ -199,7 +199,7 @@ public class CitygmlFileTest {
 			String filename = file.getName();
 			
 			System.out.println(filename);
-			if (filename.endsWith("_op2.gml")) {
+			if (filename.endsWith(".gml")) {
 				try {
 					filename = filename.substring(0, filename.length()-4);
 			        
