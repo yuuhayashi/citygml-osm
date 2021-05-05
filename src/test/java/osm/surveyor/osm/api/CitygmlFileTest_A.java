@@ -2,6 +2,7 @@ package osm.surveyor.osm.api;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.startsWith;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
@@ -89,10 +90,9 @@ public class CitygmlFileTest_A {
 								assertThat(outline.getTagValue("type"), is("multipolygon"));
 								assertThat(outline.getTagValue("building"), is("yes"));
 								assertThat(outline.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
-								assertThat(outline.getTagValue("addr:ref"), is("13111058003"));
 								assertThat(outline.getTagValue("height"), is("6.84"));
 								assertThat(outline.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-466"));
-								assertThat(outline.tags.size(), is(6));
+								assertThat(outline.tags.size(), is(5));
 							}
 							if (mem.role.equals("part")) {
 								partCnt++;
@@ -101,10 +101,9 @@ public class CitygmlFileTest_A {
 								assertThat(way, notNullValue());
 								assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-466"));
 								assertThat(way.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
-								assertThat(way.getTagValue("addr:ref"), is("13111058003"));
 								assertThat(way.getTagValue("height"), is("6.84"));
 								assertThat(way.getTagValue("building:part"), is("yes"));
-								assertThat(way.tags.size(), is(5));
+								assertThat(way.tags.size(), is(4));
 							}
 						}
 						assertThat(outlineCnt, is(1));
@@ -148,7 +147,6 @@ public class CitygmlFileTest_A {
 						assertThat(relation.getTagValue("type"), is("multipolygon"));
 						assertThat(relation.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-466"));
 						assertThat(relation.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
-						assertThat(relation.getTagValue("addr:ref"), is("13111058003"));
 						assertThat(relation.getTagValue("height"), is("6.84"));
 						assertThat(relation.getTagValue("building"), is("yes"));
 
@@ -258,10 +256,9 @@ public class CitygmlFileTest_A {
 								assertThat(outline.getTagValue("type"), is("multipolygon"));
 								assertThat(outline.getTagValue("building"), is("yes"));
 								assertThat(outline.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
-								assertThat(outline.getTagValue("addr:ref"), is("13111058003"));
 								assertThat(outline.getTagValue("height"), is("6.84"));
 								assertThat(outline.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-466"));
-								assertThat(outline.tags.size(), is(6));
+								assertThat(outline.tags.size(), is(5));
 							}
 							if (mem.role.equals("part")) {
 								partCnt++;
@@ -484,6 +481,36 @@ public class CitygmlFileTest_A {
 				}
 			}
 			assertThat(osm.ways.size(), is(1));
+			assertThat(osm.relations.size(), is(0));
+		} catch (Exception e) {
+			e.fillInStackTrace();
+			fail(e.toString());
+		}
+	}
+
+	/**
+	 * 接触しているビルディング
+	 * 13111-bldg-64135
+	 */
+	@Test
+	@Category(DetailTests.class)
+	public void testSample_ab() {
+		CitygmlFileTest.test(Paths.get("src/test/resources","sample_ab_bldg_6697_op2.gml"));
+        OsmDom osm = new OsmDom();
+        try {
+			osm.load(Paths.get("sample_ab_bldg_6697_op2.osm").toFile());
+			assertThat(osm.relations, notNullValue());
+			for (String id : osm.ways.keySet()) {
+				ElementWay way = osm.ways.get(id);
+				assertThat(way, notNullValue());
+				assertThat(way.getTagValue("source"), startsWith("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-"));
+				assertThat(way.getTagValue("addr:full"), is("東京都大田区大森西五丁目"));
+				assertThat(way.getTagValue("addr:ref"), is("13111006005"));
+				assertThat(way.getTagValue("height"), notNullValue());
+				assertThat(way.getTagValue("building"), is("yes"));
+				assertThat(way.tags.size(), is(5));
+			}
+			assertThat(osm.ways.size(), is(2));
 			assertThat(osm.relations.size(), is(0));
 		} catch (Exception e) {
 			e.fillInStackTrace();

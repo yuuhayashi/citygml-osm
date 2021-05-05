@@ -22,6 +22,60 @@ public class MargeFactory {
 		this.outer = null;
 		this.inners = new ArrayList<>();
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean isDuplicateSegment() {
+		for (String wayid : wayMap.keySet()) {
+			ElementWay way = wayMap.get(wayid);
+			if (way != null) {
+		    	OsmLine bList = way.getPointList();
+		    	if (checkSegment(bList)) {
+		    		return true;
+		    	}
+
+				// listにbWayを統合する
+		    	for (TwoPoint bSegment : bList) {
+		    		list.add(bSegment);
+		    	}
+			}
+		}
+		return false;
+	}
+
+    /**
+     * List<LineSegment>と重複するセグメントを探す
+     * @param sList		対象のライン
+     * @return	削除したらTrue
+     */
+    private boolean checkSegment(OsmLine bList) {
+    	for (TwoPoint aSegment : list) {
+    		while (checkSegment(bList, aSegment)) {
+    			return true;
+    		}
+    	}
+    	return false;
+    }
+
+    /**
+     * List<LineSegment>とセグメントが重複するかを調べる
+     * @param sList		対象のライン
+     * @param segment	調査対象セグメント
+     * @return	削除したらTrue
+     */
+    private boolean checkSegment(OsmLine sList, TwoPoint segment) {
+    	if (sList == null) {
+    		return false;
+    	}
+    	for (TwoPoint sPoint : sList) {
+    		if (sPoint.equal(segment)) {
+    			return true;
+    		}
+    	}
+    	return false;
+    }
 
     /**
      * WAYを他のWAYと合成する;
@@ -128,7 +182,7 @@ public class MargeFactory {
     	}
     	return null;
     }
-
+    
     /**
      * List<LineSegment>から指定されたセグメントをひとつ削除する
      * @param sList		対象のライン
