@@ -13,6 +13,8 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 # Release
 
+- 2021-05-05 リリース v1.2.4 / [citygml-osm v1.2.4](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/osm.surveyor/citygml-osm/1.2.4)<br/>Issue #10 ／ 「箱根町」のデータファイル名x-x-に対応した。
+
 - 2021-05-05 リリース v1.2.3 / [citygml-osm v1.2.3](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/osm.surveyor/citygml-osm/1.2.3)<br/>第一段階（OSMへの変換）／複数の建物が接触している場合の変換に対応した。
 
 - 2021-04-18 リリース v1.2.2 / [citygml-osm v1.2.2](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/osm.surveyor/citygml-osm/1.2.2)<br/>既存データとの重複をチェックして、既存データと重複する場合には既存データを修復する。
@@ -39,7 +41,7 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 ![startup.pu](doc/startup.png)
 
-- (1) [ダウンロード](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/osm.surveyor/citygml-osm/1.2.2) から 'jar-with-dependencies' を'任意のフォルダ'にダウンロードする<br/> `citygml-get-1.2.2-jar-with-dependencies.jar` がダウンロードされます
+- (1) [ダウンロード](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/osm.surveyor/citygml-osm/) から 'jar-with-dependencies' を'任意のフォルダ'にダウンロードする<br/> `citygml-get-x.x.x-jar-with-dependencies.jar` がダウンロードされます
 
 - (2) [オープンデータ公開サイト](https://www.geospatial.jp/ckan/dataset/plateau)から「3D都市データ」をダウンロードする
 
@@ -49,7 +51,7 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
   ```
   $ cd (解凍先フォルダ)
-  $ java -jar citygml-osm-1.2.2-jar-with-dependencies.jar
+  $ java -jar citygml-osm-1.2.4-jar-with-dependencies.jar
   ```
 
 - (5) JOSMを起動して、「*.osm」ファイルをJOSMにドロップしてください。<br/>生成されたデータを確認することができます。
