@@ -217,13 +217,17 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 ------
 
+## 内部資料
+
 - [クラス関連図](doc/citygml/class.png)
 
 - [データベース テーブル 関連図](doc/citygml/dbTables.png)
 
 ----------------
 
-## 参考
+## 関連サイト
+
+ - [OpenStreetMap Wiki - MLIT_PLATEAU](https://wiki.openstreetmap.org/wiki/MLIT_PLATEAU)
 
  - [210327PLATEAUを触ってみよう](https://hackmd.io/@geopythonjp/HkZOmNpqL/%2FhfZTkl5FQGy8YHrgzc7ohQ)
 
