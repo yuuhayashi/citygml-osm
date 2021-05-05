@@ -111,6 +111,11 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 ![sample a OSM](doc/building/sample-a/sample-a-osm.png)
 
+#### a-1. 線で接触していないビルディング
+
+接触していないが他の建物のノードと共有しているパターン　[接点パターン](doc/building/sample-a/Sample-a-SharePoint.png)
+
+
 
 ### b. 中空部を持つ単一ビルディング
 

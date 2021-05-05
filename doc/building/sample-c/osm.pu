@@ -3,37 +3,46 @@
 map "building :Relation" as building {
  type => building
  building => yes
- height => 40.492
- addr:ref => 13111058003
- addr:full => 東京都大田区南六郷三丁目
+ height => 8.814
+ addr:ref => 13111005001
+ addr:full => 東京都大田区大森中一丁目
  source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697
 }
 
 map "outline :Way" as outline {
  building => yes
- height => 40.492
- addr:ref => 13111058003
- addr:full => 東京都大田区南六郷三丁目
+ height => 8.814
+ addr:ref => 13111005001
+ addr:full => 東京都大田区大森中一丁目
  source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697
 }
 
 map "A :Area" as A {
  building:part => yes
- height => 40.492
- addr:ref => 13111058003
- addr:full => 東京都大田区南六郷三丁目
- source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-473
+ height => 8.736
+ addr:ref => 13111005001
+ addr:full => 東京都大田区大森中一丁目
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-59928
 }
 
 map "B :Area" as B {
  building:part => yes
- height => 6.58
- addr:ref => 13111058003
- addr:full => 東京都大田区南六郷三丁目
- source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-386
+ height => 5.436
+ addr:ref => 13111005001
+ addr:full => 東京都大田区大森中一丁目
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-59955
+}
+
+map "C :Area" as C {
+ building:part => yes
+ height => 8.814
+ addr:ref => 13111005001
+ addr:full => 東京都大田区大森中一丁目
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-59680
 }
 
 building o-- outline : member\n[role=outline]
 building o-- A : member\n[role=part]
 building o-- B : member\n[role=part]
+building o-- C : member\n[role=part]
 @enduml

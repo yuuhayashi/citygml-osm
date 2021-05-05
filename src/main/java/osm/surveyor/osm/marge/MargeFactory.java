@@ -28,15 +28,11 @@ public class MargeFactory {
      */
 	public void marge() {
 
-    	ElementWay aWay = null;
 		for (String wayid : wayMap.keySet()) {
 			ElementWay way = wayMap.get(wayid);
-			if (aWay == null) {
-				aWay = way.copy();
-			}
-			else {
-		    	// ２つのWAYから共通する線分を削除して統合する
-				removeDuplicatedSegment(aWay, way);
+			if (way != null) {
+				// ２つのWAYから共通する線分を削除して統合する
+				removeDuplicatedSegment(way.copy());
 			}
 		}
 		
@@ -89,15 +85,11 @@ public class MargeFactory {
      * @param segment	削除するセグメント
      * @return	削除したらTrue
      */
-    private void removeDuplicatedSegment(final ElementWay aWay, final ElementWay bWay) {
-    	OsmLine aList = aWay.getPointList();
+    private void removeDuplicatedSegment(final ElementWay bWay) {
     	OsmLine bList = bWay.getPointList();
-    	for (TwoPoint aSegment : aList) {
-    		list.add(aSegment);
-    	}
     	
     	// 削除する線分がなくなるまで続ける
-    	while (removeSegment(aList, bList));
+    	while (removeSegment(bList));
 
 		// listにbWayを統合する
     	for (TwoPoint bSegment : bList) {
@@ -143,13 +135,11 @@ public class MargeFactory {
      * @param segment	削除するセグメント
      * @return	削除したらTrue
      */
-    private boolean removeSegment(OsmLine aList, OsmLine bList) {
+    private boolean removeSegment(OsmLine bList) {
     	for (TwoPoint aSegment : list) {
     		while (removeSegment(bList, aSegment)) {
-        		while (removeSegment(aList, aSegment)) {
-        			list.remove(list.indexOf(aSegment));
-        			return true;
-        		}
+    			list.remove(list.indexOf(aSegment));
+    			return true;
     		}
     	}
     	return false;
