@@ -1,611 +1,631 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <osm generator="JOSM" version="0.6">
     <bounds maxlat="35.542252321638614" maxlon="139.7156383865409" minlat="35.54070862164589" minlon="139.71245218213994" origin="CGImap 0.8.3 (2061540 spike-08.openstreetmap.org)"/>
-    <node id="-770894" lat="35.541303003280085" lon="139.71549548249433" visible="true"/>
-    <node id="-770895" lat="35.541276002798384" lon="139.71550821361615" visible="true"/>
-    <node id="-771741" lat="35.54087846517793" lon="139.71343471229" visible="true"/>
-    <node id="-770379" lat="35.541248635711" lon="139.71326741011697" visible="true"/>
-    <node id="-771865" lat="35.540903645531564" lon="139.7133304557272" visible="true"/>
-    <node id="-771864" lat="35.54086066432969" lon="139.71334573903766" visible="true"/>
-    <node id="-771867" lat="35.540855912604165" lon="139.71332622572578" visible="true"/>
-    <node id="-771866" lat="35.54089902868296" lon="139.71331061135066" visible="true"/>
-    <node id="-770937" lat="35.54084723764115" lon="139.71316875213742" visible="true"/>
-    <node id="-770938" lat="35.54085142746041" lon="139.71316709161786" visible="true"/>
-    <node id="-770939" lat="35.54080593493194" lon="139.71296897802156" visible="true"/>
-    <node id="-771180" lat="35.54121043320529" lon="139.71373761272775" visible="true"/>
-    <node id="-771182" lat="35.541184593263374" lon="139.7137224317394" visible="true"/>
-    <node id="-771181" lat="35.54119137699125" lon="139.71374591240297" visible="true"/>
-    <node id="-771184" lat="35.54107659876772" lon="139.71335170367303" visible="true"/>
-    <node id="-771183" lat="35.541113365653175" lon="139.7134777047117" visible="true"/>
-    <node id="-771186" lat="35.54114595043809" lon="139.7140225748187" visible="true"/>
-    <node id="-771185" lat="35.54096496481712" lon="139.71340050554153" visible="true"/>
-    <node id="-771188" lat="35.54124207689941" lon="139.71401548448782" visible="true"/>
-    <node id="-771187" lat="35.541233122682655" lon="139.7139847281788" visible="true"/>
-    <node id="-770892" lat="35.541310888473944" lon="139.71561897175823" visible="true"/>
-    <node id="-771740" lat="35.5409019819405" lon="139.71342508251772" visible="true"/>
-    <node id="-771189" lat="35.541299273749615" lon="139.7140190391891" visible="true"/>
-    <node id="-770893" lat="35.54133788986974" lon="139.71560624176954" visible="true"/>
-    <node id="-770245" lat="35.541438333025894" lon="139.71394769910043" visible="true"/>
-    <node id="-770246" lat="35.54136531676588" lon="139.71394416788792" visible="true"/>
-    <node id="-770247" lat="35.54136453204228" lon="139.71397096839829" visible="true"/>
-    <node id="-771612" lat="35.541112315426226" lon="139.71419169159097" visible="true"/>
-    <node id="-771614" lat="35.54116145158618" lon="139.71411089022885" visible="true"/>
-    <node id="-771613" lat="35.54117570539155" lon="139.71416843796854" visible="true"/>
-    <node id="-771615" lat="35.54109819716753" lon="139.7141344745469" visible="true"/>
-    <node id="-771739" lat="35.54093143105161" lon="139.7135345514793" visible="true"/>
-    <node id="-771738" lat="35.540907913951706" lon="139.71354385036943" visible="true"/>
-    <node id="-771171" lat="35.54150107210343" lon="139.71408656594016" visible="true"/>
-    <node id="-771173" lat="35.54149412279802" lon="139.71403231573208" visible="true"/>
-    <node id="-771172" lat="35.54150304722172" lon="139.71403296422943" visible="true"/>
-    <node id="-771175" lat="35.54125759708146" lon="139.71398634619936" visible="true"/>
-    <node id="-771174" lat="35.54149530792287" lon="139.71400022087923" visible="true"/>
-    <node id="-771177" lat="35.541235347206424" lon="139.71390995151518" visible="true"/>
-    <node id="-771176" lat="35.541252848734416" lon="139.71397014130528" visible="true"/>
-    <node id="-771179" lat="35.54121721660215" lon="139.7137607625451" visible="true"/>
-    <node id="-771178" lat="35.541194781810944" lon="139.71377072150702" visible="true"/>
-    <node id="-770244" lat="35.541437548301566" lon="139.7139744996351" visible="true"/>
-    <node id="-770751" lat="35.54156538752602" lon="139.71390549197884" visible="true"/>
-    <node id="-770752" lat="35.54157963455137" lon="139.71395609198288" visible="true"/>
-    <node id="-770753" lat="35.54154544118005" lon="139.71397070035476" visible="true"/>
-    <node id="-770754" lat="35.54157312128553" lon="139.71406925472792" visible="true"/>
-    <node id="-770755" lat="35.54156447153297" lon="139.71407290695987" visible="true"/>
-    <node id="-770756" lat="35.54157831122697" lon="139.71412185331073" visible="true"/>
-    <node id="-770514" lat="35.540894653506456" lon="139.7133814592693" visible="true"/>
-    <node id="-770757" lat="35.54158669056377" lon="139.71411820148353" visible="true"/>
-    <node id="-770515" lat="35.54113659761786" lon="139.71330136292485" visible="true"/>
-    <node id="-770516" lat="35.54113062176147" lon="139.7132745725591" visible="true"/>
-    <node id="-770517" lat="35.540888677667766" lon="139.71335466897793" visible="true"/>
-    <node id="-770470" lat="35.54141077895425" lon="139.71315964015625" visible="true"/>
-    <node id="-770471" lat="35.54139516763394" lon="139.71309713161" visible="true"/>
-    <node id="-770472" lat="35.54134475361942" lon="139.7131160656475" visible="true"/>
-    <node id="-770750" lat="35.541739734209926" lon="139.71383211396727" visible="true"/>
-    <node id="-770622" lat="35.541382218917" lon="139.7135361971285" visible="true"/>
-    <node id="-770623" lat="35.54148871794623" lon="139.71349038054228" visible="true"/>
-    <node id="-770469" lat="35.5413605001386" lon="139.71317857395672" visible="true"/>
-    <node id="-770624" lat="35.5414416376926" lon="139.7133266766337" visible="true"/>
-    <node id="-770625" lat="35.54133500351648" lon="139.71337249361054" visible="true"/>
-    <node id="-770748" lat="35.541591032283854" lon="139.7141334144839" visible="true"/>
-    <node id="-770749" lat="35.5417997080234" lon="139.71404575922477" visible="true"/>
-    <node id="-771393" lat="35.541038490867244" lon="139.713236953812" visible="true"/>
-    <node id="-771392" lat="35.54088008037469" lon="139.7132914500394" visible="true"/>
-    <node id="-771395" lat="35.54107494809391" lon="139.7131876020765" visible="true"/>
-    <node id="-771394" lat="35.54103061482526" lon="139.71320288751207" visible="true"/>
-    <node id="-771790" lat="35.54070862164589" lon="139.7124886845105" visible="true"/>
-    <node id="-771551" lat="35.54129242555891" lon="139.713930379965" visible="true"/>
-    <node id="-771550" lat="35.54129367060523" lon="139.7139588317228" visible="true"/>
-    <node id="-771553" lat="35.54127846401389" lon="139.71389499908867" visible="true"/>
-    <node id="-771552" lat="35.541287405476595" lon="139.7139128520468" visible="true"/>
-    <node id="-770850" lat="35.541243217593504" lon="139.71427676832317" visible="true"/>
-    <node id="-771786" lat="35.540850547813456" lon="139.7125311286294" visible="true"/>
-    <node id="-771664" lat="35.541514167036006" lon="139.71284186344832" visible="true"/>
-    <node id="-771389" lat="35.54079167658971" lon="139.71290746052026" visible="true"/>
-    <node id="-770334" lat="35.5411374136504" lon="139.71427734597282" visible="true"/>
-    <node id="-771785" lat="35.54083347153819" lon="139.71253712725172" visible="true"/>
-    <node id="-771788" lat="35.54082607627865" lon="139.7125098958281" visible="true"/>
-    <node id="-770335" lat="35.541162822093874" lon="139.7142663901982" visible="true"/>
-    <node id="-770336" lat="35.541143014322714" lon="139.71419826329537" visible="true"/>
-    <node id="-771787" lat="35.54084408065918" lon="139.7125035704688" visible="true"/>
-    <node id="-770337" lat="35.54111747100356" lon="139.71420955014332" visible="true"/>
-    <node id="-771789" lat="35.54081253271364" lon="139.71245218213994" visible="true"/>
-    <node id="-770290" lat="35.5415848357262" lon="139.7137469826227" visible="true"/>
-    <node id="-771380" lat="35.5412280556082" lon="139.71296768563553" visible="true"/>
-    <node id="-770291" lat="35.54157520572637" lon="139.71371655807323" visible="true"/>
-    <node id="-770170" lat="35.54153100551663" lon="139.71523889596378" visible="true"/>
-    <node id="-771382" lat="35.54118378558464" lon="139.71277552479435" visible="true"/>
-    <node id="-770292" lat="35.541470332724145" lon="139.713766011419" visible="true"/>
-    <node id="-771381" lat="35.54121108119853" lon="139.7128942610742" visible="true"/>
-    <node id="-771384" lat="35.54103831598691" lon="139.71279063095028" visible="true"/>
-    <node id="-771383" lat="35.54104578486628" lon="139.7128230435479" visible="true"/>
-    <node id="-771386" lat="35.54093420402065" lon="139.71278946331242" visible="true"/>
-    <node id="-771661" lat="35.54147237864774" lon="139.712832992822" visible="true"/>
-    <node id="-771385" lat="35.54094208017937" lon="139.71282352953085" visible="true"/>
-    <node id="-771660" lat="35.54144965632675" lon="139.7128257479667" visible="true"/>
-    <node id="-771388" lat="35.54082668340064" lon="139.71289516659633" visible="true"/>
-    <node id="-771663" lat="35.54150703370132" lon="139.71287462893292" visible="true"/>
-    <node id="-771784" lat="35.54087778005558" lon="139.71272593661917" visible="true"/>
-    <node id="-771662" lat="35.54146618747908" lon="139.71286145574626" visible="true"/>
-    <node id="-771387" lat="35.540812017080775" lon="139.7128313337254" visible="true"/>
-    <node id="-771783" lat="35.54077294079812" lon="139.71276276539515" visible="true"/>
-    <node id="-771379" lat="35.54125670905719" lon="139.71309237542178" visible="true"/>
-    <node id="-770289" lat="35.5414799627116" lon="139.71379643593485" visible="true"/>
-    <node id="-770168" lat="35.541981356256336" lon="139.7146575788015" visible="true"/>
-    <node id="-770564" lat="35.541225779839095" lon="139.71449028637193" visible="true"/>
-    <node id="-770169" lat="35.54142914946131" lon="139.71491844541285" visible="true"/>
-    <node id="-771378" lat="35.541068157663524" lon="139.71315750440556" visible="true"/>
-    <node id="-771658" lat="35.5415369124557" lon="139.712736947809" visible="true"/>
-    <node id="-771657" lat="35.54152076217255" lon="139.71281174561736" visible="true"/>
-    <node id="-771659" lat="35.54147334356041" lon="139.7127161990047" visible="true"/>
-    <node id="-770847" lat="35.54124994630491" lon="139.71429941316995" visible="true"/>
-    <node id="-770848" lat="35.541274819215964" lon="139.71428834899584" visible="true"/>
-    <node id="-770849" lat="35.5412680896011" lon="139.71426570414434" visible="true"/>
-    <node id="-770163" lat="35.541657275471835" lon="139.7156383865409" visible="true"/>
-    <node id="-770164" lat="35.542252321638614" lon="139.71535363948732" visible="true"/>
-    <node id="-770560" lat="35.54152340205619" lon="139.71465560657532" visible="true"/>
-    <node id="-770561" lat="35.5413910271429" lon="139.71423859184893" visible="true"/>
-    <node id="-770165" lat="35.54210367440277" lon="139.7148860223014" visible="true"/>
-    <node id="-770562" lat="35.54130183126393" lon="139.714281073262" visible="true"/>
-    <node id="-770166" lat="35.54206164434519" lon="139.71490626649856" visible="true"/>
-    <node id="-770167" lat="35.5420440155531" lon="139.7148536858433" visible="true"/>
-    <node id="-770563" lat="35.54134957321918" lon="139.71443154222655" visible="true"/>
-    <node id="-771126" lat="35.54151204355187" lon="139.71383311343172" visible="true"/>
-    <node id="-770674" lat="35.54132076935018" lon="139.71374340433744" visible="true"/>
-    <node id="-770950" lat="35.54082637165783" lon="139.71312477968803" visible="true"/>
-    <node id="-770951" lat="35.540837214069214" lon="139.71315057011978" visible="true"/>
-    <node id="-771128" lat="35.541591617152896" lon="139.71376814740879" visible="true"/>
-    <node id="-771127" lat="35.5415996233245" lon="139.71379725095164" visible="true"/>
-    <node id="-771129" lat="35.54150403738886" lon="139.7138040099169" visible="true"/>
-    <node id="-770559" lat="35.54131041252268" lon="139.71475683139562" visible="true"/>
-    <node id="-771081" lat="35.54120170467339" lon="139.71420810216776" visible="true"/>
-    <node id="-771083" lat="35.54119482260233" lon="139.7140850341186" visible="true"/>
-    <node id="-771082" lat="35.54122603209489" lon="139.7141978096723" visible="true"/>
-    <node id="-771084" lat="35.541170495190364" lon="139.71409532664407" visible="true"/>
-    <node id="-770670" lat="35.54122063281673" lon="139.71338854498205" visible="true"/>
-    <node id="-770671" lat="35.54123501526781" lon="139.71343914447652" visible="true"/>
-    <node id="-770672" lat="35.541193388442984" lon="139.71345674176507" visible="true"/>
-    <node id="-770673" lat="35.54127914248125" lon="139.7137610014878" visible="true"/>
-    <node id="-770940" lat="35.54079971797653" lon="139.71297163414053" visible="true"/>
-    <node id="-770941" lat="35.54080136887468" lon="139.713000085103" visible="true"/>
-    <node id="-770424" lat="35.541162172990724" lon="139.71333867286907" visible="true"/>
-    <node id="-770942" lat="35.54078459210938" lon="139.71298919198784" visible="true"/>
-    <node id="-770425" lat="35.54125637323291" lon="139.7132981681648" visible="true"/>
-    <node id="-770667" lat="35.54133474471467" lon="139.71379268113824" visible="true"/>
-    <node id="-770943" lat="35.540776715006594" lon="139.71295413325993" visible="true"/>
-    <node id="-770426" lat="35.54123968459845" lon="139.71323996244044" visible="true"/>
-    <node id="-770668" lat="35.54142732424439" lon="139.71375383356497" visible="true"/>
-    <node id="-770944" lat="35.5407638748099" lon="139.71295878439753" visible="true"/>
-    <node id="-770427" lat="35.541145348837674" lon="139.71328013655102" visible="true"/>
-    <node id="-770669" lat="35.541313211888045" lon="139.71334936614474" visible="true"/>
-    <node id="-770945" lat="35.54077297374116" lon="139.71299880410083" visible="true"/>
-    <node id="-770946" lat="35.54080287366528" lon="139.71301761810838" visible="true"/>
-    <node id="-770947" lat="35.54080628358483" lon="139.71304738986194" visible="true"/>
-    <node id="-770948" lat="35.540811584768285" lon="139.71307550452556" visible="true"/>
-    <node id="-770949" lat="35.540818507459264" lon="139.71310262421133" visible="true"/>
-    <node id="-771191" lat="35.541479614492594" lon="139.7141276239222" visible="true"/>
-    <node id="-771190" lat="35.541295449224876" lon="139.71411664733156" visible="true"/>
-    <node id="-771192" lat="35.54148119545439" lon="139.71408560279195" visible="true"/>
-    <node id="-770380" lat="35.541422725768555" lon="139.7132082582225" visible="true"/>
-    <node id="-770381" lat="35.541415121124885" lon="139.71317518392723" visible="true"/>
-    <node id="-770382" lat="35.541241031083466" lon="139.7132343358875" visible="true"/>
-    <way id="-770333" visible="true">
-        <nd ref="-770334"/>
-        <nd ref="-770335"/>
-        <nd ref="-770336"/>
-        <nd ref="-770337"/>
-        <nd ref="-770334"/>
+    <node id="-1049" lat="35.54149412279802" lon="139.71403231573208" visible="true"/>
+    <node id="-1048" lat="35.54150304722172" lon="139.71403296422943" visible="true"/>
+    <node id="-90" lat="35.54136531676588" lon="139.71394416788792" visible="true"/>
+    <node id="-817" lat="35.54080628358483" lon="139.71304738986194" visible="true"/>
+    <node id="-91" lat="35.54136453204228" lon="139.71397096839829" visible="true"/>
+    <node id="-816" lat="35.54080287366528" lon="139.71301761810838" visible="true"/>
+    <node id="-819" lat="35.540818507459264" lon="139.71310262421133" visible="true"/>
+    <node id="-818" lat="35.540811584768285" lon="139.71307550452556" visible="true"/>
+    <node id="-10" lat="35.541981356256336" lon="139.7146575788015" visible="true"/>
+    <node id="-11" lat="35.54142914946131" lon="139.71491844541285" visible="true"/>
+    <node id="-12" lat="35.54153100551663" lon="139.71523889596378" visible="true"/>
+    <node id="-530" lat="35.54142732424439" lon="139.71375383356497" visible="true"/>
+    <node id="-136" lat="35.5415848357262" lon="139.7137469826227" visible="true"/>
+    <node id="-532" lat="35.54122063281673" lon="139.71338854498205" visible="true"/>
+    <node id="-135" lat="35.5414799627116" lon="139.71379643593485" visible="true"/>
+    <node id="-531" lat="35.541313211888045" lon="139.71334936614474" visible="true"/>
+    <node id="-372" lat="35.54113062176147" lon="139.7132745725591" visible="true"/>
+    <node id="-371" lat="35.54113659761786" lon="139.71330136292485" visible="true"/>
+    <node id="-373" lat="35.540888677667766" lon="139.71335466897793" visible="true"/>
+    <node id="-813" lat="35.540776715006594" lon="139.71295413325993" visible="true"/>
+    <node id="-417" lat="35.54131041252268" lon="139.71475683139562" visible="true"/>
+    <node id="-812" lat="35.54078459210938" lon="139.71298919198784" visible="true"/>
+    <node id="-419" lat="35.5413910271429" lon="139.71423859184893" visible="true"/>
+    <node id="-815" lat="35.54077297374116" lon="139.71299880410083" visible="true"/>
+    <node id="-814" lat="35.5407638748099" lon="139.71295878439753" visible="true"/>
+    <node id="-418" lat="35.54152340205619" lon="139.71465560657532" visible="true"/>
+    <node id="-534" lat="35.541193388442984" lon="139.71345674176507" visible="true"/>
+    <node id="-138" lat="35.541470332724145" lon="139.713766011419" visible="true"/>
+    <node id="-533" lat="35.54123501526781" lon="139.71343914447652" visible="true"/>
+    <node id="-137" lat="35.54157520572637" lon="139.71371655807323" visible="true"/>
+    <node id="-811" lat="35.54080136887468" lon="139.713000085103" visible="true"/>
+    <node id="-1047" lat="35.54150107210343" lon="139.71408656594016" visible="true"/>
+    <node id="-536" lat="35.54132076935018" lon="139.71374340433744" visible="true"/>
+    <node id="-535" lat="35.54127914248125" lon="139.7137610014878" visible="true"/>
+    <node id="-810" lat="35.54079971797653" lon="139.71297163414053" visible="true"/>
+    <node id="-1059" lat="35.541113365653175" lon="139.7134777047117" visible="true"/>
+    <node id="-420" lat="35.54130183126393" lon="139.714281073262" visible="true"/>
+    <node id="-422" lat="35.541225779839095" lon="139.71449028637193" visible="true"/>
+    <node id="-421" lat="35.54134957321918" lon="139.71443154222655" visible="true"/>
+    <node id="-1050" lat="35.54149530792287" lon="139.71400022087923" visible="true"/>
+    <node id="-1052" lat="35.541252848734416" lon="139.71397014130528" visible="true"/>
+    <node id="-1051" lat="35.54125759708146" lon="139.71398634619936" visible="true"/>
+    <node id="-1054" lat="35.541194781810944" lon="139.71377072150702" visible="true"/>
+    <node id="-1053" lat="35.541235347206424" lon="139.71390995151518" visible="true"/>
+    <node id="-820" lat="35.54082637165783" lon="139.71312477968803" visible="true"/>
+    <node id="-1056" lat="35.54121043320529" lon="139.71373761272775" visible="true"/>
+    <node id="-1055" lat="35.54121721660215" lon="139.7137607625451" visible="true"/>
+    <node id="-1058" lat="35.541184593263374" lon="139.7137224317394" visible="true"/>
+    <node id="-821" lat="35.540837214069214" lon="139.71315057011978" visible="true"/>
+    <node id="-1057" lat="35.54119137699125" lon="139.71374591240297" visible="true"/>
+    <node id="-1625" lat="35.54093143105161" lon="139.7135345514793" visible="true"/>
+    <node id="-1624" lat="35.540907913951706" lon="139.71354385036943" visible="true"/>
+    <node id="-1627" lat="35.54087846517793" lon="139.71343471229" visible="true"/>
+    <node id="-1626" lat="35.5409019819405" lon="139.71342508251772" visible="true"/>
+    <node id="-277" lat="35.54125637323291" lon="139.7132981681648" visible="true"/>
+    <node id="-276" lat="35.541162172990724" lon="139.71333867286907" visible="true"/>
+    <node id="-279" lat="35.541145348837674" lon="139.71328013655102" visible="true"/>
+    <node id="-278" lat="35.54123968459845" lon="139.71323996244044" visible="true"/>
+    <node id="-1061" lat="35.54096496481712" lon="139.71340050554153" visible="true"/>
+    <node id="-1060" lat="35.54107659876772" lon="139.71335170367303" visible="true"/>
+    <node id="-1063" lat="35.541233122682655" lon="139.7139847281788" visible="true"/>
+    <node id="-714" lat="35.541274819215964" lon="139.71428834899584" visible="true"/>
+    <node id="-956" lat="35.541170495190364" lon="139.71409532664407" visible="true"/>
+    <node id="-713" lat="35.54124994630491" lon="139.71429941316995" visible="true"/>
+    <node id="-1062" lat="35.54114595043809" lon="139.7140225748187" visible="true"/>
+    <node id="-955" lat="35.54119482260233" lon="139.7140850341186" visible="true"/>
+    <node id="-716" lat="35.541243217593504" lon="139.71427676832317" visible="true"/>
+    <node id="-1065" lat="35.541299273749615" lon="139.7140190391891" visible="true"/>
+    <node id="-715" lat="35.5412680896011" lon="139.71426570414434" visible="true"/>
+    <node id="-1064" lat="35.54124207689941" lon="139.71401548448782" visible="true"/>
+    <node id="-1067" lat="35.541479614492594" lon="139.7141276239222" visible="true"/>
+    <node id="-1066" lat="35.541295449224876" lon="139.71411664733156" visible="true"/>
+    <node id="-954" lat="35.54122603209489" lon="139.7141978096723" visible="true"/>
+    <node id="-1068" lat="35.54148119545439" lon="139.71408560279195" visible="true"/>
+    <node id="-953" lat="35.54120170467339" lon="139.71420810216776" visible="true"/>
+    <node id="-1755" lat="35.540903645531564" lon="139.7133304557272" visible="true"/>
+    <node id="-1754" lat="35.54086066432969" lon="139.71334573903766" visible="true"/>
+    <node id="-1757" lat="35.540855912604165" lon="139.71332622572578" visible="true"/>
+    <node id="-1756" lat="35.54089902868296" lon="139.71331061135066" visible="true"/>
+    <node id="-323" lat="35.5413605001386" lon="139.71317857395672" visible="true"/>
+    <node id="-325" lat="35.54139516763394" lon="139.71309713161" visible="true"/>
+    <node id="-324" lat="35.54141077895425" lon="139.71315964015625" visible="true"/>
+    <node id="-326" lat="35.54134475361942" lon="139.7131160656475" visible="true"/>
+    <node id="-619" lat="35.54156447153297" lon="139.71407290695987" visible="true"/>
+    <node id="-618" lat="35.54157312128553" lon="139.71406925472792" visible="true"/>
+    <node id="-183" lat="35.541162822093874" lon="139.7142663901982" visible="true"/>
+    <node id="-182" lat="35.5411374136504" lon="139.71427734597282" visible="true"/>
+    <node id="-615" lat="35.54156538752602" lon="139.71390549197884" visible="true"/>
+    <node id="-614" lat="35.541739734209926" lon="139.71383211396727" visible="true"/>
+    <node id="-617" lat="35.54154544118005" lon="139.71397070035476" visible="true"/>
+    <node id="-616" lat="35.54157963455137" lon="139.71395609198288" visible="true"/>
+    <node id="-1001" lat="35.5415996233245" lon="139.71379725095164" visible="true"/>
+    <node id="-1000" lat="35.54151204355187" lon="139.71383311343172" visible="true"/>
+    <node id="-1003" lat="35.54150403738886" lon="139.7138040099169" visible="true"/>
+    <node id="-613" lat="35.5417997080234" lon="139.71404575922477" visible="true"/>
+    <node id="-612" lat="35.541591032283854" lon="139.7141334144839" visible="true"/>
+    <node id="-1002" lat="35.541591617152896" lon="139.71376814740879" visible="true"/>
+    <node id="-1258" lat="35.5412280556082" lon="139.71296768563553" visible="true"/>
+    <node id="-1257" lat="35.54125670905719" lon="139.71309237542178" visible="true"/>
+    <node id="-1259" lat="35.54121108119853" lon="139.7128942610742" visible="true"/>
+    <node id="-5" lat="35.541657275471835" lon="139.7156383865409" visible="true"/>
+    <node id="-6" lat="35.542252321638614" lon="139.71535363948732" visible="true"/>
+    <node id="-7" lat="35.54210367440277" lon="139.7148860223014" visible="true"/>
+    <node id="-8" lat="35.54206164434519" lon="139.71490626649856" visible="true"/>
+    <node id="-9" lat="35.5420440155531" lon="139.7148536858433" visible="true"/>
+    <node id="-620" lat="35.54157831122697" lon="139.71412185331073" visible="true"/>
+    <node id="-185" lat="35.54111747100356" lon="139.71420955014332" visible="true"/>
+    <node id="-184" lat="35.541143014322714" lon="139.71419826329537" visible="true"/>
+    <node id="-229" lat="35.541248635711" lon="139.71326741011697" visible="true"/>
+    <node id="-1494" lat="35.541112315426226" lon="139.71419169159097" visible="true"/>
+    <node id="-1496" lat="35.54116145158618" lon="139.71411089022885" visible="true"/>
+    <node id="-621" lat="35.54158669056377" lon="139.71411820148353" visible="true"/>
+    <node id="-1495" lat="35.54117570539155" lon="139.71416843796854" visible="true"/>
+    <node id="-1256" lat="35.541068157663524" lon="139.71315750440556" visible="true"/>
+    <node id="-1497" lat="35.54109819716753" lon="139.7141344745469" visible="true"/>
+    <node id="-1544" lat="35.54144965632675" lon="139.7128257479667" visible="true"/>
+    <node id="-1543" lat="35.54147334356041" lon="139.7127161990047" visible="true"/>
+    <node id="-1546" lat="35.54146618747908" lon="139.71286145574626" visible="true"/>
+    <node id="-1545" lat="35.54147237864774" lon="139.712832992822" visible="true"/>
+    <node id="-1548" lat="35.541514167036006" lon="139.71284186344832" visible="true"/>
+    <node id="-1547" lat="35.54150703370132" lon="139.71287462893292" visible="true"/>
+    <node id="-232" lat="35.541241031083466" lon="139.7132343358875" visible="true"/>
+    <node id="-231" lat="35.541415121124885" lon="139.71317518392723" visible="true"/>
+    <node id="-230" lat="35.541422725768555" lon="139.7132082582225" visible="true"/>
+    <node id="-1261" lat="35.54104578486628" lon="139.7128230435479" visible="true"/>
+    <node id="-1260" lat="35.54118378558464" lon="139.71277552479435" visible="true"/>
+    <node id="-1263" lat="35.54094208017937" lon="139.71282352953085" visible="true"/>
+    <node id="-1262" lat="35.54103831598691" lon="139.71279063095028" visible="true"/>
+    <node id="-1265" lat="35.540812017080775" lon="139.7128313337254" visible="true"/>
+    <node id="-1264" lat="35.54093420402065" lon="139.71278946331242" visible="true"/>
+    <node id="-1267" lat="35.54079167658971" lon="139.71290746052026" visible="true"/>
+    <node id="-1542" lat="35.5415369124557" lon="139.712736947809" visible="true"/>
+    <node id="-1541" lat="35.54152076217255" lon="139.71281174561736" visible="true"/>
+    <node id="-1266" lat="35.54082668340064" lon="139.71289516659633" visible="true"/>
+    <node id="-1676" lat="35.54082607627865" lon="139.7125098958281" visible="true"/>
+    <node id="-809" lat="35.54080593493194" lon="139.71296897802156" visible="true"/>
+    <node id="-1433" lat="35.54127846401389" lon="139.71389499908867" visible="true"/>
+    <node id="-1675" lat="35.54084408065918" lon="139.7125035704688" visible="true"/>
+    <node id="-1678" lat="35.54070862164589" lon="139.7124886845105" visible="true"/>
+    <node id="-1677" lat="35.54081253271364" lon="139.71245218213994" visible="true"/>
+    <node id="-808" lat="35.54085142746041" lon="139.71316709161786" visible="true"/>
+    <node id="-807" lat="35.54084723764115" lon="139.71316875213742" visible="true"/>
+    <node id="-370" lat="35.540894653506456" lon="139.7133814592693" visible="true"/>
+    <node id="-88" lat="35.541437548301566" lon="139.7139744996351" visible="true"/>
+    <node id="-89" lat="35.541438333025894" lon="139.71394769910043" visible="true"/>
+    <node id="-761" lat="35.54133788986974" lon="139.71560624176954" visible="true"/>
+    <node id="-760" lat="35.541310888473944" lon="139.71561897175823" visible="true"/>
+    <node id="-485" lat="35.54133500351648" lon="139.71337249361054" visible="true"/>
+    <node id="-763" lat="35.541276002798384" lon="139.71550821361615" visible="true"/>
+    <node id="-762" lat="35.541303003280085" lon="139.71549548249433" visible="true"/>
+    <node id="-482" lat="35.541382218917" lon="139.7135361971285" visible="true"/>
+    <node id="-1270" lat="35.54088008037469" lon="139.7132914500394" visible="true"/>
+    <node id="-484" lat="35.5414416376926" lon="139.7133266766337" visible="true"/>
+    <node id="-483" lat="35.54148871794623" lon="139.71349038054228" visible="true"/>
+    <node id="-1272" lat="35.54103061482526" lon="139.71320288751207" visible="true"/>
+    <node id="-1271" lat="35.541038490867244" lon="139.713236953812" visible="true"/>
+    <node id="-529" lat="35.54133474471467" lon="139.71379268113824" visible="true"/>
+    <node id="-1273" lat="35.54107494809391" lon="139.7131876020765" visible="true"/>
+    <node id="-1672" lat="35.54087778005558" lon="139.71272593661917" visible="true"/>
+    <node id="-1430" lat="35.54129367060523" lon="139.7139588317228" visible="true"/>
+    <node id="-1671" lat="35.54077294079812" lon="139.71276276539515" visible="true"/>
+    <node id="-1432" lat="35.541287405476595" lon="139.7139128520468" visible="true"/>
+    <node id="-1674" lat="35.540850547813456" lon="139.7125311286294" visible="true"/>
+    <node id="-1431" lat="35.54129242555891" lon="139.713930379965" visible="true"/>
+    <node id="-1673" lat="35.54083347153819" lon="139.71253712725172" visible="true"/>
+    <way id="-1005" visible="true">
+        <nd ref="-1000"/>
+        <nd ref="-1001"/>
+        <nd ref="-1002"/>
+        <nd ref="-1003"/>
+        <nd ref="-1000"/>
         <tag k="addr:ref" v="13111058003"/>
         <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_d0166b26-7838-4a4f-b5b5-81d29a29b0b2"/>
-        <tag k="building" v="yes"/>
-        <tag k="height" v="5.837"/>
-    </way>
-    <way id="-771863" visible="true">
-        <nd ref="-771864"/>
-        <nd ref="-771865"/>
-        <nd ref="-771866"/>
-        <nd ref="-771867"/>
-        <nd ref="-771864"/>
-        <tag k="addr:ref" v="13111058003"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_57cd4ea7-0fb7-4b0e-a600-9982cf3b60ca"/>
-        <tag k="building" v="yes"/>
-        <tag k="height" v="8.398"/>
-    </way>
-    <way id="-770378" visible="true">
-        <nd ref="-770379"/>
-        <nd ref="-770380"/>
-        <nd ref="-770381"/>
-        <nd ref="-770382"/>
-        <nd ref="-770379"/>
-        <tag k="addr:ref" v="13111058003"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_6061ba8e-adc5-4f92-9490-7ef1a6b1c0f1"/>
-        <tag k="building" v="yes"/>
-        <tag k="height" v="4.8655"/>
-    </way>
-    <way id="-771125" visible="true">
-        <nd ref="-771126"/>
-        <nd ref="-771127"/>
-        <nd ref="-771128"/>
-        <nd ref="-771129"/>
-        <nd ref="-771126"/>
-        <tag k="addr:ref" v="13111058003"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_566a157b-cc25-4ab1-bfaf-bd5a874bce62"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-519"/>
         <tag k="building" v="yes"/>
         <tag k="height" v="5.113"/>
     </way>
-    <way id="-770513" visible="true">
-        <nd ref="-770514"/>
-        <nd ref="-770515"/>
-        <nd ref="-770516"/>
-        <nd ref="-770517"/>
-        <nd ref="-770514"/>
+    <way id="-93" visible="true">
+        <nd ref="-88"/>
+        <nd ref="-89"/>
+        <nd ref="-90"/>
+        <nd ref="-91"/>
+        <nd ref="-88"/>
         <tag k="addr:ref" v="13111058003"/>
         <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_7aea1c81-2553-454f-b894-d554fe4247d4"/>
-        <tag k="building" v="yes"/>
-        <tag k="height" v="4.9094999999999995"/>
-    </way>
-    <way id="-771548" visible="true">
-        <nd ref="-771176"/>
-        <nd ref="-771550"/>
-        <nd ref="-771551"/>
-        <nd ref="-771552"/>
-        <nd ref="-771553"/>
-        <nd ref="-771177"/>
-        <nd ref="-771176"/>
-        <tag k="building:part" v="yes"/>
-        <tag k="height" v="6.58"/>
-    </way>
-    <way id="-770558" visible="true">
-        <nd ref="-770559"/>
-        <nd ref="-770560"/>
-        <nd ref="-770561"/>
-        <nd ref="-770562"/>
-        <nd ref="-770563"/>
-        <nd ref="-770564"/>
-        <nd ref="-770559"/>
-        <tag k="addr:ref" v="13111058003"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_7cf80dbd-1de7-442f-a3a0-24b8dd981cd5"/>
-        <tag k="building" v="yes"/>
-        <tag k="height" v="11.669"/>
-    </way>
-    <way id="-770936" visible="true">
-        <nd ref="-770937"/>
-        <nd ref="-770938"/>
-        <nd ref="-770939"/>
-        <nd ref="-770940"/>
-        <nd ref="-770941"/>
-        <nd ref="-770942"/>
-        <nd ref="-770943"/>
-        <nd ref="-770944"/>
-        <nd ref="-770945"/>
-        <nd ref="-770946"/>
-        <nd ref="-770947"/>
-        <nd ref="-770948"/>
-        <nd ref="-770949"/>
-        <nd ref="-770950"/>
-        <nd ref="-770951"/>
-        <nd ref="-770937"/>
-        <tag k="building:part" v="yes"/>
-        <tag k="height" v="6.181"/>
-    </way>
-    <way id="-771906" visible="true">
-        <nd ref="-770937"/>
-        <nd ref="-770938"/>
-        <nd ref="-771392"/>
-        <nd ref="-771393"/>
-        <nd ref="-771394"/>
-        <nd ref="-771395"/>
-        <nd ref="-771378"/>
-        <nd ref="-771379"/>
-        <nd ref="-771380"/>
-        <nd ref="-771381"/>
-        <nd ref="-771382"/>
-        <nd ref="-771383"/>
-        <nd ref="-771384"/>
-        <nd ref="-771385"/>
-        <nd ref="-771386"/>
-        <nd ref="-771387"/>
-        <nd ref="-771388"/>
-        <nd ref="-771389"/>
-        <nd ref="-770939"/>
-        <nd ref="-770940"/>
-        <nd ref="-770941"/>
-        <nd ref="-770942"/>
-        <nd ref="-770943"/>
-        <nd ref="-770944"/>
-        <nd ref="-770945"/>
-        <nd ref="-770946"/>
-        <nd ref="-770947"/>
-        <nd ref="-770948"/>
-        <nd ref="-770949"/>
-        <nd ref="-770950"/>
-        <nd ref="-770951"/>
-        <nd ref="-770937"/>
-        <tag k="building:part" v="yes"/>
-    </way>
-    <way id="-771905" visible="true">
-        <nd ref="-771176"/>
-        <nd ref="-771550"/>
-        <nd ref="-771551"/>
-        <nd ref="-771552"/>
-        <nd ref="-771553"/>
-        <nd ref="-771177"/>
-        <nd ref="-771178"/>
-        <nd ref="-771179"/>
-        <nd ref="-771180"/>
-        <nd ref="-771181"/>
-        <nd ref="-771182"/>
-        <nd ref="-771183"/>
-        <nd ref="-771184"/>
-        <nd ref="-771185"/>
-        <nd ref="-771186"/>
-        <nd ref="-771187"/>
-        <nd ref="-771188"/>
-        <nd ref="-771189"/>
-        <nd ref="-771190"/>
-        <nd ref="-771191"/>
-        <nd ref="-771192"/>
-        <nd ref="-771171"/>
-        <nd ref="-771172"/>
-        <nd ref="-771173"/>
-        <nd ref="-771174"/>
-        <nd ref="-771175"/>
-        <nd ref="-771176"/>
-        <tag k="building:part" v="yes"/>
-    </way>
-    <way id="-771080" visible="true">
-        <nd ref="-771081"/>
-        <nd ref="-771082"/>
-        <nd ref="-771083"/>
-        <nd ref="-771084"/>
-        <nd ref="-771081"/>
-        <tag k="addr:ref" v="13111058003"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_6822dfa2-d703-4d28-80a4-19c688fedfaa"/>
-        <tag k="building" v="yes"/>
-        <tag k="height" v="4.992"/>
-    </way>
-    <way id="-771782" visible="true">
-        <nd ref="-771783"/>
-        <nd ref="-771784"/>
-        <nd ref="-771785"/>
-        <nd ref="-771786"/>
-        <nd ref="-771787"/>
-        <nd ref="-771788"/>
-        <nd ref="-771789"/>
-        <nd ref="-771790"/>
-        <nd ref="-771783"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_d5ed1615-6cab-4de8-96d4-71203934bad0"/>
-        <tag k="building" v="yes"/>
-        <tag k="height" v="23.298000000000002"/>
-    </way>
-    <way id="-770891" visible="true">
-        <nd ref="-770892"/>
-        <nd ref="-770893"/>
-        <nd ref="-770894"/>
-        <nd ref="-770895"/>
-        <nd ref="-770892"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_f96ef42c-fad9-444f-9e44-77f7e07726f6"/>
-        <tag k="building" v="yes"/>
-        <tag k="height" v="9.757"/>
-    </way>
-    <way id="-770423" visible="true">
-        <nd ref="-770424"/>
-        <nd ref="-770425"/>
-        <nd ref="-770426"/>
-        <nd ref="-770427"/>
-        <nd ref="-770424"/>
-        <tag k="addr:ref" v="13111058003"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_c567335d-ba57-4436-bc40-5ccf613f40b5"/>
-        <tag k="building" v="yes"/>
-        <tag k="height" v="5.127"/>
-    </way>
-    <way id="-770621" visible="true">
-        <nd ref="-770622"/>
-        <nd ref="-770623"/>
-        <nd ref="-770624"/>
-        <nd ref="-770625"/>
-        <nd ref="-770622"/>
-        <tag k="addr:ref" v="13111058003"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_e61455af-37cd-4d75-ba2b-ab419880b805"/>
-        <tag k="building" v="yes"/>
-        <tag k="height" v="6.84"/>
-    </way>
-    <way id="-771656" visible="true">
-        <nd ref="-771657"/>
-        <nd ref="-771658"/>
-        <nd ref="-771659"/>
-        <nd ref="-771660"/>
-        <nd ref="-771661"/>
-        <nd ref="-771662"/>
-        <nd ref="-771663"/>
-        <nd ref="-771664"/>
-        <nd ref="-771657"/>
-        <tag k="addr:ref" v="13111058003"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_b5d4a551-2cc1-4500-87d6-f9697bc4bfa2"/>
-        <tag k="building" v="yes"/>
-        <tag k="height" v="5.689"/>
-    </way>
-    <way id="-770468" visible="true">
-        <nd ref="-770469"/>
-        <nd ref="-770470"/>
-        <nd ref="-770471"/>
-        <nd ref="-770472"/>
-        <nd ref="-770469"/>
-        <tag k="addr:ref" v="13111058003"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_32708324-2cc9-440f-889b-9ae29a9b57d5"/>
-        <tag k="building" v="yes"/>
-        <tag k="height" v="5.4025"/>
-    </way>
-    <way id="-770666" visible="true">
-        <nd ref="-770667"/>
-        <nd ref="-770668"/>
-        <nd ref="-770669"/>
-        <nd ref="-770670"/>
-        <nd ref="-770671"/>
-        <nd ref="-770672"/>
-        <nd ref="-770673"/>
-        <nd ref="-770674"/>
-        <nd ref="-770667"/>
-        <tag k="addr:ref" v="13111058003"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_7e82aed0-1348-45d4-93bb-b1e26c910003"/>
-        <tag k="building" v="yes"/>
-        <tag k="height" v="5.753500000000001"/>
-    </way>
-    <way id="-771611" visible="true">
-        <nd ref="-771612"/>
-        <nd ref="-771613"/>
-        <nd ref="-771614"/>
-        <nd ref="-771615"/>
-        <nd ref="-771612"/>
-        <tag k="addr:ref" v="13111058003"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_a3879a2f-3a08-43e5-911f-111ac3223757"/>
-        <tag k="building" v="yes"/>
-        <tag k="height" v="6.449"/>
-    </way>
-    <way id="-771737" visible="true">
-        <nd ref="-771738"/>
-        <nd ref="-771739"/>
-        <nd ref="-771740"/>
-        <nd ref="-771741"/>
-        <nd ref="-771738"/>
-        <tag k="addr:ref" v="13111058003"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_6c9923a4-ee9b-457c-8aa1-d06b84a398c0"/>
-        <tag k="building" v="yes"/>
-        <tag k="height" v="4.945"/>
-    </way>
-    <way id="-770747" visible="true">
-        <nd ref="-770748"/>
-        <nd ref="-770749"/>
-        <nd ref="-770750"/>
-        <nd ref="-770751"/>
-        <nd ref="-770752"/>
-        <nd ref="-770753"/>
-        <nd ref="-770754"/>
-        <nd ref="-770755"/>
-        <nd ref="-770756"/>
-        <nd ref="-770757"/>
-        <nd ref="-770748"/>
-        <tag k="addr:ref" v="13111058003"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_07a37e39-0026-4d92-92a4-000ff290901c"/>
-        <tag k="building" v="yes"/>
-        <tag k="height" v="5.731"/>
-    </way>
-    <way id="-770846" visible="true">
-        <nd ref="-770847"/>
-        <nd ref="-770848"/>
-        <nd ref="-770849"/>
-        <nd ref="-770850"/>
-        <nd ref="-770847"/>
-        <tag k="addr:ref" v="13111058003"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_579f02b4-7843-4398-905d-107892187346"/>
-        <tag k="building" v="yes"/>
-        <tag k="height" v="5.195"/>
-    </way>
-    <way id="-771170" visible="true">
-        <nd ref="-771171"/>
-        <nd ref="-771172"/>
-        <nd ref="-771173"/>
-        <nd ref="-771174"/>
-        <nd ref="-771175"/>
-        <nd ref="-771176"/>
-        <nd ref="-771177"/>
-        <nd ref="-771178"/>
-        <nd ref="-771179"/>
-        <nd ref="-771180"/>
-        <nd ref="-771181"/>
-        <nd ref="-771182"/>
-        <nd ref="-771183"/>
-        <nd ref="-771184"/>
-        <nd ref="-771185"/>
-        <nd ref="-771186"/>
-        <nd ref="-771187"/>
-        <nd ref="-771188"/>
-        <nd ref="-771189"/>
-        <nd ref="-771190"/>
-        <nd ref="-771191"/>
-        <nd ref="-771192"/>
-        <nd ref="-771171"/>
-        <tag k="building:part" v="yes"/>
-        <tag k="height" v="40.492"/>
-    </way>
-    <way id="-770162" visible="true">
-        <nd ref="-770163"/>
-        <nd ref="-770164"/>
-        <nd ref="-770165"/>
-        <nd ref="-770166"/>
-        <nd ref="-770167"/>
-        <nd ref="-770168"/>
-        <nd ref="-770169"/>
-        <nd ref="-770170"/>
-        <nd ref="-770163"/>
-        <tag k="addr:ref" v="13111058003"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_d61ead86-9f08-4d99-b410-28a576c764f3"/>
-        <tag k="building" v="yes"/>
-        <tag k="height" v="14.072000000000001"/>
-    </way>
-    <way id="-770243" visible="true">
-        <nd ref="-770244"/>
-        <nd ref="-770245"/>
-        <nd ref="-770246"/>
-        <nd ref="-770247"/>
-        <nd ref="-770244"/>
-        <tag k="addr:ref" v="13111058003"/>
-        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_e638f827-fbb1-4016-9bc4-a24f8a1ca10a"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-446"/>
         <tag k="building" v="yes"/>
         <tag k="height" v="4.973"/>
     </way>
-    <way id="-771377" visible="true">
-        <nd ref="-771378"/>
-        <nd ref="-771379"/>
-        <nd ref="-771380"/>
-        <nd ref="-771381"/>
-        <nd ref="-771382"/>
-        <nd ref="-771383"/>
-        <nd ref="-771384"/>
-        <nd ref="-771385"/>
-        <nd ref="-771386"/>
-        <nd ref="-771387"/>
-        <nd ref="-771388"/>
-        <nd ref="-771389"/>
-        <nd ref="-770939"/>
-        <nd ref="-770938"/>
-        <nd ref="-771392"/>
-        <nd ref="-771393"/>
-        <nd ref="-771394"/>
-        <nd ref="-771395"/>
-        <nd ref="-771378"/>
-        <tag k="building:part" v="yes"/>
+    <way id="-1802" visible="true">
+        <nd ref="-807"/>
+        <nd ref="-808"/>
+        <nd ref="-1270"/>
+        <nd ref="-1271"/>
+        <nd ref="-1272"/>
+        <nd ref="-1273"/>
+        <nd ref="-1256"/>
+        <nd ref="-1257"/>
+        <nd ref="-1258"/>
+        <nd ref="-1259"/>
+        <nd ref="-1260"/>
+        <nd ref="-1261"/>
+        <nd ref="-1262"/>
+        <nd ref="-1263"/>
+        <nd ref="-1264"/>
+        <nd ref="-1265"/>
+        <nd ref="-1266"/>
+        <nd ref="-1267"/>
+        <nd ref="-809"/>
+        <nd ref="-810"/>
+        <nd ref="-811"/>
+        <nd ref="-812"/>
+        <nd ref="-813"/>
+        <nd ref="-814"/>
+        <nd ref="-815"/>
+        <nd ref="-816"/>
+        <nd ref="-817"/>
+        <nd ref="-818"/>
+        <nd ref="-819"/>
+        <nd ref="-820"/>
+        <nd ref="-821"/>
+        <nd ref="-807"/>
+        <tag k="addr:ref" v="13111058003"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697"/>
+        <tag k="building" v="yes"/>
         <tag k="height" v="17.097"/>
     </way>
-    <way id="-770288" visible="true">
-        <nd ref="-770289"/>
-        <nd ref="-770290"/>
-        <nd ref="-770291"/>
-        <nd ref="-770292"/>
-        <nd ref="-770289"/>
+    <way id="-14" visible="true">
+        <nd ref="-5"/>
+        <nd ref="-6"/>
+        <nd ref="-7"/>
+        <nd ref="-8"/>
+        <nd ref="-9"/>
+        <nd ref="-10"/>
+        <nd ref="-11"/>
+        <nd ref="-12"/>
+        <nd ref="-5"/>
         <tag k="addr:ref" v="13111058003"/>
         <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_9309748b-c3ca-491a-b8d8-e437675a6bfc"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-726"/>
         <tag k="building" v="yes"/>
+        <tag k="height" v="14.072000000000001"/>
+    </way>
+    <way id="-375" visible="true">
+        <nd ref="-370"/>
+        <nd ref="-371"/>
+        <nd ref="-372"/>
+        <nd ref="-373"/>
+        <nd ref="-370"/>
+        <tag k="addr:ref" v="13111058003"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-315"/>
+        <tag k="building" v="yes"/>
+        <tag k="height" v="4.9094999999999995"/>
+    </way>
+    <way id="-538" visible="true">
+        <nd ref="-529"/>
+        <nd ref="-530"/>
+        <nd ref="-531"/>
+        <nd ref="-532"/>
+        <nd ref="-533"/>
+        <nd ref="-534"/>
+        <nd ref="-535"/>
+        <nd ref="-536"/>
+        <nd ref="-529"/>
+        <tag k="addr:ref" v="13111058003"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-444"/>
+        <tag k="height" v="5.753500000000001"/>
+    </way>
+    <way id="-1680" visible="true">
+        <nd ref="-1671"/>
+        <nd ref="-1672"/>
+        <nd ref="-1673"/>
+        <nd ref="-1674"/>
+        <nd ref="-1675"/>
+        <nd ref="-1676"/>
+        <nd ref="-1677"/>
+        <nd ref="-1678"/>
+        <nd ref="-1671"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-146894"/>
+        <tag k="building" v="yes"/>
+        <tag k="height" v="23.298000000000002"/>
+    </way>
+    <way id="-1499" visible="true">
+        <nd ref="-1494"/>
+        <nd ref="-1495"/>
+        <nd ref="-1496"/>
+        <nd ref="-1497"/>
+        <nd ref="-1494"/>
+        <tag k="addr:ref" v="13111058003"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-327"/>
+        <tag k="building" v="yes"/>
+        <tag k="height" v="6.449"/>
+    </way>
+    <way id="-140" visible="true">
+        <nd ref="-135"/>
+        <nd ref="-136"/>
+        <nd ref="-137"/>
+        <nd ref="-138"/>
+        <nd ref="-135"/>
+        <tag k="addr:ref" v="13111058003"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-512"/>
         <tag k="height" v="5.105"/>
     </way>
-    <relation id="-771545" visible="true">
-        <member ref="-771548" role="part" type="way"/>
-        <member ref="-771170" role="part" type="way"/>
-        <member ref="-771905" role="outline" type="way"/>
+    <way id="-187" visible="true">
+        <nd ref="-182"/>
+        <nd ref="-183"/>
+        <nd ref="-184"/>
+        <nd ref="-185"/>
+        <nd ref="-182"/>
         <tag k="addr:ref" v="13111058003"/>
         <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
         <tag k="building:part" v="yes"/>
-        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_d152487b-b229-4fe9-a421-02bf68448e0e"/>
-        <tag k="type" v="building"/>
-        <tag k="height" v="6.58"/>
-    </relation>
-    <relation id="-770933" visible="true">
-        <member ref="-770936" role="part" type="way"/>
-        <member ref="-771377" role="part" type="way"/>
-        <member ref="-771906" role="outline" type="way"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-324"/>
+        <tag k="height" v="5.837"/>
+    </way>
+    <way id="-823" visible="true">
+        <nd ref="-807"/>
+        <nd ref="-808"/>
+        <nd ref="-809"/>
+        <nd ref="-810"/>
+        <nd ref="-811"/>
+        <nd ref="-812"/>
+        <nd ref="-813"/>
+        <nd ref="-814"/>
+        <nd ref="-815"/>
+        <nd ref="-816"/>
+        <nd ref="-817"/>
+        <nd ref="-818"/>
+        <nd ref="-819"/>
+        <nd ref="-820"/>
+        <nd ref="-821"/>
+        <nd ref="-807"/>
         <tag k="addr:ref" v="13111058003"/>
         <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
         <tag k="building:part" v="yes"/>
-        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697 BLD_37587d5d-7ec1-4012-815b-be282659326d"/>
-        <tag k="type" v="building"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-202"/>
         <tag k="height" v="6.181"/>
+    </way>
+    <way id="-424" visible="true">
+        <nd ref="-417"/>
+        <nd ref="-418"/>
+        <nd ref="-419"/>
+        <nd ref="-420"/>
+        <nd ref="-421"/>
+        <nd ref="-422"/>
+        <nd ref="-417"/>
+        <tag k="addr:ref" v="13111058003"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-486"/>
+        <tag k="building" v="yes"/>
+        <tag k="height" v="11.669"/>
+    </way>
+    <way id="-623" visible="true">
+        <nd ref="-612"/>
+        <nd ref="-613"/>
+        <nd ref="-614"/>
+        <nd ref="-615"/>
+        <nd ref="-616"/>
+        <nd ref="-617"/>
+        <nd ref="-618"/>
+        <nd ref="-619"/>
+        <nd ref="-620"/>
+        <nd ref="-621"/>
+        <nd ref="-612"/>
+        <tag k="addr:ref" v="13111058003"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-578"/>
+        <tag k="height" v="5.731"/>
+    </way>
+    <way id="-718" visible="true">
+        <nd ref="-713"/>
+        <nd ref="-714"/>
+        <nd ref="-715"/>
+        <nd ref="-716"/>
+        <nd ref="-713"/>
+        <tag k="addr:ref" v="13111058003"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-374"/>
+        <tag k="building" v="yes"/>
+        <tag k="height" v="5.195"/>
+    </way>
+    <way id="-1629" visible="true">
+        <nd ref="-1624"/>
+        <nd ref="-1625"/>
+        <nd ref="-1626"/>
+        <nd ref="-1627"/>
+        <nd ref="-1624"/>
+        <tag k="addr:ref" v="13111058003"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-239"/>
+        <tag k="building" v="yes"/>
+        <tag k="height" v="4.945"/>
+    </way>
+    <way id="-281" visible="true">
+        <nd ref="-276"/>
+        <nd ref="-277"/>
+        <nd ref="-278"/>
+        <nd ref="-279"/>
+        <nd ref="-276"/>
+        <tag k="addr:ref" v="13111058003"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-365"/>
+        <tag k="building" v="yes"/>
+        <tag k="height" v="5.127"/>
+    </way>
+    <way id="-234" visible="true">
+        <nd ref="-229"/>
+        <nd ref="-230"/>
+        <nd ref="-231"/>
+        <nd ref="-232"/>
+        <nd ref="-229"/>
+        <tag k="addr:ref" v="13111058003"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-441"/>
+        <tag k="building" v="yes"/>
+        <tag k="height" v="4.8655"/>
+    </way>
+    <way id="-958" visible="true">
+        <nd ref="-953"/>
+        <nd ref="-954"/>
+        <nd ref="-955"/>
+        <nd ref="-956"/>
+        <nd ref="-953"/>
+        <tag k="addr:ref" v="13111058003"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-353"/>
+        <tag k="building" v="yes"/>
+        <tag k="height" v="4.992"/>
+    </way>
+    <way id="-1436" visible="true">
+        <nd ref="-1052"/>
+        <nd ref="-1430"/>
+        <nd ref="-1431"/>
+        <nd ref="-1432"/>
+        <nd ref="-1433"/>
+        <nd ref="-1053"/>
+        <nd ref="-1052"/>
+        <tag k="addr:ref" v="13111058003"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-386"/>
+        <tag k="height" v="6.58"/>
+    </way>
+    <way id="-1799" visible="true">
+        <nd ref="-1052"/>
+        <nd ref="-1430"/>
+        <nd ref="-1431"/>
+        <nd ref="-1432"/>
+        <nd ref="-1433"/>
+        <nd ref="-1053"/>
+        <nd ref="-1054"/>
+        <nd ref="-1055"/>
+        <nd ref="-1056"/>
+        <nd ref="-1057"/>
+        <nd ref="-1058"/>
+        <nd ref="-1059"/>
+        <nd ref="-1060"/>
+        <nd ref="-1061"/>
+        <nd ref="-1062"/>
+        <nd ref="-1063"/>
+        <nd ref="-1064"/>
+        <nd ref="-1065"/>
+        <nd ref="-1066"/>
+        <nd ref="-1067"/>
+        <nd ref="-1068"/>
+        <nd ref="-1047"/>
+        <nd ref="-1048"/>
+        <nd ref="-1049"/>
+        <nd ref="-1050"/>
+        <nd ref="-1051"/>
+        <nd ref="-1052"/>
+        <tag k="addr:ref" v="13111058003"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697"/>
+        <tag k="building" v="yes"/>
+        <tag k="height" v="40.492"/>
+    </way>
+    <way id="-1759" visible="true">
+        <nd ref="-1754"/>
+        <nd ref="-1755"/>
+        <nd ref="-1756"/>
+        <nd ref="-1757"/>
+        <nd ref="-1754"/>
+        <tag k="addr:ref" v="13111058003"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-224"/>
+        <tag k="height" v="8.398"/>
+    </way>
+    <way id="-487" visible="true">
+        <nd ref="-482"/>
+        <nd ref="-483"/>
+        <nd ref="-484"/>
+        <nd ref="-485"/>
+        <nd ref="-482"/>
+        <tag k="addr:ref" v="13111058003"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-466"/>
+        <tag k="height" v="6.84"/>
+    </way>
+    <way id="-1070" visible="true">
+        <nd ref="-1047"/>
+        <nd ref="-1048"/>
+        <nd ref="-1049"/>
+        <nd ref="-1050"/>
+        <nd ref="-1051"/>
+        <nd ref="-1052"/>
+        <nd ref="-1053"/>
+        <nd ref="-1054"/>
+        <nd ref="-1055"/>
+        <nd ref="-1056"/>
+        <nd ref="-1057"/>
+        <nd ref="-1058"/>
+        <nd ref="-1059"/>
+        <nd ref="-1060"/>
+        <nd ref="-1061"/>
+        <nd ref="-1062"/>
+        <nd ref="-1063"/>
+        <nd ref="-1064"/>
+        <nd ref="-1065"/>
+        <nd ref="-1066"/>
+        <nd ref="-1067"/>
+        <nd ref="-1068"/>
+        <nd ref="-1047"/>
+        <tag k="addr:ref" v="13111058003"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-473"/>
+        <tag k="height" v="40.492"/>
+    </way>
+    <way id="-328" visible="true">
+        <nd ref="-323"/>
+        <nd ref="-324"/>
+        <nd ref="-325"/>
+        <nd ref="-326"/>
+        <nd ref="-323"/>
+        <tag k="addr:ref" v="13111058003"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-436"/>
+        <tag k="building" v="yes"/>
+        <tag k="height" v="5.4025"/>
+    </way>
+    <way id="-765" visible="true">
+        <nd ref="-760"/>
+        <nd ref="-761"/>
+        <nd ref="-762"/>
+        <nd ref="-763"/>
+        <nd ref="-760"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-405"/>
+        <tag k="height" v="9.757"/>
+    </way>
+    <way id="-1275" visible="true">
+        <nd ref="-1256"/>
+        <nd ref="-1257"/>
+        <nd ref="-1258"/>
+        <nd ref="-1259"/>
+        <nd ref="-1260"/>
+        <nd ref="-1261"/>
+        <nd ref="-1262"/>
+        <nd ref="-1263"/>
+        <nd ref="-1264"/>
+        <nd ref="-1265"/>
+        <nd ref="-1266"/>
+        <nd ref="-1267"/>
+        <nd ref="-809"/>
+        <nd ref="-808"/>
+        <nd ref="-1270"/>
+        <nd ref="-1271"/>
+        <nd ref="-1272"/>
+        <nd ref="-1273"/>
+        <nd ref="-1256"/>
+        <tag k="addr:ref" v="13111058003"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-366"/>
+        <tag k="height" v="17.097"/>
+    </way>
+    <way id="-1550" visible="true">
+        <nd ref="-1541"/>
+        <nd ref="-1542"/>
+        <nd ref="-1543"/>
+        <nd ref="-1544"/>
+        <nd ref="-1545"/>
+        <nd ref="-1546"/>
+        <nd ref="-1547"/>
+        <nd ref="-1548"/>
+        <nd ref="-1541"/>
+        <tag k="addr:ref" v="13111058003"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-493"/>
+        <tag k="building" v="yes"/>
+        <tag k="height" v="5.689"/>
+    </way>
+    <relation id="-1043" visible="true">
+        <member ref="-1070" role="part" type="way"/>
+        <member ref="-1436" role="part" type="way"/>
+        <member ref="-1799" role="outline" type="way"/>
+        <tag k="addr:ref" v="13111058003"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697"/>
+        <tag k="type" v="building"/>
+        <tag k="building" v="yes"/>
+        <tag k="height" v="40.492"/>
+    </relation>
+    <relation id="-1252" visible="true">
+        <member ref="-1275" role="part" type="way"/>
+        <member ref="-823" role="part" type="way"/>
+        <member ref="-1802" role="outline" type="way"/>
+        <tag k="addr:ref" v="13111058003"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697"/>
+        <tag k="type" v="building"/>
+        <tag k="building" v="yes"/>
+        <tag k="height" v="17.097"/>
     </relation>
 </osm>

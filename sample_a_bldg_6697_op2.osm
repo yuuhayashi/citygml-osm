@@ -1,36 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <osm generator="JOSM" version="0.6">
-<bounds maxlat="35.542252321638614" maxlon="139.7156383865409" minlat="35.54070862164589" minlon="139.71245218213994" origin="CGImap 0.8.3 (2061540 spike-08.openstreetmap.org)"/>
-<node id="-5" lat="35.541382218917" lon="139.7135361971285" visible="true"/>
-<node id="-6" lat="35.54148871794623" lon="139.71349038054228" visible="true"/>
-<node id="-52" lat="35.541162172990724" lon="139.71333867286907" visible="true"/>
-<node id="-7" lat="35.5414416376926" lon="139.7133266766337" visible="true"/>
-<node id="-8" lat="35.54133500351648" lon="139.71337249361054" visible="true"/>
-<node id="-53" lat="35.54125637323291" lon="139.7132981681648" visible="true"/>
-<node id="-54" lat="35.54123968459845" lon="139.71323996244044" visible="true"/>
-<node id="-55" lat="35.541145348837674" lon="139.71328013655102" visible="true"/>
-<way id="-10" visible="true">
-<nd ref="-5"/>
-<nd ref="-6"/>
-<nd ref="-7"/>
-<nd ref="-8"/>
-<nd ref="-5"/>
-<tag k="addr:ref" v="13111058003"/>
-<tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-466"/>
-<tag k="building" v="yes"/>
-<tag k="height" v="6.84"/>
-</way>
-<way id="-57" visible="true">
-<nd ref="-52"/>
-<nd ref="-53"/>
-<nd ref="-54"/>
-<nd ref="-55"/>
-<nd ref="-52"/>
-<tag k="addr:ref" v="13111058003"/>
-<tag k="addr:full" v="東京都大田区南六郷三丁目"/>
-<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-365"/>
-<tag k="building" v="yes"/>
-<tag k="height" v="5.127"/>
-</way>
+    <bounds maxlat="35.542252321638614" maxlon="139.7156383865409" minlat="35.54070862164589" minlon="139.71245218213994" origin="CGImap 0.8.3 (2061540 spike-08.openstreetmap.org)"/>
+    <node id="-5" lat="35.541382218917" lon="139.7135361971285" visible="true"/>
+    <node id="-6" lat="35.54148871794623" lon="139.71349038054228" visible="true"/>
+    <node id="-52" lat="35.541162172990724" lon="139.71333867286907" visible="true"/>
+    <node id="-7" lat="35.5414416376926" lon="139.7133266766337" visible="true"/>
+    <node id="-8" lat="35.54133500351648" lon="139.71337249361054" visible="true"/>
+    <node id="-53" lat="35.54125637323291" lon="139.7132981681648" visible="true"/>
+    <node id="-54" lat="35.54123968459845" lon="139.71323996244044" visible="true"/>
+    <node id="-55" lat="35.541145348837674" lon="139.71328013655102" visible="true"/>
+    <way id="-10" visible="true">
+        <nd ref="-5"/>
+        <nd ref="-6"/>
+        <nd ref="-7"/>
+        <nd ref="-8"/>
+        <nd ref="-5"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-466"/>
+        <tag k="building" v="yes"/>
+        <tag k="height" v="6.84"/>
+    </way>
+    <way id="-57" visible="true">
+        <nd ref="-52"/>
+        <nd ref="-53"/>
+        <nd ref="-54"/>
+        <nd ref="-55"/>
+        <nd ref="-52"/>
+        <tag k="addr:ref" v="13111058003"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-365"/>
+        <tag k="building" v="yes"/>
+        <tag k="height" v="5.127"/>
+    </way>
 </osm>
