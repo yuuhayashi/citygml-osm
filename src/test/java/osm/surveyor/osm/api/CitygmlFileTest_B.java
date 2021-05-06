@@ -41,7 +41,7 @@ public class CitygmlFileTest_B {
 					assertThat(relation.getTagValue("addr:full"), is("東京都大田区大森西五丁目"));
 					assertThat(relation.getTagValue("addr:ref"), is("13111006005"));
 					assertThat(relation.getTagValue("height"), is("17.582"));
-					assertThat(relation.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-61384"));
+					assertThat(relation.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697"));
 					int outerCnt = 0;
 					int innerCnt = 0;
 					for (ElementMember mem : relation.members) {
@@ -49,7 +49,7 @@ public class CitygmlFileTest_B {
 							outerCnt++;
 							assertThat(mem.type, is("way"));
 							ElementWay way = osm.ways.get(Long.toString(mem.ref));
-							assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-61384"));
+							assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697"));
 							assertThat(way.tags.size(), is(1));
 						}
 						if (mem.role.equals("inner")) {

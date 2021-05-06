@@ -53,7 +53,7 @@ public class BuildingGarbage {
 						if (way != null) {
 							way.member = true;
 							copyTag(relation.tags, way);
-							preDeleteMembers(Long.parseLong(rKey));
+							preDeleteMembers(way.id);
 							return true;
 						}
 					}
