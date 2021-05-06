@@ -1,5 +1,8 @@
 package osm.surveyor.osm.api;
 
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
 import java.io.File;
@@ -14,6 +17,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import osm.surveyor.citygml.CitygmlFile;
+import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 import osm.surveyor.osm.OsmMargeWay;
 import osm.surveyor.osm.marge.BuildingGarbage;
@@ -38,6 +42,42 @@ public class CitygmlFileTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Issue #12 「v1.2.4 単独の建物でもbuilding:part」
+	 * https://github.com/yuuhayashi/citygml-osm/issues/12
+	 */
+	@Test
+	public void test53375768() {
+		test_do(Paths.get("src/test/resources","53375768_bldg_6697_op.gml"));
+		
+		OsmDom osm = new OsmDom();
+		try {
+			osm.load(Paths.get("53375768_bldg_6697_op.osm").toFile());
+
+			assertThat(osm.ways, notNullValue());
+			for (String id : osm.ways.keySet()) {
+				ElementWay way = osm.ways.get(id);
+				assertThat(way, notNullValue());
+
+				if (way.getTagValue("source").endsWith("20209-bldg-69160")) {
+					assertThat(way.getTagValue("building:part"), nullValue());
+					assertThat(way.getTagValue("building"), notNullValue());
+				}
+				if (way.getTagValue("source").endsWith("20209-bldg-69158")) {
+					assertThat(way.getTagValue("building:part"), nullValue());
+					assertThat(way.getTagValue("building"), notNullValue());
+				}
+				if (way.getTagValue("source").endsWith("20209-bldg-69157")) {
+					assertThat(way.getTagValue("building:part"), nullValue());
+					assertThat(way.getTagValue("building"), notNullValue());
+				}
+			}
+		} catch (Exception e) {
+			e.fillInStackTrace();
+			fail(e.toString());
+		}
+	}
+	
 	@Test
 	public void test53392547() {
 		test_do(Paths.get("src/test/resources","53392547_bldg_6697_op2.gml"));
