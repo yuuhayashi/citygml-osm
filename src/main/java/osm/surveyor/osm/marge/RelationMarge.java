@@ -2,7 +2,6 @@ package osm.surveyor.osm.marge;
 
 import osm.surveyor.osm.ElementMember;
 import osm.surveyor.osm.ElementRelation;
-import osm.surveyor.osm.ElementTag;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 import osm.surveyor.osm.RelationMap;
@@ -33,8 +32,6 @@ public class RelationMarge {
 		for (String rKey : osm.relations.keySet()) {
 			ElementRelation relation = osm.relations.get(rKey);
 			if (relation.isBuilding()) {
-				String maxheight = "0";
-				String maxname = "";
 				if (checked.get(relation.id) == null) {
 					// relationは、未チェック
 					for (ElementMember member : relation.members) {
@@ -44,22 +41,24 @@ public class RelationMarge {
 							ElementRelation destRelation = null;
 							if ((destRelation = checkParts(checked, way)) != null) {
 								way.member = true;
-								String name = "";
-								ElementTag height = way.tags.get("height");
-								ElementTag nameTag = way.tags.get("name");
-								if (Double.parseDouble(height.v) > Double.parseDouble(maxheight)) {
-									maxheight = height.v;
-									destRelation.addTag("height", maxheight);
+								
+								String maxheight = destRelation.getTagValue("height");
+								String height = way.getTagValue("height");
+								if (Double.parseDouble(height) > Double.parseDouble(maxheight)) {
+									destRelation.addTag("height", height);
 								}
-								if (nameTag != null) {
-									name = nameTag.v;
+								
+								String maxname = destRelation.getTagValue("name");
+								if (maxname == null) {
+									maxname = "";
 								}
-								if (name.length() > maxname.length()) {
-									maxname = name;
-									if (!maxname.isEmpty()) {
-										destRelation.addTag("name", maxname);
+								String name = way.getTagValue("name");
+								if ((name != null) && (name.length() > maxname.length())) {
+									if (!name.isEmpty()) {
+										destRelation.addTag("name", name);
 									}
 								}
+								
 								destRelation.addTag("source", osm.getSource());
 								destRelation.addMember(way, "part");
 								int i = relation.members.indexOf(member);	// カレントリレーションからメンバーを削除
