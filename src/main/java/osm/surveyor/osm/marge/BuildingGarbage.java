@@ -10,56 +10,52 @@ import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 
 public class BuildingGarbage {
+	OsmDom osm;
+	
+	public BuildingGarbage(OsmDom osm) {
+		this.osm = osm;
+	}
 
 	/**
 	 * メンバーが一つしかないRelation:building を削除する
 	 * @param relations
 	 * @param ways
 	 */
-	public static void garbage(OsmDom osm) {
-		while (relationRemove(osm));
+	public void garbage() {
+		while (relationRemove());
 	}
 	
     // メンバーが一つしかないRelation:building を削除する
 	// メンバーが一つしかないRelation:multipolygon と polygon:member を削除する
-	static boolean relationRemove(OsmDom osm) {
+	boolean relationRemove() {
 		for (String rKey : osm.relations.keySet()) {
 			ElementRelation relation = osm.relations.get(rKey);
-			if (relation.members.size() < 1) {
-				preDeleteMembers(osm, Long.parseLong(rKey));
+			int memberCnt = relation.members.size();
+			if (memberCnt == 0) {
+				preDeleteMembers(Long.parseLong(rKey));
 				osm.relations.remove(rKey);
 				return true;
 			}
-			else if (relation.members.size() < 2) {
+			else if (memberCnt == 1) {
 				if (relation.isMultipolygon()) {
 					for (ElementMember member : relation.members) {
 						ElementWay way = osm.ways.get(member.ref);
 						if (way != null) {
+							preDeleteMembers(way.id);
 							osm.ways.remove(way);
+							return true;
 						}
 					}
 				}
-				preDeleteMembers(osm, Long.parseLong(rKey));
-				osm.relations.remove(rKey);
-				return true;
-			}
-			else if (relation.members.size() == 2) {
 				if (relation.isBuilding()) {
-					int partCnt = 0;
-					long wayid = 0;
 					for (ElementMember member : relation.members) {
-						if (member.role.equals("part")) {
-							partCnt++;
-							wayid = member.ref;
+						ElementWay way = osm.ways.get(member.ref);
+						if (way != null) {
+							way.member = true;
+							copyTag(relation.tags, way);
+							preDeleteMembers(Long.parseLong(rKey));
+							return true;
 						}
-					}
-					if (partCnt == 1) {
-						ElementWay way = osm.ways.get(wayid);
-						way.member = true;
-						copyTag(relation.tags, way);
-						preDeleteMembers(osm, Long.parseLong(rKey));
-						osm.relations.remove(rKey);
-						return true;
 					}
 				}
 			}
@@ -72,10 +68,10 @@ public class BuildingGarbage {
 	 * @param osm
 	 * @param id
 	 */
-	private static void preDeleteMembers(OsmDom osm, long id) {
-		while(preDeleteMember(osm, id));
+	private void preDeleteMembers(long id) {
+		while(preDeleteMember(id));
 	}
-	private static boolean preDeleteMember(OsmDom osm, long id) {
+	private boolean preDeleteMember(long id) {
 		for (String relationid : osm.relations.keySet()) {
 			ElementRelation relation = osm.relations.get(relationid);
 			for (ElementMember member : relation.members) {
@@ -99,7 +95,7 @@ public class BuildingGarbage {
 	 * @param tags
 	 * @param dest
 	 */
-	static void copyTag(HashMap<String, ElementTag> tags, ElementOsmapi dest) {
+	void copyTag(HashMap<String, ElementTag> tags, ElementOsmapi dest) {
 		if (tags == null) {
 			return;
 		}

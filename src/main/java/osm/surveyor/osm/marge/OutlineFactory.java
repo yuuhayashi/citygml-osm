@@ -15,13 +15,19 @@ import osm.surveyor.osm.RelationMultipolygon;
 
 public class OutlineFactory {
 	
+	OsmDom osm;
+	
+	public OutlineFactory(OsmDom osm) {
+		this.osm = osm;
+	}
+	
 	/**
 	 * - Relation->member:role=port のoutlineを作成する
 	 * - 
 	 * 
 	 * @param relations
 	 */
-	public static OsmDom relationOutline(OsmDom osm) {
+	public void relationOutline() {
 		RelationMap map = new RelationMap();
 				
 		for (String rKey : osm.relations.keySet()) {
@@ -119,11 +125,10 @@ public class OutlineFactory {
 			building.addTag("height", maxheight);
 		}
 		
-		while (outlineRelation(osm, map));
-		return osm;
+		while (outlineRelation(map));
 	}
 	
-	private static boolean outlineRelation(OsmDom osm, RelationMap map) {
+	private boolean outlineRelation(RelationMap map) {
 		for (String rKey : map.keySet()) {
 			ElementRelation relation = map.get(rKey);
 			osm.relations.put(relation);

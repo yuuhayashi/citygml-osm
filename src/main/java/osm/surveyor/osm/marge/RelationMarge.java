@@ -10,6 +10,11 @@ import osm.surveyor.osm.RelationMultipolygon;
 import osm.surveyor.osm.WayMap;
 
 public class RelationMarge {
+	OsmDom osm;
+	
+	public RelationMarge(OsmDom osm) {
+		this.osm = osm;
+	}
 
     /**
      * 各WAYのノードで、他のWAYと共有されたノードを探す
@@ -17,14 +22,14 @@ public class RelationMarge {
      * Relation:multipolygon の MaxHeightを outline->Multipolygonへ設定する
      * OsmDom osm
      */
-	public static void relationMarge(OsmDom osm) {
+	public void relationMarge() {
 		RelationMap checked = new RelationMap();
 		
 		// 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる
-		while(relationMarge1(checked, osm));
+		while(relationMarge1(checked));
 	}
 
-	static boolean relationMarge1(RelationMap checked, OsmDom osm) {
+	boolean relationMarge1(RelationMap checked) {
 		for (String rKey : osm.relations.keySet()) {
 			ElementRelation relation = osm.relations.get(rKey);
 			if (relation.isBuilding()) {
@@ -37,7 +42,7 @@ public class RelationMarge {
 							String memberRef = Long.toString(member.ref);
 							ElementWay way = osm.ways.get(memberRef);
 							ElementRelation destRelation = null;
-							if ((destRelation = checkParts(osm, checked, way)) != null) {
+							if ((destRelation = checkParts(checked, way)) != null) {
 								way.member = true;
 								String name = "";
 								ElementTag height = way.tags.get("height");
@@ -78,7 +83,7 @@ public class RelationMarge {
 		return false;
 	}
 	
-	private static ElementRelation checkParts(OsmDom osm, RelationMap checked, ElementWay way) {
+	private ElementRelation checkParts(RelationMap checked, ElementWay way) {
 		for (String relationid : checked.keySet()) {
 			ElementRelation relation = checked.get(relationid);
 			for (ElementMember member : relation.members) {
@@ -98,7 +103,7 @@ public class RelationMarge {
 		return null;
 	}
 	
-	private static ElementMember getPolygonMember(ElementRelation relation) {
+	private ElementMember getPolygonMember(ElementRelation relation) {
 		for (ElementMember member : relation.members) {
 			if (member.role.equals("outline")) {
 				return member;
