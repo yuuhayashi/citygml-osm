@@ -13,7 +13,9 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 # Release
 
-- 2021-05-05 リリース v1.2.4 / [citygml-osm v1.2.4](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/osm.surveyor/citygml-osm/1.2.4)<br/>Issue #10 ／ 「箱根町」のデータファイル名x-x-に対応した。
+- 2021-05-07 リリース v1.2.5 / [citygml-osm v1.2.5](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/osm.surveyor/citygml-osm/1.2.5)<br/>Issue #12 ／ [単独の建物でもbuilding:part](https://github.com/yuuhayashi/citygml-osm/issues/12)
+
+- 2021-05-05 リリース v1.2.4 / [citygml-osm v1.2.4](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/osm.surveyor/citygml-osm/1.2.4)<br/>Issue #10 ／ 「箱根町」のデータファイル名に対応した。
 
 - 2021-05-05 リリース v1.2.3 / [citygml-osm v1.2.3](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/osm.surveyor/citygml-osm/1.2.3)<br/>第一段階（OSMへの変換）／複数の建物が接触している場合の変換に対応した。
 
