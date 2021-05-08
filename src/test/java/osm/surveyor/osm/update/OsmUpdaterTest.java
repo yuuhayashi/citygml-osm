@@ -34,7 +34,7 @@ public class OsmUpdaterTest {
 			ArrayList<String> args = new ArrayList<>();
 			args.add("53392547_bldg_6697_op2.osm");
 			//fail();
-			//OsmUpdater.main(args.toArray(new String[args.size()]));
+			OsmUpdater.main(args.toArray(new String[args.size()]));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
