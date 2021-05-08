@@ -174,10 +174,10 @@ public class OsmDom {
 		for (ElementMember member : relation.members) {
 			if (member.role.equals("part")) {
 				ElementWay way = ways.get(member.ref);
-				ElementTag ele = way.tags.get("height");
-				if (ele != null) {
-					if (Double.parseDouble(maxheight) < Double.parseDouble(ele.v)) {
-						maxheight = ele.v;
+				String height = way.getTagValue("height");
+				if (height != null) {
+					if (Double.parseDouble(maxheight) < Double.parseDouble(height)) {
+						maxheight = height;
 					}
 				}
 			}

@@ -152,6 +152,10 @@ public class CityModelParser extends DefaultHandler {
 			name = "";
 	    	outSb = new StringBuffer();
 		}
+		else if(qName.equals("bldg:measuredHeight")){
+			measuredHeight = "";
+	    	outSb = new StringBuffer();
+		}
 		else if(qName.equals("bldg:lod0RoofEdge")){
 			roof = new RelationBuilding(osm.getNewId());
 			edgeFull = false;
@@ -280,6 +284,12 @@ public class CityModelParser extends DefaultHandler {
 			}
 			outSb = null;
 		}
+    	else if(qName.equals("bldg:measuredHeight")){
+			if ((measuredHeight != null) && (measuredHeight.isEmpty()) && (outSb != null)) {
+				measuredHeight = outSb.toString();
+			}
+			outSb = null;
+		}
     	else if(qName.equals("gen:value")){
 			// <gen:stringAttribute name="13_区市町村コード_大字・町コード_町・丁目コード">
     		//   <gen:value>13111058003</gen:value>
@@ -335,10 +345,10 @@ public class CityModelParser extends DefaultHandler {
 				way.addTag("source", getSourceStr(buildingId));
 				if (!edgeFull) {
 					if (roof != null) {
-						ElementWay part = way.copy(osm.getNewId());
 						if ((name != null) && !name.isEmpty()) {
-							part.addTag("name", name);
+							way.addTag("name", name);
 						}
+						ElementWay part = way.copy(osm.getNewId());
 						part.addTag("building:part", "yes");
 						osm.ways.put(part);
 						roof.copyTag(part);
@@ -347,10 +357,19 @@ public class CityModelParser extends DefaultHandler {
 						edgeFull = true;
 					}
 					else if (footPrint != null) {
-						ElementWay part = way.copy(osm.getNewId());
 						if ((name != null) && !name.isEmpty()) {
-							part.addTag("name", name);
+							way.addTag("name", name);
 						}
+						String ele = way.getTagValue("height");
+						if (ele != null) {
+							way.tags.remove("height");
+							way.addTag("ele", ele);
+						}
+	    				if ((measuredHeight != null) && !measuredHeight.isEmpty()) {
+	        				way.addTag("height", new String(measuredHeight));
+	        				measuredHeight = null;
+	    				}
+						ElementWay part = way.copy(osm.getNewId());
 						part.addTag("building:part", "yes");
 						osm.ways.put(part);
 						footPrint.copyTag(part);
@@ -363,6 +382,7 @@ public class CityModelParser extends DefaultHandler {
 					ElementWay outer = way.copy(osm.getNewId());
 					multipolygon.copyTag(outer);
 					outer.tags.remove("height");
+					outer.tags.remove("ele");
 					osm.ways.put(outer);
 					multipolygon.addMember(outer, "outer");
 				}

@@ -68,8 +68,9 @@ public class CitygmlFileTest {
 				assertThat(way, notNullValue());
 				assertThat(way.getTagValue("building"), is("yes"));
 				assertThat(way.getTagValue("height"), is("13.3"));
+				assertThat(way.getTagValue("ele"), is("728.31"));
 				assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 14382-bldg-10718"));
-				assertThat(way.tags.size(), is(3));
+				assertThat(way.tags.size(), is(4));
 			}
 			assertThat(osm.ways.size(), is(1));
 		} catch (Exception e) {
