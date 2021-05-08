@@ -21,14 +21,28 @@ title CityGML 構造
 ******_ "13111007004"
 ***** name="建物ID"
 ******_ "13111-bldg-56522"
+**** bldg:measuredHeight
+*****_ "13.3"
 **** bldg:lod0RoofEdge
 ***** gml:Polygon
 ****** gml:exterior
 ******* gml:LinearRing
 ******** gml:posList
+*********_ [{緯度 経度 高度}...]
 ****** gml:interior
 ******* gml:LinearRing
 ******** gml:posList
+*********_ [{緯度 経度 高度}...]
+**** bldg:lod0FootPrint
+***** gml:Polygon
+****** gml:exterior
+******* gml:LinearRing
+******** gml:posList
+*********_ [{緯度 経度 高度}...]
+****** gml:interior
+******* gml:LinearRing
+******** gml:posList
+*********_ [{緯度 経度 高度}...]
 **** xAL:LocalityName
 ***** Type="Town"
 ******_ "東京都大田区大森西三丁目"

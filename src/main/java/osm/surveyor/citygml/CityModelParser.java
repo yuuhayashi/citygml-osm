@@ -76,7 +76,10 @@ public class CityModelParser extends DefaultHandler {
 	RelationBuilding building = null;				// <bldg:Building/>
 	String buildingId = null;						// <bldg:Building gml:id="buildingId" />
 	String name = null;								// <gml:name/>
+	String measuredHeight = null;					// <bldg:measuredHeight/>
+	boolean edgeFull = false;						// 建物形状がセットされたら true
 	RelationBuilding roof = null;					// <bldg:lod0RoofEdge/>
+	RelationBuilding footPrint = null;				// <bldg:lod0FootPrint/>
 	RelationMultipolygon multipolygon = null;		// <gml:Polygon/>
 	ElementMember member = null;					// <gml:Polygon/>
     ElementWay way = null;							// <gml:LinearRing/>
@@ -151,9 +154,14 @@ public class CityModelParser extends DefaultHandler {
 		}
 		else if(qName.equals("bldg:lod0RoofEdge")){
 			roof = new RelationBuilding(osm.getNewId());
+			edgeFull = false;
+		}
+		else if(qName.equals("bldg:lod0FootPrint")){
+			footPrint = new RelationBuilding(osm.getNewId());
+			edgeFull = false;
 		}
 		else if(qName.equals("gml:Polygon")){
-			if (roof != null) {
+			if (!edgeFull) {
 				multipolygon = new RelationMultipolygon(osm.getNewId());
 				multipolygon.addTag("building", "yes");
 			}
@@ -288,36 +296,68 @@ public class CityModelParser extends DefaultHandler {
 		}
 		
     	else if(qName.equals("bldg:lod0RoofEdge")){
-			if ((roof != null) && (building != null)) {
-				for (ElementMember mem : roof.members) {
-					building.members.add(mem);
-				}
-				building.copyTag(roof);
-			}
-			roof = null;
+    		if (building != null) {
+    			if (roof != null) {
+    				for (ElementMember mem : roof.members) {
+    					building.members.add(mem);
+    				}
+    				building.copyTag(roof);
+    				roof = null;
+    			}
+    		}
+		}
+    	else if(qName.equals("bldg:lod0FootPrint")){
+    		if (building != null) {
+    			if (footPrint != null) {
+    				for (ElementMember mem : footPrint.members) {
+    					building.members.add(mem);
+    				}
+    				building.copyTag(footPrint);
+    				footPrint = null;
+    			}
+    		}
 		}
 		else if(qName.equals("gml:Polygon")){
-			if ((multipolygon != null) && (roof != null)) {
-				if (!multipolygon.members.isEmpty()) {
+			if ((multipolygon != null) && !multipolygon.members.isEmpty()) {
+				if (roof != null) {
 					osm.relations.put(multipolygon);
 					roof.addMember(multipolygon, "outline");
 				}
+				else if (footPrint != null) {
+					osm.relations.put(multipolygon);
+					footPrint.addMember(multipolygon, "outline");
+				}
+				multipolygon = null;
 			}
-			multipolygon = null;
 		}
 		else if (qName.equals("gml:exterior")){
 			if ((way != null) && (member != null)) {
 				way.addTag("source", getSourceStr(buildingId));
-				if (roof != null) {
-					ElementWay part = way.copy(osm.getNewId());
-					if ((name != null) && !name.isEmpty()) {
-						part.addTag("name", name);
+				if (!edgeFull) {
+					if (roof != null) {
+						ElementWay part = way.copy(osm.getNewId());
+						if ((name != null) && !name.isEmpty()) {
+							part.addTag("name", name);
+						}
+						part.addTag("building:part", "yes");
+						osm.ways.put(part);
+						roof.copyTag(part);
+						roof.replaceTag("building:part", new ElementTag("building", "yes"));
+						roof.addMember(part, "part");
+						edgeFull = true;
 					}
-					part.addTag("building:part", "yes");
-					osm.ways.put(part);
-					roof.copyTag(part);
-					roof.replaceTag("building:part", new ElementTag("building", "yes"));
-					roof.addMember(part, "part");
+					else if (footPrint != null) {
+						ElementWay part = way.copy(osm.getNewId());
+						if ((name != null) && !name.isEmpty()) {
+							part.addTag("name", name);
+						}
+						part.addTag("building:part", "yes");
+						osm.ways.put(part);
+						footPrint.copyTag(part);
+						footPrint.replaceTag("building:part", new ElementTag("building", "yes"));
+						footPrint.addMember(part, "part");
+						edgeFull = true;
+					}
 				}
 				if (multipolygon != null) {
 					ElementWay outer = way.copy(osm.getNewId());
