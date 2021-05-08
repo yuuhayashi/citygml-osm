@@ -1,6 +1,5 @@
 package osm.surveyor.osm.api;
 
-import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
@@ -43,42 +42,6 @@ public class CitygmlFileTest {
 	public void tearDown() throws Exception {
 	}
 
-	/**
-	 * Issue #13 「v1.2.4 「箱根町」のデータを変換できない」
-	 * https://github.com/yuuhayashi/citygml-osm/issues/13
-	 * map "A :建物" as A {
-	 *  bldg:Building:id => bldg-cf368523-863d-4bf8-8931-3a9cf99e4e58
-	 *  bldg:Building:stringAttribute[name="建物ID"] => 14382-bldg-10718
-	 *  bldg:measuredHeight => 13.3
-	 *  bldg:lod0FootPrint:Polygon:posList:height => 728.31
-	 *  Envelope:srsName => http://www.opengis.net/def/crs/EPSG/0/6697
-	 * }
-	 */
-	@Test
-	public void test52396075() {
-		test_do(Paths.get("src/test/resources","52396075_bldg_6697_op.gml"));
-		
-		OsmDom osm = new OsmDom();
-		try {
-			osm.load(Paths.get("52396075_bldg_6697_op.osm").toFile());
-
-			assertThat(osm.ways, notNullValue());
-			for (String id : osm.ways.keySet()) {
-				ElementWay way = osm.ways.get(id);
-				assertThat(way, notNullValue());
-				assertThat(way.getTagValue("building"), is("yes"));
-				assertThat(way.getTagValue("height"), is("13.3"));
-				assertThat(way.getTagValue("ele"), is("728.31"));
-				assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 14382-bldg-10718"));
-				assertThat(way.tags.size(), is(4));
-			}
-			assertThat(osm.ways.size(), is(1));
-		} catch (Exception e) {
-			e.fillInStackTrace();
-			fail(e.toString());
-		}
-	}
-	
 	/**
 	 * Issue #12 「v1.2.4 単独の建物でもbuilding:part」
 	 * https://github.com/yuuhayashi/citygml-osm/issues/12

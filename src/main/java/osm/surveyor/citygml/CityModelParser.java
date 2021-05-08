@@ -381,6 +381,7 @@ public class CityModelParser extends DefaultHandler {
 				if (multipolygon != null) {
 					ElementWay outer = way.copy(osm.getNewId());
 					multipolygon.copyTag(outer);
+					outer.tags.remove("name");
 					outer.tags.remove("height");
 					outer.tags.remove("ele");
 					osm.ways.put(outer);
