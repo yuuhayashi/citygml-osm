@@ -13,27 +13,26 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 # Release
 
-- 2021-05-07 リリース v1.2.5 / [citygml-osm v1.2.5](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/osm.surveyor/citygml-osm/1.2.5)<br/>Issue #12 ／ [単独の建物でもbuilding:part](https://github.com/yuuhayashi/citygml-osm/issues/12)
+- 2021-05-08 リリース v1.2.6 / [citygml-osm v1.2.6](https://github.com/yuuhayashi/citygml-osm/releases/download/v1.2.6/citygml-osm-1.2.6-jar-with-dependencies.jar)<br/>Issue #12 ／ [単独の建物でもbuilding:part](https://github.com/yuuhayashi/citygml-osm/issues/12)<br/>マルチスレッド対策： 複合ビルディングなどで"building:part"が統合されたり、されなかったりする問題を解決しました。
 
-- 2021-05-05 リリース v1.2.4 / [citygml-osm v1.2.4](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/osm.surveyor/citygml-osm/1.2.4)<br/>Issue #10 ／ 「箱根町」のデータファイル名に対応した。
+- 2021-05-07 リリース v1.2.5 / [citygml-osm v1.2.5]<br/>Issue #12 ／ [単独の建物でもbuilding:part](https://github.com/yuuhayashi/citygml-osm/issues/12)
 
-- 2021-05-05 リリース v1.2.3 / [citygml-osm v1.2.3](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/osm.surveyor/citygml-osm/1.2.3)<br/>第一段階（OSMへの変換）／複数の建物が接触している場合の変換に対応した。
+- 2021-05-05 リリース v1.2.4 / [citygml-osm v1.2.4]<br/>Issue #10 ／ 「箱根町」のデータファイル名に対応した。
 
-- 2021-04-18 リリース v1.2.2 / [citygml-osm v1.2.2](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/osm.surveyor/citygml-osm/1.2.2)<br/>既存データとの重複をチェックして、既存データと重複する場合には既存データを修復する。
+- 2021-05-05 リリース v1.2.3 / [citygml-osm v1.2.3]<br/>第一段階（OSMへの変換）／複数の建物が接触している場合の変換に対応した。
 
-- 2021-04-11 リリース v0.2.0 fixed #7 / [citygml-osm v0.2.0](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/osm.surveyor/citygml-osm/0.2.0)<br/>JOSMと同じ"Java8"で実行可能
+- 2021-04-18 リリース v1.2.2 / [citygml-osm v1.2.2]<br/>既存データとの重複をチェックして、既存データと重複する場合には既存データを修復する。
 
-- 2021-04-10 リリース v0.1.1 [citygml-osm v0.1.1](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/osm.surveyor/citygml-osm/0.1.1)
+- 2021-04-11 リリース v0.2.0 fixed #7 / [citygml-osm v0.2.0]<br/>JOSMと同じ"Java8"で実行可能
+
+- 2021-04-10 リリース v0.1.1 [citygml-osm v0.1.1]
 - 2021-04-10<br/> "source='MLIT_PLATEAU'"<br/>"source:name='http://www.opengis.net/def/crs/EPSG/0/6697'"
 - 2021-04-10<br/> fixed #3 / 自治体コード「全国地方公共団体コード」を"addr:ref"としてタグ付け 
 - 2021-04-10<br/> fixed #7 / 'relasion'メンバーのタグを"building=yes"に修正<br/>"outline"-> "building" には "height"をつけない
 - 2021-04-10<br/> fixed #5 / 「bouns」を復活
 - 2021-04-10<br/> fixed #4 / ロール「outlineがありません（警告）」を解決
-
 - 2021-04-08<br/> fixed #1 / Issue#1を解決<br/> 接触した建物はリレーション building:part=yes にまとめる、単独の建物は buildhing=yes にする
-
 - 2021-04-05<br/> fixed #2 / Issue#2を解決
-
 - 2021-04-04<br/> リリース: 'citygml-osm v0.0.4'
 
 
@@ -43,7 +42,8 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 ![startup.pu](doc/startup.png)
 
-- (1) [ダウンロード](http://surveyor.mydns.jp/archiva/#artifact-details-download-content~haya4/osm.surveyor/citygml-osm/) から 'jar-with-dependencies' を'任意のフォルダ'にダウンロードする<br/> `citygml-get-x.x.x-jar-with-dependencies.jar` がダウンロードされます
+- (1) [ダウンロード](https://github.com/yuuhayashi/citygml-osm/releases/download/v1.2.6/citygml-osm-1.2.6-jar-with-dependencies.jar) から 'jar-with-dependencies' を'任意のフォルダ'にダウンロードする<br/> `citygml-get-x.x.x-jar-with-dependencies.jar` がダウンロードされます
+  - [GitHub](https://github.com/yuuhayashi/citygml-osm)の右側にある「Release」欄から最新'Latest'版をダウンロードしてください
 
 - (2) [オープンデータ公開サイト](https://www.geospatial.jp/ckan/dataset/plateau)から「3D都市データ」をダウンロードする
 
