@@ -7,13 +7,11 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import osm.surveyor.osm.marge.MargeFactory;
-
 public class ElementRelation extends ElementOsmapi implements Cloneable {
 	public ArrayList<ElementMember> members;
 	
-	public ElementRelation() {
-		super();
+	public ElementRelation(long id) {
+		super(id);
 		members = new ArrayList<ElementMember>();
 	}
 	
@@ -66,25 +64,6 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 			}
 		}
 		return this;
-	}
-	
-	/**
-	 * Relation->member:role=port のoutlineを作成する
-	 * @param building
-	 * @param ways
-	 */
-	public MargeFactory createOutline(WayMap ways) {
-		WayMap memberways = new WayMap();
-		for (ElementMember member : this.members) {
-			if (member.role.equals("part")) {
-				memberways.put(ways.get(member.ref).clone());
-			}
-		}
-		
-		// WAYを他のWAYと合成する;
-		MargeFactory factory = new MargeFactory(memberways);
-		factory.marge();
-		return factory;
 	}
 	
     /**

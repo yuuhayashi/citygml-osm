@@ -16,8 +16,6 @@ import org.w3c.dom.NodeList;
  * 
  */
 public class ElementOsmapi implements Cloneable {
-    public static long idno = 0;
-	
 	public long id = 0;
 	public String action = null;
 	public String timestamp = null;
@@ -29,15 +27,11 @@ public class ElementOsmapi implements Cloneable {
 	public String changeset = null;
 	public HashMap<String, ElementTag> tags;
 
-	public ElementOsmapi() {
-		this.id = ElementOsmapi.getNewId();
+	public ElementOsmapi(long id) {
 		tags = new HashMap<>();
+		this.id = id;
 	}
 	
-    public static long getNewId() {
-    	return --ElementOsmapi.idno;
-    }
-    
 	public String getIdstr() {
 		return Long.toString(id);
 	}
@@ -46,6 +40,9 @@ public class ElementOsmapi implements Cloneable {
 		this.id = Long.parseLong(id);
 	}
 
+	public void setId(long id) {
+		this.id = id;
+	}
 
 	@Override
 	public ElementOsmapi clone() {
@@ -64,6 +61,12 @@ public class ElementOsmapi implements Cloneable {
 			e.printStackTrace();
 			copy = null;
 		}
+		return copy;
+	}
+	
+	public ElementOsmapi copy(long newid) {
+		ElementOsmapi copy = this.clone();
+		copy.id = newid;
 		return copy;
 	}
     

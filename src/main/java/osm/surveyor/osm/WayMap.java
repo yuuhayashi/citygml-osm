@@ -37,7 +37,7 @@ public class WayMap extends HashMap<String, ElementWay> {
 	    NodeList nList = doc.getElementsByTagName("way");
 	    for (int temp = 0; temp < nList.getLength(); temp++) {
 			Node nNode = nList.item(temp);
-			ElementWay way = (new ElementWay()).loadWay(nNode);
+			ElementWay way = (new ElementWay(0)).loadWay(nNode);
 			if (way != null) {
 			    put(way);
 			}

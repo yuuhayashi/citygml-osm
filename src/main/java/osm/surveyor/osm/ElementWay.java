@@ -24,8 +24,8 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
 	boolean area = false;
 	public boolean member = false;
 	
-	public ElementWay() {
-		super();
+	public ElementWay(long id) {
+		super(id);
 		nds = new ArrayList<OsmNd>();
 	}
 	
@@ -50,9 +50,10 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
 		return copy;
 	}
 	
-	public ElementWay copy() {
+	@Override
+	public ElementWay copy(long newid) {
 		ElementWay copy = this.clone();
-		copy.id = ElementWay.getNewId();
+		copy.setId(newid);
 		return copy;
 	}
 

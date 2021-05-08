@@ -93,7 +93,7 @@ public class RelationMarge {
 					ways.put(way);
 					ways.put(memberway);
 					
-					if ((new MargeFactory(ways)).isDuplicateSegment()) {
+					if ((new MargeFactory(osm, ways)).isDuplicateSegment()) {
 						return relation;
 					}
 				}

@@ -19,8 +19,8 @@ public class ElementNode extends ElementOsmapi implements Cloneable {
 	public OsmPoint point = null;
 	public String height = null;
 	
-	public ElementNode() {
-		super();
+	public ElementNode(long id) {
+		super(id);
 		this.point = new OsmPoint();
 	}
 	

@@ -34,7 +34,7 @@ public class PostgisTest {
 	@Test
 	public void test() {
     	try {
-    		ElementWay way = new ElementWay();
+    		ElementWay way = new ElementWay(-1);
 			way.initTable(db);
 			way.insertTable(db);
 		} catch (Exception e) {

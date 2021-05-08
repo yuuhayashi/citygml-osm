@@ -36,7 +36,7 @@ public class OutlineFactory {
 				continue;
 			}
 			RelationBuilding building = (RelationBuilding)relation;
-			MargeFactory factory = building.createOutline(osm.ways);
+			MargeFactory factory = (new MargeFactory(osm, osm.ways)).createOutline(building);
 			OsmLine outer = factory.getOuter();
 			if (outer == null) {
 				continue;
@@ -46,7 +46,7 @@ public class OutlineFactory {
 			String maxheight = osm.getMaxHeight(building);
 
 			// OUTLINEをWAYリストに登録
-			ElementWay aWay = new ElementWay();
+			ElementWay aWay = new ElementWay(osm.getNewId());
 			aWay.replaceNds(outer);
 			aWay.member = true;
 			
@@ -82,7 +82,7 @@ public class OutlineFactory {
 			// マルチポリゴンにINNERを追加する
 			ArrayList<OsmLine> inners = factory.getInners();
 			for (OsmLine inner : inners) {
-				ElementWay iWay = new ElementWay();
+				ElementWay iWay = new ElementWay(osm.getNewId());
 				iWay.replaceNds(inner);
 				iWay.member = true;
 				osm.ways.put(iWay);
@@ -97,7 +97,7 @@ public class OutlineFactory {
 				}
 				else {
 					// マルチポリゴンが存在しない場合は、マルチポリゴンを作成する
-					RelationMultipolygon multi = new RelationMultipolygon();
+					RelationMultipolygon multi = new RelationMultipolygon(osm.getNewId());
 					multi.copyTag(building);
 					multi.replaceTag("type", new ElementTag("type","multipolygon"));
 					multi.replaceTag("name", new ElementTag("building:name", building.getTagValue("name")));

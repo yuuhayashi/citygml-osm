@@ -37,7 +37,7 @@ public class RelationMap extends HashMap<String, ElementRelation> {
 	    NodeList nList = doc.getElementsByTagName("relation");
 	    for (int temp = 0; temp < nList.getLength(); temp++) {
 			Node nNode = nList.item(temp);
-			ElementRelation relation = (new ElementRelation()).loadRelation(nNode);
+			ElementRelation relation = (new ElementRelation(0)).loadRelation(nNode);
 			if (relation != null) {
 			    put(relation);
 			}

@@ -29,7 +29,7 @@ public class NodeMap extends HashMap<String, ElementNode> {
 	    NodeList nList = doc.getElementsByTagName("node");
 	    for (int temp = 0; temp < nList.getLength(); temp++) {
 			Node nNode = nList.item(temp);
-			ElementNode node = (new ElementNode()).loadNode(nNode);
+			ElementNode node = (new ElementNode(0)).loadNode(nNode);
 			if (node != null) {
 				this.put(node);
 			}

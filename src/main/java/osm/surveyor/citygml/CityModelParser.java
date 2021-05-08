@@ -115,7 +115,7 @@ public class CityModelParser extends DefaultHandler {
 		}
 		
 		else if(qName.equals("bldg:Building")){
-			building = new RelationBuilding();
+			building = new RelationBuilding(osm.getNewId());
 			building.addTag("type", "building");
 			building.addTag("building", "yes");
 			for (int i = 0; i < atts.getLength(); i++) {
@@ -150,11 +150,11 @@ public class CityModelParser extends DefaultHandler {
 	    	outSb = new StringBuffer();
 		}
 		else if(qName.equals("bldg:lod0RoofEdge")){
-			roof = new RelationBuilding();
+			roof = new RelationBuilding(osm.getNewId());
 		}
 		else if(qName.equals("gml:Polygon")){
 			if (roof != null) {
-				multipolygon = new RelationMultipolygon();
+				multipolygon = new RelationMultipolygon(osm.getNewId());
 				multipolygon.addTag("building", "yes");
 			}
 		}
@@ -171,7 +171,7 @@ public class CityModelParser extends DefaultHandler {
 			}
 		}
 		else if(qName.equals("gml:LinearRing")){
-			way = new ElementWay();
+			way = new ElementWay(osm.getNewId());
 		}
 		else if(qName.equals("gml:posList")){
 			outSb = new StringBuffer();
@@ -309,7 +309,7 @@ public class CityModelParser extends DefaultHandler {
 			if ((way != null) && (member != null)) {
 				way.addTag("source", getSourceStr(buildingId));
 				if (roof != null) {
-					ElementWay part = way.copy();
+					ElementWay part = way.copy(osm.getNewId());
 					if ((name != null) && !name.isEmpty()) {
 						part.addTag("name", name);
 					}
@@ -320,7 +320,7 @@ public class CityModelParser extends DefaultHandler {
 					roof.addMember(part, "part");
 				}
 				if (multipolygon != null) {
-					ElementWay outer = way.copy();
+					ElementWay outer = way.copy(osm.getNewId());
 					multipolygon.copyTag(outer);
 					outer.tags.remove("height");
 					osm.ways.put(outer);
@@ -360,7 +360,7 @@ public class CityModelParser extends DefaultHandler {
 					ElementNode node;
 					// lat
 					if (st.hasMoreTokens()) {
-						node = new ElementNode();
+						node = new ElementNode(osm.getNewId());
 						String lat = st.nextToken();
 						node.point.setLat(lat);
 					}

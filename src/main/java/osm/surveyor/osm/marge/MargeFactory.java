@@ -3,7 +3,10 @@ package osm.surveyor.osm.marge;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import osm.surveyor.osm.ElementMember;
+import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementWay;
+import osm.surveyor.osm.OsmDom;
 import osm.surveyor.osm.OsmLine;
 import osm.surveyor.osm.OsmNd;
 import osm.surveyor.osm.TwoPoint;
@@ -14,9 +17,11 @@ public class MargeFactory {
 	OsmLine list;
 	OsmLine outer;
 	ArrayList<OsmLine> inners;
+	OsmDom osm;
 	
-	public MargeFactory(WayMap wayMap) {
+	public MargeFactory(OsmDom osm, WayMap wayMap) {
 		super();
+		this.osm = osm;
 		this.wayMap = wayMap;
 		this.list = new OsmLine();
 		this.outer = null;
@@ -76,7 +81,26 @@ public class MargeFactory {
     	}
     	return false;
     }
-
+    
+	/**
+	 * Relation->member:role=port のoutlineを作成する
+	 * @param building
+	 * @param ways
+	 */
+	public MargeFactory createOutline(ElementRelation relation) {
+		WayMap memberways = new WayMap();
+		for (ElementMember member : relation.members) {
+			if (member.role.equals("part")) {
+				memberways.put(wayMap.get(member.ref).clone());
+			}
+		}
+		
+		// WAYを他のWAYと合成する;
+		MargeFactory factory = new MargeFactory(this.osm, memberways);
+		factory.marge();
+		return factory;
+	}
+	
     /**
      * WAYを他のWAYと合成する;
      */
@@ -86,7 +110,7 @@ public class MargeFactory {
 			ElementWay way = wayMap.get(wayid);
 			if (way != null) {
 				// ２つのWAYから共通する線分を削除して統合する
-				removeDuplicatedSegment(way.copy());
+				removeDuplicatedSegment(way.copy(osm.getNewId()));
 			}
 		}
 		

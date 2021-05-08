@@ -26,9 +26,11 @@ import org.xml.sax.SAXException;
  */
 public class OsmDom {
 	static final String outputEncoding = "UTF-8";
+	public long idno;
 	
     public OsmDom() {
         super();
+        this.idno = 0;
         nodes = new NodeMap();	// k= node.id
         ways = new WayMap();		// k= way.id
         relations = new RelationMap();	// k= relation.id
@@ -41,6 +43,14 @@ public class OsmDom {
     public NodeMap nodes;	// k= node.id
     public WayMap ways;		// k= way.id
     public RelationMap relations;	// k= relation.id
+    
+    /**
+      * シリアル番号を生成する
+     * @return
+     */
+    public long getNewId() {
+    	return --this.idno;
+    }
     
     public void setBounds(ElementBounds bounds) {
     	this.bounds = bounds;
