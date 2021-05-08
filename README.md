@@ -13,6 +13,8 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 # Release
 
+- 2021-05-08 リリース v1.2.7 / [citygml-osm v1.2.7](https://github.com/yuuhayashi/citygml-osm/releases/download/v1.2.7/citygml-osm-1.2.7-jar-with-dependencies.jar)<br/>Issue #13 ／ 「箱根町」対応<br/>Issue #16
+
 - 2021-05-08 リリース v1.2.6 / [citygml-osm v1.2.6](https://github.com/yuuhayashi/citygml-osm/releases/download/v1.2.6/citygml-osm-1.2.6-jar-with-dependencies.jar)<br/>Issue #12 ／ [単独の建物でもbuilding:part](https://github.com/yuuhayashi/citygml-osm/issues/12)<br/>マルチスレッド対策： 複合ビルディングなどで"building:part"が統合されたり、されなかったりする問題を解決しました。
 
 - 2021-05-07 リリース v1.2.5 / [citygml-osm v1.2.5]<br/>Issue #12 ／ [単独の建物でもbuilding:part](https://github.com/yuuhayashi/citygml-osm/issues/12)
