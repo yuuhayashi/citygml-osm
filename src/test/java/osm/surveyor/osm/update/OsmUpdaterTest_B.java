@@ -22,7 +22,6 @@ public class OsmUpdaterTest_B {
 	public void testSample_b() {
 		CitygmlFileTest.test(Paths.get("src/test/resources","sample_b_bldg_6697_op2.gml"));
 		
-		
         try {
 			ArrayList<String> args = new ArrayList<>();
 			args.add("sample_a_bldg_6697_op2.osm");
