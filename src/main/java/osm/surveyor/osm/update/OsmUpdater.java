@@ -109,11 +109,23 @@ public class OsmUpdater {
     			way.insertTable(db);
     		}
             
+    		for (String rKey : ddom.relations.keySet()) {
+    			ElementRelation relation = ddom.relations.get(rKey);
+    			relation.orignal = true;
+    			relation.insertTable(db);
+    		}
+            
 			// インポートデータをPOSTGISへセットする
     		for (String rKey : dom.ways.keySet()) {
     			ElementWay way = dom.ways.get(rKey);
     			way.orignal = false;
     			way.insertTable(db);
+    		}
+            
+    		for (String rKey : dom.relations.keySet()) {
+    			ElementRelation relation = dom.relations.get(rKey);
+    			relation.orignal = true;
+    			relation.insertTable(db);
     		}
             
     		// 既存データの内で、インポートデータと重複しないものを削除
