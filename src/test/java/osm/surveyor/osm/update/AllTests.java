@@ -9,7 +9,7 @@ import osm.surveyor.osm.DetailTests;
 
 @RunWith(Categories.class)
 @ExcludeCategory(DetailTests.class)
-@SuiteClasses({ CitygmlFileTest_A.class, OsmUpdaterTest.class, PostgisTest.class })
+@SuiteClasses({ OsmUpdaterTest_A.class, OsmUpdaterTest.class, PostgisTest.class })
 public class AllTests {
 
 }
