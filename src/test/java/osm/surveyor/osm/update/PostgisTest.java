@@ -9,6 +9,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import osm.surveyor.osm.ElementWay;
+import osm.surveyor.sql.Postgis;
 
 public class PostgisTest {
 	static Postgis db = null;

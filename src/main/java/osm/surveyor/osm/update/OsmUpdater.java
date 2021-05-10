@@ -27,6 +27,7 @@ import osm.surveyor.osm.OsmDom;
 import osm.surveyor.osm.OsmNd;
 import osm.surveyor.osm.api.GetResponse;
 import osm.surveyor.osm.api.HttpGet;
+import osm.surveyor.sql.Postgis;
 
 public class OsmUpdater {
 
