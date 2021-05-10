@@ -1,4 +1,4 @@
-package osm.surveyor.osm.update;
+package osm.surveyor.update;
 
 import java.io.File;
 import java.io.IOException;
@@ -41,6 +41,7 @@ public class OsmUpdater {
 	 */
 	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
 		String suffix1 = ".osm";
+		String suffix2 = ".mrg.osm";
         try {
 			File dir = new File(".");
 			Files.list(dir.toPath()).forEach(new Consumer<Path>() {
@@ -50,13 +51,13 @@ public class OsmUpdater {
 						File file = a.toFile();
 						String filename = file.getName();
 						System.out.println(filename);
-						if (filename.endsWith("_op2.osm")) {
+						if (filename.endsWith(suffix1) && !filename.endsWith(suffix2)) {
 							try {
 								filename = filename.substring(0, filename.length() - suffix1.length());
 
 								OsmUpdater updater = new OsmUpdater(file);
 								updater.load();
-								updater.ddom.export(Paths.get(filename + ".mrg.osm").toFile());
+								updater.ddom.export(Paths.get(filename + suffix2).toFile());
 							} catch (ParserConfigurationException e) {
 								e.printStackTrace();
 							} catch (SAXException e) {
@@ -74,7 +75,7 @@ public class OsmUpdater {
 		}
 	}
 	
-	OsmDom dom;
+	OsmDom dom;		// source "*.osm" file.	
 	OsmDom sdom;
 	OsmDom ddom;
 	
@@ -87,6 +88,14 @@ public class OsmUpdater {
 		dom.load(file);
 	}
 	
+	/**
+	 * dom
+	 * @throws MalformedURLException
+	 * @throws ProtocolException
+	 * @throws IOException
+	 * @throws ParserConfigurationException
+	 * @throws SAXException
+	 */
 	public void load() throws MalformedURLException, ProtocolException, IOException, ParserConfigurationException, SAXException {
 		// 指定されたOSMファイルの<bound/>を取得する
 		ElementBounds bounds = dom.getBounds();
@@ -127,51 +136,45 @@ public class OsmUpdater {
     		}
     		for (ElementWay way : list) {
     			way.delete(db);
-    			ddom.ways.remove(Long.toString(way.id));
+    			ddom.ways.remove(way.id);
     		}
 
-	    		// インポートデータの内で、既存データと重複しないものを'modify'に確定する
-    		list = new ArrayList<>();
+			// インポートデータの内で、既存データと重複しないものを'modify'に確定する
+    		ArrayList<ElementWay> modifyList = new ArrayList<>();
     		for (String rKey : dom.ways.keySet()) {
     			ElementWay way = dom.ways.get(rKey);
-    			if (way.member) {
-    				continue;
-    			}
     			if (!way.isIntersect(db, "WHERE (tWay.orignal=true) AND (tWay.member=false)")) {
-    				list.add(way);
+    				modifyList.add(way);
     			}
     		}
-    		for (ElementWay way : list) {
+    		for (ElementWay way : modifyList) {
         		for (OsmNd nd : way.nds) {
-        			ElementNode node = dom.nodes.get(Long.toString(nd.id));
+        			ElementNode node = dom.nodes.get(nd.id);
         			node.action = "modify";
         			node.orignal = false;
-        			ddom.nodes.put(Long.toString(nd.id), node);
+        			ddom.nodes.put(node);
         		}
     			way.action = "modify";
     			way.orignal = false;
-    			ddom.ways.put(Long.toString(way.id), way);
-    			dom.ways.remove(Long.toString(way.id));
+    			ddom.ways.put(way);
+    			dom.ways.remove(way.id);
     			way.delete(db);
     		}
     		
 	    		// インポートデータの内で、既存データと重複するWAYを'modify'に確定する
     		for (String rKey : dom.ways.keySet()) {
     			ElementWay way = dom.ways.get(rKey);
-    			if (way.member) {
-    				continue;
-    			}
     			long wayid = way.getIntersect(db, "WHERE (tWay.orignal=true)");
     			if (wayid > 0) {
-    				ElementWay dWay = ddom.ways.get(Long.toString(wayid));
+    				ElementWay dWay = ddom.ways.get(wayid);
     				dWay.action = "modify";
     				dWay.orignal = false;
     				dWay.nds = way.nds;
             		for (OsmNd nd : way.nds) {
-            			ElementNode node = dom.nodes.get(Long.toString(nd.id));
+            			ElementNode node = dom.nodes.get(nd.id);
             			node.action = "modify";
             			node.orignal = false;
-            			ddom.nodes.put(Long.toString(nd.id), node);
+            			ddom.nodes.put(node);
             		}
             		for (String k : way.tags.keySet()) {
             			ElementTag tag = way.tags.get(k);
@@ -193,47 +196,9 @@ public class OsmUpdater {
 	    		// インポートデータの内で、既存データと重複するRELATIONを'modify'に確定する
     		for (String rKey : dom.relations.keySet()) {
     			ElementRelation relation = dom.relations.get(rKey);
-    			ElementWay dWay = null;
     			for (ElementMember member : relation.members) {
     				if (member.role.equals("outline")) {
-    					ElementWay way = dom.ways.get(member.ref);
-    					if (way != null) {
-        	    			long wayid = way.getIntersect(db, "WHERE (tWay.orignal=true)");
-        	    			if (wayid > 0) {
-        	    				dWay = ddom.ways.get(Long.toString(wayid));
-        	    				dWay.action = "modify";
-        	    				dWay.orignal = false;
-        	    				dWay.nds = way.nds;
-        	            		for (OsmNd nd : way.nds) {
-        	            			ElementNode node = dom.nodes.get(Long.toString(nd.id));
-        	            			node.action = "modify";
-        	            			node.orignal = false;
-        	            			ddom.nodes.put(Long.toString(nd.id), node);
-        	            		}
-        	            		for (String k : way.tags.keySet()) {
-        	            			ElementTag tag = way.tags.get(k);
-        	            			dWay.tags.put(k, tag);
-        	            		}
-        	            		
-        	            		ElementTag tag = dWay.tags.get("fixme");
-        	            		if (tag != null) {
-        	            			String fixme = tag.v;
-        	            			tag.v = fixme +"; PLATEAUデータで更新されています";
-        	            		}
-        	            		else {
-        	            			tag = new ElementTag("fixme", "PLATEAUデータで更新されています");
-        	            		}
-        	            		dWay.tags.put("fixme", tag);
-        	            		
-        	            		member.ref = dWay.id;
-        	            		for (String k : dWay.tags.keySet()) {
-        	            			tag = dWay.tags.get(k);
-        	            			relation.tags.put(k, tag);
-        	            		}
-        	            		dWay.tags = new HashMap<>();
-        	    			}
-        	    			break;
-    					}
+    	    			break;
     				}
     			}
     			if (dWay != null) {

@@ -15,6 +15,7 @@ import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 import osm.surveyor.osm.api.CitygmlFileTest;
+import osm.surveyor.update.OsmUpdater;
 
 public class OsmUpdaterTest_B {
 
