@@ -13,7 +13,7 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 # Release
 
-- 2021-05-08 リリース v1.2.7 / [citygml-osm v1.2.7](https://github.com/yuuhayashi/citygml-osm/releases/download/v1.2.7/citygml-osm-1.2.7-jar-with-dependencies.jar)<br/>Issue #13 ／ 「箱根町」対応<br/>Issue #16
+- 2021-05-08 リリース v1.2.7 / [citygml-osm v1.2.7](https://github.com/yuuhayashi/citygml-osm/releases/download/v1.2.7/citygml-osm-1.2.7-jar-with-dependencies.jar)<br/>Issue #13 ／ 「箱根町」の `bldg:lod0FootPrint`(床形状)に対応<br/>Issue #13 ／ `bldg:lod0RoofEdge`が存在する場合は`bldg:lod0RoofEdge`を建物形状とする<br/>Issue #16 / `bldg:lod0FootPrint`を建物形状とした場合には`bldg:measuredHeight`を`osm:{building:height}`にする<br/>Issue #16 / `bldg:lod0FootPrint`を建物形状とした場合には`gml:posList`の高度を`osm:{building:ele}`にする
 
 - 2021-05-08 リリース v1.2.6 / [citygml-osm v1.2.6](https://github.com/yuuhayashi/citygml-osm/releases/download/v1.2.6/citygml-osm-1.2.6-jar-with-dependencies.jar)<br/>Issue #12 ／ [単独の建物でもbuilding:part](https://github.com/yuuhayashi/citygml-osm/issues/12)<br/>マルチスレッド対策： 複合ビルディングなどで"building:part"が統合されたり、されなかったりする問題を解決しました。
 
@@ -44,8 +44,8 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 ![startup.pu](doc/startup.png)
 
-- (1) [ダウンロード](https://github.com/yuuhayashi/citygml-osm/releases/download/v1.2.6/citygml-osm-1.2.6-jar-with-dependencies.jar) から 'jar-with-dependencies' を'任意のフォルダ'にダウンロードする<br/> `citygml-get-x.x.x-jar-with-dependencies.jar` がダウンロードされます
-  - [GitHub](https://github.com/yuuhayashi/citygml-osm)の右側にある「Release」欄から最新'Latest'版をダウンロードしてください
+- (1) [GitHub-Release](https://github.com/yuuhayashi/citygml-osm/releases) から 'jar-with-dependencies' を'任意のフォルダ'にダウンロードする<br/> `citygml-get-x.x.x-jar-with-dependencies.jar` がダウンロードされます
+  - [GitHub](https://github.com/yuuhayashi/citygml-osm)の右側にある「[Release](https://github.com/yuuhayashi/citygml-osm/releases)」欄から最新'Latest'版をダウンロードしてください
 
 - (2) [オープンデータ公開サイト](https://www.geospatial.jp/ckan/dataset/plateau)から「3D都市データ」をダウンロードする
 
@@ -95,10 +95,42 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 ![citygml](doc/citygml/citygml.mind.png)
 
+「3D都市モデル」から読み取る項目
 
-## "building" フォーマットへの変換
+- ``
 
-### a. 単純ビルディング
+| 項目		| GMLタグ			| 説明											|
+| --------	| ----------------- | -------------------------------------------	|
+| データ範囲	| `gml:boundedBy`	| データ対象範囲									|
+| ソース名	| `gml:Envelope`-`srsName`	| データソース名称						|
+| 建物		| `bldg:Building`	| ビルディングPOIに相当								|
+| 屋根形状	| `bldg:lod0RoofEdge`	| 建物の屋根形状								|
+| 床形状		| `bldg:lod0FootPrint` | 建物の床形状								|
+| ID		| `gml:id`			| GMLでの管理ID									|
+| 名称		| `gml:name`		| 重要な建物にのみ設定されている						|
+| 建物ID		| `gen:stringAttribute`-`name="建物ID"`	| 建物に付与された識別ID	|
+| 自治体コード	| `gen:stringAttribute`-`name="13_*"`	| "13_区市町村コード_大字・町コード_町・丁目コード" |
+| 計測高		| `bldg:measuredHeight`	| ？										|
+| 住所		| `xAL:LocalityName`-`Type="Town"`	| 							|
+
+- **建物**<br/>「建物POI」に相当する。
+
+ - **屋根形状**<br/>形状には外郭線（`gml:exterior`）と内線(`gml:interior`)があり、'[{緯度、経度、高度}]'で表される<br/>'高度'は*建物の高さ*を表す
+
+ - **床形状**<br/>形状には外郭線（`gml:exterior`）と内線(`gml:interior`)があり、'[{緯度、経度、高度}]'で表される<br/>'高度'は建物床の*標高*を表す
+
+- **計測高**<br/>「屋根形状」の高さよりも低い値が設定されているケースがある
+
+
+## "building" OSMフォーマットへの変換
+
+### Wayへのタグ付け
+
+### POI構成
+
+「建物Way」の同士の接触状態によって、「連接ビルディング」や「マルチポリゴン」を形成する。
+
+#### a. 単純ビルディング
 
 他のビルディングと接触しないもの
 
@@ -119,13 +151,12 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 ![sample a OSM](doc/building/sample-a/sample-a-osm.png)
 
-#### a-1. 線で接触していないビルディング
+##### a-1. 線で接触していないビルディング
 
 接触していないが他の建物のノードと共有しているパターン　[接点パターン](doc/building/sample-a/Sample-a-SharePoint.png)
 
 
-
-### b. 中空部を持つ単一ビルディング
+#### b. 中空部を持つ単一ビルディング
 
 中空部分('gml:interior')があるビルディングで、他のビルディングと接触しないもの
 
@@ -148,7 +179,7 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 ![InnerBuilding](doc/building/sample-b/sample-b-osm.png)
 
 
-### c. 複数のビルディングが接触しているもの（連接ビルディング）
+#### c. 複数のビルディングが接触しているもの（連接ビルディング）
 
 中空部分('gml:interior')がない建物同士が、接触しているもの。
 
@@ -171,7 +202,7 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 ![sample c OSM](doc/building/sample-c/osm.png)
  
 
-### d. 中空部分がある連接ビルディング
+#### d. 中空部分がある連接ビルディング
 
 他のビルディングと接触しているビルディングで、中空部分を含む場合。
 
@@ -196,7 +227,7 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 - [中空部分がある複合ビルディングの書き方](doc/building/Building.md)
 
 
-### e. 空白部分がある連接ビルディング
+#### e. 空白部分がある連接ビルディング
 
 連接ビルディングに囲まれた「空白」ができたもの
 
