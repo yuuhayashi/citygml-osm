@@ -1,0 +1,26 @@
+@startuml
+node "OpenStreetMap" as osm {
+ database "osm\ndatabase" as osmdb
+}
+
+file "source OSM file\n'53375768_bldg_6697_op.osm'" as source
+artifact "marged OSM file\n'53375768_bldg_6697_op.mrg.osm'" as mrg
+
+node OsmUpdater {
+ component ddom
+ component sdom
+ component dom
+  sdom --> ddom
+  dom --> ddom
+}
+
+source --> new
+dom <- new
+
+osmdb --> load
+load -> sdom
+
+
+ddom --> export
+export -> mrg
+@enduml

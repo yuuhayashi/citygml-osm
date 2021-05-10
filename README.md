@@ -277,6 +277,8 @@ OSMファイルへの変換項目
 
 - [データベース テーブル 関連図](doc/citygml/dbTables.png)
 
+- 第二段階 [OsmUpdater](doc/OsmUpdater/README.md)
+
 ----------------
 
 ## 関連サイト
