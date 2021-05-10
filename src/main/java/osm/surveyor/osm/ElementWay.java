@@ -11,7 +11,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import osm.surveyor.osm.update.ImplPostgis;
-import osm.surveyor.osm.update.Postgis;
+import osm.surveyor.sql.Postgis;
 
 /**
  * 
@@ -22,7 +22,7 @@ import osm.surveyor.osm.update.Postgis;
 public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis {
 	public ArrayList<OsmNd> nds;
 	boolean area = false;
-	public boolean member = false;
+	public boolean member = false;	// 単独のWAYか、RELATIONのメンバーかを示す。
 	
 	public ElementWay(long id) {
 		super(id);

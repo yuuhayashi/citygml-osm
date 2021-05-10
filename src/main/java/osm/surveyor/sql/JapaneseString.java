@@ -3,7 +3,7 @@
  *
  * 日本語文字列特有の問題に対応する機能を集めたクラス
  */
-package jp.co.areaweb.tools.core;
+package osm.surveyor.sql;
 
 /**
  * @author y_hayashi

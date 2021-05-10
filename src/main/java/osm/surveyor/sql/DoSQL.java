@@ -1,8 +1,7 @@
-package jp.co.areaweb.tools.database;
+package osm.surveyor.sql;
 
 import java.io.*;
 import java.sql.*;
-import jp.co.areaweb.tools.core.JapaneseString;
 
 
 /**
