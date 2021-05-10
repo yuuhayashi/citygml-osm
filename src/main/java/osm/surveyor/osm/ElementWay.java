@@ -10,8 +10,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import osm.surveyor.osm.update.ImplPostgis;
-import osm.surveyor.osm.update.Postgis;
+import osm.surveyor.sql.ImplPostgis;
+import osm.surveyor.sql.Postgis;
 
 /**
  * 
@@ -362,28 +362,7 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
 
     String tableName = "tWay";
 
-    @Override
-	public void initTable(Postgis db) throws Exception {
-        db.sql("DROP INDEX IF EXISTS ix_"+ tableName +" CASCADE;");
-        db.sql("DROP TABLE IF EXISTS "+ tableName +" CASCADE;");
-        db.sql("CREATE TABLE "+ tableName 
-            +" ("
-                + "id SERIAL PRIMARY KEY, "
-                + "action varchar(24), "
-                + "timestamp varchar(36), "
-                + "uid varchar(16), "
-                + "username varchar(64), "
-                + "visible boolean, "
-                + "version varchar(8), "
-                + "changeset varchar(16), "
-                + "orignal boolean, "
-                + "member boolean, "
-                + "geom GEOMETRY(POLYGON, 4326)"
-            + ");");
-        db.sql("CREATE INDEX ix_"+ tableName +"_geom ON "+ tableName +" USING GiST (geom);");
-	}
     
-	@Override
 	public void insertTable(Postgis db) throws Exception {
         String geom = getGeomText();
         geom = (geom==null ? null : "ST_GeomFromText('"+ geom +"',4326)");
@@ -413,5 +392,26 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
             ps.setLong(1, id);   // id
             ps.executeUpdate();
         }
+	}
+
+	@Override
+	public void initTable(Postgis postgis) throws Exception {
+        postgis.sql("DROP INDEX IF EXISTS ix_"+ tableName +" CASCADE;");
+        postgis.sql("DROP TABLE IF EXISTS "+ tableName +" CASCADE;");
+        postgis.sql("CREATE TABLE "+ tableName 
+            +" ("
+                + "id SERIAL PRIMARY KEY, "
+                + "action varchar(24), "
+                + "timestamp varchar(36), "
+                + "uid varchar(16), "
+                + "username varchar(64), "
+                + "visible boolean, "
+                + "version varchar(8), "
+                + "changeset varchar(16), "
+                + "orignal boolean, "
+                + "member boolean, "
+                + "geom GEOMETRY(POLYGON, 4326)"
+            + ");");
+        postgis.sql("CREATE INDEX ix_"+ tableName +"_geom ON "+ tableName +" USING GiST (geom);");
 	}
 }

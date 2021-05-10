@@ -1,4 +1,4 @@
-package osm.surveyor.osm.update;
+package osm.surveyor.sql;
 
 public interface ImplPostgis {
 	/**

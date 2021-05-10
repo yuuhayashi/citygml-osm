@@ -44,4 +44,46 @@ public class RelationMap extends HashMap<String, ElementRelation> {
 	    }
     }
     
+    /**
+     * 指定されたWAYをメンバーに持つリレーションを取得する
+     * @param wKey	WAYのID
+     * @return	目的のリレーションが見つからなかったらNULL
+     */
+    public ElementRelation hasMembersWay(String wKey) {
+    	ElementRelation relation = null;
+    	for (String rKey : this.keySet()) {
+    		relation = this.get(rKey);
+    		if (relation != null) {
+    			for (ElementMember member : relation.members) {
+    				if (member.ref == Long.parseLong(wKey)) {
+    					return relation;
+    				}
+    			}
+    		}
+    	}
+		return null;
+    }
+
+    /**
+     * 指定されたWAYをOUTLINEメンバーに持つMultipolygonリレーションを取得する
+     * @param wKey	WAYのID
+     * @return	目的のリレーションが見つからなかったらNULL
+     */
+    public ElementRelation hasOutlineWay(String wKey) {
+    	ElementRelation relation = null;
+    	for (String rKey : this.keySet()) {
+    		relation = this.get(rKey);
+    		if (relation.isMultipolygon()) {
+    			for (ElementMember member : relation.members) {
+    				if (member.type.equals("way") 
+						&& member.role.equals("outer") 
+						&& (member.ref == Long.parseLong(wKey))) 
+    				{
+        					return relation;
+        			}
+    			}
+    		}
+    	}
+		return null;
+    }
 }

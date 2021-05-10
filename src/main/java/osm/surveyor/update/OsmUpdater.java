@@ -1,4 +1,4 @@
-package osm.surveyor.osm.update;
+package osm.surveyor.update;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,6 +27,7 @@ import osm.surveyor.osm.OsmDom;
 import osm.surveyor.osm.OsmNd;
 import osm.surveyor.osm.api.GetResponse;
 import osm.surveyor.osm.api.HttpGet;
+import osm.surveyor.sql.Postgis;
 
 public class OsmUpdater {
 
@@ -40,6 +41,7 @@ public class OsmUpdater {
 	 */
 	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
 		String suffix1 = ".osm";
+		String suffix2 = ".mrg.osm";
         try {
 			File dir = new File(".");
 			Files.list(dir.toPath()).forEach(new Consumer<Path>() {
@@ -49,13 +51,13 @@ public class OsmUpdater {
 						File file = a.toFile();
 						String filename = file.getName();
 						System.out.println(filename);
-						if (filename.endsWith("_op2.osm")) {
+						if (filename.endsWith(suffix1) && !filename.endsWith(suffix2)) {
 							try {
 								filename = filename.substring(0, filename.length() - suffix1.length());
 
 								OsmUpdater updater = new OsmUpdater(file);
 								updater.load();
-								updater.ddom.export(Paths.get(filename + ".mrg.osm").toFile());
+								updater.ddom.export(Paths.get(filename + suffix2).toFile());
 							} catch (ParserConfigurationException e) {
 								e.printStackTrace();
 							} catch (SAXException e) {
@@ -73,7 +75,7 @@ public class OsmUpdater {
 		}
 	}
 	
-	OsmDom dom;
+	OsmDom dom;		// source "*.osm" file.	
 	OsmDom sdom;
 	OsmDom ddom;
 	
@@ -86,6 +88,14 @@ public class OsmUpdater {
 		dom.load(file);
 	}
 	
+	/**
+	 * dom
+	 * @throws MalformedURLException
+	 * @throws ProtocolException
+	 * @throws IOException
+	 * @throws ParserConfigurationException
+	 * @throws SAXException
+	 */
 	public void load() throws MalformedURLException, ProtocolException, IOException, ParserConfigurationException, SAXException {
 		// 指定されたOSMファイルの<bound/>を取得する
 		ElementBounds bounds = dom.getBounds();
@@ -104,13 +114,13 @@ public class OsmUpdater {
 		for (String rKey : sdom.relations.keySet()) {
 			ElementRelation relation = sdom.relations.get(rKey);
 			if (relation.isBuilding()) {
-				ddom.relations.put(rKey, relation.clone());
+				ddom.relations.put(relation.clone());
 			}
 		}
 		for (String rKey : ddom.relations.keySet()) {
 			ElementRelation relation = ddom.relations.get(rKey);
 			for (ElementMember menber : relation.members) {
-				ElementWay sWay = sdom.ways.get(Long.toString(menber.ref));
+				ElementWay sWay = sdom.ways.get(menber.ref);
 				if (sWay != null) {
 					ddom.ways.put(sWay.clone());
 				}
@@ -121,14 +131,14 @@ public class OsmUpdater {
 		for (String rKey : sdom.ways.keySet()) {
 			ElementWay way = sdom.ways.get(rKey);
 			if (isBuildingTag(way.tags)) {
-				ddom.ways.put(rKey, way.clone());
+				ddom.ways.put(way.clone());
 			}
 		}
 		
 		for (String rKey : ddom.ways.keySet()) {
 			ElementWay way = ddom.ways.get(rKey);
 			for (OsmNd nd : way.nds) {
-				ElementNode sNode = sdom.nodes.get(Long.toString(nd.id));
+				ElementNode sNode = sdom.nodes.get(nd.id);
 				ElementNode node = sNode.clone();
 				nd.point = node.point;
 				ddom.nodes.put(node);
@@ -137,7 +147,7 @@ public class OsmUpdater {
 		for (String rKey : dom.ways.keySet()) {
 			ElementWay way = dom.ways.get(rKey);
 			for (OsmNd nd : way.nds) {
-				ElementNode sNode = dom.nodes.get(Long.toString(nd.id));
+				ElementNode sNode = dom.nodes.get(nd.id);
 				nd.point = sNode.point;
 			}
 		}
@@ -152,7 +162,7 @@ public class OsmUpdater {
     			way.insertTable(db);
     		}
             
-            // インポートデータをPOSTGISへセットする
+			// インポートデータをPOSTGISへセットする
     		for (String rKey : dom.ways.keySet()) {
     			ElementWay way = dom.ways.get(rKey);
     			way.orignal = false;
@@ -169,51 +179,45 @@ public class OsmUpdater {
     		}
     		for (ElementWay way : killList) {
     			way.delete(db);
-    			ddom.ways.remove(Long.toString(way.id));
+    			ddom.ways.remove(way.id);
     		}
 
-    		// インポートデータの内で、既存データと重複しないものを'modify'に確定する
-    		killList = new ArrayList<>();
+			// インポートデータの内で、既存データと重複しないものを'modify'に確定する
+    		ArrayList<ElementWay> modifyList = new ArrayList<>();
     		for (String rKey : dom.ways.keySet()) {
     			ElementWay way = dom.ways.get(rKey);
-    			if (way.member) {
-    				continue;
-    			}
     			if (!way.isIntersect(db, "WHERE (tWay.orignal=true) AND (tWay.member=false)")) {
-    				killList.add(way);
+    				modifyList.add(way);
     			}
     		}
-    		for (ElementWay way : killList) {
+    		for (ElementWay way : modifyList) {
         		for (OsmNd nd : way.nds) {
-        			ElementNode node = dom.nodes.get(Long.toString(nd.id));
+        			ElementNode node = dom.nodes.get(nd.id);
         			node.action = "modify";
         			node.orignal = false;
-        			ddom.nodes.put(Long.toString(nd.id), node);
+        			ddom.nodes.put(node);
         		}
     			way.action = "modify";
     			way.orignal = false;
-    			ddom.ways.put(Long.toString(way.id), way);
-    			dom.ways.remove(Long.toString(way.id));
+    			ddom.ways.put(way);
+    			dom.ways.remove(way.id);
     			way.delete(db);
     		}
     		
-    		// インポートデータの内で、既存データと重複するWAYを'modify'に確定する
+	    		// インポートデータの内で、既存データと重複するWAYを'modify'に確定する
     		for (String rKey : dom.ways.keySet()) {
     			ElementWay way = dom.ways.get(rKey);
-    			if (way.member) {
-    				continue;
-    			}
     			long wayid = way.getIntersect(db, "WHERE (tWay.orignal=true)");
     			if (wayid > 0) {
-    				ElementWay dWay = ddom.ways.get(Long.toString(wayid));
+    				ElementWay dWay = ddom.ways.get(wayid);
     				dWay.action = "modify";
     				dWay.orignal = false;
     				dWay.nds = way.nds;
             		for (OsmNd nd : way.nds) {
-            			ElementNode node = dom.nodes.get(Long.toString(nd.id));
+            			ElementNode node = dom.nodes.get(nd.id);
             			node.action = "modify";
             			node.orignal = false;
-            			ddom.nodes.put(Long.toString(nd.id), node);
+            			ddom.nodes.put(node);
             		}
             		for (String k : way.tags.keySet()) {
             			ElementTag tag = way.tags.get(k);
@@ -232,58 +236,68 @@ public class OsmUpdater {
     			}
     		}
     		
-    		// インポートデータの内で、既存データと重複するRELATIONを'modify'に確定する
+			// インポートデータの内で、既存データと重複するRELATIONを'modify'に確定する
+    		for (String wKey : dom.ways.keySet()) {
+    			ElementRelation relation = dom.relations.hasOutlineWay(wKey);
+    			if (relation != null) {
+        			ElementWay dWay = null;
+					ElementWay way = dom.ways.get(wKey);
+	    			long wayid = way.getIntersect(db, "WHERE (tWay.orignal=true)");
+	    			if (wayid > 0) {
+	    				dWay = ddom.ways.get(wayid);
+	    				dWay.action = "modify";
+	    				dWay.orignal = false;
+	    				dWay.nds = way.nds;
+	            		for (OsmNd nd : way.nds) {
+	            			ElementNode node = dom.nodes.get(nd.id);
+	            			node.action = "modify";
+	            			node.orignal = false;
+	            			ddom.nodes.put(node);
+	            		}
+	            		for (String k : dWay.tags.keySet()) {
+	            			ElementTag tag = dWay.tags.get(k);
+	            			way.tags.put(k, tag);
+	            		}
+	            		for (String k : way.tags.keySet()) {
+	            			ElementTag tag = way.tags.get(k);
+	            			dWay.tags.put(k, tag);
+	            		}
+	            		
+	            		ElementTag tag = dWay.tags.get("fixme");
+	            		if (tag != null) {
+	            			String fixme = tag.v;
+	            			tag.v = fixme +"; PLATEAUデータで更新されています";
+	            		}
+	            		else {
+	            			tag = new ElementTag("fixme", "PLATEAUデータで更新されています");
+	            		}
+	            		dWay.tags.put("fixme", tag);
+
+	            		relation.action = "modify";
+	            		relation.orignal = true;
+	            		for (String k : dWay.tags.keySet()) {
+	            			tag = dWay.tags.get(k);
+	            			relation.tags.put(k, tag);
+	            		}
+	            		dWay.tags = new HashMap<>();
+	    			}
+    			}
+    		}
     		for (String rKey : dom.relations.keySet()) {
     			ElementRelation relation = dom.relations.get(rKey);
-    			ElementWay dWay = null;
     			for (ElementMember member : relation.members) {
     				if (member.role.equals("outline")) {
-    					ElementWay way = dom.ways.get(Long.toString(member.ref));
-    	    			long wayid = way.getIntersect(db, "WHERE (tWay.orignal=true)");
-    	    			if (wayid > 0) {
-    	    				dWay = ddom.ways.get(Long.toString(wayid));
-    	    				dWay.action = "modify";
-    	    				dWay.orignal = false;
-    	    				dWay.nds = way.nds;
-    	            		for (OsmNd nd : way.nds) {
-    	            			ElementNode node = dom.nodes.get(Long.toString(nd.id));
-    	            			node.action = "modify";
-    	            			node.orignal = false;
-    	            			ddom.nodes.put(Long.toString(nd.id), node);
-    	            		}
-    	            		for (String k : way.tags.keySet()) {
-    	            			ElementTag tag = way.tags.get(k);
-    	            			dWay.tags.put(k, tag);
-    	            		}
-    	            		
-    	            		ElementTag tag = dWay.tags.get("fixme");
-    	            		if (tag != null) {
-    	            			String fixme = tag.v;
-    	            			tag.v = fixme +"; PLATEAUデータで更新されています";
-    	            		}
-    	            		else {
-    	            			tag = new ElementTag("fixme", "PLATEAUデータで更新されています");
-    	            		}
-    	            		dWay.tags.put("fixme", tag);
-    	            		
-    	            		member.ref = dWay.id;
-    	            		for (String k : dWay.tags.keySet()) {
-    	            			tag = dWay.tags.get(k);
-    	            			relation.tags.put(k, tag);
-    	            		}
-    	            		dWay.tags = new HashMap<>();
-    	    			}
     	    			break;
     				}
     			}
     			if (dWay != null) {
     				for (ElementMember member : relation.members) {
-    					ElementWay way = dom.ways.get(Long.toString(member.ref));
+    					ElementWay way = dom.ways.get(member.ref);
     					if (way != null) {
-        					ddom.ways.put(Long.toString(way.id), way);
+        					ddom.ways.put(way);
     					}
     				}
-    				ddom.relations.put(Long.toString(relation.id), relation.clone());
+    				ddom.relations.put(relation.clone());
     			}
     		}
     		
