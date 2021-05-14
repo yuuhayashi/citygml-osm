@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<osm generator="JOSM" version="0.6">
+    <bounds maxlat="35.57509621366029" maxlon="139.737560968697" minlat="35.56647195757135" minlon="139.7241207469562" origin="CGImap 0.8.3 (2061540 spike-08.openstreetmap.org)"/>
+    <node id="-50" lat="35.571009208703245" lon="139.7316045490673" visible="true"/>
+    <node id="-51" lat="35.570987561451034" lon="139.73158802753474" visible="true"/>
+    <node id="-52" lat="35.5709852612383" lon="139.73158604457535" visible="true"/>
+    <node id="-53" lat="35.57104033220705" lon="139.73147476627972" visible="true"/>
+    <node id="-10" lat="35.570922940004216" lon="139.73127765216728" visible="true"/>
+    <node id="-11" lat="35.5709292807714" lon="139.73126109524026" visible="true"/>
+    <node id="-12" lat="35.570931959707245" lon="139.7312313038471" visible="true"/>
+    <node id="-13" lat="35.57093016919925" lon="139.731192581726" visible="true"/>
+    <node id="-14" lat="35.57092555529879" lon="139.73117272892034" visible="true"/>
+    <node id="-58" lat="35.570876774080766" lon="139.7312068815304" visible="true"/>
+    <node id="-59" lat="35.57087840779193" lon="139.73122011855725" visible="true"/>
+    <node id="-15" lat="35.57091201401743" lon="139.73114858474315" visible="true"/>
+    <node id="-16" lat="35.57089306889927" lon="139.73112974307858" visible="true"/>
+    <node id="-17" lat="35.57087236803812" lon="139.73111322049547" visible="true"/>
+    <node id="-18" lat="35.570845319974936" lon="139.73110564237354" visible="true"/>
+    <node id="-19" lat="35.57082273826738" lon="139.73110335421887" visible="true"/>
+    <node id="-60" lat="35.57087706720507" lon="139.73123369033576" visible="true"/>
+    <node id="-61" lat="35.57087288612668" lon="139.7312459418073" visible="true"/>
+    <node id="-5" lat="35.57108629650767" lon="139.73146709559785" visible="true"/>
+    <node id="-62" lat="35.570866405109136" lon="139.7312565413076" visible="true"/>
+    <node id="-6" lat="35.57109428864688" lon="139.7313247647722" visible="true"/>
+    <node id="-7" lat="35.57108887108284" lon="139.73131384935343" visible="true"/>
+    <node id="-63" lat="35.57085775880041" lon="139.73126482671054" visible="true"/>
+    <node id="-8" lat="35.5709653392722" lon="139.7312114028242" visible="true"/>
+    <node id="-64" lat="35.57084775788883" lon="139.7312701350333" visible="true"/>
+    <node id="-20" lat="35.57080381391276" lon="139.73110900487197" visible="true"/>
+    <node id="-65" lat="35.57083694292673" lon="139.7312721346138" visible="true"/>
+    <node id="-9" lat="35.570930246001495" lon="139.73128326952303" visible="true"/>
+    <node id="-21" lat="35.57080205143697" lon="139.73110338049858" visible="true"/>
+    <node id="-66" lat="35.570826124882316" lon="139.73127049344748" visible="true"/>
+    <node id="-22" lat="35.57081554501202" lon="139.73107125856416" visible="true"/>
+    <node id="-67" lat="35.570815980075885" lon="139.73126554165526" visible="true"/>
+    <node id="-23" lat="35.57062980042639" lon="139.73094903330178" visible="true"/>
+    <node id="-68" lat="35.57080718454725" lon="139.73125727838075" visible="true"/>
+    <node id="-24" lat="35.570607254407165" lon="139.7309887791529" visible="true"/>
+    <node id="-69" lat="35.57080041517677" lon="139.73124669569745" visible="true"/>
+    <node id="-25" lat="35.57058560987978" lon="139.7309755676279" visible="true"/>
+    <node id="-26" lat="35.57056132328071" lon="139.7310355052109" visible="true"/>
+    <node id="-27" lat="35.57057932083493" lon="139.73105302407507" visible="true"/>
+    <node id="-28" lat="35.57056042820534" lon="139.73109607499254" visible="true"/>
+    <node id="-29" lat="35.5706415998955" lon="139.73115124494913" visible="true"/>
+    <node id="-70" lat="35.5707960781486" lon="139.7312344550442" visible="true"/>
+    <node id="-71" lat="35.57079457964705" lon="139.73122121785903" visible="true"/>
+    <node id="-72" lat="35.57079592051296" lon="139.73120797707102" visible="true"/>
+    <node id="-73" lat="35.57079996637948" lon="139.73119572578088" visible="true"/>
+    <node id="-30" lat="35.570654296265594" lon="139.73113567292847" visible="true"/>
+    <node id="-74" lat="35.57080658231937" lon="139.731184795136" visible="true"/>
+    <node id="-75" lat="35.570815228622656" lon="139.73117650972972" visible="true"/>
+    <node id="-31" lat="35.57067053048964" lon="139.7311465745412" visible="true"/>
+    <node id="-76" lat="35.570825229810644" lon="139.73117153237442" visible="true"/>
+    <node id="-32" lat="35.57068308323285" lon="139.73112107339563" visible="true"/>
+    <node id="-77" lat="35.57083604477106" lon="139.73116953278068" visible="true"/>
+    <node id="-33" lat="35.57075072765474" lon="139.7311686481629" visible="true"/>
+    <node id="-34" lat="35.57074804032159" lon="139.73118851019265" visible="true"/>
+    <node id="-78" lat="35.570846862816815" lon="139.73117117393363" visible="true"/>
+    <node id="-79" lat="35.57085700762706" lon="139.73117612571582" visible="true"/>
+    <node id="-35" lat="35.57074359331789" lon="139.73120605761557" visible="true"/>
+    <node id="-36" lat="35.57074172479547" lon="139.73123485498078" visible="true"/>
+    <node id="-37" lat="35.57074445137801" lon="139.73126132967775" visible="true"/>
+    <node id="-38" lat="35.57075258627652" lon="139.73128779751843" visible="true"/>
+    <node id="-39" lat="35.570766123889" lon="139.73130763897439" visible="true"/>
+    <node id="-80" lat="35.570865802880725" lon="139.7311840580095" visible="true"/>
+    <node id="-81" lat="35.57087257225663" lon="139.73119464069606" visible="true"/>
+    <node id="-40" lat="35.57078425577109" lon="139.7313241648423" visible="true"/>
+    <node id="-41" lat="35.57080765964449" lon="139.73133936012698" visible="true"/>
+    <node id="-42" lat="35.570832947468666" lon="139.73134396175894" visible="true"/>
+    <node id="-43" lat="35.570857279315916" lon="139.7313373113731" visible="true"/>
+    <node id="-44" lat="35.57085268868285" lon="139.73134492967168" visible="true"/>
+    <node id="-45" lat="35.570819433944315" lon="139.7313525842944" visible="true"/>
+    <node id="-46" lat="35.570752739109544" lon="139.73146851075987" visible="true"/>
+    <node id="-47" lat="35.57093052572282" lon="139.73161424688732" visible="true"/>
+    <node id="-48" lat="35.570962727575065" lon="139.7316406844118" visible="true"/>
+    <node id="-49" lat="35.57098315711033" lon="139.7316562145582" visible="true"/>
+    <way id="-676" visible="true">
+        <nd ref="-5"/>
+        <nd ref="-6"/>
+        <nd ref="-7"/>
+        <nd ref="-8"/>
+        <nd ref="-9"/>
+        <nd ref="-10"/>
+        <nd ref="-11"/>
+        <nd ref="-12"/>
+        <nd ref="-13"/>
+        <nd ref="-14"/>
+        <nd ref="-15"/>
+        <nd ref="-16"/>
+        <nd ref="-17"/>
+        <nd ref="-18"/>
+        <nd ref="-19"/>
+        <nd ref="-20"/>
+        <nd ref="-21"/>
+        <nd ref="-22"/>
+        <nd ref="-23"/>
+        <nd ref="-24"/>
+        <nd ref="-25"/>
+        <nd ref="-26"/>
+        <nd ref="-27"/>
+        <nd ref="-28"/>
+        <nd ref="-29"/>
+        <nd ref="-30"/>
+        <nd ref="-31"/>
+        <nd ref="-32"/>
+        <nd ref="-33"/>
+        <nd ref="-34"/>
+        <nd ref="-35"/>
+        <nd ref="-36"/>
+        <nd ref="-37"/>
+        <nd ref="-38"/>
+        <nd ref="-39"/>
+        <nd ref="-40"/>
+        <nd ref="-41"/>
+        <nd ref="-42"/>
+        <nd ref="-43"/>
+        <nd ref="-44"/>
+        <nd ref="-45"/>
+        <nd ref="-46"/>
+        <nd ref="-47"/>
+        <nd ref="-48"/>
+        <nd ref="-49"/>
+        <nd ref="-50"/>
+        <nd ref="-51"/>
+        <nd ref="-52"/>
+        <nd ref="-53"/>
+        <nd ref="-5"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697"/>
+    </way>
+    <way id="-57" visible="true">
+        <nd ref="-58"/>
+        <nd ref="-59"/>
+        <nd ref="-60"/>
+        <nd ref="-61"/>
+        <nd ref="-62"/>
+        <nd ref="-63"/>
+        <nd ref="-64"/>
+        <nd ref="-65"/>
+        <nd ref="-66"/>
+        <nd ref="-67"/>
+        <nd ref="-68"/>
+        <nd ref="-69"/>
+        <nd ref="-70"/>
+        <nd ref="-71"/>
+        <nd ref="-72"/>
+        <nd ref="-73"/>
+        <nd ref="-74"/>
+        <nd ref="-75"/>
+        <nd ref="-76"/>
+        <nd ref="-77"/>
+        <nd ref="-78"/>
+        <nd ref="-79"/>
+        <nd ref="-80"/>
+        <nd ref="-81"/>
+        <nd ref="-58"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-61384"/>
+    </way>
+    <relation id="-3" visible="true">
+        <member ref="-57" role="inner" type="way"/>
+        <member ref="-676" role="outer" type="way"/>
+        <tag k="addr:ref" v="13111006005"/>
+        <tag k="addr:full" v="東京都大田区大森西五丁目"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building" v="yes"/>
+        <tag k="height" v="17.582"/>
+    </relation>
+</osm>

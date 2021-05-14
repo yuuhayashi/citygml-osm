@@ -27,6 +27,10 @@ public class ElementMember implements Cloneable {
 		this.type = "relation";
 	}
 
+	public void setRef(String ref) {
+		this.ref = Long.parseLong(ref);
+	}
+	
 	public void setRole(String role) {
 		this.role = role;
 	}

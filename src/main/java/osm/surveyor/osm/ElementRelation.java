@@ -8,6 +8,9 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class ElementRelation extends ElementOsmapi implements Cloneable {
+	public static final String RELATION = "relation";
+	public static final String MULTIPOLYGON = "multipolygon";
+	
 	public ArrayList<ElementMember> members;
 	
 	public ElementRelation(long id) {
@@ -40,7 +43,7 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 		</relation>
 	 */
     public Node toNode(Document doc) {
-    	Element element = super.toElement(doc, "relation");
+    	Element element = super.toElement(doc, ElementRelation.RELATION);
     	for (ElementMember member : this.members) {
     		element.appendChild(member.toNode(doc));
 		}
@@ -109,7 +112,7 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 	 */
 	public String getRelationMemberId() {
 		for (ElementMember mem : members) {
-			if (mem.type.equals("relation")) {
+			if (mem.type.equals(ElementRelation.RELATION)) {
 				return Long.toString(mem.ref);
 			}
 		}
@@ -155,7 +158,7 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 		for (String k : tags.keySet()) {
 			ElementTag tag = tags.get(k);
 			if (tag.k.equals("type")) {
-				if (tag.v.equals("multipolygon")) {
+				if (tag.v.equals(ElementRelation.MULTIPOLYGON)) {
 					return true;
 				}
 			}

@@ -101,7 +101,7 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 | --------	| ----------------- | -------------------------------------------	|
 | データ範囲	| `gml:boundedBy`	| データ対象範囲									|
 | ソース名	| `gml:Envelope`-`srsName`	| データソース名称						|
-| 建物		| `bldg:Building`	| ビルディングPOIに相当								|
+| 建築物		| `bldg:Building`	| ビルディングPOIに相当								|
 | 屋根形状	| `bldg:lod0RoofEdge`	| 建物の屋根形状								|
 | 床形状		| `bldg:lod0FootPrint` | 建物の床形状								|
 | ID		| `gml:id`			| GMLでの管理ID									|

@@ -20,6 +20,10 @@ public class NodeMap extends HashMap<String, ElementNode> {
 		put(Long.toString(node.id), node);
 	}
 	
+	public ElementNode get(long id) {
+		return get(Long.toString(id));
+	}
+	
 	/**
 	 * XMLをDOMする
 	 * 

@@ -44,8 +44,11 @@ public class WayMap extends HashMap<String, ElementWay> {
 	    }
     }
     
+    public void remove(long wayid) {
+    	remove(Long.toString(wayid));
+    }
+
     public void remove(ElementWay way) {
     	remove(Long.toString(way.id));
     }
-
 }

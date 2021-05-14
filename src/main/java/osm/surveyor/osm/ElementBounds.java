@@ -20,7 +20,7 @@ public class ElementBounds {
 	public String minlon = null;
 	public String maxlat = null;
 	public String maxlon = null;
-	String origin = "CGImap 0.8.3 (2061540 spike-08.openstreetmap.org)";
+	public String origin = "CGImap 0.8.3 (2061540 spike-08.openstreetmap.org)";
     
 	/*
 	 * 

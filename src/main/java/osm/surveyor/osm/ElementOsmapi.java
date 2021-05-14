@@ -43,6 +43,10 @@ public class ElementOsmapi implements Cloneable {
 	public void setId(long id) {
 		this.id = id;
 	}
+	
+	public void setVisible(String boolStr) {
+		visible = Boolean.parseBoolean(boolStr);
+	}
 
 	@Override
 	public ElementOsmapi clone() {

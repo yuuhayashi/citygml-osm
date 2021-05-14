@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<osm generator="JOSM" version="0.6">
+    <bounds maxlat="35.57509621366029" maxlon="139.737560968697" minlat="35.56647195757135" minlon="139.7241207469562" origin="CGImap 0.8.3 (2061540 spike-08.openstreetmap.org)"/>
+    <node id="-5" lat="35.57490110119335" lon="139.73602451173932" visible="true"/>
+    <node id="-6" lat="35.574907023137136" lon="139.73597964384498" visible="true"/>
+    <node id="-7" lat="35.57485463513983" lon="139.73596926989146" visible="true"/>
+    <node id="-8" lat="35.574848713208695" lon="139.73601414879047" visible="true"/>
+    <way id="-10" visible="true">
+        <nd ref="-5"/>
+        <nd ref="-6"/>
+        <nd ref="-7"/>
+        <nd ref="-8"/>
+        <nd ref="-5"/>
+        <tag k="addr:full" v="東京都大田区大森東一丁目"/>
+        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-141846"/>
+        <tag k="building" v="yes"/>
+        <tag k="height" v="8.454"/>
+    </way>
+</osm>

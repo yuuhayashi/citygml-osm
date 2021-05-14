@@ -13,6 +13,10 @@ public class OsmNd implements Cloneable {
 		this.point = point;
 		return this;
 	}
+
+	public void setIdstr(String id) {
+		this.id = Long.parseLong(id);
+	}
 	
 	@Override
 	public OsmNd clone() {
