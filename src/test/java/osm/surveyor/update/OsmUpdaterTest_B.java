@@ -13,15 +13,13 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runners.MethodSorters;
-import org.w3c.dom.Document;
 
-import osm.surveyor.osm.DetailTests;
+import osm.surveyor.DetailTests;
 import osm.surveyor.osm.ElementBounds;
 import osm.surveyor.osm.ElementMember;
 import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
-import osm.surveyor.osm.OsmFile;
 import osm.surveyor.osm.api.CitygmlFileTest;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -38,7 +36,7 @@ public class OsmUpdaterTest_B {
 			OsmUpdater.main(args.toArray(new String[args.size()]));
 
 			OsmDom osm = new OsmDom();
-			osm.load(Paths.get(SOURCE+".mrg.osm").toFile());
+			osm.parse(Paths.get(SOURCE+".mrg.osm").toFile());
 			
 			for (String id : osm.relations.keySet()) {
 				ElementRelation relation = osm.relations.get(id);
@@ -98,13 +96,13 @@ public class OsmUpdaterTest_B {
         try {
     		// 指定されたOSMファイルの<bound/>を取得する
         	OsmDom dom = new OsmDom();
-        	dom.load(Paths.get("src/test/resources/", SOURCE+".osm").toFile());
+        	dom.parse(Paths.get("src/test/resources/", SOURCE+".osm").toFile());
     		ElementBounds bounds = dom.getBounds();
 
     		// OSMから<bound>範囲内の現在のデータを取得する
-    		Document sdoc = OsmUpdater.loadMap(bounds);
     		OsmDom sdom = new OsmDom();
-    		sdom.load(sdoc);
+    		sdom.setBounds(bounds);
+    		sdom.downloadMap();
     		sdom.export(Paths.get(SOURCE+".org.osm").toFile());
 		} catch (Exception e) {
 			e.fillInStackTrace();
@@ -120,7 +118,7 @@ public class OsmUpdaterTest_B {
 	public void testSample_b1check() {
         try {
 			OsmDom osm = new OsmDom();
-			new OsmFile(Paths.get(SOURCE+".org.osm").toFile(), osm).parse();
+			osm.parse(Paths.get(SOURCE+".org.osm").toFile());
 			assertThat(osm.relations.size() >= 1, is(true));
 			assertThat(osm.ways.size() >= 10, is(true));
 			assertThat(osm.nodes.size() > 100, is(true));

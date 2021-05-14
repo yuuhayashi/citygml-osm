@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<osm generator="JOSM" version="0.6">
+<bounds maxlat="35.57509621366029" maxlon="139.737560968697" minlat="35.56647195757135" minlon="139.7241207469562" origin="CGImap 0.8.3 (2061540 spike-08.openstreetmap.org)"/>
+<node action="modify" id="-70" lat="35.57209507256327" lon="139.72799182625204" visible="true"/>
+<node action="modify" id="-71" lat="35.5721068895604" lon="139.72789880468724" visible="true"/>
+<node action="modify" id="-5" lat="35.572121804100114" lon="139.72779187776362" visible="true"/>
+<node action="modify" id="-73" lat="35.57204928139935" lon="139.72788795775173" visible="true"/>
+<node action="modify" id="-6" lat="35.572122476662805" lon="139.72778790509022" visible="true"/>
+<node action="modify" id="-74" lat="35.572037464121145" lon="139.72798064826958" visible="true"/>
+<node action="modify" id="-7" lat="35.57212220566725" lon="139.72778724348046" visible="true"/>
+<node action="modify" id="-8" lat="35.57206649243709" lon="139.7277787110137" visible="true"/>
+<node action="modify" id="-10" lat="35.57211161981401" lon="139.7278964816115" visible="true"/>
+<node action="modify" id="-9" lat="35.57205577225188" lon="139.7278889421933" visible="true"/>
+<way action="modify" changeset="79505241" id="762805592" timestamp="2020-01-13T08:34:37Z" uid="9600679" user="Yoqtan" version="1" visible="true">
+<nd ref="-70"/>
+<nd ref="-71"/>
+<nd ref="-9"/>
+<nd ref="-73"/>
+<nd ref="-74"/>
+<nd ref="-70"/>
+<tag k="addr:ref" v="13111006005"/>
+<tag k="fixme" v="PLATEAUデータで更新されています"/>
+<tag k="addr:full" v="東京都大田区大森西五丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-64135"/>
+<tag k="building" v="yes"/>
+<tag k="height" v="11.556000000000001"/>
+</way>
+<way action="modify" changeset="79505241" id="762805589" timestamp="2020-01-13T08:34:37Z" uid="9600679" user="Yoqtan" version="1" visible="true">
+<nd ref="-5"/>
+<nd ref="-6"/>
+<nd ref="-7"/>
+<nd ref="-8"/>
+<nd ref="-9"/>
+<nd ref="-10"/>
+<nd ref="-5"/>
+<tag k="addr:ref" v="13111006005"/>
+<tag k="fixme" v="PLATEAUデータで更新されています"/>
+<tag k="addr:full" v="東京都大田区大森西五丁目"/>
+<tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-64174"/>
+<tag k="building" v="yes"/>
+<tag k="height" v="9.636000000000001"/>
+</way>
+</osm>

@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
+import osm.surveyor.DetailTests;
 import osm.surveyor.osm.ElementMember;
 import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementWay;
@@ -24,7 +25,7 @@ public class CitygmlFileTest_A {
 		CitygmlFileTest.test_doRelationMarge(Paths.get("src/test/resources","sample_a_bldg_6697_op2.gml"));
         OsmDom osm = new OsmDom();
         try {
-			osm.load(Paths.get("sample_a_bldg_6697_op2_2.osm").toFile());
+			osm.parse(Paths.get("sample_a_bldg_6697_op2_2.osm").toFile());
 
 			assertThat(osm.relations, notNullValue());
 			for (String id : osm.relations.keySet()) {
@@ -190,7 +191,7 @@ public class CitygmlFileTest_A {
 		CitygmlFileTest.test_doRemoveSinglePart(Paths.get("src/test/resources","sample_a_bldg_6697_op2.gml"));
         OsmDom osm = new OsmDom();
         try {
-			osm.load(Paths.get("sample_a_bldg_6697_op2_3.osm").toFile());
+			osm.parse(Paths.get("sample_a_bldg_6697_op2_3.osm").toFile());
 
 			assertThat(osm.relations, notNullValue());
 			assertThat(osm.relations.size(), is(0));
@@ -226,7 +227,7 @@ public class CitygmlFileTest_A {
 		CitygmlFileTest.test4_doCreateOutline(Paths.get("src/test/resources","sample_a_bldg_6697_op2.gml"));
         OsmDom osm = new OsmDom();
         try {
-			osm.load(Paths.get("sample_a_bldg_6697_op2_4.osm").toFile());
+			osm.parse(Paths.get("sample_a_bldg_6697_op2_4.osm").toFile());
 
 			for (String id : osm.ways.keySet()) {
 				ElementWay way = osm.ways.get(id);
@@ -259,7 +260,7 @@ public class CitygmlFileTest_A {
 		CitygmlFileTest.test(Paths.get("src/test/resources","sample_a_bldg_6697_op2.gml"));
         OsmDom osm = new OsmDom();
         try {
-			osm.load(Paths.get("sample_a_bldg_6697_op2.osm").toFile());
+			osm.parse(Paths.get("sample_a_bldg_6697_op2.osm").toFile());
 			assertThat(osm.relations, notNullValue());
 			assertThat(osm.relations.size(), is(0));
 			for (String id : osm.ways.keySet()) {
@@ -300,7 +301,7 @@ public class CitygmlFileTest_A {
 		CitygmlFileTest.test(Paths.get("src/test/resources","sample_aa_bldg_6697_op2.gml"));
         OsmDom osm = new OsmDom();
         try {
-			osm.load(Paths.get("sample_aa_bldg_6697_op2.osm").toFile());
+			osm.parse(Paths.get("sample_aa_bldg_6697_op2.osm").toFile());
 			assertThat(osm.relations, notNullValue());
 			assertThat(osm.relations.size(), is(0));
 			for (String id : osm.ways.keySet()) {
@@ -332,7 +333,7 @@ public class CitygmlFileTest_A {
 		CitygmlFileTest.test(Paths.get("src/test/resources","sample_ab_bldg_6697_op2.gml"));
         OsmDom osm = new OsmDom();
         try {
-			osm.load(Paths.get("sample_ab_bldg_6697_op2.osm").toFile());
+			osm.parse(Paths.get("sample_ab_bldg_6697_op2.osm").toFile());
 			assertThat(osm.relations, notNullValue());
 			for (String id : osm.ways.keySet()) {
 				ElementWay way = osm.ways.get(id);
@@ -358,7 +359,7 @@ public class CitygmlFileTest_A {
 		CitygmlFileTest.test_doParse(Paths.get("src/test/resources","sample_a_bldg_6697_op2.gml"));
 	    OsmDom osm = new OsmDom();
 	    try {
-			osm.load(Paths.get("sample_a_bldg_6697_op2_1.osm").toFile());
+			osm.parse(Paths.get("sample_a_bldg_6697_op2_1.osm").toFile());
 	
 			assertThat(osm.relations, notNullValue());
 			for (String id : osm.relations.keySet()) {

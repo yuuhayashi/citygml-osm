@@ -329,6 +329,15 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
 		return false;
 	}
 	
+	public boolean isBuilding() {
+		for (String tagk : this.tags.keySet()) {
+			if (tagk.startsWith("building")) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

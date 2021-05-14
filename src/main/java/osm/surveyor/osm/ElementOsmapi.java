@@ -48,6 +48,10 @@ public class ElementOsmapi implements Cloneable {
 		visible = Boolean.parseBoolean(boolStr);
 	}
 
+	public void setVersion(String version) {
+		this.version = version;
+	}
+
 	@Override
 	public ElementOsmapi clone() {
 		ElementOsmapi copy = null;

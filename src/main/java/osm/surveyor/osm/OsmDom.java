@@ -1,12 +1,21 @@
 package osm.surveyor.osm;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -19,6 +28,10 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
+
+import osm.surveyor.osm.api.GetResponse;
+import osm.surveyor.osm.api.HttpGet;
 
 /**
  * Osmファイルをドムる
@@ -60,6 +73,24 @@ public class OsmDom {
 		return bounds;
 	}
 
+    public void parse(File file) throws ParserConfigurationException, SAXException, IOException, ParseException {
+    	parse(new FileInputStream(file));
+    }
+
+    /**
+     * XML SAXパースを実行する
+     * 
+     */
+    public void parse(InputStream is) throws ParserConfigurationException, SAXException, IOException {
+        SAXParserFactory factory = SAXParserFactory.newInstance();
+        factory.setValidating(false);
+        
+        SAXParser parser = factory.newSAXParser();
+        try {
+			parser.parse(is, new OsmParser(this));
+		} catch (SAXParseException e) {}
+    }
+    
     public Document load(File sourcefile) throws ParserConfigurationException, SAXException, IOException {
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 	    DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -68,7 +99,7 @@ public class OsmDom {
 	    load(doc);
 	    return doc;
 	}
-    
+
     public void load(Document doc) throws ParserConfigurationException, SAXException, IOException {
 	    loadBounds(doc, bounds);
 	    nodes.load(doc);
@@ -86,6 +117,95 @@ public class OsmDom {
 			}
 		}
 	}
+    
+	/**
+	 *  OSMから<bound>範囲内の現在のデータを取得する
+	 * @throws SAXException 
+	 * @throws ParserConfigurationException 
+	 * @throws IOException 
+	 * @throws ProtocolException 
+	 * @throws MalformedURLException 
+	 */
+	public void downloadMap() throws MalformedURLException, ProtocolException, IOException, ParserConfigurationException, SAXException {
+        double minlon = Double.parseDouble(bounds.minlon);
+		double maxlon = Double.parseDouble(bounds.maxlon);
+		double minlat = Double.parseDouble(bounds.minlat);
+		double maxlat = Double.parseDouble(bounds.maxlat);
+
+		String urlstr = HttpGet.host + "/api/0.6/map" + "?bbox="+ Double.toString(minlon) +","+ Double.toString(minlat) +","+ Double.toString(maxlon) +","+ Double.toString(maxlat);
+        System.out.println("URL: " + urlstr);
+        URL url = new URL(urlstr);
+        
+        HttpURLConnection urlconn = (HttpURLConnection)url.openConnection();
+        try {
+            urlconn.setRequestMethod("GET");
+            urlconn.setInstanceFollowRedirects(false);
+            urlconn.setRequestProperty("Accept-Language", "ja;q=0.7,en;q=0.3");
+            urlconn.connect();
+
+    		GetResponse res = new GetResponse();
+            res.setCode(urlconn.getResponseCode());
+    		res.setMessage(urlconn.getResponseMessage());
+    		parse(urlconn.getInputStream());
+        }
+        finally {
+            urlconn.disconnect();
+        }
+	}
+	
+	/**
+	 * 取得したデータからRELATION:buildingオブジェクトのみ抽出する
+	 * @param sdom	抽出元
+	 * @return	抽出された新しいインスタンス
+	 */
+	public OsmDom filterBuilding() {
+		OsmDom ddom = new OsmDom();
+		ddom.setBounds(this.getBounds());
+
+		// 取得したデータからRELATION:buildingオブジェクトのみ抽出する
+		for (String rKey : this.relations.keySet()) {
+			ElementRelation relation = this.relations.get(rKey);
+			if (relation.isBuilding()) {
+				for (ElementMember member : relation.members) {
+					if (member.type.equals("way")) {
+						ElementWay part = this.ways.get(member.ref);
+						if (part != null) {
+							ddom.ways.put(part.clone());
+						}
+					}
+				}
+				ddom.relations.put(rKey, relation.clone());
+			}
+			else if (relation.isMultipolygon()) {
+				if (relation.getTagValue("building") != null) {
+					for (ElementMember member : relation.members) {
+						if (member.type.equals("way")) {
+							ElementWay mem = this.ways.get(member.ref);
+							if (mem != null) {
+								ddom.ways.put(mem.clone());
+							}
+						}
+					}
+					ddom.relations.put(rKey, relation.clone());
+				}
+			}
+		}
+		
+		for (String rKey : this.ways.keySet()) {
+			ElementWay way = this.ways.get(rKey);
+			if (way.isBuilding()) {
+				for (OsmNd nd : way.nds) {
+					ElementNode node = this.nodes.get(nd.id);
+					if (node != null) {
+						ddom.nodes.put(node.clone());
+					}
+				}
+				ddom.ways.put(way.clone());
+			}
+		}
+		return ddom;
+	}
+	
 
     public void export(File out) throws ParserConfigurationException {
 		DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();

@@ -52,7 +52,7 @@ public class CitygmlFileTest {
 		
 		OsmDom osm = new OsmDom();
 		try {
-			osm.load(Paths.get("53375768_bldg_6697_op.osm").toFile());
+			osm.parse(Paths.get("53375768_bldg_6697_op.osm").toFile());
 
 			assertThat(osm.ways, notNullValue());
 			for (String id : osm.ways.keySet()) {

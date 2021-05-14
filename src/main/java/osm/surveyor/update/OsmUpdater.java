@@ -8,13 +8,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.function.Consumer;
 
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 import osm.surveyor.osm.ElementBounds;
@@ -25,8 +25,6 @@ import osm.surveyor.osm.ElementTag;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 import osm.surveyor.osm.WayMap;
-import osm.surveyor.osm.api.GetResponse;
-import osm.surveyor.osm.api.HttpGet;
 import osm.surveyor.sql.Postgis;
 
 public class OsmUpdater {
@@ -42,6 +40,7 @@ public class OsmUpdater {
 	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
 		String suffix1 = ".osm";
 		String suffix2 = ".mrg.osm";
+		String suffix3 = ".org.osm";
         try {
 			File dir = new File(".");
 			Files.list(dir.toPath()).forEach(new Consumer<Path>() {
@@ -51,18 +50,14 @@ public class OsmUpdater {
 						File file = a.toFile();
 						String filename = file.getName();
 						System.out.println(filename);
-						if (filename.endsWith(suffix1) && !filename.endsWith(suffix2)) {
+						if (filename.endsWith(suffix1) && !filename.endsWith(suffix2) && !filename.endsWith(suffix3)) {
 							try {
 								OsmUpdater updater = new OsmUpdater(file);
 								updater.load();
 								filename = filename.substring(0, filename.length() - suffix1.length());
 								updater.ddom.export(Paths.get(filename + suffix2).toFile());
-								updater.sdom.export(Paths.get(filename + ".org.osm").toFile());
-							} catch (ParserConfigurationException e) {
-								e.printStackTrace();
-							} catch (SAXException e) {
-								e.printStackTrace();
-							} catch (IOException e) {
+								updater.sdom.export(Paths.get(filename + suffix3).toFile());
+							} catch (Exception e) {
 								e.printStackTrace();
 							}
 						}
@@ -79,13 +74,13 @@ public class OsmUpdater {
 	OsmDom sdom;
 	OsmDom ddom;
 	
-	public OsmUpdater(String filepath) throws ParserConfigurationException, SAXException, IOException {
+	public OsmUpdater(String filepath) throws ParserConfigurationException, SAXException, IOException, ParseException {
 		this(Paths.get(filepath).toFile());
 	}
 
-	public OsmUpdater(File file) throws ParserConfigurationException, SAXException, IOException {
+	public OsmUpdater(File file) throws ParserConfigurationException, SAXException, IOException, ParseException {
 		dom = new OsmDom();
-		dom.load(file);
+		dom.parse(file);
 	}
 	
 	/**
@@ -108,11 +103,10 @@ public class OsmUpdater {
 		ddom.setBounds(bounds);
 
 		// OSMから<bound>範囲内の現在のデータを取得する
-		Document sdoc = loadMap(bounds);
-		sdom.load(sdoc);
-		sdom.export(Paths.get("org.xml").toFile());
+		sdom.downloadMap();
 		
-		sdom = filterBuilding(sdom);
+		// "building"関係のPOIのみに絞る
+		sdom = sdom.filterBuilding();
 		
         try (Postgis db = new Postgis("osmdb")) {
             db.initTable();		// データベースの初期化
@@ -233,42 +227,6 @@ public class OsmUpdater {
 	}
 	
 	/**
-	 * 取得したデータからRELATION:buildingオブジェクトのみ抽出する
-	 * @param sdom	抽出元
-	 * @return	抽出された新しいインスタンス
-	 */
-	private OsmDom filterBuilding(OsmDom sdom) {
-		OsmDom ddom = new OsmDom();
-		ddom.setBounds(sdom.getBounds());
-
-		// 取得したデータからRELATION:buildingオブジェクトのみ抽出する
-		for (String rKey : sdom.relations.keySet()) {
-			ElementRelation relation = sdom.relations.get(rKey);
-			if (relation.isBuilding()) {
-				for (ElementMember member : relation.members) {
-					if (member.type.equals("relation")) {
-						ElementRelation polygon = sdom.relations.get(member.ref);
-						if (polygon != null) {
-							ddom.relations.put(polygon.clone());
-						}
-					}
-				}
-				ddom.relations.put(rKey, relation.clone());
-			}
-		}
-		for (String rKey : ddom.relations.keySet()) {
-			ElementRelation relation = ddom.relations.get(rKey);
-			for (ElementMember menber : relation.members) {
-				ElementWay sWay = sdom.ways.get(menber.ref);
-				if (sWay != null) {
-					ddom.ways.put(sWay.clone());
-				}
-			}
-		}
-		return ddom;
-	}
-	
-	/**
 	 * tag.key=`building*` を有するPOIを'building'POIとみなす
 	 * 
 	 */
@@ -282,25 +240,6 @@ public class OsmUpdater {
 		return false;
 	}
 
-	/**
-	 *  OSMから<bound>範囲内の現在のデータを取得する
-	 * @throws SAXException 
-	 * @throws ParserConfigurationException 
-	 * @throws IOException 
-	 * @throws ProtocolException 
-	 * @throws MalformedURLException 
-	 */
-	public static Document loadMap(ElementBounds bounds) throws MalformedURLException, ProtocolException, IOException, ParserConfigurationException, SAXException {
-        double minlon = Double.parseDouble(bounds.minlon);
-		double maxlon = Double.parseDouble(bounds.maxlon);
-		double minlat = Double.parseDouble(bounds.minlat);
-		double maxlat = Double.parseDouble(bounds.maxlat);
-		HttpGet obj = new HttpGet();
-		GetResponse res = obj.getMap(minlon, minlat, maxlon, maxlat);
-		res.printout();
-		return res.getBody();
-	}
-	
 	public void export(File out) throws ParserConfigurationException {
 		ddom.export(out);
 	}

@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
+import osm.surveyor.DetailTests;
 import osm.surveyor.osm.ElementMember;
 import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementWay;
@@ -34,7 +35,7 @@ public class CitygmlFileTest_52396075 {
 		
 		OsmDom osm = new OsmDom();
 		try {
-			osm.load(Paths.get("52396075_bldg_6697_op.osm").toFile());
+			osm.parse(Paths.get("52396075_bldg_6697_op.osm").toFile());
 
 			assertThat(osm.ways, notNullValue());
 			for (String id : osm.ways.keySet()) {
@@ -59,7 +60,7 @@ public class CitygmlFileTest_52396075 {
 		CitygmlFileTest.test_doParse(Paths.get("src/test/resources","52396075_bldg_6697_op.gml"));
         OsmDom osm = new OsmDom();
         try {
-			osm.load(Paths.get("52396075_bldg_6697_op_1.osm").toFile());
+			osm.parse(Paths.get("52396075_bldg_6697_op_1.osm").toFile());
 
 			assertThat(osm.relations, notNullValue());
 			for (String id : osm.relations.keySet()) {

@@ -15,6 +15,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
+import osm.surveyor.DetailTests;
 import osm.surveyor.osm.ElementMember;
 import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementWay;
@@ -44,7 +45,7 @@ public class CitygmlFileTest_E {
 		CitygmlFileTest.test_doParse(Paths.get("src/test/resources","sample_e_bldg_6697_op2.gml"));
         OsmDom osm = new OsmDom();
         try {
-			osm.load(Paths.get("sample_e_bldg_6697_op2_1.osm").toFile());
+			osm.parse(Paths.get("sample_e_bldg_6697_op2_1.osm").toFile());
 
 			assertThat(osm.relations, notNullValue());
 			for (String id : osm.relations.keySet()) {
@@ -214,7 +215,7 @@ public class CitygmlFileTest_E {
 		
         OsmDom osm = new OsmDom();
         try {
-			osm.load(Paths.get("sample_e_bldg_6697_op2_2.osm").toFile());
+			osm.parse(Paths.get("sample_e_bldg_6697_op2_2.osm").toFile());
 
 			assertThat(osm.relations, notNullValue());
 			int outlineCnt = 0;
@@ -332,7 +333,7 @@ public class CitygmlFileTest_E {
 		
         OsmDom osm = new OsmDom();
         try {
-			osm.load(Paths.get("sample_e_bldg_6697_op2_3.osm").toFile());
+			osm.parse(Paths.get("sample_e_bldg_6697_op2_3.osm").toFile());
 
 			assertThat(osm.relations, notNullValue());
 			for (String id : osm.relations.keySet()) {
@@ -402,7 +403,7 @@ public class CitygmlFileTest_E {
 		
         OsmDom osm = new OsmDom();
         try {
-			osm.load(Paths.get("sample_e_bldg_6697_op2_4.osm").toFile());
+			osm.parse(Paths.get("sample_e_bldg_6697_op2_4.osm").toFile());
 			checkSample_e4_createOutline(osm);
 		} catch (Exception e) {
 			e.fillInStackTrace();
@@ -511,7 +512,7 @@ public class CitygmlFileTest_E {
 		
         OsmDom osm = new OsmDom();
         try {
-			osm.load(Paths.get("sample_e_bldg_6697_op2.osm").toFile());
+			osm.parse(Paths.get("sample_e_bldg_6697_op2.osm").toFile());
 			checkSample_e4_createOutline(osm);
 		} catch (Exception e) {
 			e.fillInStackTrace();

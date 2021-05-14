@@ -62,7 +62,12 @@ public class HttpGet {
             urlconn.setInstanceFollowRedirects(false);
             urlconn.setRequestProperty("Accept-Language", "ja;q=0.7,en;q=0.3");
             urlconn.connect();
-            return printout(urlconn);
+            
+    		GetResponse res = new GetResponse();
+            res.setCode(urlconn.getResponseCode());
+    		res.setMessage(urlconn.getResponseMessage());
+    		res.setBody(parse(urlconn.getInputStream()));
+            return res;
         }
         finally {
             urlconn.disconnect();
@@ -80,7 +85,12 @@ public class HttpGet {
             urlconn.setInstanceFollowRedirects(false);
             urlconn.setRequestProperty("Accept-Language", "ja;q=0.7,en;q=0.3");
             urlconn.connect();
-            return printout(urlconn);
+            
+    		GetResponse res = new GetResponse();
+            res.setCode(urlconn.getResponseCode());
+    		res.setMessage(urlconn.getResponseMessage());
+    		res.setBody(parse(urlconn.getInputStream()));
+            return res;
         }
         finally {
             urlconn.disconnect();
@@ -117,34 +127,32 @@ public class HttpGet {
 		String urlstr = host + "/api/0.6/map" + "?bbox="+ Double.toString(minlon) +","+ Double.toString(minlat) +","+ Double.toString(maxlon) +","+ Double.toString(maxlat);
         System.out.println("URL: " + urlstr);
         URL url = new URL(urlstr);
-
+        
         HttpURLConnection urlconn = (HttpURLConnection)url.openConnection();
         try {
             urlconn.setRequestMethod("GET");
             urlconn.setInstanceFollowRedirects(false);
             urlconn.setRequestProperty("Accept-Language", "ja;q=0.7,en;q=0.3");
             urlconn.connect();
-            return printout(urlconn);
+
+    		GetResponse res = new GetResponse();
+            res.setCode(urlconn.getResponseCode());
+    		res.setMessage(urlconn.getResponseMessage());
+    		Document doc = parse(urlconn.getInputStream());
+    		res.setBody(doc);
+            return res;
         }
         finally {
             urlconn.disconnect();
         }
 	}
 
-	GetResponse printout(HttpURLConnection urlconn) throws IOException, ParserConfigurationException, SAXException {
-		GetResponse res = new GetResponse();
-		res.setCode(urlconn.getResponseCode());
-		res.setMessage(urlconn.getResponseMessage());
-		
+	Document parse(InputStream is) throws IOException, ParserConfigurationException, SAXException {
 		DocumentBuilder builder = DocumentBuilderFactory
 				.newInstance()
 				.newDocumentBuilder();
-		Document doc = builder.parse(urlconn.getInputStream());
-		res.setBody(doc);
-		return res;
+		return builder.parse(is);
 	}
-	
-	
 	
 	public void sendCMD(String api) throws MalformedURLException, ProtocolException, IOException {
 		System.out.println(host + api);

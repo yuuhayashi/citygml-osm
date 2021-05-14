@@ -70,6 +70,7 @@ public class OsmParser extends DefaultHandler {
 			node.uid = (getAttributes("uid", atts));
 			node.user = (getAttributes("user", atts));
 			node.setVisible(getAttributes("visible", atts));
+			node.setVersion(getAttributes("version", atts));
 
 			OsmPoint point = new OsmPoint();
 			point.setLat(getAttributes("lat", atts));
@@ -85,6 +86,7 @@ public class OsmParser extends DefaultHandler {
 			way.uid = (getAttributes("uid", atts));
 			way.user = (getAttributes("user", atts));
 			way.setVisible(getAttributes("visible", atts));
+			way.setVersion(getAttributes("version", atts));
 		}
 		else if(qName.equals("relation")){
 			relation = new ElementRelation(0);
@@ -95,6 +97,7 @@ public class OsmParser extends DefaultHandler {
 			relation.uid = (getAttributes("uid", atts));
 			relation.user = (getAttributes("user", atts));
 			relation.setVisible(getAttributes("visible", atts));
+			relation.setVersion(getAttributes("version", atts));
 		}
 		else if(qName.equals("nd")){
 			nd = new OsmNd();
@@ -145,7 +148,10 @@ public class OsmParser extends DefaultHandler {
 		else if(qName.equals("nd")){
 			if (nd != null) {
 				if (way != null) {
-					way.addNode(nd.clone());
+					ElementNode node = osm.nodes.get(nd.id);
+					if (node != null) {
+						way.addNode(node.clone());
+					}
 				}
 				nd = null;
 			}

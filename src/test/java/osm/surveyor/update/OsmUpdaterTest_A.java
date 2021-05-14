@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-import osm.surveyor.osm.DetailTests;
+import osm.surveyor.DetailTests;
+import osm.surveyor.osm.ElementBounds;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 import osm.surveyor.osm.api.CitygmlFileTest;
@@ -32,7 +33,7 @@ public class OsmUpdaterTest_A {
 			OsmUpdater.main(args.toArray(new String[args.size()]));
 
 			OsmDom osm = new OsmDom();
-	        osm.load(Paths.get("sample_a_bldg_6697_op2.mrg.osm").toFile());
+	        osm.parse(Paths.get("sample_a_bldg_6697_op2.mrg.osm").toFile());
 			assertThat(osm.relations, notNullValue());
 			assertThat(osm.relations.size(), is(0));
 			for (String id : osm.ways.keySet()) {
@@ -66,6 +67,83 @@ public class OsmUpdaterTest_A {
 		}
 	}
 
+
+	/**
+	 * "sample_b_bldg_6697_op2.org.osm"の出力
+	 */
+	@Test
+	@Category(DetailTests.class)
+	public void testSample_a1() {
+        try {
+    		// 指定されたOSMファイルの<bound/>を取得する
+        	OsmDom dom = new OsmDom();
+        	dom.parse(Paths.get("src/test/resources/", "sample_a_bldg_6697_op2.osm").toFile());
+    		ElementBounds bounds = dom.getBounds();
+
+    		// OSMから<bound>範囲内の現在のデータを取得する
+    		OsmDom sdom = new OsmDom();
+    		sdom.setBounds(bounds);
+    		sdom.downloadMap();
+    		sdom.export(Paths.get("sample_a_bldg_6697_op2.org.osm").toFile());
+		} catch (Exception e) {
+			e.fillInStackTrace();
+			fail(e.toString());
+		}
+	}
+
+	/**
+	 * "sample_b_bldg_6697_op2.org.osm"のチェック
+	 */
+	@Test
+	@Category(DetailTests.class)
+	public void testSample_a1check() {
+        try {
+			OsmDom osm = new OsmDom();
+			osm.parse(Paths.get("src/test/resources/sample_a_bldg_6697_op2.org.osm").toFile());
+			assertThat(osm.relations.size() >= 0, is(true));
+			assertThat(osm.ways.size() >= 1, is(true));
+			assertThat(osm.nodes.size() > 10, is(true));
+		} catch (Exception e) {
+			e.fillInStackTrace();
+			fail(e.toString());
+		}
+	}
+
+	/**
+	 * "sample_b_bldg_6697_op2.org.osm"の出力
+	 */
+	@Test
+	@Category(DetailTests.class)
+	public void testSample_a2() {
+        try {
+    		// 指定されたOSMファイルの<bound/>を取得する
+        	OsmDom sdom = new OsmDom();
+        	sdom.parse(Paths.get("src/test/resources/", "sample_a_bldg_6697_op2.org.osm").toFile());
+
+    		sdom = sdom.filterBuilding();
+
+    		sdom.export(Paths.get("org.xml").toFile());
+		} catch (Exception e) {
+			e.fillInStackTrace();
+			fail(e.toString());
+		}
+	}
+
+	@Test
+	@Category(DetailTests.class)
+	public void testSample_a2check() {
+        try {
+			OsmDom osm = new OsmDom();
+			osm.parse(Paths.get("org.xml").toFile());
+			assertThat(osm.relations.size() >= 0, is(true));
+			assertThat(osm.ways.size() >= 1, is(true));
+			assertThat(osm.nodes.size() > 10, is(true));
+		} catch (Exception e) {
+			e.fillInStackTrace();
+			fail(e.toString());
+		}
+	}
+
 	/**
 	 * 値のない'addr:ref'
 	 * 13111-bldg-141846
@@ -82,7 +160,7 @@ public class OsmUpdaterTest_A {
 			OsmUpdater.main(args.toArray(new String[args.size()]));
 
 			OsmDom osm = new OsmDom();
-	        osm.load(Paths.get("sample_aa_bldg_6697_op2.mrg.osm").toFile());
+	        osm.parse(Paths.get("sample_aa_bldg_6697_op2.mrg.osm").toFile());
 			assertThat(osm.relations, notNullValue());
 			assertThat(osm.relations.size(), is(0));
 			for (String id : osm.ways.keySet()) {
@@ -116,7 +194,7 @@ public class OsmUpdaterTest_A {
 		CitygmlFileTest.test(Paths.get("src/test/resources","sample_ab_bldg_6697_op2.gml"));
         OsmDom osm = new OsmDom();
         try {
-			osm.load(Paths.get("sample_ab_bldg_6697_op2.osm").toFile());
+			osm.parse(Paths.get("sample_ab_bldg_6697_op2.osm").toFile());
 			assertThat(osm.relations, notNullValue());
 			for (String id : osm.ways.keySet()) {
 				ElementWay way = osm.ways.get(id);

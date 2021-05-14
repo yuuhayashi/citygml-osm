@@ -21,7 +21,7 @@ public class CitygmlFileTest_B {
 		CitygmlFileTest.test(Paths.get("src/test/resources","sample_b_bldg_6697_op2.gml"));
         OsmDom osm = new OsmDom();
         try {
-			osm.load(Paths.get("sample_b_bldg_6697_op2.osm").toFile());
+			osm.parse(Paths.get("sample_b_bldg_6697_op2.osm").toFile());
 			
 			for (String id : osm.relations.keySet()) {
 				ElementRelation relation = osm.relations.get(id);

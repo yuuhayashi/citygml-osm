@@ -1,7 +1,5 @@
 package osm.surveyor.sql;
 
-import osm.surveyor.sql.Postgis;
-
 public interface ImplPostgis {
 	/**
 	 * Postgisにテーブル作成
