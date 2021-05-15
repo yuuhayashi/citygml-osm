@@ -338,6 +338,27 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
 		return false;
 	}
 	
+	/**
+	 * このWAYがマルチポリゴンのINNERであるかどうか
+	 * @param relations
+	 * @return
+	 */
+	public boolean isInnerWay(RelationMap relations) {
+		ElementRelation relation = relations.hasMembersWay(Long.toString(this.id));
+		if (relation != null) {
+			if (relation.isMultipolygon()) {
+				for (ElementMember member : relation.members) {
+					if (member.role.equals("inner")) {
+						if (member.ref == this.id) {
+							return true;
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

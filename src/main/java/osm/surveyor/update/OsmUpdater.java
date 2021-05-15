@@ -24,6 +24,7 @@ import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementTag;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
+import osm.surveyor.osm.OsmNd;
 import osm.surveyor.osm.WayMap;
 import osm.surveyor.sql.Postgis;
 
@@ -164,7 +165,10 @@ public class OsmUpdater {
     		ArrayList<ElementWay> modifyList = new ArrayList<>();
     		for (String rKey : dom.ways.keySet()) {
     			ElementWay way = dom.ways.get(rKey);
-    			if (!way.isIntersect(db, "WHERE (tWay.orignal=true)")) {
+    			if (way.isInnerWay(dom.relations)) {
+    				modifyList.add(way);
+    			}
+    			else if (!way.isIntersect(db, "WHERE (tWay.orignal=true)")) {
     				modifyList.add(way);
     			}
     		}
@@ -181,26 +185,32 @@ public class OsmUpdater {
 	    		// インポートデータの内で、既存データと重複するWAYを'modify'に確定する
     		for (String rKey : dom.ways.keySet()) {
     			ElementWay way = dom.ways.get(rKey).clone();
-    			long wayid = way.getIntersect(db, "WHERE (tWay.orignal=true)");
-    			if (wayid > 0) {
-    				ElementWay sWay = sdom.ways.get(wayid);
-    				sWay.action = "modify";
-    				sWay.orignal = false;
-    				sWay.nds = way.nds;
-            		ElementTag tag = sWay.tags.get("fixme");
-            		if (tag != null) {
-            			String fixme = tag.v;
-            			tag.v = fixme +"; PLATEAUデータで更新されています";
-            		}
-            		else {
-            			tag = new ElementTag("fixme", "PLATEAUデータで更新されています");
-            		}
-            		sWay.addTag(tag);
-    				way.copyTag(sWay);
-            		sWay.copyTag(way);
-            		sWay.delete(db);
-            		ddom.ways.put(sWay);
-            		overlappingMap.put(Long.toString(way.id), sWay);
+    			if ((way.action == null) || !way.action.equals("modify")) {
+        			long wayid = way.getIntersect(db, "WHERE (tWay.orignal=true)");
+        			if (wayid > 0) {
+        				ElementWay sWay = sdom.ways.get(wayid);
+        				sWay.action = "modify";
+        				sWay.orignal = false;
+        				sWay.nds = way.nds;
+                		ElementTag tag = sWay.tags.get("fixme");
+                		if (tag != null) {
+                			String fixme = tag.v;
+                			tag.v = fixme +"; PLATEAUデータで更新されています";
+                		}
+                		else {
+                			tag = new ElementTag("fixme", "PLATEAUデータで更新されています");
+                		}
+                		ElementTag source = way.tags.get("source");
+                		ElementTag height = way.tags.get("height");
+                		sWay.addTag(tag);
+                		sWay.addTag(source);
+                		sWay.addTag(height);
+        				way.copyTag(sWay);
+                		sWay.copyTag(way);
+                		sWay.delete(db);
+                		ddom.ways.put(sWay);
+                		overlappingMap.put(Long.toString(way.id), sWay);
+        			}
     			}
     		}
     		
@@ -231,6 +241,31 @@ public class OsmUpdater {
 				}
 				relation.action = "modify";
 				ddom.relations.put(relation);
+    		}
+    		
+    		// 既存データで、actionが未定のまま残存しているWAYを削除する
+    		for (String rKey : sdom.ways.keySet()) {
+				ElementWay sWay = sdom.ways.get(rKey);
+				if (sWay.action == null) {
+					sWay.action = "delete";
+					sWay.orignal = false;
+	        		ElementTag tag = sWay.tags.get("fixme");
+	        		if (tag != null) {
+	        			String fixme = tag.v;
+	        			tag.v = fixme +"; PLATEAUデータで置き換えられました";
+	        		}
+	        		else {
+	        			tag = new ElementTag("fixme", "PLATEAUデータで置き換えられました");
+	        		}
+	        		sWay.addTag(tag);
+	        		for (OsmNd nd : sWay.nds) {
+	        			ElementNode node = sdom.nodes.get(nd.id);
+	        			node.action = "delete";
+	        			ddom.nodes.put(node.clone());
+	        		}
+	        		sWay.delete(db);
+	        		ddom.ways.put(sWay.clone());
+				}
     		}
         } catch (ClassNotFoundException e) {
 			e.printStackTrace();

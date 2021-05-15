@@ -1008,15 +1008,6 @@
         <nd ref="2276412945"/>
         <nd ref="2272261809"/>
     </way>
-    <way changeset="12032994" id="169195173" timestamp="2012-06-27T05:23:31Z" uid="618878" user="nakanao" version="1" visible="true">
-        <nd ref="1803576038"/>
-        <nd ref="1803576052"/>
-        <nd ref="1803576028"/>
-        <nd ref="1803576025"/>
-        <nd ref="1803576038"/>
-        <tag k="source" v="Bing"/>
-        <tag k="building" v="yes"/>
-    </way>
     <way changeset="12032994" id="169195176" timestamp="2012-06-27T05:23:32Z" uid="618878" user="nakanao" version="1" visible="true">
         <nd ref="1803575971"/>
         <nd ref="1803575979"/>
@@ -1024,7 +1015,18 @@
         <nd ref="1803575955"/>
         <nd ref="1803575971"/>
         <tag k="source" v="Bing"/>
-        <tag k="building" v="yes"/>
+        <tag k="building" v="parking"/>
+        <tag k="height" v="7"/>
+    </way>
+    <way changeset="12032994" id="169195173" timestamp="2012-06-27T05:23:31Z" uid="618878" user="nakanao" version="1" visible="true">
+        <nd ref="1803576038"/>
+        <nd ref="1803576052"/>
+        <nd ref="1803576028"/>
+        <nd ref="1803576025"/>
+        <nd ref="1803576038"/>
+        <tag k="source" v="Bing"/>
+        <tag k="building" v="parking"/>
+        <tag k="height" v="7"/>
     </way>
     <way changeset="12032994" id="169195175" timestamp="2012-06-27T05:23:32Z" uid="618878" user="nakanao" version="1" visible="true">
         <nd ref="1803575991"/>

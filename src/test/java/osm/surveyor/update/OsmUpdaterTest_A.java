@@ -5,19 +5,13 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
-import java.io.File;
-import java.io.IOException;
 import java.nio.file.Paths;
-import java.text.ParseException;
 import java.util.ArrayList;
-
-import javax.xml.parsers.ParserConfigurationException;
 
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runners.MethodSorters;
-import org.xml.sax.SAXException;
 
 import osm.surveyor.DetailTests;
 import osm.surveyor.osm.ElementBounds;
@@ -164,19 +158,22 @@ public class OsmUpdaterTest_A {
 			OsmUpdater updater = new OsmUpdater(Paths.get("src/test/resources/"+ filename +".osm").toFile());
 
 			// 疑似ダウンロード
-			download(updater, Paths.get("src/test/resources/"+ filename +".org.osm").toFile());
+			AllTests.download(updater, Paths.get("src/test/resources/"+ filename +".org.osm").toFile());
 			
     		// 既存POIとマージする
 			updater.load();
+			
+			updater.ddom.export(Paths.get(filename +".mrg.osm").toFile());
     		
-			assertThat(updater.ddom.relations, notNullValue());
-			assertThat(updater.ddom.relations.size(), is(0));
+			int waycnt = 0;
 			for (String id : updater.ddom.ways.keySet()) {
 				ElementWay way = updater.ddom.ways.get(id);
 				assertThat(way, notNullValue());
 				
 				if (way.getTagValue("source").endsWith("; 13111-bldg-365")) {
+					waycnt++;
 					assertThat(way.action, is("modify"));
+					assertThat(way.id < 0, is(true));
 					assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-365"));
 					assertThat(way.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 					assertThat(way.getTagValue("addr:ref"), is("13111058003"));
@@ -185,16 +182,21 @@ public class OsmUpdaterTest_A {
 					assertThat(way.tags.size(), is(5));
 				}
 				else if (way.getTagValue("source").endsWith("; 13111-bldg-466")) {
+					waycnt++;
 					assertThat(way.action, is("modify"));
+					assertThat(way.id, is(169195173l));
+					assertThat(way.changeset, is("12032994"));
 					assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-466"));
 					assertThat(way.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 					assertThat(way.getTagValue("height"), is("6.84"));
-					assertThat(way.getTagValue("building"), is("yes"));
+					assertThat(way.getTagValue("building"), is("parking"));
 					assertThat(way.getTagValue("fixme"), is("PLATEAUデータで更新されています"));
 					assertThat(way.tags.size(), is(5));
 				}
 			}
+			assertThat(waycnt, is(2));
 			assertThat(updater.ddom.ways.size(), is(2));
+			assertThat(updater.ddom.relations, notNullValue());
 			assertThat(updater.ddom.relations.size(), is(0));
 		} catch (Exception e) {
 			e.fillInStackTrace();
@@ -202,32 +204,6 @@ public class OsmUpdaterTest_A {
 		}
 	}
 	
-	/**
-	 * 疑似ダウンロード
-	 * 
-	 * @param updater
-	 * @param orgFile
-	 * @throws ParserConfigurationException
-	 * @throws SAXException
-	 * @throws IOException
-	 * @throws ParseException
-	 */
-	private void download(OsmUpdater updater, File orgFile) throws ParserConfigurationException, SAXException, IOException, ParseException {
-		// 指定されたOSMファイルの<bound/>を取得する
-		ElementBounds bounds = updater.dom.getBounds();
-
-		// エクスポート用のOsmDomを生成する
-		updater.ddom = new OsmDom();
-		updater.ddom.setBounds(bounds);
-
-		// 指定されたOSMファイルの<bound/>を取得する
-		// org.downloadMap();
-		updater.sdom = new OsmDom();
-    	OsmDom org = new OsmDom();
-    	org.parse(orgFile);
-		org.filterBuilding(updater.sdom);
-	}
-
 	/**
 	 * INPUT: "sample_a_bldg_6697_op2.osm"
 	 * INPUT: "sample_a3_bldg_6697_op2.org.osm"

@@ -285,9 +285,19 @@ OSMファイルへの変換項目
 * WAYを"action=modify"にする
 * WAY.IDを既存WAYのWAY.IDに変更する
 * WAY.TAGsに既存WAY.TAGsを上書きする
-** この際に、既存WAY.TAGsに"height=*"があれば既存WAY.TAGの値に上書きされる
+
+	* この際に、既存WAY.TAGsに"height=*"があれば WAY.TAGの値は上書きされる
+	* TAG "building"のvalue は、既存WAY.TAGの値に上書き
+	* "source"TAGは WAYで書き換えられる。
+
 * WAY.TAGsに"fixme=PLATEAUデータで更新されています"を追加
 
+#### pattern A-3
+
+オーバーラップする既存WAYが複数存在する場合
+
+* 重なる面積が最大の既存WAYを'更新'する
+* 他の重複する既存WAYは'削除'する。'fixme=PLATEAUデータで置き換えられました'
 
 
 ------
