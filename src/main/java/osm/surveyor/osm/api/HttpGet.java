@@ -22,7 +22,7 @@ import org.xml.sax.SAXException;
 public class HttpGet {
 	//public static String host = "http://api06.dev.openstreetmap.org";
 	//public static String host = "http://api.openstreetmap.org";
-	public static String host = "https://www.openstreetmap.org";
+	public String host = "https://www.openstreetmap.org";
 	
 	public static void main(String[] args) throws MalformedURLException, ProtocolException, IOException, ParserConfigurationException, SAXException {
 		HttpGet obj = new HttpGet();
@@ -50,6 +50,14 @@ public class HttpGet {
 		HttpGET.getMap(35.4369651010672d, 139.426400070915d, 50);	// 綾瀬市役所
          */
     }
+	
+	public HttpGet() {
+		this.host = "https://www.openstreetmap.org";
+	}
+	
+	public String getHost() {
+		return host;
+	}
 	
 	public GetResponse getVersions() throws IOException, ParserConfigurationException, SAXException {
 		String urlstr = host + "/api/versions";

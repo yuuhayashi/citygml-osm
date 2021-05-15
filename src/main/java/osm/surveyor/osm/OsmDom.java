@@ -30,8 +30,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
-import osm.surveyor.osm.api.GetResponse;
-import osm.surveyor.osm.api.HttpGet;
+import osm.surveyor.osm.api.*;
 
 /**
  * Osmファイルをドムる
@@ -131,8 +130,9 @@ public class OsmDom {
 		double maxlon = Double.parseDouble(bounds.maxlon);
 		double minlat = Double.parseDouble(bounds.minlat);
 		double maxlat = Double.parseDouble(bounds.maxlat);
-
-		String urlstr = HttpGet.host + "/api/0.6/map" + "?bbox="+ Double.toString(minlon) +","+ Double.toString(minlat) +","+ Double.toString(maxlon) +","+ Double.toString(maxlat);
+		
+		HttpGet http = new HttpGet();
+		String urlstr = http.getHost() + "/api/0.6/map" + "?bbox="+ Double.toString(minlon) +","+ Double.toString(minlat) +","+ Double.toString(maxlon) +","+ Double.toString(maxlat);
         System.out.println("URL: " + urlstr);
         URL url = new URL(urlstr);
         
@@ -155,11 +155,10 @@ public class OsmDom {
 	
 	/**
 	 * 取得したデータからRELATION:buildingオブジェクトのみ抽出する
-	 * @param sdom	抽出元
+	 * @param ddom	抽出 destination
 	 * @return	抽出された新しいインスタンス
 	 */
-	public OsmDom filterBuilding() {
-		OsmDom ddom = new OsmDom();
+	public OsmDom filterBuilding(OsmDom ddom) {
 		ddom.setBounds(this.getBounds());
 
 		// 取得したデータからRELATION:buildingオブジェクトのみ抽出する
@@ -210,7 +209,8 @@ public class OsmDom {
     public void export(File out) throws ParserConfigurationException {
 		DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 		Document document = documentBuilder.newDocument();
-    	Node osm = (new ElementOsm()).toNode(document);
+		ElementOsm ooo = new ElementOsm();
+    	Node osm = ooo.toNode(document);
     	osm.appendChild(bounds.toNode(document));
     	for (String key : nodes.keySet()) {
         	osm.appendChild(nodes.get(key).toNode(document));

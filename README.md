@@ -268,6 +268,27 @@ OSMファイルへの変換項目
 
 ![sample e OSM](doc/building/sample-e/sample-e-osm.png)
 
+### 既存POIとのオーバーラップ
+
+#### pattern A-1
+
+オーバーラップする既存WAYが存在しない場合
+
+* 例: '13111-bldg-365'
+* WAYを"action=modify"にする
+
+#### pattern A-2
+
+オーバーラップする既存WAYが存在する場合
+
+* 例: '13111-bldg-466'
+* WAYを"action=modify"にする
+* WAY.IDを既存WAYのWAY.IDに変更する
+* WAY.TAGsに既存WAY.TAGsを上書きする
+** この際に、既存WAY.TAGsに"height=*"があれば既存WAY.TAGの値に上書きされる
+* WAY.TAGsに"fixme=PLATEAUデータで更新されています"を追加
+
+
 
 ------
 

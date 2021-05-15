@@ -53,6 +53,7 @@ public class OsmUpdater {
 						if (filename.endsWith(suffix1) && !filename.endsWith(suffix2) && !filename.endsWith(suffix3)) {
 							try {
 								OsmUpdater updater = new OsmUpdater(file);
+								updater.download();
 								updater.load();
 								filename = filename.substring(0, filename.length() - suffix1.length());
 								updater.ddom.export(Paths.get(filename + suffix2).toFile());
@@ -70,9 +71,9 @@ public class OsmUpdater {
 		}
 	}
 	
-	OsmDom dom;		// source "*.osm" file.	
-	OsmDom sdom;
-	OsmDom ddom;
+	public OsmDom dom;		// source "*.osm" file.	
+	public OsmDom sdom;
+	public OsmDom ddom;
 	
 	public OsmUpdater(String filepath) throws ParserConfigurationException, SAXException, IOException, ParseException {
 		this(Paths.get(filepath).toFile());
@@ -84,7 +85,36 @@ public class OsmUpdater {
 	}
 	
 	/**
-	 * dom
+	 * OpenStreetMapから 既存データを収録する
+	 * 
+	 * @throws MalformedURLException
+	 * @throws ProtocolException
+	 * @throws IOException
+	 * @throws ParserConfigurationException
+	 * @throws SAXException
+	 */
+	public void download() throws MalformedURLException, ProtocolException, IOException, ParserConfigurationException, SAXException {
+		// 指定されたOSMファイルの<bound/>を取得する
+		ElementBounds bounds = dom.getBounds();
+
+		OsmDom org = new OsmDom();
+		org.setBounds(bounds);
+		
+		// エクスポート用のOsmDomを生成する
+		this.ddom = new OsmDom();
+		this.ddom.setBounds(bounds);
+
+		// OSMから<bound>範囲内の現在のデータを取得する
+		org.downloadMap();
+		
+		// "building"関係のPOIのみに絞る
+		this.sdom = new OsmDom();
+		org.filterBuilding(this.sdom);
+	}
+	
+	/**
+	 * 既存POIとマージする
+	 * 
 	 * @throws MalformedURLException
 	 * @throws ProtocolException
 	 * @throws IOException
@@ -92,22 +122,6 @@ public class OsmUpdater {
 	 * @throws SAXException
 	 */
 	public void load() throws MalformedURLException, ProtocolException, IOException, ParserConfigurationException, SAXException {
-		// 指定されたOSMファイルの<bound/>を取得する
-		ElementBounds bounds = dom.getBounds();
-
-		sdom = new OsmDom();
-		sdom.setBounds(bounds);
-		
-		// エクスポート用のOsmDomを生成する
-		ddom = new OsmDom();
-		ddom.setBounds(bounds);
-
-		// OSMから<bound>範囲内の現在のデータを取得する
-		sdom.downloadMap();
-		
-		// "building"関係のPOIのみに絞る
-		sdom = sdom.filterBuilding();
-		
         try (Postgis db = new Postgis("osmdb")) {
             db.initTable();		// データベースの初期化
             
@@ -199,6 +213,7 @@ public class OsmUpdater {
 						if (member.type.equals("way")) {
 	        				ElementWay sWay = overlappingMap.get(member.ref);
 	            			if (sWay != null) {
+	                    		sWay.tags.toMultipolygonMember();
 	            				member.ref = sWay.id;
 	            			}
 						}
@@ -225,7 +240,7 @@ public class OsmUpdater {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * tag.key=`building*` を有するPOIを'building'POIとみなす
 	 * 

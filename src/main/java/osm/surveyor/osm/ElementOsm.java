@@ -18,6 +18,10 @@ public class ElementOsm {
 	public String version = "0.6";
 	public String generator = "JOSM";
 	
+	public ElementOsm() {
+		super();
+	}
+	
 	public Node toNode(Document document) throws ParserConfigurationException {
 		Element osm = document.createElement("osm");
         osm.setAttribute("version", version);

@@ -1,6 +1,5 @@
 package osm.surveyor.osm;
 
-import java.util.HashMap;
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -25,10 +24,10 @@ public class ElementOsmapi implements Cloneable {
 	public String version = null;
 	public boolean orignal = false;
 	public String changeset = null;
-	public HashMap<String, ElementTag> tags;
+	public TagMap tags;
 
 	public ElementOsmapi(long id) {
-		tags = new HashMap<>();
+		tags = new TagMap();
 		this.id = id;
 	}
 	
@@ -57,7 +56,7 @@ public class ElementOsmapi implements Cloneable {
 		ElementOsmapi copy = null;
 		try {
 			copy = (ElementOsmapi)super.clone();
-			copy.tags = new HashMap<>();
+			copy.tags = new TagMap();
 			if (tags != null) {
 				for (String k : tags.keySet()) {
 					ElementTag tag = tags.get(k);

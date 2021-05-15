@@ -1,8 +1,6 @@
 package osm.surveyor.osm.marge;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import osm.surveyor.osm.ElementMember;
 import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementTag;
@@ -12,6 +10,7 @@ import osm.surveyor.osm.OsmLine;
 import osm.surveyor.osm.RelationBuilding;
 import osm.surveyor.osm.RelationMap;
 import osm.surveyor.osm.RelationMultipolygon;
+import osm.surveyor.osm.TagMap;
 
 public class OutlineFactory {
 	
@@ -106,7 +105,7 @@ public class OutlineFactory {
 					for (ElementMember mem : building.members) {
 						if (mem.role.equals("outline") && mem.type.equals("way")) {
 							ElementWay outlineWay = osm.ways.get(mem.ref);
-							outlineWay.tags = new HashMap<String,ElementTag>();
+							outlineWay.tags = new TagMap();
 							outlineWay.addTag("source", osm.getSource());
 							multi.addMember(outlineWay, "outer");
 							building.removeMember(mem.ref);
