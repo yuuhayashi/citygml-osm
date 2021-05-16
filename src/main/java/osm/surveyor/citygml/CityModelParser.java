@@ -1,5 +1,6 @@
 package osm.surveyor.citygml;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
@@ -80,8 +81,9 @@ public class CityModelParser extends DefaultHandler {
 	boolean edgeFull = false;						// 建物形状がセットされたら true
 	RelationBuilding roof = null;					// <bldg:lod0RoofEdge/>
 	RelationBuilding footPrint = null;				// <bldg:lod0FootPrint/>
+	ArrayList<ElementWay> solids = null;			// <bldg:lod1Solid/>
 	RelationMultipolygon multipolygon = null;		// <gml:Polygon/>
-	ElementMember member = null;					// <gml:Polygon/>
+	ElementMember member = null;					// <gml:exterior/>,<gml:interior/>
     ElementWay way = null;							// <gml:LinearRing/>
 	
     /*
@@ -164,6 +166,9 @@ public class CityModelParser extends DefaultHandler {
 			footPrint = new RelationBuilding(osm.getNewId());
 			edgeFull = false;
 		}
+		else if(qName.equals("bldg:lod1Solid")){
+			solids = new ArrayList<>();
+		}
 		else if(qName.equals("gml:Polygon")){
 			if (!edgeFull) {
 				multipolygon = new RelationMultipolygon(osm.getNewId());
@@ -242,9 +247,29 @@ public class CityModelParser extends DefaultHandler {
 
 		else if(qName.equals("bldg:Building")){
 			if (building != null) {
+				String ele = building.getTagValue("ele");
+				String maxele = building.getTagValue("maxele");
+				if (maxele != null) {
+					building.tags.remove("maxele");
+				}
+				if (building.getTagValue("height") == null) {
+					if (maxele != null) {
+						if (ele != null) {
+							double hi = Double.parseDouble(maxele) - Double.parseDouble(ele);
+							building.addTag("height", Double.toString(hi));
+						}
+						else {
+							double hi = Double.parseDouble(maxele);
+							building.addTag("height", Double.toString(hi));
+						}
+					}
+				}
 				for (ElementMember mem : building.members) {
 					if (mem.type.equals("way")) {
 						ElementWay way = osm.ways.get(Long.toString(mem.ref));
+						way.tags.remove("maxele");
+						way.addTag("height", building.getTagValue("height"));
+						way.addTag("ele", building.getTagValue("ele"));
 						way.addTag("addr:ref", building.getTagValue("addr:ref"));
 						way.addTag("addr:full", building.getTagValue("addr:full"));
 						way.addTag("source", getSourceStr(buildingId));
@@ -254,6 +279,9 @@ public class CityModelParser extends DefaultHandler {
 					}
 					else if (mem.type.equals("relation")) {
 						ElementRelation relation = osm.relations.get(Long.toString(mem.ref));
+						relation.tags.remove("maxele");
+						relation.addTag("height", building.getTagValue("height"));
+						relation.addTag("ele", building.getTagValue("ele"));
 						relation.addTag("addr:ref", building.getTagValue("addr:ref"));
 						relation.addTag("addr:full", building.getTagValue("addr:full"));
 						relation.addTag("source", getSourceStr(buildingId));
@@ -287,6 +315,9 @@ public class CityModelParser extends DefaultHandler {
     	else if(qName.equals("bldg:measuredHeight")){
 			if ((measuredHeight != null) && (measuredHeight.isEmpty()) && (outSb != null)) {
 				measuredHeight = outSb.toString();
+				if (building != null) {
+					building.addTag("height", measuredHeight);
+				}
 			}
 			outSb = null;
 		}
@@ -327,6 +358,42 @@ public class CityModelParser extends DefaultHandler {
     			}
     		}
 		}
+    	else if(qName.equals("bldg:lod1Solid")){
+    		if (solids != null) {
+				String maxheight = "-9999.9";
+				String minheight = "99999.9";
+				for (ElementWay way : solids) {
+					String elestr = way.getTagValue("ele");
+					String histr = way.getTagValue("maxele");
+					if (elestr != null) {
+						double ele = Double.parseDouble(elestr);
+						double min = Double.parseDouble(minheight);
+						if (ele < min) {
+							minheight = elestr;
+						}
+						
+						if (histr != null) {
+							double hi = Double.parseDouble(histr);
+							double max = Double.parseDouble(maxheight);
+							if (hi > max) {
+								maxheight = histr;
+							}
+						}
+					}
+				}
+				double min = Double.parseDouble(minheight);
+				double max = Double.parseDouble(maxheight);
+				if (min < 90000d) {
+					building.addTag("ele", minheight);
+				}
+				if (max > -9000d) {
+					if ((max - min) > 1d) {
+						building.addTag("maxele", Double.toString(max));
+					}
+				}
+				solids = null;
+    		}
+		}
 		else if(qName.equals("gml:Polygon")){
 			if ((multipolygon != null) && !multipolygon.members.isEmpty()) {
 				if (roof != null) {
@@ -341,67 +408,73 @@ public class CityModelParser extends DefaultHandler {
 			}
 		}
 		else if (qName.equals("gml:exterior")){
-			if ((way != null) && (member != null)) {
-				way.addTag("source", getSourceStr(buildingId));
-				if (!edgeFull) {
-					if (roof != null) {
-						if ((name != null) && !name.isEmpty()) {
-							way.addTag("name", name);
+			if (way != null) {
+				if (member != null) {
+					way.addTag("source", getSourceStr(buildingId));
+					if (!edgeFull) {
+						if (roof != null) {
+							if ((name != null) && !name.isEmpty()) {
+								way.addTag("name", name);
+							}
+							ElementWay part = way.copy(osm.getNewId());
+							part.addTag("building:part", "yes");
+							osm.ways.put(part);
+							roof.copyTag(part);
+							roof.replaceTag("building:part", new ElementTag("building", "yes"));
+							roof.addMember(part, "part");
+							edgeFull = true;
 						}
-						ElementWay part = way.copy(osm.getNewId());
-						part.addTag("building:part", "yes");
-						osm.ways.put(part);
-						roof.copyTag(part);
-						roof.replaceTag("building:part", new ElementTag("building", "yes"));
-						roof.addMember(part, "part");
-						edgeFull = true;
+						else if (footPrint != null) {
+							if ((name != null) && !name.isEmpty()) {
+								way.addTag("name", name);
+							}
+							//String ele = way.getTagValue("height");
+							//if (ele != null) {
+							//	way.tags.remove("height");
+							//	way.addTag("ele", ele);
+							//}
+							ElementWay part = way.copy(osm.getNewId());
+							part.addTag("building:part", "yes");
+							osm.ways.put(part);
+							footPrint.copyTag(part);
+							footPrint.replaceTag("building:part", new ElementTag("building", "yes"));
+							footPrint.addMember(part, "part");
+							edgeFull = true;
+						}
 					}
-					else if (footPrint != null) {
-						if ((name != null) && !name.isEmpty()) {
-							way.addTag("name", name);
-						}
-						String ele = way.getTagValue("height");
-						if (ele != null) {
-							way.tags.remove("height");
-							way.addTag("ele", ele);
-						}
-	    				if ((measuredHeight != null) && !measuredHeight.isEmpty()) {
-	        				way.addTag("height", new String(measuredHeight));
-	        				measuredHeight = null;
-	    				}
-						ElementWay part = way.copy(osm.getNewId());
-						part.addTag("building:part", "yes");
-						osm.ways.put(part);
-						footPrint.copyTag(part);
-						footPrint.replaceTag("building:part", new ElementTag("building", "yes"));
-						footPrint.addMember(part, "part");
-						edgeFull = true;
+					if (multipolygon != null) {
+						ElementWay outer = way.copy(osm.getNewId());
+						multipolygon.copyTag(outer);
+						outer.tags.remove("name");
+						outer.tags.remove("height");
+						outer.tags.remove("maxele");
+						outer.tags.remove("ele");
+						osm.ways.put(outer);
+						multipolygon.addMember(outer, "outer");
 					}
+					member = null;
 				}
-				if (multipolygon != null) {
-					ElementWay outer = way.copy(osm.getNewId());
-					multipolygon.copyTag(outer);
-					outer.tags.remove("name");
-					outer.tags.remove("height");
-					outer.tags.remove("ele");
-					osm.ways.put(outer);
-					multipolygon.addMember(outer, "outer");
+				if (solids != null) {
+					solids.add(way.clone());
 				}
+				way = null;
 			}
-			way = null;
-			member = null;
 		}
 		else if (qName.equals("gml:interior")){
-			if ((way != null) && (member != null)) {
-				if (multipolygon != null) {
-					way.tags.remove("height");
-					way.addTag("source", getSourceStr(buildingId));
-					osm.ways.put(way);
-					multipolygon.addMember(way, "inner");
+			if (way != null) {
+				if (member != null) {
+					if (multipolygon != null) {
+						way.tags.remove("height");
+						way.tags.remove("maxele");
+						way.tags.remove("ele");
+						way.addTag("source", getSourceStr(buildingId));
+						osm.ways.put(way);
+						multipolygon.addMember(way, "inner");
+					}
+					member = null;
 				}
+				way = null;
 			}
-			way = null;
-			member = null;
 		}
 		else if(qName.equals("gml:LinearRing")){
 			// <gml:LinearRing>
@@ -416,6 +489,19 @@ public class CityModelParser extends DefaultHandler {
 			// <gml:posList>35.541657275471835 139.7156383865409 14.072000000000001 35.542252321638614 139.71535363948732 14.072000000000001 35.54210367440277 139.7148860223014 14.072000000000001 35.54206164434519 139.71490626649856 14.072000000000001 35.5420440155531 139.7148536858433 14.072000000000001 35.541981356256336 139.7146575788015 14.072000000000001 35.54142914946131 139.71491844541285 14.072000000000001 35.54153100551663 139.71523889596378 14.072000000000001 35.541657275471835 139.7156383865409 14.072000000000001</gml:posList>
 			if (outSb != null) {
 				String height = null;
+				String maxele = "-9999.9";
+				String minele = "99999.9";
+				if (way != null) {
+					String ele = way.getTagValue("ele");
+					String hi = way.getTagValue("maxele");
+					if (ele != null) {
+						minele = ele;
+					}
+					if (hi != null) {
+						maxele = hi;
+					}
+				}
+				
 				StringTokenizer st = new StringTokenizer(outSb.toString(), " ");
 				while(true) {
 					ElementNode node;
@@ -440,6 +526,12 @@ public class CityModelParser extends DefaultHandler {
 					// height
 					if (st.hasMoreTokens()) {
 						height = st.nextToken();
+						if (Double.parseDouble(height) > Double.parseDouble(maxele)) {
+							maxele = height;
+						}
+						if (Double.parseDouble(height) < Double.parseDouble(minele)) {
+							minele = height;
+						}
 						if (way != null) {
 							way.addNode(putNode(node.clone()));
 						}
@@ -449,14 +541,21 @@ public class CityModelParser extends DefaultHandler {
 					}
 				}
 				if (way != null) {
-					way.addTag("height", height);
+					double min = Double.parseDouble(minele);
+					double max = Double.parseDouble(maxele);
+					if (min < 90000.0d) {
+						way.addTag("ele", minele);
+					}
+					if (max > -1000.0d) {
+						way.addTag("maxele", Double.toString(max));
+					}
 				}
 			}
 			outSb = null;
 		}
 		
 
-		else if(qName.equals("xAL:LocalityName")){
+		else if(qName.equals("xAL:LocalityName")) {
 			// <xAL:LocalityName>東京都大田区南六郷三丁目</xAL:LocalityName>
 			if (outSb != null) {
 				if (building != null) {

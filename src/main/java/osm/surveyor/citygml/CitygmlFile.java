@@ -66,8 +66,8 @@ public class CitygmlFile extends File {
 			    	// Relation:multipolygon の MaxHeightを outline->Multipolygonへ設定する
 			    	(new RelationMarge(osm)).relationMarge();
 		            
-		            // (3) メンバーが一つしかないRelation:building を削除する
-			    	// (3) メンバーが一つしかないRelation:multipolygon と polygon:member を削除する
+					// (3) メンバーが一つしかないRelation:building を削除する
+				    	// (3) メンバーが一つしかないRelation:multipolygon と polygon:member を削除する
 			    	(new BuildingGarbage(osm)).garbage();
 		            
 		            // (4) Relation:building->member:role=port のWay:outlineを作成する
@@ -80,7 +80,7 @@ public class CitygmlFile extends File {
 		            // (5) "outline"と"part"が重複しているPART を削除する
 		            OsmMargeWay.partGabegi(osm);
 		            
-		            // ファイルへエクスポートする
+					// ファイルへエクスポートする
 			    	osm.export(new File(filename + ".osm"));
 			    	
 				} catch (ParserConfigurationException e) {

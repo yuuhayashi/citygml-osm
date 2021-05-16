@@ -104,20 +104,23 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 | データ範囲	| `gml:boundedBy`	| データ対象範囲									|
 | ソース名	| `gml:Envelope`-`srsName`	| データソース名称						|
 | 建築物		| `bldg:Building`	| ビルディングPOIに相当								|
-| 屋根形状	| `bldg:lod0RoofEdge`	| 建物の屋根形状								|
-| 床形状		| `bldg:lod0FootPrint` | 建物の床形状								|
+| 屋根形状	| `bldg:lod0RoofEdge`	| 建築物の屋根形状								|
+| 床形状		| `bldg:lod0FootPrint` | 建築物の床形状								|
+| 建築物形状	| `bldg:lod1Solid`	| 建築物の形状を示す立体							|
 | ID		| `gml:id`			| GMLでの管理ID									|
 | 名称		| `gml:name`		| 重要な建物にのみ設定されている						|
-| 建物ID		| `gen:stringAttribute`-`name="建物ID"`	| 建物に付与された識別ID	|
+| 建物ID		| `gen:stringAttribute`-`name="建物ID"`	| 建築物に付与された識別ID	|
 | 自治体コード	| `gen:stringAttribute`-`name="13_*"`	| "13_区市町村コード_大字・町コード_町・丁目コード" |
 | 計測高		| `bldg:measuredHeight`	| ？										|
 | 住所		| `xAL:LocalityName`-`Type="Town"`	| 							|
 
-- **建物**<br/>「建物POI」に相当する。
+- **建築物**<br/>「建物POI」に相当する。
 
- - **屋根形状**<br/>形状には外郭線（`gml:exterior`）と内線(`gml:interior`)があり、'[{緯度、経度、高度}]'で表される<br/>'高度'は*建物の高さ*を表す
+ - **屋根形状**<br/>形状には外郭線（`gml:exterior`）と内線(`gml:interior`)があり、'[{緯度、経度、高度}]'で表される<br/>'高度'は*屋根の標高*を表す
 
  - **床形状**<br/>形状には外郭線（`gml:exterior`）と内線(`gml:interior`)があり、'[{緯度、経度、高度}]'で表される<br/>'高度'は建物床の*標高*を表す
+
+ - **建築物形状**<br/>建築物の水平的な位置を示す面に、一律の高さを与えた立体。'[{緯度、経度、高度}]'で表される<br/>'高度'は立体面の*標高*を表す。この標高から建築物の「最低標高=`ele`」と「最高標高」を取得して「建物の`height`＝（最高標高）ー（最低標高）」を算出する。
 
 - **計測高**<br/>「屋根形状」の高さよりも低い値が設定されているケースがある
 

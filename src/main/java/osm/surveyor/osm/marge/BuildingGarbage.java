@@ -91,6 +91,8 @@ public class BuildingGarbage {
 	 * 	- コピー先とコピー元に"bilding"が存在しなければ"building=yes"を補完する
 	 * 	- "addr:ref"はコピーしない
 	 * 	- "addr:full"はコピーしない
+	 * 	- "height"はコピーしない
+	 * 	- "ele"はコピーしない
 	 * 	- "source"はコピーしない
 	 * @param tags
 	 * @param dest
@@ -122,6 +124,8 @@ public class BuildingGarbage {
 			else if (tag.k.equals("source")) {
 			}
 			else if (tag.k.equals("height")) {
+			}
+			else if (tag.k.equals("ele")) {
 			}
 			else {
 				dest.addTag(key, tag.v);

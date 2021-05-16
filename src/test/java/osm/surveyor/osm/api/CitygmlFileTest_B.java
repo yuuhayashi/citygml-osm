@@ -40,7 +40,8 @@ public class CitygmlFileTest_B {
 					assertThat(relation.getTagValue("building"), is("yes"));
 					assertThat(relation.getTagValue("addr:full"), is("東京都大田区大森西五丁目"));
 					assertThat(relation.getTagValue("addr:ref"), is("13111006005"));
-					assertThat(relation.getTagValue("height"), is("17.582"));
+					assertThat(relation.getTagValue("height"), is("16.9"));
+					assertThat(relation.getTagValue("ele"), is("2.507"));
 					assertThat(relation.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697"));
 					int outerCnt = 0;
 					int innerCnt = 0;

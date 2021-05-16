@@ -87,7 +87,10 @@ public class OsmUpdaterTest_B {
 	}
 
 	/**
-	 * "sample_b_bldg_6697_op2.org.osm"の出力
+	 * "sample_b_bldg_6697_op2.org.osm"のDownload
+	 * 		https://www.openstreetmap.org/way/757291544
+	 * 		https://www.openstreetmap.org/way/757291552
+	 * 		https://www.openstreetmap.org/way/757291554
 	 */
 	@Test
 	@Category(DetailTests.class)
@@ -111,6 +114,8 @@ public class OsmUpdaterTest_B {
 				if (way.action != null) {
 					switch (way.action) {
 					case "delete":
+						// https://www.openstreetmap.org/way/757291554
+						// https://www.openstreetmap.org/way/757291552
 						delCnt++;
 						break;
 					case "modify":

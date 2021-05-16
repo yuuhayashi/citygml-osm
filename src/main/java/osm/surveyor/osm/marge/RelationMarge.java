@@ -26,6 +26,9 @@ public class RelationMarge {
 		
 		// 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる
 		while(relationMarge1(checked));
+		
+		// "ele"と"height"を統合してリレーションに設定する
+		margeHeightValue(checked);
 	}
 
 	boolean relationMarge1(RelationMap checked) {
@@ -41,12 +44,6 @@ public class RelationMarge {
 							ElementRelation destRelation = null;
 							if ((destRelation = checkParts(checked, way)) != null) {
 								way.member = true;
-								
-								String maxheight = destRelation.getTagValue("height");
-								String height = way.getTagValue("height");
-								if (Double.parseDouble(height) > Double.parseDouble(maxheight)) {
-									destRelation.addTag("height", height);
-								}
 								
 								String maxname = destRelation.getTagValue("name");
 								if (maxname == null) {
@@ -81,6 +78,77 @@ public class RelationMarge {
 		}
 		return false;
 	}
+	
+	/**
+	 * "ele"と"height"を統合してリレーションに設定する
+	 * @param relations
+	 */
+	void margeHeightValue(RelationMap relations) {
+		for (String key : relations.keySet()) {
+			ElementRelation relation = relations.get(key);
+			String minele = null;
+			for (ElementMember member : relation.members) {
+				if (member.type.equals("way")) {
+					ElementWay way = osm.ways.get(member.ref);
+					String ele = way.getTagValue("ele");
+					if (ele != null) {
+						if (minele == null) {
+							minele = ele;
+						}
+						else {
+							if (Double.parseDouble(minele) > Double.parseDouble(ele)) {
+								minele = ele;
+							}
+						}
+					}
+				}
+			}
+			String maxele = null;
+			for (ElementMember member : relation.members) {
+				if (member.type.equals("way")) {
+					ElementWay way = osm.ways.get(member.ref);
+					String height = calcHeight(minele, way.getTagValue("ele"), way.getTagValue("height"));
+					if (height != null) {
+						if (maxele == null) {
+							maxele = height;
+						}
+						else {
+							if (Double.parseDouble(maxele) < Double.parseDouble(height)) {
+								maxele = height;
+							}
+						}
+					}
+				}
+			}
+			if (maxele != null) {
+				relation.addTag("height", maxele);
+			}
+			if (minele != null) {
+				relation.addTag("ele", minele);
+			}
+		}
+	}
+	
+	String calcHeight(String minele, String ele, String hi) {
+		if (hi == null) {
+			return null;
+		}
+		else {
+			if (minele == null) {
+				return hi;
+			}
+			else {
+				if (ele == null) {
+					return hi;
+				}
+				else {
+					double h = Double.parseDouble(ele) - Double.parseDouble(minele) + Double.parseDouble(hi);
+					return Double.toString(h);
+				}
+			}
+		}
+	}
+
 	
 	private ElementRelation checkParts(RelationMap checked, ElementWay way) {
 		for (String relationid : checked.keySet()) {
