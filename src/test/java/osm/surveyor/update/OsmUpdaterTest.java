@@ -10,8 +10,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import osm.surveyor.update.OsmUpdater;
-
 public class OsmUpdaterTest {
 
 	@BeforeClass
