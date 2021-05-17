@@ -47,18 +47,20 @@ public class OsmUpdaterTest_A {
 					assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-365"));
 					assertThat(way.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 					assertThat(way.getTagValue("addr:ref"), is("13111058003"));
-					assertThat(way.getTagValue("height"), is("5.127"));
+					assertThat(way.getTagValue("height"), is("2.4"));
+					assertThat(way.getTagValue("ele"), is("2.749"));
 					assertThat(way.getTagValue("building"), is("yes"));
-					assertThat(way.tags.size(), is(5));
+					assertThat(way.tags.size(), is(6));
 				}
 				else if (way.getTagValue("source").endsWith("; 13111-bldg-466")) {
 					assertThat(way.action, is("modify"));
 					assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-466"));
 					assertThat(way.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
-					assertThat(way.getTagValue("height"), is("6.84"));
+					assertThat(way.getTagValue("height"), is("4.6"));
+					assertThat(way.getTagValue("ele"), is("2.671"));
 					assertThat(way.getTagValue("building"), is("yes"));
 					assertThat(way.getTagValue("fixme"), is("PLATEAUデータで更新されています"));
-					assertThat(way.tags.size(), is(5));
+					assertThat(way.tags.size(), is(6));
 				}
 			}
 			assertThat(osm.ways.size(), is(2));
@@ -177,7 +179,8 @@ public class OsmUpdaterTest_A {
 					assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-365"));
 					assertThat(way.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 					assertThat(way.getTagValue("addr:ref"), is("13111058003"));
-					assertThat(way.getTagValue("height"), is("5.127"));
+					assertThat(way.getTagValue("height"), is("2.4"));
+					assertThat(way.getTagValue("ele"), is("2.749"));
 					assertThat(way.getTagValue("building"), is("yes"));
 					assertThat(way.tags.size(), is(5));
 				}
@@ -188,7 +191,8 @@ public class OsmUpdaterTest_A {
 					assertThat(way.changeset, is("12032994"));
 					assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-466"));
 					assertThat(way.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
-					assertThat(way.getTagValue("height"), is("6.84"));
+					assertThat(way.getTagValue("height"), is("4.6"));
+					assertThat(way.getTagValue("ele"), is("2.671"));
 					assertThat(way.getTagValue("building"), is("parking"));
 					assertThat(way.getTagValue("fixme"), is("PLATEAUデータで更新されています"));
 					assertThat(way.tags.size(), is(5));

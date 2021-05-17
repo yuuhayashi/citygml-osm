@@ -104,25 +104,43 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 | データ範囲	| `gml:boundedBy`	| データ対象範囲									|
 | ソース名	| `gml:Envelope`-`srsName`	| データソース名称						|
 | 建築物		| `bldg:Building`	| ビルディングPOIに相当								|
-| 屋根形状	| `bldg:lod0RoofEdge`	| 建築物の屋根形状								|
-| 床形状		| `bldg:lod0FootPrint` | 建築物の床形状								|
+| 屋根外形	| `bldg:lod0RoofEdge`	| 建築物の屋根形状								|
+| 接地面		| `bldg:lod0FootPrint` | 建築物の床形状								|
 | 建築物形状	| `bldg:lod1Solid`	| 建築物の形状を示す立体							|
 | ID		| `gml:id`			| GMLでの管理ID									|
 | 名称		| `gml:name`		| 重要な建物にのみ設定されている						|
 | 建物ID		| `gen:stringAttribute`-`name="建物ID"`	| 建築物に付与された識別ID	|
 | 自治体コード	| `gen:stringAttribute`-`name="13_*"`	| "13_区市町村コード_大字・町コード_町・丁目コード" |
-| 計測高		| `bldg:measuredHeight`	| ？										|
+| 計測高さ	| `bldg:measuredHeight`	| 地盤面からの建築物の高さ(m)				|
 | 住所		| `xAL:LocalityName`-`Type="Town"`	| 							|
 
 - **建築物**<br/>「建物POI」に相当する。
 
- - **屋根形状**<br/>形状には外郭線（`gml:exterior`）と内線(`gml:interior`)があり、'[{緯度、経度、高度}]'で表される<br/>'高度'は*屋根の標高*を表す
+	- **屋根外形**<br/>形状には外郭線（`gml:exterior`）と内線(`gml:interior`)があり、'[{緯度、経度、高度}]'で表される<br/>'高度'は*屋根の標高*を表す
 
- - **床形状**<br/>形状には外郭線（`gml:exterior`）と内線(`gml:interior`)があり、'[{緯度、経度、高度}]'で表される<br/>'高度'は建物床の*標高*を表す
+	- **接地面**<br/>形状には外郭線（`gml:exterior`）と内線(`gml:interior`)があり、'[{緯度、経度、高度}]'で表される<br/>'高度'は建物床の*標高*を表す
 
- - **建築物形状**<br/>建築物の水平的な位置を示す面に、一律の高さを与えた立体。'[{緯度、経度、高度}]'で表される<br/>'高度'は立体面の*標高*を表す。この標高から建築物の「最低標高=`ele`」と「最高標高」を取得して「建物の`height`＝（最高標高）ー（最低標高）」を算出する。
+	- **建築物形状**<br/>建築物の水平的な位置を示す面に、一律の高さを与えた立体。'[{緯度、経度、高度}]'で表される<br/>'高度'は立体面の*標高*を表す。この標高から建築物の「最低標高=`ele`」と「最高標高」を取得して「建物の`height`＝（最高標高）ー（最低標高）」を算出する。
 
-- **計測高**<br/>「屋根形状」の高さよりも低い値が設定されているケースがある
+	- **計測高さ**<br/>計測により取得した建築物の地上の最低点から最高点までの高さ(m)。
+
+その他、仕様には記載されているがデータで確認が取れないもの
+
+- 「分類 `bldg:class`」 建築物の形態による区分 --> コードリスト: 'Building_class.xml'
+
+- 「用途 `bldg:usage`」 建築物の主な使い道 --> コードリスト: 'Building_usage.xml'
+
+- 「建築年 `bldg:yearOfConstruction`」 建築物が建築された年
+
+- 「解体年 `bldg:yearOfDemolition`」 建築物が解体された年
+
+- 「屋根の種別 `bldg:roofType`」 建築物の屋根形状の種類 --> 'Building_roofType.xml'
+
+- 「地上階数 `bldg:storeysAboveGround`」 地上階の階数
+
+- 「地下階数 `bldg:storeysBelowGround`」 地下階の階数
+
+- 「`gen::stringAttribute 建物用途コード番号`」 --> コードリスト: 'Building_usageDetail.xml'
 
 
 ## "building" OSMフォーマットへの変換
@@ -144,8 +162,16 @@ OSMファイルへの変換項目
 | 建物名称	| `k="building:name"`		| リレーション:buildingのメンバーの場合は、`k="name"`		|
 | 住所コード	| `k="addr:ref"`			| **自治体コード** ("13_区市町村コード_大字・町コード_町・丁目コード") 	|
 | 住所		| `k="addr:full"`			| **住所**											|
-| 建物高		| `k="height"`				| **屋根形状の高度**、屋根形状データがない場合には、**計測高**	|
-| 標高		| `k="ele"`				| **床形状の高度**										|
+| 建物高さ	| `k="height"`				| **計測高さ**										|
+| 標高		| `k="ele"`				| **建築物形状の高度**	`bldg:lod1Solid`				|
+
+- 建物高さ `ele`
+	- `bldg:lod1Solid`の'高度'値の最低値
+	- 複合ビルの場合は、全ビルパーツの最低値
+
+- 建物高さ `height`
+	- `building:height`とはしない
+	- 複合ビルの場合は、複合ビルの'最低標高'を求め、全ビルパーツの'最低標高'からの'高さ'の最大値。'標高'が設定されていないビルパーツは全ビルパーツの'最低標高’からの高さが設定されているとみなす。
 
 
 ### POI構成
