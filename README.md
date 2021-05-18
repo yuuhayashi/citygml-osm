@@ -145,7 +145,7 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 ## "building" OSMフォーマットへの変換
 
-### Wayへのタグ付け
+### タグ付け
 
 OSMファイルへの変換項目
 
@@ -162,8 +162,14 @@ OSMファイルへの変換項目
 | 建物名称	| `k="building:name"`		| リレーション:buildingのメンバーの場合は、`k="name"`		|
 | 住所コード	| `k="addr:ref"`			| **自治体コード** ("13_区市町村コード_大字・町コード_町・丁目コード") 	|
 | 住所		| `k="addr:full"`			| **住所**											|
-| 建物高さ	| `k="height"`				| **計測高さ**										|
-| 標高		| `k="ele"`				| **建築物形状の高度**	`bldg:lod1Solid`				|
+| 建物高さ	| `k="height"`				| **計測高さ**`bldg:measuredHeight`, `bldg:measuredHeight`がない場合は、`lod1Solid`と`lod0[RoofEdge,FoodPrint`から算出する	|
+| 標高		| `k="ele"`				| **建築物形状の高度**	`bldg:lod1Solid`の最低高度		|
+
+- 建物名称 `k="building:name"`
+	- 建物ポリゴン `Relation::type="multipolygon"` の場合は、`k="name"`とする
+	- 建物リレーション `Relation::type="building"`の場合は、`k="name"`とする
+	- 建物パーツ `member::role="part"`->`building=yes` の場合は、`k="name"`とする
+	- 複合ビルの場合は、構成部位の名称のうちで、最も文字数が多いものを「合成名称」にする（Relation:`k="name"`の`v=合成名称`）
 
 - 建物高さ `ele`
 	- `bldg:lod1Solid`の'高度'値の最低値
@@ -171,8 +177,9 @@ OSMファイルへの変換項目
 
 - 建物高さ `height`
 	- `building:height`とはしない
+	- 単体ビルの場合は、`bldg:measuredHeight`。
+	- 単体ビルで、`bldg:measuredHeight`がない場合は、`lod1Solid`と`lod0[RoofEdge,FoodPrint`から算出する
 	- 複合ビルの場合は、複合ビルの'最低標高'を求め、全ビルパーツの'最低標高'からの'高さ'の最大値。'標高'が設定されていないビルパーツは全ビルパーツの'最低標高’からの高さが設定されているとみなす。
-
 
 ### POI構成
 
