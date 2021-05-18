@@ -6,7 +6,6 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
 import java.nio.file.Paths;
-import java.util.ArrayList;
 
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -17,22 +16,18 @@ import osm.surveyor.DetailTests;
 import osm.surveyor.osm.ElementBounds;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
-import osm.surveyor.osm.api.CitygmlFileTest;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class OsmUpdaterTest_A {
 
 	/**
 	 * 東京都大田区南六郷三丁目
+	 * `mvn test -Dtest=OsmUpdaterTest_A#test_a`
 	 */
 	@Test
 	public void test_a() {
-		CitygmlFileTest.test(Paths.get("src/test/resources","sample_a_bldg_6697_op2.gml"));
-		
         try {
-			ArrayList<String> args = new ArrayList<>();
-			args.add("sample_a_bldg_6697_op2.osm");
-			OsmUpdater.main(args.toArray(new String[args.size()]));
+			AllTests.accept(Paths.get("src/test/resources", "sample_a_bldg_6697_op2.osm"));
 
 			OsmDom osm = new OsmDom();
 	        osm.parse(Paths.get("sample_a_bldg_6697_op2.mrg.osm").toFile());
@@ -73,6 +68,7 @@ public class OsmUpdaterTest_A {
 
 
 	/**
+	 * `mvn test -Dtest=OsmUpdaterTest_A#test_b1`
 	 * "sample_b_bldg_6697_op2.org.osm"の出力
 	 */
 	@Test
@@ -96,6 +92,8 @@ public class OsmUpdaterTest_A {
 	}
 
 	/**
+	 * `mvn test -Dtest=OsmUpdaterTest_A#test_b1check`
+	 * 
 	 * "sample_a_bldg_6697_op2.org.osm"のチェック
 	 * 'filterBuilding()'のテスト
 	 * 
@@ -123,6 +121,8 @@ public class OsmUpdaterTest_A {
 	}
 
 	/**
+	 * `mvn test -Dtest=OsmUpdaterTest_A#test_b2`
+	 * 
 	 * 'filterBuilding()'のテスト
 	 * 
 	 * INPUT： "sample_a_bldg_6697_op2.org.osm"
@@ -147,6 +147,8 @@ public class OsmUpdaterTest_A {
 	}
 
 	/**
+	 * `mvn test -Dtest=OsmUpdaterTest_A#test_b3`
+	 * 
 	 * 'filterBuilding()'のテスト
 	 * 
 	 * INPUT： "sample_a_bldg_6697_op2.osm"
@@ -182,7 +184,7 @@ public class OsmUpdaterTest_A {
 					assertThat(way.getTagValue("height"), is("2.4"));
 					assertThat(way.getTagValue("ele"), is("2.749"));
 					assertThat(way.getTagValue("building"), is("yes"));
-					assertThat(way.tags.size(), is(5));
+					assertThat(way.tags.size(), is(6));
 				}
 				else if (way.getTagValue("source").endsWith("; 13111-bldg-466")) {
 					waycnt++;
@@ -195,7 +197,7 @@ public class OsmUpdaterTest_A {
 					assertThat(way.getTagValue("ele"), is("2.671"));
 					assertThat(way.getTagValue("building"), is("parking"));
 					assertThat(way.getTagValue("fixme"), is("PLATEAUデータで更新されています"));
-					assertThat(way.tags.size(), is(5));
+					assertThat(way.tags.size(), is(6));
 				}
 			}
 			assertThat(waycnt, is(2));
@@ -209,6 +211,8 @@ public class OsmUpdaterTest_A {
 	}
 	
 	/**
+	 * `mvn test -Dtest=OsmUpdaterTest_A#test_d1`
+	 * 
 	 * INPUT: "sample_a_bldg_6697_op2.osm"
 	 * INPUT: "sample_a3_bldg_6697_op2.org.osm"
 	 */

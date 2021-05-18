@@ -28,8 +28,12 @@ public class OsmUpdaterTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * `mvn test -Dtest=OsmUpdaterTest#test_53392547`
+	 * 
+	 */
 	@Test
-	public void testMain() {
+	public void test_53392547() {
 		try {
 			ArrayList<String> args = new ArrayList<>();
 			args.add("53392547_bldg_6697_op2.osm");

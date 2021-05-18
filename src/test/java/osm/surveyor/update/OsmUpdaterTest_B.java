@@ -7,7 +7,6 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
 import java.nio.file.Paths;
-import java.util.ArrayList;
 
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -19,20 +18,19 @@ import osm.surveyor.osm.ElementMember;
 import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
-import osm.surveyor.osm.api.CitygmlFileTest;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class OsmUpdaterTest_B {
 	static final String SOURCE = "sample_b_bldg_6697_op2";
 
+	/**
+	 * `mvn test -Dtest=OsmUpdaterTest_B#testSample_b`
+	 * 
+	 */
 	@Test
 	public void testSample_b() {
-		CitygmlFileTest.test(Paths.get("src/test/resources", SOURCE+".gml"));
-		
         try {
-			ArrayList<String> args = new ArrayList<>();
-			args.add(SOURCE+".osm");
-			OsmUpdater.main(args.toArray(new String[args.size()]));
+        	AllTests.accept(Paths.get("src/test/resources", SOURCE+".osm"));
 
 			OsmDom osm = new OsmDom();
 			osm.parse(Paths.get(SOURCE+".mrg.osm").toFile());
@@ -47,7 +45,8 @@ public class OsmUpdaterTest_B {
 					assertThat(relation.getTagValue("building"), is("yes"));
 					assertThat(relation.getTagValue("addr:full"), is("東京都大田区大森西五丁目"));
 					assertThat(relation.getTagValue("addr:ref"), is("13111006005"));
-					assertThat(relation.getTagValue("height"), is("17.582"));
+					assertThat(relation.getTagValue("height"), is("16.9"));
+					assertThat(relation.getTagValue("ele"), is("2.507"));
 					assertThat(relation.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697"));
 					
 					int outerCnt = 0;
@@ -87,6 +86,8 @@ public class OsmUpdaterTest_B {
 	}
 
 	/**
+	 * `mvn test -Dtest=OsmUpdaterTest_B#testSample_b1`
+	 * 
 	 * "sample_b_bldg_6697_op2.org.osm"のDownload
 	 * 		https://www.openstreetmap.org/way/757291544
 	 * 		https://www.openstreetmap.org/way/757291552
@@ -137,7 +138,8 @@ public class OsmUpdaterTest_B {
 					assertThat(relation.getTagValue("building"), is("yes"));
 					assertThat(relation.getTagValue("addr:full"), is("東京都大田区大森西五丁目"));
 					assertThat(relation.getTagValue("addr:ref"), is("13111006005"));
-					assertThat(relation.getTagValue("height"), is("17.582"));
+					assertThat(relation.getTagValue("height"), is("16.9"));
+					assertThat(relation.getTagValue("ele"), is("2.507"));
 					assertThat(relation.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697"));
 					
 					int outerCnt = 0;

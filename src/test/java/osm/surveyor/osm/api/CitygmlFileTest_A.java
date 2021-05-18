@@ -269,6 +269,9 @@ public class CitygmlFileTest_A {
 		}
 	}
 	
+	/**
+	 * `mvn test -Dtest=CitygmlFileTest_A#testSample_a`
+	 */
 	@Test
 	public void testSample_a() {
 		CitygmlFileTest.test(Paths.get("src/test/resources","sample_a_bldg_6697_op2.gml"));

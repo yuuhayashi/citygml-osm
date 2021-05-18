@@ -365,4 +365,6 @@ OSMファイルへの変換項目
  - [JA:基本的な3Dの建物](https://wiki.openstreetmap.org/wiki/JA:%E5%9F%BA%E6%9C%AC%E7%9A%84%E3%81%AA3D%E3%81%AE%E5%BB%BA%E7%89%A9)
  
  - [JA:Relation:multipolygon](https://wiki.openstreetmap.org/wiki/JA:Relation:multipolygon)
+ 
+ - [osmbuilding 東京駅](https://osmbuildings.org/?lat=35.62651&lon=139.77533&zoom=17.0&tilt=45&rotation=109)
 
