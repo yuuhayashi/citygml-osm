@@ -165,27 +165,14 @@ public class OsmDom {
 		for (String rKey : this.relations.keySet()) {
 			ElementRelation relation = this.relations.get(rKey);
 			if (relation.isBuilding()) {
-				for (ElementMember member : relation.members) {
-					if (member.type.equals("way")) {
-						ElementWay part = this.ways.get(member.ref);
-						if (part != null) {
-							ddom.ways.put(part.clone());
-						}
-					}
-				}
-				ddom.relations.put(rKey, relation.clone());
+				addRelation(ddom, relation);
 			}
 			else if (relation.isMultipolygon()) {
 				if (relation.getTagValue("building") != null) {
-					for (ElementMember member : relation.members) {
-						if (member.type.equals("way")) {
-							ElementWay mem = this.ways.get(member.ref);
-							if (mem != null) {
-								ddom.ways.put(mem.clone());
-							}
-						}
-					}
-					ddom.relations.put(rKey, relation.clone());
+					addRelation(ddom, relation);
+				}
+				else if (relation.getTagValue("building:part") != null) {
+					addRelation(ddom, relation);
 				}
 			}
 		}
@@ -193,16 +180,32 @@ public class OsmDom {
 		for (String rKey : this.ways.keySet()) {
 			ElementWay way = this.ways.get(rKey);
 			if (way.isBuilding()) {
-				for (OsmNd nd : way.nds) {
-					ElementNode node = this.nodes.get(nd.id);
-					if (node != null) {
-						ddom.nodes.put(node.clone());
-					}
-				}
-				ddom.ways.put(way.clone());
+				addWay(ddom, way);
 			}
 		}
 		return ddom;
+	}
+	
+	void addRelation(OsmDom ddom, ElementRelation relation) {
+		for (ElementMember member : relation.members) {
+			if (member.type.equals("way")) {
+				ElementWay way = this.ways.get(member.ref);
+				if (way != null) {
+					addWay(ddom, way);
+				}
+			}
+		}
+		ddom.relations.put(relation.clone());
+	}
+	
+	void addWay(OsmDom ddom, ElementWay way) {
+		for (OsmNd nd : way.nds) {
+			ElementNode node = this.nodes.get(nd.id);
+			if (node != null) {
+				ddom.nodes.put(node.clone());
+			}
+		}
+		ddom.ways.put(way.clone());
 	}
 	
 

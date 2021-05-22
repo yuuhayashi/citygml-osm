@@ -111,6 +111,8 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 | 名称		| `gml:name`		| 重要な建物にのみ設定されている						|
 | 建物ID		| `gen:stringAttribute`-`name="建物ID"`	| 建築物に付与された識別ID	|
 | 自治体コード	| `gen:stringAttribute`-`name="13_*"`	| "13_区市町村コード_大字・町コード_町・丁目コード" |
+| 分類		| `bldg:class`		| 建築物の形態による区分 コードリスト: '[Building_class.xml](doc/citygml/codelists/Building_class.xml)'	|
+| 用途		| `bldg:usage`		| 建築物の主な使いみち。代表的な用途					|
 | 計測高さ	| `bldg:measuredHeight`	| 地盤面からの建築物の高さ(m)				|
 | 住所		| `xAL:LocalityName`-`Type="Town"`	| 							|
 
@@ -124,11 +126,49 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 	- **計測高さ**<br/>計測により取得した建築物の地上の最低点から最高点までの高さ(m)。
 
+- **分類**<br/>`bldg:class`」 建築物の形態による区分 --> コードリスト: '[Building_class.xml](doc/citygml/codelists/Building_class.xml)'
+
+| id	| name	| description	|
+| -----	| -----	| -------------	|
+| id1	| 3001	| 普通建物		|
+| id2	| 3002	| 堅ろう建物		|
+| id3	| 3003	| 普通無壁舎		|
+| id4	| 3004	| 堅ろう無壁舎		|
+| id5	| 3000	| 分類しない建物	|
+
+	記述例: `<bldg:class codeSpace="../../codelists/Building_class.xml">3001</bldg:class>`
+
+- **用途**<br/>`bldg:usage` 建築物の主な使い道 --> コードリスト: '[Building_usage.xml](doc/citygml/codelists/Building_usage.xml)'
+
+| id	| name	| description		| OSM Tag		|
+| -----	| -----	| -----------------	| -------------	|
+| id1	| 401	| 業務施設			| `office`		|
+| id2	| 402	| 商業施設			| `commercial`	|
+| id3	| 403	| 宿泊施設			| `hotel`		|
+| id4	| 404	| 商業系複合施設		| -				|
+| id5	| 411	| 住宅				| `house`		|
+| id6	| 412	| 共同住宅			| `apartments`	|
+| id7	| 413	| 店舗等併用住宅		| -				|
+| id8	| 414	| 店舗等併用共同住宅	| -				|
+| id9	| 415	| 作業所併用住宅		| -				|
+| id10	| 421	| 官公庁施設			| `government`	|
+| id11	| 422	| 文教厚生施設			| `public`		|
+| id12	| 431	| 運輸倉庫施設			| `warehouse`	|
+| id13	| 441	| 工場				| `industrial`	|
+| id14	| 451	| 農林漁業用施設		| -				|
+| id15	| 452	| 供給処理施設			| -				|
+| id16	| 453	| 防衛施設			| `military`	|
+| id17	| 454	| その他				| -				|
+| id18	| 461	| 不明				| -				|
+	注: `-`は、`building=yes`とする
+
+	記述例: `<bldg:usage codeSpace="../../codelists/Building_usage.xml">411</bldg:usage>`
+	
+	- '[`conversion.json`](conversion.json)'にOSMタグへの変換表を記述して、`building=*`の値に割り当てる。
+	- 変換表に記載がない`usage`コードは、`building=yes`とする
+
+
 その他、仕様には記載されているがデータで確認が取れないもの
-
-- 「分類 `bldg:class`」 建築物の形態による区分 --> コードリスト: 'Building_class.xml'
-
-- 「用途 `bldg:usage`」 建築物の主な使い道 --> コードリスト: 'Building_usage.xml'
 
 - 「建築年 `bldg:yearOfConstruction`」 建築物が建築された年
 

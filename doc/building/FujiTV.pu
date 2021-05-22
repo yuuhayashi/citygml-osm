@@ -1,0 +1,51 @@
+@startuml
+map "building : Relation" as building {
+ type => building
+ name => フジテレビ本社ビル
+}
+
+map "multipolygon :Relation" as multipolygon {
+ type => multipolygon
+ building => yes
+ name => 大田病院
+ height => 17.199
+ addr:ref => 13111007004
+ addr:full => 東京都大田区大森東四丁目
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697
+}
+
+map "outline :Way" as outer {
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697
+}
+
+map "e- :Way" as e {
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697
+}
+
+map "A :part" as A {
+ building => roof
+ building:part => yes
+ building:material => metal
+ building:shape => sphere 
+ height => 130
+ min_height => 96
+ roof:height => 17
+ roof:material => metal
+ roof:shape => dome
+}
+
+map "B :Area" as B {
+ building:part => yes
+ height => 5.5360000000000005
+ addr:ref => 13111007004
+ addr:full => 東京都大田区大森東四丁目
+ source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-55333
+}
+
+building o-- multipolygon : member\n[role=outline]
+building o-- A : member\n[role=part]
+building o-- B : member\n[role=part]
+
+multipolygon  o-- outer : member\n[role=outer]
+multipolygon  o-- e : member\n[role=inner]
+@enduml

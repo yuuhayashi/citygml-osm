@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <bounds minlat='35.4338942' minlon='139.4108766' maxlat='35.4342351' maxlon='139.4114131' origin='CGImap 0.8.3 (3110354 spike-06.openstreetmap.org)' />
+  <node id='-102046' action='modify' visible='true' lat='35.4341263637' lon='139.4110890296' />
+  <node id='-102047' action='modify' visible='true' lat='35.43410300998' lon='139.41108299706' />
+  <node id='-102048' action='modify' visible='true' lat='35.43410071202' lon='139.4110963974' />
+  <node id='-102049' action='modify' visible='true' lat='35.43413258371' lon='139.41109952953' />
+  <node id='-102050' action='modify' visible='true' lat='35.43411330809' lon='139.41121193333' />
+  <node id='-102051' action='modify' visible='true' lat='35.43404456857' lon='139.41119417713' />
+  <node id='-102052' action='modify' visible='true' lat='35.43406384421' lon='139.41108177333' />
+  <node id='-102053' action='modify' visible='true' lat='35.43410154961' lon='139.41109151306' />
+  <node id='-102054' action='modify' visible='true' lat='35.43412490333' lon='139.4110975456' />
+  <node id='-102055' action='modify' visible='true' lat='35.43406673355' lon='139.4110885245' />
+  <node id='-102056' action='modify' visible='true' lat='35.43404970308' lon='139.41118875828' />
+  <node id='2493516071' action='modify' timestamp='2013-10-12T09:07:52Z' uid='621319' user='hayashi' visible='true' version='1' changeset='18311072' lat='35.43405843895' lon='139.41119099409' />
+  <node id='2493516072' action='modify' timestamp='2013-10-12T09:07:52Z' uid='621319' user='hayashi' visible='true' version='1' changeset='18311072' lat='35.43407546942' lon='139.41109076031' />
+  <node id='2493516079' action='modify' timestamp='2013-10-12T09:07:52Z' uid='621319' user='hayashi' visible='true' version='1' changeset='18311072' lat='35.43410676211' lon='139.41120333427' />
+  <node id='2493516080' action='modify' timestamp='2013-10-12T09:07:52Z' uid='621319' user='hayashi' visible='true' version='1' changeset='18311072' lat='35.43412406574' lon='139.41110242993' />
+  <way id='-102043' action='modify' visible='true'>
+    <nd ref='2493516080' />
+    <nd ref='-102048' />
+    <nd ref='-102053' />
+    <nd ref='-102047' />
+    <nd ref='-102046' />
+    <nd ref='-102054' />
+    <nd ref='2493516080' />
+    <tag k='building:part' v='roof' />
+    <tag k='height' v='3' />
+    <tag k='min_height' v='2.8' />
+    <tag k='roof:shape' v='flat' />
+  </way>
+  <way id='-102044' action='modify' visible='true'>
+    <nd ref='-102049' />
+    <nd ref='-102050' />
+    <nd ref='-102051' />
+    <nd ref='-102052' />
+    <nd ref='-102053' />
+    <nd ref='-102054' />
+    <nd ref='-102049' />
+    <tag k='building:part' v='roof' />
+    <tag k='height' v='6.2' />
+    <tag k='min_height' v='6' />
+    <tag k='roof:shape' v='flat' />
+  </way>
+  <way id='-102045' action='modify' visible='true'>
+    <nd ref='2493516080' />
+    <nd ref='2493516079' />
+    <nd ref='2493516071' />
+    <nd ref='2493516072' />
+    <nd ref='-102048' />
+    <nd ref='2493516080' />
+    <tag k='building:part' v='yes' />
+    <tag k='building:material' v='vinyl' />
+    <tag k='height' v='6' />
+  </way>
+  <way id='-102050' action='modify' visible='true'>
+    <nd ref='2493516072' />
+    <nd ref='-102055' />
+    <nd ref='-102056' />
+    <nd ref='2493516071' />
+    <nd ref='2493516072' />
+    <tag k='building:part' v='yes' />
+    <tag k='height' v='3.1' />
+    <tag k='min_height' v='3' />
+  </way>
+  <way id='241755306' action='modify' timestamp='2016-09-27T15:53:29Z' uid='621319' user='hayashi' visible='true' version='3' changeset='42473652'>
+    <nd ref='-102051' />
+    <nd ref='-102052' />
+    <nd ref='-102053' />
+    <nd ref='-102047' />
+    <nd ref='-102046' />
+    <nd ref='-102054' />
+    <nd ref='-102049' />
+    <nd ref='-102050' />
+    <nd ref='-102051' />
+    <tag k='building' v='house' />
+    <tag k='building:levels' v='2' />
+    <tag k='height' v='6.2' />
+    <tag k='ref' v='7' />
+  </way>
+  <relation id='-99767' action='modify' visible='true'>
+    <member type='way' ref='241755306' role='outline' />
+    <member type='way' ref='-102043' role='part' />
+    <member type='way' ref='-102043' role='part' />
+    <member type='way' ref='-102045' role='part' />
+    <member type='way' ref='-102050' role='part' />
+    <tag k='building' v='house' />
+    <tag k='building:levels' v='2' />
+    <tag k='height' v='6.2' />
+    <tag k='ref' v='7' />
+    <tag k='type' v='building' />
+  </relation>
+</osm>

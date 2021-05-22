@@ -1,0 +1,104 @@
+@startuml
+title 東京駅 丸の内駅舎
+
+map "4856166 : Relation" as 4856166 {
+ id => 4856166
+ type => building
+}
+
+map "4856157 :Relation" as 4856157 {
+ type => multipolygon
+ building:part => yes
+ building:material => brick
+ building:colour => #B22222 
+ height => 22
+ roof:height => 5
+ roof:material => slate
+ roof:orientation => along
+ roof:shape => dome
+}
+
+object "member :Way" as m4856157 {
+}
+
+map "4856156 :Relatiion" as 4856156 {
+ type => multipolygon
+ addr:* => 東京都千代田区丸の内1-9-1
+ alt_name:?? => 東京駅(丸の内)
+ building => train_station
+ building:levels => 4
+ historic => building
+ layer => 1
+ name => 東京駅丸の内駅舎
+ name:?? => 東京駅丸の内駅舎
+ roof:levels => 1
+ height => 17.199
+}
+
+object "outer :Way" as m4856156 {
+}
+4856166 o-- 4856156 : member\n[role=outline]
+4856166 o-- 4856157 : member\n[role=part]
+4856156 "35" o-- m4856156 : member\n[role=outer]
+4856157 "10" o-- m4856157 : member\n[role=outer]
+
+object "4856162 :Relation" as 4856162 {
+ type='multipolygon'
+ building:colour='#B22222'
+ building:material='brick'
+ building:part='yes'
+ height='22'
+ roof:colour='black'
+ roof:height='5'
+ roof:material='slate'
+ roof:orientation='along'
+ roof:shape='hipped'
+}
+object "outer :Way" as m4856162 {
+}
+4856162 "6" o-- m4856162 : member\n[role=outer]
+
+object "4856163 :Relation" as 4856163 {
+ type='multipolygon'
+ building:colour='#B22222'
+ building:material='brick'
+ building:part='yes'
+ height='22'
+ roof:colour='black'
+ roof:height='5'
+ roof:material='slate'
+ roof:orientation='along'
+ roof:shape='gabled'
+}
+object "outer :Way" as m4856163 {
+}
+4856163 "6" o-- m4856163 : member\n[role=outer]
+
+object "4856164 :Relation" as 4856164 {
+ type='multipolygon'
+ building:colour='#B22222'
+ building:material='brick'
+ building:part='yes'
+ height='22'
+ roof:colour='black'
+ roof:height='5'
+ roof:material='slate'
+ roof:orientation='along'
+ roof:shape='gabled'
+}
+object "outer :Way" as m4856164 {
+}
+4856164 "8" o-- m4856164 : member\n[role=outer]
+
+object "4856165 :Relation" as 4856165 {
+ type='multipolygon'
+ building:part='yes'
+ height='22'
+ roof:height='5'
+ roof:orientation='along'
+ roof:shape='hipped'
+}
+object "outer :Way" as m4856165 {
+}
+4856165 "8" o-- m4856165 : member\n[role=outer]
+@enduml

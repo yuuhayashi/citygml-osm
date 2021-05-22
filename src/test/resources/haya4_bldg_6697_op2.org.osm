@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <bounds minlat='35.4338942' minlon='139.4108766' maxlat='35.4342351' maxlon='139.4114131' origin='CGImap 0.8.3 (3110354 spike-06.openstreetmap.org)' />
+  <node id='2493516071' timestamp='2013-10-12T09:07:52Z' uid='621319' user='hayashi' visible='true' version='1' changeset='18311072' lat='35.4340446' lon='139.4111903' />
+  <node id='2493516072' timestamp='2013-10-12T09:07:52Z' uid='621319' user='hayashi' visible='true' version='1' changeset='18311072' lat='35.4340589' lon='139.4110864' />
+  <node id='2493516079' timestamp='2013-10-12T09:07:52Z' uid='621319' user='hayashi' visible='true' version='1' changeset='18311072' lat='35.4341086' lon='139.4112037' />
+  <node id='2493516080' timestamp='2013-10-12T09:07:52Z' uid='621319' user='hayashi' visible='true' version='1' changeset='18311072' lat='35.434123' lon='139.4110998' />
+  <way id='241755306' timestamp='2016-09-27T15:53:29Z' uid='621319' user='hayashi' visible='true' version='3' changeset='42473652'>
+    <nd ref='2493516080' />
+    <nd ref='2493516079' />
+    <nd ref='2493516071' />
+    <nd ref='2493516072' />
+    <nd ref='2493516080' />
+    <tag k='building' v='house' />
+    <tag k='building:levels' v='2' />
+    <tag k='name:en' v='hayashi' />
+    <tag k='ref' v='7' />
+  </way>
+</osm>
