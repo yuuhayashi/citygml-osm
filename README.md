@@ -160,7 +160,8 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 | id16	| 453	| 防衛施設			| `military`	|
 | id17	| 454	| その他				| -				|
 | id18	| 461	| 不明				| -				|
-	注: `-`は、`building=yes`とする
+
+	注: 分類が定義されていない建築物は、`building=yes`とする
 
 	記述例: `<bldg:usage codeSpace="../../codelists/Building_usage.xml">411</bldg:usage>`
 	

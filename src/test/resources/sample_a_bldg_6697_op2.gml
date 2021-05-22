@@ -47,6 +47,7 @@
 					<gen:value uom="m">0.020</gen:value>
 				</gen:measureAttribute>
 			</gen:genericAttributeSet>
+			<bldg:usage codeSpace="../../codelists/Building_usage.xml">411</bldg:usage>
 			<bldg:measuredHeight uom="m">4.6</bldg:measuredHeight>
 			<bldg:lod0RoofEdge>
 				<gml:MultiSurface>
