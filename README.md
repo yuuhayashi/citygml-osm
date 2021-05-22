@@ -111,8 +111,8 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 | 名称		| `gml:name`		| 重要な建物にのみ設定されている						|
 | 建物ID		| `gen:stringAttribute`-`name="建物ID"`	| 建築物に付与された識別ID	|
 | 自治体コード	| `gen:stringAttribute`-`name="13_*"`	| "13_区市町村コード_大字・町コード_町・丁目コード" |
-| 分類		| `bldg:class`		| 建築物の形態による区分 コードリスト: '[Building_class.xml](doc/citygml/codelists/Building_class.xml)'	|
-| 用途		| `bldg:usage`		| 建築物の主な使いみち。代表的な用途					|
+| 分類		| `bldg:class`		| 建築物の形態による区分 '[Building_class.xml](doc/citygml/codelists/Building_class.xml)'	|
+| 用途		| `bldg:usage`		| 建築物の主な使いみち。代表的な用途 '[Building_usage.xml](doc/citygml/codelists/Building_usage.xml)'	|
 | 計測高さ	| `bldg:measuredHeight`	| 地盤面からの建築物の高さ(m)				|
 | 住所		| `xAL:LocalityName`-`Type="Town"`	| 							|
 

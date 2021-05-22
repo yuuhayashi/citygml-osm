@@ -22,6 +22,12 @@ title CityGML 構造
 **** gen:stringAttribute name="建物ID"
 *****_ "13111-bldg-56522"
 
+**** bldg:class codeSpase="Building_class.xml"
+*****_ "3001"
+
+**** bldg:usage codeSpace="Building_usage.xml"
+*****_ "402"
+
 **** bldg:measuredHeight
 *****_ "13.3"
 
