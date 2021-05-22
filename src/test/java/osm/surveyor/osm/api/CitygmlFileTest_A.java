@@ -20,7 +20,7 @@ import osm.surveyor.osm.OsmDom;
 public class CitygmlFileTest_A {
 
 	/**
-	 * `mvn test -Dtest=CitygmlFileTest_A#test_doRelationMarge`
+	 * `mvn test -Dtest=CitygmlFileTest_A#testSample_a2_margePart`
 	 * 
 	 */
 	@Test
