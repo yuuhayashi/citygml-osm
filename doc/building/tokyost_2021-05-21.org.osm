@@ -1,0 +1,744 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <bounds minlat='35.67965' minlon='139.76508' maxlat='35.68276' maxlon='139.76695' origin='' />
+  <node id='1588257528' timestamp='2012-01-13T11:31:45Z' uid='69966' user='ikiya' visible='true' version='1' changeset='10377561' lat='35.6798592' lon='139.7657424' />
+  <node id='1588257529' timestamp='2015-05-02T10:41:09Z' uid='571410' user='Антін Сартенченко' visible='true' version='3' changeset='30717603' lat='35.6799416' lon='139.7659367' />
+  <node id='1588257530' timestamp='2012-01-13T11:31:45Z' uid='69966' user='ikiya' visible='true' version='1' changeset='10377561' lat='35.6802104' lon='139.765515' />
+  <node id='1588257531' timestamp='2012-01-13T11:31:45Z' uid='69966' user='ikiya' visible='true' version='1' changeset='10377561' lat='35.6802144' lon='139.7654887' />
+  <node id='1588257532' timestamp='2012-01-13T11:31:45Z' uid='69966' user='ikiya' visible='true' version='1' changeset='10377561' lat='35.6802407' lon='139.7654739' />
+  <node id='1588257534' timestamp='2015-05-02T10:41:09Z' uid='571410' user='Антін Сартенченко' visible='true' version='2' changeset='30717603' lat='35.6802455' lon='139.7657578' />
+  <node id='1588257535' timestamp='2012-01-13T11:31:45Z' uid='69966' user='ikiya' visible='true' version='1' changeset='10377561' lat='35.6802682' lon='139.7654846' />
+  <node id='1588257536' timestamp='2015-05-02T10:41:09Z' uid='571410' user='Антін Сартенченко' visible='true' version='2' changeset='30717603' lat='35.6802765' lon='139.7655227' />
+  <node id='1588257537' timestamp='2015-05-02T10:41:10Z' uid='571410' user='Антін Сартенченко' visible='true' version='2' changeset='30717603' lat='35.6803152' lon='139.765424' />
+  <node id='1588257538' timestamp='2015-05-02T10:41:10Z' uid='571410' user='Антін Сартенченко' visible='true' version='2' changeset='30717603' lat='35.6803522' lon='139.7655507' />
+  <node id='1588257539' timestamp='2015-05-02T10:41:10Z' uid='571410' user='Антін Сартенченко' visible='true' version='2' changeset='30717603' lat='35.6803666' lon='139.7658037' />
+  <node id='1588257540' timestamp='2015-05-02T10:41:10Z' uid='571410' user='Антін Сартенченко' visible='true' version='2' changeset='30717603' lat='35.6804097' lon='139.7659103' />
+  <node id='1588257542' timestamp='2015-05-02T10:41:10Z' uid='571410' user='Антін Сартенченко' visible='true' version='2' changeset='30717603' lat='35.6804889' lon='139.7653085' />
+  <node id='1588257543' timestamp='2015-05-02T10:41:10Z' uid='571410' user='Антін Сартенченко' visible='true' version='2' changeset='30717603' lat='35.6805388' lon='139.7659607' />
+  <node id='1588257544' timestamp='2015-05-02T10:41:10Z' uid='571410' user='Антін Сартенченко' visible='true' version='2' changeset='30717603' lat='35.68057' lon='139.765974' />
+  <node id='1588257545' timestamp='2015-05-02T10:41:10Z' uid='571410' user='Антін Сартенченко' visible='true' version='2' changeset='30717603' lat='35.6805775' lon='139.7659404' />
+  <node id='1588257546' timestamp='2015-05-02T10:41:10Z' uid='571410' user='Антін Сартенченко' visible='true' version='2' changeset='30717603' lat='35.6806317' lon='139.7659042' />
+  <node id='1588257547' timestamp='2015-05-02T10:41:10Z' uid='571410' user='Антін Сартенченко' visible='true' version='3' changeset='30717603' lat='35.6807482' lon='139.7654075' />
+  <node id='1588257554' timestamp='2015-05-02T10:41:10Z' uid='571410' user='Антін Сартенченко' visible='true' version='3' changeset='30717603' lat='35.6807476' lon='139.7656975' />
+  <node id='1588257558' timestamp='2015-05-02T09:51:34Z' uid='571410' user='Антін Сартенченко' visible='true' version='2' changeset='30716446' lat='35.6808396' lon='139.7656221' />
+  <node id='1588257559' timestamp='2015-05-02T09:51:34Z' uid='571410' user='Антін Сартенченко' visible='true' version='2' changeset='30716446' lat='35.6807665' lon='139.7656695' />
+  <node id='1588257607' timestamp='2018-07-31T09:50:21Z' uid='389520' user='K_Sakanoshita' visible='true' version='4' changeset='61222807' lat='35.681374' lon='139.7659398' />
+  <node id='1588257610' timestamp='2018-07-31T09:50:21Z' uid='389520' user='K_Sakanoshita' visible='true' version='3' changeset='61222807' lat='35.6813967' lon='139.7658522' />
+  <node id='1588257612' timestamp='2018-07-31T09:50:21Z' uid='389520' user='K_Sakanoshita' visible='true' version='4' changeset='61222807' lat='35.6814322' lon='139.7659625' />
+  <node id='1588257616' timestamp='2018-07-31T09:50:21Z' uid='389520' user='K_Sakanoshita' visible='true' version='3' changeset='61222807' lat='35.6814549' lon='139.7658751' />
+  <node id='1588257656' timestamp='2015-05-02T10:41:10Z' uid='571410' user='Антін Сартенченко' visible='true' version='2' changeset='30717603' lat='35.6820651' lon='139.7661763' />
+  <node id='1588257688' timestamp='2015-05-02T10:41:10Z' uid='571410' user='Антін Сартенченко' visible='true' version='2' changeset='30717603' lat='35.6820681' lon='139.7664487' />
+  <node id='1588257689' timestamp='2015-05-02T10:41:10Z' uid='571410' user='Антін Сартенченко' visible='true' version='2' changeset='30717603' lat='35.6820222' lon='139.7660678' />
+  <node id='1588257701' timestamp='2012-01-13T11:31:54Z' uid='69966' user='ikiya' visible='true' version='1' changeset='10377561' lat='35.6821108' lon='139.766556' />
+  <node id='1588257712' timestamp='2015-05-02T10:41:10Z' uid='571410' user='Антін Сартенченко' visible='true' version='2' changeset='30717603' lat='35.6821981' lon='139.7659565' />
+  <node id='1588257718' timestamp='2012-01-13T11:31:55Z' uid='69966' user='ikiya' visible='true' version='1' changeset='10377561' lat='35.6822419' lon='139.766605' />
+  <node id='1588257742' timestamp='2015-05-02T10:41:10Z' uid='571410' user='Антін Сартенченко' visible='true' version='2' changeset='30717603' lat='35.6823372' lon='139.7665507' />
+  <node id='1588257750' timestamp='2015-05-02T10:41:10Z' uid='571410' user='Антін Сартенченко' visible='true' version='2' changeset='30717603' lat='35.6824302' lon='139.7663422' />
+  <node id='1588257751' timestamp='2012-01-13T11:31:56Z' uid='69966' user='ikiya' visible='true' version='1' changeset='10377561' lat='35.6824766' lon='139.7666181' />
+  <node id='1588257752' timestamp='2015-05-02T10:41:10Z' uid='571410' user='Антін Сартенченко' visible='true' version='2' changeset='30717603' lat='35.682479' lon='139.7666045' />
+  <node id='1588257753' timestamp='2012-01-13T11:31:57Z' uid='69966' user='ikiya' visible='true' version='1' changeset='10377561' lat='35.6824886' lon='139.7666467' />
+  <node id='1588257754' timestamp='2012-01-13T11:31:57Z' uid='69966' user='ikiya' visible='true' version='1' changeset='10377561' lat='35.6825141' lon='139.7666568' />
+  <node id='1588257755' timestamp='2015-05-02T10:41:10Z' uid='571410' user='Антін Сартенченко' visible='true' version='2' changeset='30717603' lat='35.6825181' lon='139.7665796' />
+  <node id='1588257756' timestamp='2012-01-13T11:31:57Z' uid='69966' user='ikiya' visible='true' version='1' changeset='10377561' lat='35.6825249' lon='139.7665777' />
+  <node id='1588257758' timestamp='2015-05-02T10:41:10Z' uid='571410' user='Антін Сартенченко' visible='true' version='2' changeset='30717603' lat='35.6825331' lon='139.7663801' />
+  <node id='1588257759' timestamp='2012-01-13T11:31:57Z' uid='69966' user='ikiya' visible='true' version='1' changeset='10377561' lat='35.6825305' lon='139.766585' />
+  <node id='1588257761' timestamp='2012-01-13T11:31:57Z' uid='69966' user='ikiya' visible='true' version='1' changeset='10377561' lat='35.682532' lon='139.7663719' />
+  <node id='1588257762' timestamp='2012-01-13T11:31:57Z' uid='69966' user='ikiya' visible='true' version='1' changeset='10377561' lat='35.6825361' lon='139.7666432' />
+  <node id='1588257763' timestamp='2012-01-13T11:31:57Z' uid='69966' user='ikiya' visible='true' version='1' changeset='10377561' lat='35.6825424' lon='139.7666124' />
+  <node id='1588257764' timestamp='2015-05-02T10:41:10Z' uid='571410' user='Антін Сартенченко' visible='true' version='2' changeset='30717603' lat='35.6825481' lon='139.7662677' />
+  <node id='1588257765' timestamp='2012-01-13T11:31:57Z' uid='69966' user='ikiya' visible='true' version='1' changeset='10377561' lat='35.6825514' lon='139.76647' />
+  <node id='1588257766' timestamp='2015-05-02T10:41:10Z' uid='571410' user='Антін Сартенченко' visible='true' version='2' changeset='30717603' lat='35.6825532' lon='139.7664394' />
+  <node id='1588257767' timestamp='2012-01-13T11:31:57Z' uid='69966' user='ikiya' visible='true' version='1' changeset='10377561' lat='35.6825606' lon='139.7663526' />
+  <node id='1588257768' timestamp='2015-05-02T10:41:10Z' uid='571410' user='Антін Сартенченко' visible='true' version='2' changeset='30717603' lat='35.6825733' lon='139.7664425' />
+  <node id='1588257769' timestamp='2012-01-13T11:31:57Z' uid='69966' user='ikiya' visible='true' version='1' changeset='10377561' lat='35.6825769' lon='139.7665971' />
+  <node id='1588257770' timestamp='2012-01-13T11:31:58Z' uid='69966' user='ikiya' visible='true' version='1' changeset='10377561' lat='35.6825894' lon='139.766365' />
+  <node id='1588257771' timestamp='2012-01-13T11:31:58Z' uid='69966' user='ikiya' visible='true' version='1' changeset='10377561' lat='35.6825938' lon='139.7664307' />
+  <node id='1588257773' timestamp='2012-01-13T11:31:58Z' uid='69966' user='ikiya' visible='true' version='1' changeset='10377561' lat='35.6826015' lon='139.7663953' />
+  <node id='1588257774' timestamp='2012-01-13T11:31:58Z' uid='69966' user='ikiya' visible='true' version='1' changeset='10377561' lat='35.6826034' lon='139.7664894' />
+  <node id='1596070668' timestamp='2015-05-02T10:41:10Z' uid='571410' user='Антін Сартенченко' visible='true' version='2' changeset='30717603' lat='35.6820431' lon='139.7661944' />
+  <node id='2912891575' timestamp='2018-07-31T09:50:21Z' uid='389520' user='K_Sakanoshita' visible='true' version='3' changeset='61222807' lat='35.6814436' lon='139.7659184' />
+  <node id='2912891586' timestamp='2018-07-31T09:50:21Z' uid='389520' user='K_Sakanoshita' visible='true' version='3' changeset='61222807' lat='35.6813855' lon='139.7658956' />
+  <node id='2914213161' timestamp='2014-06-13T10:36:15Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='22905855' lat='35.6797617' lon='139.7658539' />
+  <node id='2914213162' timestamp='2014-06-13T10:36:15Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='22905855' lat='35.6797655' lon='139.7658192' />
+  <node id='2914213163' timestamp='2014-06-13T10:36:15Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='22905855' lat='35.6797686' lon='139.7658886' />
+  <node id='2914213164' timestamp='2014-06-13T10:36:15Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='22905855' lat='35.6797861' lon='139.7657929' />
+  <node id='2914213165' timestamp='2014-06-13T10:36:15Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='22905855' lat='35.6797869' lon='139.7659158' />
+  <node id='2914213166' timestamp='2014-06-13T10:36:15Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='22905855' lat='35.6798022' lon='139.7657791' />
+  <node id='2914213167' timestamp='2014-06-13T10:36:15Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='22905855' lat='35.6798074' lon='139.7659299' />
+  <node id='2914213168' timestamp='2014-06-13T10:36:15Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='22905855' lat='35.6798372' lon='139.7659289' />
+  <node id='2914213169' timestamp='2014-06-13T10:36:15Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='22905855' lat='35.6798594' lon='139.7659184' />
+  <node id='2914213170' timestamp='2014-06-13T10:36:15Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='22905855' lat='35.679882' lon='139.7659025' />
+  <node id='2914213171' timestamp='2014-06-13T10:36:15Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='22905855' lat='35.6799003' lon='139.7659516' />
+  <node id='2914213172' timestamp='2015-05-02T10:41:10Z' uid='571410' user='Антін Сартенченко' visible='true' version='2' changeset='30717603' lat='35.6799378' lon='139.7659291' />
+  <node id='2914213173' timestamp='2015-05-02T10:41:10Z' uid='571410' user='Антін Сартенченко' visible='true' version='2' changeset='30717603' lat='35.6799597' lon='139.7659399' />
+  <node id='3492989538' timestamp='2015-05-02T10:41:01Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6800412' lon='139.7656246' />
+  <node id='3492989539' timestamp='2015-05-02T10:41:01Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6801295' lon='139.7658308' />
+  <node id='3492989540' timestamp='2015-05-02T10:41:01Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6801601' lon='139.7655476' />
+  <node id='3492989541' timestamp='2015-05-02T10:41:01Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6802296' lon='139.7655049' />
+  <node id='3492989542' timestamp='2015-05-02T10:41:01Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6803491' lon='139.7657626' />
+  <node id='3492989543' timestamp='2015-05-02T10:41:01Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6803538' lon='139.7655153' />
+  <node id='3492989544' timestamp='2015-05-02T10:41:01Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6803632' lon='139.7655394' />
+  <node id='3492989545' timestamp='2015-05-02T10:41:01Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6803655' lon='139.7655558' />
+  <node id='3492989546' timestamp='2015-05-02T10:41:01Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6803811' lon='139.7658972' />
+  <node id='3492989547' timestamp='2015-05-02T10:41:01Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6803814' lon='139.7658827' />
+  <node id='3492989548' timestamp='2015-05-02T10:41:01Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6803879' lon='139.7659093' />
+  <node id='3492989549' timestamp='2015-05-02T10:41:01Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6803885' lon='139.7655972' />
+  <node id='3492989550' timestamp='2015-05-02T10:41:01Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6803917' lon='139.7658667' />
+  <node id='3492989551' timestamp='2015-05-02T10:41:01Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6804003' lon='139.7659135' />
+  <node id='3492989552' timestamp='2015-05-02T10:41:01Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6804241' lon='139.7657524' />
+  <node id='3492989553' timestamp='2015-05-02T10:41:01Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6804433' lon='139.7656619' />
+  <node id='3492989554' timestamp='2015-05-02T10:41:01Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6804598' lon='139.765835' />
+  <node id='3492989555' timestamp='2015-05-02T10:41:01Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6804968' lon='139.7658531' />
+  <node id='3492989557' timestamp='2015-05-02T10:41:01Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6805066' lon='139.7655226' />
+  <node id='3492989559' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6805162' lon='139.765617' />
+  <node id='3492989560' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6805347' lon='139.7658632' />
+  <node id='3492989561' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6805532' lon='139.7656276' />
+  <node id='3492989562' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6805883' lon='139.7656487' />
+  <node id='3492989563' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6806019' lon='139.765821' />
+  <node id='3492989564' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6806233' lon='139.7657304' />
+  <node id='3492989565' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.680644' lon='139.7655686' />
+  <node id='3492989566' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6806652' lon='139.7658807' />
+  <node id='3492989569' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6807025' lon='139.7657228' />
+  <node id='3492989570' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6807425' lon='139.7656855' />
+  <node id='3492989581' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6820476' lon='139.7664029' />
+  <node id='3492989582' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6820546' lon='139.7661498' />
+  <node id='3492989583' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.682084' lon='139.766547' />
+  <node id='3492989584' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.682088' lon='139.7662438' />
+  <node id='3492989585' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6820945' lon='139.7665157' />
+  <node id='3492989586' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6821284' lon='139.7663971' />
+  <node id='3492989587' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6821501' lon='139.7663061' />
+  <node id='3492989588' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6821653' lon='139.7664803' />
+  <node id='3492989589' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6821997' lon='139.7664986' />
+  <node id='3492989592' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6822137' lon='139.7661682' />
+  <node id='3492989893' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6822177' lon='139.7662606' />
+  <node id='3492989894' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6822393' lon='139.766507' />
+  <node id='3492989895' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6822557' lon='139.7662749' />
+  <node id='3492989896' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6822771' lon='139.7666169' />
+  <node id='3492989897' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6822824' lon='139.7665818' />
+  <node id='3492989898' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6822916' lon='139.7662873' />
+  <node id='3492989899' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6823069' lon='139.7664615' />
+  <node id='3492989900' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6823285' lon='139.7663705' />
+  <node id='3492989901' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6823479' lon='139.7662192' />
+  <node id='3492989902' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6823681' lon='139.7665276' />
+  <node id='3492989907' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6824112' lon='139.7663708' />
+  <node id='3492989910' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6824528' lon='139.766328' />
+  <node id='3492989911' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.6824764' lon='139.7663132' />
+  <node id='3492989912' timestamp='2015-05-02T10:41:02Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.682509' lon='139.7666159' />
+  <node id='3492989913' timestamp='2015-05-02T10:41:03Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603' lat='35.682565' lon='139.7663922' />
+  <node id='3677320559' timestamp='2018-07-31T17:05:22Z' uid='389520' user='K_Sakanoshita' visible='true' version='3' changeset='61236004' lat='35.6805995' lon='139.7652811' />
+  <node id='3925264799' timestamp='2016-01-03T11:49:34Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='36336238' lat='35.6822306' lon='139.765965' />
+  <node id='5295049550' timestamp='2018-07-31T17:05:23Z' uid='389520' user='K_Sakanoshita' visible='true' version='2' changeset='61236004' lat='35.6806869' lon='139.7652461' />
+  <node id='5295049551' timestamp='2018-07-31T17:05:23Z' uid='389520' user='K_Sakanoshita' visible='true' version='2' changeset='61236004' lat='35.6806158' lon='139.7652182' />
+  <node id='5295049552' timestamp='2018-07-31T17:05:23Z' uid='389520' user='K_Sakanoshita' visible='true' version='2' changeset='61236004' lat='35.6805831' lon='139.7653441' />
+  <node id='5295049553' timestamp='2018-07-31T17:05:23Z' uid='389520' user='K_Sakanoshita' visible='true' version='2' changeset='61236004' lat='35.6806542' lon='139.7653721' />
+  <node id='5295049557' timestamp='2019-12-27T15:31:10Z' uid='3249777' user='opendcc' visible='true' version='3' changeset='78932189' lat='35.6810228' lon='139.7657766' />
+  <node id='5295049558' timestamp='2017-12-20T06:25:10Z' uid='6802110' user='Bigmorr' visible='true' version='1' changeset='54777740' lat='35.6808241' lon='139.7655856' />
+  <node id='5386873815' timestamp='2018-02-04T15:03:58Z' uid='4660522' user='Yuichi Ehara' visible='true' version='1' changeset='56057772' lat='35.6820901' lon='139.7660249' />
+  <node id='5415072274' timestamp='2018-02-15T20:02:23Z' uid='4023025' user='alexandrebc' visible='true' version='1' changeset='56395269' lat='35.681068' lon='139.7657939' />
+  <node id='5415072275' timestamp='2018-02-15T20:02:23Z' uid='4023025' user='alexandrebc' visible='true' version='1' changeset='56395269' lat='35.6810617' lon='139.7658174' />
+  <node id='5415072276' timestamp='2018-02-15T20:02:23Z' uid='4023025' user='alexandrebc' visible='true' version='1' changeset='56395269' lat='35.6809724' lon='139.7657885' />
+  <node id='5415072277' timestamp='2018-02-15T20:02:23Z' uid='4023025' user='alexandrebc' visible='true' version='1' changeset='56395269' lat='35.6809806' lon='139.7657604' />
+  <node id='5430695623' timestamp='2018-02-23T06:49:27Z' uid='6802110' user='Bigmorr' visible='true' version='1' changeset='56600214' lat='35.6824555' lon='139.7660568' />
+  <node id='5798366042' timestamp='2018-07-31T09:50:17Z' uid='389520' user='K_Sakanoshita' visible='true' version='1' changeset='61222807' lat='35.6825359' lon='139.7662399' />
+  <node id='5798366043' timestamp='2019-04-10T20:07:19Z' uid='309382' user='Diego Sanguinetti' visible='true' version='3' changeset='69095998' lat='35.6821097' lon='139.7660136' />
+  <node id='6397151767' timestamp='2019-04-10T20:07:19Z' uid='309382' user='Diego Sanguinetti' visible='true' version='1' changeset='69095998' lat='35.6806513' lon='139.7652321' />
+  <node id='6397151772' timestamp='2019-04-10T20:07:19Z' uid='309382' user='Diego Sanguinetti' visible='true' version='1' changeset='69095998' lat='35.6823277' lon='139.7660046' />
+  <way id='145407027' timestamp='2017-01-23T11:00:39Z' uid='706170' user='BharataHS' visible='true' version='12' changeset='45396216'>
+    <nd ref='1588257688' />
+    <nd ref='1588257546' />
+    <tag k='name:zh' v='东京车站一番街' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='145407030' timestamp='2012-01-13T11:32:01Z' uid='69966' user='ikiya' visible='true' version='1' changeset='10377561'>
+    <nd ref='1588257774' />
+    <nd ref='1588257769' />
+    <nd ref='1588257756' />
+    <nd ref='1588257765' />
+    <nd ref='1588257774' />
+    <tag k='building' v='yes' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276607' timestamp='2015-05-02T10:41:03Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='2914213172' />
+    <nd ref='2914213171' />
+    <nd ref='2914213170' />
+    <nd ref='2914213169' />
+    <nd ref='2914213168' />
+    <nd ref='2914213167' />
+    <nd ref='2914213165' />
+    <nd ref='2914213163' />
+    <nd ref='2914213161' />
+    <nd ref='2914213162' />
+    <nd ref='2914213164' />
+    <nd ref='2914213166' />
+    <nd ref='1588257528' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276608' timestamp='2015-05-02T10:41:03Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='3492989589' />
+    <nd ref='1588257688' />
+  </way>
+  <way id='342276609' timestamp='2015-05-02T10:41:03Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257528' />
+    <nd ref='3492989538' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276610' timestamp='2015-05-02T10:41:03Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257539' />
+    <nd ref='3492989555' />
+  </way>
+  <way id='342276611' timestamp='2015-05-02T10:41:03Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='3492989555' />
+    <nd ref='1588257546' />
+  </way>
+  <way id='342276612' timestamp='2015-05-02T10:41:03Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257534' />
+    <nd ref='3492989539' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276614' timestamp='2015-05-02T10:41:03Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='3492989897' />
+    <nd ref='1588257718' />
+  </way>
+  <way id='342276616' timestamp='2015-05-02T10:41:03Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257530' />
+    <nd ref='3492989541' />
+  </way>
+  <way id='342276617' timestamp='2015-05-02T10:41:03Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='3492989895' />
+    <nd ref='3492989589' />
+  </way>
+  <way id='342276618' timestamp='2015-05-02T10:41:03Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257612' />
+    <nd ref='1596070668' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276619' timestamp='2015-05-02T10:41:03Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='3492989555' />
+    <nd ref='3492989561' />
+  </way>
+  <way id='342276620' timestamp='2015-05-02T10:41:03Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257750' />
+    <nd ref='3492989895' />
+  </way>
+  <way id='342276621' timestamp='2015-05-02T10:41:03Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='3492989550' />
+    <nd ref='1588257539' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276622' timestamp='2015-05-02T10:41:03Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257750' />
+    <nd ref='1588257758' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276623' timestamp='2015-05-02T10:41:03Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='3492989585' />
+    <nd ref='1588257701' />
+  </way>
+  <way id='342276624' timestamp='2015-05-02T10:41:03Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257528' />
+    <nd ref='2914213172' />
+  </way>
+  <way id='342276625' timestamp='2015-05-02T10:41:03Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='3492989585' />
+    <nd ref='1588257688' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276626' timestamp='2015-05-02T10:41:03Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257546' />
+    <nd ref='1588257545' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276628' timestamp='2015-05-02T10:41:04Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257534' />
+    <nd ref='3492989541' />
+  </way>
+  <way id='342276629' timestamp='2015-05-02T10:41:04Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257766' />
+    <nd ref='1588257755' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276630' timestamp='2018-02-15T20:02:32Z' uid='4023025' user='alexandrebc' visible='true' version='3' changeset='56395269'>
+    <nd ref='1588257554' />
+    <nd ref='5415072276' />
+    <nd ref='5415072277' />
+    <nd ref='5295049557' />
+    <nd ref='5415072274' />
+    <nd ref='5415072275' />
+    <nd ref='1588257607' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276631' timestamp='2015-05-02T10:41:04Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257536' />
+    <nd ref='1588257538' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276632' timestamp='2015-05-02T10:41:04Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257742' />
+    <nd ref='3492989897' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276633' timestamp='2015-05-02T10:41:04Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257656' />
+    <nd ref='3492989582' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276634' timestamp='2015-05-02T10:41:04Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257534' />
+    <nd ref='3492989540' />
+  </way>
+  <way id='342276635' timestamp='2015-05-02T10:41:04Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='3492989895' />
+    <nd ref='1596070668' />
+  </way>
+  <way id='342276636' timestamp='2015-05-02T10:41:04Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257742' />
+    <nd ref='3492989589' />
+  </way>
+  <way id='342276637' timestamp='2015-05-02T10:41:04Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='3492989550' />
+    <nd ref='1588257540' />
+  </way>
+  <way id='342276638' timestamp='2015-05-02T10:41:04Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='3492989540' />
+    <nd ref='1588257530' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276639' timestamp='2015-05-02T10:41:04Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1596070668' />
+    <nd ref='1588257656' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276640' timestamp='2015-05-02T10:41:04Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257554' />
+    <nd ref='3492989561' />
+  </way>
+  <way id='342276641' timestamp='2015-05-02T10:41:04Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='3492989538' />
+    <nd ref='3492989539' />
+  </way>
+  <way id='342276642' timestamp='2015-05-02T10:41:04Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257718' />
+    <nd ref='1588257701' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276643' timestamp='2015-05-02T10:41:04Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257543' />
+    <nd ref='1588257540' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276644' timestamp='2015-05-02T10:41:04Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257752' />
+    <nd ref='1588257742' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276645' timestamp='2015-05-02T10:41:04Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='3492989910' />
+    <nd ref='1588257750' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276646' timestamp='2015-05-02T10:41:04Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='3492989541' />
+    <nd ref='1588257536' />
+  </way>
+  <way id='342276647' timestamp='2015-05-02T10:41:04Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='3492989538' />
+    <nd ref='3492989540' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276648' timestamp='2015-05-02T10:41:04Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='3492989911' />
+    <nd ref='3492989910' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276649' timestamp='2015-05-02T10:41:04Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257543' />
+    <nd ref='1588257545' />
+  </way>
+  <way id='342276650' timestamp='2015-05-02T10:41:04Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257539' />
+    <nd ref='1588257534' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276651' timestamp='2015-05-02T10:41:04Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257607' />
+    <nd ref='1588257612' />
+  </way>
+  <way id='342276653' timestamp='2015-05-02T10:41:05Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257701' />
+    <nd ref='3492989583' />
+    <nd ref='3492989585' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276654' timestamp='2015-05-02T10:41:05Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257545' />
+    <nd ref='1588257544' />
+    <nd ref='1588257543' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276655' timestamp='2015-05-02T10:41:05Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='3492989897' />
+    <nd ref='3492989896' />
+    <nd ref='1588257718' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276656' timestamp='2015-05-02T10:41:05Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='3492989561' />
+    <nd ref='3492989545' />
+    <nd ref='1588257538' />
+  </way>
+  <way id='342276657' timestamp='2015-05-02T10:41:05Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257559' />
+    <nd ref='3492989570' />
+    <nd ref='1588257554' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276658' timestamp='2015-05-02T10:41:05Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257758' />
+    <nd ref='3492989913' />
+    <nd ref='1588257766' />
+  </way>
+  <way id='342276659' timestamp='2015-05-02T10:41:05Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257755' />
+    <nd ref='3492989912' />
+    <nd ref='1588257752' />
+  </way>
+  <way id='342276660' timestamp='2015-05-02T10:41:05Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='3492989539' />
+    <nd ref='2914213173' />
+    <nd ref='1588257529' />
+    <nd ref='2914213172' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276666' timestamp='2015-05-02T10:41:05Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257530' />
+    <nd ref='1588257531' />
+    <nd ref='1588257532' />
+    <nd ref='1588257535' />
+    <nd ref='1588257536' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276667' timestamp='2015-05-02T10:41:05Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257607' />
+    <nd ref='2912891586' />
+    <nd ref='1588257610' />
+    <nd ref='1588257616' />
+    <nd ref='2912891575' />
+    <nd ref='1588257612' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276668' timestamp='2015-05-02T10:41:05Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257540' />
+    <nd ref='3492989551' />
+    <nd ref='3492989548' />
+    <nd ref='3492989546' />
+    <nd ref='3492989547' />
+    <nd ref='3492989550' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276670' timestamp='2015-05-02T10:41:06Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257758' />
+    <nd ref='1588257761' />
+    <nd ref='1588257767' />
+    <nd ref='1588257770' />
+    <nd ref='1588257773' />
+    <nd ref='1588257771' />
+    <nd ref='1588257768' />
+    <nd ref='1588257766' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276671' timestamp='2015-05-02T10:41:06Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='3492989587' />
+    <nd ref='3492989586' />
+    <nd ref='3492989588' />
+    <nd ref='3492989894' />
+    <nd ref='3492989899' />
+    <nd ref='3492989900' />
+    <nd ref='3492989898' />
+    <nd ref='3492989893' />
+    <nd ref='3492989587' />
+  </way>
+  <way id='342276672' timestamp='2019-04-10T20:07:20Z' uid='309382' user='Diego Sanguinetti' visible='true' version='8' changeset='69095998'>
+    <nd ref='3492989582' />
+    <nd ref='1588257689' />
+    <nd ref='5386873815' />
+    <nd ref='5798366043' />
+    <nd ref='1588257712' />
+    <nd ref='3925264799' />
+    <nd ref='6397151772' />
+    <nd ref='5430695623' />
+    <nd ref='5798366042' />
+    <nd ref='1588257764' />
+    <nd ref='3492989911' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276673' timestamp='2015-05-02T10:41:06Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257755' />
+    <nd ref='1588257759' />
+    <nd ref='1588257763' />
+    <nd ref='1588257762' />
+    <nd ref='1588257754' />
+    <nd ref='1588257753' />
+    <nd ref='1588257751' />
+    <nd ref='1588257752' />
+    <tag k='source' v='Bing,2007-04' />
+  </way>
+  <way id='342276674' timestamp='2015-05-02T10:41:06Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='3492989553' />
+    <nd ref='3492989552' />
+    <nd ref='3492989554' />
+    <nd ref='3492989560' />
+    <nd ref='3492989563' />
+    <nd ref='3492989564' />
+    <nd ref='3492989562' />
+    <nd ref='3492989559' />
+    <nd ref='3492989553' />
+  </way>
+  <way id='342276675' timestamp='2015-05-02T10:41:06Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257688' />
+    <nd ref='3492989581' />
+    <nd ref='3492989584' />
+    <nd ref='3492989592' />
+    <nd ref='3492989901' />
+    <nd ref='3492989907' />
+    <nd ref='3492989902' />
+    <nd ref='1588257742' />
+  </way>
+  <way id='342276676' timestamp='2015-05-02T10:41:06Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <nd ref='1588257546' />
+    <nd ref='3492989566' />
+    <nd ref='3492989569' />
+    <nd ref='3492989565' />
+    <nd ref='3492989557' />
+    <nd ref='3492989549' />
+    <nd ref='3492989542' />
+    <nd ref='1588257539' />
+  </way>
+  <way id='342276678' timestamp='2018-07-31T17:05:25Z' uid='389520' user='K_Sakanoshita' visible='true' version='4' changeset='61236004'>
+    <nd ref='1588257538' />
+    <nd ref='3492989544' />
+    <nd ref='3492989543' />
+    <nd ref='1588257537' />
+    <nd ref='1588257542' />
+    <nd ref='5295049552' />
+    <nd ref='5295049553' />
+    <nd ref='1588257547' />
+    <nd ref='5295049558' />
+    <nd ref='1588257558' />
+    <nd ref='1588257559' />
+  </way>
+  <way id='548057861' timestamp='2019-04-10T20:07:20Z' uid='309382' user='Diego Sanguinetti' visible='true' version='2' changeset='69095998'>
+    <nd ref='5295049550' />
+    <nd ref='6397151767' />
+    <nd ref='5295049551' />
+    <nd ref='3677320559' />
+    <nd ref='5295049552' />
+    <nd ref='5295049553' />
+    <nd ref='5295049550' />
+    <tag k='building' v='roof' />
+  </way>
+  <relation id='4856156' timestamp='2021-02-20T16:53:33Z' uid='6802110' user='Bigmorr' visible='true' version='12' changeset='99651481'>
+    <member type='way' ref='342276644' role='outer' />
+    <member type='way' ref='342276673' role='outer' />
+    <member type='way' ref='342276629' role='outer' />
+    <member type='way' ref='342276670' role='outer' />
+    <member type='way' ref='342276622' role='outer' />
+    <member type='way' ref='342276645' role='outer' />
+    <member type='way' ref='342276648' role='outer' />
+    <member type='way' ref='342276672' role='outer' />
+    <member type='way' ref='342276633' role='outer' />
+    <member type='way' ref='342276639' role='outer' />
+    <member type='way' ref='342276618' role='outer' />
+    <member type='way' ref='342276667' role='outer' />
+    <member type='way' ref='342276630' role='outer' />
+    <member type='way' ref='342276657' role='outer' />
+    <member type='way' ref='342276678' role='outer' />
+    <member type='way' ref='342276631' role='outer' />
+    <member type='way' ref='342276666' role='outer' />
+    <member type='way' ref='342276638' role='outer' />
+    <member type='way' ref='342276647' role='outer' />
+    <member type='way' ref='342276609' role='outer' />
+    <member type='way' ref='342276607' role='outer' />
+    <member type='way' ref='342276660' role='outer' />
+    <member type='way' ref='342276612' role='outer' />
+    <member type='way' ref='342276650' role='outer' />
+    <member type='way' ref='342276621' role='outer' />
+    <member type='way' ref='342276668' role='outer' />
+    <member type='way' ref='342276643' role='outer' />
+    <member type='way' ref='342276654' role='outer' />
+    <member type='way' ref='342276626' role='outer' />
+    <member type='way' ref='145407027' role='outer' />
+    <member type='way' ref='342276625' role='outer' />
+    <member type='way' ref='342276653' role='outer' />
+    <member type='way' ref='342276642' role='outer' />
+    <member type='way' ref='342276655' role='outer' />
+    <member type='way' ref='342276632' role='outer' />
+    <tag k='addr:block_number' v='9' />
+    <tag k='addr:city' v='千代田区' />
+    <tag k='addr:country' v='JP' />
+    <tag k='addr:full' v='東京都千代田区丸の内1-9-1' />
+    <tag k='addr:housenumber' v='1' />
+    <tag k='addr:neighbourhood' v='1丁目' />
+    <tag k='addr:postcode' v='100-0005' />
+    <tag k='addr:province' v='東京都' />
+    <tag k='addr:quarter' v='丸の内' />
+    <tag k='alt_name:en' v='Tokyo Station (Marunouchi)' />
+    <tag k='alt_name:ja' v='東京駅 (丸の内)' />
+    <tag k='alt_name:zh' v='東京站 (丸之內)' />
+    <tag k='building' v='train_station' />
+    <tag k='building:levels' v='4' />
+    <tag k='historic' v='building' />
+    <tag k='layer' v='1' />
+    <tag k='name' v='東京駅丸の内駅舎' />
+    <tag k='name:en' v='Tokyo Station Marunouchu Building' />
+    <tag k='name:es' v='Edificio Marunouchi de la Estación de Tokio' />
+    <tag k='name:ja' v='東京駅丸の内駅舎' />
+    <tag k='name:ko' v='도쿄 역 마루노우치 출입구' />
+    <tag k='name:zh' v='東京站丸之內站房' />
+    <tag k='roof:levels' v='1' />
+    <tag k='type' v='multipolygon' />
+  </relation>
+  <relation id='4856157' timestamp='2020-11-28T14:00:33Z' uid='9322792' user='Imagener' visible='true' version='2' changeset='94944917'>
+    <member type='way' ref='342276619' role='outer' />
+    <member type='way' ref='342276611' role='outer' />
+    <member type='way' ref='145407027' role='outer' />
+    <member type='way' ref='342276608' role='outer' />
+    <member type='way' ref='342276617' role='outer' />
+    <member type='way' ref='342276635' role='outer' />
+    <member type='way' ref='342276618' role='outer' />
+    <member type='way' ref='342276651' role='outer' />
+    <member type='way' ref='342276630' role='outer' />
+    <member type='way' ref='342276640' role='outer' />
+    <tag k='building:colour' v='#B22222' />
+    <tag k='building:material' v='brick' />
+    <tag k='building:part' v='yes' />
+    <tag k='height' v='22' />
+    <tag k='roof:colour' v='black' />
+    <tag k='roof:height' v='5' />
+    <tag k='roof:material' v='slate' />
+    <tag k='roof:orientation' v='along' />
+    <tag k='roof:shape' v='gabled' />
+    <tag k='type' v='multipolygon' />
+  </relation>
+  <relation id='4856158' timestamp='2020-11-28T14:00:33Z' uid='9322792' user='Imagener' visible='true' version='2' changeset='94944917'>
+    <member type='way' ref='342276675' role='outer' />
+    <member type='way' ref='342276632' role='outer' />
+    <member type='way' ref='342276614' role='outer' />
+    <member type='way' ref='342276642' role='outer' />
+    <member type='way' ref='342276623' role='outer' />
+    <member type='way' ref='342276625' role='outer' />
+    <member type='way' ref='342276621' role='outer' />
+    <member type='way' ref='342276637' role='outer' />
+    <member type='way' ref='342276643' role='outer' />
+    <member type='way' ref='342276649' role='outer' />
+    <member type='way' ref='342276626' role='outer' />
+    <member type='way' ref='342276676' role='outer' />
+    <tag k='building:colour' v='#B22222' />
+    <tag k='building:material' v='brick' />
+    <tag k='building:part' v='yes' />
+    <tag k='height' v='28' />
+    <tag k='roof:colour' v='black' />
+    <tag k='roof:height' v='11' />
+    <tag k='roof:material' v='slate' />
+    <tag k='roof:shape' v='pyramidal' />
+    <tag k='type' v='multipolygon' />
+  </relation>
+  <relation id='4856159' timestamp='2020-11-28T14:00:33Z' uid='9322792' user='Imagener' visible='true' version='2' changeset='94944917'>
+    <member type='way' ref='342276671' role='outer' />
+    <member type='way' ref='342276674' role='outer' />
+    <tag k='building:colour' v='#B22222' />
+    <tag k='building:material' v='brick' />
+    <tag k='building:part' v='yes' />
+    <tag k='height' v='36' />
+    <tag k='roof:colour' v='black' />
+    <tag k='roof:height' v='9' />
+    <tag k='roof:material' v='slate' />
+    <tag k='roof:shape' v='dome' />
+    <tag k='type' v='multipolygon' />
+  </relation>
+  <relation id='4856160' timestamp='2018-01-03T16:24:34Z' uid='6802110' user='Bigmorr' visible='true' version='2' changeset='55133297'>
+    <member type='way' ref='342276667' role='outer' />
+    <member type='way' ref='342276651' role='outer' />
+    <tag k='building' v='roof' />
+    <tag k='building:part' v='yes' />
+    <tag k='height' v='7' />
+    <tag k='name' v='車寄' />
+    <tag k='type' v='multipolygon' />
+  </relation>
+  <relation id='4856162' timestamp='2020-11-28T14:00:33Z' uid='9322792' user='Imagener' visible='true' version='3' changeset='94944917'>
+    <member type='way' ref='342276634' role='outer' />
+    <member type='way' ref='342276647' role='outer' />
+    <member type='way' ref='342276609' role='outer' />
+    <member type='way' ref='342276624' role='outer' />
+    <member type='way' ref='342276660' role='outer' />
+    <member type='way' ref='342276612' role='outer' />
+    <tag k='building:colour' v='#B22222' />
+    <tag k='building:material' v='brick' />
+    <tag k='building:part' v='yes' />
+    <tag k='height' v='22' />
+    <tag k='roof:colour' v='black' />
+    <tag k='roof:height' v='5' />
+    <tag k='roof:material' v='slate' />
+    <tag k='roof:orientation' v='along' />
+    <tag k='roof:shape' v='hipped' />
+    <tag k='type' v='multipolygon' />
+  </relation>
+  <relation id='4856163' timestamp='2020-11-28T14:00:33Z' uid='9322792' user='Imagener' visible='true' version='2' changeset='94944917'>
+    <member type='way' ref='342276641' role='outer' />
+    <member type='way' ref='342276612' role='outer' />
+    <member type='way' ref='342276628' role='outer' />
+    <member type='way' ref='342276616' role='outer' />
+    <member type='way' ref='342276638' role='outer' />
+    <member type='way' ref='342276647' role='outer' />
+    <tag k='building:colour' v='#B22222' />
+    <tag k='building:material' v='brick' />
+    <tag k='building:part' v='yes' />
+    <tag k='height' v='22' />
+    <tag k='roof:colour' v='black' />
+    <tag k='roof:height' v='5' />
+    <tag k='roof:material' v='slate' />
+    <tag k='roof:orientation' v='along' />
+    <tag k='roof:shape' v='gabled' />
+    <tag k='type' v='multipolygon' />
+  </relation>
+  <relation id='4856164' timestamp='2020-11-28T14:00:33Z' uid='9322792' user='Imagener' visible='true' version='2' changeset='94944917'>
+    <member type='way' ref='342276628' role='outer' />
+    <member type='way' ref='342276650' role='outer' />
+    <member type='way' ref='342276610' role='outer' />
+    <member type='way' ref='342276619' role='outer' />
+    <member type='way' ref='342276656' role='outer' />
+    <member type='way' ref='342276631' role='outer' />
+    <member type='way' ref='342276646' role='outer' />
+    <tag k='building:colour' v='#B22222' />
+    <tag k='building:material' v='brick' />
+    <tag k='building:part' v='yes' />
+    <tag k='height' v='22' />
+    <tag k='roof:colour' v='black' />
+    <tag k='roof:height' v='5' />
+    <tag k='roof:material' v='slate' />
+    <tag k='roof:orientation' v='along' />
+    <tag k='roof:shape' v='gabled' />
+    <tag k='type' v='multipolygon' />
+  </relation>
+  <relation id='4856165' timestamp='2015-05-02T10:41:09Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <member type='way' ref='342276617' role='outer' />
+    <member type='way' ref='342276636' role='outer' />
+    <member type='way' ref='342276644' role='outer' />
+    <member type='way' ref='342276659' role='outer' />
+    <member type='way' ref='342276629' role='outer' />
+    <member type='way' ref='342276658' role='outer' />
+    <member type='way' ref='342276622' role='outer' />
+    <member type='way' ref='342276620' role='outer' />
+    <tag k='building:part' v='yes' />
+    <tag k='height' v='22' />
+    <tag k='roof:height' v='5' />
+    <tag k='roof:orientation' v='along' />
+    <tag k='roof:shape' v='hipped' />
+    <tag k='type' v='multipolygon' />
+  </relation>
+  <relation id='4856166' timestamp='2015-05-02T10:41:09Z' uid='571410' user='Антін Сартенченко' visible='true' version='1' changeset='30717603'>
+    <member type='relation' ref='4856157' role='part' />
+    <member type='relation' ref='4856156' role='outline' />
+    <tag k='type' v='building' />
+  </relation>
+</osm>
