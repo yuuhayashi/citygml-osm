@@ -48,7 +48,7 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 ![startup.pu](doc/startup.png)
 
-- (1) [GitHub-Release](https://github.com/yuuhayashi/citygml-osm/releases) から 'jar-with-dependencies' を'任意のフォルダ'にダウンロードする<br/> `citygml-get-x.x.x-jar-with-dependencies.jar` がダウンロードされます
+- (1) [GitHub-Release](https://github.com/yuuhayashi/citygml-osm/releases) から 'citygml-get-x.x.x.zip' をダウンロードして、'任意のフォルダ'に解凍する<br/> `citygml-get-x.x.x-jar-with-dependencies.jar` が解凍されます
   - [GitHub](https://github.com/yuuhayashi/citygml-osm)の右側にある「[Release](https://github.com/yuuhayashi/citygml-osm/releases)」欄から最新'Latest'版をダウンロードしてください
 
 - (2) [オープンデータ公開サイト](https://www.geospatial.jp/ckan/dataset/plateau)から「3D都市データ」をダウンロードする
@@ -59,7 +59,7 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
   ```
   $ cd (解凍先フォルダ)
-  $ java -jar citygml-osm-1.2.4-jar-with-dependencies.jar
+  $ java -jar citygml-osm-x.x.x-jar-with-dependencies.jar
   ```
 
 - (5) JOSMを起動して、「*.osm」ファイルをJOSMにドロップしてください。<br/>生成されたデータを確認することができます。
