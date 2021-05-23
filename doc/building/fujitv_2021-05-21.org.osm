@@ -1,0 +1,2905 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<osm generator="JOSM" version="0.6">
+    <bounds maxlat="35.6282000" maxlon="139.7782000" minlat="35.6255000" minlon="139.7713000" origin=""/>
+    <node changeset="77188705" id="1685642575" lat="35.6246367" lon="139.7751746" timestamp="2019-11-17T13:28:51Z" uid="550066" user="fuk" version="6" visible="true"/>
+    <node changeset="36377155" id="2914704365" lat="35.6271303" lon="139.7746448" timestamp="2016-01-05T10:26:49Z" uid="571410" user="Антін Сартенченко" version="3" visible="true"/>
+    <node changeset="36377155" id="2914704364" lat="35.6271250" lon="139.7747093" timestamp="2016-01-05T10:26:49Z" uid="571410" user="Антін Сартенченко" version="3" visible="true"/>
+    <node changeset="24371229" id="2981513085" lat="35.6279385" lon="139.7747048" timestamp="2014-07-26T17:32:33Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="14409168" id="2082979611" lat="35.6278794" lon="139.7715420" timestamp="2012-12-26T08:40:49Z" uid="621035" user="frejete" version="1" visible="true"/>
+    <node changeset="28840047" id="1685642580" lat="35.6243899" lon="139.7745801" timestamp="2015-02-14T12:44:41Z" uid="741163" user="JaLooooNz" version="3" visible="true"/>
+    <node changeset="15216041" id="2180557003" lat="35.6270843" lon="139.7715273" timestamp="2013-03-01T23:08:57Z" uid="24247" user="Vlad" version="1" visible="true"/>
+    <node changeset="15216041" id="2180557002" lat="35.6270201" lon="139.7715815" timestamp="2013-03-01T23:08:57Z" uid="24247" user="Vlad" version="1" visible="true"/>
+    <node changeset="15216041" id="2180557007" lat="35.6272739" lon="139.7719932" timestamp="2013-03-01T23:08:57Z" uid="24247" user="Vlad" version="1" visible="true"/>
+    <node changeset="15216041" id="2180557006" lat="35.6272562" lon="139.7718372" timestamp="2013-03-01T23:08:57Z" uid="24247" user="Vlad" version="1" visible="true"/>
+    <node changeset="47555861" id="1685642586" lat="35.6249154" lon="139.7741500" timestamp="2017-04-08T00:43:46Z" uid="5253345" user="yt0sh" version="5" visible="true"/>
+    <node changeset="15216041" id="2180557004" lat="35.6271575" lon="139.7716588" timestamp="2013-03-01T23:08:57Z" uid="24247" user="Vlad" version="1" visible="true"/>
+    <node changeset="15216041" id="2180557009" lat="35.6273211" lon="139.7719542" timestamp="2013-03-01T23:08:57Z" uid="24247" user="Vlad" version="1" visible="true"/>
+    <node changeset="24371229" id="2981513191" lat="35.6282234" lon="139.7748859" timestamp="2014-07-26T17:32:35Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="24371229" id="2981513194" lat="35.6282455" lon="139.7741446" timestamp="2014-07-26T17:32:35Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="24371229" id="2981513198" lat="35.6283229" lon="139.7744766" timestamp="2014-07-26T17:32:35Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="10611368" id="1621478494" lat="35.6267133" lon="139.7771512" timestamp="2012-02-07T11:54:47Z" uid="69966" user="ikiya" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321598" lat="35.6270621" lon="139.7746437" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="47555861" id="4782073493" lat="35.6245033" lon="139.7744873" timestamp="2017-04-08T00:43:46Z" uid="5253345" user="yt0sh" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321596" lat="35.6270789" lon="139.7753508" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="47555861" id="4782073491" lat="35.6250624" lon="139.7744201" timestamp="2017-04-08T00:43:46Z" uid="5253345" user="yt0sh" version="1" visible="true"/>
+    <node changeset="10611368" id="1621478477" lat="35.6266298" lon="139.7770196" timestamp="2012-02-07T11:54:47Z" uid="69966" user="ikiya" version="1" visible="true"/>
+    <node changeset="10611368" id="1621478597" lat="35.6274606" lon="139.7762376" timestamp="2012-02-07T11:54:50Z" uid="69966" user="ikiya" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321590" lat="35.6270203" lon="139.7746776" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321594" lat="35.6270661" lon="139.7754924" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321593" lat="35.6270415" lon="139.7747171" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321592" lat="35.6270564" lon="139.7754072" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="10611368" id="1621478480" lat="35.6266336" lon="139.7772299" timestamp="2012-02-07T11:54:47Z" uid="69966" user="ikiya" version="1" visible="true"/>
+    <node changeset="15216041" id="2180556981" lat="35.6266501" lon="139.7718935" timestamp="2013-03-01T23:08:56Z" uid="24247" user="Vlad" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321620" lat="35.6273017" lon="139.7747897" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321069" lat="35.6261451" lon="139.7734076" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="10611368" id="1621478623" lat="35.6278071" lon="139.7759581" timestamp="2012-02-07T11:54:51Z" uid="69966" user="ikiya" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321067" lat="35.6261409" lon="139.7735303" timestamp="2016-01-01T11:16:27Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321068" lat="35.6261244" lon="139.7731709" timestamp="2016-01-01T11:16:27Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="15216041" id="2180556985" lat="35.6266669" lon="139.7719267" timestamp="2013-03-01T23:08:56Z" uid="24247" user="Vlad" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321503" lat="35.6265877" lon="139.7743484" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="28840047" id="1685642530" lat="35.6260475" lon="139.7762444" timestamp="2015-02-14T12:44:41Z" uid="741163" user="JaLooooNz" version="4" visible="true"/>
+    <node changeset="36295910" id="2913321623" lat="35.6273348" lon="139.7747628" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321502" lat="35.6265866" lon="139.7743463" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="32987168" id="2180556983" lat="35.6266626" lon="139.7718830" timestamp="2015-07-30T17:23:48Z" uid="1989040" user="j0la" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321622" lat="35.6273028" lon="139.7753937" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321501" lat="35.6265688" lon="139.7743028" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321621" lat="35.6272849" lon="139.7753603" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="22897006" id="2913321061" lat="35.6260015" lon="139.7732757" timestamp="2014-06-12T20:55:51Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321062" lat="35.6260360" lon="139.7734963" timestamp="2016-01-01T11:16:27Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36323169" id="2180556987" lat="35.6266866" lon="139.7723983" timestamp="2016-01-02T17:47:57Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="15216041" id="2180556986" lat="35.6266748" lon="139.7719421" timestamp="2013-03-01T23:08:56Z" uid="24247" user="Vlad" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321060" lat="35.6259412" lon="139.7733197" timestamp="2016-01-01T11:16:27Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321065" lat="35.6260954" lon="139.7737802" timestamp="2016-01-01T11:16:27Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="10611368" id="1621478506" lat="35.6268438" lon="139.7777552" timestamp="2012-02-07T11:54:47Z" uid="69966" user="ikiya" version="1" visible="true"/>
+    <node changeset="10611368" id="1621478627" lat="35.6278297" lon="139.7769300" timestamp="2012-02-07T11:54:51Z" uid="69966" user="ikiya" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321066" lat="35.6260935" lon="139.7731960" timestamp="2016-01-01T11:16:27Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321063" lat="35.6260536" lon="139.7732284" timestamp="2016-01-01T11:16:27Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321064" lat="35.6260665" lon="139.7732179" timestamp="2016-01-01T11:16:27Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36218364" id="2031661333" lat="35.6257619" lon="139.7711216" timestamp="2015-12-28T12:34:48Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36218364" id="2031661331" lat="35.6257279" lon="139.7711690" timestamp="2015-12-28T12:34:48Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36218364" id="2031661330" lat="35.6257147" lon="139.7712193" timestamp="2015-12-28T12:34:48Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="24371229" id="2981513200" lat="35.6283942" lon="139.7744179" timestamp="2014-07-26T17:32:35Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321628" lat="35.6273874" lon="139.7753249" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321507" lat="35.6266490" lon="139.7743524" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321506" lat="35.6266289" lon="139.7743149" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321626" lat="35.6273699" lon="139.7747343" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321505" lat="35.6266078" lon="139.7743859" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="11657249" id="1760448751" lat="35.6265758" lon="139.7721943" timestamp="2012-05-20T22:30:56Z" uid="19532" user="gaku" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321625" lat="35.6273695" lon="139.7752915" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321504" lat="35.6265905" lon="139.7743432" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="24371229" id="2981513203" lat="35.6285287" lon="139.7745920" timestamp="2014-07-26T17:32:36Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="24371229" id="2981512596" lat="35.6274185" lon="139.7721416" timestamp="2014-07-26T17:32:32Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321629" lat="35.6273995" lon="139.7752672" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321508" lat="35.6266815" lon="139.7739347" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="32987168" id="2180556991" lat="35.6268426" lon="139.7722709" timestamp="2015-07-30T17:23:48Z" uid="1989040" user="j0la" version="2" visible="true"/>
+    <node changeset="24371229" id="2981512578" lat="35.6268445" lon="139.7726069" timestamp="2014-07-26T17:32:32Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="24371229" id="2981512579" lat="35.6268791" lon="139.7726745" timestamp="2014-07-26T17:32:32Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="15216041" id="2180556995" lat="35.6268907" lon="139.7723089" timestamp="2013-03-01T23:08:57Z" uid="24247" user="Vlad" version="1" visible="true"/>
+    <node changeset="15216041" id="2180556993" lat="35.6268705" lon="139.7723255" timestamp="2013-03-01T23:08:57Z" uid="24247" user="Vlad" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321610" lat="35.6271806" lon="139.7754450" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36218364" id="2031661339" lat="35.6259863" lon="139.7717272" timestamp="2015-12-28T12:34:48Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36218364" id="2031661335" lat="35.6258220" lon="139.7711112" timestamp="2015-12-28T12:34:48Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36218364" id="2031661342" lat="35.6261064" lon="139.7716391" timestamp="2015-12-28T12:34:48Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36218364" id="2031661341" lat="35.6260826" lon="139.7716957" timestamp="2015-12-28T12:34:48Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36218364" id="2031661340" lat="35.6260452" lon="139.7717183" timestamp="2015-12-28T12:34:48Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="24371478" id="2981512580" lat="35.6269343" lon="139.7727303" timestamp="2014-07-26T17:51:48Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321617" lat="35.6272393" lon="139.7753434" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="24371229" id="2981512583" lat="35.6270535" lon="139.7730659" timestamp="2014-07-26T17:32:32Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321616" lat="35.6272193" lon="139.7753061" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="24371478" id="2981512584" lat="35.6270968" lon="139.7730305" timestamp="2014-07-26T17:51:48Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="14409168" id="2082979702" lat="35.6278135" lon="139.7715972" timestamp="2012-12-26T08:40:51Z" uid="621035" user="frejete" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321618" lat="35.6272595" lon="139.7753809" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="48515464" id="4842597624" lat="35.6257972" lon="139.7711155" timestamp="2017-05-08T21:41:51Z" uid="3526564" user="yurasi" version="1" visible="true"/>
+    <node changeset="24371229" id="2981513217" lat="35.6287576" lon="139.7744987" timestamp="2014-07-26T17:32:36Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="48515464" id="4842597623" lat="35.6260951" lon="139.7716679" timestamp="2017-05-08T21:41:51Z" uid="3526564" user="yurasi" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321601" lat="35.6270931" lon="139.7753774" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="24371496" id="2981541325" lat="35.6268990" lon="139.7726615" timestamp="2014-07-26T17:52:36Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="65365119" id="6129961412" lat="35.6247718" lon="139.7760832" timestamp="2018-12-11T06:16:29Z" uid="7548722" user="Unnown" version="1" visible="true"/>
+    <node changeset="65365119" id="6129961411" lat="35.6248684" lon="139.7760050" timestamp="2018-12-11T06:16:29Z" uid="7548722" user="Unnown" version="1" visible="true"/>
+    <node changeset="36295910" id="1760448770" lat="35.6263771" lon="139.7731085" timestamp="2016-01-01T11:16:27Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321605" lat="35.6271279" lon="139.7754422" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321604" lat="35.6271145" lon="139.7753218" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321603" lat="35.6270833" lon="139.7746832" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="24371229" id="2981513208" lat="35.6285641" lon="139.7746573" timestamp="2014-07-26T17:32:36Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="15216041" id="2180556971" lat="35.6265136" lon="139.7720736" timestamp="2013-03-01T23:08:56Z" uid="24247" user="Vlad" version="1" visible="true"/>
+    <node changeset="36295910" id="1760448761" lat="35.6263237" lon="139.7730090" timestamp="2016-01-01T11:16:27Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="77188705" id="6984825388" lat="35.6247389" lon="139.7753781" timestamp="2019-11-17T13:28:51Z" uid="550066" user="fuk" version="1" visible="true"/>
+    <node changeset="24371229" id="2981513213" lat="35.6286286" lon="139.7742629" timestamp="2014-07-26T17:32:36Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="10611368" id="1621478547" lat="35.6270926" lon="139.7782854" timestamp="2012-02-07T11:54:49Z" uid="69966" user="ikiya" version="1" visible="true"/>
+    <node changeset="15216041" id="1760448789" lat="35.6266640" lon="139.7723577" timestamp="2013-03-01T23:09:03Z" uid="24247" user="Vlad" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321543" lat="35.6268633" lon="139.7748619" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="10611368" id="1621478546" lat="35.6270794" lon="139.7777477" timestamp="2012-02-07T11:54:49Z" uid="69966" user="ikiya" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321542" lat="35.6268530" lon="139.7742977" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="10611368" id="1621478545" lat="35.6270723" lon="139.7778351" timestamp="2012-02-07T11:54:49Z" uid="69966" user="ikiya" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321541" lat="35.6268577" lon="139.7748962" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321540" lat="35.6268576" lon="139.7749118" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321547" lat="35.6268693" lon="139.7742845" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321546" lat="35.6268673" lon="139.7749160" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321545" lat="35.6268658" lon="139.7748665" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321544" lat="35.6268630" lon="139.7749076" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="28840047" id="1685642615" lat="35.6243713" lon="139.7747029" timestamp="2015-02-14T12:44:41Z" uid="741163" user="JaLooooNz" version="4" visible="true"/>
+    <node changeset="10611368" id="1621478428" lat="35.6262654" lon="139.7772801" timestamp="2012-02-07T11:54:46Z" uid="69966" user="ikiya" version="1" visible="true"/>
+    <node changeset="10611368" id="1621478548" lat="35.6270985" lon="139.7778829" timestamp="2012-02-07T11:54:49Z" uid="69966" user="ikiya" version="1" visible="true"/>
+    <node changeset="24371229" id="2981513123" lat="35.6279959" lon="139.7746580" timestamp="2014-07-26T17:32:34Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321549" lat="35.6268626" lon="139.7742127" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321548" lat="35.6268616" lon="139.7742636" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="77191900" id="2536394356" lat="35.6246717" lon="139.7752362" timestamp="2019-11-17T15:32:00Z" uid="550066" user="fuk" version="5" visible="true"/>
+    <node changeset="77188705" id="2536394357" lat="35.6247205" lon="139.7754076" timestamp="2019-11-17T13:28:51Z" uid="550066" user="fuk" version="3" visible="true"/>
+    <node changeset="36295910" id="2913321532" lat="35.6268314" lon="139.7742138" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321531" lat="35.6268278" lon="139.7742072" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321530" lat="35.6268151" lon="139.7742270" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321536" lat="35.6268484" lon="139.7748126" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321535" lat="35.6268421" lon="139.7748224" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321534" lat="35.6268369" lon="139.7749472" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321533" lat="35.6268403" lon="139.7748191" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321094" lat="35.6265232" lon="139.7743480" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321095" lat="35.6265286" lon="139.7743934" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321092" lat="35.6265069" lon="139.7743530" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321098" lat="35.6265562" lon="139.7743637" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321099" lat="35.6265649" lon="139.7743059" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321096" lat="35.6265390" lon="139.7743776" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321097" lat="35.6265404" lon="139.7743341" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321539" lat="35.6268527" lon="139.7748864" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321538" lat="35.6268519" lon="139.7749008" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321537" lat="35.6268433" lon="139.7742277" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="77188705" id="2536394346" lat="35.6246419" lon="139.7758354" timestamp="2019-11-17T13:28:51Z" uid="550066" user="fuk" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321521" lat="35.6267797" lon="139.7748683" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321520" lat="35.6267783" lon="139.7748227" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="24371229" id="2981512603" lat="35.6275321" lon="139.7723460" timestamp="2014-07-26T17:32:32Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="10611368" id="1621478522" lat="35.6270332" lon="139.7781439" timestamp="2012-02-07T11:54:48Z" uid="69966" user="ikiya" version="1" visible="true"/>
+    <node changeset="10611368" id="1621478521" lat="35.6270308" lon="139.7781724" timestamp="2012-02-07T11:54:48Z" uid="69966" user="ikiya" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321525" lat="35.6268091" lon="139.7748345" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321524" lat="35.6267956" lon="139.7748089" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321523" lat="35.6267919" lon="139.7748483" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321522" lat="35.6267860" lon="139.7742411" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321083" lat="35.6263196" lon="139.7731553" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="24371229" id="2981512609" lat="35.6275875" lon="139.7723025" timestamp="2014-07-26T17:32:32Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321087" lat="35.6263659" lon="139.7733467" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321088" lat="35.6263623" lon="139.7732350" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321529" lat="35.6268272" lon="139.7747733" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="24371229" id="2981513145" lat="35.6280452" lon="139.7731494" timestamp="2014-07-26T17:32:34Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321528" lat="35.6268192" lon="139.7747798" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321527" lat="35.6268155" lon="139.7749073" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321526" lat="35.6268076" lon="139.7741697" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="24371229" id="2981513147" lat="35.6280461" lon="139.7731952" timestamp="2014-07-26T17:32:34Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="14409168" id="2082979556" lat="35.6279229" lon="139.7716206" timestamp="2012-12-26T08:40:47Z" uid="621035" user="frejete" version="1" visible="true"/>
+    <node changeset="10611368" id="1621478635" lat="35.6281761" lon="139.7766505" timestamp="2012-02-07T11:54:51Z" uid="69966" user="ikiya" version="1" visible="true"/>
+    <node changeset="10611368" id="1621478514" lat="35.6269647" lon="139.7780187" timestamp="2012-02-07T11:54:48Z" uid="69966" user="ikiya" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321631" lat="35.6274431" lon="139.7751243" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321630" lat="35.6274180" lon="139.7753016" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="10611368" id="1621478512" lat="35.6269144" lon="139.7778843" timestamp="2012-02-07T11:54:48Z" uid="69966" user="ikiya" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321078" lat="35.6262637" lon="139.7733151" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321635" lat="35.6275781" lon="139.7751221" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321514" lat="35.6267568" lon="139.7745533" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321513" lat="35.6267360" lon="139.7746248" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321633" lat="35.6275018" lon="139.7752336" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321512" lat="35.6267236" lon="139.7739006" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321632" lat="35.6274833" lon="139.7751991" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321511" lat="35.6267156" lon="139.7745868" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321072" lat="35.6261501" lon="139.7731500" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321073" lat="35.6261897" lon="139.7734907" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321070" lat="35.6261565" lon="139.7737305" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="10611368" id="1621478518" lat="35.6270142" lon="139.7779527" timestamp="2012-02-07T11:54:48Z" uid="69966" user="ikiya" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321076" lat="35.6262204" lon="139.7736786" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="10611368" id="1621478517" lat="35.6270088" lon="139.7776186" timestamp="2012-02-07T11:54:48Z" uid="69966" user="ikiya" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321074" lat="35.6261727" lon="139.7737174" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="28840047" id="1685642529" lat="35.6247788" lon="139.7755272" timestamp="2015-02-14T12:44:41Z" uid="741163" user="JaLooooNz" version="4" visible="true"/>
+    <node changeset="10611368" id="1621478515" lat="35.6269880" lon="139.7779049" timestamp="2012-02-07T11:54:48Z" uid="69966" user="ikiya" version="1" visible="true"/>
+    <node changeset="28840047" id="3349873186" lat="35.6260285" lon="139.7763468" timestamp="2015-02-14T12:44:39Z" uid="741163" user="JaLooooNz" version="1" visible="true"/>
+    <node changeset="28840047" id="3349873187" lat="35.6260527" lon="139.7762854" timestamp="2015-02-14T12:44:39Z" uid="741163" user="JaLooooNz" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321080" lat="35.6263065" lon="139.7733949" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321518" lat="35.6267704" lon="139.7748509" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321517" lat="35.6267674" lon="139.7748454" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321516" lat="35.6267659" lon="139.7742036" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321515" lat="35.6267586" lon="139.7748290" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321519" lat="35.6267772" lon="139.7745913" timestamp="2016-01-01T11:16:28Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321587" lat="35.6270339" lon="139.7742908" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="10611368" id="1621478468" lat="35.6264926" lon="139.7773028" timestamp="2012-02-07T11:54:46Z" uid="69966" user="ikiya" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321584" lat="35.6270363" lon="139.7742068" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321589" lat="35.6270446" lon="139.7753853" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321588" lat="35.6270314" lon="139.7754276" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="28840047" id="2411602911" lat="35.6256936" lon="139.7755961" timestamp="2015-02-14T12:44:41Z" uid="741163" user="JaLooooNz" version="2" visible="true"/>
+    <node changeset="28840047" id="3349873181" lat="35.6249556" lon="139.7746271" timestamp="2015-02-14T12:44:39Z" uid="741163" user="JaLooooNz" version="1" visible="true"/>
+    <node changeset="28840047" id="3349873184" lat="35.6254450" lon="139.7767887" timestamp="2015-02-14T12:44:39Z" uid="741163" user="JaLooooNz" version="1" visible="true"/>
+    <node changeset="28840047" id="3349873185" lat="35.6255189" lon="139.7757310" timestamp="2015-02-14T12:44:39Z" uid="741163" user="JaLooooNz" version="1" visible="true"/>
+    <node changeset="47555861" id="2411602914" lat="35.6251131" lon="139.7745062" timestamp="2017-04-08T00:43:46Z" uid="5253345" user="yt0sh" version="3" visible="true"/>
+    <node changeset="28840047" id="2411602913" lat="35.6251816" lon="139.7744526" timestamp="2015-02-14T12:44:41Z" uid="741163" user="JaLooooNz" version="2" visible="true"/>
+    <node changeset="28840047" id="3349873182" lat="35.6249783" lon="139.7759160" timestamp="2015-02-14T12:44:39Z" uid="741163" user="JaLooooNz" version="1" visible="true"/>
+    <node changeset="28840047" id="2411602912" lat="35.6257448" lon="139.7755565" timestamp="2015-02-14T12:44:41Z" uid="741163" user="JaLooooNz" version="2" visible="true"/>
+    <node changeset="28840047" id="3349873175" lat="35.6247688" lon="139.7760856" timestamp="2015-02-14T12:44:39Z" uid="741163" user="JaLooooNz" version="1" visible="true"/>
+    <node changeset="24371229" id="2981513160" lat="35.6280999" lon="139.7748102" timestamp="2014-07-26T17:32:34Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="10611368" id="1621478471" lat="35.6265889" lon="139.7770138" timestamp="2012-02-07T11:54:46Z" uid="69966" user="ikiya" version="1" visible="true"/>
+    <node changeset="10611368" id="1621478470" lat="35.6265325" lon="139.7770749" timestamp="2012-02-07T11:54:46Z" uid="69966" user="ikiya" version="1" visible="true"/>
+    <node changeset="24371229" id="2981513164" lat="35.6281142" lon="139.7732690" timestamp="2014-07-26T17:32:34Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="24371229" id="2981513169" lat="35.6281313" lon="139.7748693" timestamp="2014-07-26T17:32:35Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321576" lat="35.6269895" lon="139.7742448" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321574" lat="35.6269560" lon="139.7744461" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="14409168" id="2082979541" lat="35.6278570" lon="139.7716757" timestamp="2012-12-26T08:40:47Z" uid="621035" user="frejete" version="1" visible="true"/>
+    <node changeset="10611368" id="1621478575" lat="35.6272935" lon="139.7781191" timestamp="2012-02-07T11:54:49Z" uid="69966" user="ikiya" version="1" visible="true"/>
+    <node changeset="10611368" id="1621478454" lat="35.6264133" lon="139.7771577" timestamp="2012-02-07T11:54:46Z" uid="69966" user="ikiya" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321578" lat="35.6269835" lon="139.7754350" timestamp="2016-01-01T11:16:30Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321577" lat="35.6269636" lon="139.7743478" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321571" lat="35.6269356" lon="139.7744081" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321570" lat="35.6269540" lon="139.7741786" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="28840047" id="3349873172" lat="35.6243642" lon="139.7746432" timestamp="2015-02-14T12:44:39Z" uid="741163" user="JaLooooNz" version="1" visible="true"/>
+    <node changeset="24371229" id="2981513155" lat="35.6280849" lon="139.7748227" timestamp="2014-07-26T17:32:34Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="24371229" id="2981513154" lat="35.6280742" lon="139.7732164" timestamp="2014-07-26T17:32:34Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321565" lat="35.6269113" lon="139.7742504" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="29462254" id="3397647631" lat="35.6269753" lon="139.7781364" timestamp="2015-03-14T00:40:00Z" uid="1059224" user="roguish" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321564" lat="35.6269142" lon="139.7744800" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="29462254" id="3397647630" lat="35.6270208" lon="139.7782951" timestamp="2015-03-14T00:40:00Z" uid="1059224" user="roguish" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321563" lat="35.6269070" lon="139.7748330" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="29462254" id="3397647633" lat="35.6266593" lon="139.7773401" timestamp="2015-03-14T00:40:00Z" uid="1059224" user="roguish" version="1" visible="true"/>
+    <node changeset="68465195" id="6357717106" lat="35.6261499" lon="139.7760339" timestamp="2019-03-24T09:27:18Z" uid="27099" user="MAPconcierge" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321562" lat="35.6268975" lon="139.7742245" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="29462254" id="3397647632" lat="35.6268396" lon="139.7778877" timestamp="2015-03-14T00:40:00Z" uid="1059224" user="roguish" version="1" visible="true"/>
+    <node changeset="68465195" id="6357717105" lat="35.6260778" lon="139.7758958" timestamp="2019-03-24T09:27:18Z" uid="27099" user="MAPconcierge" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321568" lat="35.6269283" lon="139.7748729" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="29462254" id="3397647634" lat="35.6264296" lon="139.7769992" timestamp="2015-03-14T00:40:00Z" uid="1059224" user="roguish" version="1" visible="true"/>
+    <node changeset="10611368" id="1621478562" lat="35.6272317" lon="139.7780060" timestamp="2012-02-07T11:54:49Z" uid="69966" user="ikiya" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321561" lat="35.6269045" lon="139.7748284" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="68465195" id="6357717104" lat="35.6260829" lon="139.7760869" timestamp="2019-03-24T09:27:18Z" uid="27099" user="MAPconcierge" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321560" lat="35.6268938" lon="139.7744420" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="68465195" id="6357717103" lat="35.6260108" lon="139.7759488" timestamp="2019-03-24T09:27:18Z" uid="27099" user="MAPconcierge" version="1" visible="true"/>
+    <node changeset="24371229" id="2981513181" lat="35.6281741" lon="139.7742033" timestamp="2014-07-26T17:32:35Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="36377155" id="2914704350" lat="35.6268464" lon="139.7746823" timestamp="2016-01-05T10:26:49Z" uid="571410" user="Антін Сартенченко" version="3" visible="true"/>
+    <node changeset="36377155" id="2914704352" lat="35.6268657" lon="139.7747503" timestamp="2016-01-05T10:26:50Z" uid="571410" user="Антін Сартенченко" version="3" visible="true"/>
+    <node changeset="24371229" id="2981513183" lat="35.6281864" lon="139.7749157" timestamp="2014-07-26T17:32:35Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="36377155" id="2914704351" lat="35.6268510" lon="139.7746099" timestamp="2016-01-05T10:26:50Z" uid="571410" user="Антін Сартенченко" version="3" visible="true"/>
+    <node changeset="55344256" id="3397647628" lat="35.6270882" lon="139.7783620" timestamp="2018-01-11T07:45:40Z" uid="2175748" user="freesin" version="2" visible="true"/>
+    <node changeset="24371229" id="2981513189" lat="35.6282168" lon="139.7734623" timestamp="2014-07-26T17:32:35Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="29462254" id="3397647627" lat="35.6270427" lon="139.7782800" timestamp="2015-03-14T00:40:00Z" uid="1059224" user="roguish" version="1" visible="true"/>
+    <node changeset="24371229" id="2981513188" lat="35.6282064" lon="139.7734438" timestamp="2014-07-26T17:32:35Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="24371229" id="2981513187" lat="35.6282054" lon="139.7748520" timestamp="2014-07-26T17:32:35Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="55344256" id="3397647629" lat="35.6270664" lon="139.7783809" timestamp="2018-01-11T07:45:40Z" uid="2175748" user="freesin" version="2" visible="true"/>
+    <node changeset="24371229" id="2981513186" lat="35.6282037" lon="139.7734729" timestamp="2014-07-26T17:32:35Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="10611368" id="1621478558" lat="35.6272146" lon="139.7779937" timestamp="2012-02-07T11:54:49Z" uid="69966" user="ikiya" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321554" lat="35.6268825" lon="139.7748892" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321553" lat="35.6268833" lon="139.7747890" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321552" lat="35.6268734" lon="139.7741797" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321551" lat="35.6268782" lon="139.7748807" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="36295910" id="2913321558" lat="35.6268871" lon="139.7749063" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="29462254" id="3397647624" lat="35.6266868" lon="139.7773144" timestamp="2015-03-14T00:40:00Z" uid="1059224" user="roguish" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321557" lat="35.6268810" lon="139.7742487" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="29462254" id="3397647623" lat="35.6264524" lon="139.7769759" timestamp="2015-03-14T00:40:00Z" uid="1059224" user="roguish" version="1" visible="true"/>
+    <node changeset="10611368" id="1621478552" lat="35.6271461" lon="139.7778684" timestamp="2012-02-07T11:54:49Z" uid="69966" user="ikiya" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321556" lat="35.6268880" lon="139.7748998" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="29462254" id="3397647626" lat="35.6270076" lon="139.7781212" timestamp="2015-03-14T00:40:00Z" uid="1059224" user="roguish" version="1" visible="true"/>
+    <node changeset="10611368" id="1621478430" lat="35.6263447" lon="139.7774252" timestamp="2012-02-07T11:54:46Z" uid="69966" user="ikiya" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321555" lat="35.6268851" lon="139.7748753" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="29462254" id="3397647625" lat="35.6268738" lon="139.7778725" timestamp="2015-03-14T00:40:00Z" uid="1059224" user="roguish" version="1" visible="true"/>
+    <node changeset="36377155" id="2914704354" lat="35.6269046" lon="139.7748022" timestamp="2016-01-05T10:26:49Z" uid="571410" user="Антін Сартенченко" version="3" visible="true"/>
+    <node changeset="36377155" id="2914704353" lat="35.6268791" lon="139.7745460" timestamp="2016-01-05T10:26:49Z" uid="571410" user="Антін Сартенченко" version="3" visible="true"/>
+    <node changeset="36377155" id="2914704356" lat="35.6269557" lon="139.7748308" timestamp="2016-01-05T10:26:49Z" uid="571410" user="Антін Сартенченко" version="3" visible="true"/>
+    <node changeset="36377155" id="2914704355" lat="35.6269252" lon="139.7745019" timestamp="2016-01-05T10:26:49Z" uid="571410" user="Антін Сартенченко" version="3" visible="true"/>
+    <node changeset="36377155" id="2914704358" lat="35.6270106" lon="139.7748331" timestamp="2016-01-05T10:26:49Z" uid="571410" user="Антін Сартенченко" version="3" visible="true"/>
+    <node changeset="36295910" id="2913321550" lat="35.6268729" lon="139.7748705" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="77188705" id="2536382743" lat="35.6247549" lon="139.7755898" timestamp="2019-11-17T13:28:51Z" uid="550066" user="fuk" version="2" visible="true"/>
+    <node changeset="36377155" id="2914704357" lat="35.6269808" lon="139.7744842" timestamp="2016-01-05T10:26:49Z" uid="571410" user="Антін Сартенченко" version="3" visible="true"/>
+    <node changeset="36377155" id="2914704359" lat="35.6270364" lon="139.7744943" timestamp="2016-01-05T10:26:49Z" uid="571410" user="Антін Сартенченко" version="3" visible="true"/>
+    <node changeset="36377155" id="2914704361" lat="35.6270835" lon="139.7745290" timestamp="2016-01-05T10:26:49Z" uid="571410" user="Антін Сартенченко" version="3" visible="true"/>
+    <node changeset="36377155" id="2914704360" lat="35.6270613" lon="139.7748104" timestamp="2016-01-05T10:26:49Z" uid="571410" user="Антін Сартенченко" version="3" visible="true"/>
+    <node changeset="36377155" id="2914704363" lat="35.6271161" lon="139.7745818" timestamp="2016-01-05T10:26:49Z" uid="571410" user="Антін Сартенченко" version="3" visible="true"/>
+    <node changeset="36377155" id="2914704362" lat="35.6271010" lon="139.7747671" timestamp="2016-01-05T10:26:49Z" uid="571410" user="Антін Сартенченко" version="3" visible="true"/>
+    <node changeset="24371229" id="2981513171" lat="35.6281378" lon="139.7733137" timestamp="2014-07-26T17:32:35Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="24371229" id="2981513177" lat="35.6281596" lon="139.7733751" timestamp="2014-07-26T17:32:35Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="24371229" id="2981513176" lat="35.6281526" lon="139.7748521" timestamp="2014-07-26T17:32:35Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <node changeset="36295910" id="2913321559" lat="35.6268895" lon="139.7748837" timestamp="2016-01-01T11:16:29Z" uid="571410" user="Антін Сартенченко" version="2" visible="true"/>
+    <node changeset="24371229" id="2981513179" lat="35.6281696" lon="139.7734220" timestamp="2014-07-26T17:32:35Z" uid="571410" user="Антін Сартенченко" version="1" visible="true"/>
+    <way changeset="41677341" id="149124444" timestamp="2016-08-25T02:03:04Z" uid="370313" user="hazelnut kingdom" version="2" visible="true">
+        <nd ref="1621478512"/>
+        <nd ref="1621478506"/>
+        <nd ref="1621478517"/>
+        <nd ref="1621478546"/>
+        <nd ref="1621478512"/>
+        <tag k="building:levels" v="1"/>
+        <tag k="source" v="Bing,2007"/>
+        <tag k="building" v="yes"/>
+    </way>
+    <way changeset="24371478" id="294556505" timestamp="2014-07-26T17:51:48Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2981512597"/>
+        <nd ref="2981512594"/>
+    </way>
+    <way changeset="24371229" id="294556504" timestamp="2014-07-26T17:32:39Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513170"/>
+        <nd ref="2981513166"/>
+        <nd ref="2981513159"/>
+        <nd ref="2981513152"/>
+        <nd ref="2981513143"/>
+        <nd ref="2981513133"/>
+        <nd ref="2981513115"/>
+    </way>
+    <way changeset="14409168" id="198117541" timestamp="2012-12-26T08:40:52Z" uid="621035" user="frejete" version="1" visible="true">
+        <nd ref="2082979556"/>
+        <nd ref="2082979611"/>
+        <nd ref="2082979702"/>
+        <nd ref="2082979541"/>
+        <nd ref="2082979556"/>
+        <tag k="building" v="yes"/>
+    </way>
+    <way changeset="10611368" id="149124447" timestamp="2012-02-07T11:55:08Z" uid="69966" user="ikiya" version="1" visible="true">
+        <nd ref="1621478575"/>
+        <nd ref="1621478547"/>
+        <nd ref="1621478521"/>
+        <nd ref="1621478562"/>
+        <nd ref="1621478575"/>
+        <tag k="source" v="Bing,2007"/>
+        <tag k="building" v="yes"/>
+    </way>
+    <way changeset="36236701" id="388398402" timestamp="2015-12-29T09:29:26Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3916014122"/>
+        <nd ref="3916014123"/>
+    </way>
+    <way changeset="24371229" id="294556501" timestamp="2014-07-26T17:32:38Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981512607"/>
+        <nd ref="2981512605"/>
+        <nd ref="2981512614"/>
+        <nd ref="2981512616"/>
+        <nd ref="2981512619"/>
+        <nd ref="2981512618"/>
+        <nd ref="2981512613"/>
+    </way>
+    <way changeset="24371229" id="294556500" timestamp="2014-07-26T17:32:38Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513136"/>
+        <nd ref="2981513132"/>
+        <nd ref="2981513125"/>
+        <nd ref="2981513116"/>
+        <nd ref="2981513103"/>
+        <nd ref="2981513090"/>
+        <nd ref="2981513086"/>
+    </way>
+    <way changeset="24371229" id="294556503" timestamp="2014-07-26T17:32:38Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513086"/>
+        <nd ref="2981513084"/>
+        <nd ref="2981513092"/>
+        <nd ref="2981513097"/>
+        <nd ref="2981513106"/>
+        <nd ref="2981513113"/>
+        <nd ref="2981513136"/>
+    </way>
+    <way changeset="24371229" id="294556502" timestamp="2014-07-26T17:32:38Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513086"/>
+        <nd ref="2981513063"/>
+        <nd ref="2981513057"/>
+        <nd ref="2981513048"/>
+        <nd ref="2981513043"/>
+        <nd ref="2981513035"/>
+        <nd ref="2981512626"/>
+    </way>
+    <way changeset="36236701" id="388398409" timestamp="2015-12-29T09:29:27Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3916014128"/>
+        <nd ref="3916014141"/>
+    </way>
+    <way changeset="36236701" id="388398403" timestamp="2015-12-29T09:29:26Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3916014119"/>
+        <nd ref="3914492723"/>
+    </way>
+    <way changeset="83543821" id="149124459" timestamp="2020-04-14T15:43:06Z" uid="10198220" user="swytel" version="15" visible="true">
+        <nd ref="1621478470"/>
+        <nd ref="1621478471"/>
+        <nd ref="1621478477"/>
+        <nd ref="1621478494"/>
+        <nd ref="1621478480"/>
+        <nd ref="1621478470"/>
+        <tag k="brand:en" v="LAWSON"/>
+        <tag k="brand:wikidata" v="Q1557223"/>
+        <tag k="wheelchair" v="limited"/>
+        <tag k="shop" v="convenience"/>
+        <tag k="name:ja" v="ローソン"/>
+        <tag k="brand:wikipedia" v="ja:ローソン"/>
+        <tag k="source" v="survey"/>
+        <tag k="building" v="retail"/>
+        <tag k="survey:date" v="2012-11-01"/>
+        <tag k="name:ko" v="로손"/>
+        <tag k="toilets:wheelchair" v="no"/>
+        <tag k="brand:ja" v="ローソン"/>
+        <tag k="name" v="ローソン"/>
+        <tag k="name:en" v="Lawson"/>
+        <tag k="name:ja_rm" v="Rōson"/>
+        <tag k="brand" v="ローソン"/>
+        <tag k="name:es" v="Lawson"/>
+    </way>
+    <way changeset="36236701" id="388398411" timestamp="2015-12-29T09:29:27Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3916014113"/>
+        <nd ref="3916014079"/>
+    </way>
+    <way changeset="28614608" id="326385495" timestamp="2015-02-04T17:13:08Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3330189076"/>
+        <nd ref="3330189079"/>
+    </way>
+    <way changeset="28614608" id="326385483" timestamp="2015-02-04T17:13:08Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3330189049"/>
+        <nd ref="3330189061"/>
+    </way>
+    <way changeset="36236701" id="388398420" timestamp="2015-12-29T09:29:27Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3916014076"/>
+        <nd ref="3916014121"/>
+    </way>
+    <way changeset="36236701" id="388398429" timestamp="2015-12-29T09:29:27Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3916014122"/>
+        <nd ref="3916014078"/>
+    </way>
+    <way changeset="36236701" id="388398427" timestamp="2015-12-29T09:29:27Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3916014121"/>
+        <nd ref="3916014122"/>
+    </way>
+    <way changeset="22897006" id="287770739" timestamp="2014-06-12T20:55:55Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2913321093"/>
+        <nd ref="2913321099"/>
+        <nd ref="2913321502"/>
+        <nd ref="2913321503"/>
+        <nd ref="2913321505"/>
+        <nd ref="2913321511"/>
+        <nd ref="2913321513"/>
+        <nd ref="2913321528"/>
+        <nd ref="2913321533"/>
+        <nd ref="2913321535"/>
+        <nd ref="2913321543"/>
+        <nd ref="2913321545"/>
+        <nd ref="2913321558"/>
+        <nd ref="2913321567"/>
+        <nd ref="2913321580"/>
+    </way>
+    <way changeset="36295910" id="287770737" timestamp="2016-01-01T11:16:26Z" uid="571410" user="Антін Сартенченко" version="3" visible="true">
+        <nd ref="2913321616"/>
+        <nd ref="2913321631"/>
+        <nd ref="2913321632"/>
+        <nd ref="2913321633"/>
+        <nd ref="2913321630"/>
+        <nd ref="2913321629"/>
+        <nd ref="2913321625"/>
+        <nd ref="2913321628"/>
+        <nd ref="2913321622"/>
+        <nd ref="2913321621"/>
+        <nd ref="2913321618"/>
+        <nd ref="2913321617"/>
+        <nd ref="2913321616"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="building:height" v="120"/>
+        <tag k="building:material" v="metal"/>
+    </way>
+    <way changeset="22926479" id="287770738" timestamp="2014-06-14T14:06:43Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2913321550"/>
+        <nd ref="2913321551"/>
+        <nd ref="2913321555"/>
+        <nd ref="2913321559"/>
+        <nd ref="2913321554"/>
+        <nd ref="2913321556"/>
+        <nd ref="2913321546"/>
+        <nd ref="2913321544"/>
+        <nd ref="2913321540"/>
+        <nd ref="2913321538"/>
+        <nd ref="2913321541"/>
+        <nd ref="2913321539"/>
+        <nd ref="2913321550"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="building:height" v="127"/>
+        <tag k="building:material" v="metal"/>
+    </way>
+    <way changeset="22897006" id="287770735" timestamp="2014-06-12T20:55:55Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2913321509"/>
+        <nd ref="2913321526"/>
+        <nd ref="2913321531"/>
+        <nd ref="2913321532"/>
+        <nd ref="2913321547"/>
+        <nd ref="2913321571"/>
+        <nd ref="2913321574"/>
+        <nd ref="2913321598"/>
+        <nd ref="2913321603"/>
+        <nd ref="2913321612"/>
+    </way>
+    <way changeset="22897006" id="287770736" timestamp="2014-06-12T20:55:55Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2913321604"/>
+        <nd ref="2913321610"/>
+        <nd ref="2913321618"/>
+        <nd ref="2913321621"/>
+        <nd ref="2913321625"/>
+        <nd ref="2913321629"/>
+        <nd ref="2913321632"/>
+        <nd ref="2913321635"/>
+        <nd ref="2913321626"/>
+        <nd ref="2913321623"/>
+        <nd ref="2913321620"/>
+    </way>
+    <way changeset="36236701" id="388398431" timestamp="2015-12-29T09:29:27Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3916014137"/>
+        <nd ref="3916014131"/>
+        <nd ref="3916014122"/>
+    </way>
+    <way changeset="77501965" id="287770734" timestamp="2019-11-25T06:36:08Z" uid="741163" user="JaLooooNz" version="21" visible="true">
+        <nd ref="2913321060"/>
+        <nd ref="2913321062"/>
+        <nd ref="2913321069"/>
+        <nd ref="2913321073"/>
+        <nd ref="2913321067"/>
+        <nd ref="2913321076"/>
+        <nd ref="2913321074"/>
+        <nd ref="2913321070"/>
+        <nd ref="2913321065"/>
+        <nd ref="2913321578"/>
+        <nd ref="2913321589"/>
+        <nd ref="2913321592"/>
+        <nd ref="2913321588"/>
+        <nd ref="2913321594"/>
+        <nd ref="2913321605"/>
+        <nd ref="2913321601"/>
+        <nd ref="2913321596"/>
+        <nd ref="2913321604"/>
+        <nd ref="2913321610"/>
+        <nd ref="2913321618"/>
+        <nd ref="2913321621"/>
+        <nd ref="2913321622"/>
+        <nd ref="2913321628"/>
+        <nd ref="2913321625"/>
+        <nd ref="2913321629"/>
+        <nd ref="2913321630"/>
+        <nd ref="2913321633"/>
+        <nd ref="2913321632"/>
+        <nd ref="2913321635"/>
+        <nd ref="2913321626"/>
+        <nd ref="2913321623"/>
+        <nd ref="2913321584"/>
+        <nd ref="2913321576"/>
+        <nd ref="2913321570"/>
+        <nd ref="2913321562"/>
+        <nd ref="2913321552"/>
+        <nd ref="2913321512"/>
+        <nd ref="2913321508"/>
+        <nd ref="2913321087"/>
+        <nd ref="2913321080"/>
+        <nd ref="2913321078"/>
+        <nd ref="2913321088"/>
+        <nd ref="2913321083"/>
+        <nd ref="1760448770"/>
+        <nd ref="1760448761"/>
+        <nd ref="2913321072"/>
+        <nd ref="2913321068"/>
+        <nd ref="2913321066"/>
+        <nd ref="2913321064"/>
+        <nd ref="2913321063"/>
+        <nd ref="2913321060"/>
+        <tag k="studio" v="television"/>
+        <tag k="wheelchair" v="limited"/>
+        <tag k="addr:full" v="東京都港区台場2-4-8"/>
+        <tag k="addr:quarter" v="台場"/>
+        <tag k="artist_name" v="丹下健三"/>
+        <tag k="amenity" v="studio"/>
+        <tag k="tourism" v="artwork"/>
+        <tag k="artwork_type" v="architecture"/>
+        <tag k="office" v="telecommunication"/>
+        <tag k="source" v="Bing,2007;survey"/>
+        <tag k="addr:postcode" v="137-8088"/>
+        <tag k="building" v="office"/>
+        <tag k="addr:suburb" v="港区"/>
+        <tag k="addr:block_number" v="4"/>
+        <tag k="name:en" v="Fuji Television"/>
+        <tag k="wikipedia" v="ja:フジテレビジョン"/>
+        <tag k="brand" v="Fuji Television"/>
+        <tag k="name:zh" v="富士電視台"/>
+        <tag k="start_date" v="1997"/>
+        <tag k="addr:province" v="東京都"/>
+        <tag k="addr:housename" v="フジテレビ本社ビル"/>
+        <tag k="name:ja" v="フジテレビジョン"/>
+        <tag k="addr:country" v="JP"/>
+        <tag k="addr:neighbourhood" v="2"/>
+        <tag k="name:ru" v="Фудзи Телевижн"/>
+        <tag k="addr:housenumber" v="8"/>
+        <tag k="name:de" v="Fuji Television Headquaters"/>
+        <tag k="name" v="フジテレビ"/>
+        <tag k="name:zh-Hans" v="富士电视台"/>
+        <tag k="name:zh-Hant" v="富士電視台"/>
+        <tag k="wikidata" v="Q744800"/>
+    </way>
+    <way changeset="28614608" id="326385471" timestamp="2015-02-04T17:13:07Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3330189079"/>
+        <nd ref="3330189078"/>
+    </way>
+    <way changeset="28614608" id="326385474" timestamp="2015-02-04T17:13:08Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3330188999"/>
+        <nd ref="3330188959"/>
+    </way>
+    <way changeset="28614608" id="326385479" timestamp="2015-02-04T17:13:08Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3330189068"/>
+        <nd ref="3330189057"/>
+    </way>
+    <way changeset="22897006" id="287770748" timestamp="2014-06-12T20:55:56Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2913321070"/>
+        <nd ref="2913321074"/>
+    </way>
+    <way changeset="22897006" id="287770749" timestamp="2014-06-12T20:55:56Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2913321580"/>
+        <nd ref="2913321602"/>
+    </way>
+    <way changeset="22897006" id="287770746" timestamp="2014-06-12T20:55:56Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2913321079"/>
+        <nd ref="2913321070"/>
+    </way>
+    <way changeset="22897006" id="287770747" timestamp="2014-06-12T20:55:56Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2913321091"/>
+        <nd ref="2913321093"/>
+    </way>
+    <way changeset="22897006" id="287770744" timestamp="2014-06-12T20:55:56Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2913321612"/>
+        <nd ref="2913321580"/>
+    </way>
+    <way changeset="22897006" id="287770745" timestamp="2014-06-12T20:55:56Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2913321619"/>
+        <nd ref="2913321612"/>
+    </way>
+    <way changeset="22897006" id="287770742" timestamp="2014-06-12T20:55:56Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2913321084"/>
+        <nd ref="2913321079"/>
+    </way>
+    <way changeset="22897006" id="287770743" timestamp="2014-06-12T20:55:56Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2913321093"/>
+        <nd ref="2913321090"/>
+    </way>
+    <way changeset="22926479" id="287770740" timestamp="2014-06-14T14:06:43Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2913321080"/>
+        <nd ref="2913321078"/>
+        <nd ref="2913321088"/>
+        <nd ref="2913321083"/>
+        <nd ref="1760448770"/>
+        <nd ref="1760448761"/>
+        <nd ref="2913321072"/>
+        <nd ref="2913321068"/>
+        <nd ref="2913321066"/>
+        <nd ref="2913321064"/>
+        <nd ref="2913321063"/>
+        <nd ref="2913321061"/>
+        <nd ref="2913321060"/>
+        <nd ref="2913321062"/>
+        <nd ref="2913321069"/>
+        <nd ref="2913321073"/>
+        <nd ref="2913321080"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="building:material" v="metal"/>
+        <tag k="height" v="16"/>
+    </way>
+    <way changeset="22897006" id="287770741" timestamp="2014-06-12T20:55:56Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2913321602"/>
+        <nd ref="2913321595"/>
+        <nd ref="2913321573"/>
+        <nd ref="2913321569"/>
+        <nd ref="2913321566"/>
+        <nd ref="2913321567"/>
+        <nd ref="2913321572"/>
+        <nd ref="2913321575"/>
+        <nd ref="2913321582"/>
+        <nd ref="2913321585"/>
+        <nd ref="2913321591"/>
+        <nd ref="2913321597"/>
+        <nd ref="2913321607"/>
+        <nd ref="2913321608"/>
+        <nd ref="2913321609"/>
+        <nd ref="2913321611"/>
+        <nd ref="2913321614"/>
+        <nd ref="2913321615"/>
+    </way>
+    <way changeset="28614608" id="326385502" timestamp="2015-02-04T17:13:08Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3330189078"/>
+        <nd ref="3330189068"/>
+    </way>
+    <way changeset="66345115" id="328165205" timestamp="2019-01-15T21:31:26Z" uid="309382" user="Diego Sanguinetti" version="2" visible="true">
+        <nd ref="2411602911"/>
+        <nd ref="3349873185"/>
+        <nd ref="3349873181"/>
+        <nd ref="2411602914"/>
+        <nd ref="2411602913"/>
+        <nd ref="2411602912"/>
+        <nd ref="2411602911"/>
+        <tag k="parking" v="multi-storey"/>
+        <tag k="website" v="http://www.divercity-tokyo.com/"/>
+        <tag k="name:ja" v="ダイバーシティ東京"/>
+        <tag k="amenity" v="parking"/>
+        <tag k="building:levels" v="8"/>
+        <tag k="source" v="survey"/>
+        <tag k="addr:postcode" v="135-0064"/>
+        <tag k="building" v="yes"/>
+        <tag k="addr:city" v="東京都"/>
+        <tag k="addr:housenumber" v="1-1-10"/>
+        <tag k="name" v="ダイバーシティ東京"/>
+        <tag k="name:en" v="Diver City Tokyo"/>
+        <tag k="addr:place" v="江東区青海"/>
+        <tag k="name:es" v="Diver City Tokyo"/>
+    </way>
+    <way changeset="10611368" id="149124417" timestamp="2012-02-07T11:55:04Z" uid="69966" user="ikiya" version="1" visible="true">
+        <nd ref="1621478454"/>
+        <nd ref="1621478468"/>
+        <nd ref="1621478430"/>
+        <nd ref="1621478428"/>
+        <nd ref="1621478454"/>
+        <tag k="source" v="Bing,2007"/>
+        <tag k="building" v="yes"/>
+    </way>
+    <way changeset="24371324" id="294556497" timestamp="2014-07-26T17:38:47Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2981512581"/>
+        <nd ref="2981512591"/>
+        <nd ref="2981521934"/>
+    </way>
+    <way changeset="36295910" id="287770759" timestamp="2016-01-01T11:16:26Z" uid="571410" user="Антін Сартенченко" version="3" visible="true">
+        <nd ref="2913321560"/>
+        <nd ref="2913321571"/>
+        <nd ref="2913321574"/>
+        <nd ref="2913321564"/>
+        <nd ref="2913321560"/>
+        <tag k="min_height" v="56"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="building:material" v="metal"/>
+        <tag k="height" v="113"/>
+    </way>
+    <way changeset="24371229" id="294556499" timestamp="2014-07-26T17:32:38Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981512602"/>
+        <nd ref="2981512611"/>
+        <nd ref="2981512615"/>
+        <nd ref="2981512625"/>
+        <nd ref="2981512620"/>
+        <nd ref="2981513034"/>
+    </way>
+    <way changeset="24371229" id="294556498" timestamp="2014-07-26T17:32:38Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513058"/>
+        <nd ref="2981513062"/>
+        <nd ref="2981513075"/>
+        <nd ref="2981513078"/>
+        <nd ref="2981513071"/>
+    </way>
+    <way changeset="22897006" id="287770757" timestamp="2014-06-12T20:55:56Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2913321509"/>
+        <nd ref="2913321508"/>
+    </way>
+    <way changeset="22897006" id="287770758" timestamp="2014-06-12T20:55:56Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2913321079"/>
+        <nd ref="2913321081"/>
+    </way>
+    <way changeset="22897006" id="287770755" timestamp="2014-06-12T20:55:56Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2913321615"/>
+        <nd ref="2913321619"/>
+    </way>
+    <way changeset="22897006" id="287770756" timestamp="2014-06-12T20:55:56Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2913321084"/>
+        <nd ref="2913321090"/>
+    </way>
+    <way changeset="22897006" id="287770753" timestamp="2014-06-12T20:55:56Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2913321583"/>
+        <nd ref="2913321589"/>
+    </way>
+    <way changeset="22897006" id="287770754" timestamp="2014-06-12T20:55:56Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2913321090"/>
+        <nd ref="2913321583"/>
+    </way>
+    <way changeset="24371496" id="294556491" timestamp="2014-07-26T17:52:37Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2981512584"/>
+        <nd ref="2981512580"/>
+    </way>
+    <way changeset="22897006" id="287770751" timestamp="2014-06-12T20:55:56Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2913321620"/>
+        <nd ref="2913321619"/>
+    </way>
+    <way changeset="24371229" id="294556490" timestamp="2014-07-26T17:32:38Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513181"/>
+        <nd ref="2981513198"/>
+        <nd ref="2981513200"/>
+        <nd ref="2981513194"/>
+        <nd ref="2981513181"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="roof:shape" v="gabled"/>
+        <tag k="roof:height" v="1"/>
+        <tag k="building:height" v="35"/>
+    </way>
+    <way changeset="22897006" id="287770752" timestamp="2014-06-12T20:55:56Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2913321091"/>
+        <nd ref="2913321509"/>
+    </way>
+    <way changeset="24371478" id="294556493" timestamp="2014-07-26T17:51:48Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2981512590"/>
+        <nd ref="2981512586"/>
+        <nd ref="2981512592"/>
+    </way>
+    <way changeset="24371229" id="294556492" timestamp="2014-07-26T17:32:38Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513094"/>
+        <nd ref="2981513060"/>
+        <nd ref="2981513050"/>
+        <nd ref="2981513066"/>
+    </way>
+    <way changeset="22897006" id="287770750" timestamp="2014-06-12T20:55:56Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2913321602"/>
+        <nd ref="2913321604"/>
+    </way>
+    <way changeset="24371229" id="294556495" timestamp="2014-07-26T17:32:38Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513170"/>
+        <nd ref="2981513178"/>
+        <nd ref="2981513197"/>
+        <nd ref="2981513193"/>
+        <nd ref="2981513196"/>
+    </way>
+    <way changeset="24371229" id="294556494" timestamp="2014-07-26T17:32:38Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513053"/>
+        <nd ref="2981513046"/>
+        <nd ref="2981513037"/>
+        <nd ref="2981513033"/>
+        <nd ref="2981512628"/>
+    </way>
+    <way changeset="67202862" id="149124428" timestamp="2019-02-14T18:02:51Z" uid="309382" user="Diego Sanguinetti" version="10" visible="true">
+        <nd ref="1621478623"/>
+        <nd ref="1621478635"/>
+        <nd ref="1621478627"/>
+        <nd ref="1621478597"/>
+        <nd ref="1621478623"/>
+        <tag k="addr:province" v="東京都"/>
+        <tag k="addr:full" v="東京都港区台場2-3-1"/>
+        <tag k="addr:quarter" v="台場"/>
+        <tag k="addr:country" v="JP"/>
+        <tag k="source" v="Bing,2007"/>
+        <tag k="addr:postcode" v="135-0091"/>
+        <tag k="building" v="yes"/>
+        <tag k="addr:city" v="港区"/>
+        <tag k="addr:neighbourhood" v="二丁目"/>
+        <tag k="addr:housenumber" v="1"/>
+        <tag k="name" v="トレードピアお台場"/>
+        <tag k="name:en" v="TRADOPIA ODAIBA"/>
+        <tag k="wikipedia" v="ja:トレードピアお台場"/>
+        <tag k="wikidata" v="Q11322149"/>
+        <tag k="height" v="113"/>
+        <tag k="name:es" v="Tradopia Odaiba"/>
+    </way>
+    <way changeset="10611368" id="149124429" timestamp="2012-02-07T11:55:06Z" uid="69966" user="ikiya" version="1" visible="true">
+        <nd ref="1621478522"/>
+        <nd ref="1621478514"/>
+        <nd ref="1621478552"/>
+        <nd ref="1621478558"/>
+        <nd ref="1621478522"/>
+        <tag k="source" v="Bing,2007"/>
+        <tag k="building" v="yes"/>
+    </way>
+    <way changeset="36295910" id="287770768" timestamp="2016-01-01T11:16:26Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2913321100"/>
+        <nd ref="2913321510"/>
+        <nd ref="2913321516"/>
+        <nd ref="2913321506"/>
+        <nd ref="2913321100"/>
+    </way>
+    <way changeset="70152433" id="287770769" timestamp="2019-05-12T06:34:45Z" uid="665748" user="sebastic" version="3" visible="true">
+        <nd ref="2913321520"/>
+        <nd ref="2913321524"/>
+        <nd ref="2913321525"/>
+        <nd ref="2913321523"/>
+        <nd ref="2913321520"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="building:height" v="121"/>
+        <tag k="building:material" v="metal"/>
+    </way>
+    <way changeset="22926479" id="287770766" timestamp="2014-06-14T14:06:43Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2913321553"/>
+        <nd ref="2913321535"/>
+        <nd ref="2913321543"/>
+        <nd ref="2913321561"/>
+        <nd ref="2913321553"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="building:material" v="metal"/>
+        <tag k="height" v="113"/>
+    </way>
+    <way changeset="22926479" id="287770767" timestamp="2014-06-14T14:06:44Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2913321537"/>
+        <nd ref="2913321548"/>
+        <nd ref="2913321557"/>
+        <nd ref="2913321549"/>
+        <nd ref="2913321537"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="building:height" v="123"/>
+        <tag k="building:material" v="metal"/>
+    </way>
+    <way changeset="22926479" id="287770764" timestamp="2014-06-14T14:06:43Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2913321503"/>
+        <nd ref="2913321506"/>
+        <nd ref="2913321507"/>
+        <nd ref="2913321505"/>
+        <nd ref="2913321503"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="building:material" v="metal"/>
+        <tag k="height" v="113"/>
+    </way>
+    <way changeset="22897006" id="287770765" timestamp="2014-06-12T20:55:57Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2913321507"/>
+        <nd ref="2913321522"/>
+        <nd ref="2913321560"/>
+        <nd ref="2913321514"/>
+        <nd ref="2913321507"/>
+    </way>
+    <way changeset="22897006" id="287770762" timestamp="2014-06-12T20:55:56Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2913321519"/>
+        <nd ref="2913321564"/>
+        <nd ref="2913321590"/>
+        <nd ref="2913321553"/>
+        <nd ref="2913321519"/>
+    </way>
+    <way changeset="22897006" id="287770763" timestamp="2014-06-12T20:55:56Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2913321583"/>
+        <nd ref="2913321581"/>
+        <nd ref="2913321082"/>
+        <nd ref="2913321084"/>
+    </way>
+    <way changeset="22926479" id="287770760" timestamp="2014-06-14T14:06:43Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2913321094"/>
+        <nd ref="2913321097"/>
+        <nd ref="2913321098"/>
+        <nd ref="2913321096"/>
+        <nd ref="2913321094"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="building:height" v="121"/>
+        <tag k="building:material" v="metal"/>
+    </way>
+    <way changeset="22926479" id="287770761" timestamp="2014-06-14T14:06:43Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2913321522"/>
+        <nd ref="2913321531"/>
+        <nd ref="2913321526"/>
+        <nd ref="2913321516"/>
+        <nd ref="2913321522"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="building:material" v="metal"/>
+        <tag k="height" v="113"/>
+    </way>
+    <way changeset="10611368" id="149124438" timestamp="2012-02-07T11:55:08Z" uid="69966" user="ikiya" version="1" visible="true">
+        <nd ref="1621478545"/>
+        <nd ref="1621478548"/>
+        <nd ref="1621478518"/>
+        <nd ref="1621478515"/>
+        <nd ref="1621478545"/>
+        <tag k="source" v="Bing,2007"/>
+        <tag k="building" v="yes"/>
+    </way>
+    <way changeset="22897006" id="287770779" timestamp="2014-06-12T20:55:57Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2913321600"/>
+        <nd ref="2913321599"/>
+        <nd ref="2913321613"/>
+        <nd ref="2913321617"/>
+        <nd ref="2913321634"/>
+        <nd ref="2913321627"/>
+        <nd ref="2913321624"/>
+        <nd ref="2913321600"/>
+    </way>
+    <way changeset="22926479" id="287770777" timestamp="2014-06-14T14:06:44Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2913321092"/>
+        <nd ref="2913321099"/>
+        <nd ref="2913321501"/>
+        <nd ref="2913321504"/>
+        <nd ref="2913321502"/>
+        <nd ref="2913321095"/>
+        <nd ref="2913321092"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="building:height" v="118"/>
+        <tag k="building:material" v="metal"/>
+    </way>
+    <way changeset="22926479" id="287770778" timestamp="2014-06-14T14:06:44Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2913321527"/>
+        <nd ref="2913321545"/>
+        <nd ref="2913321563"/>
+        <nd ref="2913321568"/>
+        <nd ref="2913321558"/>
+        <nd ref="2913321534"/>
+        <nd ref="2913321527"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="building:material" v="metal"/>
+        <tag k="height" v="124"/>
+    </way>
+    <way changeset="22897006" id="287770775" timestamp="2014-06-12T20:55:57Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2913321074"/>
+        <nd ref="2913321075"/>
+        <nd ref="2913321077"/>
+        <nd ref="2913321085"/>
+        <nd ref="2913321081"/>
+    </way>
+    <way changeset="22897006" id="287770776" timestamp="2014-06-12T20:55:57Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2913321589"/>
+        <nd ref="2913321592"/>
+        <nd ref="2913321601"/>
+        <nd ref="2913321596"/>
+        <nd ref="2913321604"/>
+    </way>
+    <way changeset="22897006" id="287770773" timestamp="2014-06-12T20:55:57Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2913321081"/>
+        <nd ref="2913321086"/>
+        <nd ref="2913321089"/>
+        <nd ref="2913321091"/>
+    </way>
+    <way changeset="66813527" id="389244035" timestamp="2019-01-31T20:20:15Z" uid="6802110" user="Bigmorr" version="3" visible="true">
+        <nd ref="1760448751"/>
+        <nd ref="1760448789"/>
+        <nd ref="2180556987"/>
+        <nd ref="2180556991"/>
+        <nd ref="2180556993"/>
+        <nd ref="2180556995"/>
+        <nd ref="2180557007"/>
+        <nd ref="2180557009"/>
+        <nd ref="2180557006"/>
+        <nd ref="2180557004"/>
+        <nd ref="2180557003"/>
+        <nd ref="2180557002"/>
+        <nd ref="2180556983"/>
+        <nd ref="2180556981"/>
+        <nd ref="2180556985"/>
+        <nd ref="2180556986"/>
+        <nd ref="2180556971"/>
+        <nd ref="1760448751"/>
+        <tag k="addr:neighbourhood" v="一丁目"/>
+        <tag k="addr:province" v="東京都"/>
+        <tag k="addr:housenumber" v="1"/>
+        <tag k="addr:full" v="東京都港区台場1-8-1"/>
+        <tag k="addr:quarter" v="台場"/>
+        <tag k="addr:block_number" v="8"/>
+        <tag k="addr:country" v="JP"/>
+        <tag k="addr:postcode" v="135-0091"/>
+        <tag k="building" v="roof"/>
+        <tag k="addr:city" v="港区"/>
+    </way>
+    <way changeset="22926479" id="287770774" timestamp="2014-06-14T14:06:44Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2913321588"/>
+        <nd ref="2913321592"/>
+        <nd ref="2913321601"/>
+        <nd ref="2913321605"/>
+        <nd ref="2913321594"/>
+        <nd ref="2913321588"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="building:material" v="metal"/>
+        <tag k="height" v="43"/>
+    </way>
+    <way changeset="22897006" id="287770771" timestamp="2014-06-12T20:55:57Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2913321070"/>
+        <nd ref="2913321065"/>
+        <nd ref="2913321578"/>
+        <nd ref="2913321589"/>
+    </way>
+    <way changeset="22926479" id="287770772" timestamp="2014-06-14T14:06:44Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2913321590"/>
+        <nd ref="2913321598"/>
+        <nd ref="2913321603"/>
+        <nd ref="2913321593"/>
+        <nd ref="2913321590"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="building:material" v="metal"/>
+        <tag k="height" v="113"/>
+    </way>
+    <way changeset="22926479" id="287770770" timestamp="2014-06-14T14:06:44Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2913321514"/>
+        <nd ref="2913321511"/>
+        <nd ref="2913321513"/>
+        <nd ref="2913321519"/>
+        <nd ref="2913321514"/>
+        <tag k="min_height" v="56"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="building:material" v="metal"/>
+        <tag k="height" v="113"/>
+    </way>
+    <way changeset="28614608" id="326385538" timestamp="2015-02-04T17:13:10Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3330189017"/>
+        <nd ref="3330189012"/>
+        <nd ref="3330189002"/>
+        <nd ref="3330189024"/>
+    </way>
+    <way changeset="24371478" id="294556901" timestamp="2014-07-26T17:51:48Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2981521937"/>
+        <nd ref="2981521936"/>
+        <nd ref="2981521938"/>
+    </way>
+    <way changeset="24371478" id="294556900" timestamp="2014-07-26T17:51:48Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2981521934"/>
+        <nd ref="2981512598"/>
+    </way>
+    <way changeset="24371229" id="294556464" timestamp="2014-07-26T17:32:37Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513071"/>
+        <nd ref="2981513101"/>
+        <nd ref="2981513104"/>
+        <nd ref="2981513107"/>
+        <nd ref="2981513109"/>
+        <nd ref="2981513111"/>
+        <nd ref="2981513113"/>
+        <nd ref="2981513118"/>
+        <nd ref="2981513121"/>
+        <nd ref="2981513128"/>
+        <nd ref="2981513130"/>
+        <nd ref="2981513129"/>
+        <nd ref="2981513122"/>
+        <nd ref="2981513119"/>
+        <nd ref="2981513112"/>
+        <nd ref="2981513110"/>
+        <nd ref="2981513127"/>
+        <nd ref="2981513135"/>
+        <nd ref="2981513139"/>
+        <nd ref="2981513141"/>
+        <nd ref="2981513140"/>
+        <nd ref="2981513138"/>
+        <nd ref="2981513136"/>
+    </way>
+    <way changeset="36236701" id="388398366" timestamp="2015-12-29T09:29:26Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3916014119"/>
+        <nd ref="3916014075"/>
+    </way>
+    <way changeset="24371496" id="294556463" timestamp="2014-07-26T17:52:37Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2981512581"/>
+        <nd ref="2981541325"/>
+    </way>
+    <way changeset="24371229" id="294556466" timestamp="2014-07-26T17:32:37Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981512584"/>
+        <nd ref="2981512583"/>
+        <nd ref="2981512622"/>
+    </way>
+    <way changeset="24371229" id="294556465" timestamp="2014-07-26T17:32:37Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981512622"/>
+        <nd ref="2981513085"/>
+        <nd ref="2981513123"/>
+    </way>
+    <way changeset="24371229" id="294556468" timestamp="2014-07-26T17:32:37Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513044"/>
+        <nd ref="2981512630"/>
+        <nd ref="2981512623"/>
+    </way>
+    <way changeset="36236701" id="388398362" timestamp="2015-12-29T09:29:26Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3916014141"/>
+        <nd ref="3916014142"/>
+    </way>
+    <way changeset="24371229" id="294556467" timestamp="2014-07-26T17:32:37Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513172"/>
+        <nd ref="2981513144"/>
+        <nd ref="2981513134"/>
+    </way>
+    <way changeset="24371229" id="294556469" timestamp="2014-07-26T17:32:37Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513136"/>
+        <nd ref="2981513150"/>
+        <nd ref="2981513157"/>
+    </way>
+    <way changeset="22926479" id="287770784" timestamp="2014-06-14T14:06:44Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2913321515"/>
+        <nd ref="2913321528"/>
+        <nd ref="2913321529"/>
+        <nd ref="2913321536"/>
+        <nd ref="2913321533"/>
+        <nd ref="2913321521"/>
+        <nd ref="2913321518"/>
+        <nd ref="2913321517"/>
+        <nd ref="2913321515"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="building:height" v="118"/>
+        <tag k="building:material" v="metal"/>
+    </way>
+    <way changeset="22926479" id="287770785" timestamp="2014-06-14T14:06:44Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2913321623"/>
+        <nd ref="2913321584"/>
+        <nd ref="2913321576"/>
+        <nd ref="2913321570"/>
+        <nd ref="2913321562"/>
+        <nd ref="2913321565"/>
+        <nd ref="2913321577"/>
+        <nd ref="2913321587"/>
+        <nd ref="2913321620"/>
+        <nd ref="2913321623"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="building:material" v="metal"/>
+        <tag k="height" v="33"/>
+    </way>
+    <way changeset="28614608" id="326385541" timestamp="2015-02-04T17:13:10Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3330189028"/>
+        <nd ref="3330189031"/>
+        <nd ref="3330189042"/>
+        <nd ref="3330189047"/>
+        <nd ref="3330189050"/>
+    </way>
+    <way changeset="24371229" id="294556460" timestamp="2014-07-26T17:32:37Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513065"/>
+        <nd ref="2981513054"/>
+    </way>
+    <way changeset="22897006" id="287770782" timestamp="2014-06-12T20:55:57Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2913321620"/>
+        <nd ref="2913321587"/>
+        <nd ref="2913321577"/>
+        <nd ref="2913321565"/>
+        <nd ref="2913321562"/>
+        <nd ref="2913321552"/>
+        <nd ref="2913321512"/>
+        <nd ref="2913321508"/>
+    </way>
+    <way changeset="36295910" id="287770783" timestamp="2016-01-01T11:16:26Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2913321508"/>
+        <nd ref="2913321087"/>
+        <nd ref="2913321080"/>
+        <nd ref="2913321073"/>
+        <nd ref="2913321067"/>
+        <nd ref="2913321076"/>
+        <nd ref="2913321074"/>
+    </way>
+    <way changeset="24371229" id="294556462" timestamp="2014-07-26T17:32:37Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513054"/>
+        <nd ref="2981513051"/>
+    </way>
+    <way changeset="22897006" id="287770780" timestamp="2014-06-12T20:55:57Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2913321563"/>
+        <nd ref="2913321561"/>
+        <nd ref="2913321593"/>
+        <nd ref="2913321606"/>
+        <nd ref="2913321579"/>
+        <nd ref="2913321572"/>
+        <nd ref="2913321568"/>
+        <nd ref="2913321563"/>
+    </way>
+    <way changeset="22926479" id="287770781" timestamp="2014-06-14T14:06:44Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2913321530"/>
+        <nd ref="2913321532"/>
+        <nd ref="2913321552"/>
+        <nd ref="2913321562"/>
+        <nd ref="2913321565"/>
+        <nd ref="2913321547"/>
+        <nd ref="2913321542"/>
+        <nd ref="2913321530"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="building:height" v="120"/>
+        <tag k="building:material" v="metal"/>
+    </way>
+    <way changeset="24371229" id="294556461" timestamp="2014-07-26T17:32:37Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513163"/>
+        <nd ref="2981513172"/>
+    </way>
+    <way changeset="36236701" id="388398491" timestamp="2015-12-29T09:29:28Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3914492735"/>
+        <nd ref="3916014146"/>
+        <nd ref="3916014145"/>
+        <nd ref="3916014144"/>
+        <nd ref="3916014140"/>
+        <nd ref="3914492729"/>
+    </way>
+    <way changeset="36236701" id="388398490" timestamp="2015-12-29T09:29:28Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3914492735"/>
+        <nd ref="3914492734"/>
+        <nd ref="3914492733"/>
+        <nd ref="3914492731"/>
+        <nd ref="3914492732"/>
+        <nd ref="3914492724"/>
+    </way>
+    <way changeset="36236701" id="388398372" timestamp="2015-12-29T09:29:26Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3916014120"/>
+        <nd ref="3916014119"/>
+    </way>
+    <way changeset="24371229" id="294556453" timestamp="2014-07-26T17:32:37Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513069"/>
+        <nd ref="2981513059"/>
+    </way>
+    <way changeset="36236701" id="388398377" timestamp="2015-12-29T09:29:26Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3916014142"/>
+        <nd ref="3916014130"/>
+    </way>
+    <way changeset="24371229" id="294556452" timestamp="2014-07-26T17:32:37Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513066"/>
+        <nd ref="2981513065"/>
+    </way>
+    <way changeset="24371229" id="294556455" timestamp="2014-07-26T17:32:37Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513055"/>
+        <nd ref="2981513053"/>
+    </way>
+    <way changeset="24371229" id="294556454" timestamp="2014-07-26T17:32:37Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513176"/>
+        <nd ref="2981513180"/>
+    </way>
+    <way changeset="36236701" id="388398495" timestamp="2015-12-29T09:29:28Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3914492724"/>
+        <nd ref="3914492721"/>
+        <nd ref="3914492720"/>
+        <nd ref="3914492718"/>
+        <nd ref="3914492714"/>
+        <nd ref="3914492712"/>
+        <nd ref="3916014060"/>
+    </way>
+    <way changeset="24371229" id="294556457" timestamp="2014-07-26T17:32:37Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513094"/>
+        <nd ref="2981513066"/>
+    </way>
+    <way changeset="24371229" id="294556456" timestamp="2014-07-26T17:32:37Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981512593"/>
+        <nd ref="2981512590"/>
+    </way>
+    <way changeset="24371229" id="294556459" timestamp="2014-07-26T17:32:37Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513157"/>
+        <nd ref="2981513165"/>
+    </way>
+    <way changeset="36236701" id="388398496" timestamp="2015-12-29T09:29:28Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3916014136"/>
+        <nd ref="3916014135"/>
+        <nd ref="3916014134"/>
+        <nd ref="3916014133"/>
+        <nd ref="3916014125"/>
+        <nd ref="3916014127"/>
+        <nd ref="3916014128"/>
+    </way>
+    <way changeset="24371229" id="294556458" timestamp="2014-07-26T17:32:37Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513044"/>
+        <nd ref="2981513036"/>
+    </way>
+    <way changeset="28614608" id="326385532" timestamp="2015-02-04T17:13:10Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3330189061"/>
+        <nd ref="3330189043"/>
+        <nd ref="3330189038"/>
+        <nd ref="3330189028"/>
+    </way>
+    <way changeset="24371229" id="294556450" timestamp="2014-07-26T17:32:37Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513136"/>
+        <nd ref="2981513184"/>
+    </way>
+    <way changeset="77751426" id="156293455" timestamp="2019-11-30T07:06:07Z" uid="741163" user="JaLooooNz" version="24" visible="true">
+        <nd ref="1685642529"/>
+        <nd ref="2536382743"/>
+        <nd ref="2536394346"/>
+        <nd ref="3349873175"/>
+        <nd ref="6129961412"/>
+        <nd ref="6129961411"/>
+        <nd ref="3349873182"/>
+        <nd ref="3349873184"/>
+        <nd ref="3349873186"/>
+        <nd ref="3349873187"/>
+        <nd ref="1685642530"/>
+        <nd ref="2411602911"/>
+        <nd ref="3349873185"/>
+        <nd ref="3349873181"/>
+        <nd ref="2411602914"/>
+        <nd ref="4782073491"/>
+        <nd ref="1685642586"/>
+        <nd ref="4782073493"/>
+        <nd ref="1685642580"/>
+        <nd ref="3349873172"/>
+        <nd ref="1685642615"/>
+        <nd ref="1685642575"/>
+        <nd ref="2536394356"/>
+        <nd ref="6984825388"/>
+        <nd ref="2536394357"/>
+        <nd ref="1685642529"/>
+        <tag k="addr:province" v="東京都"/>
+        <tag k="wheelchair" v="yes"/>
+        <tag k="addr:housename" v="ダイバーシティ東京 プラザ"/>
+        <tag k="website" v="http://www.divercity-tokyo.com/"/>
+        <tag k="shop" v="mall"/>
+        <tag k="addr:full" v="東京都江東区青海1-1-10"/>
+        <tag k="name:ja" v="ダイバーシティ東京"/>
+        <tag k="addr:quarter" v="青海"/>
+        <tag k="addr:country" v="JP"/>
+        <tag k="addr:postcode" v="135-0064"/>
+        <tag k="building" v="retail"/>
+        <tag k="addr:city" v="江東区"/>
+        <tag k="addr:neighbourhood" v="1"/>
+        <tag k="alt_name:zh" v="DiverCity東京"/>
+        <tag k="addr:housenumber" v="10"/>
+        <tag k="addr:block_number" v="1"/>
+        <tag k="name" v="ダイバーシティ東京"/>
+        <tag k="name:en" v="Diver City Tokyo"/>
+        <tag k="wikipedia" v="ja:ダイバーシティ東京"/>
+        <tag k="wikidata" v="Q11316944"/>
+        <tag k="addr:place" v="江東区青海"/>
+        <tag k="name:es" v="Diver City Tokyo"/>
+        <tag k="name:zh" v="台場購物廣場"/>
+    </way>
+    <way changeset="24371229" id="294556486" timestamp="2014-07-26T17:32:38Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513051"/>
+        <nd ref="2981513039"/>
+        <nd ref="2981512632"/>
+        <nd ref="2981513045"/>
+    </way>
+    <way changeset="24371229" id="294556485" timestamp="2014-07-26T17:32:38Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513065"/>
+        <nd ref="2981513049"/>
+        <nd ref="2981513042"/>
+        <nd ref="2981513054"/>
+    </way>
+    <way changeset="24371229" id="294556488" timestamp="2014-07-26T17:32:38Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513115"/>
+        <nd ref="2981513093"/>
+        <nd ref="2981513074"/>
+        <nd ref="2981513059"/>
+    </way>
+    <way changeset="24371478" id="294556487" timestamp="2014-07-26T17:51:48Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2981513036"/>
+        <nd ref="2981512629"/>
+        <nd ref="2981512624"/>
+        <nd ref="2981541070"/>
+    </way>
+    <way changeset="24371324" id="294556489" timestamp="2014-07-26T17:38:47Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2981512600"/>
+        <nd ref="2981512606"/>
+        <nd ref="2981521937"/>
+    </way>
+    <way changeset="36236701" id="388398384" timestamp="2015-12-29T09:29:26Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3916014124"/>
+        <nd ref="3916014115"/>
+    </way>
+    <way changeset="36236701" id="388398386" timestamp="2015-12-29T09:29:26Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3916014123"/>
+        <nd ref="3916014113"/>
+    </way>
+    <way changeset="77188705" id="328165203" timestamp="2019-11-17T13:28:51Z" uid="550066" user="fuk" version="3" visible="true">
+        <nd ref="1685642586"/>
+        <nd ref="4782073493"/>
+        <nd ref="1685642580"/>
+        <nd ref="3349873172"/>
+        <nd ref="1685642615"/>
+        <nd ref="1685642575"/>
+        <nd ref="2536394356"/>
+        <nd ref="6984825388"/>
+        <nd ref="2536394357"/>
+        <nd ref="1685642529"/>
+        <nd ref="3349873182"/>
+        <nd ref="3349873184"/>
+        <nd ref="3349873186"/>
+        <nd ref="3349873187"/>
+        <nd ref="1685642530"/>
+        <nd ref="2411602911"/>
+        <nd ref="3349873185"/>
+        <nd ref="3349873181"/>
+        <nd ref="2411602914"/>
+        <nd ref="4782073491"/>
+        <nd ref="1685642586"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="building:levels" v="8"/>
+    </way>
+    <way changeset="24371229" id="294556482" timestamp="2014-07-26T17:32:38Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513165"/>
+        <nd ref="2981513168"/>
+        <nd ref="2981513170"/>
+    </way>
+    <way changeset="24371229" id="294556481" timestamp="2014-07-26T17:32:38Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513086"/>
+        <nd ref="2981513091"/>
+        <nd ref="2981513069"/>
+    </way>
+    <way changeset="28614608" id="326385525" timestamp="2015-02-04T17:13:09Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3330188959"/>
+        <nd ref="3330188951"/>
+        <nd ref="3330188929"/>
+    </way>
+    <way changeset="24371229" id="294556484" timestamp="2014-07-26T17:32:38Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513120"/>
+        <nd ref="2981513088"/>
+        <nd ref="2981513061"/>
+        <nd ref="2981513096"/>
+    </way>
+    <way changeset="24371229" id="294556483" timestamp="2014-07-26T17:32:38Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513176"/>
+        <nd ref="2981513183"/>
+        <nd ref="2981513191"/>
+        <nd ref="2981513187"/>
+    </way>
+    <way changeset="36218185" id="326385506" timestamp="2015-12-28T12:24:15Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="3330188916"/>
+        <nd ref="3330188944"/>
+        <nd ref="3330188945"/>
+        <nd ref="3330188949"/>
+        <nd ref="3330188970"/>
+        <nd ref="3330188962"/>
+        <nd ref="3914476376"/>
+        <nd ref="3330188966"/>
+        <nd ref="3330188980"/>
+        <nd ref="3330188982"/>
+        <nd ref="3330188987"/>
+        <nd ref="3330188992"/>
+        <nd ref="3914476377"/>
+        <nd ref="3330189005"/>
+        <nd ref="3330189020"/>
+        <nd ref="3330189040"/>
+        <nd ref="3330189055"/>
+        <nd ref="3330189067"/>
+        <nd ref="3330189072"/>
+        <nd ref="3330189073"/>
+        <nd ref="3914476381"/>
+        <nd ref="2706689695"/>
+        <nd ref="3330189074"/>
+        <nd ref="3330189075"/>
+        <nd ref="3330189080"/>
+        <nd ref="3914476385"/>
+        <nd ref="3914476384"/>
+        <nd ref="3914476383"/>
+        <nd ref="3914476382"/>
+        <nd ref="3330189079"/>
+    </way>
+    <way changeset="29462254" id="332617473" timestamp="2015-03-14T00:40:02Z" uid="1059224" user="roguish" version="1" visible="true">
+        <nd ref="3397647623"/>
+        <nd ref="3397647624"/>
+        <nd ref="3397647625"/>
+        <nd ref="3397647626"/>
+        <nd ref="3397647627"/>
+        <nd ref="3397647628"/>
+        <nd ref="3397647629"/>
+        <nd ref="3397647630"/>
+        <nd ref="3397647631"/>
+        <nd ref="3397647632"/>
+        <nd ref="3397647633"/>
+        <nd ref="3397647634"/>
+        <nd ref="3397647623"/>
+        <tag k="building" v="roof"/>
+    </way>
+    <way changeset="68734647" id="328162159" timestamp="2019-03-31T20:16:56Z" uid="9451067" user="b-jazz-bot" version="6" visible="true">
+        <nd ref="2981512596"/>
+        <nd ref="2981512578"/>
+        <nd ref="2981512579"/>
+        <nd ref="2981541325"/>
+        <nd ref="2981512580"/>
+        <nd ref="2981512584"/>
+        <nd ref="2981512583"/>
+        <nd ref="2981513085"/>
+        <nd ref="2981513123"/>
+        <nd ref="2981513155"/>
+        <nd ref="2981513160"/>
+        <nd ref="2981513169"/>
+        <nd ref="2981513176"/>
+        <nd ref="2981513183"/>
+        <nd ref="2981513191"/>
+        <nd ref="2981513187"/>
+        <nd ref="2981513203"/>
+        <nd ref="2981513208"/>
+        <nd ref="2981513217"/>
+        <nd ref="2981513213"/>
+        <nd ref="2981513186"/>
+        <nd ref="2981513189"/>
+        <nd ref="2981513188"/>
+        <nd ref="2981513179"/>
+        <nd ref="2981513177"/>
+        <nd ref="2981513171"/>
+        <nd ref="2981513164"/>
+        <nd ref="2981513154"/>
+        <nd ref="2981513147"/>
+        <nd ref="2981513145"/>
+        <nd ref="2981512609"/>
+        <nd ref="2981512603"/>
+        <nd ref="2981512596"/>
+        <tag k="addr:province" v="東京都"/>
+        <tag k="addr:housename" v="アクアシテイお台場"/>
+        <tag k="website" v="https://www.aquacity.jp/"/>
+        <tag k="shop" v="mall"/>
+        <tag k="addr:full" v="東京都港区台場1-7-1"/>
+        <tag k="name:ja" v="アクアシテイお台場"/>
+        <tag k="addr:quarter" v="台場"/>
+        <tag k="addr:country" v="JP"/>
+        <tag k="addr:postcode" v="135-0091"/>
+        <tag k="building" v="yes"/>
+        <tag k="addr:city" v="港区"/>
+        <tag k="addr:neighbourhood" v="一丁目"/>
+        <tag k="addr:housenumber" v="1"/>
+        <tag k="addr:block_number" v="7"/>
+        <tag k="name" v="アクアシテイお台場"/>
+        <tag k="name:en" v="Aqua City Odaiba"/>
+        <tag k="wikidata" v="Q5368628"/>
+    </way>
+    <way changeset="36236701" id="388398390" timestamp="2015-12-29T09:29:26Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3916014121"/>
+        <nd ref="3916014120"/>
+    </way>
+    <way changeset="24371478" id="294556475" timestamp="2014-07-26T17:51:48Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2981512590"/>
+        <nd ref="2981512587"/>
+    </way>
+    <way changeset="24371229" id="294556474" timestamp="2014-07-26T17:32:38Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513180"/>
+        <nd ref="2981513173"/>
+        <nd ref="2981513160"/>
+    </way>
+    <way changeset="24371478" id="294556477" timestamp="2014-07-26T17:51:48Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2981512588"/>
+        <nd ref="2981512585"/>
+    </way>
+    <way changeset="24371229" id="294556479" timestamp="2014-07-26T17:32:38Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513160"/>
+        <nd ref="2981513155"/>
+        <nd ref="2981513123"/>
+    </way>
+    <way changeset="24371229" id="294556478" timestamp="2014-07-26T17:32:38Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513165"/>
+        <nd ref="2981513190"/>
+        <nd ref="2981513184"/>
+    </way>
+    <way changeset="36236701" id="388398395" timestamp="2015-12-29T09:29:26Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3914492723"/>
+        <nd ref="3914492729"/>
+    </way>
+    <way changeset="48515464" id="192618331" timestamp="2017-05-08T21:41:51Z" uid="3526564" user="yurasi" version="3" visible="true">
+        <nd ref="2031661331"/>
+        <nd ref="2031661333"/>
+        <nd ref="4842597624"/>
+        <nd ref="2031661335"/>
+        <nd ref="2031661342"/>
+        <nd ref="4842597623"/>
+        <nd ref="2031661341"/>
+        <nd ref="2031661340"/>
+        <nd ref="2031661339"/>
+        <nd ref="2031661330"/>
+        <nd ref="2031661331"/>
+        <tag k="source" v="Bing"/>
+        <tag k="building" v="train_station"/>
+    </way>
+    <way changeset="24371229" id="294556471" timestamp="2014-07-26T17:32:37Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513160"/>
+        <nd ref="2981513169"/>
+        <nd ref="2981513176"/>
+    </way>
+    <way changeset="24371229" id="294556470" timestamp="2014-07-26T17:32:37Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513068"/>
+        <nd ref="2981513064"/>
+        <nd ref="2981513055"/>
+    </way>
+    <way changeset="24371229" id="294556473" timestamp="2014-07-26T17:32:37Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513187"/>
+        <nd ref="2981513185"/>
+        <nd ref="2981513180"/>
+    </way>
+    <way changeset="24371229" id="294556472" timestamp="2014-07-26T17:32:37Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513059"/>
+        <nd ref="2981513041"/>
+        <nd ref="2981513034"/>
+    </way>
+    <way changeset="24371478" id="294558170" timestamp="2014-07-26T17:51:46Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981512598"/>
+        <nd ref="2981512599"/>
+        <nd ref="2981512602"/>
+    </way>
+    <way changeset="24371478" id="294556428" timestamp="2014-07-26T17:51:48Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2981512589"/>
+        <nd ref="2981541068"/>
+    </way>
+    <way changeset="24371229" id="294556427" timestamp="2014-07-26T17:32:36Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981512617"/>
+        <nd ref="2981512613"/>
+    </way>
+    <way changeset="24371229" id="294556429" timestamp="2014-07-26T17:32:36Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981512597"/>
+        <nd ref="2981512600"/>
+    </way>
+    <way changeset="24371478" id="294558168" timestamp="2014-07-26T17:51:46Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981512594"/>
+        <nd ref="2981512610"/>
+    </way>
+    <way changeset="24371324" id="294556422" timestamp="2014-07-26T17:38:47Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2981513115"/>
+        <nd ref="2981513124"/>
+        <nd ref="2981513052"/>
+        <nd ref="2981513038"/>
+        <nd ref="2981512631"/>
+        <nd ref="2981513047"/>
+        <nd ref="2981512612"/>
+        <nd ref="2981512601"/>
+    </way>
+    <way changeset="24371229" id="294556421" timestamp="2014-07-26T17:32:36Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513069"/>
+        <nd ref="2981513095"/>
+        <nd ref="2981513126"/>
+        <nd ref="2981513142"/>
+        <nd ref="2981513148"/>
+        <nd ref="2981513153"/>
+        <nd ref="2981513156"/>
+        <nd ref="2981513162"/>
+        <nd ref="2981513161"/>
+        <nd ref="2981513157"/>
+    </way>
+    <way changeset="36236701" id="388398440" timestamp="2015-12-29T09:29:27Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3916014137"/>
+        <nd ref="3916014143"/>
+        <nd ref="3916014142"/>
+    </way>
+    <way changeset="24371229" id="294556424" timestamp="2014-07-26T17:32:36Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513055"/>
+        <nd ref="2981513073"/>
+        <nd ref="2981513076"/>
+        <nd ref="2981513080"/>
+        <nd ref="2981513083"/>
+        <nd ref="2981513082"/>
+        <nd ref="2981513089"/>
+        <nd ref="2981513102"/>
+        <nd ref="2981513114"/>
+        <nd ref="2981513117"/>
+        <nd ref="2981513108"/>
+        <nd ref="2981513105"/>
+        <nd ref="2981513100"/>
+        <nd ref="2981513098"/>
+        <nd ref="2981513099"/>
+        <nd ref="2981513068"/>
+    </way>
+    <way changeset="24371229" id="294556423" timestamp="2014-07-26T17:32:36Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981512626"/>
+        <nd ref="2981512627"/>
+        <nd ref="2981513040"/>
+        <nd ref="2981513056"/>
+        <nd ref="2981513077"/>
+        <nd ref="2981513087"/>
+        <nd ref="2981513084"/>
+        <nd ref="2981513081"/>
+        <nd ref="2981513079"/>
+        <nd ref="2981513072"/>
+        <nd ref="2981513067"/>
+        <nd ref="2981513070"/>
+        <nd ref="2981513053"/>
+    </way>
+    <way changeset="24371229" id="294556426" timestamp="2014-07-26T17:32:36Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981512623"/>
+        <nd ref="2981513036"/>
+    </way>
+    <way changeset="36236701" id="388398441" timestamp="2015-12-29T09:29:27Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3916014141"/>
+        <nd ref="3916014139"/>
+        <nd ref="3916014136"/>
+    </way>
+    <way changeset="24371229" id="294556425" timestamp="2014-07-26T17:32:36Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513034"/>
+        <nd ref="2981513086"/>
+    </way>
+    <way changeset="24371478" id="294558162" timestamp="2014-07-26T17:51:46Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981512592"/>
+        <nd ref="2981512593"/>
+    </way>
+    <way changeset="24371478" id="294558163" timestamp="2014-07-26T17:51:46Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981541079"/>
+        <nd ref="2981513172"/>
+    </way>
+    <way changeset="24371478" id="294558160" timestamp="2014-07-26T17:51:46Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981541067"/>
+        <nd ref="2981512588"/>
+    </way>
+    <way changeset="24371478" id="294558161" timestamp="2014-07-26T17:51:46Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981512585"/>
+        <nd ref="2981512584"/>
+    </way>
+    <way changeset="24371478" id="294558166" timestamp="2014-07-26T17:51:46Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981541068"/>
+        <nd ref="2981512595"/>
+    </way>
+    <way changeset="24371478" id="294558167" timestamp="2014-07-26T17:51:46Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981521938"/>
+        <nd ref="2981521939"/>
+    </way>
+    <way changeset="36236701" id="388398447" timestamp="2015-12-29T09:29:27Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3916014120"/>
+        <nd ref="3916014127"/>
+        <nd ref="3916014136"/>
+    </way>
+    <way changeset="24371478" id="294558164" timestamp="2014-07-26T17:51:46Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981541070"/>
+        <nd ref="2981541067"/>
+    </way>
+    <way changeset="24371478" id="294558165" timestamp="2014-07-26T17:51:46Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981512587"/>
+        <nd ref="2981512589"/>
+    </way>
+    <way changeset="24371496" id="294558280" timestamp="2014-07-26T17:52:36Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981512580"/>
+        <nd ref="2981512582"/>
+        <nd ref="2981512581"/>
+    </way>
+    <way changeset="36236701" id="388398455" timestamp="2015-12-29T09:29:27Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3914492719"/>
+        <nd ref="3914492722"/>
+        <nd ref="3914492723"/>
+    </way>
+    <way changeset="24371324" id="294556897" timestamp="2014-07-26T17:38:46Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981512601"/>
+        <nd ref="2981512604"/>
+        <nd ref="2981512602"/>
+    </way>
+    <way changeset="24371324" id="294556896" timestamp="2014-07-26T17:38:46Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981521937"/>
+        <nd ref="2981521939"/>
+    </way>
+    <way changeset="24371324" id="294556899" timestamp="2014-07-26T17:38:46Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981512601"/>
+        <nd ref="2981521935"/>
+        <nd ref="2981521934"/>
+    </way>
+    <way changeset="24371324" id="294556898" timestamp="2014-07-26T17:38:46Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981521939"/>
+        <nd ref="2981513149"/>
+        <nd ref="2981513163"/>
+    </way>
+    <way changeset="54975614" id="287906915" timestamp="2017-12-28T07:42:08Z" uid="6802110" user="Bigmorr" version="6" visible="true">
+        <nd ref="2914704351"/>
+        <nd ref="2914704350"/>
+        <nd ref="2914704352"/>
+        <nd ref="2914704354"/>
+        <nd ref="2914704356"/>
+        <nd ref="2914704358"/>
+        <nd ref="2914704360"/>
+        <nd ref="2914704362"/>
+        <nd ref="2914704364"/>
+        <nd ref="2914704365"/>
+        <nd ref="2914704363"/>
+        <nd ref="2914704361"/>
+        <nd ref="2914704359"/>
+        <nd ref="2914704357"/>
+        <nd ref="2914704355"/>
+        <nd ref="2914704353"/>
+        <nd ref="2914704351"/>
+        <tag k="min_height" v="96"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="roof:shape" v="dome"/>
+        <tag k="roof:height" v="17"/>
+        <tag k="roof:material" v="metal"/>
+        <tag k="building" v="roof"/>
+        <tag k="building:material" v="metal"/>
+        <tag k="building:shape" v="sphere"/>
+        <tag k="height" v="130"/>
+    </way>
+    <way changeset="28614608" id="326385455" timestamp="2015-02-04T17:13:07Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3330189024"/>
+        <nd ref="3330189028"/>
+    </way>
+    <way changeset="24371496" id="294558277" timestamp="2014-07-26T17:52:36Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981541325"/>
+        <nd ref="2981512579"/>
+        <nd ref="2981512578"/>
+        <nd ref="2981512596"/>
+        <nd ref="2981512603"/>
+        <nd ref="2981512609"/>
+        <nd ref="2981513145"/>
+        <nd ref="2981513147"/>
+        <nd ref="2981513154"/>
+        <nd ref="2981513164"/>
+        <nd ref="2981513171"/>
+        <nd ref="2981513177"/>
+        <nd ref="2981513179"/>
+        <nd ref="2981513188"/>
+        <nd ref="2981513189"/>
+        <nd ref="2981513186"/>
+        <nd ref="2981513213"/>
+        <nd ref="2981513217"/>
+        <nd ref="2981513208"/>
+        <nd ref="2981513203"/>
+    </way>
+    <way changeset="28614608" id="326385459" timestamp="2015-02-04T17:13:07Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3330189068"/>
+        <nd ref="3330189076"/>
+    </way>
+    <way changeset="24371229" id="294556449" timestamp="2014-07-26T17:32:37Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513184"/>
+        <nd ref="2981513192"/>
+    </way>
+    <way changeset="24371229" id="294556442" timestamp="2014-07-26T17:32:37Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981512628"/>
+        <nd ref="2981513058"/>
+    </way>
+    <way changeset="24371478" id="294556441" timestamp="2014-07-26T17:51:48Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2981513195"/>
+        <nd ref="2981541079"/>
+    </way>
+    <way changeset="36236701" id="388398467" timestamp="2015-12-29T09:29:28Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3916014124"/>
+        <nd ref="3916014126"/>
+        <nd ref="3916014129"/>
+        <nd ref="3914492724"/>
+    </way>
+    <way changeset="24371229" id="294556443" timestamp="2014-07-26T17:32:37Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513123"/>
+        <nd ref="2981513120"/>
+    </way>
+    <way changeset="24371229" id="294556446" timestamp="2014-07-26T17:32:37Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513134"/>
+        <nd ref="2981513058"/>
+    </way>
+    <way changeset="24371229" id="294556445" timestamp="2014-07-26T17:32:37Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981512589"/>
+        <nd ref="2981512588"/>
+    </way>
+    <way changeset="36236701" id="388398343" timestamp="2015-12-29T09:29:25Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3916014115"/>
+        <nd ref="3916014114"/>
+        <nd ref="3916014112"/>
+        <nd ref="3916014111"/>
+        <nd ref="3916014105"/>
+        <nd ref="3916014102"/>
+        <nd ref="3916014099"/>
+        <nd ref="3916014091"/>
+        <nd ref="3916014090"/>
+        <nd ref="3916014089"/>
+        <nd ref="3916014081"/>
+        <nd ref="3916014068"/>
+    </way>
+    <way changeset="24371229" id="294556448" timestamp="2014-07-26T17:32:37Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513045"/>
+        <nd ref="2981513044"/>
+    </way>
+    <way changeset="68465195" id="679001714" timestamp="2019-03-24T09:27:18Z" uid="27099" user="MAPconcierge" version="1" visible="true">
+        <nd ref="6357717104"/>
+        <nd ref="6357717103"/>
+        <nd ref="6357717105"/>
+        <nd ref="6357717106"/>
+        <nd ref="6357717104"/>
+        <tag k="building" v="yes"/>
+    </way>
+    <way changeset="24371229" id="294556447" timestamp="2014-07-26T17:32:37Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981512613"/>
+        <nd ref="2981512607"/>
+    </way>
+    <way changeset="28614608" id="326385444" timestamp="2015-02-04T17:13:06Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3330189049"/>
+        <nd ref="3330189024"/>
+    </way>
+    <way changeset="28614608" id="326385442" timestamp="2015-02-04T17:13:06Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3330189061"/>
+        <nd ref="3330189078"/>
+    </way>
+    <way changeset="24380492" id="294556440" timestamp="2014-07-27T09:23:15Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <nd ref="2981512600"/>
+        <nd ref="2982396918"/>
+        <nd ref="2982396914"/>
+        <nd ref="2981512595"/>
+    </way>
+    <way changeset="24371229" id="294556439" timestamp="2014-07-26T17:32:36Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513120"/>
+        <nd ref="2981513096"/>
+    </way>
+    <way changeset="24371229" id="294556431" timestamp="2014-07-26T17:32:36Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513134"/>
+        <nd ref="2981513163"/>
+    </way>
+    <way changeset="24371229" id="294556430" timestamp="2014-07-26T17:32:36Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981512628"/>
+        <nd ref="2981512617"/>
+    </way>
+    <way changeset="36236701" id="388398355" timestamp="2015-12-29T09:29:26Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3916014123"/>
+        <nd ref="3916014124"/>
+    </way>
+    <way changeset="36236701" id="388398479" timestamp="2015-12-29T09:29:28Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3916014113"/>
+        <nd ref="3916014116"/>
+        <nd ref="3916014118"/>
+        <nd ref="3916014117"/>
+        <nd ref="3916014115"/>
+    </way>
+    <way changeset="24371229" id="294556433" timestamp="2014-07-26T17:32:36Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513071"/>
+        <nd ref="2981513068"/>
+    </way>
+    <way changeset="36236701" id="388398478" timestamp="2015-12-29T09:29:28Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3916014130"/>
+        <nd ref="3916014131"/>
+        <nd ref="3916014132"/>
+        <nd ref="3916014138"/>
+        <nd ref="3916014137"/>
+    </way>
+    <way changeset="24371229" id="294556432" timestamp="2014-07-26T17:32:36Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981512622"/>
+        <nd ref="2981512623"/>
+    </way>
+    <way changeset="24371229" id="294556435" timestamp="2014-07-26T17:32:36Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513096"/>
+        <nd ref="2981513094"/>
+    </way>
+    <way changeset="24371229" id="294556434" timestamp="2014-07-26T17:32:36Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981512595"/>
+        <nd ref="2981512593"/>
+    </way>
+    <way changeset="28614608" id="326385550" timestamp="2015-02-04T17:13:10Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3330188964"/>
+        <nd ref="3330188968"/>
+        <nd ref="3330188979"/>
+        <nd ref="3330188955"/>
+        <nd ref="3330189018"/>
+        <nd ref="3330188999"/>
+    </way>
+    <way changeset="24371229" id="294556437" timestamp="2014-07-26T17:32:36Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981512607"/>
+        <nd ref="2981512597"/>
+    </way>
+    <way changeset="24371229" id="294556436" timestamp="2014-07-26T17:32:36Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981513051"/>
+        <nd ref="2981513045"/>
+    </way>
+    <way changeset="24371478" id="294558173" timestamp="2014-07-26T17:51:46Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="2981512610"/>
+        <nd ref="2981512614"/>
+        <nd ref="2981512618"/>
+        <nd ref="2981512621"/>
+        <nd ref="2981512617"/>
+    </way>
+    <way changeset="28614608" id="326385553" timestamp="2015-02-04T17:13:10Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3330188930"/>
+        <nd ref="3330188933"/>
+        <nd ref="3330188935"/>
+        <nd ref="3330188936"/>
+        <nd ref="3330188938"/>
+        <nd ref="3330188960"/>
+        <nd ref="3330188959"/>
+    </way>
+    <way changeset="28614608" id="326385551" timestamp="2015-02-04T17:13:10Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <nd ref="3330188999"/>
+        <nd ref="3330189008"/>
+        <nd ref="3330189015"/>
+        <nd ref="3330189033"/>
+        <nd ref="3330189044"/>
+        <nd ref="3330189049"/>
+    </way>
+    <relation changeset="28614608" id="4557946" timestamp="2015-02-04T17:13:14Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <member ref="326385525" role="outer" type="way"/>
+        <member ref="326385553" role="outer" type="way"/>
+        <member ref="326385467" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="building:colour" v="white"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:material" v="plaster"/>
+        <tag k="height" v="11"/>
+    </relation>
+    <relation changeset="24371324" id="3914678" timestamp="2014-07-26T17:38:46Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <member ref="294556430" role="outer" type="way"/>
+        <member ref="294556427" role="outer" type="way"/>
+        <member ref="294556447" role="outer" type="way"/>
+        <member ref="294556437" role="outer" type="way"/>
+        <member ref="294556429" role="outer" type="way"/>
+        <member ref="294556489" role="outer" type="way"/>
+        <member ref="294556896" role="outer" type="way"/>
+        <member ref="294556898" role="outer" type="way"/>
+        <member ref="294556431" role="outer" type="way"/>
+        <member ref="294556446" role="outer" type="way"/>
+        <member ref="294556442" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:height" v="27"/>
+    </relation>
+    <relation changeset="61408354" id="3914679" timestamp="2018-08-06T15:49:01Z" uid="8647816" user="gajkglraj54arg" version="3" visible="true">
+        <member ref="294558167" role="outer" type="way"/>
+        <member ref="294556901" role="outer" type="way"/>
+        <member ref="294556896" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:height" v="40"/>
+    </relation>
+    <relation changeset="28614608" id="4557941" timestamp="2015-02-04T17:13:13Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <member ref="326385541" role="outer" type="way"/>
+        <member ref="326385455" role="outer" type="way"/>
+        <member ref="326385538" role="outer" type="way"/>
+        <member ref="326385447" role="outer" type="way"/>
+        <member ref="326385531" role="outer" type="way"/>
+        <member ref="326385480" role="outer" type="way"/>
+        <member ref="326385505" role="outer" type="way"/>
+        <member ref="326385499" role="outer" type="way"/>
+        <member ref="326385537" role="outer" type="way"/>
+        <member ref="326385513" role="outer" type="way"/>
+        <member ref="326385445" role="outer" type="way"/>
+        <member ref="326385507" role="outer" type="way"/>
+        <member ref="326385547" role="outer" type="way"/>
+        <member ref="326385511" role="outer" type="way"/>
+        <member ref="326385493" role="outer" type="way"/>
+        <member ref="326385448" role="outer" type="way"/>
+        <member ref="326385468" role="outer" type="way"/>
+        <member ref="326385514" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="building:colour" v="white"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:material" v="plaster"/>
+        <tag k="height" v="39"/>
+    </relation>
+    <relation changeset="36218185" id="4557944" timestamp="2015-12-28T12:24:14Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <member ref="326385496" role="outer" type="way"/>
+        <member ref="326385491" role="outer" type="way"/>
+        <member ref="326385516" role="outer" type="way"/>
+        <member ref="326385518" role="outer" type="way"/>
+        <member ref="326385473" role="outer" type="way"/>
+        <member ref="326385484" role="outer" type="way"/>
+        <member ref="326385446" role="outer" type="way"/>
+        <member ref="326385488" role="outer" type="way"/>
+        <member ref="326385523" role="outer" type="way"/>
+        <member ref="326385552" role="outer" type="way"/>
+        <member ref="326385524" role="outer" type="way"/>
+        <member ref="326385507" role="outer" type="way"/>
+        <member ref="326385547" role="outer" type="way"/>
+        <member ref="326385511" role="outer" type="way"/>
+        <member ref="326385493" role="outer" type="way"/>
+        <member ref="326385448" role="outer" type="way"/>
+        <member ref="326385468" role="outer" type="way"/>
+        <member ref="326385479" role="outer" type="way"/>
+        <member ref="326385459" role="outer" type="way"/>
+        <member ref="326385530" role="outer" type="way"/>
+        <member ref="326385436" role="outer" type="way"/>
+        <member ref="326385535" role="outer" type="way"/>
+        <member ref="388232443" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="building:colour" v="white"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:material" v="plaster"/>
+        <tag k="height" v="18"/>
+    </relation>
+    <relation changeset="36236701" id="5807230" timestamp="2015-12-29T09:29:30Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <member ref="388398432" role="outer" type="way"/>
+        <member ref="388398343" role="outer" type="way"/>
+        <member ref="388398479" role="outer" type="way"/>
+        <member ref="388398411" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="height" v="23"/>
+    </relation>
+    <relation changeset="57074102" id="3816600" timestamp="2018-03-11T06:52:17Z" uid="6802110" user="Bigmorr" version="4" visible="true">
+        <member ref="287906915" role="part" type="way"/>
+        <member ref="287770734" role="outline" type="way"/>
+        <member ref="3816592" role="part" type="relation"/>
+        <member ref="287770740" role="part" type="way"/>
+        <member ref="3816589" role="part" type="relation"/>
+        <member ref="287770778" role="part" type="way"/>
+        <member ref="287770738" role="part" type="way"/>
+        <member ref="287770784" role="part" type="way"/>
+        <member ref="287770769" role="part" type="way"/>
+        <member ref="287770766" role="part" type="way"/>
+        <member ref="287770770" role="part" type="way"/>
+        <member ref="287770764" role="part" type="way"/>
+        <member ref="287770760" role="part" type="way"/>
+        <member ref="287770777" role="part" type="way"/>
+        <member ref="287770781" role="part" type="way"/>
+        <member ref="287770767" role="part" type="way"/>
+        <member ref="287770761" role="part" type="way"/>
+        <member ref="287770759" role="part" type="way"/>
+        <member ref="287770772" role="part" type="way"/>
+        <member ref="287770785" role="part" type="way"/>
+        <member ref="3816593" role="part" type="relation"/>
+        <member ref="3816594" role="part" type="relation"/>
+        <member ref="3816599" role="part" type="relation"/>
+        <member ref="3816598" role="part" type="relation"/>
+        <member ref="3816597" role="part" type="relation"/>
+        <member ref="3816596" role="part" type="relation"/>
+        <member ref="3816591" role="part" type="relation"/>
+        <member ref="3816595" role="part" type="relation"/>
+        <member ref="287770774" role="part" type="way"/>
+        <member ref="3816590" role="part" type="relation"/>
+        <member ref="287770737" role="part" type="way"/>
+        <member ref="3816588" role="part" type="relation"/>
+        <tag k="name" v="フジテレビ本社ビル"/>
+        <tag k="type" v="building"/>
+    </relation>
+    <relation changeset="36236701" id="5807239" timestamp="2015-12-29T09:29:31Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <member ref="388398390" role="outer" type="way"/>
+        <member ref="388398427" role="outer" type="way"/>
+        <member ref="388398431" role="outer" type="way"/>
+        <member ref="388398440" role="outer" type="way"/>
+        <member ref="388398362" role="outer" type="way"/>
+        <member ref="388398441" role="outer" type="way"/>
+        <member ref="388398447" role="outer" type="way"/>
+        <tag k="roof:orientation" v="across"/>
+        <tag k="building:part" v="roof"/>
+        <tag k="roof:shape" v="round"/>
+        <tag k="roof:height" v="4"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="roof:material" v="glass"/>
+        <tag k="height" v="25"/>
+    </relation>
+    <relation changeset="36236701" id="5807238" timestamp="2015-12-29T09:29:31Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <member ref="388398496" role="outer" type="way"/>
+        <member ref="388398409" role="outer" type="way"/>
+        <member ref="388398441" role="outer" type="way"/>
+        <member ref="388398478" role="outer" type="way"/>
+        <member ref="388398440" role="outer" type="way"/>
+        <member ref="388398377" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="height" v="15"/>
+    </relation>
+    <relation changeset="36236701" id="5807237" timestamp="2015-12-29T09:29:31Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <member ref="388398495" role="outer" type="way"/>
+        <member ref="388398352" role="outer" type="way"/>
+        <member ref="388398394" role="outer" type="way"/>
+        <member ref="388398343" role="outer" type="way"/>
+        <member ref="388398384" role="outer" type="way"/>
+        <member ref="388398467" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="height" v="22"/>
+    </relation>
+    <relation changeset="36236701" id="5807236" timestamp="2015-12-29T09:29:31Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <member ref="388398427" role="outer" type="way"/>
+        <member ref="388398429" role="outer" type="way"/>
+        <member ref="388398357" role="outer" type="way"/>
+        <member ref="388398376" role="outer" type="way"/>
+        <member ref="388398420" role="outer" type="way"/>
+        <tag k="roof:orientation" v="along"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="roof:shape" v="round"/>
+        <tag k="roof:height" v="4"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="height" v="28"/>
+    </relation>
+    <relation changeset="36236701" id="5807234" timestamp="2015-12-29T09:29:31Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <member ref="388398384" role="outer" type="way"/>
+        <member ref="388398479" role="outer" type="way"/>
+        <member ref="388398386" role="outer" type="way"/>
+        <member ref="388398355" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="height" v="23"/>
+    </relation>
+    <relation changeset="24371229" id="3914665" timestamp="2014-07-26T17:32:41Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <member ref="294556478" role="outer" type="way"/>
+        <member ref="294556459" role="outer" type="way"/>
+        <member ref="294556469" role="outer" type="way"/>
+        <member ref="294556450" role="outer" type="way"/>
+        <member ref="294556425" role="outer" type="way"/>
+        <member ref="294556481" role="outer" type="way"/>
+        <member ref="294556453" role="outer" type="way"/>
+        <member ref="294556472" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:height" v="21"/>
+    </relation>
+    <relation changeset="36295910" id="3914666" timestamp="2016-01-01T11:16:26Z" uid="571410" user="Антін Сартенченко" version="5" visible="true">
+        <member ref="328162159" role="outline" type="way"/>
+        <member ref="294556490" role="part" type="way"/>
+        <member ref="3914657" role="part" type="relation"/>
+        <member ref="3914658" role="part" type="relation"/>
+        <member ref="3914680" role="part" type="relation"/>
+        <member ref="3914659" role="part" type="relation"/>
+        <member ref="3914660" role="part" type="relation"/>
+        <member ref="3914661" role="part" type="relation"/>
+        <member ref="3914662" role="part" type="relation"/>
+        <member ref="3914663" role="part" type="relation"/>
+        <member ref="3914664" role="part" type="relation"/>
+        <member ref="3914665" role="part" type="relation"/>
+        <member ref="3914650" role="part" type="relation"/>
+        <member ref="3914678" role="part" type="relation"/>
+        <member ref="3914651" role="part" type="relation"/>
+        <member ref="3914652" role="part" type="relation"/>
+        <member ref="3914654" role="part" type="relation"/>
+        <member ref="3914655" role="part" type="relation"/>
+        <member ref="3914656" role="part" type="relation"/>
+        <member ref="3914679" role="part" type="relation"/>
+        <member ref="3914653" role="part" type="relation"/>
+        <tag k="type" v="building"/>
+    </relation>
+    <relation changeset="24371478" id="3914661" timestamp="2014-07-26T17:51:47Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <member ref="294556437" role="outer" type="way"/>
+        <member ref="294556447" role="outer" type="way"/>
+        <member ref="294556427" role="outer" type="way"/>
+        <member ref="294558173" role="outer" type="way"/>
+        <member ref="294558168" role="outer" type="way"/>
+        <member ref="294556505" role="outer" type="way"/>
+        <member ref="294556456" role="outer" type="way"/>
+        <member ref="294556493" role="outer" type="way"/>
+        <member ref="294558162" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:height" v="32"/>
+    </relation>
+    <relation changeset="24371229" id="3914662" timestamp="2014-07-26T17:32:41Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <member ref="294556421" role="outer" type="way"/>
+        <member ref="294556459" role="outer" type="way"/>
+        <member ref="294556482" role="outer" type="way"/>
+        <member ref="294556504" role="outer" type="way"/>
+        <member ref="294556488" role="outer" type="way"/>
+        <member ref="294556453" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:height" v="19"/>
+    </relation>
+    <relation changeset="24371229" id="3914663" timestamp="2014-07-26T17:32:41Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <member ref="294556455" role="outer" type="way"/>
+        <member ref="294556433" role="outer" type="way"/>
+        <member ref="294556470" role="outer" type="way"/>
+        <member ref="294556494" role="outer" type="way"/>
+        <member ref="294556442" role="outer" type="way"/>
+        <member ref="294556498" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:height" v="34"/>
+    </relation>
+    <relation changeset="24371229" id="3914664" timestamp="2014-07-26T17:32:41Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <member ref="294556423" role="outer" type="way"/>
+        <member ref="294556455" role="outer" type="way"/>
+        <member ref="294556424" role="outer" type="way"/>
+        <member ref="294556433" role="outer" type="way"/>
+        <member ref="294556464" role="outer" type="way"/>
+        <member ref="294556500" role="outer" type="way"/>
+        <member ref="294556502" role="outer" type="way"/>
+        <tag k="min_height" v="27"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:height" v="29"/>
+    </relation>
+    <relation changeset="36217943" id="4557972" timestamp="2015-12-28T12:11:37Z" uid="571410" user="Антін Сартенченко" version="3" visible="true">
+        <member ref="5804890" role="outline" type="relation"/>
+        <member ref="4557943" role="part" type="relation"/>
+        <member ref="4557946" role="part" type="relation"/>
+        <member ref="4557947" role="part" type="relation"/>
+        <member ref="4557948" role="part" type="relation"/>
+        <member ref="4557949" role="part" type="relation"/>
+        <member ref="4557950" role="part" type="relation"/>
+        <member ref="4557951" role="part" type="relation"/>
+        <member ref="4557952" role="part" type="relation"/>
+        <member ref="4557953" role="part" type="relation"/>
+        <member ref="4557954" role="part" type="relation"/>
+        <member ref="4557955" role="part" type="relation"/>
+        <member ref="4557956" role="part" type="relation"/>
+        <member ref="4557957" role="part" type="relation"/>
+        <member ref="4557958" role="part" type="relation"/>
+        <member ref="4557959" role="part" type="relation"/>
+        <member ref="4557960" role="part" type="relation"/>
+        <member ref="4557961" role="part" type="relation"/>
+        <member ref="4557962" role="part" type="relation"/>
+        <member ref="4557963" role="part" type="relation"/>
+        <member ref="4557964" role="part" type="relation"/>
+        <member ref="4557965" role="part" type="relation"/>
+        <member ref="4557966" role="part" type="relation"/>
+        <member ref="4557967" role="part" type="relation"/>
+        <member ref="4557968" role="part" type="relation"/>
+        <member ref="4557969" role="part" type="relation"/>
+        <member ref="4557931" role="part" type="relation"/>
+        <member ref="4557932" role="part" type="relation"/>
+        <member ref="4557933" role="part" type="relation"/>
+        <member ref="4557934" role="part" type="relation"/>
+        <member ref="4557935" role="part" type="relation"/>
+        <member ref="4557936" role="part" type="relation"/>
+        <member ref="4557937" role="part" type="relation"/>
+        <member ref="4557938" role="part" type="relation"/>
+        <member ref="4557939" role="part" type="relation"/>
+        <member ref="4557940" role="part" type="relation"/>
+        <member ref="4557941" role="part" type="relation"/>
+        <member ref="4557942" role="part" type="relation"/>
+        <member ref="4557944" role="part" type="relation"/>
+        <member ref="4557945" role="part" type="relation"/>
+        <tag k="type" v="building"/>
+    </relation>
+    <relation changeset="24371478" id="3914660" timestamp="2014-07-26T17:51:47Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <member ref="294556477" role="outer" type="way"/>
+        <member ref="294558161" role="outer" type="way"/>
+        <member ref="294556466" role="outer" type="way"/>
+        <member ref="294556432" role="outer" type="way"/>
+        <member ref="294556426" role="outer" type="way"/>
+        <member ref="294556487" role="outer" type="way"/>
+        <member ref="294558164" role="outer" type="way"/>
+        <member ref="294558160" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:height" v="10"/>
+    </relation>
+    <relation changeset="28614608" id="4557934" timestamp="2015-02-04T17:13:11Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <member ref="326385550" role="outer" type="way"/>
+        <member ref="326385551" role="outer" type="way"/>
+        <member ref="326385444" role="outer" type="way"/>
+        <member ref="326385538" role="outer" type="way"/>
+        <member ref="326385447" role="outer" type="way"/>
+        <member ref="326385531" role="outer" type="way"/>
+        <member ref="326385481" role="outer" type="way"/>
+        <member ref="326385500" role="outer" type="way"/>
+        <member ref="326385452" role="outer" type="way"/>
+        <member ref="326385457" role="outer" type="way"/>
+        <member ref="326385509" role="outer" type="way"/>
+        <member ref="326385461" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="building:colour" v="white"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:material" v="plaster"/>
+        <tag k="height" v="8"/>
+    </relation>
+    <relation changeset="22926479" id="3816597" timestamp="2014-06-14T14:06:42Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <member ref="287770744" role="outer" type="way"/>
+        <member ref="287770735" role="outer" type="way"/>
+        <member ref="287770752" role="outer" type="way"/>
+        <member ref="287770747" role="outer" type="way"/>
+        <member ref="287770739" role="outer" type="way"/>
+        <member ref="287770768" role="inner" type="way"/>
+        <member ref="287770765" role="inner" type="way"/>
+        <member ref="287770762" role="inner" type="way"/>
+        <member ref="287770780" role="inner" type="way"/>
+        <tag k="min_height" v="56"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:material" v="metal"/>
+        <tag k="height" v="63"/>
+    </relation>
+    <relation changeset="22926479" id="3816596" timestamp="2014-06-14T14:06:42Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <member ref="287770758" role="outer" type="way"/>
+        <member ref="287770742" role="outer" type="way"/>
+        <member ref="287770756" role="outer" type="way"/>
+        <member ref="287770743" role="outer" type="way"/>
+        <member ref="287770747" role="outer" type="way"/>
+        <member ref="287770773" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:material" v="metal"/>
+        <tag k="height" v="34"/>
+    </relation>
+    <relation changeset="22926479" id="3816599" timestamp="2014-06-14T14:06:43Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <member ref="287770744" role="outer" type="way"/>
+        <member ref="287770735" role="outer" type="way"/>
+        <member ref="287770752" role="outer" type="way"/>
+        <member ref="287770747" role="outer" type="way"/>
+        <member ref="287770739" role="outer" type="way"/>
+        <member ref="287770768" role="inner" type="way"/>
+        <member ref="287770765" role="inner" type="way"/>
+        <member ref="287770762" role="inner" type="way"/>
+        <member ref="287770780" role="inner" type="way"/>
+        <tag k="min_height" v="107"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:material" v="metal"/>
+        <tag k="height" v="113"/>
+    </relation>
+    <relation changeset="22926479" id="3816598" timestamp="2014-06-14T14:06:42Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <member ref="287770744" role="outer" type="way"/>
+        <member ref="287770735" role="outer" type="way"/>
+        <member ref="287770752" role="outer" type="way"/>
+        <member ref="287770747" role="outer" type="way"/>
+        <member ref="287770739" role="outer" type="way"/>
+        <member ref="287770768" role="inner" type="way"/>
+        <member ref="287770765" role="inner" type="way"/>
+        <member ref="287770762" role="inner" type="way"/>
+        <member ref="287770780" role="inner" type="way"/>
+        <tag k="min_height" v="82"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:material" v="metal"/>
+        <tag k="height" v="88"/>
+    </relation>
+    <relation changeset="36236701" id="5807229" timestamp="2015-12-29T09:29:30Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <member ref="388398403" role="outer" type="way"/>
+        <member ref="388398366" role="outer" type="way"/>
+        <member ref="388398482" role="outer" type="way"/>
+        <member ref="388398455" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="height" v="23"/>
+    </relation>
+    <relation changeset="22926479" id="3816591" timestamp="2014-06-14T14:06:42Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <member ref="287770763" role="outer" type="way"/>
+        <member ref="287770754" role="outer" type="way"/>
+        <member ref="287770756" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:material" v="metal"/>
+        <tag k="height" v="31"/>
+    </relation>
+    <relation changeset="70152433" id="3816590" timestamp="2019-05-12T06:34:45Z" uid="665748" user="sebastic" version="3" visible="true">
+        <member ref="287770745" role="outer" type="way"/>
+        <member ref="287770751" role="outer" type="way"/>
+        <member ref="287770736" role="outer" type="way"/>
+        <member ref="287770750" role="outer" type="way"/>
+        <member ref="287770749" role="outer" type="way"/>
+        <member ref="287770744" role="outer" type="way"/>
+        <member ref="287770779" role="inner" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:material" v="metal"/>
+        <tag k="height" v="124"/>
+    </relation>
+    <relation changeset="22926479" id="3816593" timestamp="2014-06-14T14:06:42Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <member ref="287770749" role="outer" type="way"/>
+        <member ref="287770741" role="outer" type="way"/>
+        <member ref="287770755" role="outer" type="way"/>
+        <member ref="287770745" role="outer" type="way"/>
+        <member ref="287770744" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:material" v="metal"/>
+        <tag k="height" v="45"/>
+    </relation>
+    <relation changeset="22926479" id="3816592" timestamp="2014-06-14T14:06:42Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <member ref="287770746" role="outer" type="way"/>
+        <member ref="287770748" role="outer" type="way"/>
+        <member ref="287770775" role="outer" type="way"/>
+        <member ref="287770758" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:material" v="metal"/>
+        <tag k="height" v="26"/>
+    </relation>
+    <relation changeset="22926479" id="3816595" timestamp="2014-06-14T14:06:42Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <member ref="287770753" role="outer" type="way"/>
+        <member ref="287770771" role="outer" type="way"/>
+        <member ref="287770746" role="outer" type="way"/>
+        <member ref="287770742" role="outer" type="way"/>
+        <member ref="287770763" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:material" v="metal"/>
+        <tag k="height" v="25"/>
+    </relation>
+    <relation changeset="22926479" id="3816594" timestamp="2014-06-14T14:06:42Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <member ref="287770752" role="outer" type="way"/>
+        <member ref="287770757" role="outer" type="way"/>
+        <member ref="287770783" role="outer" type="way"/>
+        <member ref="287770775" role="outer" type="way"/>
+        <member ref="287770773" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:material" v="metal"/>
+        <tag k="height" v="120"/>
+    </relation>
+    <relation changeset="24371478" id="3914654" timestamp="2014-07-26T17:51:47Z" uid="571410" user="Антін Сартенченко" version="3" visible="true">
+        <member ref="294556445" role="outer" type="way"/>
+        <member ref="294556428" role="outer" type="way"/>
+        <member ref="294558166" role="outer" type="way"/>
+        <member ref="294556440" role="outer" type="way"/>
+        <member ref="294556489" role="outer" type="way"/>
+        <member ref="294556896" role="outer" type="way"/>
+        <member ref="294556898" role="outer" type="way"/>
+        <member ref="294556461" role="outer" type="way"/>
+        <member ref="294558163" role="outer" type="way"/>
+        <member ref="294556441" role="outer" type="way"/>
+        <member ref="294556480" role="outer" type="way"/>
+        <member ref="294556476" role="outer" type="way"/>
+        <member ref="294556444" role="outer" type="way"/>
+        <member ref="294556473" role="outer" type="way"/>
+        <member ref="294556474" role="outer" type="way"/>
+        <member ref="294556479" role="outer" type="way"/>
+        <member ref="294556443" role="outer" type="way"/>
+        <member ref="294556439" role="outer" type="way"/>
+        <member ref="294556435" role="outer" type="way"/>
+        <member ref="294556457" role="outer" type="way"/>
+        <member ref="294556452" role="outer" type="way"/>
+        <member ref="294556460" role="outer" type="way"/>
+        <member ref="294556462" role="outer" type="way"/>
+        <member ref="294556436" role="outer" type="way"/>
+        <member ref="294556448" role="outer" type="way"/>
+        <member ref="294556458" role="outer" type="way"/>
+        <member ref="294556487" role="outer" type="way"/>
+        <member ref="294558164" role="outer" type="way"/>
+        <member ref="294558160" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:height" v="32"/>
+    </relation>
+    <relation changeset="24371496" id="3914655" timestamp="2014-07-26T17:52:37Z" uid="571410" user="Антін Сартенченко" version="4" visible="true">
+        <member ref="294556430" role="outer" type="way"/>
+        <member ref="294556427" role="outer" type="way"/>
+        <member ref="294556447" role="outer" type="way"/>
+        <member ref="294556437" role="outer" type="way"/>
+        <member ref="294556429" role="outer" type="way"/>
+        <member ref="294556440" role="outer" type="way"/>
+        <member ref="294556434" role="outer" type="way"/>
+        <member ref="294556456" role="outer" type="way"/>
+        <member ref="294556475" role="outer" type="way"/>
+        <member ref="294558165" role="outer" type="way"/>
+        <member ref="294556445" role="outer" type="way"/>
+        <member ref="294556477" role="outer" type="way"/>
+        <member ref="294558161" role="outer" type="way"/>
+        <member ref="294556491" role="outer" type="way"/>
+        <member ref="294558280" role="outer" type="way"/>
+        <member ref="294556497" role="outer" type="way"/>
+        <member ref="294556900" role="outer" type="way"/>
+        <member ref="294558170" role="outer" type="way"/>
+        <member ref="294556499" role="outer" type="way"/>
+        <member ref="294556425" role="outer" type="way"/>
+        <member ref="294556503" role="outer" type="way"/>
+        <member ref="294556450" role="outer" type="way"/>
+        <member ref="294556449" role="outer" type="way"/>
+        <member ref="294556438" role="outer" type="way"/>
+        <member ref="294556441" role="outer" type="way"/>
+        <member ref="294558163" role="outer" type="way"/>
+        <member ref="294556467" role="outer" type="way"/>
+        <member ref="294556446" role="outer" type="way"/>
+        <member ref="294556498" role="outer" type="way"/>
+        <member ref="294556433" role="outer" type="way"/>
+        <member ref="294556470" role="outer" type="way"/>
+        <member ref="294556455" role="outer" type="way"/>
+        <member ref="294556494" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:height" v="27"/>
+    </relation>
+    <relation changeset="24371229" id="3914656" timestamp="2014-07-26T17:32:40Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <member ref="294556454" role="outer" type="way"/>
+        <member ref="294556471" role="outer" type="way"/>
+        <member ref="294556474" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:height" v="32"/>
+    </relation>
+    <relation changeset="24371229" id="3914657" timestamp="2014-07-26T17:32:40Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <member ref="294556467" role="outer" type="way"/>
+        <member ref="294556431" role="outer" type="way"/>
+        <member ref="294556461" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:height" v="32"/>
+    </relation>
+    <relation changeset="24371496" id="3914650" timestamp="2014-07-26T17:52:36Z" uid="571410" user="Антін Сартенченко" version="4" visible="true">
+        <member ref="294556476" role="outer" type="way"/>
+        <member ref="294558277" role="outer" type="way"/>
+        <member ref="294556463" role="outer" type="way"/>
+        <member ref="294556497" role="outer" type="way"/>
+        <member ref="294556900" role="outer" type="way"/>
+        <member ref="294558170" role="outer" type="way"/>
+        <member ref="294556499" role="outer" type="way"/>
+        <member ref="294556425" role="outer" type="way"/>
+        <member ref="294556500" role="outer" type="way"/>
+        <member ref="294556450" role="outer" type="way"/>
+        <member ref="294556449" role="outer" type="way"/>
+        <member ref="294556438" role="outer" type="way"/>
+        <member ref="294556480" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:height" v="7"/>
+    </relation>
+    <relation changeset="24371229" id="3914651" timestamp="2014-07-26T17:32:39Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <member ref="294556432" role="outer" type="way"/>
+        <member ref="294556468" role="outer" type="way"/>
+        <member ref="294556448" role="outer" type="way"/>
+        <member ref="294556486" role="outer" type="way"/>
+        <member ref="294556462" role="outer" type="way"/>
+        <member ref="294556485" role="outer" type="way"/>
+        <member ref="294556452" role="outer" type="way"/>
+        <member ref="294556492" role="outer" type="way"/>
+        <member ref="294556435" role="outer" type="way"/>
+        <member ref="294556484" role="outer" type="way"/>
+        <member ref="294556443" role="outer" type="way"/>
+        <member ref="294556465" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:height" v="10"/>
+    </relation>
+    <relation changeset="24371324" id="3914652" timestamp="2014-07-26T17:38:46Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <member ref="294556478" role="outer" type="way"/>
+        <member ref="294556459" role="outer" type="way"/>
+        <member ref="294556469" role="outer" type="way"/>
+        <member ref="294556500" role="outer" type="way"/>
+        <member ref="294556481" role="outer" type="way"/>
+        <member ref="294556453" role="outer" type="way"/>
+        <member ref="294556472" role="outer" type="way"/>
+        <member ref="294556499" role="outer" type="way"/>
+        <member ref="294556897" role="outer" type="way"/>
+        <member ref="294556422" role="outer" type="way"/>
+        <member ref="294556504" role="outer" type="way"/>
+        <member ref="294556495" role="outer" type="way"/>
+        <member ref="294556451" role="outer" type="way"/>
+        <member ref="294556449" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:height" v="17"/>
+    </relation>
+    <relation changeset="24371229" id="3914653" timestamp="2014-07-26T17:32:39Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <member ref="294556501" role="outer" type="way"/>
+        <member ref="294556447" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:height" v="36"/>
+    </relation>
+    <relation changeset="28614608" id="4557962" timestamp="2015-02-04T17:13:16Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <member ref="326385495" role="outer" type="way"/>
+        <member ref="326385506" role="outer" type="way"/>
+        <member ref="326385439" role="outer" type="way"/>
+        <member ref="326385517" role="outer" type="way"/>
+        <member ref="326385544" role="outer" type="way"/>
+        <member ref="326385436" role="outer" type="way"/>
+        <member ref="326385512" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="building:colour" v="white"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:material" v="plaster"/>
+        <tag k="height" v="7"/>
+    </relation>
+    <relation changeset="28614608" id="4557964" timestamp="2015-02-04T17:13:17Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <member ref="326385508" role="outer" type="way"/>
+        <member ref="326385542" role="outer" type="way"/>
+        <member ref="326385554" role="outer" type="way"/>
+        <member ref="326385451" role="outer" type="way"/>
+        <member ref="326385553" role="outer" type="way"/>
+        <member ref="326385525" role="outer" type="way"/>
+        <member ref="326385477" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="building:colour" v="white"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:material" v="plaster"/>
+        <tag k="height" v="8"/>
+    </relation>
+    <relation changeset="22926479" id="3816588" timestamp="2014-06-14T14:06:41Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <member ref="287770779" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:material" v="metal"/>
+        <tag k="height" v="119"/>
+    </relation>
+    <relation changeset="22926479" id="3816589" timestamp="2014-06-14T14:06:41Z" uid="571410" user="Антін Сартенченко" version="2" visible="true">
+        <member ref="287770743" role="outer" type="way"/>
+        <member ref="287770754" role="outer" type="way"/>
+        <member ref="287770753" role="outer" type="way"/>
+        <member ref="287770776" role="outer" type="way"/>
+        <member ref="287770750" role="outer" type="way"/>
+        <member ref="287770749" role="outer" type="way"/>
+        <member ref="287770744" role="outer" type="way"/>
+        <member ref="287770745" role="outer" type="way"/>
+        <member ref="287770751" role="outer" type="way"/>
+        <member ref="287770782" role="outer" type="way"/>
+        <member ref="287770757" role="outer" type="way"/>
+        <member ref="287770752" role="outer" type="way"/>
+        <member ref="287770747" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:material" v="metal"/>
+        <tag k="height" v="38"/>
+    </relation>
+    <relation changeset="36236701" id="5807217" timestamp="2015-12-29T09:29:29Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <member ref="388398366" role="outer" type="way"/>
+        <member ref="388398354" role="outer" type="way"/>
+        <member ref="388398376" role="outer" type="way"/>
+        <member ref="388398357" role="outer" type="way"/>
+        <member ref="388398367" role="outer" type="way"/>
+        <member ref="388398411" role="outer" type="way"/>
+        <member ref="388398386" role="outer" type="way"/>
+        <member ref="388398402" role="outer" type="way"/>
+        <member ref="388398427" role="outer" type="way"/>
+        <member ref="388398390" role="outer" type="way"/>
+        <member ref="388398372" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="height" v="24"/>
+    </relation>
+    <relation changeset="36236701" id="5807216" timestamp="2015-12-29T09:29:29Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <member ref="388398427" role="outer" type="way"/>
+        <member ref="388398390" role="outer" type="way"/>
+        <member ref="388398372" role="outer" type="way"/>
+        <member ref="388398403" role="outer" type="way"/>
+        <member ref="388398395" role="outer" type="way"/>
+        <member ref="388398491" role="outer" type="way"/>
+        <member ref="388398490" role="outer" type="way"/>
+        <member ref="388398467" role="outer" type="way"/>
+        <member ref="388398355" role="outer" type="way"/>
+        <member ref="388398402" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="height" v="10"/>
+    </relation>
+    <relation changeset="24371229" id="3914658" timestamp="2014-07-26T17:32:40Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <member ref="294556483" role="outer" type="way"/>
+        <member ref="294556454" role="outer" type="way"/>
+        <member ref="294556473" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:height" v="30"/>
+    </relation>
+    <relation changeset="75854550" id="5807214" timestamp="2019-10-17T17:06:08Z" uid="3281330" user="ts1048" version="7" visible="true">
+        <member ref="388398347" role="inner" type="way"/>
+        <member ref="388398488" role="inner" type="way"/>
+        <member ref="388398486" role="inner" type="way"/>
+        <member ref="388398491" role="outer" type="way"/>
+        <member ref="388398395" role="outer" type="way"/>
+        <member ref="388398455" role="outer" type="way"/>
+        <member ref="388398342" role="outer" type="way"/>
+        <member ref="388398399" role="outer" type="way"/>
+        <member ref="388398364" role="outer" type="way"/>
+        <member ref="388398483" role="outer" type="way"/>
+        <member ref="388398461" role="outer" type="way"/>
+        <member ref="388398493" role="outer" type="way"/>
+        <member ref="388398446" role="outer" type="way"/>
+        <member ref="388398453" role="outer" type="way"/>
+        <member ref="388398468" role="outer" type="way"/>
+        <member ref="388398444" role="outer" type="way"/>
+        <member ref="388398417" role="outer" type="way"/>
+        <member ref="388398459" role="outer" type="way"/>
+        <member ref="388398344" role="outer" type="way"/>
+        <member ref="388398415" role="outer" type="way"/>
+        <member ref="388398464" role="outer" type="way"/>
+        <member ref="388398495" role="outer" type="way"/>
+        <member ref="388398490" role="outer" type="way"/>
+        <tag k="addr:province" v="東京都"/>
+        <tag k="website" v="https://www.tokyo.grandnikko.com/"/>
+        <tag k="addr:full" v="東京都港区台場2-6-1"/>
+        <tag k="name:ja" v="グランドニッコー東京 台場"/>
+        <tag k="addr:quarter" v="台場"/>
+        <tag k="addr:country" v="JP"/>
+        <tag k="tourism" v="hotel"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="addr:postcode" v="135-8701"/>
+        <tag k="building" v="hotel"/>
+        <tag k="addr:city" v="港区"/>
+        <tag k="addr:neighbourhood" v="二丁目"/>
+        <tag k="name:ru" v="Отель Гранд Пасифик Лё Дайба"/>
+        <tag k="addr:housenumber" v="1"/>
+        <tag k="addr:block_number" v="6"/>
+        <tag k="name" v="グランドニッコー東京 台場"/>
+        <tag k="name:en" v="GRAND NIKKO TOKYO DAIBA"/>
+        <tag k="wikipedia" v="ja:グランドニッコー東京 台場"/>
+        <tag k="wikidata" v="Q3224503"/>
+        <tag k="name:es" v="Le Meridien Grand Pacific Tokyo"/>
+    </relation>
+    <relation changeset="28614608" id="4557957" timestamp="2015-02-04T17:13:16Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <member ref="326385444" role="outer" type="way"/>
+        <member ref="326385483" role="outer" type="way"/>
+        <member ref="326385532" role="outer" type="way"/>
+        <member ref="326385455" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="building:colour" v="white"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:material" v="plaster"/>
+        <tag k="height" v="25"/>
+    </relation>
+    <relation changeset="28614608" id="4557959" timestamp="2015-02-04T17:13:16Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <member ref="326385541" role="outer" type="way"/>
+        <member ref="326385532" role="outer" type="way"/>
+        <member ref="326385442" role="outer" type="way"/>
+        <member ref="326385502" role="outer" type="way"/>
+        <member ref="326385479" role="outer" type="way"/>
+        <member ref="326385514" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="building:colour" v="white"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:material" v="plaster"/>
+        <tag k="height" v="22"/>
+    </relation>
+    <relation changeset="100562321" id="3914680" timestamp="2021-03-07T07:14:14Z" uid="5544581" user="芋けんぴ" version="3" visible="true">
+        <member ref="294556897" role="outer" type="way"/>
+        <member ref="294556899" role="outer" type="way"/>
+        <member ref="294556900" role="outer" type="way"/>
+        <member ref="294558170" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="height" v="22"/>
+    </relation>
+    <relation changeset="36236701" id="5807242" timestamp="2015-12-29T09:29:33Z" uid="571410" user="Антін Сартенченко" version="1" visible="true">
+        <member ref="5807237" role="part" type="relation"/>
+        <member ref="5807234" role="part" type="relation"/>
+        <member ref="5807216" role="part" type="relation"/>
+        <member ref="5807230" role="part" type="relation"/>
+        <member ref="5807215" role="part" type="relation"/>
+        <member ref="5807217" role="part" type="relation"/>
+        <member ref="5807229" role="part" type="relation"/>
+        <member ref="5807236" role="part" type="relation"/>
+        <member ref="5807238" role="part" type="relation"/>
+        <member ref="5807239" role="part" type="relation"/>
+        <member ref="5807219" role="part" type="relation"/>
+        <member ref="5807235" role="part" type="relation"/>
+        <member ref="5807220" role="part" type="relation"/>
+        <member ref="5807240" role="part" type="relation"/>
+        <member ref="5807228" role="part" type="relation"/>
+        <member ref="5807223" role="part" type="relation"/>
+        <member ref="5807224" role="part" type="relation"/>
+        <member ref="5807233" role="part" type="relation"/>
+        <member ref="5807222" role="part" type="relation"/>
+        <member ref="5807225" role="part" type="relation"/>
+        <member ref="5807227" role="part" type="relation"/>
+        <member ref="5807221" role="part" type="relation"/>
+        <member ref="5807218" role="part" type="relation"/>
+        <member ref="5807232" role="part" type="relation"/>
+        <member ref="5807241" role="part" type="relation"/>
+        <member ref="388398345" role="part" type="way"/>
+        <member ref="5807214" role="outline" type="relation"/>
+        <tag k="type" v="building"/>
+    </relation>
+    <relation changeset="70157583" id="9582022" timestamp="2019-05-12T11:18:36Z" uid="665748" user="sebastic" version="1" visible="true">
+        <member ref="326385459" role="outer" type="way"/>
+        <member ref="326385502" role="outer" type="way"/>
+        <member ref="326385471" role="outer" type="way"/>
+        <member ref="326385495" role="outer" type="way"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="building:colour" v="white"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="building:material" v="plaster"/>
+        <tag k="height" v="14"/>
+    </relation>
+    <relation changeset="85812984" id="5804890" timestamp="2020-05-27T07:13:57Z" uid="1915697" user="Hilton Hotels" version="10" visible="true">
+        <member ref="326385508" role="outer" type="way"/>
+        <member ref="326385477" role="outer" type="way"/>
+        <member ref="326385525" role="outer" type="way"/>
+        <member ref="326385474" role="outer" type="way"/>
+        <member ref="326385551" role="outer" type="way"/>
+        <member ref="326385483" role="outer" type="way"/>
+        <member ref="326385442" role="outer" type="way"/>
+        <member ref="326385471" role="outer" type="way"/>
+        <member ref="326385506" role="outer" type="way"/>
+        <member ref="326385456" role="outer" type="way"/>
+        <member ref="326385453" role="outer" type="way"/>
+        <member ref="326385536" role="outer" type="way"/>
+        <member ref="326385435" role="outer" type="way"/>
+        <member ref="326385543" role="outer" type="way"/>
+        <member ref="326385494" role="outer" type="way"/>
+        <tag k="wheelchair" v="yes"/>
+        <tag k="contact:facebook" v="https://www.facebook.com/hiltonodaiba"/>
+        <tag k="rooms" v="453"/>
+        <tag k="addr:full" v="東京都港区台場1-9-1"/>
+        <tag k="addr:quarter" v="台場"/>
+        <tag k="tourism" v="hotel"/>
+        <tag k="type" v="multipolygon"/>
+        <tag k="addr:postcode" v="135-8625"/>
+        <tag k="building" v="yes"/>
+        <tag k="operator" v="Hilton"/>
+        <tag k="addr:block_number" v="9"/>
+        <tag k="name:en" v="Hilton Tokyo Odaiba"/>
+        <tag k="wikipedia" v="ja:ヒルトン東京お台場"/>
+        <tag k="brand" v="Hilton Hotels &amp; Resorts"/>
+        <tag k="email" v="Tyoto_Res@hilton.com"/>
+        <tag k="contact:twitter" v="https://twitter.com/hiltonodaiba"/>
+        <tag k="name:zh" v="東京御臺場希爾頓酒店"/>
+        <tag k="addr:province" v="東京都"/>
+        <tag k="website" v="https://www.hilton.com/en/hotels/tyotohi-hilton-tokyo-odaiba/?WT.mc_id=zELWAKN0APAC1HI2DMH3LocalSearch4DGGenericx6TYOTOHI"/>
+        <tag k="internet_access" v="wlan"/>
+        <tag k="name:ja" v="ヒルトン東京お台場"/>
+        <tag k="addr:country" v="JP"/>
+        <tag k="internet_access:fee" v="yes"/>
+        <tag k="stars" v="5"/>
+        <tag k="addr:city" v="港区"/>
+        <tag k="addr:neighbourhood" v="一丁目"/>
+        <tag k="name:ru" v="Хилтон Токио Одайба"/>
+        <tag k="addr:housenumber" v="1"/>
+        <tag k="phone" v="+81 3 5500 5500"/>
+        <tag k="name" v="ヒルトン東京お台場"/>
+        <tag k="wikidata" v="Q11337946"/>
+    </relation>
+</osm>
