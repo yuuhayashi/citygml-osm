@@ -1,4 +1,4 @@
-package osm.surveyor.osm.api;
+package osm.surveyor.update;
 
 import static org.junit.Assert.*;
 
@@ -7,6 +7,9 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import osm.surveyor.osm.api.GetResponse;
+import osm.surveyor.osm.api.HttpGet;
 
 public class HttpGetTest {
 	public String host = "https://www.openstreetmap.org";

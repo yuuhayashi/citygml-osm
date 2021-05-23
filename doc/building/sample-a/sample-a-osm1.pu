@@ -11,7 +11,8 @@ map "building :Relation" as buildingA {
 map "multipolygon A :Relation" as polygonA {
  type => multipolygon
  building => yes
- height => 5.4025
+ height => 2.4
+ ele => 2.749
  addr:ref => 13111058003
  addr:full => 東京都大田区南六郷三丁目
  source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-365
@@ -19,14 +20,14 @@ map "multipolygon A :Relation" as polygonA {
 
 map "part A :Area" as partA {
  building:part => yes
- height => 5.4025
+ height => 2.4
+ ele => 2.749
  addr:ref => 13111058003
  addr:full => 東京都大田区南六郷三丁目
  source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-365
 }
 
 map "outer A :Area" as outerA {
- height => 5.4025
  source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-365
 }
 
@@ -38,8 +39,9 @@ partA -[hidden]- outerA
 
 map "building B :Relation" as buildingB {
  type => building
- building => yes
- height => 6.84
+ building => house
+ height => 4.6
+ ele => 2.671
  addr:ref => 13111058003
  addr:full => 東京都大田区南六郷三丁目
  source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-466
@@ -47,23 +49,24 @@ map "building B :Relation" as buildingB {
 
 map "multipolygon B :Relation" as polygonB {
  type => multipolygon
- building => yes
- height => 6.84
+ building => house
+ height => 4.6
+ ele => 2.671
  addr:ref => 13111058003
  addr:full => 東京都大田区南六郷三丁目
  source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-466
 }
 
 map "B :Area" as partB {
- building:part => yes
- height => 6.84
+ building:part => house
+ height => 4.6
+ ele => 2.671
  addr:ref => 13111058003
  addr:full => 東京都大田区南六郷三丁目
  source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-466
 }
 
 map "outer B :Area" as outerB {
- height => 6.84
  source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-466
 }
 

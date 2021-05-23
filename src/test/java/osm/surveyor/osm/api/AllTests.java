@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
 import osm.surveyor.DetailTests;
+import osm.surveyor.update.HttpGetTest;
 
 @RunWith(Categories.class)
 @ExcludeCategory(DetailTests.class)

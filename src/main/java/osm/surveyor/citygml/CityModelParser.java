@@ -1,5 +1,6 @@
 package osm.surveyor.citygml;
 
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.StringTokenizer;
@@ -50,11 +51,13 @@ public class CityModelParser extends DefaultHandler {
     HashMap<String, ElementNode> nodes = null;	// k= node.point.getGeom()
 
 	OsmDom osm;
+	ConversionTable conversionTable;
 	
     public CityModelParser(OsmDom osm) {
         super();
         this.osm = osm;
         this.osm.source = "MLIT_PLATEAU";
+        this.conversionTable = new ConversionTable(Paths.get(ConversionTable.fileName).toFile());
     }
     
 	/**
@@ -77,6 +80,7 @@ public class CityModelParser extends DefaultHandler {
 	RelationBuilding building = null;				// <bldg:Building/>
 	String buildingId = null;						// <bldg:Building gml:id="buildingId" />
 	String name = null;								// <gml:name/>
+	ElementTag usage = null;						// <bldg:usage/>	用途
 	String measuredHeight = null;					// <bldg:measuredHeight/>
 	boolean edgeFull = false;						// 建物形状がセットされたら true
 	RelationBuilding roof = null;					// <bldg:lod0RoofEdge/>
@@ -122,7 +126,6 @@ public class CityModelParser extends DefaultHandler {
 		else if(qName.equals("bldg:Building")){
 			building = new RelationBuilding(osm.getNewId());
 			building.addTag("type", "building");
-			building.addTag("building", "yes");
 			for (int i = 0; i < atts.getLength(); i++) {
 				String aname = atts.getQName(i);
 				if (aname.equals("gml:id")) {
@@ -154,6 +157,10 @@ public class CityModelParser extends DefaultHandler {
 			name = "";
 	    	outSb = new StringBuffer();
 		}
+		else if(qName.equals("bldg:usage")){
+			usage = new ElementTag("building", "yes");
+	    	outSb = new StringBuffer();
+		}
 		else if(qName.equals("bldg:measuredHeight")){
 			measuredHeight = "";
 	    	outSb = new StringBuffer();
@@ -172,7 +179,6 @@ public class CityModelParser extends DefaultHandler {
 		else if(qName.equals("gml:Polygon")){
 			if (!edgeFull) {
 				multipolygon = new RelationMultipolygon(osm.getNewId());
-				multipolygon.addTag("building", "yes");
 			}
 		}
 		else if(qName.equals("gml:exterior")){
@@ -247,6 +253,9 @@ public class CityModelParser extends DefaultHandler {
 
 		else if(qName.equals("bldg:Building")){
 			if (building != null) {
+				if (usage == null) {
+					usage = new ElementTag("building", "yes");
+				}
 				String ele = building.getTagValue("ele");
 				String maxele = building.getTagValue("maxele");
 				if (maxele != null) {
@@ -276,6 +285,7 @@ public class CityModelParser extends DefaultHandler {
 						if ((name != null) && !name.isEmpty()) {
 							way.addTag("name", name);
 						}
+						way.addTag(new ElementTag("building:part", usage.v));
 					}
 					else if (mem.type.equals("relation")) {
 						ElementRelation relation = osm.relations.get(Long.toString(mem.ref));
@@ -288,12 +298,15 @@ public class CityModelParser extends DefaultHandler {
 						if ((name != null) && !name.isEmpty()) {
 							relation.addTag("name", name);
 						}
+						relation.addTag(usage);
 					}
 				}
 				building.addTag("source", getSourceStr(buildingId));
+				building.addTag(usage);
 				osm.relations.put(building);
 			}
 			building = null;
+			usage = null;
 			buildingId = "";
 			name = "";
 		}
@@ -309,6 +322,16 @@ public class CityModelParser extends DefaultHandler {
     	else if(qName.equals("gml:name")){
 			if ((name != null) && (name.isEmpty()) && (outSb != null)) {
 				name = outSb.toString();
+			}
+			outSb = null;
+		}
+    	else if(qName.equals("bldg:usage")){
+			if ((usage != null) && (outSb != null)) {
+				String code = outSb.toString();
+				if (building != null) {
+					usage.v = this.conversionTable.getUsageBuilding(code);
+					building.addTag(usage);
+				}
 			}
 			outSb = null;
 		}
@@ -417,10 +440,8 @@ public class CityModelParser extends DefaultHandler {
 								way.addTag("name", name);
 							}
 							ElementWay part = way.copy(osm.getNewId());
-							part.addTag("building:part", "yes");
 							osm.ways.put(part);
 							roof.copyTag(part);
-							roof.replaceTag("building:part", new ElementTag("building", "yes"));
 							roof.addMember(part, "part");
 							edgeFull = true;
 						}
@@ -428,16 +449,9 @@ public class CityModelParser extends DefaultHandler {
 							if ((name != null) && !name.isEmpty()) {
 								way.addTag("name", name);
 							}
-							//String ele = way.getTagValue("height");
-							//if (ele != null) {
-							//	way.tags.remove("height");
-							//	way.addTag("ele", ele);
-							//}
 							ElementWay part = way.copy(osm.getNewId());
-							part.addTag("building:part", "yes");
 							osm.ways.put(part);
 							footPrint.copyTag(part);
-							footPrint.replaceTag("building:part", new ElementTag("building", "yes"));
 							footPrint.addMember(part, "part");
 							edgeFull = true;
 						}

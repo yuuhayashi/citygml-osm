@@ -119,7 +119,7 @@ public class ElementOsmapi implements Cloneable {
 	}
 
 	/**
-     * sourceと一致するTAGを、destに置き換える
+     * keyと一致するTAGを、destに置き換える
      * @param source
      * @param dest
      */
