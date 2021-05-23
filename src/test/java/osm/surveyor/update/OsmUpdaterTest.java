@@ -10,7 +10,9 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
+import osm.surveyor.DetailTests;
 import osm.surveyor.osm.ElementWay;
 
 public class OsmUpdaterTest {
@@ -35,7 +37,6 @@ public class OsmUpdaterTest {
 	 * `mvn test -Dtest=OsmUpdaterTest#test_53392547`
 	 * 
 	 */
-	@Test
 	public void test_53392547() {
 		try {
         	AllTests.accept(Paths.get("src/test/resources", "53392547_bldg_6697_op2.osm"));
@@ -51,7 +52,7 @@ public class OsmUpdaterTest {
 	 * https://www.openstreetmap.org/ウェイ/241755306
 	 * 神奈川県 綾瀬市
 	 */
-	@Test
+	@Category(DetailTests.class)
 	public void test_241755306() {
         try {
 			String filename = "haya4_a_bldg_6697_op2";
