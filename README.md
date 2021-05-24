@@ -167,9 +167,26 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 	記述例: `<bldg:usage codeSpace="../../codelists/Building_usage.xml">411</bldg:usage>`
 	
-	- '[`conversion.json`](conversion.json)'にOSMタグへの変換表を記述して、`building=*`の値に割り当てる。
+	- '[conversion.json](conversion.json)'にOSMタグへの変換表を記述して、`building=*`の値に割り当てる。
+	
 	- 変換表に記載がない`usage`コードは、`building=yes`とする
 
+```
+{
+	"usage" : [
+		{"code":"401","name":"業務施設",	"building":"office"},
+		{"code":"402","name":"商業施設",	"building":"commercial"},
+		{"code":"403","name":"宿泊施設",	"building":"hotel"},
+		{"code":"411","name":"住宅",		"building":"house"},
+		{"code":"412","name":"共同住宅",	"building":"apartments"},
+		{"code":"421","name":"官公庁施設",	"building":"government"},
+		{"code":"422","name":"文教厚生施設",	"building":"public"},
+		{"code":"431","name":"運輸倉庫施設",	"building":"warehouse"},
+		{"code":"441","name":"工場",		"building":"industrial"},
+		{"code":"453","name":"防衛施設",	"building":"military"}
+	]
+}
+```
 
 その他、仕様には記載されているがデータで確認が取れないもの
 
