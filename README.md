@@ -118,7 +118,7 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 | 計測高さ	| `bldg:measuredHeight`	| 地盤面からの建築物の高さ(m)				|
 | 住所		| `xAL:LocalityName`-`Type="Town"`	| 							|
 
-- **建築物**<br/>「建物POI」に相当する。
+### **建築物**<br/>「建物POI」に相当する。
 
 	- **屋根外形**<br/>形状には外郭線（`gml:exterior`）と内線(`gml:interior`)があり、'[{緯度、経度、高度}]'で表される<br/>'高度'は*屋根の標高*を表す
 
@@ -128,7 +128,7 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 	- **計測高さ**<br/>計測により取得した建築物の地上の最低点から最高点までの高さ(m)。
 
-- **分類**<br/>`bldg:class`」 建築物の形態による区分 --> コードリスト: '[Building_class.xml](doc/citygml/codelists/Building_class.xml)'
+### **分類**<br/>`bldg:class`」 建築物の形態による区分 --> コードリスト: '[Building_class.xml](doc/citygml/codelists/Building_class.xml)'
 
 | id	| name	| description	|
 | -----	| -----	| -------------	|
@@ -140,7 +140,7 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 	記述例: `<bldg:class codeSpace="../../codelists/Building_class.xml">3001</bldg:class>`
 
-- **用途**<br/>`bldg:usage` 建築物の主な使い道 --> コードリスト: '[Building_usage.xml](doc/citygml/codelists/Building_usage.xml)'
+### **用途**<br/>`bldg:usage` 建築物の主な使い道 --> コードリスト: '[Building_usage.xml](doc/citygml/codelists/Building_usage.xml)'
 
 | id	| name	| description		| OSM Tag		|
 | -----	| -----	| -----------------	| -------------	|
@@ -163,13 +163,13 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 | id17	| 454	| その他				| -				|
 | id18	| 461	| 不明				| -				|
 
-	注: 分類が定義されていない建築物は、`building=yes`とする
+ 注: 分類が定義されていない建築物は、`building=yes`とする
 
-	記述例: `<bldg:usage codeSpace="../../codelists/Building_usage.xml">411</bldg:usage>`
+記述例: `<bldg:usage codeSpace="../../codelists/Building_usage.xml">411</bldg:usage>`
+
+- '[conversion.json](conversion.json)'にOSMタグへの変換表を記述して、`building=*`の値に割り当てる。
 	
-	- '[conversion.json](conversion.json)'にOSMタグへの変換表を記述して、`building=*`の値に割り当てる。
-	
-	- 変換表に記載がない`usage`コードは、`building=yes`とする
+- 変換表に記載がない`usage`コードは、`building=yes`とする
 
 ```
 {
@@ -188,7 +188,9 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 }
 ```
 
-その他、仕様には記載されているがデータで確認が取れないもの
+### その他
+
+仕様には記載されているがデータで確認が取れないもの
 
 - 「建築年 `bldg:yearOfConstruction`」 建築物が建築された年
 
@@ -218,7 +220,7 @@ OSMファイルへの変換項目
 | 項目		| GMLタグ					| 説明												|
 | --------	| ------------------------- | -------------------------------------------		|
 | ソース		| `k="source"`				| "MLIT_PLATEAU; " + **データソース名称** + **建物ID**	|
-| 建物		| `k="building",v="yes"`	| リレーション:buildingのメンバーの場合は、`k="building:part",v="yes"`	|
+| 建物		| `k="building",v="yes"`	| リレーション:buildingのメンバーの場合は `k="building:part"。v の値は'[bldg:usage 用途](conversion.json)'	|
 | 建物名称	| `k="building:name"`		| リレーション:buildingのメンバーの場合は、`k="name"`		|
 | 住所コード	| `k="addr:ref"`			| **自治体コード** ("13_区市町村コード_大字・町コード_町・丁目コード") 	|
 | 住所		| `k="addr:full"`			| **住所**											|
