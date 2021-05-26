@@ -116,17 +116,23 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 | 分類		| `bldg:class`		| 建築物の形態による区分 '[Building_class.xml](doc/citygml/codelists/Building_class.xml)'	|
 | 用途		| `bldg:usage`		| 建築物の主な使いみち。代表的な用途 '[Building_usage.xml](doc/citygml/codelists/Building_usage.xml)'	|
 | 計測高さ	| `bldg:measuredHeight`	| 地盤面からの建築物の高さ(m)				|
+| 地上階数	| `bldg:storeysAboveGround`	| 建物の地上部分の階数（日本的な数え方）正の整数値	|
+| 地下階数	| `bldg:storeysBelowGround`	| 建物の地下部分の階数 正の整数値			|
 | 住所		| `xAL:LocalityName`-`Type="Town"`	| 							|
 
 ### **建築物**<br/>「建物POI」に相当する。
 
-	- **屋根外形**<br/>形状には外郭線（`gml:exterior`）と内線(`gml:interior`)があり、'[{緯度、経度、高度}]'で表される<br/>'高度'は*屋根の標高*を表す
+- **屋根外形**<br/>形状には外郭線（`gml:exterior`）と内線(`gml:interior`)があり、'[{緯度、経度、高度}]'で表される<br/>'高度'は*屋根の標高*を表す
 
-	- **接地面**<br/>形状には外郭線（`gml:exterior`）と内線(`gml:interior`)があり、'[{緯度、経度、高度}]'で表される<br/>'高度'は建物床の*標高*を表す
+- **接地面**<br/>形状には外郭線（`gml:exterior`）と内線(`gml:interior`)があり、'[{緯度、経度、高度}]'で表される<br/>'高度'は建物床の*標高*を表す
 
-	- **建築物形状**<br/>建築物の水平的な位置を示す面に、一律の高さを与えた立体。'[{緯度、経度、高度}]'で表される<br/>'高度'は立体面の*標高*を表す。この標高から建築物の「最低標高=`ele`」と「最高標高」を取得して「建物の`height`＝（最高標高）ー（最低標高）」を算出する。
+- **建築物形状**<br/>建築物の水平的な位置を示す面に、一律の高さを与えた立体。'[{緯度、経度、高度}]'で表される<br/>'高度'は立体面の*標高*を表す。この標高から建築物の「最低標高=`ele`」と「最高標高」を取得して「建物の`height`＝（最高標高）ー（最低標高）」を算出する。
 
-	- **計測高さ**<br/>計測により取得した建築物の地上の最低点から最高点までの高さ(m)。
+- **計測高さ**<br/>計測により取得した建築物の地上の最低点から最高点までの高さ(m)。
+
+- **地上階数**<br/>建築物の地上部分の階数(自然数)。
+
+- **地下階数**<br/>建築物の地上部分の階数(自然数)。
 
 ### **分類**<br/>`bldg:class`」 建築物の形態による区分 --> コードリスト: '[Building_class.xml](doc/citygml/codelists/Building_class.xml)'
 
@@ -198,10 +204,6 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 - 「屋根の種別 `bldg:roofType`」 建築物の屋根形状の種類 --> 'Building_roofType.xml'
 
-- 「地上階数 `bldg:storeysAboveGround`」 地上階の階数
-
-- 「地下階数 `bldg:storeysBelowGround`」 地下階の階数
-
 - 「`gen::stringAttribute 建物用途コード番号`」 --> コードリスト: 'Building_usageDetail.xml'
 
 
@@ -220,12 +222,14 @@ OSMファイルへの変換項目
 | 項目		| GMLタグ					| 説明												|
 | --------	| ------------------------- | -------------------------------------------------	|
 | ソース		| `k="source"`				| "MLIT_PLATEAU; " + **データソース名称** + **建物ID**	|
-| 建物		| `k="building",v="yes"`	| リレーション:buildingのメンバーの場合は `k="building:part"。v の値は'[bldg:usage 用途](conversion.json)'から取得する	|
+| 建物		| `k="building"`			| リレーション:buildingのメンバーの場合は `k="building:part"。**v**の値は'[bldg:usage 用途](conversion.json)'から取得する	|
 | 建物名称	| `k="building:name"`		| リレーション:buildingのメンバーの場合は、`k="name"`		|
 | 住所コード	| `k="addr:ref"`			| **自治体コード** ("13_区市町村コード_大字・町コード_町・丁目コード") 	|
 | 住所		| `k="addr:full"`			| **住所**											|
 | 建物高さ	| `k="height"`				| **計測高さ**`bldg:measuredHeight`, `bldg:measuredHeight`がない場合は、`lod1Solid`と`lod0[RoofEdge,FoodPrint`から算出する	|
 | 標高		| `k="ele"`				| **建築物形状の高度**	`bldg:lod1Solid`の最低高度		|
+| 地上階数	| `k="building:levels"`	| 建物の地上部分の階数（日本的な数え方） 正の整数値			|
+| 地下階数	| `k="building:levels:underground"`	| 建物の地下部分の階数 正の整数値				|
 
 #### 建物名称 `k="building:name"`
 - 建物ポリゴン `Relation::type="multipolygon"` の場合は、`k="name"`とする

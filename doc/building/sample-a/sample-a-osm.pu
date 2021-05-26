@@ -1,5 +1,5 @@
 @startuml
-map "building :Area" as building {
+map "13111-bldg-466 :Area" as building {
  building => house
  height => 4.6
  ele => 2.671

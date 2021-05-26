@@ -31,6 +31,12 @@ title CityGML 構造
 **** bldg:measuredHeight
 *****_ "13.3"
 
+**** bldg:storeysAboveGround
+*****_ "2"
+
+**** bldg:storeysBelowGround
+*****_ "1"
+
 **** bldg:lod0RoofEdge
 ***** gml:Polygon
 ****** gml:exterior
