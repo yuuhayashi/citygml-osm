@@ -50,6 +50,7 @@
 			<bldg:usage codeSpace="../../codelists/Building_usage.xml">411</bldg:usage>
 			<bldg:measuredHeight uom="m">4.6</bldg:measuredHeight>
 			<bldg:storeysAboveGround>2</bldg:storeysAboveGround>
+			<bldg:storeysBelowGround>1</bldg:storeysBelowGround>
 			<bldg:lod0RoofEdge>
 				<gml:MultiSurface>
 					<gml:surfaceMember>

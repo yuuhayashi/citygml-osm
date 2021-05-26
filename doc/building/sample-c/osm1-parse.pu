@@ -1,31 +1,34 @@
 @startuml
-map "building A :Relation" as buildingA {
+map "building 473 :Relation" as buildingA {
  type => building
  building => yes
+ building:levels => 2
  height => 40.492
  addr:ref => 13111058003
  addr:full => 東京都大田区南六郷三丁目
  source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-473
 }
 
-map "multipolygon A :Relation" as polygonA {
+map "multipolygon 473 :Relation" as polygonA {
  type => multipolygon
  building => yes
+ building:levels => 2
  height => 40.492
  addr:ref => 13111058003
  addr:full => 東京都大田区南六郷三丁目
  source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-473
 }
 
-map "part A :Area" as partA {
+map "part 473 :Area" as partA {
  building:part => yes
+ building:levels => 2
  height => 40.492
  addr:ref => 13111058003
  addr:full => 東京都大田区南六郷三丁目
  source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-473
 }
 
-map "outer A :Area" as outerA {
+map "outer 473 :Area" as outerA {
  height => 40.492
  source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-473
 }
@@ -36,33 +39,36 @@ polygonA o-- outerA : member\n[role=outer]
 partA -[hidden]- outerA
 
 
-map "building B :Relation" as buildingB {
+map "building 386 :Relation" as buildingB {
  type => building
  building => yes
+ building:levels:underground => 1
  height => 6.58
  addr:ref => 13111058003
  addr:full => 東京都大田区南六郷三丁目
  source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-386
 }
 
-map "multipolygon B :Relation" as polygonB {
+map "multipolygon 386 :Relation" as polygonB {
  type => multipolygon
  building => yes
+ building:levels:underground => 1
  height => 6.58
  addr:ref => 13111058003
  addr:full => 東京都大田区南六郷三丁目
  source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-386
 }
 
-map "B :Area" as partB {
+map "386 :Area" as partB {
  building:part => yes
+ building:levels:underground => 1
  height => 6.58
  addr:ref => 13111058003
  addr:full => 東京都大田区南六郷三丁目
  source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-386
 }
 
-map "outer B :Area" as outerB {
+map "outer 386 :Area" as outerB {
  height => 6.58
  source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-386
 }

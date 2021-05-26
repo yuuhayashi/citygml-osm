@@ -57,6 +57,8 @@ public class CityModelParser extends DefaultHandler {
         super();
         this.osm = osm;
         this.osm.source = "MLIT_PLATEAU";
+        this.storeysAboveGround = 0;
+        this.storeysBelowGround = 0;
         this.conversionTable = new ConversionTable(Paths.get(ConversionTable.fileName).toFile());
     }
     
@@ -82,6 +84,8 @@ public class CityModelParser extends DefaultHandler {
 	String name = null;								// <gml:name/>
 	ElementTag usage = null;						// <bldg:usage/>	用途
 	String measuredHeight = null;					// <bldg:measuredHeight/>
+	int storeysAboveGround = 0;						// <bldg:storeysAboveGround/>
+	int storeysBelowGround = 0;						// <bldg:storeysBelowGround/>
 	boolean edgeFull = false;						// 建物形状がセットされたら true
 	RelationBuilding roof = null;					// <bldg:lod0RoofEdge/>
 	RelationBuilding footPrint = null;				// <bldg:lod0FootPrint/>
@@ -163,6 +167,14 @@ public class CityModelParser extends DefaultHandler {
 		}
 		else if(qName.equals("bldg:measuredHeight")){
 			measuredHeight = "";
+	    	outSb = new StringBuffer();
+		}
+		else if(qName.equals("bldg:storeysAboveGround")){
+			storeysAboveGround = 0;
+	    	outSb = new StringBuffer();
+		}
+		else if(qName.equals("bldg:storeysBelowGround")){
+			storeysBelowGround = 0;
 	    	outSb = new StringBuffer();
 		}
 		else if(qName.equals("bldg:lod0RoofEdge")){
@@ -286,10 +298,14 @@ public class CityModelParser extends DefaultHandler {
 							way.addTag("name", name);
 						}
 						way.addTag(new ElementTag("building:part", usage.v));
+						way.addTag(new ElementTag("building:levels", building.getTagValue("building:levels")));
+						way.addTag(new ElementTag("building:levels:underground", building.getTagValue("building:levels:underground")));
 					}
 					else if (mem.type.equals("relation")) {
 						ElementRelation relation = osm.relations.get(Long.toString(mem.ref));
 						relation.tags.remove("maxele");
+						relation.addTag(new ElementTag("building:levels", building.getTagValue("building:levels")));
+						relation.addTag(new ElementTag("building:levels:underground", building.getTagValue("building:levels:underground")));
 						relation.addTag("height", building.getTagValue("height"));
 						relation.addTag("ele", building.getTagValue("ele"));
 						relation.addTag("addr:ref", building.getTagValue("addr:ref"));
@@ -340,6 +356,24 @@ public class CityModelParser extends DefaultHandler {
 				measuredHeight = outSb.toString();
 				if (building != null) {
 					building.addTag("height", measuredHeight);
+				}
+			}
+			outSb = null;
+		}
+    	else if(qName.equals("bldg:storeysAboveGround")){
+			if ((storeysAboveGround == 0) && (outSb != null)) {
+				storeysAboveGround = Integer.parseInt(outSb.toString());
+				if (building != null) {
+					building.addTag("building:levels", Integer.toString(storeysAboveGround));
+				}
+			}
+			outSb = null;
+		}
+    	else if(qName.equals("bldg:storeysBelowGround")){
+			if ((storeysBelowGround == 0) && (outSb != null)) {
+				storeysBelowGround = Integer.parseInt(outSb.toString());
+				if (building != null) {
+					building.addTag("building:levels:underground", Integer.toString(storeysBelowGround));
 				}
 			}
 			outSb = null;

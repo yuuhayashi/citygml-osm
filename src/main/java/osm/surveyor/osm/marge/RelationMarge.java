@@ -28,7 +28,8 @@ public class RelationMarge {
 		while(relationMarge1(checked));
 		
 		// "ele"と"height"を統合してリレーションに設定する
-		margeHeightValue(checked);
+		// "building:levels"と"building:levels:underground"を統合してリレーションに設定する
+		margeTagValue(checked);
 	}
 
 	boolean relationMarge1(RelationMap checked) {
@@ -78,31 +79,17 @@ public class RelationMarge {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * "ele"と"height"を統合してリレーションに設定する
+	 * "building:levels"と"building:levels:underground"を統合してリレーションに設定する
 	 * @param relations
 	 */
-	void margeHeightValue(RelationMap relations) {
+	void margeTagValue(RelationMap relations) {
 		for (String key : relations.keySet()) {
 			ElementRelation relation = relations.get(key);
-			String minele = null;
-			for (ElementMember member : relation.members) {
-				if (member.type.equals("way")) {
-					ElementWay way = osm.ways.get(member.ref);
-					String ele = way.getTagValue("ele");
-					if (ele != null) {
-						if (minele == null) {
-							minele = ele;
-						}
-						else {
-							if (Double.parseDouble(minele) > Double.parseDouble(ele)) {
-								minele = ele;
-							}
-						}
-					}
-				}
-			}
+			
+			String minele = relation.getMinValue(osm.ways, "ele");
 			String maxele = null;
 			for (ElementMember member : relation.members) {
 				if (member.type.equals("way")) {
@@ -125,6 +112,18 @@ public class RelationMarge {
 			}
 			if (minele != null) {
 				relation.addTag("ele", minele);
+			}
+			
+			// 地上階
+			String maxup = relation.getMaxValue(osm.ways, "building:levels");
+			if (maxup != null) {
+				relation.addTag("building:levels", maxup);
+			}
+
+			// 地下階
+			String maxdown = relation.getMaxValue(osm.ways, "building:levels:underground");
+			if (maxup != null) {
+				relation.addTag("building:levels:underground", maxdown);
 			}
 		}
 	}

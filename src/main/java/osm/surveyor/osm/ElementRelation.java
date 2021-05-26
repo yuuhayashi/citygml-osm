@@ -128,6 +128,61 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 		}
 	}
 	
+	/**
+	 * 所属メンバーの中から、指定したタグの最大値を取得する
+	 * タグの形式は数値型のみ
+	 * @param ways	メンバーの実態
+	 * @param k		指定するタグのk
+	 * @return	指定したタグが存在しない場合はNULL
+	 */
+	public String getMaxValue(WayMap ways, String k) {
+		String max = null;
+		for (ElementMember member : this.members) {
+			if (member.type.equals("way")) {
+				ElementWay way = ways.get(member.ref);
+				String v = way.getTagValue(k);
+				if (v != null) {
+					if (max == null) {
+						max = v;
+					}
+					else {
+						if (Double.parseDouble(max) < Double.parseDouble(v)) {
+							max = v;
+						}
+					}
+				}
+			}
+		}
+		return max;
+	}
+	
+	/**
+	 * 所属メンバーの中から、指定したタグの最小値を取得する
+	 * タグの形式は数値型のみ
+	 * @param ways	メンバーの実態
+	 * @param k		指定するタグのk
+	 * @return	指定したタグが存在しない場合はNULL
+	 */
+	public String getMinValue(WayMap ways, String k) {
+		String min = null;
+		for (ElementMember member : this.members) {
+			if (member.type.equals("way")) {
+				ElementWay way = ways.get(member.ref);
+				String v = way.getTagValue(k);
+				if (v != null) {
+					if (min == null) {
+						min = v;
+					}
+					else {
+						if (Double.parseDouble(min) > Double.parseDouble(v)) {
+							min = v;
+						}
+					}
+				}
+			}
+		}
+		return min;
+	}
 
 	/**
 	 * member->wayのすべてのLINEをListにする

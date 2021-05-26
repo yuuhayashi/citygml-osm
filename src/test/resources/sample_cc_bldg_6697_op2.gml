@@ -46,6 +46,8 @@
 				</gen:measureAttribute>
 			</gen:genericAttributeSet>
 			<bldg:measuredHeight uom="m">7.1</bldg:measuredHeight>
+			<bldg:storeysAboveGround>2</bldg:storeysAboveGround>
+			<bldg:storeysBelowGround>2</bldg:storeysBelowGround>
 			<bldg:lod0RoofEdge>
 				<gml:MultiSurface>
 					<gml:surfaceMember>
@@ -252,6 +254,8 @@
 				</gen:measureAttribute>
 			</gen:genericAttributeSet>
 			<bldg:measuredHeight uom="m">5.5</bldg:measuredHeight>
+			<bldg:storeysAboveGround>3</bldg:storeysAboveGround>
+			<bldg:storeysBelowGround>1</bldg:storeysBelowGround>
 			<bldg:lod0RoofEdge>
 				<gml:MultiSurface>
 					<gml:surfaceMember>

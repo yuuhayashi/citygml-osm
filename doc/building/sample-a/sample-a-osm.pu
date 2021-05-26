@@ -1,6 +1,8 @@
 @startuml
 map "13111-bldg-466 :Area" as building {
  building => house
+ building:levels => 2
+ building:levels:underground => 1
  height => 4.6
  ele => 2.671
  addr:ref => 13111058003

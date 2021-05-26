@@ -130,9 +130,9 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 - **計測高さ**<br/>計測により取得した建築物の地上の最低点から最高点までの高さ(m)。
 
-- **地上階数**<br/>建築物の地上部分の階数(自然数)。
+- **地上階数**<br/>建築物の地上部分の階数(自然数)。階数の数え方は日本式。
 
-- **地下階数**<br/>建築物の地上部分の階数(自然数)。
+- **地下階数**<br/>建築物の地上部分の階数(自然数)。階数の数え方は日本式。
 
 ### **分類**<br/>`bldg:class`」 建築物の形態による区分 --> コードリスト: '[Building_class.xml](doc/citygml/codelists/Building_class.xml)'
 
@@ -246,6 +246,14 @@ OSMファイルへの変換項目
 - 単体ビルの場合は、`bldg:measuredHeight`。
 - 単体ビルで、`bldg:measuredHeight`がない場合は、`lod1Solid`と`lod0[RoofEdge,FoodPrint`から算出する
 - 複合ビルの場合は、複合ビルの'最低標高'を求め、全ビルパーツの'最低標高'からの'高さ'の最大値。'標高'が設定されていないビルパーツは全ビルパーツの'最低標高’からの高さが設定されているとみなす。
+
+#### 地上階 `building:levels`
+- 単体ビルの場合は、`building:levels`。
+- 複合ビルの場合は、全ビルパーツの最大'地上階'をリレーションの「地上階'building:levels'」とする。
+
+#### 地下階 `building:levels:underground`
+- 単体ビルの場合は、`building:levels:underground`。
+- 複合ビルの場合は、全ビルパーツの最大'地下階'をリレーションの「地下階'building:levels:underground'」とする。
 
 ### POI構成
 

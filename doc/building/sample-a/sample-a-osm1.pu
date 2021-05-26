@@ -1,16 +1,18 @@
 @startuml
-map "building :Relation" as buildingA {
+map "building 365 :Relation" as buildingA {
  type => building
  building => yes
+ building:levels:underground => 1
  height => 5.4025
  addr:ref => 13111058003
  addr:full => 東京都大田区南六郷三丁目
  source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-365
 }
 
-map "multipolygon A :Relation" as polygonA {
+map "multipolygon 365 :Relation" as polygonA {
  type => multipolygon
  building => yes
+ building:levels:underground => 1
  height => 2.4
  ele => 2.749
  addr:ref => 13111058003
@@ -18,8 +20,9 @@ map "multipolygon A :Relation" as polygonA {
  source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-365
 }
 
-map "part A :Area" as partA {
+map "part 365 :Area" as partA {
  building:part => yes
+ building:levels:underground => 1
  height => 2.4
  ele => 2.749
  addr:ref => 13111058003
@@ -27,7 +30,7 @@ map "part A :Area" as partA {
  source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-365
 }
 
-map "outer A :Area" as outerA {
+map "outer 365 :Area" as outerA {
  source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-365
 }
 
@@ -37,9 +40,10 @@ polygonA o-- outerA : member\n[role=outer]
 partA -[hidden]- outerA
 
 
-map "building B :Relation" as buildingB {
+map "building 466 :Relation" as buildingB {
  type => building
  building => house
+ building:levels => 2
  height => 4.6
  ele => 2.671
  addr:ref => 13111058003
@@ -47,9 +51,10 @@ map "building B :Relation" as buildingB {
  source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-466
 }
 
-map "multipolygon B :Relation" as polygonB {
+map "multipolygon 466 :Relation" as polygonB {
  type => multipolygon
  building => house
+ building:levels => 2
  height => 4.6
  ele => 2.671
  addr:ref => 13111058003
@@ -57,8 +62,9 @@ map "multipolygon B :Relation" as polygonB {
  source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-466
 }
 
-map "B :Area" as partB {
+map "466 :Area" as partB {
  building:part => house
+ building:levels => 2
  height => 4.6
  ele => 2.671
  addr:ref => 13111058003
@@ -66,7 +72,7 @@ map "B :Area" as partB {
  source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-466
 }
 
-map "outer B :Area" as outerB {
+map "outer 466 :Area" as outerB {
  source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697\n 13111-bldg-466
 }
 

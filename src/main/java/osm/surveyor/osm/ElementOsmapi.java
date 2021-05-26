@@ -78,14 +78,16 @@ public class ElementOsmapi implements Cloneable {
 	}
     
 	public void addTag(String k, String v) {
-		if (v != null) {
+		if ((v != null) && !v.isEmpty()) {
 			this.tags.put(k, new ElementTag(k, v));
 		}
 	}
 
 	public void addTag(ElementTag tag) {
 		if (tag != null) {
-			this.tags.put(tag.k, tag);
+			if ((tag.v != null) && !tag.v.isEmpty()) {
+				this.tags.put(tag.k, tag);
+			}
 		}
 	}
 	

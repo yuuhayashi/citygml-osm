@@ -43,6 +43,8 @@ public class OutlineFactory {
 			
 			// Relationのメンバーから"height"の最大値を取得
 			String maxheight = osm.getMaxHeight(building);
+			String maxLevels = relation.getMaxValue(osm.ways, "building:levels");
+			String maxLevelsUnderground = relation.getMaxValue(osm.ways, "building:levels:underground");
 
 			// OUTLINEをWAYリストに登録
 			ElementWay aWay = new ElementWay(osm.getNewId());
@@ -66,6 +68,8 @@ public class OutlineFactory {
 					multi.addMember(aWay, "outer");
 					multi.addTag("height", maxheight);
 					multi.addTag("source", osm.getSource());
+					multi.addTag("building:levels", maxLevels);
+					multi.addTag("building:levels:underground", maxLevelsUnderground);
 				}
 			}
 			else {
@@ -92,6 +96,8 @@ public class OutlineFactory {
 					if (multi != null) {
 						iWay.addTag("source", osm.getSource());
 						multi.addMember(iWay, "inner");
+						multi.addTag("building:levels", maxLevels);
+						multi.addTag("building:levels:underground", maxLevelsUnderground);
 					}
 				}
 				else {
@@ -114,6 +120,8 @@ public class OutlineFactory {
 					}
 					iWay.addTag("source", osm.getSource());
 					multi.addMember(iWay, "inner");
+					multi.addTag("building:levels", maxLevels);
+					multi.addTag("building:levels:underground", maxLevelsUnderground);
 					map.put(multi);
 					building.addMember(multi, "outline");
 				}
@@ -122,6 +130,8 @@ public class OutlineFactory {
 			building.tags.remove("building:part");
 			building.addTag("source", osm.getSource());
 			building.addTag("height", maxheight);
+			building.addTag("building:levels", maxLevels);
+			building.addTag("building:levels:underground", maxLevelsUnderground);
 		}
 		
 		while (outlineRelation(map));
