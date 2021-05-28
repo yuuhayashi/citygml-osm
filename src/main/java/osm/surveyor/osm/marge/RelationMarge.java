@@ -89,6 +89,7 @@ public class RelationMarge {
 		for (String key : relations.keySet()) {
 			ElementRelation relation = relations.get(key);
 			
+			// 'height' and 'ele'
 			String minele = relation.getMinValue(osm.ways, "ele");
 			String maxele = null;
 			for (ElementMember member : relation.members) {
@@ -114,6 +115,12 @@ public class RelationMarge {
 				relation.addTag("ele", minele);
 			}
 			
+			// 建築年
+			String minyear = relation.getMinValue(osm.ways, "start_date");
+			if (minyear != null) {
+				relation.addTag("start_date", minyear);
+			}
+
 			// 地上階
 			String maxup = relation.getMaxValue(osm.ways, "building:levels");
 			if (maxup != null) {

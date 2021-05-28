@@ -115,6 +115,7 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 | 自治体コード	| `gen:stringAttribute`-`name="13_*"`	| "13_区市町村コード_大字・町コード_町・丁目コード" |
 | 分類		| `bldg:class`		| 建築物の形態による区分 '[Building_class.xml](doc/citygml/codelists/Building_class.xml)'	|
 | 用途		| `bldg:usage`		| 建築物の主な使いみち。代表的な用途 '[Building_usage.xml](doc/citygml/codelists/Building_usage.xml)'	|
+| 建築年		| `bldg:yearOfConstruction`	| 建築物が建築された年					|
 | 計測高さ	| `bldg:measuredHeight`	| 地盤面からの建築物の高さ(m)				|
 | 地上階数	| `bldg:storeysAboveGround`	| 建物の地上部分の階数（日本的な数え方）正の整数値	|
 | 地下階数	| `bldg:storeysBelowGround`	| 建物の地下部分の階数 正の整数値			|
@@ -133,6 +134,8 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 - **地上階数**<br/>建築物の地上部分の階数(自然数)。階数の数え方は日本式。
 
 - **地下階数**<br/>建築物の地上部分の階数(自然数)。階数の数え方は日本式。
+
+- **建築年**<br/>建築物が建築された年(自然数)。
 
 ### **分類**<br/>`bldg:class`」 建築物の形態による区分 --> コードリスト: '[Building_class.xml](doc/citygml/codelists/Building_class.xml)'
 
@@ -198,8 +201,6 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 仕様には記載されているがデータで確認が取れないもの
 
-- 「建築年 `bldg:yearOfConstruction`」 建築物が建築された年
-
 - 「解体年 `bldg:yearOfDemolition`」 建築物が解体された年
 
 - 「屋根の種別 `bldg:roofType`」 建築物の屋根形状の種類 --> 'Building_roofType.xml'
@@ -254,6 +255,10 @@ OSMファイルへの変換項目
 #### 地下階 `building:levels:underground`
 - 単体ビルの場合は、`building:levels:underground`。
 - 複合ビルの場合は、全ビルパーツの最大'地下階'をリレーションの「地下階'building:levels:underground'」とする。
+
+#### 建築年 `start_date`
+- GML::`bldg:yearOfConstruction`の値を`start_date`の値とする
+- 複合ビルの場合は、全ビルパーツの最小'建築年'をリレーションの「建築年`start_date`」とする。
 
 ### POI構成
 

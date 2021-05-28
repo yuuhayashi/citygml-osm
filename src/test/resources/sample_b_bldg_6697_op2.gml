@@ -45,6 +45,7 @@
 					<gen:value uom="m">0.379</gen:value>
 				</gen:measureAttribute>
 			</gen:genericAttributeSet>
+			<bldg:yearOfConstruction>1976</bldg:yearOfConstruction>
 			<bldg:measuredHeight uom="m">16.9</bldg:measuredHeight>
 			<bldg:lod0RoofEdge>
 				<gml:MultiSurface>

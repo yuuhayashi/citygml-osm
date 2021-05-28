@@ -48,6 +48,7 @@
 				</gen:measureAttribute>
 			</gen:genericAttributeSet>
 			<bldg:usage codeSpace="../../codelists/Building_usage.xml">411</bldg:usage>
+			<bldg:yearOfConstruction>1976</bldg:yearOfConstruction>
 			<bldg:measuredHeight uom="m">4.6</bldg:measuredHeight>
 			<bldg:storeysAboveGround>2</bldg:storeysAboveGround>
 			<bldg:storeysBelowGround>1</bldg:storeysBelowGround>

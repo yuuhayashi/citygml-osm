@@ -45,6 +45,7 @@
 					<gen:value uom="m">0.113</gen:value>
 				</gen:measureAttribute>
 			</gen:genericAttributeSet>
+			<bldg:yearOfConstruction>1977</bldg:yearOfConstruction>
 			<bldg:measuredHeight uom="m">3.7</bldg:measuredHeight>
 			<bldg:storeysAboveGround>3</bldg:storeysAboveGround>
 			<bldg:lod0RoofEdge>
@@ -271,6 +272,7 @@
 					<gen:value uom="m">0.630</gen:value>
 				</gen:measureAttribute>
 			</gen:genericAttributeSet>
+			<bldg:yearOfConstruction>1976</bldg:yearOfConstruction>
 			<bldg:measuredHeight uom="m">21.6</bldg:measuredHeight>
 			<bldg:storeysAboveGround>2</bldg:storeysAboveGround>
 			<bldg:storeysBelowGround>1</bldg:storeysBelowGround>

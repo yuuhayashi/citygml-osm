@@ -83,6 +83,7 @@ public class CityModelParser extends DefaultHandler {
 	String buildingId = null;						// <bldg:Building gml:id="buildingId" />
 	String name = null;								// <gml:name/>
 	ElementTag usage = null;						// <bldg:usage/>	用途
+	String yearOfConstruction = null;				// <bldg:yearOfConstruction/>	建築年
 	String measuredHeight = null;					// <bldg:measuredHeight/>
 	int storeysAboveGround = 0;						// <bldg:storeysAboveGround/>
 	int storeysBelowGround = 0;						// <bldg:storeysBelowGround/>
@@ -163,6 +164,10 @@ public class CityModelParser extends DefaultHandler {
 		}
 		else if(qName.equals("bldg:usage")){
 			usage = new ElementTag("building", "yes");
+	    	outSb = new StringBuffer();
+		}
+		else if(qName.equals("bldg:yearOfConstruction")){
+			yearOfConstruction = "";
 	    	outSb = new StringBuffer();
 		}
 		else if(qName.equals("bldg:measuredHeight")){
@@ -297,6 +302,7 @@ public class CityModelParser extends DefaultHandler {
 						if ((name != null) && !name.isEmpty()) {
 							way.addTag("name", name);
 						}
+						way.addTag(new ElementTag("start_date", building.getTagValue("start_date")));
 						way.addTag(new ElementTag("building:part", usage.v));
 						way.addTag(new ElementTag("building:levels", building.getTagValue("building:levels")));
 						way.addTag(new ElementTag("building:levels:underground", building.getTagValue("building:levels:underground")));
@@ -304,6 +310,7 @@ public class CityModelParser extends DefaultHandler {
 					else if (mem.type.equals("relation")) {
 						ElementRelation relation = osm.relations.get(Long.toString(mem.ref));
 						relation.tags.remove("maxele");
+						relation.addTag(new ElementTag("start_date", building.getTagValue("start_date")));
 						relation.addTag(new ElementTag("building:levels", building.getTagValue("building:levels")));
 						relation.addTag(new ElementTag("building:levels:underground", building.getTagValue("building:levels:underground")));
 						relation.addTag("height", building.getTagValue("height"));
@@ -348,6 +355,16 @@ public class CityModelParser extends DefaultHandler {
 					usage.v = this.conversionTable.getUsageBuilding(code);
 					building.addTag(usage);
 				}
+			}
+			outSb = null;
+		}
+    	else if(qName.equals("bldg:yearOfConstruction")){
+			if ((yearOfConstruction != null) && (outSb != null)) {
+				yearOfConstruction = outSb.toString();
+				if (building != null) {
+					building.addTag("start_date", yearOfConstruction);
+				}
+				yearOfConstruction = null;
 			}
 			outSb = null;
 		}
