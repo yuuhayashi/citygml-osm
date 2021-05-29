@@ -37,6 +37,7 @@ public class OsmUpdaterTest {
 	 * `mvn test -Dtest=OsmUpdaterTest#test_53392547`
 	 * 
 	 */
+	@Test
 	public void test_53392547() {
 		try {
         	AllTests.accept(Paths.get("src/test/resources", "53392547_bldg_6697_op2.osm"));
@@ -55,7 +56,7 @@ public class OsmUpdaterTest {
 	@Category(DetailTests.class)
 	public void test_241755306() {
         try {
-			String filename = "haya4_a_bldg_6697_op2";
+			String filename = "haya4_bldg_6697_op2";
 			OsmUpdater updater = new OsmUpdater(Paths.get("src/test/resources/"+ filename +".osm").toFile());
 
 			// 疑似ダウンロード
@@ -106,5 +107,4 @@ public class OsmUpdaterTest {
 			fail(e.toString());
 		}
 	}
-	
 }

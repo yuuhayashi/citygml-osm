@@ -164,6 +164,7 @@
         <tag k="type" v="multipolygon"/>
         <tag k="building" v="yes"/>
         <tag k="ele" v="2.507"/>
+        <tag k="start_date" v="1976"/>
         <tag k="height" v="16.9"/>
     </relation>
 </osm>

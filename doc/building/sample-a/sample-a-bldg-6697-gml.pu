@@ -9,6 +9,8 @@ map "13111-bldg-466 :建築物" as bldg466 {
  bldg:usage => 411 (住宅)
  bldg:yearOfConstruction => 1976
  bldg:measuredHeight => 4.6 m
+ bldg:storeysAboveGround => 2
+ bldg:storeysBelowGround => 1
  bldg:lod0RoofEdge => 屋根形状
  bldg:lod1Solid => 2.671 (最低標高)
  LocalityName[type="Town"] => 東京都大田区南六郷三丁目

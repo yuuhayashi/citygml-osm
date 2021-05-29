@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<osm generator="JOSM" version="0.6">
+<bounds maxlat="35.5422523" maxlon="139.7156384" minlat="35.5407086" minlon="139.7124522" origin=""/>
+<way action="modify" changeset="12032994" id="169195173" timestamp="2012-06-27T05:23:31Z" uid="618878" user="nakanao" version="1" visible="true">
+<tag k="fixme" v="PLATEAUデータで更新されています"/>
+<tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+<tag k="source" v="Bing"/>
+<tag k="building" v="yes"/>
+<tag k="height" v="6.84"/>
+</way>
+</osm>

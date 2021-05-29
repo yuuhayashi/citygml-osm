@@ -53,9 +53,12 @@ public class OsmUpdaterTest_A {
 					assertThat(way.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 					assertThat(way.getTagValue("height"), is("4.6"));
 					assertThat(way.getTagValue("ele"), is("2.671"));
+					assertThat(way.getTagValue("start_date"), is("1976"));
 					assertThat(way.getTagValue("building"), is("yes"));
+					assertThat(way.getTagValue("building:levels"), is("2"));
+					assertThat(way.getTagValue("building:levels:underground"), is("1"));
 					assertThat(way.getTagValue("fixme"), is("PLATEAUデータで更新されています"));
-					assertThat(way.tags.size(), is(6));
+					assertThat(way.tags.size(), is(9));
 				}
 			}
 			assertThat(osm.ways.size(), is(2));
@@ -195,9 +198,12 @@ public class OsmUpdaterTest_A {
 					assertThat(way.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 					assertThat(way.getTagValue("height"), is("4.6"));
 					assertThat(way.getTagValue("ele"), is("2.671"));
+					assertThat(way.getTagValue("start_date"), is("1976"));
 					assertThat(way.getTagValue("building"), is("parking"));
+					assertThat(way.getTagValue("building:levels"), is("2"));
+					assertThat(way.getTagValue("building:levels:underground"), is("1"));
 					assertThat(way.getTagValue("fixme"), is("PLATEAUデータで更新されています"));
-					assertThat(way.tags.size(), is(6));
+					assertThat(way.tags.size(), is(9));
 				}
 			}
 			assertThat(waycnt, is(2));

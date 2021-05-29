@@ -16,10 +16,13 @@
         <nd ref="-8"/>
         <nd ref="-5"/>
         <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building:levels" v="2"/>
         <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-466"/>
-        <tag k="building" v="yes"/>
+        <tag k="building:levels:underground" v="1"/>
+        <tag k="building" v="house"/>
         <tag k="ele" v="2.671"/>
         <tag k="height" v="4.6"/>
+        <tag k="start_date" v="1976"/>
     </way>
     <way id="-57" visible="true">
         <nd ref="-52"/>

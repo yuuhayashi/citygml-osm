@@ -8,6 +8,10 @@ import org.junit.runners.Suite.SuiteClasses;
 import osm.surveyor.DetailTests;
 import osm.surveyor.update.HttpGetTest;
 
+/**
+ * `mvn test -Dtest=osm.surveyor.osm.api.AllTests`
+ * 
+ */
 @RunWith(Categories.class)
 @ExcludeCategory(DetailTests.class)
 @SuiteClasses({ CitygmlFileTest.class, CitygmlFileTest_A.class, CitygmlFileTest_B.class, CitygmlFileTest_C.class,

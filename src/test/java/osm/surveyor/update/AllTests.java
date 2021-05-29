@@ -21,6 +21,10 @@ import osm.surveyor.DetailTests;
 import osm.surveyor.osm.ElementBounds;
 import osm.surveyor.osm.OsmDom;
 
+/**
+ * `mvn test -Dtest=osm.surveyor.update.AllTests`
+ * 
+ */
 @RunWith(Categories.class)
 @ExcludeCategory(DetailTests.class)
 @SuiteClasses({ OsmUpdaterTest_A.class, OsmUpdaterTest.class, PostgisTest.class })

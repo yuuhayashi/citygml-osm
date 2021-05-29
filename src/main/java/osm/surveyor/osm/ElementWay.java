@@ -442,6 +442,6 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
                 + "member boolean, "
                 + "geom GEOMETRY(POLYGON, 4326)"
             + ");");
-        postgis.sql("CREATE INDEX ix_"+ tableName +"_geom ON "+ tableName +" USING GiST (geom);");
+        //postgis.sql("CREATE INDEX ix_"+ tableName +"_geom ON "+ tableName +" USING GiST (geom);");
 	}
 }
