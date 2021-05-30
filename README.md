@@ -13,6 +13,8 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 # Release
 
+- 2021-05-29 リリース v1.3.0 / [citygml-osm v1.3.0](https://github.com/yuuhayashi/citygml-osm/releases/download/v1.3.0/citygml-osm-1.3.0.zip)<br/>複合ビルの場合の「用途」の扱いについて<br/>PostGISの利用を廃止<br/>GISライブラリに`GeoTools v25.1`を採用
+
 - 2021-05-29 リリース v1.2.10 / [citygml-osm v1.2.10](https://github.com/yuuhayashi/citygml-osm/releases/download/v1.2.10/citygml-osm-1.2.10.zip)<br/>Issue #30<br/>「建築物:建築年」「地上階」「地下階」に対応。
 
 - 2021-05-23 リリース v1.2.9 / [citygml-osm v1.2.9](https://github.com/yuuhayashi/citygml-osm/releases/download/v1.2.9/citygml-osm-1.2.9.zip)<br/>Issue #26<br/>「建築物:用途」に対応。「建築物:計測高」に対応。
@@ -50,43 +52,35 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 ![startup.pu](doc/startup.png)
 
-- (1) [GitHub-Release](https://github.com/yuuhayashi/citygml-osm/releases) から 'citygml-get-x.x.x.zip' をダウンロードして、'任意のフォルダ'に解凍する<br/> `citygml-get-x.x.x-jar-with-dependencies.jar` が解凍されます
+- (1) [GitHub-Release](https://github.com/yuuhayashi/citygml-osm/releases) から 'citygml-get-1.3.x.zip' をダウンロードして、'任意のフォルダ'に解凍する<br/> `citygml-osm-1.3.x-jar-with-dependencies.jar` が解凍されます
   - [GitHub](https://github.com/yuuhayashi/citygml-osm)の右側にある「[Release](https://github.com/yuuhayashi/citygml-osm/releases)」欄から最新'Latest'版をダウンロードしてください
 
 - (2) [オープンデータ公開サイト](https://www.geospatial.jp/ckan/dataset/plateau)から「3D都市データ」をダウンロードする
 
-- (3) ダウンロードしたZIPファイルを'任意のフォルダ'に解凍する。<br/>ファイル末尾が「*_op2.gml」のファイルをため置きます。
+- (3) ダウンロードしたZIPファイルを'任意のフォルダ'に解凍する。<br/>ファイル末尾が「`*****.gml`」のファイルをため置きます。
 
-- (4) コマンドターミナルから実行<br/>「*_op2.osm」ファイルが生成される
+- (4) コマンドターミナルから実行<br/>「`*****.osm`」ファイルが生成される
 
-  ```
+```
   $ cd (解凍先フォルダ)
-  $ java -jar citygml-osm-x.x.x-jar-with-dependencies.jar
-  ```
+  $ java -jar citygml-osm-1.3.x-jar-with-dependencies.jar
+```
 
-- (5) JOSMを起動して、「*.osm」ファイルをJOSMにドロップしてください。<br/>生成されたデータを確認することができます。
+- (5) JOSMを起動して、「`*****.osm`」ファイルをJOSMにドロップしてください。<br/>生成されたデータを確認することができます。
 
 
 ## 第二段階
 
 ![startup2nd.pu](doc/startup2nd.png)
 
-- (1) [Github citygml-osm](https://github.com/yuuhayashi/citygml-osm) から 'docker-compose.yml' と 'osmdb.properties' を'任意のフォルダ'にダウンロードする
+- (1) コマンドターミナルから実行<br/>「`*.mrg.osm`」ファイルが生成される
 
-- (2) 'docker-compose'コマンドで'PostGIS'サーバを起動する<br/>※ 事前に「Docker」環境を用意しておく
-
-  ```
-  $ docker-compose up -d
-  ```
-
-- (3) コマンドターミナルから実行<br/>「*_op2.mrg.osm」ファイルが生成される
-
-  ```
+```
   $ cd (解凍先フォルダ)
-  $ java -cp citygml-osm-1.2.2-jar-with-dependencies.jar osm.surveyor.osm.update.OsmUpdater
-  ```
+  $ java -cp citygml-osm-1.3.x-jar-with-dependencies.jar osm.surveyor.osm.update.OsmUpdater
+```
 
-- (4) JOSMを起動して、「*_op2.mrg.osm」ファイルをJOSMにドロップしてください。<br/>生成されたデータを確認することができます。
+- (2) JOSMを起動して、「`*.mrg.osm`」ファイルをJOSMにドロップしてください。<br/>生成されたデータを確認することができます。
 
 
 
@@ -233,6 +227,11 @@ OSMファイルへの変換項目
 | 標高		| `k="ele"`				| **建築物形状の高度**	`bldg:lod1Solid`の最低高度		|
 | 地上階数	| `k="building:levels"`	| 建物の地上部分の階数（日本的な数え方） 正の整数値			|
 | 地下階数	| `k="building:levels:underground"`	| 建物の地下部分の階数 正の整数値				|
+
+#### 建物種別 `k="building"`
+- GML::`bldg:usage`の値を'[conversion.json](conversion.json)'で変換して、`building=*`に割り当てる。	
+- 変換表に記載がない`usage`コードは、`building=yes`とする
+- 複合ビルの場合は、最大面積のビルパーツの'usage'をリレーションの「`building=*`」とする。
 
 #### 建物名称 `k="building:name"`
 - 建物ポリゴン `Relation::type="multipolygon"` の場合は、`k="name"`とする

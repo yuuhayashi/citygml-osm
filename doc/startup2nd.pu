@@ -3,37 +3,17 @@ title CityGML-OSM 第二段階の実行環境イメージ
 
 cloud Internet {
  node "OpenStreetMap\nAPI v0.6" as osmapi
- node "Github\n citygml-osm" as github
 }
 
 node PC {
- node Docker {
-  node "Postgis" as postgis
- }
-
- () "1. download" as download
- github .. download
-
- file "docker-compose.yml" as yml
- download -> yml
-
- () "2. startup" as startup
- yml .. startup
- startup -> postgis
-
  folder 任意のフォルダ {
-  file "osmdb.properties" as prop
-  download --> prop
-  
-  file "citygml-get-0.0.4-jar-with-dependencies.jar" as jar
-  collections "*_op2.osm\n第一段階 生成物" as osm
+  file "citygml-osm-1.3.x-jar-with-dependencies.jar" as jar
+  collections "`*.osm`\n第一段階 生成物" as osm
  
   () "3.cmd" as cmd
   jar .. cmd
   osm .. cmd
-  prop .. cmd
   osmapi .. cmd
-  postgis .. cmd
  
   collections "*_op2.mrg.osm\n第二段階 生成物" as mrg
   cmd -> mrg
