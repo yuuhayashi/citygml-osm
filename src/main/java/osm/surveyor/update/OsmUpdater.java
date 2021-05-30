@@ -7,7 +7,6 @@ import java.net.ProtocolException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,7 +25,6 @@ import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 import osm.surveyor.osm.OsmNd;
 import osm.surveyor.osm.WayMap;
-import osm.surveyor.sql.Postgis;
 
 public class OsmUpdater {
 
@@ -115,78 +113,54 @@ public class OsmUpdater {
 	
 	/**
 	 * 既存POIとマージする
-	 * 
-	 * @throws MalformedURLException
-	 * @throws ProtocolException
-	 * @throws IOException
-	 * @throws ParserConfigurationException
-	 * @throws SAXException
+	 * @throws Exception 
 	 */
-	public void load() throws MalformedURLException, ProtocolException, IOException, ParserConfigurationException, SAXException {
-        try (Postgis db = new Postgis("osmdb")) {
-            db.initTable();		// データベースの初期化
-            
-            // 既存データをPOSTGISへセットする
-    		for (String rKey : sdom.ways.keySet()) {
-    			ElementWay way = sdom.ways.get(rKey);
-    			way.orignal = true;
-    			way.insertTable(db);
-    		}
-            
-			// インポートデータをPOSTGISへセットする
-    		for (String rKey : dom.ways.keySet()) {
-    			ElementWay way = dom.ways.get(rKey);
-    			way.orignal = false;
-    			way.insertTable(db);
-    		}
-            
-    		// 既存データの内で、インポートデータと重複しないものを削除
-    		ArrayList<ElementWay> list = new ArrayList<>();
-    		for (String rKey : sdom.ways.keySet()) {
-    			ElementWay way = sdom.ways.get(rKey);
-    			if (!way.isIntersect(db, "WHERE (tWay.orignal=false)")) {
-    				list.add(way);
-    			}
-    		}
-    		for (ElementWay way : list) {
-    			way.delete(db);
-    			sdom.ways.remove(way.id);
-    		}
+	public void load() throws Exception {
+		// 既存データの内で、インポートデータと重複しないものを削除
+		ArrayList<ElementWay> list = new ArrayList<>();
+		for (String rKey : sdom.ways.keySet()) {
+			ElementWay way = sdom.ways.get(rKey);
+			if (!way.isIntersect(dom.ways)) {
+				list.add(way);
+			}
+		}
+		for (ElementWay way : list) {
+			sdom.ways.remove(way.id);
+		}
     		
-			// インポートデータのすべてのノードを'modify'に確定する
-    		for (String rKey : dom.nodes.keySet()) {
-    			ElementNode node = dom.nodes.get(rKey);
-    			node.action = "modify";
-    			node.orignal = false;
-    			ddom.nodes.put(node.clone());
-    		}
+		// インポートデータのすべてのノードを'modify'に確定する
+		for (String rKey : dom.nodes.keySet()) {
+			ElementNode node = dom.nodes.get(rKey);
+			node.action = "modify";
+			node.orignal = false;
+			ddom.nodes.put(node.clone());
+		}
 
-	    		// インポートデータの内で、既存データと重複しないものを'modify'に確定する
-    		ArrayList<ElementWay> modifyList = new ArrayList<>();
-    		for (String rKey : dom.ways.keySet()) {
-    			ElementWay way = dom.ways.get(rKey);
-    			if (way.isInnerWay(dom.relations)) {
-    				modifyList.add(way);
-    			}
-    			else if (!way.isIntersect(db, "WHERE (tWay.orignal=true)")) {
-    				modifyList.add(way);
-    			}
-    		}
-    		for (ElementWay way : modifyList) {
-    			way.action = "modify";
-    			way.orignal = false;
-    			way.delete(db);
-    			ddom.ways.put(way);
-    		}
+    		// インポートデータの内で、既存データと重複しないものを'modify'に確定する
+		ArrayList<ElementWay> modifyList = new ArrayList<>();
+		for (String rKey : dom.ways.keySet()) {
+			ElementWay way = dom.ways.get(rKey);
+			if (way.isInnerWay(dom.relations)) {
+				modifyList.add(way);
+			}
+			else if (!way.isIntersect(sdom.ways)) {
+				modifyList.add(way);
+			}
+		}
+		for (ElementWay way : modifyList) {
+			way.action = "modify";
+			way.orignal = false;
+			ddom.ways.put(way);
+		}
     		
-    		// OverlappingMap:WayMap {key=dom.way.id, v=ddom.way}
-    		WayMap overlappingMap = new WayMap();
-    		
+		// OverlappingMap:WayMap {key=dom.way.id, v=ddom.way}
+		WayMap overlappingMap = new WayMap();
+		
 	    		// インポートデータの内で、既存データと重複するWAYを'modify'に確定する
     		for (String rKey : dom.ways.keySet()) {
     			ElementWay way = dom.ways.get(rKey).clone();
     			if ((way.action == null) || !way.action.equals("modify")) {
-        			long wayid = way.getIntersect(db, "WHERE (tWay.orignal=true)");
+        			long wayid = way.getIntersect(sdom.ways);
         			if (wayid > 0) {
         				ElementWay sWay = sdom.ways.get(wayid);
         				sWay.action = "modify";
@@ -207,7 +181,6 @@ public class OsmUpdater {
                 		sWay.addTag(height);
         				way.copyTag(sWay);
                 		sWay.copyTag(way);
-                		sWay.delete(db);
                 		ddom.ways.put(sWay);
                 		overlappingMap.put(Long.toString(way.id), sWay);
         			}
@@ -263,17 +236,9 @@ public class OsmUpdater {
 	        			node.action = "delete";
 	        			ddom.nodes.put(node.clone());
 	        		}
-	        		sWay.delete(db);
 	        		ddom.ways.put(sWay.clone());
 				}
     		}
-        } catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	/**

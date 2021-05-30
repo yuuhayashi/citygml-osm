@@ -27,7 +27,7 @@ import osm.surveyor.osm.OsmDom;
  */
 @RunWith(Categories.class)
 @ExcludeCategory(DetailTests.class)
-@SuiteClasses({ OsmUpdaterTest_A.class, OsmUpdaterTest.class, PostgisTest.class })
+@SuiteClasses({ OsmUpdaterTest_A.class, OsmUpdaterTest.class })
 public class AllTests {
 
 	/**

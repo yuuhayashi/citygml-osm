@@ -1,12 +1,10 @@
 package osm.surveyor.osm;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import org.geotools.geometry.jts.JTSFactoryFinder;
 import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.LinearRing;
 import org.locationtech.jts.geom.Polygon;
@@ -15,16 +13,13 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import osm.surveyor.sql.ImplPostgis;
-import osm.surveyor.sql.Postgis;
-
 /**
  * 
  * <way id='96350144' timestamp='2018-08-25T08:34:33Z' uid='7548722' user='Unnown' visible='true' version='17' changeset='61979354'>
  * @author hayashi
  *
  */
-public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis {
+public class ElementWay extends ElementOsmapi implements Cloneable {
 	public ArrayList<OsmNd> nds;
 	boolean area = false;
 	public boolean member = false;	// 単独のWAYか、RELATIONのメンバーかを示す。
@@ -242,16 +237,48 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
 	 * AREAの面積を求める。ただし、面積の単位は直行座標（メートルではない）
 	 * @return	ラインが閉じたエリア出ない場合は0.0d
 	 */
-	public double getArea() {
+	public Polygon getPolygon() {
         GeometryFactory geometryFactory = JTSFactoryFinder.getGeometryFactory();
         LinearRing ring = geometryFactory.createLinearRing(getCoordinates());
         Polygon polygon = geometryFactory.createPolygon(ring, null);
         if (polygon.isValid()) {
+            return polygon;
+        }
+        else {
+        	return null;
+        }
+	}
+
+	/**
+	 * AREAの面積を求める。ただし、面積の単位は直行座標（メートルではない）
+	 * @return	ラインが閉じたエリア出ない場合は0.0d
+	 */
+	public double getArea() {
+        Polygon polygon = getPolygon();
+        if (polygon != null) {
             return polygon.getArea();
         }
         else {
         	return 0.0d;
         }
+	}
+	
+	/**
+	 * 指定のAREAと重複する領域の面積を取得する
+	 * @param way
+	 * @return
+	 */
+	public double getIntersectArea(ElementWay way) {
+        Polygon polygon = getPolygon();
+        Polygon polygon2 = way.getPolygon();
+        Geometry intersect = polygon.intersection(polygon2);
+		if (intersect == null) {
+			return 0.0d;
+		}
+		if (intersect.isValid()) {
+			return intersect.getArea();
+		}
+		return 0.0d;
 	}
 	
 	/**
@@ -261,22 +288,12 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
 	 * @return
 	 * @throws Exception
 	 */
-	public boolean isIntersect(Postgis db, String where) throws Exception {
-        String geom = getGeomText();
-        if (geom == null) {
-        	return false;
-        }
-        
-        String sqlStr = "WITH source AS (SELECT ST_GeometryFromText('"+ geom +"', 4326) AS geo) "
-        		+ "SELECT ST_Intersects(s.geo, tWay.geom) AS intersect "
-        		+ "FROM tWay, source AS s "
-        		+ (where!=null ? where : "" );
-        try (Statement st = db.con.createStatement()) {
-        	ResultSet resultSet = st.executeQuery(sqlStr);
-			while (resultSet.next()) {
-				if (resultSet.getBoolean("intersect")) {
-					return true;
-				}
+	public boolean isIntersect(WayMap ways) throws Exception {
+        for (String k : ways.keySet()) {
+        	ElementWay way = ways.get(k);
+        	double area = getIntersectArea(way);
+			if (area > 0.0d) {
+				return true;
 			}
         }
         return false;
@@ -289,25 +306,18 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
 	 * @return
 	 * @throws Exception
 	 */
-	public long getIntersect(Postgis db, String where) throws Exception {
-        String geom = getGeomText();
-        if (geom == null) {
-        	return 0;
-        }
-        
-        String sqlStr = "WITH source AS (SELECT ST_GeometryFromText('"+ geom +"', 4326) AS geo) "
-        		+ "SELECT tWay.id as id, ST_AREA(ST_Intersection(s.geo, tWay.geom)) AS area "
-        		+ "FROM tWay, source AS s "
-        		+ (where!=null ? where : "")
-        		+ " ORDER BY area DESC";
-        try (Statement st = db.con.createStatement()) {
-        	ResultSet resultSet = st.executeQuery(sqlStr);
-			while (resultSet.next()) {
-				//float area = resultSet.getFloat("area");
-				return resultSet.getLong("id");
+	public long getIntersect(WayMap ways) throws Exception {
+		double max = 0.0d;
+		long maxid = 0;
+        for (String k : ways.keySet()) {
+        	ElementWay way = ways.get(k);
+        	double area = getIntersectArea(way);
+			if (area > max) {
+				max = area;
+				maxid = way.id; 
 			}
         }
-        return 0;
+        return maxid;
 	}
 
 	//---------------------------------------------------------
@@ -319,7 +329,6 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
 		result = prime * result + (area ? 1231 : 1237);
 		result = prime * result + (member ? 1231 : 1237);
 		result = prime * result + ((nds == null) ? 0 : nds.hashCode());
-		result = prime * result + ((tableName == null) ? 0 : tableName.hashCode());
 		result = prime * result + ((tags == null) ? 0 : tags.hashCode());
 		return result;
 	}
@@ -406,71 +415,11 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
 				return false;
 		} else if (!nds.equals(other.nds))
 			return false;
-		if (tableName == null) {
-			if (other.tableName != null)
-				return false;
-		} else if (!tableName.equals(other.tableName))
-			return false;
 		if (tags == null) {
 			if (other.tags != null)
 				return false;
 		} else if (!tags.equals(other.tags))
 			return false;
 		return true;
-	}
-
-    String tableName = "tWay";
-
-    
-	public void insertTable(Postgis db) throws Exception {
-        String geom = getGeomText();
-        geom = (geom==null ? null : "ST_GeomFromText('"+ geom +"',4326)");
-        
-        String sqlStr = "INSERT INTO "+ tableName 
-                +" (id,action,timestamp,uid,username,visible,version,changeset,orignal,member"+ (geom==null ? "" : ",geom") +") "
-                + "VALUES (?,?,?,?,?,?,?,?,?,?"+ (geom==null ? "" : (","+ geom)) +")";
-        try (PreparedStatement ps = db.con.prepareStatement(sqlStr)) {
-            ps.setLong(1, id);   // id
-            ps.setString(2, action);   // action
-            ps.setString(3, timestamp);       // timestamp
-            ps.setString(4, uid);      // uid
-            ps.setString(5, user);		// username
-            ps.setBoolean(6, visible);       // visible
-            ps.setString(7, version);		// version
-            ps.setString(8, changeset);	// changeset
-            ps.setBoolean(9, orignal);       // orignal
-            ps.setBoolean(10, member);       // member
-            ps.executeUpdate();
-        }
-	}
-	
-	public void delete(Postgis db) throws Exception {
-        String sqlStr = "DELETE FROM "+ tableName 
-                +" WHERE (id=?)";
-        try (PreparedStatement ps = db.con.prepareStatement(sqlStr)) {
-            ps.setLong(1, id);   // id
-            ps.executeUpdate();
-        }
-	}
-
-	@Override
-	public void initTable(Postgis postgis) throws Exception {
-        postgis.sql("DROP INDEX IF EXISTS ix_"+ tableName +" CASCADE;");
-        postgis.sql("DROP TABLE IF EXISTS "+ tableName +" CASCADE;");
-        postgis.sql("CREATE TABLE "+ tableName 
-            +" ("
-                + "id SERIAL PRIMARY KEY, "
-                + "action varchar(24), "
-                + "timestamp varchar(36), "
-                + "uid varchar(16), "
-                + "username varchar(64), "
-                + "visible boolean, "
-                + "version varchar(8), "
-                + "changeset varchar(16), "
-                + "orignal boolean, "
-                + "member boolean, "
-                + "geom GEOMETRY(POLYGON, 4326)"
-            + ");");
-        //postgis.sql("CREATE INDEX ix_"+ tableName +"_geom ON "+ tableName +" USING GiST (geom);");
 	}
 }
