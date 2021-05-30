@@ -13,13 +13,13 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 # Release
 
-- 2021-05-29 リリース v1.3.0 / [citygml-osm v1.3.0](https://github.com/yuuhayashi/citygml-osm/releases/download/v1.3.0/citygml-osm-1.3.0.zip)<br/>複合ビルの場合の「用途」の扱いについて<br/>PostGISの利用を廃止<br/>GISライブラリに`GeoTools v25.1`を採用
+- 2021-05-29 リリース v1.3.0 / [citygml-osm v1.3.0](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.3.0)<br/>複合ビルの場合の「用途」の扱いについて<br/>PostGISの利用を廃止<br/>GISライブラリに`GeoTools v25.1`を採用
 
-- 2021-05-29 リリース v1.2.10 / [citygml-osm v1.2.10](https://github.com/yuuhayashi/citygml-osm/releases/download/v1.2.10/citygml-osm-1.2.10.zip)<br/>Issue #30<br/>「建築物:建築年」「地上階」「地下階」に対応。
+- 2021-05-29 リリース v1.2.10 / [citygml-osm v1.2.10](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.2.10)<br/>Issue #30<br/>「建築物:建築年」「地上階」「地下階」に対応。
 
-- 2021-05-23 リリース v1.2.9 / [citygml-osm v1.2.9](https://github.com/yuuhayashi/citygml-osm/releases/download/v1.2.9/citygml-osm-1.2.9.zip)<br/>Issue #26<br/>「建築物:用途」に対応。「建築物:計測高」に対応。
+- 2021-05-23 リリース v1.2.9 / [citygml-osm v1.2.9](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.2.9)<br/>Issue #26<br/>「建築物:用途」に対応。「建築物:計測高」に対応。
 
-- 2021-05-16 リリース v1.2.8 / [citygml-osm v1.2.8](https://github.com/yuuhayashi/citygml-osm/releases/download/v1.2.8/citygml-osm-1.2.8-jar-with-dependencies.jar)<br/>Issue #18<br/>既存POIとのマージ機能を強化
+- 2021-05-16 リリース v1.2.8 / [citygml-osm v1.2.8](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.2.8)<br/>Issue #18<br/>既存POIとのマージ機能を強化
 
 - 2021-05-08 リリース v1.2.7 / [citygml-osm v1.2.7](https://github.com/yuuhayashi/citygml-osm/releases/download/v1.2.7/citygml-osm-1.2.7-jar-with-dependencies.jar)<br/>Issue #13 ／ 「箱根町」の `bldg:lod0FootPrint`(床形状)に対応<br/>Issue #13 ／ `bldg:lod0RoofEdge`が存在する場合は`bldg:lod0RoofEdge`を建物形状とする<br/>Issue #16 / `bldg:lod0FootPrint`を建物形状とした場合には`bldg:measuredHeight`を`osm:{building:height}`にする<br/>Issue #16 / `bldg:lod0FootPrint`を建物形状とした場合には`gml:posList`の高度を`osm:{building:ele}`にする
 
