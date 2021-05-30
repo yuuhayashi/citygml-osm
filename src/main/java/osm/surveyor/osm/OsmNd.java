@@ -1,5 +1,6 @@
 package osm.surveyor.osm;
 
+import org.locationtech.jts.geom.Coordinate;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -63,6 +64,10 @@ public class OsmNd implements Cloneable {
 		this.point = null;
 		return this;
     }
+    
+	public Coordinate getCoordinate() {
+		return this.point.getCoordinate();
+	}
     
     //--------------------------------------
 

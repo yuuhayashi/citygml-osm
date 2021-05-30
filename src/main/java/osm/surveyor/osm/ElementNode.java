@@ -1,6 +1,7 @@
 package osm.surveyor.osm;
 
 import org.w3c.dom.Element;
+import org.locationtech.jts.geom.Coordinate;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
@@ -81,6 +82,10 @@ public class ElementNode extends ElementOsmapi implements Cloneable {
 		}
 		return null;
     }
+
+	public Coordinate getCoordinate() {
+		return this.point.getCoordinate();
+	}
     
     //--------------------------------------
 

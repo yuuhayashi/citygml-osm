@@ -35,8 +35,9 @@
     <maven.javadoc.skip>true</maven.javadoc.skip>
 
     <!-- dependency versions -->
-    <junit.version>4.12</junit.version>
+    <junit.version>4.13.1</junit.version>
     <hamcrest.version>1.3</hamcrest.version>
+    <geotools.version>25.1</geotools.version>
   </properties>
   
   <!-- DEPLOY先の指定  mvn deploy -->
@@ -74,6 +75,21 @@
       <snapshots>
         <enabled>true</enabled>
       </snapshots>
+    </repository>
+    
+    <repository>
+      <id>osgeo</id>
+      <name>OSGeo Release Repository</name>
+      <url>https://repo.osgeo.org/repository/release/</url>
+      <snapshots><enabled>false</enabled></snapshots>
+      <releases><enabled>true</enabled></releases>
+    </repository>
+    <repository>
+      <id>osgeo-snapshot</id>
+      <name>OSGeo Snapshot Repository</name>
+      <url>https://repo.osgeo.org/repository/snapshot/</url>
+      <snapshots><enabled>true</enabled></snapshots>
+      <releases><enabled>false</enabled></releases>
     </repository>
   </repositories>
   
@@ -138,6 +154,13 @@
       <type>jar</type>
     </dependency>
     
+    <!-- org.geotools -->
+    <dependency>
+      <groupId>org.geotools</groupId>
+      <artifactId>gt-main</artifactId>
+      <version>${geotools.version}</version>
+    </dependency>
+
     <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
     <dependency>
       <groupId>org.postgresql</groupId>
@@ -158,6 +181,7 @@
       <groupId>org.apache.maven.plugins</groupId>
       <artifactId>maven-release-plugin</artifactId>
       <version>2.5.3</version>
+      <scope>release</scope>
       <type>jar</type>
     </dependency>
   </dependencies>

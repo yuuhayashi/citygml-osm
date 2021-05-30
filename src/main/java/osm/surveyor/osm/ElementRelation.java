@@ -129,6 +129,33 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 	}
 	
 	/**
+	 * 所属メンバーの中から、最大面積のAREAを取得する
+	 * @param ways	メンバーの実態
+	 * @return	指定したタグが存在しない場合はNULL
+	 */
+	public ElementWay getMaxArea(WayMap ways) {
+		ElementWay max = null;
+		double maxarea = 0.0d;
+		for (ElementMember member : this.members) {
+			if (member.type.equals("way")) {
+				ElementWay way = ways.get(member.ref);
+				double area = way.getArea();
+				if (max == null) {
+					max = way;
+					maxarea = area;
+				}
+				else {
+					if (maxarea < area) {
+						max = way;
+						maxarea = area;
+					}
+				}
+			}
+		}
+		return max;
+	}
+	
+	/**
 	 * 所属メンバーの中から、指定したタグの最大値を取得する
 	 * タグの形式は数値型のみ
 	 * @param ways	メンバーの実態

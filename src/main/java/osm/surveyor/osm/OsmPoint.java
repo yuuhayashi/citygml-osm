@@ -1,5 +1,7 @@
 package osm.surveyor.osm;
 
+import org.locationtech.jts.geom.Coordinate;
+
 public class OsmPoint implements Cloneable {
 	public String lat = null;
 	public String lon = null;
@@ -40,6 +42,14 @@ public class OsmPoint implements Cloneable {
 			return new String(lon +" "+ lat);
 		}
 		return null;
+	}
+	
+	/**
+	 * GeoTools
+	 * @return
+	 */
+	public Coordinate getCoordinate() {
+		return new Coordinate(Double.parseDouble(lat), Double.parseDouble(lon));
 	}
 	
     //--------------------------------------

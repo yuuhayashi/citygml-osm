@@ -115,6 +115,12 @@ public class RelationMarge {
 				relation.addTag("ele", minele);
 			}
 			
+			// 用途
+			ElementWay maxway = relation.getMaxArea(osm.ways);
+			if (maxway != null) {
+				relation.addTag("building", maxway.getTagValue("building"));
+			}
+			
 			// 建築年
 			String minyear = relation.getMinValue(osm.ways, "start_date");
 			if (minyear != null) {

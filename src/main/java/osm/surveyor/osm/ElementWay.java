@@ -5,6 +5,11 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import org.geotools.geometry.jts.JTSFactoryFinder;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.LinearRing;
+import org.locationtech.jts.geom.Polygon;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -223,6 +228,30 @@ public class ElementWay extends ElementOsmapi implements Cloneable, ImplPostgis 
 			geom += "))";
 		}
 		return geom;
+	}
+	
+	public Coordinate[] getCoordinates() {
+		ArrayList<Coordinate> list = new ArrayList<>();
+    	for (OsmNd node : this.nds) {
+    		list.add(node.getCoordinate());
+    	}
+		return list.toArray(new Coordinate[list.size()]);
+	}
+	
+	/**
+	 * AREAの面積を求める。ただし、面積の単位は直行座標（メートルではない）
+	 * @return	ラインが閉じたエリア出ない場合は0.0d
+	 */
+	public double getArea() {
+        GeometryFactory geometryFactory = JTSFactoryFinder.getGeometryFactory();
+        LinearRing ring = geometryFactory.createLinearRing(getCoordinates());
+        Polygon polygon = geometryFactory.createPolygon(ring, null);
+        if (polygon.isValid()) {
+            return polygon.getArea();
+        }
+        else {
+        	return 0.0d;
+        }
 	}
 	
 	/**
