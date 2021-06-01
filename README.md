@@ -77,7 +77,7 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 ```
   $ cd (解凍先フォルダ)
-  $ java -cp citygml-osm-1.3.x-jar-with-dependencies.jar osm.surveyor.osm.update.OsmUpdater
+  $ java -cp citygml-osm-1.3.x-jar-with-dependencies.jar osm.surveyor.update.OsmUpdater
 ```
 
 - (2) JOSMを起動して、「`*.mrg.osm`」ファイルをJOSMにドロップしてください。<br/>生成されたデータを確認することができます。
