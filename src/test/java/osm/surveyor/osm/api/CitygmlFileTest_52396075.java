@@ -29,6 +29,7 @@ public class CitygmlFileTest_52396075 {
 	 *  Envelope:srsName => http://www.opengis.net/def/crs/EPSG/0/6697
 	 * }
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void test52396075() {
 		CitygmlFileTest.test_do(Paths.get("src/test/resources","52396075_bldg_6697_op.gml"));
@@ -54,6 +55,7 @@ public class CitygmlFileTest_52396075 {
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Test
 	@Category(DetailTests.class)
 	public void test52396075_a1_parse() {
