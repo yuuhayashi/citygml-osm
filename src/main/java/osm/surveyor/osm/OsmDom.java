@@ -308,4 +308,40 @@ public class OsmDom {
 		return maxheight;
 	}
 	
+	/**
+	 * RELATIONに所属していないWAYを削除する
+	 */
+	public void gerbageWay() {
+		WayMap map = new WayMap();
+		for (String id : this.relations.keySet()) {
+			ElementRelation relation = this.relations.get(id);
+			for (ElementMember member : relation.members) {
+				ElementWay way = this.ways.get(member.ref);
+				if (way != null) {
+					map.put(way);
+				}
+			}
+		}
+		this.ways.clear();
+		for (String key : map.keySet()) {
+			this.ways.put(map.get(key));
+		}
+	}
+	
+	/**
+	 * WAYに所属していないNODEを削除する
+	 */
+	public void gerbageNode() {
+		NodeMap map = new NodeMap();
+		for (String wayid : this.ways.keySet()) {
+			ElementWay way = this.ways.get(wayid);
+			for (OsmNd nd : way.nds) {
+				map.put(this.nodes.get(nd.id));
+			}
+		}
+		this.nodes.clear();
+		for (String key : map.keySet()) {
+			this.nodes.put(map.get(key));
+		}
+	}
 }

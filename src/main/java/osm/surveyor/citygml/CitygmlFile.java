@@ -61,6 +61,12 @@ public class CitygmlFile extends File {
 		            CitygmlFile target = new CitygmlFile(file, osm);
 		            target.parse();
 		            
+		            // RELATIONに所属していないWAYを削除する
+		            osm.gerbageWay();
+		            
+		            // WAYに所属しないNODEを削除する
+		            osm.gerbageNode();
+		            
 		            // (2) 各WAYのノードで、他のWAYと共有されたノードを探す
 			    	// 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる
 			    	// Relation:multipolygon の MaxHeightを outline->Multipolygonへ設定する

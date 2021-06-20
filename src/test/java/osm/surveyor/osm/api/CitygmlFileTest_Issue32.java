@@ -1,8 +1,11 @@
 package osm.surveyor.osm.api;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.nio.file.Paths;
@@ -29,7 +32,6 @@ public class CitygmlFileTest_Issue32 {
 		飯塚市 50303564_bldg_6697_op>40205-bldg-95937 など
 
 	 */
-	@SuppressWarnings("deprecation")
 	@Test
 	public void test53394610() {
 		CitygmlFileTest.test_do(Paths.get("src/test/resources","Issue32_13101-bldg-365.gml"));
@@ -37,16 +39,20 @@ public class CitygmlFileTest_Issue32 {
 		OsmDom osm = new OsmDom();
 		try {
 			osm.parse(Paths.get("Issue32_13101-bldg-365.osm").toFile());
-			assertThat(osm.ways, notNullValue());
-			assertThat(osm.nodes, notNullValue());
-			assertThat(osm.nodes.size() < 15, is(true));
+			assertNotNull(osm.ways);
+			assertSame(1, osm.ways.size());
+			for (String wayid : osm.ways.keySet()) {
+				ElementWay way = osm.ways.get(wayid);
+				assertSame(16, way.nds.size());
+			}
+			assertNotNull(osm.nodes);
+			assertSame(15, osm.nodes.size());
 		} catch (Exception e) {
 			e.fillInStackTrace();
 			fail(e.toString());
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	@Test
 	public void test50303564() {
 		CitygmlFileTest.test_do(Paths.get("src/test/resources","Issue32_40205-bldg-95937.gml"));
@@ -54,9 +60,10 @@ public class CitygmlFileTest_Issue32 {
 		OsmDom osm = new OsmDom();
 		try {
 			osm.parse(Paths.get("Issue32_40205-bldg-95937.osm").toFile());
-			assertThat(osm.ways, notNullValue());
-			assertThat(osm.nodes, notNullValue());
-			assertThat(osm.nodes.size() < 30, is(true));
+			assertNotNull(osm.ways);
+			assertNotNull(osm.nodes);
+			System.out.println("osm.nodes.size() = "+ osm.nodes.size());
+			assertSame(66, osm.nodes.size());
 		} catch (Exception e) {
 			e.fillInStackTrace();
 			fail(e.toString());
@@ -68,58 +75,58 @@ public class CitygmlFileTest_Issue32 {
 	@Category(DetailTests.class)
 	public void test52396075_a1_parse() {
 		CitygmlFileTest.test_doParse(Paths.get("src/test/resources","Issue32_13101-bldg-365.gml"));
-        OsmDom osm = new OsmDom();
+
+		System.out.println("Issue32_13101-bldg-365_1.osm");
+		OsmDom osm = new OsmDom();
         try {
 			osm.parse(Paths.get("Issue32_13101-bldg-365_1.osm").toFile());
-
-			assertThat(osm.relations, notNullValue());
+			assertNotNull(osm.relations);
 			for (String id : osm.relations.keySet()) {
 				ElementRelation relation = osm.relations.get(id);
-				assertThat(relation, notNullValue());
+				assertNotNull(relation);
 				String type = relation.getTagValue("type");
 				if (type.equals("building")) {
 					if (relation.getTagValue("source").endsWith("; 13101-bldg-365")) {
-						assertThat(relation.getTagValue("type"), is("building"));
-						assertThat(relation.getTagValue("building"), is("yes"));
-						assertThat(relation.getTagValue("height"), is("13.3"));
-						assertThat(relation.getTagValue("ele"), is("728.31"));
-						assertThat(relation.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 14382-bldg-10718"));
+						assertEquals("building", relation.getTagValue("type"));
+						assertEquals("yes", relation.getTagValue("building"));
+						assertEquals("114.7", relation.getTagValue("height"));
+						assertEquals("2.138", relation.getTagValue("ele"));
+						assertEquals("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13101-bldg-365", relation.getTagValue("source"));
 
 						int outlineCnt = 0;
 						int partCnt = 0;
 						for (ElementMember mem : relation.members) {
 							if (mem.role.equals("outline")) {
 								outlineCnt++;
-								assertThat(mem.type, is("relation"));
+								assertEquals("relation", mem.type);
 								ElementRelation outline = osm.relations.get(mem.ref);
-								assertThat(outline, notNullValue());
+								assertNotNull(outline);
 								assertThat(outline.getTagValue("type"), is("multipolygon"));
 								assertThat(outline.getTagValue("building"), is("yes"));
-								assertThat(outline.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 14382-bldg-10718"));
-								assertThat(outline.getTagValue("height"), is("13.3"));
-								assertThat(outline.getTagValue("ele"), is("728.31"));
-								assertThat(outline.tags.size() >= 5, is(true));
+								assertThat(outline.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13101-bldg-365"));
+								assertThat(outline.getTagValue("height"), is("114.7"));
+								assertThat(outline.getTagValue("ele"), is("2.138"));
+								assertTrue(outline.tags.size() >= 5);
 							}
 							if (mem.role.equals("part")) {
 								partCnt++;
 								assertThat(mem.type, is("way"));
 								ElementWay way = osm.ways.get(Long.toString(mem.ref));
-								assertThat(way, notNullValue());
+								assertNotNull(way);
 								assertThat(way.getTagValue("building:part"), is("yes"));
-								assertThat(way.getTagValue("building:levels"), is("1"));
-								assertThat(way.getTagValue("height"), is("13.3"));
-								assertThat(way.getTagValue("ele"), is("728.31"));
-								assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 14382-bldg-10718"));
-								assertThat(way.tags.size() >= 5, is(true));
+								assertThat(way.getTagValue("height"), is("114.7"));
+								assertThat(way.getTagValue("ele"), is("2.138"));
+								assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13101-bldg-365"));
+								assertTrue(way.tags.size() >= 5);
 							}
 						}
-						assertThat(outlineCnt, is(1));
-						assertThat(partCnt, is(1));
+						assertEquals(1, outlineCnt);
+						assertEquals(1, partCnt);
 					}
-					assertThat(relation.members.size(), is(2));
+					assertEquals(2, relation.members.size());
 				}
 			}
-			assertThat(osm.relations.size(), is(2));
+			assertEquals(2, osm.relations.size());
 			
 		} catch (Exception e) {
 			e.fillInStackTrace();

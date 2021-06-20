@@ -1,8 +1,6 @@
 package osm.surveyor.osm.api;
 
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
 import java.io.File;
@@ -54,22 +52,22 @@ public class CitygmlFileTest {
 		try {
 			osm.parse(Paths.get("53375768_bldg_6697_op.osm").toFile());
 
-			assertThat(osm.ways, notNullValue());
+			assertNotNull(osm.ways);
 			for (String id : osm.ways.keySet()) {
 				ElementWay way = osm.ways.get(id);
-				assertThat(way, notNullValue());
+				assertNotNull(way);
 
 				if (way.getTagValue("source").endsWith("20209-bldg-69160")) {
-					assertThat(way.getTagValue("building:part"), nullValue());
-					assertThat(way.getTagValue("building"), notNullValue());
+					assertNotNull(way.getTagValue("building:part"));
+					assertNotNull(way.getTagValue("building"));
 				}
 				if (way.getTagValue("source").endsWith("20209-bldg-69158")) {
-					assertThat(way.getTagValue("building:part"), nullValue());
-					assertThat(way.getTagValue("building"), notNullValue());
+					assertNotNull(way.getTagValue("building:part"));
+					assertNotNull(way.getTagValue("building"));
 				}
 				if (way.getTagValue("source").endsWith("20209-bldg-69157")) {
-					assertThat(way.getTagValue("building:part"), nullValue());
-					assertThat(way.getTagValue("building"), notNullValue());
+					assertNotNull(way.getTagValue("building:part"));
+					assertNotNull(way.getTagValue("building"));
 				}
 			}
 		} catch (Exception e) {
@@ -113,8 +111,17 @@ public class CitygmlFileTest {
 					filename = filename.substring(0, filename.length()-4);
 			        
 			        OsmDom osm = new OsmDom();
-		            CitygmlFile target = new CitygmlFile(file, osm);
+
+			        // (1) GMLファイルをパースする
+			        CitygmlFile target = new CitygmlFile(file, osm);
 		            target.parse();
+		            
+		            // RELATIONに所属していないWAYを削除する
+		            osm.gerbageWay();
+		            
+		            // WAYに所属しないNODEを削除する
+		            osm.gerbageNode();
+		            
 			    	osm.export(new File(filename + "_1.osm"));
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -248,6 +255,9 @@ public class CitygmlFileTest {
 			        // (1) GMLファイルをパースする
 		            CitygmlFile target = new CitygmlFile(file, osm);
 		            target.parse();
+		            
+		            // WAYに所属しないNODEを削除する
+		            osm.gerbageNode();
 		            
 		            // (2) 各WAYのノードで、他のWAYと共有されたノードを探す
 			    	// 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる
