@@ -122,7 +122,10 @@ public class CitygmlFileTest {
 		            // WAYに所属しないNODEを削除する
 		            osm.gerbageNode();
 		            
-			    	osm.export(new File(filename + "_1.osm"));
+		            // Export
+		            String exportFileName = filename + "_1.osm";
+		    		System.out.println("TEST: export to '"+ exportFileName + "'");
+			    	osm.export(new File(exportFileName));
 				} catch (Exception e) {
 					e.printStackTrace();
 					fail(e.toString());
@@ -278,7 +281,8 @@ public class CitygmlFileTest {
 		            // (5) "outline"と"part"が重複しているPART を削除する
 		            OsmMargeWay.partGabegi(osm);
 		            
-		            // ファイルへエクスポートする
+		            	// ファイルへエクスポートする
+		    		System.out.println("TEST: export to '"+ filename + ".osm'");
 			    	osm.export(new File(filename + ".osm"));
 				} catch (Exception e) {
 					e.printStackTrace();

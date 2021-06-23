@@ -14,8 +14,16 @@ import osm.surveyor.update.HttpGetTest;
  */
 @RunWith(Categories.class)
 @ExcludeCategory(DetailTests.class)
-@SuiteClasses({ CitygmlFileTest.class, CitygmlFileTest_A.class, CitygmlFileTest_B.class, CitygmlFileTest_C.class,
-		CitygmlFileTest_D.class, CitygmlFileTest_E.class, HttpGetTest.class })
+@SuiteClasses({
+	CitygmlFileTest.class, 
+	CitygmlFileTest_A.class, 
+	CitygmlFileTest_B.class, 
+	CitygmlFileTest_C.class,
+	CitygmlFileTest_D.class,
+	CitygmlFileTest_E.class,
+	CitygmlFileTest_Issue32.class,
+	HttpGetTest.class
+})
 public class AllTests {
 
 }
