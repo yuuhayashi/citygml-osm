@@ -1,5 +1,7 @@
 package osm.surveyor.citygml;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -295,7 +297,7 @@ public class CityModelParser extends DefaultHandler {
 						ElementWay way = osm.ways.get(Long.toString(mem.ref));
 						way.tags.remove("maxele");
 						way.addTag("height", building.getTagValue("height"));
-						way.addTag("ele", building.getTagValue("ele"));
+						way.addTag("ele", rounding2(building.getTagValue("ele")));
 						way.addTag("addr:ref", building.getTagValue("addr:ref"));
 						way.addTag("addr:full", building.getTagValue("addr:full"));
 						way.addTag("source", getSourceStr(buildingId));
@@ -314,7 +316,7 @@ public class CityModelParser extends DefaultHandler {
 						relation.addTag(new ElementTag("building:levels", building.getTagValue("building:levels")));
 						relation.addTag(new ElementTag("building:levels:underground", building.getTagValue("building:levels:underground")));
 						relation.addTag("height", building.getTagValue("height"));
-						relation.addTag("ele", building.getTagValue("ele"));
+						relation.addTag("ele", rounding2(building.getTagValue("ele")));
 						relation.addTag("addr:ref", building.getTagValue("addr:ref"));
 						relation.addTag("addr:full", building.getTagValue("addr:full"));
 						relation.addTag("source", getSourceStr(buildingId));
@@ -458,7 +460,7 @@ public class CityModelParser extends DefaultHandler {
 				double min = Double.parseDouble(minheight);
 				double max = Double.parseDouble(maxheight);
 				if (min < 90000d) {
-					building.addTag("ele", minheight);
+					building.addTag("ele", rounding2(minheight));
 				}
 				if (max > -9000d) {
 					if ((max - min) > 1d) {
@@ -609,7 +611,7 @@ public class CityModelParser extends DefaultHandler {
 					double min = Double.parseDouble(minele);
 					double max = Double.parseDouble(maxele);
 					if (min < 90000.0d) {
-						way.addTag("ele", minele);
+						way.addTag("ele", rounding2(minele));
 					}
 					if (max > -1000.0d) {
 						way.addTag("maxele", Double.toString(max));
@@ -688,5 +690,23 @@ public class CityModelParser extends DefaultHandler {
 			}
 		}
     	return null;
+    }
+    
+    /**
+     * 小数点以下２桁の数値に丸めた値を返す
+     * @param str
+     * @return
+     */
+    String rounding2(String str) {
+    	try {
+        	double d = Double.parseDouble(str);
+    		BigDecimal bd = new BigDecimal(d).setScale(2, RoundingMode.HALF_UP);
+    		double d2 = bd.doubleValue();
+    		return Double.toString(d2);
+    	}
+    	catch(Exception e) {
+    		return null;
+    	}
+    	
     }
 }
