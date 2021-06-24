@@ -118,7 +118,7 @@ public class RelationMarge {
 			// 用途
 			ElementWay maxway = relation.getMaxArea(osm.ways);
 			if (maxway != null) {
-				relation.addTag("building", maxway.getTagValue("building"));
+				relation.addTag("building", maxway.getTagValue("building:part"));
 			}
 			
 			// 建築年

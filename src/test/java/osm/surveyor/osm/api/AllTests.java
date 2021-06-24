@@ -21,6 +21,7 @@ import osm.surveyor.update.HttpGetTest;
 	CitygmlFileTest_C.class,
 	CitygmlFileTest_D.class,
 	CitygmlFileTest_E.class,
+	CitygmlFileTest_Issue28.class,
 	CitygmlFileTest_Issue32.class,
 	HttpGetTest.class
 })

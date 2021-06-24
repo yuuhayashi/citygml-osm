@@ -79,6 +79,16 @@ public class CitygmlFileTest_Issue28 {
 						assertEquals("way", mem.type);
 						ElementWay way = osm.ways.get(Long.toString(mem.ref));
 						
+						// (1) "40205-bldg-80498"をメンバに持つリレーションは building=industrial であるべき、
+						if (way.getTagValue("source").endsWith("40205-bldg-80498")) {
+							assertEquals("industrial", relation.getTagValue("building"));
+						}
+						
+						// (2) "40205-bldg-80414"をメンバに持つリレーションは building=industrial であるべき、
+						if (way.getTagValue("source").endsWith("40205-bldg-80414")) {
+							assertEquals("industrial", relation.getTagValue("building"));
+						}
+						
 						// (3) "40205-bldg-80732"をメンバに持つリレーションは building=industrial であるべき、
 						if (way.getTagValue("source").endsWith("40205-bldg-80732")) {
 							assertEquals("industrial", relation.getTagValue("building"));

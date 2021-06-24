@@ -1,6 +1,7 @@
 package osm.surveyor.osm.api;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.fail;
 
 import java.io.File;
@@ -58,15 +59,15 @@ public class CitygmlFileTest {
 				assertNotNull(way);
 
 				if (way.getTagValue("source").endsWith("20209-bldg-69160")) {
-					assertNotNull(way.getTagValue("building:part"));
+					assertNull(way.getTagValue("building:part"));
 					assertNotNull(way.getTagValue("building"));
 				}
 				if (way.getTagValue("source").endsWith("20209-bldg-69158")) {
-					assertNotNull(way.getTagValue("building:part"));
+					assertNull(way.getTagValue("building:part"));
 					assertNotNull(way.getTagValue("building"));
 				}
 				if (way.getTagValue("source").endsWith("20209-bldg-69157")) {
-					assertNotNull(way.getTagValue("building:part"));
+					assertNull(way.getTagValue("building:part"));
 					assertNotNull(way.getTagValue("building"));
 				}
 			}
