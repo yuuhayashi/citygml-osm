@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.nio.file.Paths;
+import java.util.StringTokenizer;
 
 import org.junit.Test;
 
@@ -74,6 +75,9 @@ public class CitygmlFileTest_Issue28 {
 				assertNotNull(relation);
 				assertEquals("building", relation.getTagValue("type"));
 				
+				// Issue #36
+				testIssue36(osm, relation);
+				
 				for (ElementMember mem : relation.members) {
 					if (mem.role.equals("part")) {
 						assertEquals("way", mem.type);
@@ -105,6 +109,40 @@ public class CitygmlFileTest_Issue28 {
 		} catch (Exception e) {
 			e.fillInStackTrace();
 			fail(e.toString());
+		}
+	}
+	
+	/**
+	 * Issue #36
+	 * eleの有効桁数は小数点以下２桁までであること
+	 * @param relation
+	 */
+	void testIssue36(OsmDom osm, ElementRelation relation) {
+		check(relation.getTagValue("ele"));
+		for (ElementMember mem : relation.members) {
+			if (mem.role.equals("part")) {
+				assertEquals("way", mem.type);
+				ElementWay way = osm.ways.get(Long.toString(mem.ref));
+				check(way.getTagValue("ele"));
+			}
+		}
+	}
+
+	/**
+	 * strの有効桁数は小数点以下２桁までであること
+	 * @param str
+	 */
+	void check(String str) {
+		if (str != null) {
+			StringTokenizer st = new StringTokenizer(str, ".");
+			int cnt = 0;
+			while(st.hasMoreTokens()) {
+				String token = st.nextToken();
+				cnt++;
+				if (cnt == 2) {
+					assertTrue(token.length() <= 2);
+				}
+			}
 		}
 	}
 
