@@ -78,6 +78,9 @@ public class CitygmlFileTest_Issue28 {
 				// Issue #36
 				testIssue36(osm, relation);
 				
+				// Issue #37
+				testIssue37(osm, relation);
+				
 				for (ElementMember mem : relation.members) {
 					if (mem.role.equals("part")) {
 						assertEquals("way", mem.type);
@@ -109,6 +112,29 @@ public class CitygmlFileTest_Issue28 {
 		} catch (Exception e) {
 			e.fillInStackTrace();
 			fail(e.toString());
+		}
+	}
+	
+	/**
+	 * 複雑系の複合ビルが一つのOUTLINEにまとまらない #37
+	 * https://github.com/yuuhayashi/citygml-osm/issues/37
+	 * 
+	 * @param osm
+	 * @param relation
+	 */
+	void testIssue37(OsmDom osm, ElementRelation relation) {
+		check(relation.getTagValue("ele"));
+		for (ElementMember mem : relation.members) {
+			if (mem.role.equals("part")) {
+				assertEquals("way", mem.type);
+				ElementWay way = osm.ways.get(Long.toString(mem.ref));
+				
+				// "40205-bldg-81197"をメンバに持つリレーションは 20個以上の建物パーツを持つべき
+				if (way.getTagValue("source").endsWith("40205-bldg-81197")) {
+					System.out.println("members: "+ relation.members.size());
+					assertTrue(relation.members.size() >= 20);
+				}
+			}
 		}
 	}
 	
