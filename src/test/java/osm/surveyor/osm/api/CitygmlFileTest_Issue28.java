@@ -9,11 +9,14 @@ import java.nio.file.Paths;
 import java.util.StringTokenizer;
 
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
+import osm.surveyor.DetailTests;
 import osm.surveyor.osm.ElementMember;
 import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
+import osm.surveyor.osm.RelationMap;
 
 /**
  * 
@@ -70,6 +73,10 @@ public class CitygmlFileTest_Issue28 {
 		try {
 			osm.parse(Paths.get("Issue28_50303525_op.osm").toFile());
 			assertNotNull(osm.relations);
+			
+			// Issue #37
+			testIssue37(osm, osm.relations);
+			
 			for (String id : osm.relations.keySet()) {
 				ElementRelation relation = osm.relations.get(id);
 				assertNotNull(relation);
@@ -77,9 +84,6 @@ public class CitygmlFileTest_Issue28 {
 				
 				// Issue #36
 				testIssue36(osm, relation);
-				
-				// Issue #37
-				testIssue37(osm, relation);
 				
 				for (ElementMember mem : relation.members) {
 					if (mem.role.equals("part")) {
@@ -108,6 +112,7 @@ public class CitygmlFileTest_Issue28 {
 					}
 				}
 			}
+			System.out.println("relations.size(): "+ osm.relations.size());
 			assertTrue(osm.relations.size() > 5);
 		} catch (Exception e) {
 			e.fillInStackTrace();
@@ -122,20 +127,26 @@ public class CitygmlFileTest_Issue28 {
 	 * @param osm
 	 * @param relation
 	 */
-	void testIssue37(OsmDom osm, ElementRelation relation) {
-		check(relation.getTagValue("ele"));
-		for (ElementMember mem : relation.members) {
-			if (mem.role.equals("part")) {
-				assertEquals("way", mem.type);
-				ElementWay way = osm.ways.get(Long.toString(mem.ref));
-				
-				// "40205-bldg-81197"をメンバに持つリレーションは 20個以上の建物パーツを持つべき
-				if (way.getTagValue("source").endsWith("40205-bldg-81197")) {
-					System.out.println("members: "+ relation.members.size());
-					assertTrue(relation.members.size() >= 20);
+	void testIssue37(OsmDom osm, RelationMap map) {
+		int i = 0;
+		for (String key : map.keySet()) {
+			ElementRelation relation = map.get(key);
+			for (ElementMember mem : relation.members) {
+				if (mem.role.equals("part")) {
+					assertEquals("way", mem.type);
+					ElementWay way = osm.ways.get(Long.toString(mem.ref));
+					
+					// "40205-bldg-81197"をメンバに持つリレーションは 20個以上の建物パーツを持つべき
+					if (way.getTagValue("source").endsWith("40205-bldg-81197")) {
+						System.out.println("members: "+ relation.members.size());
+						assertTrue(relation.members.size() >= 20);
+						i++;
+					}
 				}
 			}
 		}
+
+		assertEquals(1, i);
 	}
 	
 	/**
@@ -172,4 +183,44 @@ public class CitygmlFileTest_Issue28 {
 		}
 	}
 
+	/**
+	 * `mvn test -Dtest=CitygmlFileTest_A#testSample_a2_margePart`
+	 * 
+	 */
+	@Test
+	@Category(DetailTests.class)
+	public void testSample_a2_margePart() {
+		CitygmlFileTest.test_doRelationMarge(Paths.get("src/test/resources","Issue28_50303525_op.gml"));
+        OsmDom osm = new OsmDom();
+        try {
+			osm.parse(Paths.get("Issue28_50303525_op_2.osm").toFile());
+			int i = 0;
+
+			assertNotNull(osm.relations);
+			for (String id : osm.relations.keySet()) {
+				ElementRelation relation = osm.relations.get(id);
+				assertNotNull(relation);
+				String type = relation.getTagValue("type");
+				if (type.equals("building")) {
+					for (ElementMember mem : relation.members) {
+						if (mem.role.equals("part")) {
+							assertEquals("way", mem.type);
+							ElementWay way = osm.ways.get(Long.toString(mem.ref));
+
+							// "40205-bldg-81197"をメンバに持つリレーションは 20個以上の建物パーツを持つべき
+							if (way.getTagValue("source").endsWith("40205-bldg-81197")) {
+								System.out.println("members: "+ relation.members.size());
+								assertTrue(relation.members.size() >= 20);
+								i++;
+							}
+						}
+					}
+				}
+			}
+			assertEquals(1, i);
+		} catch (Exception e) {
+			e.fillInStackTrace();
+			fail(e.toString());
+		}
+	}
 }
