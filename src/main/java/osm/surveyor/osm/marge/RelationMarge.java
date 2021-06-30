@@ -43,6 +43,8 @@ public class RelationMarge {
 							String memberRef = Long.toString(member.ref);
 							ElementWay way = osm.ways.get(memberRef);
 							ElementRelation destRelation = null;
+
+							// destRelation <-- checkedの中からwayに接続するリレーションをひとつだけ取得
 							if ((destRelation = checkParts(checked, way)) != null) {
 								way.member = true;
 								
@@ -161,7 +163,12 @@ public class RelationMarge {
 		}
 	}
 
-	
+	/**
+	 * リレーションMAPの中から指定したwayに接続するリレーションをひとつだけ取得する
+	 * @param checked	調査対象のリレーションリスト
+	 * @param way	指定のWAY
+	 * @return	接続するリレーションがない場合はNULL
+	 */
 	private ElementRelation checkParts(RelationMap checked, ElementWay way) {
 		for (String relationid : checked.keySet()) {
 			ElementRelation relation = checked.get(relationid);
