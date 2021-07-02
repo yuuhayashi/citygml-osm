@@ -38,47 +38,46 @@ public class RelationMarge {
 			if (relation.isBuilding()) {
 				if (checked.get(relation.id) == null) {
 					// relationは、未チェック
+					RelationMap map = new RelationMap();
 					for (ElementMember member : relation.members) {
-						if (member.role.equals("part")) {
+						if (member.role.equals("part") && member.type.equals("way")) {
 							String memberRef = Long.toString(member.ref);
 							ElementWay way = osm.ways.get(memberRef);
-							ElementRelation destRelation = null;
+							way.member = true;
 
-							// destRelation <-- checkedの中からwayに接続するリレーションをひとつだけ取得
-							if ((destRelation = checkParts(checked, way)) != null) {
-								way.member = true;
-								
-								String maxname = destRelation.getTagValue("name");
-								if (maxname == null) {
-									maxname = "";
-								}
-								String name = way.getTagValue("name");
-								if ((name != null) && (name.length() > maxname.length())) {
-									if (!name.isEmpty()) {
-										destRelation.addTag("name", name);
-									}
-								}
-								
-								destRelation.addTag("source", osm.getSource());
-								destRelation.addMember(way, "part");
-								int i = relation.members.indexOf(member);	// カレントリレーションからメンバーを削除
-								relation.members.remove(i);
-
-								ElementMember polygonMember = getPolygonMember(relation);
-								if (polygonMember != null) {
-									RelationMultipolygon polygon = (RelationMultipolygon)osm.relations.get(Long.toString(polygonMember.ref));
-									destRelation.addMember(polygon, "outline");
-									i = relation.members.indexOf(polygonMember);	// カレントリレーションからメンバーを削除
-									relation.members.remove(i);
-								}
+							// destRelation <-- checkedの中からwayに接続するリレーションを取得
+							RelationMap duplicateMap = checkParts(checked, way);
+							for (String key : duplicateMap.keySet()) {
+								map.put(duplicateMap.get(key));
 							}
-							checked.put(relation);
-							return true;
 						}
+					}
+
+					// destRelation <-- checkedの中からwayに接続するリレーションを取得
+					for (String key : map.keySet()) {
+						ElementRelation destRelation = map.get(key);
+						
+						// 接続するリレーションのすべてのメンバーを取り込む
+						for (ElementMember mem : destRelation.members) {
+							if (mem.type.equals("way")) {
+								ElementWay memway = osm.ways.get(Long.toString(mem.ref));
+								relation.addMember(memway, mem.role);
+							}
+							else {
+								//ElementRelation memway = osm.relations.get(Long.toString(mem.ref));
+								//relation.addMember(memway, mem.role);
+							}
+						}
+
+						checked.remove(Long.toString(destRelation.id));
 					}
 				}
 			}
+			checked.put(relation);
 		}
+		
+		// 'osm.relations'からcheckedのリレーションを取り除く
+		
 		return false;
 	}
 
@@ -91,11 +90,19 @@ public class RelationMarge {
 		for (String key : relations.keySet()) {
 			ElementRelation relation = relations.get(key);
 			
-			// 'height' and 'ele'
+			// 'source='
+			relation.addTag("source", osm.getSource());
+			
+			// 'height' and 'ele' and 'name'
+			String maxname = relation.getTagValue("name");
+			if (maxname == null) {
+				maxname = "";
+			}
 			String minele = relation.getMinValue(osm.ways, "ele");
 			String maxele = null;
 			for (ElementMember member : relation.members) {
 				if (member.type.equals("way")) {
+					// 'height' and 'ele'
 					ElementWay way = osm.ways.get(member.ref);
 					String height = calcHeight(minele, way.getTagValue("ele"), way.getTagValue("height"));
 					if (height != null) {
@@ -108,6 +115,12 @@ public class RelationMarge {
 							}
 						}
 					}
+					
+					// 'name='
+					String name = way.getTagValue("name");
+					if ((name != null) && (name.length() > maxname.length())) {
+						maxname = name;
+					}
 				}
 			}
 			if (maxele != null) {
@@ -115,6 +128,9 @@ public class RelationMarge {
 			}
 			if (minele != null) {
 				relation.addTag("ele", minele);
+			}
+			if (!maxname.isEmpty()) {
+				relation.addTag("name", maxname);
 			}
 			
 			// 用途
@@ -164,29 +180,27 @@ public class RelationMarge {
 	}
 
 	/**
-	 * リレーションMAPの中から指定したwayに接続するリレーションをひとつだけ取得する
+	 * リレーションMAPの中から指定したwayに接続するリレーションを取得する
 	 * @param checked	調査対象のリレーションリスト
 	 * @param way	指定のWAY
 	 * @return	接続するリレーションがない場合はNULL
 	 */
-	private ElementRelation checkParts(RelationMap checked, ElementWay way) {
+	private RelationMap checkParts(RelationMap checked, ElementWay way) {
+		RelationMap ret = new RelationMap();
 		for (String relationid : checked.keySet()) {
 			ElementRelation relation = checked.get(relationid);
 			for (ElementMember member : relation.members) {
-				if (member.role.equals("part")) {
-					String memberRef = Long.toString(member.ref);
-					ElementWay memberway = osm.ways.get(memberRef);
+				if (member.role.equals("part") && member.type.equals("way")) {
 					WayMap ways = new WayMap();
 					ways.put(way);
-					ways.put(memberway);
-					
+					ways.put(osm.ways.get(Long.toString(member.ref)));
 					if ((new MargeFactory(osm, ways)).isDuplicateSegment()) {
-						return relation;
+						ret.put(relation);
 					}
 				}
 			}
 		}
-		return null;
+		return ret;
 	}
 	
 	private ElementMember getPolygonMember(ElementRelation relation) {
