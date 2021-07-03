@@ -26,13 +26,17 @@ public class RelationMarge {
 		
 		// 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる
 		for (String rKey : osm.relations.keySet()) {
-			checked = relationMarge1(osm.relations.get(rKey), checked);
+			ElementRelation relation = osm.relations.get(rKey);
+			if (relation.isBuilding()) {
+				checked = relationMarge1((RelationBuilding)relation, checked);
+			}
 		}
 
 		// 'osm.relations'からcheckedのリレーションを取り除く
 		for (String rKey : checked.keySet()) {
 			osm.relations.remove(checked.get(rKey));
 		}
+		osm.relations.clear();
 		
 		// "ele"と"height"を統合してリレーションに設定する
 		// "building:levels"と"building:levels:underground"を統合してリレーションに設定する
@@ -50,32 +54,31 @@ public class RelationMarge {
 	 * @param checked
 	 * @return
 	 */
-	RelationMap relationMarge1(ElementRelation relation, RelationMap checked) {
-		if (relation.isBuilding()) {
-			// 未チェックのrelationを処理する
-			if (checked.get(relation.id) == null) {
-				// map = checkedの中から[relation.member->way]に接続するリレーションを取得
-				RelationMap map = new RelationMap();
-				ElementWay outer = getOuterWay(relation);
-				if (outer != null) {
-					outer.member = true;
+	RelationMap relationMarge1(RelationBuilding relation, RelationMap checked) {
+		// 未チェックのrelationを処理する
+		if (checked.get(relation.id) == null) {
+			// map = checkedの中から[relation.member->way]に接続するリレーションを取得
+			RelationMap map = new RelationMap();
+			ElementWay outer = getOuterWay(relation);
+			if (outer != null) {
+				outer.member = true;
 
-					RelationMap duplicateMap = checkParts(checked, outer);
-					for (String key : duplicateMap.keySet()) {
-						map.put(duplicateMap.get(key));
-						checked.remove(duplicateMap.get(key));
-					}
+				RelationMap duplicateMap = checkParts(checked, outer);
+				for (String key : duplicateMap.keySet()) {
+					map.put(duplicateMap.get(key));
+					checked.remove(duplicateMap.get(key));
 				}
+			}
 
-				map.put(relation);
-				ElementRelation duplicate = matomeru(map);
-				if (duplicate != null) {
-					ElementWay outerWay = getOuterWay(duplicate);
-					checked.put(duplicate);
-				}
-				else {
-					checked.put(relation);
-				}
+			map.put(relation);
+			ElementRelation duplicate = matomeru(map);
+			if (duplicate != null) {
+				checked.put(getMultiPolygon(duplicate));
+				checked.put(duplicate);
+			}
+			else {
+				checked.put(getMultiPolygon(relation));
+				checked.put(relation);
 			}
 		}
 		return checked;
@@ -227,7 +230,13 @@ public class RelationMarge {
 		return ret;
 	}
 	
-	private ElementMember getPolygonMember(ElementRelation relation) {
+	/**
+	 * 指定されたリレーションの"outline"メンバーを取得する
+	 * 前提： "outline"メンバーは一つにまとめられていること
+	 * @param relation	指定のリレーション
+	 * @return	"outline"がないときはNULL
+	 */
+	private ElementMember getOutlineMember(ElementRelation relation) {
 		for (ElementMember member : relation.members) {
 			if (member.role.equals("outline")) {
 				return member;
@@ -236,15 +245,21 @@ public class RelationMarge {
 		return null;
 	}
 	
+	private ElementRelation getMultiPolygon(ElementRelation relation) {
+		ElementMember outlineMember = getOutlineMember(relation);
+		if (outlineMember != null) {
+			return osm.relations.get(outlineMember.ref);
+		}
+		return null;
+	}
+	
 	private ElementWay getOuterWay(ElementRelation relation) {
-		for (ElementMember member : relation.members) {
-			if (member.role.equals("outline")) {
-				ElementRelation outline = osm.relations.get(member.ref);
-				for (ElementMember outlinemember : outline.members) {
-					if (outlinemember.role.equals("outer")) {
-						ElementWay outer = osm.ways.get(outlinemember.ref);
-						return outer;
-					}
+		ElementRelation outline = getMultiPolygon(relation);
+		if (outline != null) {
+			for (ElementMember outlinemember : outline.members) {
+				if (outlinemember.role.equals("outer")) {
+					ElementWay outer = osm.ways.get(outlinemember.ref);
+					return outer;
 				}
 			}
 		}
