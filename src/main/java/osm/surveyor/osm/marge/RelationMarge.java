@@ -4,8 +4,8 @@ import osm.surveyor.osm.ElementMember;
 import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
+import osm.surveyor.osm.RelationBuilding;
 import osm.surveyor.osm.RelationMap;
-import osm.surveyor.osm.RelationMultipolygon;
 import osm.surveyor.osm.WayMap;
 
 public class RelationMarge {
@@ -25,60 +25,84 @@ public class RelationMarge {
 		RelationMap checked = new RelationMap();
 		
 		// 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる
-		while(relationMarge1(checked));
+		for (String rKey : osm.relations.keySet()) {
+			checked = relationMarge1(osm.relations.get(rKey), checked);
+		}
+
+		// 'osm.relations'からcheckedのリレーションを取り除く
+		for (String rKey : checked.keySet()) {
+			osm.relations.remove(checked.get(rKey));
+		}
 		
 		// "ele"と"height"を統合してリレーションに設定する
 		// "building:levels"と"building:levels:underground"を統合してリレーションに設定する
 		margeTagValue(checked);
+
+		// 'osm.relations'にcheckedの内容をセットする
+		for (String rKey : checked.keySet()) {
+			osm.relations.put(checked.get(rKey));
+		}
 	}
 
-	boolean relationMarge1(RelationMap checked) {
-		for (String rKey : osm.relations.keySet()) {
-			ElementRelation relation = osm.relations.get(rKey);
-			if (relation.isBuilding()) {
-				if (checked.get(relation.id) == null) {
-					// relationは、未チェック
-					RelationMap map = new RelationMap();
-					for (ElementMember member : relation.members) {
-						if (member.role.equals("part") && member.type.equals("way")) {
-							String memberRef = Long.toString(member.ref);
-							ElementWay way = osm.ways.get(memberRef);
-							way.member = true;
+	/**
+	 * 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる
+	 * @param relation
+	 * @param checked
+	 * @return
+	 */
+	RelationMap relationMarge1(ElementRelation relation, RelationMap checked) {
+		if (relation.isBuilding()) {
+			// 未チェックのrelationを処理する
+			if (checked.get(relation.id) == null) {
+				// map = checkedの中から[relation.member->way]に接続するリレーションを取得
+				RelationMap map = new RelationMap();
+				ElementWay outer = getOuterWay(relation);
+				if (outer != null) {
+					outer.member = true;
 
-							// destRelation <-- checkedの中からwayに接続するリレーションを取得
-							RelationMap duplicateMap = checkParts(checked, way);
-							for (String key : duplicateMap.keySet()) {
-								map.put(duplicateMap.get(key));
-							}
-						}
-					}
-
-					// destRelation <-- checkedの中からwayに接続するリレーションを取得
-					for (String key : map.keySet()) {
-						ElementRelation destRelation = map.get(key);
-						
-						// 接続するリレーションのすべてのメンバーを取り込む
-						for (ElementMember mem : destRelation.members) {
-							if (mem.type.equals("way")) {
-								ElementWay memway = osm.ways.get(Long.toString(mem.ref));
-								relation.addMember(memway, mem.role);
-							}
-							else {
-								//ElementRelation memway = osm.relations.get(Long.toString(mem.ref));
-								//relation.addMember(memway, mem.role);
-							}
-						}
-
-						checked.remove(Long.toString(destRelation.id));
+					RelationMap duplicateMap = checkParts(checked, outer);
+					for (String key : duplicateMap.keySet()) {
+						map.put(duplicateMap.get(key));
+						checked.remove(duplicateMap.get(key));
 					}
 				}
+
+				map.put(relation);
+				ElementRelation duplicate = matomeru(map);
+				if (duplicate != null) {
+					ElementWay outerWay = getOuterWay(duplicate);
+					checked.put(duplicate);
+				}
+				else {
+					checked.put(relation);
+				}
 			}
-			checked.put(relation);
+		}
+		return checked;
+	}
+	
+	RelationBuilding matomeru(RelationMap map) {
+		margeTagValue(map);
+		
+		RelationBuilding ret = null;
+		for (String key : map.keySet()) {
+			RelationBuilding relation = (RelationBuilding)map.get(key);
+			if (ret == null) {
+				ret = relation;
+			}
+			else {
+				// 接続するリレーションのすべてのメンバーを取り込む
+				for (ElementMember mem : relation.members) {
+					if (mem.type.equals("way")) {
+						ElementWay memway = osm.ways.get(Long.toString(mem.ref));
+						ret.addMember(memway, mem.role);
+					}
+				}
+				ret = (new OutlineFactory(osm)).createOutline(ret);
+			}
 		}
 		
-		// 'osm.relations'からcheckedのリレーションを取り除く
-		
-		return false;
+		return ret;
 	}
 
 	/**
@@ -207,6 +231,21 @@ public class RelationMarge {
 		for (ElementMember member : relation.members) {
 			if (member.role.equals("outline")) {
 				return member;
+			}
+		}
+		return null;
+	}
+	
+	private ElementWay getOuterWay(ElementRelation relation) {
+		for (ElementMember member : relation.members) {
+			if (member.role.equals("outline")) {
+				ElementRelation outline = osm.relations.get(member.ref);
+				for (ElementMember outlinemember : outline.members) {
+					if (outlinemember.role.equals("outer")) {
+						ElementWay outer = osm.ways.get(outlinemember.ref);
+						return outer;
+					}
+				}
 			}
 		}
 		return null;

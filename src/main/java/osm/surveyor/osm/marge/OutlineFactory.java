@@ -31,20 +31,22 @@ public class OutlineFactory {
 				
 		for (String rKey : osm.relations.keySet()) {
 			ElementRelation relation = osm.relations.get(rKey);
-			if (!relation.isBuilding()) {
-				continue;
+			if (relation.isBuilding()) {
+				map.put(createOutline((RelationBuilding)relation));
 			}
-			RelationBuilding building = (RelationBuilding)relation;
-			MargeFactory factory = (new MargeFactory(osm, osm.ways)).createOutline(building);
-			OsmLine outer = factory.getOuter();
-			if (outer == null) {
-				continue;
-			}
-			
+		}
+		
+		while (outlineRelation(map));
+	}
+	
+	public RelationBuilding createOutline(RelationBuilding building) {
+		MargeFactory factory = (new MargeFactory(osm, osm.ways)).createOutline(building);
+		OsmLine outer = factory.getOuter();
+		if (outer != null) {
 			// Relationのメンバーから"height"の最大値を取得
 			String maxheight = osm.getMaxHeight(building);
-			String maxLevels = relation.getMaxValue(osm.ways, "building:levels");
-			String maxLevelsUnderground = relation.getMaxValue(osm.ways, "building:levels:underground");
+			String maxLevels = building.getMaxValue(osm.ways, "building:levels");
+			String maxLevelsUnderground = building.getMaxValue(osm.ways, "building:levels:underground");
 
 			// OUTLINEをWAYリストに登録
 			ElementWay aWay = new ElementWay(osm.getNewId());
@@ -122,7 +124,7 @@ public class OutlineFactory {
 					multi.addMember(iWay, "inner");
 					multi.addTag("building:levels", maxLevels);
 					multi.addTag("building:levels:underground", maxLevelsUnderground);
-					map.put(multi);
+					//map.put(multi);
 					building.addMember(multi, "outline");
 				}
 			}
@@ -133,8 +135,7 @@ public class OutlineFactory {
 			building.addTag("building:levels", maxLevels);
 			building.addTag("building:levels:underground", maxLevelsUnderground);
 		}
-		
-		while (outlineRelation(map));
+		return building;
 	}
 	
 	private boolean outlineRelation(RelationMap map) {

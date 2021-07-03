@@ -22,6 +22,10 @@ public class RelationMap extends HashMap<String, ElementRelation> {
 	public ElementRelation get(long id) {
 		return get(Long.toString(id));
 	}
+    
+    public void remove(ElementRelation relation) {
+    	this.remove(Long.toString(relation.id));
+    }
 	
     /**
      * 	<relation id='-1654' action='modify' visible='true'>
