@@ -102,7 +102,8 @@ public class MargeFactory {
 	}
 	
     /**
-     * WAYを他のWAYと合成する;
+     * wayMapのWAYを合成して、OUTERとINNERを作成する;
+     * WayMap wayMap --> 
      */
 	public void marge() {
 
