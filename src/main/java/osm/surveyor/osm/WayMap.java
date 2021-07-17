@@ -20,6 +20,16 @@ public class WayMap extends HashMap<String, ElementWay> {
 	public ElementWay get(long id) {
 		return get(Long.toString(id));
 	}
+	
+	public ElementWay get(OsmLine line) {
+		for (String id : this.keySet()) {
+			ElementWay way = this.get(id);
+			if (way.isSame(line)) {
+				return way;
+			}
+		}
+		return null;
+	}
 
     /**
      * <way changeset="61979354" id="96350144" timestamp="2018-08-25T08:34:33Z" uid="7548722" user="Unnown" version="17" visible="true">

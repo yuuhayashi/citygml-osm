@@ -148,15 +148,24 @@ public class CitygmlFileTest {
 			if (filename.endsWith(".gml")) {
 				try {
 					filename = filename.substring(0, filename.length()-4);
-			        
 			        OsmDom osm = new OsmDom();
-		            CitygmlFile target = new CitygmlFile(file, osm);
+
+		            // (1) GMLファイルをパースする
+			        CitygmlFile target = new CitygmlFile(file, osm);
 		            target.parse();
+		            
+		            // RELATIONに所属していないWAYを削除する
+		            osm.gerbageWay();
+		            
+		            // WAYに所属しないNODEを削除する
+		            osm.gerbageNode();
 		            
 		            // 各WAYのノードで、他のWAYと共有されたノードを探す
 			    	// 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる
 			    	// Relation:multipolygon の MaxHeightを outline->Multipolygonへ設定する
 			    	(new RelationMarge(osm)).relationMarge();
+			    	
+		            // Export
 			    	osm.export(new File(filename + "_2.osm"));
 			    	
 				} catch (Exception e) {
@@ -183,15 +192,24 @@ public class CitygmlFileTest {
 					filename = filename.substring(0, filename.length()-4);
 			        
 			        OsmDom osm = new OsmDom();
-		            CitygmlFile target = new CitygmlFile(file, osm);
+			        // (1) GMLファイルをパースする
+			        CitygmlFile target = new CitygmlFile(file, osm);
 		            target.parse();
 		            
+		            // RELATIONに所属していないWAYを削除する
+		            osm.gerbageWay();
+		            
+		            // WAYに所属しないNODEを削除する
+		            osm.gerbageNode();
+		            
+		            // (2) 各WAYのノードで、他のWAYと共有されたノードを探す
 			    	(new RelationMarge(osm)).relationMarge();
 		            
-		            // (3) メンバーが一つしかないRelation:building を削除する
-			    	// (3) メンバーが一つしかないRelation:multipolygon と polygon:member を削除する
+					// (3) メンバーが一つしかないRelation:building を削除する
+					// (3) メンバーが一つしかないRelation:multipolygon と polygon:member を削除する
 			    	(new BuildingGarbage(osm)).garbage();
 			    	
+		            // Export
 			    	osm.export(new File(filename + "_3.osm"));
 		            
 				} catch (Exception e) {
@@ -216,19 +234,30 @@ public class CitygmlFileTest {
 			if (filename.endsWith(".gml")) {
 				try {
 					filename = filename.substring(0, filename.length()-4);
-			        
 			        OsmDom osm = new OsmDom();
-		            CitygmlFile target = new CitygmlFile(file, osm);
+		            
+			        // (1) GMLファイルをパースする
+			        CitygmlFile target = new CitygmlFile(file, osm);
 		            target.parse();
 		            
+		            // RELATIONに所属していないWAYを削除する
+		            osm.gerbageWay();
+		            
+		            // WAYに所属しないNODEを削除する
+		            osm.gerbageNode();
+		            
+		            // (2) 各WAYのノードで、他のWAYと共有されたノードを探す
 			    	(new RelationMarge(osm)).relationMarge();
 
+					// (3) メンバーが一つしかないRelation:building を削除する
+					// (3) メンバーが一つしかないRelation:multipolygon と polygon:member を削除する
 			    	(new BuildingGarbage(osm)).garbage();
 
 		            // (4) Relation:building->member:role=port のWay:outlineを作成する
 		            // (4) Relation:multipolygon->outerにWay:outline
 			    	(new OutlineFactory(osm)).relationOutline();
 			    	
+		            // Export
 			    	osm.export(new File(filename + "_4.osm"));
 			    	
 				} catch (Exception e) {
@@ -268,8 +297,8 @@ public class CitygmlFileTest {
 			    	// Relation:multipolygon の MaxHeightを outline->Multipolygonへ設定する
 			    	(new RelationMarge(osm)).relationMarge();
 		            
-		            // (3) メンバーが一つしかないRelation:building を削除する
-			    	// (3) メンバーが一つしかないRelation:multipolygon と polygon:member を削除する
+					// (3) メンバーが一つしかないRelation:building を削除する
+					// (3) メンバーが一つしかないRelation:multipolygon と polygon:member を削除する
 			    	(new BuildingGarbage(osm)).garbage();
 		            
 		            // (4) Relation:building->member:role=port のWay:outlineを作成する

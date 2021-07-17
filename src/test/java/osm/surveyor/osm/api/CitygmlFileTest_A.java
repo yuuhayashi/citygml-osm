@@ -2,6 +2,7 @@ package osm.surveyor.osm.api;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.startsWith;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
@@ -44,7 +45,7 @@ public class CitygmlFileTest_A {
 						assertThat(relation.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 						assertThat(relation.getTagValue("addr:ref"), is("13111058003"));
 						assertThat(relation.getTagValue("height"), is("2.4"));
-						assertThat(relation.getTagValue("ele"), is("2.749"));
+						assertThat(relation.getTagValue("ele"), is("2.75"));
 						assertThat(relation.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-365"));
 
 						int outlineCnt = 0;
@@ -61,7 +62,7 @@ public class CitygmlFileTest_A {
 								assertThat(outline.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 								assertThat(outline.getTagValue("addr:ref"), is("13111058003"));
 								assertThat(outline.getTagValue("height"), is("2.4"));
-								assertThat(outline.getTagValue("ele"), is("2.749"));
+								assertThat(outline.getTagValue("ele"), is("2.75"));
 								assertThat(outline.tags.size(), is(7));
 							}
 							if (mem.role.equals("part")) {
@@ -73,7 +74,7 @@ public class CitygmlFileTest_A {
 								assertThat(way.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 								assertThat(way.getTagValue("addr:ref"), is("13111058003"));
 								assertThat(way.getTagValue("height"), is("2.4"));
-								assertThat(way.getTagValue("ele"), is("2.749"));
+								assertThat(way.getTagValue("ele"), is("2.75"));
 								assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-365"));
 								assertThat(way.tags.size(), is(6));
 							}
@@ -86,7 +87,7 @@ public class CitygmlFileTest_A {
 						assertThat(relation.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-466"));
 						assertThat(relation.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 						assertThat(relation.getTagValue("height"), is("4.6"));
-						assertThat(relation.getTagValue("ele"), is("2.671"));
+						assertThat(relation.getTagValue("ele"), is("2.67"));
 						assertThat(relation.getTagValue("start_date"), is("1976"));
 						assertThat(relation.getTagValue("building"), is("house"));
 						assertThat(relation.getTagValue("building:levels"), is("2"));
@@ -106,7 +107,7 @@ public class CitygmlFileTest_A {
 								assertThat(outline.getTagValue("building:levels:underground"), is("1"));
 								assertThat(outline.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 								assertThat(outline.getTagValue("height"), is("4.6"));
-								assertThat(outline.getTagValue("ele"), is("2.671"));
+								assertThat(outline.getTagValue("ele"), is("2.67"));
 								assertThat(outline.getTagValue("start_date"), is("1976"));
 								assertThat(outline.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-466"));
 								assertThat(outline.tags.size(), is(9));
@@ -119,7 +120,7 @@ public class CitygmlFileTest_A {
 								assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-466"));
 								assertThat(way.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 								assertThat(way.getTagValue("height"), is("4.6"));
-								assertThat(way.getTagValue("ele"), is("2.671"));
+								assertThat(way.getTagValue("ele"), is("2.67"));
 								assertThat(way.getTagValue("start_date"), is("1976"));
 								assertThat(way.getTagValue("building:part"), is("house"));
 								assertThat(way.getTagValue("building:levels"), is("2"));
@@ -140,7 +141,7 @@ public class CitygmlFileTest_A {
 						assertThat(relation.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 						assertThat(relation.getTagValue("addr:ref"), is("13111058003"));
 						assertThat(relation.getTagValue("height"), is("2.4"));
-						assertThat(relation.getTagValue("ele"), is("2.749"));
+						assertThat(relation.getTagValue("ele"), is("2.75"));
 
 						int outerCnt = 0;
 						int innerCnt = 0;
@@ -170,7 +171,7 @@ public class CitygmlFileTest_A {
 						assertThat(relation.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-466"));
 						assertThat(relation.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 						assertThat(relation.getTagValue("height"), is("4.6"));
-						assertThat(relation.getTagValue("ele"), is("2.671"));
+						assertThat(relation.getTagValue("ele"), is("2.67"));
 						assertThat(relation.getTagValue("start_date"), is("1976"));
 						assertThat(relation.getTagValue("building"), is("house"));
 						assertThat(relation.getTagValue("building:levels"), is("2"));
@@ -235,14 +236,14 @@ public class CitygmlFileTest_A {
 					assertThat(way.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 					assertThat(way.getTagValue("addr:ref"), is("13111058003"));
 					assertThat(way.getTagValue("height"), is("2.4"));
-					assertThat(way.getTagValue("ele"), is("2.749"));
+					assertThat(way.getTagValue("ele"), is("2.75"));
 					assertThat(way.tags.size(), is(6));
 				}
 				else if (way.getTagValue("source").endsWith("; 13111-bldg-466")) {
 					assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-466"));
 					assertThat(way.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 					assertThat(way.getTagValue("height"), is("4.6"));
-					assertThat(way.getTagValue("ele"), is("2.671"));
+					assertThat(way.getTagValue("ele"), is("2.67"));
 					assertThat(way.getTagValue("start_date"), is("1976"));
 					assertThat(way.getTagValue("building:levels"), is("2"));
 					assertThat(way.getTagValue("building:levels:underground"), is("1"));
@@ -278,7 +279,7 @@ public class CitygmlFileTest_A {
 					assertThat(way.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 					assertThat(way.getTagValue("addr:ref"), is("13111058003"));
 					assertThat(way.getTagValue("height"), is("2.4"));
-					assertThat(way.getTagValue("ele"), is("2.749"));
+					assertThat(way.getTagValue("ele"), is("2.75"));
 					assertThat(way.tags.size(), is(6));
 				}
 				else if (way.getTagValue("source").endsWith("; 13111-bldg-466")) {
@@ -288,7 +289,7 @@ public class CitygmlFileTest_A {
 					assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-466"));
 					assertThat(way.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 					assertThat(way.getTagValue("height"), is("4.6"));
-					assertThat(way.getTagValue("ele"), is("2.671"));
+					assertThat(way.getTagValue("ele"), is("2.67"));
 					assertThat(way.getTagValue("start_date"), is("1976"));
 					assertThat(way.tags.size(), is(8));
 				}
@@ -323,7 +324,7 @@ public class CitygmlFileTest_A {
 					assertThat(way.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 					assertThat(way.getTagValue("addr:ref"), is("13111058003"));
 					assertThat(way.getTagValue("height"), is("2.4"));
-					assertThat(way.getTagValue("ele"), is("2.749"));
+					assertEquals("2.75", way.getTagValue("ele"));
 					assertThat(way.getTagValue("building"), is("yes"));
 					assertThat(way.tags.size(), is(6));
 				}
@@ -331,7 +332,7 @@ public class CitygmlFileTest_A {
 					assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-466"));
 					assertThat(way.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 					assertThat(way.getTagValue("height"), is("4.6"));
-					assertThat(way.getTagValue("ele"), is("2.671"));
+					assertEquals("2.67", way.getTagValue("ele"));
 					assertThat(way.getTagValue("start_date"), is("1976"));
 					assertThat(way.getTagValue("building"), is("house"));
 					assertThat(way.getTagValue("building:levels"), is("2"));
@@ -368,7 +369,7 @@ public class CitygmlFileTest_A {
 					assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-141846"));
 					assertThat(way.getTagValue("addr:full"), is("東京都大田区大森東一丁目"));
 					assertThat(way.getTagValue("height"), is("7.1"));
-					assertThat(way.getTagValue("ele"), is("1.905"));
+					assertEquals("1.91", way.getTagValue("ele"));
 					assertThat(way.getTagValue("building"), is("yes"));
 					assertThat(way.tags.size(), is(5));
 				}
@@ -434,7 +435,7 @@ public class CitygmlFileTest_A {
 						assertThat(relation.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 						assertThat(relation.getTagValue("addr:ref"), is("13111058003"));
 						assertThat(relation.getTagValue("height"), is("2.4"));
-						assertThat(relation.getTagValue("ele"), is("2.749"));
+						assertEquals("2.75", relation.getTagValue("ele"));
 						assertThat(relation.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-365"));
 	
 						int outlineCnt = 0;
@@ -451,7 +452,7 @@ public class CitygmlFileTest_A {
 								assertThat(outline.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 								assertThat(outline.getTagValue("addr:ref"), is("13111058003"));
 								assertThat(outline.getTagValue("height"), is("2.4"));
-								assertThat(outline.getTagValue("ele"), is("2.749"));
+								assertEquals("2.75", outline.getTagValue("ele"));
 								assertThat(outline.tags.size(), is(7));
 							}
 							if (mem.role.equals("part")) {
@@ -463,7 +464,7 @@ public class CitygmlFileTest_A {
 								assertThat(way.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 								assertThat(way.getTagValue("addr:ref"), is("13111058003"));
 								assertThat(way.getTagValue("height"), is("2.4"));
-								assertThat(way.getTagValue("ele"), is("2.749"));
+								assertEquals("2.75", way.getTagValue("ele"));
 								assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-365"));
 								assertThat(way.tags.size(), is(6));
 							}
@@ -476,7 +477,7 @@ public class CitygmlFileTest_A {
 						assertThat(relation.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-466"));
 						assertThat(relation.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 						assertThat(relation.getTagValue("height"), is("4.6"));
-						assertThat(relation.getTagValue("ele"), is("2.671"));
+						assertEquals("2.67", relation.getTagValue("ele"));
 						assertThat(relation.getTagValue("start_date"), is("1976"));
 						assertThat(relation.getTagValue("building"), is("house"));
 						assertThat(relation.getTagValue("building:levels"), is("2"));
@@ -496,7 +497,7 @@ public class CitygmlFileTest_A {
 								assertThat(outline.getTagValue("building:levels:underground"), is("1"));
 								assertThat(outline.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 								assertThat(outline.getTagValue("height"), is("4.6"));
-								assertThat(outline.getTagValue("ele"), is("2.671"));
+								assertEquals("2.67", outline.getTagValue("ele"));
 								assertThat(outline.getTagValue("start_date"), is("1976"));
 								assertThat(outline.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-466"));
 								assertThat(outline.tags.size(), is(9));
@@ -509,7 +510,7 @@ public class CitygmlFileTest_A {
 								assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-466"));
 								assertThat(way.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 								assertThat(way.getTagValue("height"), is("4.6"));
-								assertThat(way.getTagValue("ele"), is("2.671"));
+								assertEquals("2.67", way.getTagValue("ele"));
 								assertThat(way.getTagValue("start_date"), is("1976"));
 								assertThat(way.getTagValue("building:part"), is("house"));
 								assertThat(way.getTagValue("building:levels"), is("2"));
@@ -529,7 +530,7 @@ public class CitygmlFileTest_A {
 						assertThat(relation.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 						assertThat(relation.getTagValue("addr:ref"), is("13111058003"));
 						assertThat(relation.getTagValue("height"), is("2.4"));
-						assertThat(relation.getTagValue("ele"), is("2.749"));
+						assertEquals("2.75", relation.getTagValue("ele"));
 						assertThat(relation.getTagValue("building"), is("yes"));
 	
 						int outerCnt = 0;
@@ -560,7 +561,7 @@ public class CitygmlFileTest_A {
 						assertThat(relation.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-466"));
 						assertThat(relation.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 						assertThat(relation.getTagValue("height"), is("4.6"));
-						assertThat(relation.getTagValue("ele"), is("2.671"));
+						assertEquals("2.67", relation.getTagValue("ele"));
 						assertThat(relation.getTagValue("start_date"), is("1976"));
 						assertThat(relation.getTagValue("building"), is("house"));
 						assertThat(relation.getTagValue("building:levels"), is("2"));

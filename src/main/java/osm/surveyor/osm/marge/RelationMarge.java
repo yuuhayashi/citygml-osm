@@ -23,12 +23,16 @@ public class RelationMarge {
      */
 	public void relationMarge() {
 		RelationMap checked = new RelationMap();
+		//RelationMap polygons = new RelationMap();
 		
 		// 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる
 		for (String rKey : osm.relations.keySet()) {
 			ElementRelation relation = osm.relations.get(rKey);
 			if (relation.isBuilding()) {
 				checked = relationMarge1((RelationBuilding)relation, checked);
+			}
+			else {
+				checked.put(relation);
 			}
 		}
 
@@ -46,6 +50,11 @@ public class RelationMarge {
 		for (String rKey : checked.keySet()) {
 			osm.relations.put(checked.get(rKey));
 		}
+
+		// 'osm.relations'にpolygonsの内容をセットする
+		//for (String rKey : polygons.keySet()) {
+		//	osm.relations.put(polygons.get(rKey));
+		//}
 	}
 
 	/**
@@ -99,6 +108,10 @@ public class RelationMarge {
 					if (mem.type.equals("way")) {
 						ElementWay memway = osm.ways.get(Long.toString(mem.ref));
 						ret.addMember(memway, mem.role);
+					}
+					else {
+						ElementRelation polygon = osm.relations.get(Long.toString(mem.ref));
+						ret.addMember(polygon, mem.role);
 					}
 				}
 				ret = (new OutlineFactory(osm)).createOutline(ret);

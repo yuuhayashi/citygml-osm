@@ -23,6 +23,11 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 		way.member = true;
 		member.setWay(way);
 		member.setRole(role);
+		for (ElementMember mem : this.members) {
+			if (mem.equals(member)) {
+				return;
+			}
+		}
 		this.members.add(member);
 	}
 

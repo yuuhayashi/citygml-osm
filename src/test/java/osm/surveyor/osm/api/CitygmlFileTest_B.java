@@ -1,14 +1,15 @@
 package osm.surveyor.osm.api;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
 import java.nio.file.Paths;
 
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
+import osm.surveyor.DetailTests;
 import osm.surveyor.osm.ElementMember;
 import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementWay;
@@ -25,7 +26,7 @@ public class CitygmlFileTest_B {
 			
 			for (String id : osm.relations.keySet()) {
 				ElementRelation relation = osm.relations.get(id);
-				assertThat(relation, notNullValue());
+				assertNotNull(relation);
 				String type = relation.getTagValue("type");
 				if (type.equals("multipolygon")) {
 					/*
@@ -36,42 +37,79 @@ public class CitygmlFileTest_B {
 						 source => MLIT_PLATEAU;\n http://www.opengis.net/def/crs/EPSG/0/6697
 						}
 					 */
-					assertThat(relation.getTagValue("type"), is("multipolygon"));
-					assertThat(relation.getTagValue("building"), is("yes"));
-					assertThat(relation.getTagValue("addr:full"), is("東京都大田区大森西五丁目"));
-					assertThat(relation.getTagValue("addr:ref"), is("13111006005"));
-					assertThat(relation.getTagValue("height"), is("16.9"));
-					assertThat(relation.getTagValue("ele"), is("2.507"));
-					assertThat(relation.getTagValue("start_date"), is("1976"));
-					assertThat(relation.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697"));
+					assertEquals("multipolygon", relation.getTagValue("type"));
+					assertEquals("yes", relation.getTagValue("building"));
+					assertEquals("東京都大田区大森西五丁目", relation.getTagValue("addr:full"));
+					assertEquals("13111006005", relation.getTagValue("addr:ref"));
+					assertEquals("16.9", relation.getTagValue("height"));
+					assertEquals("2.51", relation.getTagValue("ele"));
+					assertEquals("1976", relation.getTagValue("start_date"));
+					assertEquals("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697", relation.getTagValue("source"));
 					int outerCnt = 0;
 					int innerCnt = 0;
 					for (ElementMember mem : relation.members) {
 						if (mem.role.equals("outer")) {
 							outerCnt++;
-							assertThat(mem.type, is("way"));
+							assertEquals("way", mem.type);
 							ElementWay way = osm.ways.get(Long.toString(mem.ref));
-							assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697"));
-							assertThat(way.tags.size(), is(1));
+							assertEquals("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697", way.getTagValue("source"));
+							assertEquals(1, way.tags.size());
 						}
 						if (mem.role.equals("inner")) {
 							innerCnt++;
-							assertThat(mem.type, is("way"));
+							assertEquals("way", mem.type);
 							ElementWay way = osm.ways.get(Long.toString(mem.ref));
-							assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-61384"));
-							assertThat(way.tags.size(), is(1));
+							assertEquals("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-61384", way.getTagValue("source"));
+							assertEquals(1, way.tags.size());
 						}
 					}
-					assertThat(outerCnt, is(1));
-					assertThat(innerCnt, is(1));
-					assertThat(relation.members.size(), is(2));
-				}
-				else {
-					assertThat(type, is("multipolygon"));
+					assertEquals(1, outerCnt);
+					assertEquals(1, innerCnt);
+					assertEquals(2, relation.members.size());
 				}
 			}
-			assertThat(osm.relations.size(), is(1));
-			assertThat(osm.ways.size(), is(2));
+			assertEquals(1, osm.relations.size());
+			assertEquals(2, osm.ways.size());
+		} catch (Exception e) {
+			e.fillInStackTrace();
+			fail(e.toString());
+		}
+	}
+
+	@Test
+	@Category(DetailTests.class)
+	public void testSample_b1_parse() {
+		CitygmlFileTest.test_doParse(Paths.get("src/test/resources","sample_b_bldg_6697_op2.gml"));
+		
+        try {
+            OsmDom osm = new OsmDom();
+			osm.parse(Paths.get("sample_b_bldg_6697_op2_1.osm").toFile());
+
+			assertNotNull(osm.relations);
+			for (String id : osm.relations.keySet()) {
+				ElementRelation relation = osm.relations.get(id);
+				assertNotNull(relation);
+				String type = relation.getTagValue("type");
+				if (type.equals("multipolygon")) {
+					int outerCnt = 0;
+					int innerCnt = 0;
+					for (ElementMember mem : relation.members) {
+						if (mem.role.equals("outer")) {
+							outerCnt++;
+						}
+						if (mem.role.equals("inner")) {
+							innerCnt++;
+						}
+					}
+					assertEquals(1, outerCnt);
+					assertEquals(1, innerCnt);
+					assertEquals(2, relation.members.size());
+				}
+				else {
+					assertEquals("building", type);
+				}
+			}
+			assertEquals(2, osm.relations.size());
 			
 		} catch (Exception e) {
 			e.fillInStackTrace();
@@ -79,4 +117,127 @@ public class CitygmlFileTest_B {
 		}
 	}
 
+	@Test
+	@Category(DetailTests.class)
+	public void testSample_b2_margePart() {
+		CitygmlFileTest.test_doRelationMarge(Paths.get("src/test/resources","sample_b_bldg_6697_op2.gml"));
+		
+        try {
+            OsmDom osm = new OsmDom();
+			osm.parse(Paths.get("sample_b_bldg_6697_op2_2.osm").toFile());
+
+			assertNotNull(osm.relations);
+			for (String id : osm.relations.keySet()) {
+				ElementRelation relation = osm.relations.get(id);
+				assertNotNull(relation);
+				String type = relation.getTagValue("type");
+				if (type.equals("multipolygon")) {
+					int outerCnt = 0;
+					int innerCnt = 0;
+					for (ElementMember mem : relation.members) {
+						if (mem.role.equals("outer")) {
+							outerCnt++;
+						}
+						if (mem.role.equals("inner")) {
+							innerCnt++;
+						}
+					}
+					assertEquals(1, outerCnt);
+					assertEquals(1, innerCnt);
+					assertEquals(2, relation.members.size());
+				}
+				else {
+					assertEquals("building", type);
+				}
+			}
+			assertEquals(2, osm.relations.size());
+			
+		} catch (Exception e) {
+			e.fillInStackTrace();
+			fail(e.toString());
+		}
+	}
+
+	@Test
+	@Category(DetailTests.class)
+	public void testSample_b3_removeSinglePart() {
+		CitygmlFileTest.test_doRemoveSinglePart(Paths.get("src/test/resources","sample_b_bldg_6697_op2.gml"));
+		
+        try {
+            OsmDom osm = new OsmDom();
+			osm.parse(Paths.get("sample_b_bldg_6697_op2_3.osm").toFile());
+
+			assertNotNull(osm.relations);
+			for (String id : osm.relations.keySet()) {
+				ElementRelation relation = osm.relations.get(id);
+				assertNotNull(relation);
+				String type = relation.getTagValue("type");
+				if (type.equals("multipolygon")) {
+					int outerCnt = 0;
+					int innerCnt = 0;
+					for (ElementMember mem : relation.members) {
+						if (mem.role.equals("outer")) {
+							outerCnt++;
+						}
+						if (mem.role.equals("inner")) {
+							innerCnt++;
+						}
+					}
+					assertEquals(1, outerCnt);
+					assertEquals(1, innerCnt);
+					assertEquals(2, relation.members.size());
+				}
+				else {
+					assertEquals("building", type);
+				}
+			}
+			assertEquals(2, osm.relations.size());
+			
+		} catch (Exception e) {
+			e.fillInStackTrace();
+			fail(e.toString());
+		}
+	}
+	
+
+	@Test
+	@Category(DetailTests.class)
+	public void testSample_b4_createOutline() {
+		CitygmlFileTest.test4_doCreateOutline(Paths.get("src/test/resources","sample_b_bldg_6697_op2.gml"));
+		
+        try {
+            OsmDom osm = new OsmDom();
+			osm.parse(Paths.get("sample_b_bldg_6697_op2_4.osm").toFile());
+
+			assertNotNull(osm.relations);
+			for (String id : osm.relations.keySet()) {
+				ElementRelation relation = osm.relations.get(id);
+				assertNotNull(relation);
+				String type = relation.getTagValue("type");
+				if (type.equals("multipolygon")) {
+					int outerCnt = 0;
+					int innerCnt = 0;
+					for (ElementMember mem : relation.members) {
+						if (mem.role.equals("outer")) {
+							outerCnt++;
+						}
+						if (mem.role.equals("inner")) {
+							innerCnt++;
+						}
+					}
+					assertEquals(1, outerCnt);
+					assertEquals(1, innerCnt);
+					assertEquals(2, relation.members.size());
+				}
+				else {
+					assertEquals("building", type);
+				}
+			}
+			assertEquals(2, osm.relations.size());
+			
+		} catch (Exception e) {
+			e.fillInStackTrace();
+			fail(e.toString());
+		}
+	}
 }

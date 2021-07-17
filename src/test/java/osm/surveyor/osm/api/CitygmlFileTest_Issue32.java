@@ -90,7 +90,7 @@ public class CitygmlFileTest_Issue32 {
 						assertEquals("building", relation.getTagValue("type"));
 						assertEquals("yes", relation.getTagValue("building"));
 						assertEquals("114.7", relation.getTagValue("height"));
-						assertEquals("2.138", relation.getTagValue("ele"));
+						assertEquals("2.14", relation.getTagValue("ele"));
 						assertEquals("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13101-bldg-365", relation.getTagValue("source"));
 
 						int outlineCnt = 0;
@@ -105,7 +105,7 @@ public class CitygmlFileTest_Issue32 {
 								assertThat(outline.getTagValue("building"), is("yes"));
 								assertThat(outline.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13101-bldg-365"));
 								assertThat(outline.getTagValue("height"), is("114.7"));
-								assertThat(outline.getTagValue("ele"), is("2.138"));
+								assertEquals("2.14", outline.getTagValue("ele"));
 								assertTrue(outline.tags.size() >= 5);
 							}
 							if (mem.role.equals("part")) {
@@ -115,7 +115,7 @@ public class CitygmlFileTest_Issue32 {
 								assertNotNull(way);
 								assertThat(way.getTagValue("building:part"), is("yes"));
 								assertThat(way.getTagValue("height"), is("114.7"));
-								assertThat(way.getTagValue("ele"), is("2.138"));
+								assertEquals("2.14", way.getTagValue("ele"));
 								assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13101-bldg-365"));
 								assertTrue(way.tags.size() >= 5);
 							}

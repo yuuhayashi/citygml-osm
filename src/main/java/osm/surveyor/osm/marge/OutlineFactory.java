@@ -1,6 +1,8 @@
 package osm.surveyor.osm.marge;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import osm.surveyor.osm.ElementMember;
 import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementTag;
@@ -51,6 +53,7 @@ public class OutlineFactory {
 			// OUTLINEをWAYリストに登録
 			ElementWay aWay = new ElementWay(osm.getNewId());
 			aWay.replaceNds(outer);
+			aWay.toArea();
 			aWay.member = true;
 			
 			String polygonRef = building.getRelationMemberId();
@@ -58,12 +61,15 @@ public class OutlineFactory {
 				// マルチポリゴンが存在する場合は、マルチポリゴンにaWayを追加する
 				RelationMultipolygon multi = (RelationMultipolygon)osm.relations.get(polygonRef);
 				if (multi != null) {
+					List<ElementMember> dellist = new ArrayList<>();
 					for (ElementMember mem : multi.members) {
 						if (mem.role.equals("outer")) {
-							multi.removeMember(mem.ref);
-							osm.ways.remove(osm.ways.get(mem.ref));
-							break;
+							dellist.add(mem);
 						}
+					}
+					for (ElementMember mem : dellist) {
+						multi.removeMember(mem.ref);
+						osm.ways.remove(osm.ways.get(mem.ref));
 					}
 					aWay.addTag("source", osm.getSource());
 					osm.ways.put(aWay);
@@ -87,19 +93,24 @@ public class OutlineFactory {
 			// マルチポリゴンにINNERを追加する
 			ArrayList<OsmLine> inners = factory.getInners();
 			for (OsmLine inner : inners) {
-				ElementWay iWay = new ElementWay(osm.getNewId());
-				iWay.replaceNds(inner);
-				iWay.member = true;
+				ElementWay iWay = osm.ways.get(inner);
+				if (iWay == null) {
+					iWay = new ElementWay(osm.getNewId());
+					iWay.replaceNds(inner);
+					iWay.member = true;
+				}
 				osm.ways.put(iWay);
 				
 				if (polygonRef != null) {
-					// マルチポリゴンが存在する場合は、マルチポリゴンにaWayを追加する
+					// マルチポリゴンが存在する場合は、マルチポリゴンにiWayを追加する
 					RelationMultipolygon multi = (RelationMultipolygon)osm.relations.get(polygonRef);
 					if (multi != null) {
 						iWay.addTag("source", osm.getSource());
 						multi.addMember(iWay, "inner");
 						multi.addTag("building:levels", maxLevels);
 						multi.addTag("building:levels:underground", maxLevelsUnderground);
+						multi.addTag("building:name", building.getTagValue("name"));
+						multi.replaceTag("start_date", new ElementTag("start_date", building.getTagValue("start_date")));
 					}
 				}
 				else {
@@ -108,6 +119,7 @@ public class OutlineFactory {
 					multi.copyTag(building);
 					multi.replaceTag("type", new ElementTag("type","multipolygon"));
 					multi.replaceTag("name", new ElementTag("building:name", building.getTagValue("name")));
+					multi.replaceTag("start_date", new ElementTag("start_date", building.getTagValue("start_date")));
 					
 					// "outer"に、"bulding:Relation"の"outline"WAYをMEMBERとして追加する
 					for (ElementMember mem : building.members) {

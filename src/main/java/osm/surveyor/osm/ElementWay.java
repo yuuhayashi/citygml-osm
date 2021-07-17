@@ -338,33 +338,28 @@ public class ElementWay extends ElementOsmapi implements Cloneable {
 	 * @param obj
 	 * @return
 	 */
-	public boolean isSame(Object obj) {
-		if (this == obj) {
+	public boolean isSame(ElementWay other) {
+		if (this == other)
+			return true;
+		if (other == null)
+			return false;
+		if (!this.area || !other.area) {
+			return false;
+		}
+		return isSame(other.getPointList());
+	}
+	
+	public boolean isSame(OsmLine line2) {
+		OsmLine line1 = this.getPointList();
+		if (line1.equal(line2)) {
 			return true;
 		}
-		ElementWay other = (ElementWay) obj;
-		if (nds == null) {
-			if (other.nds != null) {
+		for (TwoPoint seg : line1) {
+			if (!line2.hasNd(seg.a)) {
 				return false;
 			}
 		}
-		else if (nds.equals(other.nds)) {
-			return true;
-		}
-		else if (this.nds.size() == other.nds.size()) {
-			for (int i = 0; i < this.nds.size(); i++) {
-				OsmNd nda = this.nds.get(i);
-				OsmNd ndb = other.nds.get(i);
-				if (nda.id != ndb.id) {
-					return false;
-				}
-				if (!nda.point.equals(ndb.point)) {
-					return false;
-				}
-			}
-			return true;
-		}
-		return false;
+		return true;
 	}
 	
 	public boolean isBuilding() {

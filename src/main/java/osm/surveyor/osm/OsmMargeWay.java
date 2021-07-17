@@ -1,6 +1,5 @@
 package osm.surveyor.osm;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class OsmMargeWay {
@@ -60,41 +59,43 @@ public class OsmMargeWay {
 	static boolean partRemove(OsmDom osm) {
 		for (String rKey : osm.relations.keySet()) {
 			ElementRelation relation = osm.relations.get(rKey);
-			RelationMultipolygon polygon = null;
-			ElementWay outer = null;
-			if (relation.isMultipolygon()) {
-				polygon = (RelationMultipolygon)osm.relations.get(rKey);
+			if (partRemove(osm, relation)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	static boolean partRemove(OsmDom osm, ElementRelation relation) {
+		if (relation.isMultipolygon()) {
+			return false;
+		}
+		WayMap parts = new WayMap();
+		RelationMap polygons = new RelationMap();
+		for (ElementMember plgMem : relation.members) {
+			if (plgMem.role.equals("part") && plgMem.type.equals("way")) {
+				parts.put(osm.ways.get(Long.toString(plgMem.ref)));
+			}
+			else if (plgMem.role.equals("outline") && plgMem.type.equals("relation")) {
+				polygons.put(osm.relations.get(Long.toString(plgMem.ref)));
+			}
+		}
+		
+		for (String wayid : parts.keySet()) {
+			ElementWay partWay = parts.get(wayid);
+			for (String outerid : polygons.keySet()) {
+				RelationMultipolygon polygon = (RelationMultipolygon)polygons.get(outerid);
 				for (ElementMember plgMem : polygon.members) {
 					if (plgMem.role.equals("outer") && plgMem.type.equals("way")) {
-						outer = osm.ways.get(Long.toString(plgMem.ref));
-						break;
-					}
-				}
-			}
-
-			if (outer != null) {
-				for (String wayid : osm.ways.keySet()) {
-					ElementWay partWay = osm.ways.get(wayid);
-					if ((partWay != null) && (outer != null)) {
-						if (partWay.id != outer.id) {
-							if (partWay.isSame(outer)) {
-								ElementTag ele = partWay.tags.get("height");
-								if (ele != null) {
-									polygon.addTag("height", ele.v);
-								}
-								ArrayList<ElementRelation> list = osm.getParents(partWay);
-								for (ElementRelation parent : list) {
-									if (parent.isBuilding()) {
-										parent.removeMember(partWay.id);
-										if (parent.members.isEmpty()) {
-											copyTag(parent.tags, polygon);
-											osm.relations.remove(parent.getIdstr());
-										}
-									}
-								}
-								osm.ways.remove(partWay);
-								return true;
+						ElementWay outer = osm.ways.get(Long.toString(plgMem.ref));
+						if (partWay.isSame(outer)) {
+							ElementTag ele = partWay.tags.get("height");
+							if (ele != null) {
+								polygon.addTag("height", ele.v);
 							}
+							relation.removeMember(partWay.id);
+							osm.ways.remove(partWay);
+							return true;
 						}
 					}
 				}
