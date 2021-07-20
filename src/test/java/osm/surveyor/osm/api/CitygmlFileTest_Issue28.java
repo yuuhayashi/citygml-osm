@@ -74,6 +74,9 @@ public class CitygmlFileTest_Issue28 {
 			osm.parse(Paths.get("Issue28_50303525_op.osm").toFile());
 			assertNotNull(osm.relations);
 			
+			// Issue #34
+			CitygmlFileTest_Issue34.testIssue34(osm);
+			
 			// Issue #37
 			testIssue37(osm, osm.relations);
 			

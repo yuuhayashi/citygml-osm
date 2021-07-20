@@ -23,6 +23,7 @@ import osm.surveyor.update.HttpGetTest;
 	CitygmlFileTest_E.class,
 	CitygmlFileTest_Issue28.class,
 	CitygmlFileTest_Issue32.class,
+	CitygmlFileTest_Issue34.class,
 	HttpGetTest.class
 })
 public class AllTests {
