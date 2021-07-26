@@ -75,7 +75,8 @@ public class CitygmlFileTest_Issue28 {
 			assertNotNull(osm.relations);
 			
 			// Issue #34
-			CitygmlFileTest_Issue34.testIssue34(osm);
+			CitygmlFileTest_Issue34.checkIssue34_1(osm);
+			CitygmlFileTest_Issue34.checkIssue34_2(osm);
 			
 			// Issue #37
 			testIssue37(osm, osm.relations);

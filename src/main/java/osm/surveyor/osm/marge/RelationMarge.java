@@ -21,104 +21,105 @@ public class RelationMarge {
      * Relation:multipolygon の MaxHeightを outline->Multipolygonへ設定する
      * OsmDom osm
      */
-	public void relationMarge() {
+	public boolean relationMarge() {
 		RelationMap checked = new RelationMap();
-		//RelationMap polygons = new RelationMap();
 		
 		// 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる
 		for (String rKey : osm.relations.keySet()) {
 			ElementRelation relation = osm.relations.get(rKey);
 			if (relation.isBuilding()) {
-				checked = relationMarge1((RelationBuilding)relation, checked);
-			}
-			else {
+				RelationMap marged = new RelationMap();
+				marged = relationMarge1((RelationBuilding)relation, checked);
+				for (String key : marged.keySet()) {
+					RelationBuilding del = (RelationBuilding)osm.relations.get(key);
+					osm.ways.remove(del.getOutlineWay(osm));
+					osm.relations.remove(del.getMultiPolygon(osm));
+					osm.relations.remove(del);
+					return true;
+				}
 				checked.put(relation);
 			}
 		}
-
-		// 'osm.relations'からcheckedのリレーションを取り除く
-		for (String rKey : checked.keySet()) {
-			osm.relations.remove(checked.get(rKey));
-		}
-		osm.relations.clear();
-		
-		// "ele"と"height"を統合してリレーションに設定する
-		// "building:levels"と"building:levels:underground"を統合してリレーションに設定する
-		margeTagValue(checked);
-
-		// 'osm.relations'にcheckedの内容をセットする
-		for (String rKey : checked.keySet()) {
-			osm.relations.put(checked.get(rKey));
-		}
-
-		// 'osm.relations'にpolygonsの内容をセットする
-		//for (String rKey : polygons.keySet()) {
-		//	osm.relations.put(polygons.get(rKey));
-		//}
+		return false;
 	}
 
 	/**
 	 * 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる
 	 * @param relation
 	 * @param checked
-	 * @return
+	 * @return	マージされて取り込まれたリレーションのリストを返す（呼び出し側で削除する必要がある）
 	 */
 	RelationMap relationMarge1(RelationBuilding relation, RelationMap checked) {
-		// 未チェックのrelationを処理する
-		if (checked.get(relation.id) == null) {
-			// map = checkedの中から[relation.member->way]に接続するリレーションを取得
-			RelationMap map = new RelationMap();
-			ElementWay outer = getOuterWay(relation);
-			if (outer != null) {
-				outer.member = true;
-
-				RelationMap duplicateMap = checkParts(checked, outer);
-				for (String key : duplicateMap.keySet()) {
-					map.put(duplicateMap.get(key));
-					checked.remove(duplicateMap.get(key));
-				}
-			}
-
-			map.put(relation);
-			ElementRelation duplicate = matomeru(map);
-			if (duplicate != null) {
-				checked.put(getMultiPolygon(duplicate));
-				checked.put(duplicate);
-			}
-			else {
-				checked.put(getMultiPolygon(relation));
-				checked.put(relation);
-			}
+		RelationMap marged = new RelationMap();
+		if (checked.get(relation.id) != null) {
+			return marged;	// リレーションが処理済みなら何もしない
 		}
-		return checked;
+		
+		// outline:WAYに接触するbuildingを抽出
+		RelationBuilding margedBuilding = null;
+		while ((margedBuilding = checkParts(checked, relation)) != null) {
+			checked.remove(margedBuilding);
+			marged.put(margedBuilding);
+		}
+		return marged;
 	}
 	
-	RelationBuilding matomeru(RelationMap map) {
-		margeTagValue(map);
-		
-		RelationBuilding ret = null;
-		for (String key : map.keySet()) {
-			RelationBuilding relation = (RelationBuilding)map.get(key);
-			if (ret == null) {
-				ret = relation;
-			}
-			else {
-				// 接続するリレーションのすべてのメンバーを取り込む
-				for (ElementMember mem : relation.members) {
-					if (mem.type.equals("way")) {
-						ElementWay memway = osm.ways.get(Long.toString(mem.ref));
-						ret.addMember(memway, mem.role);
-					}
-					else {
-						ElementRelation polygon = osm.relations.get(Long.toString(mem.ref));
-						ret.addMember(polygon, mem.role);
-					}
-				}
-				ret = (new OutlineFactory(osm)).createOutline(ret);
+	/**
+	 * リレーションMAPの中から指定したBuildingに接続するリレーションを取得する
+	 * @param checked	調査対象のリレーションリスト
+	 * @param source	指定のBuilding
+	 * @return	接続するリレーションがない場合はNULL
+	 */
+	private RelationBuilding checkParts(RelationMap checked, RelationBuilding source) {
+		for (String relationid : checked.keySet()) {
+			RelationBuilding relation = (RelationBuilding)checked.get(relationid);
+			WayMap ways = new WayMap();
+			ways.put(source.getOutlineWay(osm));
+			ways.put(relation.getOutlineWay(osm));
+			if ((new MargeFactory(osm, ways)).isDuplicateSegment()) {
+				source = matomeru(source, relation);
+				return relation;
 			}
 		}
+		return null;
+	}
 		
-		return ret;
+	RelationBuilding matomeru(RelationBuilding relation, RelationBuilding b) {
+		// "ele"と"height"を統合してリレーションに設定する
+		// "building:levels"と"building:levels:underground"を統合してリレーションに設定する
+		RelationMap map = new RelationMap();
+		map.put(relation);
+		map.put(b);
+		margeTagValue(map);
+		
+		// 接続するリレーションのメンバーを取り込む
+		// Wayメンバーは全て取り込む
+		// RelationメンバーはInnerのみ取り込む。Outerは除外する
+		ElementRelation multi = relation.getMultiPolygon(osm);
+		for (ElementMember mem : b.members) {
+			if (mem.role.equals("part")) {
+				if (mem.type.equals("way")) {
+					ElementWay memway = osm.ways.get(Long.toString(mem.ref));
+					relation.addMember(memway, mem.role);
+				}
+			}
+			else if (mem.role.equals("outline")) {
+				if (mem.type.equals(ElementRelation.RELATION)) {
+					ElementRelation polygon = osm.relations.get(Long.toString(mem.ref));
+					if (polygon != null) {
+						for (ElementMember polymem : polygon.members) {
+							if (polymem.type.equals("way") && polymem.role.equals("inner")) {
+								if (multi != null) {
+									multi.addMember(osm.relations.get(Long.toString(polymem.ref)), "inner");
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		relation = (new OutlineFactory(osm)).createOutline(relation);
+		return relation;
 	}
 
 	/**
@@ -218,65 +219,4 @@ public class RelationMarge {
 			}
 		}
 	}
-
-	/**
-	 * リレーションMAPの中から指定したwayに接続するリレーションを取得する
-	 * @param checked	調査対象のリレーションリスト
-	 * @param way	指定のWAY
-	 * @return	接続するリレーションがない場合はNULL
-	 */
-	private RelationMap checkParts(RelationMap checked, ElementWay way) {
-		RelationMap ret = new RelationMap();
-		for (String relationid : checked.keySet()) {
-			ElementRelation relation = checked.get(relationid);
-			for (ElementMember member : relation.members) {
-				if (member.role.equals("part") && member.type.equals("way")) {
-					WayMap ways = new WayMap();
-					ways.put(way);
-					ways.put(osm.ways.get(Long.toString(member.ref)));
-					if ((new MargeFactory(osm, ways)).isDuplicateSegment()) {
-						ret.put(relation);
-					}
-				}
-			}
-		}
-		return ret;
-	}
-	
-	/**
-	 * 指定されたリレーションの"outline"メンバーを取得する
-	 * 前提： "outline"メンバーは一つにまとめられていること
-	 * @param relation	指定のリレーション
-	 * @return	"outline"がないときはNULL
-	 */
-	private ElementMember getOutlineMember(ElementRelation relation) {
-		for (ElementMember member : relation.members) {
-			if (member.role.equals("outline")) {
-				return member;
-			}
-		}
-		return null;
-	}
-	
-	private ElementRelation getMultiPolygon(ElementRelation relation) {
-		ElementMember outlineMember = getOutlineMember(relation);
-		if (outlineMember != null) {
-			return osm.relations.get(outlineMember.ref);
-		}
-		return null;
-	}
-	
-	private ElementWay getOuterWay(ElementRelation relation) {
-		ElementRelation outline = getMultiPolygon(relation);
-		if (outline != null) {
-			for (ElementMember outlinemember : outline.members) {
-				if (outlinemember.role.equals("outer")) {
-					ElementWay outer = osm.ways.get(outlinemember.ref);
-					return outer;
-				}
-			}
-		}
-		return null;
-	}
-	
 }

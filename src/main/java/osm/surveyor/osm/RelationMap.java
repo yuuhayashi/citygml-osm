@@ -24,7 +24,9 @@ public class RelationMap extends HashMap<String, ElementRelation> {
 	}
     
     public void remove(ElementRelation relation) {
-    	this.remove(Long.toString(relation.id));
+    	if (relation != null) {
+        	this.remove(Long.toString(relation.id));
+    	}
     }
 	
     /**

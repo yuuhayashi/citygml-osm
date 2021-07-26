@@ -313,6 +313,12 @@ public class OsmDom {
 	 */
 	public void gerbageWay() {
 		WayMap map = new WayMap();
+		for (String id : this.ways.keySet()) {
+			ElementWay way = this.ways.get(id);
+			if (!way.member) {
+				map.put(way);	// 単独WAYは、RELATIONに所属していなくても削除しない
+			}
+		}
 		for (String id : this.relations.keySet()) {
 			ElementRelation relation = this.relations.get(id);
 			for (ElementMember member : relation.members) {

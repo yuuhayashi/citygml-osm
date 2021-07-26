@@ -41,6 +41,7 @@ public class BuildingGarbage {
 					for (ElementMember member : relation.members) {
 						ElementWay way = osm.ways.get(member.ref);
 						if (way != null) {
+							way.member = true;
 							relation.removeMember(way.id);
 							osm.ways.remove(way);
 							return true;
@@ -51,7 +52,7 @@ public class BuildingGarbage {
 					for (ElementMember member : relation.members) {
 						ElementWay way = osm.ways.get(member.ref);
 						if (way != null) {
-							way.member = true;
+							way.member = false;
 							copyTag(relation.tags, way);
 							relation.removeMember(way.id);
 							return true;

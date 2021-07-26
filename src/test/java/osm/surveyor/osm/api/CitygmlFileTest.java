@@ -163,7 +163,7 @@ public class CitygmlFileTest {
 		            // 各WAYのノードで、他のWAYと共有されたノードを探す
 			    	// 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる
 			    	// Relation:multipolygon の MaxHeightを outline->Multipolygonへ設定する
-			    	(new RelationMarge(osm)).relationMarge();
+			    	while((new RelationMarge(osm)).relationMarge());
 			    	
 		            // Export
 			    	osm.export(new File(filename + "_2.osm"));
@@ -203,7 +203,7 @@ public class CitygmlFileTest {
 		            osm.gerbageNode();
 		            
 		            // (2) 各WAYのノードで、他のWAYと共有されたノードを探す
-			    	(new RelationMarge(osm)).relationMarge();
+		            while((new RelationMarge(osm)).relationMarge());
 		            
 					// (3) メンバーが一つしかないRelation:building を削除する
 					// (3) メンバーが一つしかないRelation:multipolygon と polygon:member を削除する
@@ -247,7 +247,7 @@ public class CitygmlFileTest {
 		            osm.gerbageNode();
 		            
 		            // (2) 各WAYのノードで、他のWAYと共有されたノードを探す
-			    	(new RelationMarge(osm)).relationMarge();
+		            while((new RelationMarge(osm)).relationMarge());
 
 					// (3) メンバーが一つしかないRelation:building を削除する
 					// (3) メンバーが一つしかないRelation:multipolygon と polygon:member を削除する
@@ -295,7 +295,7 @@ public class CitygmlFileTest {
 		            // (2) 各WAYのノードで、他のWAYと共有されたノードを探す
 			    	// 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる
 			    	// Relation:multipolygon の MaxHeightを outline->Multipolygonへ設定する
-			    	(new RelationMarge(osm)).relationMarge();
+		            while((new RelationMarge(osm)).relationMarge());
 		            
 					// (3) メンバーが一つしかないRelation:building を削除する
 					// (3) メンバーが一つしかないRelation:multipolygon と polygon:member を削除する
@@ -311,7 +311,10 @@ public class CitygmlFileTest {
 		            // (5) "outline"と"part"が重複しているPART を削除する
 		            OsmMargeWay.partGabegi(osm);
 		            
-		            	// ファイルへエクスポートする
+		            // RELATIONに所属していないWAYを削除する
+		            osm.gerbageWay();
+
+					// ファイルへエクスポートする
 		    		System.out.println("TEST: export to '"+ filename + ".osm'");
 			    	osm.export(new File(filename + ".osm"));
 				} catch (Exception e) {

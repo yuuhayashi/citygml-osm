@@ -37,7 +37,13 @@ public class CitygmlFileTest_Issue34 {
 		OsmDom osm = new OsmDom();
 		try {
 			osm.parse(Paths.get("Issue34_bldg_6697_op.osm").toFile());
-			testIssue34(osm);
+			checkIssue34_1(osm);
+			checkIssue34_2(osm);
+			assertEquals(1, osm.relations.size());
+			for (String key : osm.relations.keySet()) {
+				ElementRelation building = osm.relations.get(key);
+				assertEquals("industrial", building.getTagValue("building"));
+			}
 		} catch (Exception e) {
 			fail(e.toString());
 		}
@@ -51,7 +57,7 @@ public class CitygmlFileTest_Issue34 {
 		OsmDom osm = new OsmDom();
 		try {
 			osm.parse(Paths.get("Issue34_bldg_6697_op_1.osm").toFile());
-			testIssue34(osm);
+			checkIssue34_1(osm);
 		} catch (Exception e) {
 			fail(e.toString());
 		}
@@ -65,7 +71,7 @@ public class CitygmlFileTest_Issue34 {
 		OsmDom osm = new OsmDom();
 		try {
 			osm.parse(Paths.get("Issue34_bldg_6697_op_2.osm").toFile());
-			testIssue34(osm);
+			checkIssue34_1(osm);
 		} catch (Exception e) {
 			fail(e.toString());
 		}
@@ -79,18 +85,17 @@ public class CitygmlFileTest_Issue34 {
 		OsmDom osm = new OsmDom();
 		try {
 			osm.parse(Paths.get("Issue34_bldg_6697_op_3.osm").toFile());
-			testIssue34(osm);
+			checkIssue34_1(osm);
 		} catch (Exception e) {
 			fail(e.toString());
 		}
 	}
 	
 	/**
-	 *	multipolygonのinnerに実在しないものがある。
-	 * 
+	 *	multipolygonのinnerに実在しないものがないこと。
 	 * @param osm
 	 */
-	static public void testIssue34(OsmDom osm) {
+	static public void checkIssue34_1(OsmDom osm) {
 		assertNotNull(osm.relations);
 		for (String relationid : osm.relations.keySet()) {
 			ElementRelation relation = osm.relations.get(relationid);
@@ -101,6 +106,24 @@ public class CitygmlFileTest_Issue34 {
 					assertNotNull(inner);
 				}
 			}
+		}
+	}
+
+	/**
+	 *	relationの"outline"はひとつだけ
+	 * @param osm
+	 */
+	static public void checkIssue34_2(OsmDom osm) {
+		assertNotNull(osm.relations);
+		for (String relationid : osm.relations.keySet()) {
+			ElementRelation relation = osm.relations.get(relationid);
+			int outlineCnt = 0;
+			for (ElementMember mem : relation.members) {
+				if (mem.role.equals("outline")) {
+					outlineCnt++;
+				}
+			}
+			assertEquals(1, outlineCnt);
 		}
 	}
 }

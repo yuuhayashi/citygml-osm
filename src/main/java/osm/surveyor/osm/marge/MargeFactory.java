@@ -106,7 +106,6 @@ public class MargeFactory {
      * WayMap wayMap --> 
      */
 	public void marge() {
-
 		for (String wayid : wayMap.keySet()) {
 			ElementWay way = wayMap.get(wayid);
 			if (way != null) {

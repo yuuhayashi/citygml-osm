@@ -124,6 +124,20 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 		return null;
 	}
 	
+	/**
+	 * リレーションの"outline"メンバーを取得する
+	 * 前提： "outline"メンバーは一つにまとめられていること
+	 * @return	"outline"がないときはNULL
+	 */
+	public ElementMember getOutlineMember() {
+		for (ElementMember member : members) {
+			if (member.role.equals("outline")) {
+				return member;
+			}
+		}
+		return null;
+	}
+		
 	public void removeMember(long id) {
 		for (ElementMember mem : members) {
 			if (mem.ref == id) {
