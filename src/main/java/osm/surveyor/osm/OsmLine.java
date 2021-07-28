@@ -74,10 +74,10 @@ public class OsmLine extends ArrayList<TwoPoint> {
 	 */
 	boolean hasNd(OsmNd nd) {
 		for (TwoPoint seg : this) {
-			if (!seg.isConnectable(nd)) {
-				return false;
+			if (seg.isConnectable(nd)) {
+				return true;
 			}
 		}
-		return true;
+		return false;
 	}
 }

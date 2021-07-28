@@ -42,8 +42,6 @@ public class OutlineFactory {
 	public RelationBuilding createOutline(RelationBuilding building) {
 		// Relationのメンバーから"height"の最大値を取得
 		String maxheight = osm.getMaxHeight(building);
-		String maxLevels = building.getMaxValue(osm.ways, "building:levels");
-		String maxLevelsUnderground = building.getMaxValue(osm.ways, "building:levels:underground");
 		RelationMultipolygon multi = null;
 		MargeFactory factory = (new MargeFactory(osm, osm.ways)).createOutline(building);
 		OsmLine outer = factory.getOuter();
@@ -54,16 +52,16 @@ public class OutlineFactory {
 			aWay.toArea();
 			aWay.member = true;
 			
-			ArrayList<ElementMember> memlist = new ArrayList<>();
+			ArrayList<ElementMember> delPolygonlist = new ArrayList<>();
 			for (ElementMember mem : building.members) {
 				if (mem.type.equals(ElementRelation.RELATION)) {
 					if (multi == null) {
 						multi = (RelationMultipolygon)osm.relations.get(mem.ref);
 						if (multi != null) {
 							ArrayList<ElementMember> dellist = new ArrayList<>();
-							for (ElementMember addMem : multi.members) {
-								if (addMem.role.equals("outer")) {
-									dellist.add(addMem);
+							for (ElementMember outerMem : multi.members) {
+								if (outerMem.role.equals("outer")) {
+									dellist.add(outerMem);
 								}
 							}
 							for (ElementMember delMem : dellist) {
@@ -72,21 +70,23 @@ public class OutlineFactory {
 						}
 					}
 					else {
-						RelationMultipolygon addMulti = (RelationMultipolygon)osm.relations.get(mem.ref);
-						ArrayList<ElementMember> addlist = new ArrayList<>();
-						for (ElementMember addMem : addMulti.members) {
-							if (addMem.role.equals("inner")) {
-								addlist.add(addMem);
+						if (mem.ref != multi.id) {
+							RelationMultipolygon addMulti = (RelationMultipolygon)osm.relations.get(mem.ref);
+							ArrayList<ElementMember> addlist = new ArrayList<>();
+							for (ElementMember addMem : addMulti.members) {
+								if (addMem.role.equals("inner")) {
+									addlist.add(addMem);
+								}
 							}
+							for (ElementMember addMem : addlist) {
+								multi.addMember(osm.ways.get(addMem.ref), "inner");
+							}
+							delPolygonlist.add(mem);
 						}
-						for (ElementMember addMem : addlist) {
-							multi.addMember(osm.ways.get(addMem.ref), "inner");
-						}
-						memlist.add(mem);
 					}
 				}
 			}
-			for (ElementMember delMem : memlist) {
+			for (ElementMember delMem : delPolygonlist) {
 				building.removeMember(delMem.ref);
 			}
 
@@ -95,10 +95,6 @@ public class OutlineFactory {
 				aWay.addTag("source", osm.getSource());
 				osm.ways.put(aWay);
 				multi.addMember(aWay, "outer");
-				multi.addTag("height", maxheight);
-				multi.addTag("source", osm.getSource());
-				multi.addTag("building:levels", maxLevels);
-				multi.addTag("building:levels:underground", maxLevelsUnderground);
 			}
 			else {
 				// マルチポリゴンが存在しない場合は、"bulding:Relation"に"outline"WAYをMEMBERとして追加する
@@ -122,15 +118,10 @@ public class OutlineFactory {
 				iWay.member = true;
 				osm.ways.put(iWay);
 			}
-			
 			if (multi != null) {
 				// マルチポリゴンが存在する場合は、マルチポリゴンにiWayを追加する
 				iWay.addTag("source", osm.getSource());
 				multi.addMember(iWay, "inner");
-				multi.addTag("building:levels", maxLevels);
-				multi.addTag("building:levels:underground", maxLevelsUnderground);
-				multi.addTag("building:name", building.getTagValue("name"));
-				multi.replaceTag("start_date", new ElementTag("start_date", building.getTagValue("start_date")));
 				building.addMember(multi, "outline");
 			}
 			else {
@@ -138,8 +129,6 @@ public class OutlineFactory {
 				multi = new RelationMultipolygon(osm.getNewId());
 				multi.copyTag(building);
 				multi.replaceTag("type", new ElementTag("type","multipolygon"));
-				multi.replaceTag("name", new ElementTag("building:name", building.getTagValue("name")));
-				multi.replaceTag("start_date", new ElementTag("start_date", building.getTagValue("start_date")));
 				
 				// "outer"に、"bulding:Relation"の"outline"WAYをMEMBERとして追加する
 				for (ElementMember mem : building.members) {
@@ -154,18 +143,10 @@ public class OutlineFactory {
 				}
 				iWay.addTag("source", osm.getSource());
 				multi.addMember(iWay, "inner");
-				multi.addTag("building:levels", maxLevels);
-				multi.addTag("building:levels:underground", maxLevelsUnderground);
-				//map.put(multi);
 				building.addMember(multi, "outline");
 			}
 		}
 		
-		building.tags.remove("building:part");
-		building.addTag("source", osm.getSource());
-		building.addTag("height", maxheight);
-		building.addTag("building:levels", maxLevels);
-		building.addTag("building:levels:underground", maxLevelsUnderground);
 		return building;
 	}
 	

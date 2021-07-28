@@ -44,7 +44,7 @@ public class CitygmlFileTest_B {
 					assertEquals("16.9", relation.getTagValue("height"));
 					assertEquals("2.51", relation.getTagValue("ele"));
 					assertEquals("1976", relation.getTagValue("start_date"));
-					assertEquals("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697", relation.getTagValue("source"));
+					assertEquals("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-61384", relation.getTagValue("source"));
 					int outerCnt = 0;
 					int innerCnt = 0;
 					for (ElementMember mem : relation.members) {

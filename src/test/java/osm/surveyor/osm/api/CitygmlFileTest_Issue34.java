@@ -117,13 +117,15 @@ public class CitygmlFileTest_Issue34 {
 		assertNotNull(osm.relations);
 		for (String relationid : osm.relations.keySet()) {
 			ElementRelation relation = osm.relations.get(relationid);
-			int outlineCnt = 0;
-			for (ElementMember mem : relation.members) {
-				if (mem.role.equals("outline")) {
-					outlineCnt++;
+			if (relation.isBuilding()) {
+				int outlineCnt = 0;
+				for (ElementMember mem : relation.members) {
+					if (mem.role.equals("outline")) {
+						outlineCnt++;
+					}
 				}
+				assertEquals(1, outlineCnt);
 			}
-			assertEquals(1, outlineCnt);
 		}
 	}
 }

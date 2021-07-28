@@ -57,7 +57,7 @@ public class TwoPoint implements Cloneable {
 		if (node == null) {
 			return false;
 		}
-		if (!node.point.equals(a) && !node.point.equals(b)) {
+		if (!node.point.equals(this.a.point) && !node.point.equals(this.b.point)) {
 			return false;
 		}
 		return true;

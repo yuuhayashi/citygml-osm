@@ -354,6 +354,9 @@ public class ElementWay extends ElementOsmapi implements Cloneable {
 		if (line1.equal(line2)) {
 			return true;
 		}
+		if (line1.size() != line2.size()) {
+			return false;
+		}
 		for (TwoPoint seg : line1) {
 			if (!line2.hasNd(seg.a)) {
 				return false;

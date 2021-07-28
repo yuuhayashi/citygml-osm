@@ -1,5 +1,7 @@
 package osm.surveyor.osm.marge;
 
+import java.util.ArrayList;
+
 import osm.surveyor.osm.ElementMember;
 import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementWay;
@@ -85,13 +87,6 @@ public class RelationMarge {
 	}
 		
 	RelationBuilding matomeru(RelationBuilding relation, RelationBuilding b) {
-		// "ele"と"height"を統合してリレーションに設定する
-		// "building:levels"と"building:levels:underground"を統合してリレーションに設定する
-		RelationMap map = new RelationMap();
-		map.put(relation);
-		map.put(b);
-		margeTagValue(map);
-		
 		// 接続するリレーションのメンバーを取り込む
 		// Wayメンバーは全て取り込む
 		// RelationメンバーはInnerのみ取り込む。Outerは除外する
@@ -110,7 +105,7 @@ public class RelationMarge {
 						for (ElementMember polymem : polygon.members) {
 							if (polymem.type.equals("way") && polymem.role.equals("inner")) {
 								if (multi != null) {
-									multi.addMember(osm.relations.get(Long.toString(polymem.ref)), "inner");
+									multi.addMember(osm.ways.get(Long.toString(polymem.ref)), "inner");
 								}
 							}
 						}
@@ -118,105 +113,19 @@ public class RelationMarge {
 				}
 			}
 		}
+		ArrayList<ElementMember> deloutline = new ArrayList<>();
+		for (ElementMember mem : relation.members) {
+			if (mem.type.equals(ElementRelation.RELATION)) {
+				if (mem.ref != multi.id) {
+					deloutline.add(mem);
+				}
+			}
+		}
+		for (ElementMember mem : deloutline) {
+			relation.removeMember(mem.ref);
+		}
 		relation = (new OutlineFactory(osm)).createOutline(relation);
+		relation.margeTagValue(osm);
 		return relation;
-	}
-
-	/**
-	 * "ele"と"height"を統合してリレーションに設定する
-	 * "building:levels"と"building:levels:underground"を統合してリレーションに設定する
-	 * @param relations
-	 */
-	void margeTagValue(RelationMap relations) {
-		for (String key : relations.keySet()) {
-			ElementRelation relation = relations.get(key);
-			
-			// 'source='
-			relation.addTag("source", osm.getSource());
-			
-			// 'height' and 'ele' and 'name'
-			String maxname = relation.getTagValue("name");
-			if (maxname == null) {
-				maxname = "";
-			}
-			String minele = relation.getMinValue(osm.ways, "ele");
-			String maxele = null;
-			for (ElementMember member : relation.members) {
-				if (member.type.equals("way")) {
-					// 'height' and 'ele'
-					ElementWay way = osm.ways.get(member.ref);
-					String height = calcHeight(minele, way.getTagValue("ele"), way.getTagValue("height"));
-					if (height != null) {
-						if (maxele == null) {
-							maxele = height;
-						}
-						else {
-							if (Double.parseDouble(maxele) < Double.parseDouble(height)) {
-								maxele = height;
-							}
-						}
-					}
-					
-					// 'name='
-					String name = way.getTagValue("name");
-					if ((name != null) && (name.length() > maxname.length())) {
-						maxname = name;
-					}
-				}
-			}
-			if (maxele != null) {
-				relation.addTag("height", maxele);
-			}
-			if (minele != null) {
-				relation.addTag("ele", minele);
-			}
-			if (!maxname.isEmpty()) {
-				relation.addTag("name", maxname);
-			}
-			
-			// 用途
-			ElementWay maxway = relation.getMaxArea(osm.ways);
-			if (maxway != null) {
-				relation.addTag("building", maxway.getTagValue("building:part"));
-			}
-			
-			// 建築年
-			String minyear = relation.getMinValue(osm.ways, "start_date");
-			if (minyear != null) {
-				relation.addTag("start_date", minyear);
-			}
-
-			// 地上階
-			String maxup = relation.getMaxValue(osm.ways, "building:levels");
-			if (maxup != null) {
-				relation.addTag("building:levels", maxup);
-			}
-
-			// 地下階
-			String maxdown = relation.getMaxValue(osm.ways, "building:levels:underground");
-			if (maxup != null) {
-				relation.addTag("building:levels:underground", maxdown);
-			}
-		}
-	}
-	
-	String calcHeight(String minele, String ele, String hi) {
-		if (hi == null) {
-			return null;
-		}
-		else {
-			if (minele == null) {
-				return hi;
-			}
-			else {
-				if (ele == null) {
-					return hi;
-				}
-				else {
-					double h = Double.parseDouble(ele) - Double.parseDouble(minele) + Double.parseDouble(hi);
-					return Double.toString(h);
-				}
-			}
-		}
 	}
 }

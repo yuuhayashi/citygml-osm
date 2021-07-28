@@ -14,7 +14,9 @@ import org.w3c.dom.NodeList;
 public class WayMap extends HashMap<String, ElementWay> {
 	
 	public void put(ElementWay way) {
-		put(Long.toString(way.id), way);
+		if (way != null) {
+			put(Long.toString(way.id), way);
+		}
 	}
 	
 	public ElementWay get(long id) {

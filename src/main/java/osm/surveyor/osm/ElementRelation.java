@@ -35,6 +35,11 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 		ElementMember member = new ElementMember();
 		member.setRelation(relation);
 		member.setRole(role);
+		for (ElementMember mem : this.members) {
+			if (mem.equals(member)) {
+				return;
+			}
+		}
 		this.members.add(member);
 	}
 
@@ -147,89 +152,6 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 		}
 	}
 	
-	/**
-	 * 所属メンバーの中から、最大面積のAREAを取得する
-	 * @param ways	メンバーの実態
-	 * @return	指定したタグが存在しない場合はNULL
-	 */
-	public ElementWay getMaxArea(WayMap ways) {
-		ElementWay max = null;
-		double maxarea = 0.0d;
-		for (ElementMember member : this.members) {
-			if (member.type.equals("way")) {
-				ElementWay way = ways.get(member.ref);
-				double area = way.getArea();
-				if (max == null) {
-					max = way;
-					maxarea = area;
-				}
-				else {
-					if (maxarea < area) {
-						max = way;
-						maxarea = area;
-					}
-				}
-			}
-		}
-		return max;
-	}
-	
-	/**
-	 * 所属メンバーの中から、指定したタグの最大値を取得する
-	 * タグの形式は数値型のみ
-	 * @param ways	メンバーの実態
-	 * @param k		指定するタグのk
-	 * @return	指定したタグが存在しない場合はNULL
-	 */
-	public String getMaxValue(WayMap ways, String k) {
-		String max = null;
-		for (ElementMember member : this.members) {
-			if (member.type.equals("way")) {
-				ElementWay way = ways.get(member.ref);
-				String v = way.getTagValue(k);
-				if (v != null) {
-					if (max == null) {
-						max = v;
-					}
-					else {
-						if (Double.parseDouble(max) < Double.parseDouble(v)) {
-							max = v;
-						}
-					}
-				}
-			}
-		}
-		return max;
-	}
-	
-	/**
-	 * 所属メンバーの中から、指定したタグの最小値を取得する
-	 * タグの形式は数値型のみ
-	 * @param ways	メンバーの実態
-	 * @param k		指定するタグのk
-	 * @return	指定したタグが存在しない場合はNULL
-	 */
-	public String getMinValue(WayMap ways, String k) {
-		String min = null;
-		for (ElementMember member : this.members) {
-			if (member.type.equals("way")) {
-				ElementWay way = ways.get(member.ref);
-				String v = way.getTagValue(k);
-				if (v != null) {
-					if (min == null) {
-						min = v;
-					}
-					else {
-						if (Double.parseDouble(min) > Double.parseDouble(v)) {
-							min = v;
-						}
-					}
-				}
-			}
-		}
-		return min;
-	}
-
 	/**
 	 * member->wayのすべてのLINEをListにする
 	 * @param building
