@@ -259,7 +259,8 @@ OSMファイルへの変換項目
 
 #### 建築年 `start_date`
 - GML::`bldg:yearOfConstruction`の値を`start_date`の値とする
-- 複合ビルの場合は、全ビルパーツの最小'建築年'をリレーションの「建築年`start_date`」とする。
+- ビルパーツの'建築年'を「建築年`start_date`」とする。
+- ビルリレーションには「建築年」を反映させない。[Issue 39](https://github.com/yuuhayashi/citygml-osm/issues/39)
 
 ### POI構成
 
