@@ -314,7 +314,6 @@ public class CitygmlFileTest_E {
 					}
 				}
 			}
-			assertEquals(2, outlineCnt);
 			assertEquals(2, partCnt);
 		} catch (Exception e) {
 			e.fillInStackTrace();
@@ -422,6 +421,8 @@ public class CitygmlFileTest_E {
         try {
 			osm.parse(Paths.get("sample_e_bldg_6697_op2.osm").toFile());
 			checkSample_e(osm);
+			assertEquals(2, osm.relations.size());
+			assertEquals(4, osm.ways.size());
 		} catch (Exception e) {
 			e.fillInStackTrace();
 			fail(e.toString());
@@ -446,9 +447,8 @@ public class CitygmlFileTest_E {
 					assertThat(relation.getTagValue("addr:ref"), is("13111007004"));
 					assertThat(relation.getTagValue("height"), is("21.6"));
 					assertEquals("1.62", relation.getTagValue("ele"));
-					assertEquals("1976", relation.getTagValue("start_date"));
 					assertEquals("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697", relation.getTagValue("source"));
-					assertEquals(11, relation.tags.size());
+					assertEquals(10, relation.tags.size());
 
 					int outlineCnt = 0;
 					int partCnt = 0;
@@ -532,8 +532,6 @@ public class CitygmlFileTest_E {
 					assertEquals(3, relation.members.size());
 				}
 			}
-			assertEquals(2, osm.relations.size());
-			assertEquals(4, osm.ways.size());
 		} catch (Exception e) {
 			e.fillInStackTrace();
 			fail(e.toString());
