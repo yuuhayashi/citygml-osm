@@ -93,7 +93,7 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 			}
 		}
 		
-		String maxLevelsUnderground = this.getMaxValue(parts, "building:levels:underground");
+		String maxLevelsUnderground = this.getMaxValue(parts, "building:levels:underground");	// Issue #38
 		if ((maxLevelsUnderground != null) && !maxLevelsUnderground.equals("0")) {
 			this.addTag("building:levels:underground", maxLevelsUnderground);
 			if (multi != null) {
