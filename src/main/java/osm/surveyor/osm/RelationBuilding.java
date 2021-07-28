@@ -112,14 +112,9 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 		}
 		this.tags.remove("building:part");
 		
-		// 建築年
-		String minyear = this.getMinValue(parts, "start_date");
-		if (minyear != null) {
-			this.addTag("start_date", minyear);
-			if (multi != null) {
-				multi.replaceTag("start_date", new ElementTag("start_date", this.getTagValue("start_date")));				
-			}
-		}
+		// 建築年はリレーションに反映させない
+		// [Issue39](https://github.com/yuuhayashi/citygml-osm/issues/39)
+		this.tags.remove("start_date");
 
 		// 地上階
 		String maxup = this.getMaxValue(parts, "building:levels");

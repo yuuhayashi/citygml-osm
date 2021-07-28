@@ -4,7 +4,9 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.startsWith;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.nio.file.Paths;
@@ -237,7 +239,6 @@ public class CitygmlFileTest_D {
 					assertThat(relation.getTagValue("addr:ref"), is("13111006003"));
 					assertNotNull(relation.getTagValue("height"));
 					assertNotNull(relation.getTagValue("ele"));
-					assertNotNull(relation.getTagValue("start_date"));
 					assertThat(relation.getTagValue("source"), startsWith("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697"));
 	
 					for (ElementMember mem : relation.members) {
@@ -263,7 +264,6 @@ public class CitygmlFileTest_D {
 						assertThat(relation.getTagValue("addr:ref"), is("13111006003"));
 						assertThat(relation.getTagValue("height"), is("34.7"));
 						assertThat(relation.getTagValue("ele"), is("2.682"));
-						assertThat(relation.getTagValue("start_date"), is("1976"));
 						assertThat(relation.getTagValue("building"), is("yes"));
 
 						int outerCnt = 0;
@@ -297,7 +297,6 @@ public class CitygmlFileTest_D {
 						assertThat(relation.getTagValue("addr:ref"), is("13111006003"));
 						assertThat(relation.getTagValue("height"), is("30.2"));
 						assertThat(relation.getTagValue("ele"), is("3.126"));
-						assertThat(relation.getTagValue("start_date"), is("1977"));
 						assertThat(relation.getTagValue("building"), is("yes"));
 
 						int outerCnt = 0;
@@ -325,9 +324,6 @@ public class CitygmlFileTest_D {
 						assertThat(relation.members.size(), is(1));
 					}
 				}
-			}
-			if (outlineCnt < 2) {
-				fail();
 			}
 			assertEquals(2, partCnt);
 		} catch (Exception e) {
@@ -358,7 +354,7 @@ public class CitygmlFileTest_D {
 					assertThat(relation.getTagValue("addr:ref"), is("13111006003"));
 					assertNotNull(relation.getTagValue("height"));
 					assertNotNull(relation.getTagValue("ele"));
-					assertThat(relation.getTagValue("start_date"), is("1976"));
+					assertNull(relation.getTagValue("start_date"));		// Issue #39
 					assertThat(relation.getTagValue("building"), is("yes"));
 
 					int outlineCnt = 0;
@@ -377,7 +373,6 @@ public class CitygmlFileTest_D {
 							assertThat(polygon.getTagValue("addr:ref"), is("13111006003"));
 							assertNotNull(polygon.getTagValue("height"));
 							assertNotNull(polygon.getTagValue("ele"));
-							assertThat(polygon.getTagValue("start_date"), is("1976"));
 							assertThat(polygon.getTagValue("building"), is("yes"));
 							for (ElementMember member : polygon.members) {
 								if (member.role.equals("outer")) {
@@ -454,11 +449,10 @@ public class CitygmlFileTest_D {
 					assertThat(relation.getTagValue("addr:ref"), is("13111006003"));
 					assertThat(relation.getTagValue("height"), is("34.7"));
 					assertThat(relation.getTagValue("ele"), is("2.68"));
-					assertThat(relation.getTagValue("start_date"), is("1976"));
 					assertThat(relation.getTagValue("building"), is("yes"));
 					assertThat(relation.getTagValue("building:levels"), is("3"));
 					assertThat(relation.getTagValue("building:levels:underground"), is("1"));
-					assertThat(relation.tags.size(), is(10));
+					assertEquals(9, relation.tags.size());
 
 					int outlineCnt = 0;
 					int partCnt = 0;
@@ -476,7 +470,6 @@ public class CitygmlFileTest_D {
 							assertThat(polygon.getTagValue("addr:ref"), is("13111006003"));
 							assertThat(polygon.getTagValue("height"), is("34.7"));
 							assertThat(polygon.getTagValue("ele"), is("2.68"));
-							assertThat(polygon.getTagValue("start_date"), is("1976"));
 							assertThat(polygon.getTagValue("building"), is("yes"));
 							for (ElementMember member : polygon.members) {
 								if (member.role.equals("outer")) {
@@ -585,11 +578,11 @@ public class CitygmlFileTest_D {
 					assertThat(relation.getTagValue("addr:ref"), is("13111006003"));
 					assertThat(relation.getTagValue("height"), is("34.7"));
 					assertEquals("2.68", relation.getTagValue("ele"));
-					assertThat(relation.getTagValue("start_date"), is("1976"));
 					assertThat(relation.getTagValue("building"), is("yes"));
 					assertThat(relation.getTagValue("building:levels"), is("3"));
 					assertThat(relation.getTagValue("building:levels:underground"), is("1"));
-					assertEquals(10, relation.tags.size());
+					assertNull(relation.getTagValue("start_date"));		// Issue #39
+					assertEquals(9, relation.tags.size());
 
 					int outlineCnt = 0;
 					int partCnt = 0;
@@ -649,11 +642,10 @@ public class CitygmlFileTest_D {
 					assertEquals("1", relation.getTagValue("building:levels:underground"));
 					assertEquals("34.7", relation.getTagValue("height"));
 					assertEquals("2.68", relation.getTagValue("ele"));
-					assertEquals("1976", relation.getTagValue("start_date"));
 					assertThat(relation.getTagValue("addr:full"), is("東京都大田区大森西三丁目"));
 					assertThat(relation.getTagValue("addr:ref"), is("13111006003"));
 					assertThat(relation.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697"));
-					assertEquals(10, relation.tags.size());
+					assertTrue(9 < relation.tags.size());
 					int outerCnt = 0;
 					int innerCnt = 0;
 					for (ElementMember mem : relation.members) {
