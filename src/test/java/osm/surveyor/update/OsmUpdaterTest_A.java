@@ -1,8 +1,8 @@
 package osm.surveyor.update;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.nio.file.Paths;
@@ -31,38 +31,38 @@ public class OsmUpdaterTest_A {
 
 			OsmDom osm = new OsmDom();
 	        osm.parse(Paths.get("sample_a_bldg_6697_op2.mrg.osm").toFile());
-			assertThat(osm.relations, notNullValue());
-			assertThat(osm.relations.size(), is(0));
+			assertNotNull(osm.relations);
+			assertEquals(0, osm.relations.size());
 			for (String id : osm.ways.keySet()) {
 				ElementWay way = osm.ways.get(id);
-				assertThat(way, notNullValue());
+				assertNotNull(way);
 				
 				if (way.getTagValue("source").endsWith("; 13111-bldg-365")) {
-					assertThat(way.action, is("modify"));
-					assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-365"));
-					assertThat(way.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
-					assertThat(way.getTagValue("addr:ref"), is("13111058003"));
-					assertThat(way.getTagValue("height"), is("2.4"));
-					assertThat(way.getTagValue("ele"), is("2.749"));
-					assertThat(way.getTagValue("building"), is("yes"));
-					assertThat(way.tags.size(), is(6));
+					assertEquals("modify", way.action);
+					assertEquals("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-365", way.getTagValue("source"));
+					assertEquals("東京都大田区南六郷三丁目", way.getTagValue("addr:full"));
+					assertEquals("13111058003", way.getTagValue("addr:ref"));
+					assertEquals("2.4", way.getTagValue("height"));
+					assertEquals("2.75", way.getTagValue("ele"));
+					assertEquals("yes", way.getTagValue("building"));
+					assertEquals(6, way.tags.size());
 				}
 				else if (way.getTagValue("source").endsWith("; 13111-bldg-466")) {
-					assertThat(way.action, is("modify"));
-					assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-466"));
-					assertThat(way.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
-					assertThat(way.getTagValue("height"), is("4.6"));
-					assertThat(way.getTagValue("ele"), is("2.671"));
-					assertThat(way.getTagValue("start_date"), is("1976"));
-					assertThat(way.getTagValue("building"), is("yes"));
-					assertThat(way.getTagValue("building:levels"), is("2"));
-					assertThat(way.getTagValue("building:levels:underground"), is("1"));
-					assertThat(way.getTagValue("fixme"), is("PLATEAUデータで更新されています"));
-					assertThat(way.tags.size(), is(9));
+					assertEquals("modify", way.action);
+					assertEquals("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-466", way.getTagValue("source"));
+					assertEquals("東京都大田区南六郷三丁目", way.getTagValue("addr:full"));
+					assertEquals("4.6", way.getTagValue("height"));
+					assertEquals("2.67", way.getTagValue("ele"));
+					assertEquals("1976", way.getTagValue("start_date"));
+					assertEquals("yes", way.getTagValue("building"));
+					assertEquals("2", way.getTagValue("building:levels"));
+					assertEquals("1", way.getTagValue("building:levels:underground"));
+					assertEquals("PLATEAUデータで更新されています", way.getTagValue("fixme"));
+					assertEquals(9, way.tags.size());
 				}
 			}
-			assertThat(osm.ways.size(), is(2));
-			assertThat(osm.relations.size(), is(0));
+			assertEquals(2, osm.ways.size());
+			assertEquals(0, osm.relations.size());
 		} catch (Exception e) {
 			e.fillInStackTrace();
 			fail(e.toString());
@@ -108,15 +108,15 @@ public class OsmUpdaterTest_A {
         try {
 			OsmDom osm = new OsmDom();
 			osm.parse(Paths.get("src/test/resources/sample_a_bldg_6697_op2.org.osm").toFile());
-			assertThat(osm.ways.size() > 0, is(true));
-			assertThat(osm.nodes.size() > 10, is(true));
+			assertTrue(osm.ways.size() > 0);
+			assertTrue(osm.nodes.size() > 10);
 
 			OsmDom sdom = new OsmDom();
 			osm.filterBuilding(sdom);
 
-			assertThat(sdom.ways.size() > 0, is(true));
-			assertThat(sdom.relations.size(), is(0));
-			assertThat(sdom.nodes.size() >= 4, is(true));
+			assertTrue(sdom.ways.size() > 0);
+			assertEquals(0, sdom.relations.size());
+			assertTrue(sdom.nodes.size() >= 4);
         } catch (Exception e) {
 			e.fillInStackTrace();
 			fail(e.toString());
@@ -140,9 +140,9 @@ public class OsmUpdaterTest_A {
         	org.parse(Paths.get("src/test/resources/sample_a_bldg_6697_op2.org.osm").toFile());
     		org.filterBuilding(sdom);
 
-			assertThat(sdom.ways.size() >= 1, is(true));
-			assertThat(sdom.relations.size(), is(0));
-			assertThat(sdom.nodes.size() >= 4, is(true));
+			assertTrue(sdom.ways.size() >= 1);
+			assertEquals(0, sdom.relations.size());
+			assertTrue(sdom.nodes.size() >= 4);
 		} catch (Exception e) {
 			e.fillInStackTrace();
 			fail(e.toString());
@@ -175,41 +175,41 @@ public class OsmUpdaterTest_A {
 			int waycnt = 0;
 			for (String id : updater.ddom.ways.keySet()) {
 				ElementWay way = updater.ddom.ways.get(id);
-				assertThat(way, notNullValue());
+				assertNotNull(way);
 				
 				if (way.getTagValue("source").endsWith("; 13111-bldg-365")) {
 					waycnt++;
-					assertThat(way.action, is("modify"));
-					assertThat(way.id < 0, is(true));
-					assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-365"));
-					assertThat(way.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
-					assertThat(way.getTagValue("addr:ref"), is("13111058003"));
-					assertThat(way.getTagValue("height"), is("2.4"));
-					assertThat(way.getTagValue("ele"), is("2.749"));
-					assertThat(way.getTagValue("building"), is("yes"));
-					assertThat(way.tags.size(), is(6));
+					assertEquals("modify", way.action);
+					assertTrue(way.id < 0);
+					assertEquals("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-365", way.getTagValue("source"));
+					assertEquals("東京都大田区南六郷三丁目", way.getTagValue("addr:full"));
+					assertEquals("13111058003", way.getTagValue("addr:ref"));
+					assertEquals("2.4", way.getTagValue("height"));
+					assertEquals("2.75", way.getTagValue("ele"));
+					assertEquals("yes", way.getTagValue("building"));
+					assertEquals(6, way.tags.size());
 				}
 				else if (way.getTagValue("source").endsWith("; 13111-bldg-466")) {
 					waycnt++;
-					assertThat(way.action, is("modify"));
-					assertThat(way.id, is(169195173l));
-					assertThat(way.changeset, is("12032994"));
-					assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-466"));
-					assertThat(way.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
-					assertThat(way.getTagValue("height"), is("4.6"));
-					assertThat(way.getTagValue("ele"), is("2.671"));
-					assertThat(way.getTagValue("start_date"), is("1976"));
-					assertThat(way.getTagValue("building"), is("parking"));
-					assertThat(way.getTagValue("building:levels"), is("2"));
-					assertThat(way.getTagValue("building:levels:underground"), is("1"));
-					assertThat(way.getTagValue("fixme"), is("PLATEAUデータで更新されています"));
-					assertThat(way.tags.size(), is(9));
+					assertEquals("modify", way.action);
+					assertEquals(169195173l, way.id);
+					assertEquals("12032994", way.changeset);
+					assertEquals("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-466", way.getTagValue("source"));
+					assertEquals("東京都大田区南六郷三丁目", way.getTagValue("addr:full"));
+					assertEquals("4.6", way.getTagValue("height"));
+					assertEquals("2.67", way.getTagValue("ele"));
+					assertEquals("parking", way.getTagValue("building"));
+					assertEquals("1976", way.getTagValue("start_date"));
+					assertEquals("2", way.getTagValue("building:levels"));
+					assertEquals("1", way.getTagValue("building:levels:underground"));
+					assertEquals("PLATEAUデータで更新されています", way.getTagValue("fixme"));
+					assertEquals(9, way.tags.size());
 				}
 			}
-			assertThat(waycnt, is(2));
-			assertThat(updater.ddom.ways.size(), is(2));
-			assertThat(updater.ddom.relations, notNullValue());
-			assertThat(updater.ddom.relations.size(), is(0));
+			assertEquals(2, waycnt);
+			assertEquals(2, updater.ddom.ways.size());
+			assertNotNull(updater.ddom.relations);
+			assertEquals(0, updater.ddom.relations.size());
 		} catch (Exception e) {
 			e.fillInStackTrace();
 			fail(e.toString());

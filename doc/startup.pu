@@ -9,7 +9,7 @@ cloud Internet {
 () "1.1.download" as jardownload
 jarsite .. jardownload
 
-file "citygml-get-1.3.x.zip" as zip1
+file "citygml-osm-1.3.x.zip" as zip1
 
 () "1.2.unzip" as unzip1
 zip1 .. unzip1

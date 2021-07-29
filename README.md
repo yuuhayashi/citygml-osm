@@ -52,7 +52,7 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 ![startup.pu](doc/startup.png)
 
-- (1) [GitHub-Release](https://github.com/yuuhayashi/citygml-osm/releases) から 'citygml-get-1.3.x.zip' をダウンロードして、'任意のフォルダ'に解凍する<br/> `citygml-osm-1.3.x-jar-with-dependencies.jar` が解凍されます
+- (1) [GitHub-Release](https://github.com/yuuhayashi/citygml-osm/releases) から 'citygml-osm-1.3.x.zip' をダウンロードして、'任意のフォルダ'に解凍する<br/> `citygml-osm-1.3.x-jar-with-dependencies.jar` が解凍されます
   - [GitHub](https://github.com/yuuhayashi/citygml-osm)の右側にある「[Release](https://github.com/yuuhayashi/citygml-osm/releases)」欄から最新'Latest'版をダウンロードしてください
 
 - (2) [オープンデータ公開サイト](https://www.geospatial.jp/ckan/dataset/plateau)から「3D都市データ」をダウンロードする
@@ -68,6 +68,55 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 - (5) JOSMを起動して、「`*****.osm`」ファイルをJOSMにドロップしてください。<br/>生成されたデータを確認することができます。
 
+## 既存buildingデータ
+
+```
+*.mrg.osm ファイルで既存のbuidingデータと統合した時に、'fixme=PLATEAUデータで置き換えられました' というコメントを付加されていますが、これはどのように使用する想定でしょうか？
+アップロード前にこのfixmeがついた建物を個々にチェックして問題ないことを確認してから、アップロードするようなイメージでしょうか？
+```
+
+```
+okadatsuneo  2ヶ月前
+あと、farmlandやparkingのエリアが書かれている場所に後から建物が建てられたような場合もあるかと思います。
+結局該当箇所のOSMデータをJOSMでダウンロードしてマージした上でアップロードする場合もありそうですね。
+```
+
+```
+hayashi  2ヶ月前
+fixme の使い方ですが、既存データとオーバーラップした際に、既存データとGMLデータとを両方表示して不採用の方をデリートしてもらう。というのを実験的に実装してみました。本当は競合パネルを出したいのですが、どちらもまだうまく行っていません。
+```
+
+```
+hayashi  2ヶ月前
+farmlandやparking のような`landuse`系のPOIの上にbuilding POIを乘せても問題ないと思うのですが、amenity=school+building=yes のような他の系列のPOIにbuilding属性がついてるやつとかは取り漏らすかもしれません。一応、k=buildingで始まるTAGを持つWAYや、リレーションは既存ビルディングとしてオーバーラップ判定の対象にしています。
+既存building=parkingにはマージ対応したつもりです。
+```
+
+```
+hayashi  2ヶ月前
+既存ビルとオーバーラップしたときに、既存POIが単純なAREAの場合は、既存POIのデータをインポートデータで書き換えるようなマージを行いますが、既存POIが気合の入ったビルディングの場合はオリジナルをそのまま残そうと思います。
+気合が入ったビルか、賑やかしのビルかの判別方法を考えています。
+今の所、気合の入ったビルの条件として、
+(1) buildingリレーションのメンバー
+(2) マルチポリゴンのメンバー
+(3) entrance=* ノードを持つもの
+(4) exit=*ノードを持つもの
+を考えていますが、他に、書き換えないほうが良いビルの特徴があったら教えて欲しいです。 （編集済み） 
+```
+
+```
+okadatsuneo  2ヶ月前
+気合いの入ったビルは残してくれるのはいいですね。
+条件としてあと
+「roof:shapeやmaterialのタグを持つビル」というのも良いかもしれません。
+```
+
+```
+okadatsuneo  2ヶ月前
+landuseと建物が重なってもデータ上は問題ないでしょうが、田畑をつぶして建物を建てた時などは、田畑がもし書かれているのであれば、消さないといけないですね。
+ある程度の範囲を*.mrg.osmでインポートして、既存の他のデータと重なってないか確認する感じですかね。
+更新頻度が低い地域だと道路や水路のwayの精度が低くて建物が重なることもあるでしょうし。
+```
 
 ## 第二段階
 
