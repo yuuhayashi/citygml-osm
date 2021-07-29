@@ -5,15 +5,16 @@ cloud Internet {
  node "OpenStreetMap\nAPI v0.6" as osmapi
 }
 
-() "3.第一段階" as cmd3
+ () "第一段階" as step1
 
 node PC {
+
  folder 任意のフォルダ {
   file "citygml-osm-1.3.x-jar-with-dependencies.jar" as jar
   collections "`*.osm`\n第一段階 生成物" as osm
-  cmd3 -> osm
+  step1 --> osm
  
-  () "4.cmd" as cmd
+  () "cmd" as cmd
   jar .. cmd
   osm .. cmd
   osmapi .. cmd
