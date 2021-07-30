@@ -13,6 +13,8 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 # Release
 
+- 2021-07-29 リリース v1.3.1 / [citygml-osm v1.3.1](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.3.1)<br/>第一段階を完成
+
 - 2021-05-29 リリース v1.3.0 / [citygml-osm v1.3.0](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.3.0)<br/>複合ビルの場合の「用途」の扱いについて<br/>PostGISの利用を廃止<br/>GISライブラリに`GeoTools v25.1`を採用
 
 - 2021-05-29 リリース v1.2.10 / [citygml-osm v1.2.10](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.2.10)<br/>Issue #30<br/>「建築物:建築年」「地上階」「地下階」に対応。
