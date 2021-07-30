@@ -70,6 +70,8 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 ## 既存buildingデータ
 
+![download.pu](doc/download.png)
+
 - Issue #41 ['fixme'による手動選別](https://github.com/yuuhayashi/citygml-osm/issues/42)
 
 - Issue #21 [既存'relation:building'には上書きしないようにする](https://github.com/yuuhayashi/citygml-osm/issues/21) 
