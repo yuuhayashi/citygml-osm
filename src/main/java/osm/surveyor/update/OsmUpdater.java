@@ -156,89 +156,89 @@ public class OsmUpdater {
 		// OverlappingMap:WayMap {key=dom.way.id, v=ddom.way}
 		WayMap overlappingMap = new WayMap();
 		
-	    		// インポートデータの内で、既存データと重複するWAYを'modify'に確定する
-    		for (String rKey : dom.ways.keySet()) {
-    			ElementWay way = dom.ways.get(rKey).clone();
-    			if ((way.action == null) || !way.action.equals("modify")) {
-        			long wayid = way.getIntersect(sdom.ways);
-        			if (wayid > 0) {
-        				ElementWay sWay = sdom.ways.get(wayid);
-        				sWay.action = "modify";
-        				sWay.orignal = false;
-        				sWay.nds = way.nds;
-                		ElementTag tag = sWay.tags.get("fixme");
-                		if (tag != null) {
-                			String fixme = tag.v;
-                			tag.v = fixme +"; PLATEAUデータで更新されています";
-                		}
-                		else {
-                			tag = new ElementTag("fixme", "PLATEAUデータで更新されています");
-                		}
-                		ElementTag source = way.tags.get("source");
-                		ElementTag height = way.tags.get("height");
-                		sWay.addTag(tag);
-                		sWay.addTag(source);
-                		sWay.addTag(height);
-        				way.copyTag(sWay);
-                		sWay.copyTag(way);
-                		ddom.ways.put(sWay);
-                		overlappingMap.put(Long.toString(way.id), sWay);
-        			}
+    		// インポートデータの内で、既存データと重複するWAYを'modify'に確定する
+		for (String rKey : dom.ways.keySet()) {
+			ElementWay way = dom.ways.get(rKey).clone();
+			if ((way.action == null) || !way.action.equals("modify")) {
+    			long wayid = way.getIntersect(sdom.ways);
+    			if (wayid > 0) {
+    				ElementWay sWay = sdom.ways.get(wayid);
+    				sWay.action = "modify";
+    				sWay.orignal = false;
+    				sWay.nds = way.nds;
+            		ElementTag tag = sWay.tags.get("fixme");
+            		if (tag != null) {
+            			String fixme = tag.v;
+            			tag.v = fixme +"; PLATEAUデータで更新されています";
+            		}
+            		else {
+            			tag = new ElementTag("fixme", "PLATEAUデータで更新されています");
+            		}
+            		ElementTag source = way.tags.get("source");
+            		ElementTag height = way.tags.get("height");
+            		sWay.addTag(tag);
+            		sWay.addTag(source);
+            		sWay.addTag(height);
+    				way.copyTag(sWay);
+            		sWay.copyTag(way);
+            		ddom.ways.put(sWay);
+            		overlappingMap.put(Long.toString(way.id), sWay);
     			}
-    		}
-    		
-	    		// インポートデータの内で、既存データと重複するMultipolygonを'modify'に確定する
-			// インポートデータの内で、既存データと重複するbuilding RELATIONを'modify'に確定する
-    		for (String rKey : dom.relations.keySet()) {
-    			ElementRelation relation = dom.relations.get(rKey);
-    			if (relation.isMultipolygon()) {
-        			for (ElementMember member : relation.members) {
-						if (member.type.equals("way")) {
-	        				ElementWay sWay = overlappingMap.get(member.ref);
-	            			if (sWay != null) {
-	                    		sWay.tags.toMultipolygonMember();
-	            				member.ref = sWay.id;
-	            			}
-						}
-        			}
+			}
+		}
+		
+    		// インポートデータの内で、既存データと重複するMultipolygonを'modify'に確定する
+		// インポートデータの内で、既存データと重複するbuilding RELATIONを'modify'に確定する
+		for (String rKey : dom.relations.keySet()) {
+			ElementRelation relation = dom.relations.get(rKey);
+			if (relation.isMultipolygon()) {
+    			for (ElementMember member : relation.members) {
+					if (member.type.equals("way")) {
+        				ElementWay sWay = overlappingMap.get(member.ref);
+            			if (sWay != null) {
+                    		sWay.tags.toMultipolygonMember();
+            				member.ref = sWay.id;
+            			}
+					}
     			}
-    			else if (relation.isBuilding()) {
-					for (ElementMember member : relation.members) {
-						if (member.type.equals("way")) {
-	        				ElementWay sWay = overlappingMap.get(member.ref);
-	        				if (sWay != null) {
-	            				member.ref = sWay.id;
-	        				}
-						}
+			}
+			else if (relation.isBuilding()) {
+				for (ElementMember member : relation.members) {
+					if (member.type.equals("way")) {
+        				ElementWay sWay = overlappingMap.get(member.ref);
+        				if (sWay != null) {
+            				member.ref = sWay.id;
+        				}
 					}
 				}
-				relation.action = "modify";
-				ddom.relations.put(relation);
-    		}
-    		
-    		// 既存データで、actionが未定のまま残存しているWAYを削除する
-    		for (String rKey : sdom.ways.keySet()) {
-				ElementWay sWay = sdom.ways.get(rKey);
-				if (sWay.action == null) {
-					sWay.action = "delete";
-					sWay.orignal = false;
-	        		ElementTag tag = sWay.tags.get("fixme");
-	        		if (tag != null) {
-	        			String fixme = tag.v;
-	        			tag.v = fixme +"; PLATEAUデータで置き換えられました";
-	        		}
-	        		else {
-	        			tag = new ElementTag("fixme", "PLATEAUデータで置き換えられました");
-	        		}
-	        		sWay.addTag(tag);
-	        		for (OsmNd nd : sWay.nds) {
-	        			ElementNode node = sdom.nodes.get(nd.id);
-	        			node.action = "delete";
-	        			ddom.nodes.put(node.clone());
-	        		}
-	        		ddom.ways.put(sWay.clone());
-				}
-    		}
+			}
+			relation.action = "modify";
+			ddom.relations.put(relation);
+		}
+		
+		// 既存データで、actionが未定のまま残存しているWAYを削除する
+		for (String rKey : sdom.ways.keySet()) {
+			ElementWay sWay = sdom.ways.get(rKey);
+			if (sWay.action == null) {
+				sWay.action = "delete";
+				sWay.orignal = false;
+        		ElementTag tag = sWay.tags.get("fixme");
+        		if (tag != null) {
+        			String fixme = tag.v;
+        			tag.v = fixme +"; PLATEAUデータで置き換えられました";
+        		}
+        		else {
+        			tag = new ElementTag("fixme", "PLATEAUデータで置き換えられました");
+        		}
+        		sWay.addTag(tag);
+        		for (OsmNd nd : sWay.nds) {
+        			ElementNode node = sdom.nodes.get(nd.id);
+        			node.action = "delete";
+        			ddom.nodes.put(node.clone());
+        		}
+        		ddom.ways.put(sWay.clone());
+			}
+		}
 	}
 
 	/**
