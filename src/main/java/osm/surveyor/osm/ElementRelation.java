@@ -1,5 +1,6 @@
 package osm.surveyor.osm;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import org.w3c.dom.Document;
@@ -7,23 +8,24 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-public class ElementRelation extends ElementOsmapi implements Cloneable {
+public class ElementRelation extends PoiBean implements Cloneable,Serializable {
+	private static final long serialVersionUID = 1L;
 	public static final String RELATION = "relation";
 	public static final String MULTIPOLYGON = "multipolygon";
 	
-	public ArrayList<ElementMember> members;
+	public ArrayList<MemberBean> members;
 	
 	public ElementRelation(long id) {
 		super(id);
-		members = new ArrayList<ElementMember>();
+		members = new ArrayList<MemberBean>();
 	}
 	
 	public void addMember(ElementWay way, String role) {
-		ElementMember member = new ElementMember();
+		MemberBean member = new MemberBean();
 		way.member = true;
 		member.setWay(way);
 		member.setRole(role);
-		for (ElementMember mem : this.members) {
+		for (MemberBean mem : this.members) {
 			if (mem.equals(member)) {
 				return;
 			}
@@ -32,10 +34,10 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 	}
 
 	public void addMember(ElementRelation relation, String role) {
-		ElementMember member = new ElementMember();
+		MemberBean member = new MemberBean();
 		member.setRelation(relation);
 		member.setRole(role);
-		for (ElementMember mem : this.members) {
+		for (MemberBean mem : this.members) {
 			if (mem.equals(member)) {
 				return;
 			}
@@ -54,11 +56,10 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 	 */
     public Node toNode(Document doc) {
     	Element element = super.toElement(doc, ElementRelation.RELATION);
-    	for (ElementMember member : this.members) {
+    	for (MemberBean member : this.members) {
     		element.appendChild(member.toNode(doc));
 		}
-		for (String key  : this.tags.keySet()) {
-			ElementTag tag = tags.get(key);
+		for (TagBean tag  : getTagList()) {
 			element.appendChild(tag.toNodeNd(doc));
 		}
         return (Node)element;
@@ -70,9 +71,8 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 	 * @return
 	 */
 	ElementRelation getNoOutline() {
-		for (ElementMember member : members) {
-			String role = member.role;
-			if (role.equals("outline")) {
+		for (MemberBean member : members) {
+			if (member.getRole().equals("outline")) {
 				return null;
 			}
 		}
@@ -107,7 +107,7 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 			if (node2.getNodeType() == Node.ELEMENT_NODE) {
 				Element e2 = (Element) node2;
 				if (e2.getNodeName().equals("member")) {
-					ElementMember member = new ElementMember();
+					MemberBean member = new MemberBean();
 					member.loadElement(e2);
 					this.members.add(member);
 				}
@@ -121,9 +121,9 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 	 * @return	リレーションメンバーが存在しない場合はNULL
 	 */
 	public String getRelationMemberId() {
-		for (ElementMember mem : members) {
-			if (mem.type.equals(ElementRelation.RELATION)) {
-				return Long.toString(mem.ref);
+		for (MemberBean mem : members) {
+			if (mem.getType().equals(ElementRelation.RELATION)) {
+				return Long.toString(mem.getRef());
 			}
 		}
 		return null;
@@ -134,9 +134,9 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 	 * 前提： "outline"メンバーは一つにまとめられていること
 	 * @return	"outline"がないときはNULL
 	 */
-	public ElementMember getOutlineMember() {
-		for (ElementMember member : members) {
-			if (member.role.equals("outline")) {
+	public MemberBean getOutlineMember() {
+		for (MemberBean member : members) {
+			if (member.getRole().equals("outline")) {
 				return member;
 			}
 		}
@@ -144,8 +144,8 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 	}
 		
 	public void removeMember(long id) {
-		for (ElementMember mem : members) {
-			if (mem.ref == id) {
+		for (MemberBean mem : members) {
+			if (mem.getRef() == id) {
 				members.remove(members.indexOf(mem));
 				return;
 			}
@@ -166,8 +166,7 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 	 */
     
 	public boolean isBuilding() {
-		for (String k : tags.keySet()) {
-			ElementTag tag = tags.get(k);
+		for (TagBean tag : this.tags) {
 			if (tag.k.equals("type")) {
 				if (tag.v.equals("building")) {
 					return true;
@@ -178,8 +177,7 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 	}
 
 	public boolean isMultipolygon() {
-		for (String k : tags.keySet()) {
-			ElementTag tag = tags.get(k);
+		for (TagBean tag : this.tags) {
 			if (tag.k.equals("type")) {
 				if (tag.v.equals(ElementRelation.MULTIPOLYGON)) {
 					return true;
@@ -196,9 +194,9 @@ public class ElementRelation extends ElementOsmapi implements Cloneable {
 		ElementRelation copy = null;
 		try {
 			copy = (ElementRelation)super.clone();
-			copy.members = new ArrayList<ElementMember>();
+			copy.members = new ArrayList<MemberBean>();
 			if (copy.members != null) {
-				for (ElementMember member : this.members) {
+				for (MemberBean member : this.members) {
 					copy.members.add(member.clone());
 				}
 			}

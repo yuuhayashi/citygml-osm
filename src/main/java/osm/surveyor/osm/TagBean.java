@@ -1,6 +1,12 @@
 package osm.surveyor.osm;
 
 import org.w3c.dom.Element;
+
+import java.io.Serializable;
+
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
@@ -9,29 +15,37 @@ import org.w3c.dom.Node;
  * @param gmlFile
  * @code{
  * <osm>
- *   <tag k='building' v='yes' />
+ *    <tag k='height' v='14.072000000000001' />
+ *    <tag k='building:part' v='yes' />
  *         :
  * </osm>
  * }
  * 
  */
-public class ElementTag implements Cloneable {
+@XmlRootElement(name="tag")
+public class TagBean implements Cloneable,Serializable {
+
+	private static final long serialVersionUID = 8620019014904386928L;
+	
+	@XmlAttribute(name="k")
 	public String k = null;
+
+	@XmlAttribute(name="v")
 	public String v = null;
 	
-	public ElementTag() {
+	public TagBean() {
 		this(null, null);
 	}
 
-	public ElementTag(String key, String value) {
+	public TagBean(String key, String value) {
 		this.k = key;
 		this.v = value;
 	}
 
 	@Override
-	public ElementTag clone() {
+	public TagBean clone() {
 		try {
-			return (ElementTag)super.clone();
+			return (TagBean)super.clone();
 		} catch (CloneNotSupportedException e) {
 			e.printStackTrace();
 			return null;
@@ -48,7 +62,7 @@ public class ElementTag implements Cloneable {
         return (Node)node;
     }
     
-    public ElementTag loadElement(Element eElement) {
+    public TagBean loadElement(Element eElement) {
 		if (eElement.getNodeName().equals("tag")) {
 			String k = eElement.getAttribute("k");
 			String v = eElement.getAttribute("v");

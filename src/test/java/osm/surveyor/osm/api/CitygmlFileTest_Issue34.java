@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 import osm.surveyor.DetailTests;
-import osm.surveyor.osm.ElementMember;
+import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
@@ -99,10 +99,10 @@ public class CitygmlFileTest_Issue34 {
 		assertNotNull(osm.relations);
 		for (String relationid : osm.relations.keySet()) {
 			ElementRelation relation = osm.relations.get(relationid);
-			for (ElementMember mem : relation.members) {
-				if (mem.role.equals("inner")) {
-					assertEquals("way", mem.type);
-					ElementWay inner = osm.ways.get(mem.ref);
+			for (MemberBean mem : relation.members) {
+				if (mem.getRole().equals("inner")) {
+					assertEquals("way", mem.getType());
+					ElementWay inner = osm.ways.get(mem.getRef());
 					assertNotNull(inner);
 				}
 			}
@@ -119,8 +119,8 @@ public class CitygmlFileTest_Issue34 {
 			ElementRelation relation = osm.relations.get(relationid);
 			if (relation.isBuilding()) {
 				int outlineCnt = 0;
-				for (ElementMember mem : relation.members) {
-					if (mem.role.equals("outline")) {
+				for (MemberBean mem : relation.members) {
+					if (mem.getRole().equals("outline")) {
 						outlineCnt++;
 					}
 				}

@@ -38,9 +38,9 @@ public class OsmParser extends DefaultHandler {
     ElementBounds bounds = null;					// <bounds/>
     ElementNode node = null;						// <node/>
     OsmNd nd = null;								// <nd/>
-    ElementTag tag = null;							// <tag/>
+    TagBean tag = null;							// <tag/>
 	ElementRelation relation = null;				// <relation/>
-	ElementMember member = null;					// <gml:Polygon/>
+	MemberBean member = null;					// <gml:Polygon/>
     ElementWay way = null;							// <gml:LinearRing/>
 	
     /**
@@ -104,13 +104,13 @@ public class OsmParser extends DefaultHandler {
 			nd.setIdstr(getAttributes("ref", atts));
 		}
 		else if(qName.equals("member")){
-			member = new ElementMember();
+			member = new MemberBean();
 			member.setRef(getAttributes("ref", atts));
 			member.setRole(getAttributes("role", atts));
-			member.type = (getAttributes("type", atts));
+			member.setType(getAttributes("type", atts));
 		}
 		else if(qName.equals("tag")){
-			tag = new ElementTag();
+			tag = new TagBean();
 			tag.k = getAttributes("k", atts);
 			tag.v = getAttributes("v", atts);
 		}

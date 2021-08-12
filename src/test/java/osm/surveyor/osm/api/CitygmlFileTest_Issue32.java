@@ -14,7 +14,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 import osm.surveyor.DetailTests;
-import osm.surveyor.osm.ElementMember;
+import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
@@ -95,11 +95,11 @@ public class CitygmlFileTest_Issue32 {
 
 						int outlineCnt = 0;
 						int partCnt = 0;
-						for (ElementMember mem : relation.members) {
-							if (mem.role.equals("outline")) {
+						for (MemberBean mem : relation.members) {
+							if (mem.getRole().equals("outline")) {
 								outlineCnt++;
-								assertEquals("relation", mem.type);
-								ElementRelation outline = osm.relations.get(mem.ref);
+								assertEquals("relation", mem.getType());
+								ElementRelation outline = osm.relations.get(mem.getRef());
 								assertNotNull(outline);
 								assertThat(outline.getTagValue("type"), is("multipolygon"));
 								assertThat(outline.getTagValue("building"), is("yes"));
@@ -108,10 +108,10 @@ public class CitygmlFileTest_Issue32 {
 								assertEquals("2.14", outline.getTagValue("ele"));
 								assertTrue(outline.tags.size() >= 5);
 							}
-							if (mem.role.equals("part")) {
+							if (mem.getRole().equals("part")) {
 								partCnt++;
-								assertThat(mem.type, is("way"));
-								ElementWay way = osm.ways.get(Long.toString(mem.ref));
+								assertThat(mem.getType(), is("way"));
+								ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 								assertNotNull(way);
 								assertThat(way.getTagValue("building:part"), is("yes"));
 								assertThat(way.getTagValue("height"), is("114.7"));

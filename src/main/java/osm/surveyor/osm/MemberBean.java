@@ -1,5 +1,10 @@
 package osm.surveyor.osm;
 
+import java.io.Serializable;
+
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -9,12 +14,17 @@ import org.w3c.dom.Node;
  *   <member type='way' ref='-102077' role='part' />
  * }
  */
-public class ElementMember implements Cloneable {
-	public long ref = 0;
-	public String type = "way";
-	public String role = "";
+@XmlRootElement(name="member")
+public class MemberBean implements Cloneable,Serializable {
+
+	private static final long serialVersionUID = -4795899529405389379L;
+	private long ref = 0;
+	private String type;
+	private String role = "";
 	
-	public ElementMember() {
+	public MemberBean() {
+		this.type = "way";
+		this.role = "";
 	}
 	
 	public void setWay(ElementWay way) {
@@ -27,8 +37,31 @@ public class ElementMember implements Cloneable {
 		this.type = "relation";
 	}
 
-	public void setRef(String ref) {
-		this.ref = Long.parseLong(ref);
+	@XmlAttribute(name="id")
+	public long getRef() {
+		return this.ref;
+	}
+
+	public void setRef(long ref) {
+		this.ref = ref;
+	}
+	
+	public void setRef(String str) {
+		setRef(Long.parseLong(str));
+	}
+
+	@XmlAttribute(name="type")
+	public String getType() {
+		return this.type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	@XmlAttribute(name="role")
+	public String getRole() {
+		return this.role;
 	}
 	
 	public void setRole(String role) {
@@ -47,7 +80,7 @@ public class ElementMember implements Cloneable {
         return (Node)node;
     }
     
-    public ElementMember loadElement(Element eElement) {
+    public MemberBean loadElement(Element eElement) {
 		String ref = eElement.getAttribute("ref");
 		String role = eElement.getAttribute("role");
 		String type = eElement.getAttribute("type");
@@ -73,10 +106,10 @@ public class ElementMember implements Cloneable {
     }
     
 	@Override
-	public ElementMember clone() {
-		ElementMember copy = null;
+	public MemberBean clone() {
+		MemberBean copy = null;
 		try {
-			copy = (ElementMember)super.clone();
+			copy = (MemberBean)super.clone();
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -105,7 +138,7 @@ public class ElementMember implements Cloneable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ElementMember other = (ElementMember) obj;
+		MemberBean other = (MemberBean) obj;
 		if (ref != other.ref)
 			return false;
 		if (role == null) {

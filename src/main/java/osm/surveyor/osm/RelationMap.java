@@ -60,8 +60,8 @@ public class RelationMap extends HashMap<String, ElementRelation> {
     	for (String rKey : this.keySet()) {
     		relation = this.get(rKey);
     		if (relation != null) {
-    			for (ElementMember member : relation.members) {
-    				if (member.ref == Long.parseLong(wKey)) {
+    			for (MemberBean member : relation.members) {
+    				if (member.getRef() == Long.parseLong(wKey)) {
     					return relation;
     				}
     			}
@@ -80,10 +80,10 @@ public class RelationMap extends HashMap<String, ElementRelation> {
     	for (String rKey : this.keySet()) {
     		relation = this.get(rKey);
     		if (relation.isMultipolygon()) {
-    			for (ElementMember member : relation.members) {
-    				if (member.type.equals("way") 
-						&& member.role.equals("outer") 
-						&& (member.ref == Long.parseLong(wKey))) 
+    			for (MemberBean member : relation.members) {
+    				if (member.getType().equals("way") 
+						&& member.getRole().equals("outer") 
+						&& (member.getRef() == Long.parseLong(wKey))) 
     				{
         					return relation;
         			}

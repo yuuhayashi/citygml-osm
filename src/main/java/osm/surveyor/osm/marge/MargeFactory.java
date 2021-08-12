@@ -3,7 +3,7 @@ package osm.surveyor.osm.marge;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import osm.surveyor.osm.ElementMember;
+import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
@@ -89,9 +89,9 @@ public class MargeFactory {
 	 */
 	public MargeFactory createOutline(ElementRelation relation) {
 		WayMap memberways = new WayMap();
-		for (ElementMember member : relation.members) {
-			if (member.role.equals("part")) {
-				memberways.put(wayMap.get(member.ref).clone());
+		for (MemberBean member : relation.members) {
+			if (member.getRole().equals("part")) {
+				memberways.put(wayMap.get(member.getRef()).clone());
 			}
 		}
 		

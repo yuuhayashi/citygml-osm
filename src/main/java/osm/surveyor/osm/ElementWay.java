@@ -19,7 +19,8 @@ import org.w3c.dom.NodeList;
  * @author hayashi
  *
  */
-public class ElementWay extends ElementOsmapi implements Cloneable {
+public class ElementWay extends PoiBean implements Cloneable {
+	private static final long serialVersionUID = 1L;
 	public ArrayList<OsmNd> nds;
 	boolean area = false;
 	public boolean member = false;	// 単独のWAYか、RELATIONのメンバーかを示す。
@@ -114,8 +115,7 @@ public class ElementWay extends ElementOsmapi implements Cloneable {
 		for (OsmNd nd : this.nds) {
 			element.appendChild(nd.toNodeNd(doc));
 		}
-		for (String key  : this.tags.keySet()) {
-			ElementTag tag = tags.get(key);
+		for (TagBean tag : this.tags) {
 			if (tag != null) {
 				element.appendChild(tag.toNodeNd(doc));
 			}
@@ -366,8 +366,8 @@ public class ElementWay extends ElementOsmapi implements Cloneable {
 	}
 	
 	public boolean isBuilding() {
-		for (String tagk : this.tags.keySet()) {
-			if (tagk.startsWith("building")) {
+		for (TagBean tag : this.tags) {
+			if (tag.k.startsWith("building")) {
 				return true;
 			}
 		}
@@ -383,9 +383,9 @@ public class ElementWay extends ElementOsmapi implements Cloneable {
 		ElementRelation relation = relations.hasMembersWay(Long.toString(this.id));
 		if (relation != null) {
 			if (relation.isMultipolygon()) {
-				for (ElementMember member : relation.members) {
-					if (member.role.equals("inner")) {
-						if (member.ref == this.id) {
+				for (MemberBean member : relation.members) {
+					if (member.getRole().equals("inner")) {
+						if (member.getRef() == this.id) {
 							return true;
 						}
 					}
@@ -413,7 +413,7 @@ public class ElementWay extends ElementOsmapi implements Cloneable {
 				return false;
 		} else if (!nds.equals(other.nds))
 			return false;
-		if (tags == null) {
+		if (this.tags == null) {
 			if (other.tags != null)
 				return false;
 		} else if (!tags.equals(other.tags))

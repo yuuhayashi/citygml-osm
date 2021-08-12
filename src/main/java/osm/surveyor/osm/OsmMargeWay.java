@@ -1,6 +1,6 @@
 package osm.surveyor.osm;
 
-import java.util.HashMap;
+import java.util.List;
 
 public class OsmMargeWay {
 
@@ -8,9 +8,9 @@ public class OsmMargeWay {
 	 * "role->outline->Relation"を取得する
 	 */
 	static RelationMultipolygon getOutline(ElementRelation relation, OsmDom osm) {
-		for (ElementMember member : relation.members) {
-			if (member.role.equals("outline") && member.type.equals("relation")) {
-				return (RelationMultipolygon)osm.relations.get(Long.toString(member.ref));
+		for (MemberBean member : relation.members) {
+			if (member.getRole().equals("outline") && member.getType().equals("relation")) {
+				return (RelationMultipolygon)osm.relations.get(Long.toString(member.getRef()));
 			}
 		}
 		return null;
@@ -36,7 +36,7 @@ public class OsmMargeWay {
 	 */
 	
 	static String getHeight(ElementWay way) {
-		ElementTag tag = way.tags.get("height");
+		TagBean tag = way.getTag("height");
 		if (tag == null) {
 			return null;
 		}
@@ -72,12 +72,12 @@ public class OsmMargeWay {
 		}
 		WayMap parts = new WayMap();
 		RelationMap polygons = new RelationMap();
-		for (ElementMember plgMem : relation.members) {
-			if (plgMem.role.equals("part") && plgMem.type.equals("way")) {
-				parts.put(osm.ways.get(Long.toString(plgMem.ref)));
+		for (MemberBean plgMem : relation.members) {
+			if (plgMem.getRole().equals("part") && plgMem.getType().equals("way")) {
+				parts.put(osm.ways.get(Long.toString(plgMem.getRef())));
 			}
-			else if (plgMem.role.equals("outline") && plgMem.type.equals("relation")) {
-				polygons.put(osm.relations.get(Long.toString(plgMem.ref)));
+			else if (plgMem.getRole().equals("outline") && plgMem.getType().equals("relation")) {
+				polygons.put(osm.relations.get(Long.toString(plgMem.getRef())));
 			}
 		}
 		
@@ -85,11 +85,11 @@ public class OsmMargeWay {
 			ElementWay partWay = parts.get(wayid);
 			for (String outerid : polygons.keySet()) {
 				RelationMultipolygon polygon = (RelationMultipolygon)polygons.get(outerid);
-				for (ElementMember plgMem : polygon.members) {
-					if (plgMem.role.equals("outer") && plgMem.type.equals("way")) {
-						ElementWay outer = osm.ways.get(Long.toString(plgMem.ref));
+				for (MemberBean plgMem : polygon.members) {
+					if (plgMem.getRole().equals("outer") && plgMem.getType().equals("way")) {
+						ElementWay outer = osm.ways.get(Long.toString(plgMem.getRef()));
 						if (partWay.isSame(outer)) {
-							ElementTag ele = partWay.tags.get("height");
+							TagBean ele = partWay.getTag("height");
 							if (ele != null) {
 								polygon.addTag("height", ele.v);
 							}
@@ -116,12 +116,12 @@ public class OsmMargeWay {
 			RelationMultipolygon polygon = null;
 			ElementWay outline = null;
 			if (relation.members.size() == 1) {
-				for (ElementMember member : relation.members) {
-					if (member.role.equals("outline") && member.type.equals("relation")) {
-						polygon = (RelationMultipolygon)osm.relations.get(Long.toString(member.ref));
-						for (ElementMember plgMem : polygon.members) {
-							if (plgMem.role.equals("outer") && plgMem.type.equals("way")) {
-								outline = osm.ways.get(Long.toString(plgMem.ref));
+				for (MemberBean member : relation.members) {
+					if (member.getRole().equals("outline") && member.getType().equals("relation")) {
+						polygon = (RelationMultipolygon)osm.relations.get(Long.toString(member.getRef()));
+						for (MemberBean plgMem : polygon.members) {
+							if (plgMem.getRole().equals("outer") && plgMem.getType().equals("way")) {
+								outline = osm.ways.get(Long.toString(plgMem.getRef()));
 								break;
 							}
 						}
@@ -150,17 +150,16 @@ public class OsmMargeWay {
 	 * @param tags
 	 * @param dest
 	 */
-	static void copyTag(HashMap<String, ElementTag> tags, ElementOsmapi dest) {
+	static void copyTag(List<TagBean> tags, PoiBean dest) {
 		if (tags == null) {
 			return;
 		}
-		ElementTag buildingPartTag = dest.tags.get("building:part");
+		TagBean buildingPartTag = dest.getTag("building:part");
 		if (buildingPartTag != null) {
-			dest.tags.remove("building:part");
+			dest.removeTag("building:part");
 			dest.addTag("building", buildingPartTag.v);
 		}
-		for (String key : tags.keySet()) {
-			ElementTag tag = tags.get(key);
+		for (TagBean tag : tags) {
 			if (tag.k.equals("type")) {
 			}
 			else if (tag.k.equals("building:part")) {
@@ -176,10 +175,10 @@ public class OsmMargeWay {
 			else if (tag.k.equals("ele")) {
 			}
 			else {
-				dest.addTag(key, tag.v);
+				dest.addTag(tag.k, tag.v);
 			}
 		}
-		ElementTag buildingTag = dest.tags.get("building");
+		TagBean buildingTag = dest.getTag("building");
 		if (buildingTag == null) {
 			dest.addTag("building", "yes");
 		}

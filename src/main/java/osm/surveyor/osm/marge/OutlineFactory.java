@@ -1,16 +1,15 @@
 package osm.surveyor.osm.marge;
 
 import java.util.ArrayList;
-import osm.surveyor.osm.ElementMember;
+import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.ElementRelation;
-import osm.surveyor.osm.ElementTag;
+import osm.surveyor.osm.TagBean;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 import osm.surveyor.osm.OsmLine;
 import osm.surveyor.osm.RelationBuilding;
 import osm.surveyor.osm.RelationMap;
 import osm.surveyor.osm.RelationMultipolygon;
-import osm.surveyor.osm.TagMap;
 
 public class OutlineFactory {
 	
@@ -52,42 +51,42 @@ public class OutlineFactory {
 			aWay.toArea();
 			aWay.member = true;
 			
-			ArrayList<ElementMember> delPolygonlist = new ArrayList<>();
-			for (ElementMember mem : building.members) {
-				if (mem.type.equals(ElementRelation.RELATION)) {
+			ArrayList<MemberBean> delPolygonlist = new ArrayList<>();
+			for (MemberBean mem : building.members) {
+				if (mem.getType().equals(ElementRelation.RELATION)) {
 					if (multi == null) {
-						multi = (RelationMultipolygon)osm.relations.get(mem.ref);
+						multi = (RelationMultipolygon)osm.relations.get(mem.getRef());
 						if (multi != null) {
-							ArrayList<ElementMember> dellist = new ArrayList<>();
-							for (ElementMember outerMem : multi.members) {
-								if (outerMem.role.equals("outer")) {
+							ArrayList<MemberBean> dellist = new ArrayList<>();
+							for (MemberBean outerMem : multi.members) {
+								if (outerMem.getRole().equals("outer")) {
 									dellist.add(outerMem);
 								}
 							}
-							for (ElementMember delMem : dellist) {
-								multi.removeMember(delMem.ref);
+							for (MemberBean delMem : dellist) {
+								multi.removeMember(delMem.getRef());
 							}
 						}
 					}
 					else {
-						if (mem.ref != multi.id) {
-							RelationMultipolygon addMulti = (RelationMultipolygon)osm.relations.get(mem.ref);
-							ArrayList<ElementMember> addlist = new ArrayList<>();
-							for (ElementMember addMem : addMulti.members) {
-								if (addMem.role.equals("inner")) {
+						if (mem.getRef() != multi.id) {
+							RelationMultipolygon addMulti = (RelationMultipolygon)osm.relations.get(mem.getRef());
+							ArrayList<MemberBean> addlist = new ArrayList<>();
+							for (MemberBean addMem : addMulti.members) {
+								if (addMem.getRole().equals("inner")) {
 									addlist.add(addMem);
 								}
 							}
-							for (ElementMember addMem : addlist) {
-								multi.addMember(osm.ways.get(addMem.ref), "inner");
+							for (MemberBean addMem : addlist) {
+								multi.addMember(osm.ways.get(addMem.getRef()), "inner");
 							}
 							delPolygonlist.add(mem);
 						}
 					}
 				}
 			}
-			for (ElementMember delMem : delPolygonlist) {
-				building.removeMember(delMem.ref);
+			for (MemberBean delMem : delPolygonlist) {
+				building.removeMember(delMem.getRef());
 			}
 
 			if (multi != null) {
@@ -99,8 +98,8 @@ public class OutlineFactory {
 			else {
 				// マルチポリゴンが存在しない場合は、"bulding:Relation"に"outline"WAYをMEMBERとして追加する
 				aWay.copyTag(building);
-				aWay.tags.remove("type");
-				aWay.tags.remove("building:part");
+				aWay.removeTag("type");
+				aWay.removeTag("building:part");
 				aWay.addTag("height", maxheight);
 				osm.ways.put(aWay);
 				
@@ -128,16 +127,15 @@ public class OutlineFactory {
 				// マルチポリゴンが存在しない場合は、マルチポリゴンを作成する
 				multi = new RelationMultipolygon(osm.getNewId());
 				multi.copyTag(building);
-				multi.replaceTag("type", new ElementTag("type","multipolygon"));
+				multi.replaceTag("type", new TagBean("type","multipolygon"));
 				
 				// "outer"に、"bulding:Relation"の"outline"WAYをMEMBERとして追加する
-				for (ElementMember mem : building.members) {
-					if (mem.role.equals("outline") && mem.type.equals("way")) {
-						ElementWay outlineWay = osm.ways.get(mem.ref);
-						outlineWay.tags = new TagMap();
+				for (MemberBean mem : building.members) {
+					if (mem.getRole().equals("outline") && mem.getType().equals("way")) {
+						ElementWay outlineWay = osm.ways.get(mem.getRef());
 						outlineWay.addTag("source", osm.getSource());
 						multi.addMember(outlineWay, "outer");
-						building.removeMember(mem.ref);
+						building.removeMember(mem.getRef());
 						break;
 					}
 				}

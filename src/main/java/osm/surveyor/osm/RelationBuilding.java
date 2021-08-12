@@ -7,16 +7,17 @@ package osm.surveyor.osm;
  *   role:part "1..*" --> RelationMultipolygon or ElementWay[area=yes]
  */
 public class RelationBuilding extends ElementRelation implements Cloneable {
-	
+	private static final long serialVersionUID = 1L;
+
 	public RelationBuilding(long id) {
 		super(id);
 		addTag("type", "building");
 	}
 	
 	public ElementRelation getMultiPolygon(OsmDom osm) {
-		ElementMember outlineMember = getOutlineMember();
+		MemberBean outlineMember = getOutlineMember();
 		if (outlineMember != null) {
-			return osm.relations.get(outlineMember.ref);
+			return osm.relations.get(outlineMember.getRef());
 		}
 		return null;
 	}
@@ -28,20 +29,20 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 	 * @return	"outline"がないときはNULL
 	 */
 	public ElementWay getOutlineWay(OsmDom osm) {
-		ElementMember outlineMember = getOutlineMember();
+		MemberBean outlineMember = getOutlineMember();
 		if (outlineMember == null) {
 			return null;
 		}
 		else {
-			if (outlineMember.type.equals("way")) {
-				return osm.ways.get(outlineMember.ref);
+			if (outlineMember.getType().equals("way")) {
+				return osm.ways.get(outlineMember.getRef());
 			}
-			else if (outlineMember.type.equals("relation")) {
-				ElementRelation polygon = osm.relations.get(outlineMember.ref);
+			else if (outlineMember.getType().equals("relation")) {
+				ElementRelation polygon = osm.relations.get(outlineMember.getRef());
 				if (polygon != null) {
-					for (ElementMember outlinemember : polygon.members) {
-						if (outlinemember.role.equals("outer")) {
-							return osm.ways.get(outlinemember.ref);
+					for (MemberBean outlinemember : polygon.members) {
+						if (outlinemember.getRole().equals("outer")) {
+							return osm.ways.get(outlinemember.getRef());
 						}
 					}
 				}
@@ -57,9 +58,9 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 	 */
 	public void margeTagValue(OsmDom osm) {
 		WayMap parts = new WayMap();
-		for (ElementMember member : this.members) {
-			if (member.role.equals("part") && member.type.equals("way")) {
-				ElementWay way = osm.ways.get(member.ref);
+		for (MemberBean member : this.members) {
+			if (member.getRole().equals("part") && member.getType().equals("way")) {
+				ElementWay way = osm.ways.get(member.getRef());
 				parts.put(way);
 			}
 		}
@@ -75,7 +76,7 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 		// 'name='
 		this.margeName(parts);
 		if (multi != null) {
-			multi.replaceTag("name", new ElementTag("building:name", this.getTagValue("name")));
+			multi.replaceTag("name", new TagBean("building:name", this.getTagValue("name")));
 		}
 
 		// 'height' and 'ele'
@@ -107,14 +108,14 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 			this.addTag("building", maxway.getTagValue("building:part"));
 			if (multi != null) {
 				multi.addTag("building", maxway.getTagValue("building:part"));
-				multi.tags.remove("building:part");
+				multi.removeTag("building:part");
 			}
 		}
-		this.tags.remove("building:part");
+		this.removeTag("building:part");
 		
 		// 建築年はリレーションに反映させない
 		// [Issue39](https://github.com/yuuhayashi/citygml-osm/issues/39)
-		this.tags.remove("start_date");
+		this.removeTag("start_date");
 
 		// 地上階
 		String maxup = this.getMaxValue(parts, "building:levels");
@@ -159,9 +160,9 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 		// 'height' and 'ele'
 		String minele = this.getMinValue(ways, "ele");
 		String maxele = null;
-		for (ElementMember member : this.members) {
-			if (member.type.equals("way")) {
-				ElementWay way = ways.get(member.ref);
+		for (MemberBean member : this.members) {
+			if (member.getType().equals("way")) {
+				ElementWay way = ways.get(member.getRef());
 				String height = calcHeight(minele, way.getTagValue("ele"), way.getTagValue("height"));
 				if (height != null) {
 					if (maxele == null) {
@@ -198,9 +199,9 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 	
 	String getLongerValue(WayMap ways, String tagkey) {
 		String maxname = "";
-		for (ElementMember member : this.members) {
-			if (member.type.equals("way")) {
-				ElementWay way = ways.get(member.ref);
+		for (MemberBean member : this.members) {
+			if (member.getType().equals("way")) {
+				ElementWay way = ways.get(member.getRef());
 				String name = way.getTagValue(tagkey);
 				if ((name != null) && (name.length() > maxname.length())) {
 					maxname = name;
@@ -220,9 +221,9 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 	 */
 	public String getMinValue(WayMap ways, String k) {
 		String min = null;
-		for (ElementMember member : this.members) {
-			if (member.role.equals("part") && member.type.equals("way")) {
-				ElementWay way = ways.get(member.ref);
+		for (MemberBean member : this.members) {
+			if (member.getRole().equals("part") && member.getType().equals("way")) {
+				ElementWay way = ways.get(member.getRef());
 				String v = way.getTagValue(k);
 				if (v != null) {
 					if (min == null) {
@@ -248,9 +249,9 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 	 */
 	public String getMaxValue(WayMap ways, String k) {
 		String max = null;
-		for (ElementMember member : this.members) {
-			if (member.role.equals("part") && member.type.equals("way")) {
-				ElementWay way = ways.get(member.ref);
+		for (MemberBean member : this.members) {
+			if (member.getRole().equals("part") && member.getType().equals("way")) {
+				ElementWay way = ways.get(member.getRef());
 				String v = way.getTagValue(k);
 				if (v != null) {
 					if (max == null) {
@@ -275,9 +276,9 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 	public ElementWay getMaxArea(WayMap ways) {
 		ElementWay max = null;
 		double maxarea = 0.0d;
-		for (ElementMember member : this.members) {
-			if (member.type.equals("way")) {
-				ElementWay way = ways.get(member.ref);
+		for (MemberBean member : this.members) {
+			if (member.getType().equals("way")) {
+				ElementWay way = ways.get(member.getRef());
 				double area = way.getArea();
 				if (max == null) {
 					max = way;

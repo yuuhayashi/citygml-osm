@@ -29,6 +29,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.8</java.version>
+    <camel.version>2.25.4</camel.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <gpg.skip>true</gpg.skip>
@@ -137,7 +138,35 @@
       <scope>test</scope>
       <type>jar</type>
     </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.apache.camel/camel-core -->
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-core</artifactId>
+      <version>${camel.version}</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.apache.camel/camel-stream -->
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-stream</artifactId>
+      <version>${camel.version}</version>
+    </dependency>
     
+    <!-- https://mvnrepository.com/artifact/org.apache.camel/camel-http4 -->
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-http4</artifactId>
+      <version>${camel.version}</version>
+    </dependency>
+    
+    <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>1.7.32</version>
+    </dependency>
+
     <!-- for JUnit test -->
     <dependency>
       <groupId>org.hamcrest</groupId>

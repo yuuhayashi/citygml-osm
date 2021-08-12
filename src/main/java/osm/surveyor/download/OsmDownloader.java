@@ -10,26 +10,20 @@ import java.nio.file.Paths;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.function.Consumer;
+
 import javax.xml.parsers.ParserConfigurationException;
+
 import org.xml.sax.SAXException;
 import osm.surveyor.osm.ElementBounds;
-import osm.surveyor.osm.ElementTag;
+import osm.surveyor.osm.TagBean;
 import osm.surveyor.osm.OsmDom;
 
 public class OsmDownloader {
+	static final String suffix1 = ".osm";
+	static final String suffix2 = ".fixed.org.osm";
+	static final String suffix3 = ".target.org.osm";
 
-	/**
-	 * 指定されたOSMファイルの既存のOSMデータを取得する
-	 * 
-	 * @param args	アップデートしたいOSMデータファイル
-	 * @throws IOException 
-	 * @throws SAXException 
-	 * @throws ParserConfigurationException 
-	 */
-	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
-		String suffix1 = ".osm";
-		String suffix2 = ".mrg.osm";
-		String suffix3 = ".org.osm";
+	public static void main(String[] args) throws Exception {
         try {
 			File dir = new File(".");
 			Files.list(dir.toPath()).forEach(new Consumer<Path>() {
@@ -43,9 +37,6 @@ public class OsmDownloader {
 							try {
 								OsmDownloader updater = new OsmDownloader(file);
 								updater.download();
-								filename = filename.substring(0, filename.length() - suffix1.length());
-								updater.ddom.export(Paths.get(filename + suffix2).toFile());
-								updater.sdom.export(Paths.get(filename + suffix3).toFile());
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
@@ -104,9 +95,9 @@ public class OsmDownloader {
 	 * tag.key=`building*` を有するPOIを'building'POIとみなす
 	 * 
 	 */
-	static boolean isBuildingTag(HashMap<String,ElementTag> tags) {
+	static boolean isBuildingTag(HashMap<String,TagBean> tags) {
 		for (String k : tags.keySet()) {
-			ElementTag tag = tags.get(k);
+			TagBean tag = tags.get(k);
 			if (tag.k.startsWith("building")) {
 				return true;
 			}

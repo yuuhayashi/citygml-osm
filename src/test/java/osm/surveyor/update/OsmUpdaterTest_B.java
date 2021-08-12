@@ -14,7 +14,7 @@ import org.junit.experimental.categories.Category;
 import org.junit.runners.MethodSorters;
 
 import osm.surveyor.DetailTests;
-import osm.surveyor.osm.ElementMember;
+import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
@@ -51,21 +51,21 @@ public class OsmUpdaterTest_B {
 					
 					int outerCnt = 0;
 					int innerCnt = 0;
-					for (ElementMember mem : relation.members) {
-						if (mem.role.equals("outer")) {
+					for (MemberBean mem : relation.members) {
+						if (mem.getRole().equals("outer")) {
 							outerCnt++;
-							assertThat(mem.type, is("way"));
-							ElementWay way = osm.ways.get(Long.toString(mem.ref));
+							assertThat(mem.getType(), is("way"));
+							ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 							assertThat(way.action, is("modify"));
 							assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697"));
 							assertThat(way.getTagValue("fixme"), is("PLATEAUデータで更新されています"));
 							assertThat(way.getTagValue("building"), is(nullValue()));
 							assertThat(way.tags.size(), is(2));
 						}
-						if (mem.role.equals("inner")) {
+						if (mem.getRole().equals("inner")) {
 							innerCnt++;
-							assertThat(mem.type, is("way"));
-							ElementWay way = osm.ways.get(Long.toString(mem.ref));
+							assertThat(mem.getType(), is("way"));
+							ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 							assertThat(way.action, is("modify"));
 							assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-61384"));
 							assertThat(way.getTagValue("building"), is(nullValue()));
@@ -144,11 +144,11 @@ public class OsmUpdaterTest_B {
 					
 					int outerCnt = 0;
 					int innerCnt = 0;
-					for (ElementMember mem : relation.members) {
-						if (mem.role.equals("outer")) {
+					for (MemberBean mem : relation.members) {
+						if (mem.getRole().equals("outer")) {
 							outerCnt++;
-							assertThat(mem.type, is("way"));
-							ElementWay way = updater.ddom.ways.get(Long.toString(mem.ref));
+							assertThat(mem.getType(), is("way"));
+							ElementWay way = updater.ddom.ways.get(Long.toString(mem.getRef()));
 							assertThat(way.action, is("modify"));
 							assertThat(way.id, is(757291544l));
 							assertThat(way.changeset, is("78683298"));
@@ -157,10 +157,10 @@ public class OsmUpdaterTest_B {
 							assertThat(way.getTagValue("building"), is(nullValue()));
 							assertThat(way.tags.size(), is(2));
 						}
-						if (mem.role.equals("inner")) {
+						if (mem.getRole().equals("inner")) {
 							innerCnt++;
-							assertThat(mem.type, is("way"));
-							ElementWay way = updater.ddom.ways.get(Long.toString(mem.ref));
+							assertThat(mem.getType(), is("way"));
+							ElementWay way = updater.ddom.ways.get(Long.toString(mem.getRef()));
 							assertThat(way.action, is("modify"));
 							assertThat(way.id < 0, is(true));
 							assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-61384"));

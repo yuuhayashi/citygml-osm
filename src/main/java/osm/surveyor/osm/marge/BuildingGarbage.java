@@ -1,11 +1,11 @@
 package osm.surveyor.osm.marge;
 
-import java.util.HashMap;
+import java.util.List;
 
-import osm.surveyor.osm.ElementMember;
-import osm.surveyor.osm.ElementOsmapi;
+import osm.surveyor.osm.MemberBean;
+import osm.surveyor.osm.PoiBean;
 import osm.surveyor.osm.ElementRelation;
-import osm.surveyor.osm.ElementTag;
+import osm.surveyor.osm.TagBean;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 
@@ -38,8 +38,8 @@ public class BuildingGarbage {
 			}
 			else if (memberCnt == 1) {
 				if (relation.isMultipolygon()) {
-					for (ElementMember member : relation.members) {
-						ElementWay way = osm.ways.get(member.ref);
+					for (MemberBean member : relation.members) {
+						ElementWay way = osm.ways.get(member.getRef());
 						if (way != null) {
 							way.member = true;
 							relation.removeMember(way.id);
@@ -49,8 +49,8 @@ public class BuildingGarbage {
 					}
 				}
 				if (relation.isBuilding()) {
-					for (ElementMember member : relation.members) {
-						ElementWay way = osm.ways.get(member.ref);
+					for (MemberBean member : relation.members) {
+						ElementWay way = osm.ways.get(member.getRef());
 						if (way != null) {
 							way.member = false;
 							copyTag(relation.tags, way);
@@ -75,8 +75,8 @@ public class BuildingGarbage {
 	private boolean preDeleteMember(long id) {
 		for (String relationid : osm.relations.keySet()) {
 			ElementRelation relation = osm.relations.get(relationid);
-			for (ElementMember member : relation.members) {
-				if (member.ref == id) {
+			for (MemberBean member : relation.members) {
+				if (member.getRef() == id) {
 					relation.removeMember(id);
 					return true;
 				}
@@ -98,18 +98,17 @@ public class BuildingGarbage {
 	 * @param tags
 	 * @param dest
 	 */
-	void copyTag(HashMap<String, ElementTag> tags, ElementOsmapi dest) {
+	void copyTag(List<TagBean> tags, PoiBean dest) {
 		if (tags == null) {
 			return;
 		}
 		String building = "yes";
-		ElementTag buildingPartTag = dest.tags.get("building:part");
+		TagBean buildingPartTag = dest.getTag("building:part");
 		if (buildingPartTag != null) {
 			building = buildingPartTag.v;
-			dest.tags.remove("building:part");
+			dest.removeTag("building:part");
 		}
-		for (String key : tags.keySet()) {
-			ElementTag tag = tags.get(key);
+		for (TagBean tag : tags) {
 			if (tag.k.equals("type")) {
 			}
 			else if (tag.k.equals("building:part")) {
@@ -129,7 +128,7 @@ public class BuildingGarbage {
 			else if (tag.k.equals("ele")) {
 			}
 			else {
-				dest.addTag(key, tag.v);
+				dest.addTag(tag.k, tag.v);
 			}
 		}
 		String buildingTag = dest.getTagValue("building");

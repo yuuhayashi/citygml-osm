@@ -17,10 +17,10 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 import osm.surveyor.osm.ElementBounds;
-import osm.surveyor.osm.ElementMember;
+import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.ElementNode;
 import osm.surveyor.osm.ElementRelation;
-import osm.surveyor.osm.ElementTag;
+import osm.surveyor.osm.TagBean;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 import osm.surveyor.osm.OsmNd;
@@ -166,16 +166,16 @@ public class OsmUpdater {
     				sWay.action = "modify";
     				sWay.orignal = false;
     				sWay.nds = way.nds;
-            		ElementTag tag = sWay.tags.get("fixme");
+            		TagBean tag = sWay.getTag("fixme");
             		if (tag != null) {
             			String fixme = tag.v;
             			tag.v = fixme +"; PLATEAUデータで更新されています";
             		}
             		else {
-            			tag = new ElementTag("fixme", "PLATEAUデータで更新されています");
+            			tag = new TagBean("fixme", "PLATEAUデータで更新されています");
             		}
-            		ElementTag source = way.tags.get("source");
-            		ElementTag height = way.tags.get("height");
+            		TagBean source = way.getTag("source");
+            		TagBean height = way.getTag("height");
             		sWay.addTag(tag);
             		sWay.addTag(source);
             		sWay.addTag(height);
@@ -192,22 +192,22 @@ public class OsmUpdater {
 		for (String rKey : dom.relations.keySet()) {
 			ElementRelation relation = dom.relations.get(rKey);
 			if (relation.isMultipolygon()) {
-    			for (ElementMember member : relation.members) {
-					if (member.type.equals("way")) {
-        				ElementWay sWay = overlappingMap.get(member.ref);
+    			for (MemberBean member : relation.members) {
+					if (member.getType().equals("way")) {
+        				ElementWay sWay = overlappingMap.get(member.getRef());
             			if (sWay != null) {
-                    		sWay.tags.toMultipolygonMember();
-            				member.ref = sWay.id;
+                    		sWay.toMultipolygonMemberTag();
+            				member.setRef(sWay.id);
             			}
 					}
     			}
 			}
 			else if (relation.isBuilding()) {
-				for (ElementMember member : relation.members) {
-					if (member.type.equals("way")) {
-        				ElementWay sWay = overlappingMap.get(member.ref);
+				for (MemberBean member : relation.members) {
+					if (member.getType().equals("way")) {
+        				ElementWay sWay = overlappingMap.get(member.getRef());
         				if (sWay != null) {
-            				member.ref = sWay.id;
+            				member.setRef(sWay.id);
         				}
 					}
 				}
@@ -222,13 +222,13 @@ public class OsmUpdater {
 			if (sWay.action == null) {
 				sWay.action = "delete";
 				sWay.orignal = false;
-        		ElementTag tag = sWay.tags.get("fixme");
+        		TagBean tag = sWay.getTag("fixme");
         		if (tag != null) {
         			String fixme = tag.v;
         			tag.v = fixme +"; PLATEAUデータで置き換えられました";
         		}
         		else {
-        			tag = new ElementTag("fixme", "PLATEAUデータで置き換えられました");
+        			tag = new TagBean("fixme", "PLATEAUデータで置き換えられました");
         		}
         		sWay.addTag(tag);
         		for (OsmNd nd : sWay.nds) {
@@ -245,9 +245,9 @@ public class OsmUpdater {
 	 * tag.key=`building*` を有するPOIを'building'POIとみなす
 	 * 
 	 */
-	static boolean isBuildingTag(HashMap<String,ElementTag> tags) {
+	static boolean isBuildingTag(HashMap<String,TagBean> tags) {
 		for (String k : tags.keySet()) {
-			ElementTag tag = tags.get(k);
+			TagBean tag = tags.get(k);
 			if (tag.k.startsWith("building")) {
 				return true;
 			}

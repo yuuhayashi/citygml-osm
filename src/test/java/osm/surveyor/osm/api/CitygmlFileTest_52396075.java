@@ -11,7 +11,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 import osm.surveyor.DetailTests;
-import osm.surveyor.osm.ElementMember;
+import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
@@ -79,11 +79,11 @@ public class CitygmlFileTest_52396075 {
 
 						int outlineCnt = 0;
 						int partCnt = 0;
-						for (ElementMember mem : relation.members) {
-							if (mem.role.equals("outline")) {
+						for (MemberBean mem : relation.members) {
+							if (mem.getRole().equals("outline")) {
 								outlineCnt++;
-								assertThat(mem.type, is("relation"));
-								ElementRelation outline = osm.relations.get(mem.ref);
+								assertThat(mem.getType(), is("relation"));
+								ElementRelation outline = osm.relations.get(mem.getRef());
 								assertThat(outline, notNullValue());
 								assertThat(outline.getTagValue("type"), is("multipolygon"));
 								assertThat(outline.getTagValue("building"), is("yes"));
@@ -92,10 +92,10 @@ public class CitygmlFileTest_52396075 {
 								assertThat(outline.getTagValue("ele"), is("728.31"));
 								assertThat(outline.tags.size() >= 5, is(true));
 							}
-							if (mem.role.equals("part")) {
+							if (mem.getRole().equals("part")) {
 								partCnt++;
-								assertThat(mem.type, is("way"));
-								ElementWay way = osm.ways.get(Long.toString(mem.ref));
+								assertThat(mem.getType(), is("way"));
+								ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 								assertThat(way, notNullValue());
 								assertThat(way.getTagValue("building:part"), is("yes"));
 								assertThat(way.getTagValue("building:levels"), is("1"));
@@ -120,11 +120,11 @@ public class CitygmlFileTest_52396075 {
 
 						int outerCnt = 0;
 						int innerCnt = 0;
-						for (ElementMember mem : relation.members) {
-							if (mem.role.equals("outer")) {
+						for (MemberBean mem : relation.members) {
+							if (mem.getRole().equals("outer")) {
 								outerCnt++;
-								assertThat(mem.type, is("way"));
-								ElementWay way = osm.ways.get(Long.toString(mem.ref));
+								assertThat(mem.getType(), is("way"));
+								ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 								assertThat(way, notNullValue());
 								assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 14382-bldg-10718"));
 								assertThat(way.tags.size(), is(1));

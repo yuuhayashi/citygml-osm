@@ -12,7 +12,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 import osm.surveyor.DetailTests;
-import osm.surveyor.osm.ElementMember;
+import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
@@ -89,10 +89,10 @@ public class CitygmlFileTest_Issue28 {
 				// Issue #36
 				testIssue36(osm, relation);
 				
-				for (ElementMember mem : relation.members) {
-					if (mem.role.equals("part")) {
-						assertEquals("way", mem.type);
-						ElementWay way = osm.ways.get(Long.toString(mem.ref));
+				for (MemberBean mem : relation.members) {
+					if (mem.getRole().equals("part")) {
+						assertEquals("way", mem.getType());
+						ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 						
 						// (1) "40205-bldg-80498"をメンバに持つリレーションは building=industrial であるべき、
 						if (way.getTagValue("source").endsWith("40205-bldg-80498")) {
@@ -135,10 +135,10 @@ public class CitygmlFileTest_Issue28 {
 		int i = 0;
 		for (String key : map.keySet()) {
 			ElementRelation relation = map.get(key);
-			for (ElementMember mem : relation.members) {
-				if (mem.role.equals("part")) {
-					assertEquals("way", mem.type);
-					ElementWay way = osm.ways.get(Long.toString(mem.ref));
+			for (MemberBean mem : relation.members) {
+				if (mem.getRole().equals("part")) {
+					assertEquals("way", mem.getType());
+					ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 					
 					// "40205-bldg-81197"をメンバに持つリレーションは 20個以上の建物パーツを持つべき
 					if (way.getTagValue("source").endsWith("40205-bldg-81197")) {
@@ -160,10 +160,10 @@ public class CitygmlFileTest_Issue28 {
 	 */
 	void testIssue36(OsmDom osm, ElementRelation relation) {
 		check(relation.getTagValue("ele"));
-		for (ElementMember mem : relation.members) {
-			if (mem.role.equals("part")) {
-				assertEquals("way", mem.type);
-				ElementWay way = osm.ways.get(Long.toString(mem.ref));
+		for (MemberBean mem : relation.members) {
+			if (mem.getRole().equals("part")) {
+				assertEquals("way", mem.getType());
+				ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 				check(way.getTagValue("ele"));
 			}
 		}
@@ -206,10 +206,10 @@ public class CitygmlFileTest_Issue28 {
 				assertNotNull(relation);
 				String type = relation.getTagValue("type");
 				if (type.equals("building")) {
-					for (ElementMember mem : relation.members) {
-						if (mem.role.equals("part")) {
-							assertEquals("way", mem.type);
-							ElementWay way = osm.ways.get(Long.toString(mem.ref));
+					for (MemberBean mem : relation.members) {
+						if (mem.getRole().equals("part")) {
+							assertEquals("way", mem.getType());
+							ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 
 							// "40205-bldg-81197"をメンバに持つリレーションは 20個以上の建物パーツを持つべき
 							if (way.getTagValue("source").endsWith("40205-bldg-81197")) {

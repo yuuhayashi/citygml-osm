@@ -1,5 +1,10 @@
 package osm.surveyor.osm;
 
+import java.io.Serializable;
+
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -15,11 +20,23 @@ import org.w3c.dom.Node;
  * }
  * 
  */
-public class ElementBounds {
+@XmlRootElement(name="bounds")
+public class ElementBounds implements Serializable {
+	private static final long serialVersionUID = -6421750776457411407L;
+
+	@XmlAttribute(name="minlat")
 	public String minlat = null;
+	
+	@XmlAttribute(name="minlon")
 	public String minlon = null;
+	
+	@XmlAttribute(name="maxlat")
 	public String maxlat = null;
+	
+	@XmlAttribute(name="maxlon")
 	public String maxlon = null;
+	
+	@XmlAttribute(name="origin")
 	public String origin = "CGImap 0.8.3 (2061540 spike-08.openstreetmap.org)";
     
 	/*
@@ -36,5 +53,9 @@ public class ElementBounds {
         node.setAttribute("maxlon", maxlon);
         node.setAttribute("origin", origin);
         return (Node)node;
+    }
+    
+    public String getBbox() {
+		return "bbox="+ minlon +","+ minlat +","+ maxlon +","+ maxlat;
     }
 }

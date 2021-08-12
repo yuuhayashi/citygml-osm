@@ -2,7 +2,7 @@ package osm.surveyor.osm.marge;
 
 import java.util.ArrayList;
 
-import osm.surveyor.osm.ElementMember;
+import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
@@ -91,21 +91,21 @@ public class RelationMarge {
 		// Wayメンバーは全て取り込む
 		// RelationメンバーはInnerのみ取り込む。Outerは除外する
 		ElementRelation multi = relation.getMultiPolygon(osm);
-		for (ElementMember mem : b.members) {
-			if (mem.role.equals("part")) {
-				if (mem.type.equals("way")) {
-					ElementWay memway = osm.ways.get(Long.toString(mem.ref));
-					relation.addMember(memway, mem.role);
+		for (MemberBean mem : b.members) {
+			if (mem.getRole().equals("part")) {
+				if (mem.getType().equals("way")) {
+					ElementWay memway = osm.ways.get(Long.toString(mem.getRef()));
+					relation.addMember(memway, mem.getRole());
 				}
 			}
-			else if (mem.role.equals("outline")) {
-				if (mem.type.equals(ElementRelation.RELATION)) {
-					ElementRelation polygon = osm.relations.get(Long.toString(mem.ref));
+			else if (mem.getRole().equals("outline")) {
+				if (mem.getType().equals(ElementRelation.RELATION)) {
+					ElementRelation polygon = osm.relations.get(Long.toString(mem.getRef()));
 					if (polygon != null) {
-						for (ElementMember polymem : polygon.members) {
-							if (polymem.type.equals("way") && polymem.role.equals("inner")) {
+						for (MemberBean polymem : polygon.members) {
+							if (polymem.getType().equals("way") && polymem.getRole().equals("inner")) {
 								if (multi != null) {
-									multi.addMember(osm.ways.get(Long.toString(polymem.ref)), "inner");
+									multi.addMember(osm.ways.get(Long.toString(polymem.getRef())), "inner");
 								}
 							}
 						}
@@ -113,16 +113,16 @@ public class RelationMarge {
 				}
 			}
 		}
-		ArrayList<ElementMember> deloutline = new ArrayList<>();
-		for (ElementMember mem : relation.members) {
-			if (mem.type.equals(ElementRelation.RELATION)) {
-				if (mem.ref != multi.id) {
+		ArrayList<MemberBean> deloutline = new ArrayList<>();
+		for (MemberBean mem : relation.members) {
+			if (mem.getType().equals(ElementRelation.RELATION)) {
+				if (mem.getRef() != multi.id) {
 					deloutline.add(mem);
 				}
 			}
 		}
-		for (ElementMember mem : deloutline) {
-			relation.removeMember(mem.ref);
+		for (MemberBean mem : deloutline) {
+			relation.removeMember(mem.getRef());
 		}
 		relation = (new OutlineFactory(osm)).createOutline(relation);
 		relation.margeTagValue(osm);

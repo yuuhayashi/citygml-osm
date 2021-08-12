@@ -1,6 +1,9 @@
 package osm.surveyor.osm;
 
 import org.w3c.dom.Element;
+
+import java.io.Serializable;
+
 import org.locationtech.jts.geom.Coordinate;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -16,10 +19,11 @@ import org.w3c.dom.Node;
  * }
  * 
  */
-public class ElementNode extends ElementOsmapi implements Cloneable {
+public class ElementNode extends PoiBean implements Cloneable,Serializable {
+	private static final long serialVersionUID = 1L;
 	public OsmPoint point = null;
 	public String height = null;
-	
+
 	public ElementNode(long id) {
 		super(id);
 		this.point = new OsmPoint();

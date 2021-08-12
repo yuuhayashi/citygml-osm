@@ -1,6 +1,14 @@
 package osm.surveyor.osm;
 
 import org.w3c.dom.Element;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -14,29 +22,65 @@ import org.w3c.dom.NodeList;
  * }
  * 
  */
-public class ElementOsmapi implements Cloneable {
-	public long id = 0;
-	public String action = null;
-	public String timestamp = null;
-	public String uid = null;
-	public String user = null;
-	public boolean visible = true;
-	public String version = null;
-	public boolean orignal = false;
-	public String changeset = null;
-	public TagMap tags;
+public class PoiBean implements Cloneable,Serializable {
+	private static final long serialVersionUID = 1L;
 
-	public ElementOsmapi(long id) {
-		tags = new TagMap();
+	@XmlAttribute(name="id")
+	public long id;
+	
+	@XmlAttribute(name="action")
+	public String action = null;
+
+	@XmlAttribute(name="visible")
+	public boolean visible = true;
+
+	@XmlAttribute(name="timestamp")
+	public String timestamp;
+
+	@XmlAttribute(name="uid")
+	public String uid;
+
+	@XmlAttribute(name="user")
+	public String user = null;
+	
+	@XmlAttribute(name="version")
+	public String version;
+
+	@XmlAttribute(name="changeset")
+	public String changeset = null;
+
+	//public TagMap tags;
+    public List<TagBean> tags = new ArrayList<>();
+
+    @XmlElement(name="tag")
+    public List<TagBean> getTagList() {
+    	return tags;
+    }
+
+    public void setTagList(List<TagBean> tagList) {
+    	this.tags = tagList;
+    }
+
+	public boolean orignal = false;
+
+    public PoiBean() {
+		this(0);
+	}
+
+    public PoiBean(long id) {
 		this.id = id;
 	}
 	
 	public String getIdstr() {
-		return Long.toString(id);
+		return Long.toString(getId());
 	}
 
 	public void setIdstr(String id) {
-		this.id = Long.parseLong(id);
+		setId(Long.parseLong(id));
+	}
+
+	public long getId() {
+		return this.id;
 	}
 
 	public void setId(long id) {
@@ -52,15 +96,14 @@ public class ElementOsmapi implements Cloneable {
 	}
 
 	@Override
-	public ElementOsmapi clone() {
-		ElementOsmapi copy = null;
+	public PoiBean clone() {
+		PoiBean copy = null;
 		try {
-			copy = (ElementOsmapi)super.clone();
-			copy.tags = new TagMap();
+			copy = (PoiBean)super.clone();
+			copy.tags = new ArrayList<>();
 			if (tags != null) {
-				for (String k : tags.keySet()) {
-					ElementTag tag = tags.get(k);
-					copy.tags.put(k, tag.clone());
+				for (TagBean tag : tags) {
+					copy.tags.add(tag.clone());
 				}
 			}
 		}
@@ -71,28 +114,47 @@ public class ElementOsmapi implements Cloneable {
 		return copy;
 	}
 	
-	public ElementOsmapi copy(long newid) {
-		ElementOsmapi copy = this.clone();
+	public PoiBean copy(long newid) {
+		PoiBean copy = this.clone();
 		copy.id = newid;
 		return copy;
 	}
     
+	//---------------------
+	
 	public void addTag(String k, String v) {
-		if ((v != null) && !v.isEmpty()) {
-			this.tags.put(k, new ElementTag(k, v));
-		}
+		addTag(new TagBean(k, v));
 	}
 
-	public void addTag(ElementTag tag) {
+	public void addTag(TagBean tag) {
 		if (tag != null) {
+			if (getTag(tag.k) != null) {
+				removeTag(tag.k);
+			}
 			if ((tag.v != null) && !tag.v.isEmpty()) {
-				this.tags.put(tag.k, tag);
+				this.tags.add(tag);
 			}
 		}
 	}
 	
+	public TagBean getTag(String key) {
+		for (TagBean tag : tags) {
+			if ((tag.k != null) && tag.k.equals(key)) {
+				return tag;
+			}
+		}
+		return null;
+	}
+	
+	public void removeTag(String key) {
+		TagBean tag = getTag(key);
+		if (tag != null) {
+			tags.remove(tag);
+		}
+	}
+	
 	public String getTagValue(String key) {
-		ElementTag tag = this.tags.get(key);
+		TagBean tag = getTag(key);
 		if (tag == null) {
 			return null;
 		}
@@ -110,12 +172,12 @@ public class ElementOsmapi implements Cloneable {
 	 * @param tags
 	 * @param dest
 	 */
-	public void copyTag(ElementOsmapi source) {
+	public void copyTag(PoiBean source) {
 		if (source.tags == null) {
 			return;
 		}
-		for (String key : source.tags.keySet()) {
-			ElementTag tag = source.tags.get(key).clone();
+		for (TagBean t : source.tags) {
+			TagBean tag = t.clone();
 			addTag(tag);
 		}
 	}
@@ -125,20 +187,43 @@ public class ElementOsmapi implements Cloneable {
      * @param source
      * @param dest
      */
-    public void replaceTag(String key, ElementTag dest) {
-		ElementTag tag = tags.get(key);
+    public void replaceTag(String key, TagBean dest) {
+		TagBean tag = getTag(key);
 		if (tag == null) {
 			return;
 		}
-		tags.remove(key);
+		tags.remove(tag);
 		if (dest != null) {
 			if (dest.v == null) {
-				tags.remove(key);
+				tags.remove(tag);
 			}
 			else {
-				tags.put(dest.k, dest);
+				tags.add(dest);
 			}
 		}
+    }
+    
+    /**
+     * マルチポリゴンメンバー用のタグに変更する
+     * OUTER and INNER
+     * 		- remove NOT "source=*"
+     * 		- remove NOT "fixme=*"
+     */
+    public void toMultipolygonMemberTag() {
+    	List<TagBean> killList = new ArrayList<>();
+    	for (TagBean tag : this.tags) {
+    		switch (tag.k) {
+    		case "source":
+    			break;
+    		case "fixme":
+    			break;
+    		default:
+    			killList.add(tag);
+    		}	
+    	}
+    	for (TagBean tag : killList) {
+    		removeTag(tag.k);
+    	}
     }
 	
 	/**
@@ -180,7 +265,7 @@ public class ElementOsmapi implements Cloneable {
      * @param nNode		doc.getElementsByTagName("node")
      * @param nodes		結果を格納するMAP
      */
-    public ElementOsmapi loadElement(Element eElement) {
+    public PoiBean loadElement(Element eElement) {
 		this.id = Long.parseLong(getAttri(eElement, "id"));
 		this.action = getAttri(eElement, "action");
 		this.timestamp = getAttri(eElement, "timestamp");
@@ -196,8 +281,8 @@ public class ElementOsmapi implements Cloneable {
 			if (node2.getNodeType() == Node.ELEMENT_NODE) {
 				Element e2 = (Element) node2;
 				if (e2.getNodeName().equals("tag")) {
-					ElementTag tag = (new ElementTag()).loadElement(e2);
-					this.tags.put(tag.k, tag);
+					TagBean tag = (new TagBean()).loadElement(e2);
+					this.tags.add(tag);
 				}
 			}
 	    }
@@ -241,7 +326,7 @@ public class ElementOsmapi implements Cloneable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ElementOsmapi other = (ElementOsmapi) obj;
+		PoiBean other = (PoiBean) obj;
 		if (action == null) {
 			if (other.action != null)
 				return false;

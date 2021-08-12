@@ -18,7 +18,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 import osm.surveyor.DetailTests;
-import osm.surveyor.osm.ElementMember;
+import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
@@ -71,11 +71,11 @@ public class CitygmlFileTest_E {
 
 						int outlineCnt = 0;
 						int partCnt = 0;
-						for (ElementMember mem : relation.members) {
-							if (mem.role.equals("outline")) {
+						for (MemberBean mem : relation.members) {
+							if (mem.getRole().equals("outline")) {
 								outlineCnt++;
-								assertThat(mem.type, is("relation"));
-								ElementRelation outline = osm.relations.get(mem.ref);
+								assertThat(mem.getType(), is("relation"));
+								ElementRelation outline = osm.relations.get(mem.getRef());
 								assertNotNull(outline);
 								assertThat(outline.getTagValue("type"), is("multipolygon"));
 								assertThat(outline.getTagValue("building"), is("yes"));
@@ -89,10 +89,10 @@ public class CitygmlFileTest_E {
 								assertThat(outline.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-56522"));
 								assertThat(outline.tags.size(), is(11));
 							}
-							if (mem.role.equals("part")) {
+							if (mem.getRole().equals("part")) {
 								partCnt++;
-								assertThat(mem.type, is("way"));
-								ElementWay way = osm.ways.get(Long.toString(mem.ref));
+								assertThat(mem.getType(), is("way"));
+								ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 								assertNotNull(way);
 								assertThat(way.getTagValue("building:part"), is("yes"));
 								assertThat(way.getTagValue("building:levels"), is("2"));
@@ -124,11 +124,11 @@ public class CitygmlFileTest_E {
 
 						int outlineCnt = 0;
 						int partCnt = 0;
-						for (ElementMember mem : relation.members) {
-							if (mem.role.equals("outline")) {
+						for (MemberBean mem : relation.members) {
+							if (mem.getRole().equals("outline")) {
 								outlineCnt++;
-								assertThat(mem.type, is("relation"));
-								ElementRelation outline = osm.relations.get(mem.ref);
+								assertThat(mem.getType(), is("relation"));
+								ElementRelation outline = osm.relations.get(mem.getRef());
 								assertNotNull(outline);
 								assertThat(outline.getTagValue("type"), is("multipolygon"));
 								assertThat(outline.getTagValue("building"), is("yes"));
@@ -140,10 +140,10 @@ public class CitygmlFileTest_E {
 								assertThat(outline.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-55333"));
 								assertThat(outline.tags.size(), is(9));
 							}
-							if (mem.role.equals("part")) {
+							if (mem.getRole().equals("part")) {
 								partCnt++;
-								assertThat(mem.type, is("way"));
-								ElementWay way = osm.ways.get(Long.toString(mem.ref));
+								assertThat(mem.getType(), is("way"));
+								ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 								assertNotNull(way);
 								assertThat(way.getTagValue("addr:full"), is("東京都大田区大森東四丁目"));
 								assertThat(way.getTagValue("addr:ref"), is("13111007004"));
@@ -177,16 +177,16 @@ public class CitygmlFileTest_E {
 
 						int outerCnt = 0;
 						int innerCnt = 0;
-						for (ElementMember mem : relation.members) {
-							if (mem.role.equals("outer")) {
+						for (MemberBean mem : relation.members) {
+							if (mem.getRole().equals("outer")) {
 								outerCnt++;
-								assertThat(mem.type, is("way"));
-								ElementWay way = osm.ways.get(Long.toString(mem.ref));
+								assertThat(mem.getType(), is("way"));
+								ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 								assertNotNull(way);
 								assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-56522"));
 								assertThat(way.tags.size(), is(1));
 							}
-							if (mem.role.equals("inner")) {
+							if (mem.getRole().equals("inner")) {
 								innerCnt++;
 							}
 						}
@@ -207,16 +207,16 @@ public class CitygmlFileTest_E {
 
 						int outerCnt = 0;
 						int innerCnt = 0;
-						for (ElementMember mem : relation.members) {
-							if (mem.role.equals("outer")) {
+						for (MemberBean mem : relation.members) {
+							if (mem.getRole().equals("outer")) {
 								outerCnt++;
-								assertThat(mem.type, is("way"));
-								ElementWay way = osm.ways.get(Long.toString(mem.ref));
+								assertThat(mem.getType(), is("way"));
+								ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 								assertNotNull(way);
 								assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-55333"));
 								assertThat(way.tags.size(), is(1));
 							}
-							if (mem.role.equals("inner")) {
+							if (mem.getRole().equals("inner")) {
 								innerCnt++;
 							}
 						}
@@ -261,17 +261,17 @@ public class CitygmlFileTest_E {
 					assertNotNull(relation.getTagValue("ele"));
 					assertThat(relation.getTagValue("source"), startsWith("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697"));
 	
-					for (ElementMember mem : relation.members) {
-						if (mem.role.equals("outline")) {
+					for (MemberBean mem : relation.members) {
+						if (mem.getRole().equals("outline")) {
 							outlineCnt++;
-							assertThat(mem.type, is("relation"));
-							ElementRelation outline = osm.relations.get(mem.ref);
+							assertThat(mem.getType(), is("relation"));
+							ElementRelation outline = osm.relations.get(mem.getRef());
 							assertNotNull(outline);
 						}
-						if (mem.role.equals("part")) {
+						if (mem.getRole().equals("part")) {
 							partCnt++;
-							assertThat(mem.type, is("way"));
-							ElementWay way = osm.ways.get(Long.toString(mem.ref));
+							assertThat(mem.getType(), is("way"));
+							ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 							assertNotNull(way);
 						}
 					}
@@ -290,19 +290,19 @@ public class CitygmlFileTest_E {
 
 						int outerCnt = 0;
 						int innerCnt = 0;
-						for (ElementMember mem : relation.members) {
-							if (mem.role.equals("outer")) {
+						for (MemberBean mem : relation.members) {
+							if (mem.getRole().equals("outer")) {
 								outerCnt++;
-								assertThat(mem.type, is("way"));
-								ElementWay way = osm.ways.get(Long.toString(mem.ref));
+								assertThat(mem.getType(), is("way"));
+								ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 								assertNotNull(way);
 								assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-55333"));
 								assertThat(way.tags.size(), is(1));
 							}
-							if (mem.role.equals("inner")) {
+							if (mem.getRole().equals("inner")) {
 								innerCnt++;
-								assertThat(mem.type, is("way"));
-								ElementWay way = osm.ways.get(Long.toString(mem.ref));
+								assertThat(mem.getType(), is("way"));
+								ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 								assertNotNull(way);
 								assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-55333"));
 								assertThat(way.tags.size(), is(1));
@@ -351,14 +351,14 @@ public class CitygmlFileTest_E {
 					int partCnt = 0;
 					int outerCnt = 0;
 					int innerCnt = 0;
-					for (ElementMember mem : relation.members) {
-						if (mem.role.equals("outline")) {
+					for (MemberBean mem : relation.members) {
+						if (mem.getRole().equals("outline")) {
 							outlineCnt++;
 						}
-						if (mem.role.equals("part")) {
+						if (mem.getRole().equals("part")) {
 							partCnt++;
-							assertThat(mem.type, is("way"));
-							ElementWay way = osm.ways.get(Long.toString(mem.ref));
+							assertThat(mem.getType(), is("way"));
+							ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 							assertNotNull(way);
 							if (way.getTagValue("source").endsWith("; 13111-bldg-56522")) {
 								assertThat(way.getTagValue("building:part"), is("yes"));
@@ -454,11 +454,11 @@ public class CitygmlFileTest_E {
 					int partCnt = 0;
 					int outerCnt = 0;
 					int innerCnt = 0;
-					for (ElementMember mem : relation.members) {
-						if (mem.role.equals("outline")) {
+					for (MemberBean mem : relation.members) {
+						if (mem.getRole().equals("outline")) {
 							outlineCnt++;
-							assertEquals("relation", mem.type);
-							ElementRelation polygon = osm.relations.get(Long.toString(mem.ref));
+							assertEquals("relation", mem.getType());
+							ElementRelation polygon = osm.relations.get(Long.toString(mem.getRef()));
 							assertNotNull(polygon);
 							assertEquals("multipolygon", polygon.getTagValue("type"));
 							assertEquals("yes", polygon.getTagValue("building"));
@@ -474,19 +474,19 @@ public class CitygmlFileTest_E {
 							assertEquals("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697", polygon.getTagValue("source"));
 							assertEquals(11, polygon.tags.size());
 							
-							for (ElementMember member : polygon.members) {
-								if (member.role.equals("outer")) {
+							for (MemberBean member : polygon.members) {
+								if (member.getRole().equals("outer")) {
 									outerCnt++;
-									assertEquals("way", member.type);
-									ElementWay way = osm.ways.get(Long.toString(member.ref));
+									assertEquals("way", member.getType());
+									ElementWay way = osm.ways.get(Long.toString(member.getRef()));
 									assertNotNull(way);
 									assertEquals("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697", way.getTagValue("source"));
 									assertEquals(1, way.tags.size());
 								}
-								if (member.role.equals("inner")) {
+								if (member.getRole().equals("inner")) {
 									innerCnt++;
-									assertEquals("way", member.type);
-									ElementWay way = osm.ways.get(Long.toString(member.ref));
+									assertEquals("way", member.getType());
+									ElementWay way = osm.ways.get(Long.toString(member.getRef()));
 									assertNotNull(way);
 									assertEquals("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697", way.getTagValue("source"));
 									assertEquals(1, way.tags.size());
@@ -494,10 +494,10 @@ public class CitygmlFileTest_E {
 							}
 							assertEquals(2, polygon.members.size());
 						}
-						if (mem.role.equals("part")) {
+						if (mem.getRole().equals("part")) {
 							partCnt++;
-							assertThat(mem.type, is("way"));
-							ElementWay way = osm.ways.get(Long.toString(mem.ref));
+							assertThat(mem.getType(), is("way"));
+							ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 							assertNotNull(way);
 							if (way.getTagValue("source").endsWith("; 13111-bldg-56522")) {
 								assertThat(way.getTagValue("building:part"), is("yes"));

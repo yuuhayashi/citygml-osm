@@ -108,8 +108,8 @@ public class OsmDom {
 	    // Relation->member->WAY は、WAY.member=true にする
 		for (String rKey : relations.keySet()) {
 			ElementRelation relation = relations.get(rKey);
-			for (ElementMember menber : relation.members) {
-				ElementWay sWay = ways.get(menber.ref);
+			for (MemberBean menber : relation.members) {
+				ElementWay sWay = ways.get(menber.getRef());
 				if (sWay != null) {
 					sWay.member = true;
 				}
@@ -126,13 +126,8 @@ public class OsmDom {
 	 * @throws MalformedURLException 
 	 */
 	public void downloadMap() throws MalformedURLException, ProtocolException, IOException, ParserConfigurationException, SAXException {
-        double minlon = Double.parseDouble(bounds.minlon);
-		double maxlon = Double.parseDouble(bounds.maxlon);
-		double minlat = Double.parseDouble(bounds.minlat);
-		double maxlat = Double.parseDouble(bounds.maxlat);
-		
 		HttpGet http = new HttpGet();
-		String urlstr = http.getHost() + "/api/0.6/map" + "?bbox="+ Double.toString(minlon) +","+ Double.toString(minlat) +","+ Double.toString(maxlon) +","+ Double.toString(maxlat);
+		String urlstr = http.getHost() + "/api/0.6/map" + "?"+ bounds.getBbox();
         System.out.println("URL: " + urlstr);
         URL url = new URL(urlstr);
         
@@ -187,9 +182,9 @@ public class OsmDom {
 	}
 	
 	void addRelation(OsmDom ddom, ElementRelation relation) {
-		for (ElementMember member : relation.members) {
-			if (member.type.equals("way")) {
-				ElementWay way = this.ways.get(member.ref);
+		for (MemberBean member : relation.members) {
+			if (member.getType().equals("way")) {
+				ElementWay way = this.ways.get(member.getRef());
 				if (way != null) {
 					addWay(ddom, way);
 				}
@@ -279,12 +274,12 @@ public class OsmDom {
     }
     
 
-	public ArrayList<ElementRelation> getParents(ElementOsmapi obj) {
+	public ArrayList<ElementRelation> getParents(PoiBean obj) {
     	ArrayList<ElementRelation> list = new ArrayList<>();
     	for (String id : relations.keySet()) {
     		ElementRelation relation = relations.get(id);
-    		for (ElementMember mem : relation.members) {
-    			if (mem.ref == obj.id) {
+    		for (MemberBean mem : relation.members) {
+    			if (mem.getRef() == obj.id) {
     				list.add(relation);
     			}
     		}
@@ -294,9 +289,9 @@ public class OsmDom {
 	
 	public String getMaxHeight(ElementRelation relation) {
 		String maxheight = "0";
-		for (ElementMember member : relation.members) {
-			if (member.role.equals("part")) {
-				ElementWay way = ways.get(member.ref);
+		for (MemberBean member : relation.members) {
+			if (member.getRole().equals("part")) {
+				ElementWay way = ways.get(member.getRef());
 				String height = way.getTagValue("height");
 				if (height != null) {
 					if (Double.parseDouble(maxheight) < Double.parseDouble(height)) {
@@ -321,8 +316,8 @@ public class OsmDom {
 		}
 		for (String id : this.relations.keySet()) {
 			ElementRelation relation = this.relations.get(id);
-			for (ElementMember member : relation.members) {
-				ElementWay way = this.ways.get(member.ref);
+			for (MemberBean member : relation.members) {
+				ElementWay way = this.ways.get(member.getRef());
 				if (way != null) {
 					map.put(way);
 				}

@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 import osm.surveyor.DetailTests;
-import osm.surveyor.osm.ElementMember;
+import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
@@ -47,18 +47,18 @@ public class CitygmlFileTest_B {
 					assertEquals("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-61384", relation.getTagValue("source"));
 					int outerCnt = 0;
 					int innerCnt = 0;
-					for (ElementMember mem : relation.members) {
-						if (mem.role.equals("outer")) {
+					for (MemberBean mem : relation.members) {
+						if (mem.getRole().equals("outer")) {
 							outerCnt++;
-							assertEquals("way", mem.type);
-							ElementWay way = osm.ways.get(Long.toString(mem.ref));
+							assertEquals("way", mem.getType());
+							ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 							assertEquals("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697", way.getTagValue("source"));
 							assertEquals(1, way.tags.size());
 						}
-						if (mem.role.equals("inner")) {
+						if (mem.getRole().equals("inner")) {
 							innerCnt++;
-							assertEquals("way", mem.type);
-							ElementWay way = osm.ways.get(Long.toString(mem.ref));
+							assertEquals("way", mem.getType());
+							ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 							assertEquals("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-61384", way.getTagValue("source"));
 							assertEquals(1, way.tags.size());
 						}
@@ -93,11 +93,11 @@ public class CitygmlFileTest_B {
 				if (type.equals("multipolygon")) {
 					int outerCnt = 0;
 					int innerCnt = 0;
-					for (ElementMember mem : relation.members) {
-						if (mem.role.equals("outer")) {
+					for (MemberBean mem : relation.members) {
+						if (mem.getRole().equals("outer")) {
 							outerCnt++;
 						}
-						if (mem.role.equals("inner")) {
+						if (mem.getRole().equals("inner")) {
 							innerCnt++;
 						}
 					}
@@ -134,11 +134,11 @@ public class CitygmlFileTest_B {
 				if (type.equals("multipolygon")) {
 					int outerCnt = 0;
 					int innerCnt = 0;
-					for (ElementMember mem : relation.members) {
-						if (mem.role.equals("outer")) {
+					for (MemberBean mem : relation.members) {
+						if (mem.getRole().equals("outer")) {
 							outerCnt++;
 						}
-						if (mem.role.equals("inner")) {
+						if (mem.getRole().equals("inner")) {
 							innerCnt++;
 						}
 					}
@@ -175,11 +175,11 @@ public class CitygmlFileTest_B {
 				if (type.equals("multipolygon")) {
 					int outerCnt = 0;
 					int innerCnt = 0;
-					for (ElementMember mem : relation.members) {
-						if (mem.role.equals("outer")) {
+					for (MemberBean mem : relation.members) {
+						if (mem.getRole().equals("outer")) {
 							outerCnt++;
 						}
-						if (mem.role.equals("inner")) {
+						if (mem.getRole().equals("inner")) {
 							innerCnt++;
 						}
 					}
@@ -217,11 +217,11 @@ public class CitygmlFileTest_B {
 				if (type.equals("multipolygon")) {
 					int outerCnt = 0;
 					int innerCnt = 0;
-					for (ElementMember mem : relation.members) {
-						if (mem.role.equals("outer")) {
+					for (MemberBean mem : relation.members) {
+						if (mem.getRole().equals("outer")) {
 							outerCnt++;
 						}
-						if (mem.role.equals("inner")) {
+						if (mem.getRole().equals("inner")) {
 							innerCnt++;
 						}
 					}
