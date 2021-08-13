@@ -1,10 +1,8 @@
 package osm.surveyor.osm;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -23,34 +21,9 @@ import javax.xml.bind.annotation.XmlRootElement;
  * 
  */
 @XmlRootElement(name="relation")
-public class RelationBean implements Serializable {
-
+public class RelationBean extends PoiBean implements Serializable {
 	private static final long serialVersionUID = -4269249218172121296L;
 
-	@XmlAttribute(name="id")
-	private Long id;
-	
-	@XmlAttribute(name="action")
-	private String action;
-	
-	@XmlAttribute(name="visible")
-	private Boolean visible;
-	
-	@XmlAttribute(name="timestamp")
-	private Date timestamp;
-	
-	@XmlAttribute(name="uid")
-	private Long uid;
-	
-	@XmlAttribute(name="version")
-	private Integer version;
-	
-	@XmlAttribute(name="changeset")
-	private Long changeset;
-	
-	@XmlAttribute(name="user")
-	private String user;
-	
     private List<MemberBean> memberList;
     
     @XmlElement(name="member")
@@ -58,18 +31,8 @@ public class RelationBean implements Serializable {
     	return memberList;
     }
 
-    public void setNdList(List<MemberBean> memberList) {
+    public void setMemberList(List<MemberBean> memberList) {
     	this.memberList = memberList;
     }
     
-    private List<TagBean> tagList;
-    
-    @XmlElement(name="tag")
-    public List<TagBean> getTagList() {
-    	return tagList;
-    }
-
-    public void setTagList(List<TagBean> tagList) {
-    	this.tagList = tagList;
-    }
 }
