@@ -53,7 +53,7 @@ public class ElementNode extends PoiBean implements Cloneable,Serializable {
      */
     public Node toNodeNd(Document doc) {
 		Element node = (Element) doc.createElement("nd");
-        node.setAttribute("ref", Long.toString(id));
+        node.setAttribute("ref", getIdstr());
         return (Node)node;
     }
     
@@ -97,11 +97,11 @@ public class ElementNode extends PoiBean implements Cloneable,Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((action == null) ? 0 : action.hashCode());
+		result = prime * result + ((getAction() == null) ? 0 : getAction().hashCode());
 		result = prime * result + ((height == null) ? 0 : height.hashCode());
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + (int) (getId() ^ (getId() >>> 32));
 		result = prime * result + ((point == null) ? 0 : point.hashCode());
-		result = prime * result + (visible ? 1231 : 1237);
+		result = prime * result + (getVisible() ? 1231 : 1237);
 		return result;
 	}
 
@@ -114,24 +114,24 @@ public class ElementNode extends PoiBean implements Cloneable,Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		ElementNode other = (ElementNode) obj;
-		if (action == null) {
-			if (other.action != null)
+		if (getAction() == null) {
+			if (other.getAction() != null)
 				return false;
-		} else if (!action.equals(other.action))
+		} else if (!getAction().equals(other.getAction()))
 			return false;
 		if (height == null) {
 			if (other.height != null)
 				return false;
 		} else if (!height.equals(other.height))
 			return false;
-		if (id != other.id)
+		if (getId() != other.getId())
 			return false;
 		if (point == null) {
 			if (other.point != null)
 				return false;
 		} else if (!point.equals(other.point))
 			return false;
-		if (visible != other.visible)
+		if (getVisible() != other.getVisible())
 			return false;
 		return true;
 	}

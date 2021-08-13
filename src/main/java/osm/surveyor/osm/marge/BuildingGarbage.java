@@ -42,7 +42,7 @@ public class BuildingGarbage {
 						ElementWay way = osm.ways.get(member.getRef());
 						if (way != null) {
 							way.member = true;
-							relation.removeMember(way.id);
+							relation.removeMember(way.getId());
 							osm.ways.remove(way);
 							return true;
 						}
@@ -53,8 +53,8 @@ public class BuildingGarbage {
 						ElementWay way = osm.ways.get(member.getRef());
 						if (way != null) {
 							way.member = false;
-							copyTag(relation.tags, way);
-							relation.removeMember(way.id);
+							copyTag(relation.getTagList(), way);
+							relation.removeMember(way.getId());
 							return true;
 						}
 					}

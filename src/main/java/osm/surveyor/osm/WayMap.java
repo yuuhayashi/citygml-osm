@@ -15,7 +15,7 @@ public class WayMap extends HashMap<String, ElementWay> {
 	
 	public void put(ElementWay way) {
 		if (way != null) {
-			put(Long.toString(way.id), way);
+			put(Long.toString(way.getId()), way);
 		}
 	}
 	
@@ -61,6 +61,6 @@ public class WayMap extends HashMap<String, ElementWay> {
     }
 
     public void remove(ElementWay way) {
-    	remove(Long.toString(way.id));
+    	remove(Long.toString(way.getId()));
     }
 }

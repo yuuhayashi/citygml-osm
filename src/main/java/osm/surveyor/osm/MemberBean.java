@@ -28,12 +28,12 @@ public class MemberBean implements Cloneable,Serializable {
 	}
 	
 	public void setWay(ElementWay way) {
-		this.ref = way.id;
+		this.ref = way.getId();
 		this.type = "way";
 	}
 	
 	public void setRelation(ElementRelation relation) {
-		this.ref = relation.id;
+		this.ref = relation.getId();
 		this.type = "relation";
 	}
 

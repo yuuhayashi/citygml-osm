@@ -106,7 +106,7 @@ public class CitygmlFileTest_Issue32 {
 								assertThat(outline.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13101-bldg-365"));
 								assertThat(outline.getTagValue("height"), is("114.7"));
 								assertEquals("2.14", outline.getTagValue("ele"));
-								assertTrue(outline.tags.size() >= 5);
+								assertTrue(outline.getTagList().size() >= 5);
 							}
 							if (mem.getRole().equals("part")) {
 								partCnt++;
@@ -117,7 +117,7 @@ public class CitygmlFileTest_Issue32 {
 								assertThat(way.getTagValue("height"), is("114.7"));
 								assertEquals("2.14", way.getTagValue("ele"));
 								assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13101-bldg-365"));
-								assertTrue(way.tags.size() >= 5);
+								assertTrue(way.getTagList().size() >= 5);
 							}
 						}
 						assertEquals(1, outlineCnt);

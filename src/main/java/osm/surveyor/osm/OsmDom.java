@@ -279,7 +279,7 @@ public class OsmDom {
     	for (String id : relations.keySet()) {
     		ElementRelation relation = relations.get(id);
     		for (MemberBean mem : relation.members) {
-    			if (mem.getRef() == obj.id) {
+    			if (mem.getRef() == obj.getId()) {
     				list.add(relation);
     			}
     		}

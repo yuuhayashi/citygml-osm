@@ -235,7 +235,7 @@ public class CityModelParser extends DefaultHandler {
 		if(qName.equals("core:CityModel")){
 			for (String key : nodes.keySet()) {
 				ElementNode node = nodes.get(key);
-				osm.nodes.put(Long.toString(node.id), node);
+				osm.nodes.put(Long.toString(node.getId()), node);
 			}
 		}
 		else if(qName.equals("gml:boundedBy")){

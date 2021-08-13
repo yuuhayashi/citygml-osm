@@ -166,7 +166,7 @@ public class ElementRelation extends PoiBean implements Cloneable,Serializable {
 	 */
     
 	public boolean isBuilding() {
-		for (TagBean tag : this.tags) {
+		for (TagBean tag : this.getTagList()) {
 			if (tag.k.equals("type")) {
 				if (tag.v.equals("building")) {
 					return true;
@@ -177,7 +177,7 @@ public class ElementRelation extends PoiBean implements Cloneable,Serializable {
 	}
 
 	public boolean isMultipolygon() {
-		for (TagBean tag : this.tags) {
+		for (TagBean tag : this.getTagList()) {
 			if (tag.k.equals("type")) {
 				if (tag.v.equals(ElementRelation.MULTIPOLYGON)) {
 					return true;
@@ -213,7 +213,7 @@ public class ElementRelation extends PoiBean implements Cloneable,Serializable {
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ((members == null) ? 0 : members.hashCode());
-		result = prime * result + ((tags == null) ? 0 : tags.hashCode());
+		result = prime * result + ((getTagList() == null) ? 0 : getTagList().hashCode());
 		return result;
 	}
 
@@ -231,10 +231,10 @@ public class ElementRelation extends PoiBean implements Cloneable,Serializable {
 				return false;
 		} else if (!members.equals(other.members))
 			return false;
-		if (tags == null) {
-			if (other.tags != null)
+		if (getTagList() == null) {
+			if (other.getTagList() != null)
 				return false;
-		} else if (!tags.equals(other.tags))
+		} else if (!getTagList().equals(other.getTagList()))
 			return false;
 		return true;
 	}

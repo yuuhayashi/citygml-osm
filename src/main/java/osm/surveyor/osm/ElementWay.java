@@ -63,7 +63,7 @@ public class ElementWay extends PoiBean implements Cloneable {
 	}
 	
 	public void addNode(ElementNode node) {
-		this.nds.add((new OsmNd()).set(node.id, node.point));
+		this.nds.add((new OsmNd()).set(node.getId(), node.point));
 	}
 
 	/**
@@ -115,7 +115,7 @@ public class ElementWay extends PoiBean implements Cloneable {
 		for (OsmNd nd : this.nds) {
 			element.appendChild(nd.toNodeNd(doc));
 		}
-		for (TagBean tag : this.tags) {
+		for (TagBean tag : this.getTagList()) {
 			if (tag != null) {
 				element.appendChild(tag.toNodeNd(doc));
 			}
@@ -314,7 +314,7 @@ public class ElementWay extends PoiBean implements Cloneable {
         	double area = getIntersectArea(way);
 			if (area > max) {
 				max = area;
-				maxid = way.id; 
+				maxid = way.getId(); 
 			}
         }
         return maxid;
@@ -329,7 +329,7 @@ public class ElementWay extends PoiBean implements Cloneable {
 		result = prime * result + (area ? 1231 : 1237);
 		result = prime * result + (member ? 1231 : 1237);
 		result = prime * result + ((nds == null) ? 0 : nds.hashCode());
-		result = prime * result + ((tags == null) ? 0 : tags.hashCode());
+		result = prime * result + ((getTagList() == null) ? 0 : getTagList().hashCode());
 		return result;
 	}
 
@@ -366,7 +366,7 @@ public class ElementWay extends PoiBean implements Cloneable {
 	}
 	
 	public boolean isBuilding() {
-		for (TagBean tag : this.tags) {
+		for (TagBean tag : this.getTagList()) {
 			if (tag.k.startsWith("building")) {
 				return true;
 			}
@@ -380,12 +380,12 @@ public class ElementWay extends PoiBean implements Cloneable {
 	 * @return
 	 */
 	public boolean isInnerWay(RelationMap relations) {
-		ElementRelation relation = relations.hasMembersWay(Long.toString(this.id));
+		ElementRelation relation = relations.hasMembersWay(Long.toString(this.getId()));
 		if (relation != null) {
 			if (relation.isMultipolygon()) {
 				for (MemberBean member : relation.members) {
 					if (member.getRole().equals("inner")) {
-						if (member.getRef() == this.id) {
+						if (member.getRef() == this.getId()) {
 							return true;
 						}
 					}
@@ -413,10 +413,10 @@ public class ElementWay extends PoiBean implements Cloneable {
 				return false;
 		} else if (!nds.equals(other.nds))
 			return false;
-		if (this.tags == null) {
-			if (other.tags != null)
+		if (this.getTagList() == null) {
+			if (other.getTagList() != null)
 				return false;
-		} else if (!tags.equals(other.tags))
+		} else if (!getTagList().equals(other.getTagList()))
 			return false;
 		return true;
 	}

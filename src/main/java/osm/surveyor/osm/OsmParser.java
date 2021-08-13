@@ -63,12 +63,12 @@ public class OsmParser extends DefaultHandler {
 		}
 		else if(qName.equals("node")){
 			node = new ElementNode(0);
-			node.action = (getAttributes("action", atts));
-			node.changeset = (getAttributes("changeset", atts));
+			node.setAction(getAttributes("action", atts));
+			node.setChangeset(getAttributes("changeset", atts));
 			node.setIdstr(getAttributes("id", atts));
-			node.timestamp = (getAttributes("timestamp", atts));
-			node.uid = (getAttributes("uid", atts));
-			node.user = (getAttributes("user", atts));
+			node.setTimestamp(getAttributes("timestamp", atts));
+			node.setUid(getAttributes("uid", atts));
+			node.setUser(getAttributes("user", atts));
 			node.setVisible(getAttributes("visible", atts));
 			node.setVersion(getAttributes("version", atts));
 
@@ -79,23 +79,23 @@ public class OsmParser extends DefaultHandler {
 		}
 		else if(qName.equals("way")){
 			way = new ElementWay(0);
-			way.action = (getAttributes("action", atts));
-			way.changeset = (getAttributes("changeset", atts));
+			way.setAction(getAttributes("action", atts));
+			way.setChangeset(getAttributes("changeset", atts));
 			way.setIdstr(getAttributes("id", atts));
-			way.timestamp = (getAttributes("timestamp", atts));
-			way.uid = (getAttributes("uid", atts));
-			way.user = (getAttributes("user", atts));
+			way.setTimestamp(getAttributes("timestamp", atts));
+			way.setUid(getAttributes("uid", atts));
+			way.setUser(getAttributes("user", atts));
 			way.setVisible(getAttributes("visible", atts));
 			way.setVersion(getAttributes("version", atts));
 		}
 		else if(qName.equals("relation")){
 			relation = new ElementRelation(0);
-			relation.action = (getAttributes("action", atts));
-			relation.changeset = (getAttributes("changeset", atts));
+			relation.setAction(getAttributes("action", atts));
+			relation.setChangeset(getAttributes("changeset", atts));
 			relation.setIdstr(getAttributes("id", atts));
-			relation.timestamp = (getAttributes("timestamp", atts));
-			relation.uid = (getAttributes("uid", atts));
-			relation.user = (getAttributes("user", atts));
+			relation.setTimestamp(getAttributes("timestamp", atts));
+			relation.setUid(getAttributes("uid", atts));
+			relation.setUser(getAttributes("user", atts));
 			relation.setVisible(getAttributes("visible", atts));
 			relation.setVersion(getAttributes("version", atts));
 		}

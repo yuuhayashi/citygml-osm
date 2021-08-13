@@ -125,13 +125,13 @@ public class OsmUpdater {
 			}
 		}
 		for (ElementWay way : list) {
-			sdom.ways.remove(way.id);
+			sdom.ways.remove(way.getId());
 		}
     		
 		// インポートデータのすべてのノードを'modify'に確定する
 		for (String rKey : dom.nodes.keySet()) {
 			ElementNode node = dom.nodes.get(rKey);
-			node.action = "modify";
+			node.setAction("modify");
 			node.orignal = false;
 			ddom.nodes.put(node.clone());
 		}
@@ -148,7 +148,7 @@ public class OsmUpdater {
 			}
 		}
 		for (ElementWay way : modifyList) {
-			way.action = "modify";
+			way.setAction("modify");
 			way.orignal = false;
 			ddom.ways.put(way);
 		}
@@ -159,11 +159,11 @@ public class OsmUpdater {
     		// インポートデータの内で、既存データと重複するWAYを'modify'に確定する
 		for (String rKey : dom.ways.keySet()) {
 			ElementWay way = dom.ways.get(rKey).clone();
-			if ((way.action == null) || !way.action.equals("modify")) {
+			if ((way.getAction() == null) || !way.getAction().equals("modify")) {
     			long wayid = way.getIntersect(sdom.ways);
     			if (wayid > 0) {
     				ElementWay sWay = sdom.ways.get(wayid);
-    				sWay.action = "modify";
+    				sWay.setAction("modify");
     				sWay.orignal = false;
     				sWay.nds = way.nds;
             		TagBean tag = sWay.getTag("fixme");
@@ -182,7 +182,7 @@ public class OsmUpdater {
     				way.copyTag(sWay);
             		sWay.copyTag(way);
             		ddom.ways.put(sWay);
-            		overlappingMap.put(Long.toString(way.id), sWay);
+            		overlappingMap.put(Long.toString(way.getId()), sWay);
     			}
 			}
 		}
@@ -197,7 +197,7 @@ public class OsmUpdater {
         				ElementWay sWay = overlappingMap.get(member.getRef());
             			if (sWay != null) {
                     		sWay.toMultipolygonMemberTag();
-            				member.setRef(sWay.id);
+            				member.setRef(sWay.getId());
             			}
 					}
     			}
@@ -207,20 +207,20 @@ public class OsmUpdater {
 					if (member.getType().equals("way")) {
         				ElementWay sWay = overlappingMap.get(member.getRef());
         				if (sWay != null) {
-            				member.setRef(sWay.id);
+            				member.setRef(sWay.getId());
         				}
 					}
 				}
 			}
-			relation.action = "modify";
+			relation.setAction("modify");
 			ddom.relations.put(relation);
 		}
 		
 		// 既存データで、actionが未定のまま残存しているWAYを削除する
 		for (String rKey : sdom.ways.keySet()) {
 			ElementWay sWay = sdom.ways.get(rKey);
-			if (sWay.action == null) {
-				sWay.action = "delete";
+			if (sWay.getAction() == null) {
+				sWay.setAction("delete");
 				sWay.orignal = false;
         		TagBean tag = sWay.getTag("fixme");
         		if (tag != null) {
@@ -233,7 +233,7 @@ public class OsmUpdater {
         		sWay.addTag(tag);
         		for (OsmNd nd : sWay.nds) {
         			ElementNode node = sdom.nodes.get(nd.id);
-        			node.action = "delete";
+        			node.setAction("delete");
         			ddom.nodes.put(node.clone());
         		}
         		ddom.ways.put(sWay.clone());

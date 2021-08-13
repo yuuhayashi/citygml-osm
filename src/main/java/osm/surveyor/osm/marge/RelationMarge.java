@@ -53,7 +53,7 @@ public class RelationMarge {
 	 */
 	RelationMap relationMarge1(RelationBuilding relation, RelationMap checked) {
 		RelationMap marged = new RelationMap();
-		if (checked.get(relation.id) != null) {
+		if (checked.get(relation.getId()) != null) {
 			return marged;	// リレーションが処理済みなら何もしない
 		}
 		
@@ -116,7 +116,7 @@ public class RelationMarge {
 		ArrayList<MemberBean> deloutline = new ArrayList<>();
 		for (MemberBean mem : relation.members) {
 			if (mem.getType().equals(ElementRelation.RELATION)) {
-				if (mem.getRef() != multi.id) {
+				if (mem.getRef() != multi.getId()) {
 					deloutline.add(mem);
 				}
 			}

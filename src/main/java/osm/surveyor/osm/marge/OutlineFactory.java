@@ -69,7 +69,7 @@ public class OutlineFactory {
 						}
 					}
 					else {
-						if (mem.getRef() != multi.id) {
+						if (mem.getRef() != multi.getId()) {
 							RelationMultipolygon addMulti = (RelationMultipolygon)osm.relations.get(mem.getRef());
 							ArrayList<MemberBean> addlist = new ArrayList<>();
 							for (MemberBean addMem : addMulti.members) {

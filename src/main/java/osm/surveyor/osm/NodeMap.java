@@ -17,7 +17,7 @@ public class NodeMap extends HashMap<String, ElementNode> {
 	}
 	
 	public void put(ElementNode node) {
-		put(Long.toString(node.id), node);
+		put(Long.toString(node.getId()), node);
 	}
 	
 	public ElementNode get(long id) {

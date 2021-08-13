@@ -17,40 +17,102 @@ import org.w3c.dom.NodeList;
  * CityGMLファイルをパースする
  * @param gmlFile
  * @code{
- * <node id='-107065' action='modify' visible='true' lat='35.43464696576' lon='139.4102145808' />
- * <node id='1803576119' timestamp='2012-06-27T05:23:26Z' uid='618878' user='nakanao' visible='true' version='1' changeset='12032994' lat='35.5420516' lon='139.7149118' />
+ * <POI id='-107065' action='modify' visible='true' />
+ * <POI id='1803576119' timestamp='2012-06-27T05:23:26Z' uid='618878' user='nakanao' visible='true' version='1' changeset='12032994' />
  * }
  * 
  */
 public class PoiBean implements Cloneable,Serializable {
 	private static final long serialVersionUID = 1L;
 
+	private long id;
+	private String action;
+	private boolean visible = true;
+	private String timestamp;
+	private String uid;
+	private String user;
+	private String version;
+	private String changeset;
+    private List<TagBean> tags = new ArrayList<>();
+	public boolean orignal = false;
+
+	public PoiBean() {
+		this(0);
+	}
+
+    public PoiBean(long id) {
+		this.id = id;
+	}
+	
 	@XmlAttribute(name="id")
-	public long id;
+	public long getId() {
+		return this.id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 	
 	@XmlAttribute(name="action")
-	public String action = null;
+	public String getAction() {
+		return this.action;
+	}
+	public void setAction(String str) {
+		this.action = str;
+	}
 
 	@XmlAttribute(name="visible")
-	public boolean visible = true;
+	public boolean getVisible() {
+		return this.visible;
+	}
+
+	public void setVisible(boolean bool) {
+		this.visible = bool;
+	}
+
+	public void setVisible(String boolStr) {
+		setVisible(Boolean.parseBoolean(boolStr));
+	}
 
 	@XmlAttribute(name="timestamp")
-	public String timestamp;
+	public String getTimestamp() {
+		return this.timestamp;
+	}
+	public void setTimestamp(String str) {
+		this.timestamp = str;
+	}
 
 	@XmlAttribute(name="uid")
-	public String uid;
+	public String getUid() {
+		return this.uid;
+	}
+	public void setUid(String str) {
+		this.uid = str;
+	}
 
 	@XmlAttribute(name="user")
-	public String user = null;
+	public String getUser() {
+		return this.user;
+	}
+	public void setUser(String str) {
+		this.user = str;
+	}
 	
 	@XmlAttribute(name="version")
-	public String version;
+	public String getVersion() {
+		return this.version;
+	}
+	public void setVersion(String version) {
+		this.version = version;
+	}
 
 	@XmlAttribute(name="changeset")
-	public String changeset = null;
-
-	//public TagMap tags;
-    public List<TagBean> tags = new ArrayList<>();
+	public String getChangeset() {
+		return this.changeset;
+	}
+	public void setChangeset(String str) {
+		this.changeset = str;
+	}
 
     @XmlElement(name="tag")
     public List<TagBean> getTagList() {
@@ -61,38 +123,12 @@ public class PoiBean implements Cloneable,Serializable {
     	this.tags = tagList;
     }
 
-	public boolean orignal = false;
-
-    public PoiBean() {
-		this(0);
-	}
-
-    public PoiBean(long id) {
-		this.id = id;
-	}
-	
 	public String getIdstr() {
 		return Long.toString(getId());
 	}
 
 	public void setIdstr(String id) {
 		setId(Long.parseLong(id));
-	}
-
-	public long getId() {
-		return this.id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-	
-	public void setVisible(String boolStr) {
-		visible = Boolean.parseBoolean(boolStr);
-	}
-
-	public void setVersion(String version) {
-		this.version = version;
 	}
 
 	@Override

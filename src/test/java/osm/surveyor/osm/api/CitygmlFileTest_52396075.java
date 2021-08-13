@@ -2,7 +2,9 @@ package osm.surveyor.osm.api;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.nio.file.Paths;
@@ -46,7 +48,7 @@ public class CitygmlFileTest_52396075 {
 				assertThat(way.getTagValue("height"), is("13.3"));
 				assertThat(way.getTagValue("ele"), is("728.31"));
 				assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 14382-bldg-10718"));
-				assertThat(way.tags.size() >= 4, is(true));
+				assertTrue(way.getTagList().size() >= 4);
 			}
 			assertThat(osm.ways.size(), is(1));
 		} catch (Exception e) {
@@ -90,7 +92,7 @@ public class CitygmlFileTest_52396075 {
 								assertThat(outline.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 14382-bldg-10718"));
 								assertThat(outline.getTagValue("height"), is("13.3"));
 								assertThat(outline.getTagValue("ele"), is("728.31"));
-								assertThat(outline.tags.size() >= 5, is(true));
+								assertTrue(outline.getTagList().size() >= 5);
 							}
 							if (mem.getRole().equals("part")) {
 								partCnt++;
@@ -102,7 +104,7 @@ public class CitygmlFileTest_52396075 {
 								assertThat(way.getTagValue("height"), is("13.3"));
 								assertThat(way.getTagValue("ele"), is("728.31"));
 								assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 14382-bldg-10718"));
-								assertThat(way.tags.size() >= 5, is(true));
+								assertTrue(way.getTagList().size() >= 5);
 							}
 						}
 						assertThat(outlineCnt, is(1));
@@ -127,7 +129,7 @@ public class CitygmlFileTest_52396075 {
 								ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 								assertThat(way, notNullValue());
 								assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 14382-bldg-10718"));
-								assertThat(way.tags.size(), is(1));
+								assertEquals(1, way.getTagList().size());
 							}
 						}
 						assertThat(outerCnt, is(1));

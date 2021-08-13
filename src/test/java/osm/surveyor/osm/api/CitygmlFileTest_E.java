@@ -5,7 +5,6 @@ import static org.hamcrest.CoreMatchers.startsWith;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
 import java.nio.file.Paths;
@@ -41,7 +40,6 @@ public class CitygmlFileTest_E {
 	public void tearDown() throws Exception {
 	}
 
-	@SuppressWarnings("deprecation")
 	@Test
 	@Category(DetailTests.class)
 	public void testSample_e1_parse() {
@@ -57,176 +55,176 @@ public class CitygmlFileTest_E {
 				String type = relation.getTagValue("type");
 				if (type.equals("building")) {
 					if (relation.getTagValue("source").endsWith("; 13111-bldg-56522")) {
-						assertThat(relation.getTagValue("type"), is("building"));						
-						assertThat(relation.getTagValue("building"), is("yes"));
-						assertThat(relation.getTagValue("building:levels"), is("2"));
-						assertThat(relation.getTagValue("building:levels:underground"), is("1"));
-						assertThat(relation.getTagValue("name"), is("大田病院"));
-						assertThat(relation.getTagValue("height"), is("21.6"));
+						assertEquals(relation.getTagValue("type"), ("building"));						
+						assertEquals(relation.getTagValue("building"), ("yes"));
+						assertEquals(relation.getTagValue("building:levels"), ("2"));
+						assertEquals(relation.getTagValue("building:levels:underground"), ("1"));
+						assertEquals(relation.getTagValue("name"), ("大田病院"));
+						assertEquals(relation.getTagValue("height"), ("21.6"));
 						assertEquals("1.62", relation.getTagValue("ele"));
-						assertThat(relation.getTagValue("addr:full"), is("東京都大田区大森東四丁目"));
-						assertThat(relation.getTagValue("addr:ref"), is("13111007004"));
-						assertThat(relation.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-56522"));
-						assertThat(relation.tags.size(), is(11));
+						assertEquals(relation.getTagValue("addr:full"), ("東京都大田区大森東四丁目"));
+						assertEquals(relation.getTagValue("addr:ref"), ("13111007004"));
+						assertEquals(relation.getTagValue("source"), ("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-56522"));
+						assertEquals(relation.getTagList().size(), is(11));
 
 						int outlineCnt = 0;
 						int partCnt = 0;
 						for (MemberBean mem : relation.members) {
 							if (mem.getRole().equals("outline")) {
 								outlineCnt++;
-								assertThat(mem.getType(), is("relation"));
+								assertEquals(mem.getType(), ("relation"));
 								ElementRelation outline = osm.relations.get(mem.getRef());
 								assertNotNull(outline);
-								assertThat(outline.getTagValue("type"), is("multipolygon"));
-								assertThat(outline.getTagValue("building"), is("yes"));
-								assertThat(outline.getTagValue("building:levels"), is("2"));
-								assertThat(outline.getTagValue("building:levels:underground"), is("1"));
-								assertThat(outline.getTagValue("name"), is("大田病院"));
-								assertThat(outline.getTagValue("height"), is("21.6"));
+								assertEquals(outline.getTagValue("type"), ("multipolygon"));
+								assertEquals(outline.getTagValue("building"), ("yes"));
+								assertEquals(outline.getTagValue("building:levels"), ("2"));
+								assertEquals(outline.getTagValue("building:levels:underground"), ("1"));
+								assertEquals(outline.getTagValue("name"), ("大田病院"));
+								assertEquals(outline.getTagValue("height"), ("21.6"));
 								assertEquals("1.62", outline.getTagValue("ele"));
-								assertThat(outline.getTagValue("addr:full"), is("東京都大田区大森東四丁目"));
-								assertThat(outline.getTagValue("addr:ref"), is("13111007004"));
-								assertThat(outline.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-56522"));
-								assertThat(outline.tags.size(), is(11));
+								assertEquals(outline.getTagValue("addr:full"), ("東京都大田区大森東四丁目"));
+								assertEquals(outline.getTagValue("addr:ref"), ("13111007004"));
+								assertEquals(outline.getTagValue("source"), ("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-56522"));
+								assertEquals(outline.getTagList().size(), is(11));
 							}
 							if (mem.getRole().equals("part")) {
 								partCnt++;
-								assertThat(mem.getType(), is("way"));
+								assertEquals(mem.getType(), ("way"));
 								ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 								assertNotNull(way);
-								assertThat(way.getTagValue("building:part"), is("yes"));
-								assertThat(way.getTagValue("building:levels"), is("2"));
-								assertThat(way.getTagValue("building:levels:underground"), is("1"));
-								assertThat(way.getTagValue("name"), is("大田病院"));
-								assertThat(way.getTagValue("height"), is("21.6"));
+								assertEquals(way.getTagValue("building:part"), ("yes"));
+								assertEquals(way.getTagValue("building:levels"), ("2"));
+								assertEquals(way.getTagValue("building:levels:underground"), ("1"));
+								assertEquals(way.getTagValue("name"), ("大田病院"));
+								assertEquals(way.getTagValue("height"), ("21.6"));
 								assertEquals("1.62", way.getTagValue("ele"));
-								assertThat(way.getTagValue("start_date"), is("1976"));
-								assertThat(way.getTagValue("addr:full"), is("東京都大田区大森東四丁目"));
-								assertThat(way.getTagValue("addr:ref"), is("13111007004"));
-								assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-56522"));
-								assertThat(way.tags.size(), is(10));
+								assertEquals(way.getTagValue("start_date"), ("1976"));
+								assertEquals(way.getTagValue("addr:full"), ("東京都大田区大森東四丁目"));
+								assertEquals(way.getTagValue("addr:ref"), ("13111007004"));
+								assertEquals(way.getTagValue("source"), ("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-56522"));
+								assertEquals(way.getTagList().size(), is(10));
 							}
 						}
-						assertThat(outlineCnt, is(1));
-						assertThat(partCnt, is(1));
-						assertThat(relation.members.size(), is(2));
+						assertEquals(outlineCnt, is(1));
+						assertEquals(partCnt, is(1));
+						assertEquals(relation.members.size(), is(2));
 					}
 					else if (relation.getTagValue("source").endsWith("; 13111-bldg-55333")) {
-						assertThat(relation.getTagValue("type"), is("building"));
-						assertThat(relation.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-55333"));
-						assertThat(relation.getTagValue("addr:full"), is("東京都大田区大森東四丁目"));
-						assertThat(relation.getTagValue("addr:ref"), is("13111007004"));
-						assertThat(relation.getTagValue("height"), is("3.7"));
+						assertEquals(relation.getTagValue("type"), ("building"));
+						assertEquals(relation.getTagValue("source"), ("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-55333"));
+						assertEquals(relation.getTagValue("addr:full"), ("東京都大田区大森東四丁目"));
+						assertEquals(relation.getTagValue("addr:ref"), ("13111007004"));
+						assertEquals(relation.getTagValue("height"), ("3.7"));
 						assertEquals("1.93", relation.getTagValue("ele"));
-						assertThat(relation.getTagValue("building"), is("yes"));
-						assertThat(relation.getTagValue("building:levels"), is("3"));
-						assertThat(relation.tags.size(), is(9));
+						assertEquals(relation.getTagValue("building"), ("yes"));
+						assertEquals(relation.getTagValue("building:levels"), ("3"));
+						assertEquals(relation.getTagList().size(), is(9));
 
 						int outlineCnt = 0;
 						int partCnt = 0;
 						for (MemberBean mem : relation.members) {
 							if (mem.getRole().equals("outline")) {
 								outlineCnt++;
-								assertThat(mem.getType(), is("relation"));
+								assertEquals(mem.getType(), ("relation"));
 								ElementRelation outline = osm.relations.get(mem.getRef());
 								assertNotNull(outline);
-								assertThat(outline.getTagValue("type"), is("multipolygon"));
-								assertThat(outline.getTagValue("building"), is("yes"));
-								assertThat(outline.getTagValue("building:levels"), is("3"));
-								assertThat(outline.getTagValue("addr:full"), is("東京都大田区大森東四丁目"));
-								assertThat(outline.getTagValue("addr:ref"), is("13111007004"));
-								assertThat(outline.getTagValue("height"), is("3.7"));
+								assertEquals(outline.getTagValue("type"), ("multipolygon"));
+								assertEquals(outline.getTagValue("building"), ("yes"));
+								assertEquals(outline.getTagValue("building:levels"), ("3"));
+								assertEquals(outline.getTagValue("addr:full"), ("東京都大田区大森東四丁目"));
+								assertEquals(outline.getTagValue("addr:ref"), ("13111007004"));
+								assertEquals(outline.getTagValue("height"), ("3.7"));
 								assertEquals("1.93", outline.getTagValue("ele"));
-								assertThat(outline.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-55333"));
-								assertThat(outline.tags.size(), is(9));
+								assertEquals(outline.getTagValue("source"), ("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-55333"));
+								assertEquals(outline.getTagList().size(), is(9));
 							}
 							if (mem.getRole().equals("part")) {
 								partCnt++;
-								assertThat(mem.getType(), is("way"));
+								assertEquals(mem.getType(), ("way"));
 								ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 								assertNotNull(way);
-								assertThat(way.getTagValue("addr:full"), is("東京都大田区大森東四丁目"));
-								assertThat(way.getTagValue("addr:ref"), is("13111007004"));
-								assertThat(way.getTagValue("height"), is("3.7"));
+								assertEquals(way.getTagValue("addr:full"), ("東京都大田区大森東四丁目"));
+								assertEquals(way.getTagValue("addr:ref"), ("13111007004"));
+								assertEquals(way.getTagValue("height"), ("3.7"));
 								assertEquals("1.93", way.getTagValue("ele"));
-								assertThat(way.getTagValue("start_date"), is("1977"));
-								assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-55333"));
-								assertThat(way.getTagValue("building:part"), is("yes"));
-								assertThat(way.getTagValue("building:levels"), is("3"));
-								assertThat(way.tags.size(), is(8));
+								assertEquals(way.getTagValue("start_date"), ("1977"));
+								assertEquals(way.getTagValue("source"), ("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-55333"));
+								assertEquals(way.getTagValue("building:part"), ("yes"));
+								assertEquals(way.getTagValue("building:levels"), ("3"));
+								assertEquals(way.getTagList().size(), is(8));
 							}
 						}
-						assertThat(outlineCnt, is(1));
-						assertThat(partCnt, is(1));
-						assertThat(relation.members.size(), is(2));
+						assertEquals(outlineCnt, is(1));
+						assertEquals(partCnt, is(1));
+						assertEquals(relation.members.size(), is(2));
 					}
 				}
 				else if (type.equals("multipolygon")) {
 					if (relation.getTagValue("source").endsWith("; 13111-bldg-56522")) {
-						assertThat(relation.getTagValue("type"), is("multipolygon"));
-						assertThat(relation.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-56522"));
-						assertThat(relation.getTagValue("name"), is("大田病院"));
-						assertThat(relation.getTagValue("addr:full"), is("東京都大田区大森東四丁目"));
-						assertThat(relation.getTagValue("addr:ref"), is("13111007004"));
-						assertThat(relation.getTagValue("height"), is("21.6"));
+						assertEquals(relation.getTagValue("type"), ("multipolygon"));
+						assertEquals(relation.getTagValue("source"), ("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-56522"));
+						assertEquals(relation.getTagValue("name"), ("大田病院"));
+						assertEquals(relation.getTagValue("addr:full"), ("東京都大田区大森東四丁目"));
+						assertEquals(relation.getTagValue("addr:ref"), ("13111007004"));
+						assertEquals(relation.getTagValue("height"), ("21.6"));
 						assertEquals("1.62", relation.getTagValue("ele"));
-						assertThat(relation.getTagValue("start_date"), is("1976"));
-						assertThat(relation.getTagValue("building"), is("yes"));
-						assertThat(relation.getTagValue("building:levels"), is("2"));
-						assertThat(relation.getTagValue("building:levels:underground"), is("1"));
+						assertEquals(relation.getTagValue("start_date"), ("1976"));
+						assertEquals(relation.getTagValue("building"), ("yes"));
+						assertEquals(relation.getTagValue("building:levels"), ("2"));
+						assertEquals(relation.getTagValue("building:levels:underground"), ("1"));
 
 						int outerCnt = 0;
 						int innerCnt = 0;
 						for (MemberBean mem : relation.members) {
 							if (mem.getRole().equals("outer")) {
 								outerCnt++;
-								assertThat(mem.getType(), is("way"));
+								assertEquals(mem.getType(), ("way"));
 								ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 								assertNotNull(way);
-								assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-56522"));
-								assertThat(way.tags.size(), is(1));
+								assertEquals(way.getTagValue("source"), ("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-56522"));
+								assertEquals(way.getTagList().size(), is(1));
 							}
 							if (mem.getRole().equals("inner")) {
 								innerCnt++;
 							}
 						}
-						assertThat(outerCnt, is(1));
-						assertThat(innerCnt, is(0));
-						assertThat(relation.members.size(), is(1));
+						assertEquals(outerCnt, is(1));
+						assertEquals(innerCnt, is(0));
+						assertEquals(relation.members.size(), is(1));
 					}
 					else if (relation.getTagValue("source").endsWith("; 13111-bldg-55333")) {
-						assertThat(relation.getTagValue("type"), is("multipolygon"));
-						assertThat(relation.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-55333"));
-						assertThat(relation.getTagValue("addr:full"), is("東京都大田区大森東四丁目"));
-						assertThat(relation.getTagValue("addr:ref"), is("13111007004"));
-						assertThat(relation.getTagValue("height"), is("3.7"));
+						assertEquals(relation.getTagValue("type"), ("multipolygon"));
+						assertEquals(relation.getTagValue("source"), ("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-55333"));
+						assertEquals(relation.getTagValue("addr:full"), ("東京都大田区大森東四丁目"));
+						assertEquals(relation.getTagValue("addr:ref"), ("13111007004"));
+						assertEquals(relation.getTagValue("height"), ("3.7"));
 						assertEquals("1.93", relation.getTagValue("ele"));
-						assertThat(relation.getTagValue("start_date"), is("1977"));
-						assertThat(relation.getTagValue("building"), is("yes"));
-						assertThat(relation.getTagValue("building:levels"), is("3"));
+						assertEquals(relation.getTagValue("start_date"), ("1977"));
+						assertEquals(relation.getTagValue("building"), ("yes"));
+						assertEquals(relation.getTagValue("building:levels"), ("3"));
 
 						int outerCnt = 0;
 						int innerCnt = 0;
 						for (MemberBean mem : relation.members) {
 							if (mem.getRole().equals("outer")) {
 								outerCnt++;
-								assertThat(mem.getType(), is("way"));
+								assertEquals(mem.getType(), ("way"));
 								ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 								assertNotNull(way);
-								assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-55333"));
-								assertThat(way.tags.size(), is(1));
+								assertEquals(way.getTagValue("source"), ("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-55333"));
+								assertEquals(way.getTagList().size(), is(1));
 							}
 							if (mem.getRole().equals("inner")) {
 								innerCnt++;
 							}
 						}
-						assertThat(outerCnt, is(1));
-						assertThat(innerCnt, is(0));
-						assertThat(relation.members.size(), is(1));
+						assertEquals(outerCnt, is(1));
+						assertEquals(innerCnt, is(0));
+						assertEquals(relation.members.size(), is(1));
 					}
 				}
 			}
-			assertThat(osm.relations.size(), is(4));
+			assertEquals(osm.relations.size(), is(4));
 			
 		} catch (Exception e) {
 			e.fillInStackTrace();
@@ -234,8 +232,6 @@ public class CitygmlFileTest_E {
 		}
 	}
 	
-
-	@SuppressWarnings("deprecation")
 	@Test
 	@Category(DetailTests.class)
 	public void testSample_e2_margePart() {
@@ -246,31 +242,29 @@ public class CitygmlFileTest_E {
 			osm.parse(Paths.get("sample_e_bldg_6697_op2_2.osm").toFile());
 
 			assertNotNull(osm.relations);
-			int outlineCnt = 0;
 			int partCnt = 0;
 			for (String id : osm.relations.keySet()) {
 				ElementRelation relation = osm.relations.get(id);
 				assertNotNull(relation);
 				if (relation.isBuilding()) {
-					assertThat(relation.getTagValue("type"), is("building"));
-					assertThat(relation.getTagValue("building"), is("yes"));
-					assertThat(relation.getTagValue("name"), is("大田病院"));
-					assertThat(relation.getTagValue("addr:full"), is("東京都大田区大森東四丁目"));
-					assertThat(relation.getTagValue("addr:ref"), is("13111007004"));
+					assertEquals(relation.getTagValue("type"), ("building"));
+					assertEquals(relation.getTagValue("building"), ("yes"));
+					assertEquals(relation.getTagValue("name"), ("大田病院"));
+					assertEquals(relation.getTagValue("addr:full"), ("東京都大田区大森東四丁目"));
+					assertEquals(relation.getTagValue("addr:ref"), ("13111007004"));
 					assertNotNull(relation.getTagValue("height"));
 					assertNotNull(relation.getTagValue("ele"));
-					assertThat(relation.getTagValue("source"), startsWith("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697"));
+					assertEquals(relation.getTagValue("source"), startsWith("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697"));
 	
 					for (MemberBean mem : relation.members) {
 						if (mem.getRole().equals("outline")) {
-							outlineCnt++;
-							assertThat(mem.getType(), is("relation"));
+							assertEquals(mem.getType(), ("relation"));
 							ElementRelation outline = osm.relations.get(mem.getRef());
 							assertNotNull(outline);
 						}
 						if (mem.getRole().equals("part")) {
 							partCnt++;
-							assertThat(mem.getType(), is("way"));
+							assertEquals(mem.getType(), ("way"));
 							ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 							assertNotNull(way);
 						}
@@ -278,34 +272,34 @@ public class CitygmlFileTest_E {
 				}
 				else if (relation.isMultipolygon()) {
 					if (relation.getTagValue("source").endsWith("; 13111-bldg-55333")) {
-						assertThat(relation.getTagValue("type"), is("multipolygon"));
-						assertThat(relation.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-55333"));
-						assertThat(relation.getTagValue("addr:full"), is("東京都大田区大森東四丁目"));
-						assertThat(relation.getTagValue("addr:ref"), is("13111007004"));
-						assertThat(relation.getTagValue("height"), is("3.7"));
+						assertEquals(relation.getTagValue("type"), ("multipolygon"));
+						assertEquals(relation.getTagValue("source"), ("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-55333"));
+						assertEquals(relation.getTagValue("addr:full"), ("東京都大田区大森東四丁目"));
+						assertEquals(relation.getTagValue("addr:ref"), ("13111007004"));
+						assertEquals(relation.getTagValue("height"), ("3.7"));
 						assertEquals("1.93", relation.getTagValue("ele"));
 						assertNull(relation.getTagValue("start_date"));
-						assertThat(relation.getTagValue("building"), is("yes"));
-						assertThat(relation.getTagValue("building:levels"), is("3"));
+						assertEquals(relation.getTagValue("building"), ("yes"));
+						assertEquals(relation.getTagValue("building:levels"), ("3"));
 
 						int outerCnt = 0;
 						int innerCnt = 0;
 						for (MemberBean mem : relation.members) {
 							if (mem.getRole().equals("outer")) {
 								outerCnt++;
-								assertThat(mem.getType(), is("way"));
+								assertEquals(mem.getType(), ("way"));
 								ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 								assertNotNull(way);
-								assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-55333"));
-								assertThat(way.tags.size(), is(1));
+								assertEquals(way.getTagValue("source"), ("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-55333"));
+								assertEquals(way.getTagList().size(), is(1));
 							}
 							if (mem.getRole().equals("inner")) {
 								innerCnt++;
-								assertThat(mem.getType(), is("way"));
+								assertEquals(mem.getType(), ("way"));
 								ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 								assertNotNull(way);
-								assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-55333"));
-								assertThat(way.tags.size(), is(1));
+								assertEquals(way.getTagValue("source"), ("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-55333"));
+								assertEquals(way.getTagList().size(), is(1));
 							}
 						}
 						assertEquals(1, outerCnt);
@@ -321,7 +315,6 @@ public class CitygmlFileTest_E {
 		}
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Test
 	@Category(DetailTests.class)
 	public void testSample_e3_removeSinglePart() {
@@ -337,15 +330,15 @@ public class CitygmlFileTest_E {
 				assertNotNull(relation);
 				String type = relation.getTagValue("type");
 				if (type.equals("building")) {
-					assertThat(relation.getTagValue("type"), is("building"));
-					assertThat(relation.getTagValue("building"), is("yes"));
-					assertThat(relation.getTagValue("building:levels"), is("3"));
-					assertThat(relation.getTagValue("building:levels:underground"), is("1"));
-					assertThat(relation.getTagValue("name"), is("大田病院"));
+					assertEquals(relation.getTagValue("type"), ("building"));
+					assertEquals(relation.getTagValue("building"), ("yes"));
+					assertEquals(relation.getTagValue("building:levels"), ("3"));
+					assertEquals(relation.getTagValue("building:levels:underground"), ("1"));
+					assertEquals(relation.getTagValue("name"), ("大田病院"));
 					assertNotNull(relation.getTagValue("height"));
-					assertThat(relation.getTagValue("addr:ref"), is("13111007004"));
-					assertThat(relation.getTagValue("addr:full"), is("東京都大田区大森東四丁目"));
-					assertThat(relation.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697"));
+					assertEquals(relation.getTagValue("addr:ref"), ("13111007004"));
+					assertEquals(relation.getTagValue("addr:full"), ("東京都大田区大森東四丁目"));
+					assertEquals(relation.getTagValue("source"), ("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697"));
 
 					int outlineCnt = 0;
 					int partCnt = 0;
@@ -357,32 +350,32 @@ public class CitygmlFileTest_E {
 						}
 						if (mem.getRole().equals("part")) {
 							partCnt++;
-							assertThat(mem.getType(), is("way"));
+							assertEquals(mem.getType(), ("way"));
 							ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 							assertNotNull(way);
 							if (way.getTagValue("source").endsWith("; 13111-bldg-56522")) {
-								assertThat(way.getTagValue("building:part"), is("yes"));
-								assertThat(way.getTagValue("building:levels"), is("2"));
-								assertThat(way.getTagValue("building:levels:underground"), is("1"));
-								assertThat(way.getTagValue("name"), is("大田病院"));
-								assertThat(way.getTagValue("addr:full"), is("東京都大田区大森東四丁目"));
-								assertThat(way.getTagValue("addr:ref"), is("13111007004"));
-								assertThat(way.getTagValue("height"), is("21.6"));
+								assertEquals(way.getTagValue("building:part"), ("yes"));
+								assertEquals(way.getTagValue("building:levels"), ("2"));
+								assertEquals(way.getTagValue("building:levels:underground"), ("1"));
+								assertEquals(way.getTagValue("name"), ("大田病院"));
+								assertEquals(way.getTagValue("addr:full"), ("東京都大田区大森東四丁目"));
+								assertEquals(way.getTagValue("addr:ref"), ("13111007004"));
+								assertEquals(way.getTagValue("height"), ("21.6"));
 								assertEquals("1.62", way.getTagValue("ele"));
-								assertThat(way.getTagValue("start_date"), is("1976"));
-								assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-56522"));
-								assertThat(way.tags.size(), is(10));
+								assertEquals(way.getTagValue("start_date"), ("1976"));
+								assertEquals(way.getTagValue("source"), ("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-56522"));
+								assertEquals(way.getTagList().size(), is(10));
 							}
 							else if (way.getTagValue("source").endsWith("; 13111-bldg-55333")) {
-								assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-55333"));
-								assertThat(way.getTagValue("addr:full"), is("東京都大田区大森東四丁目"));
-								assertThat(way.getTagValue("addr:ref"), is("13111007004"));
-								assertThat(way.getTagValue("height"), is("3.7"));
+								assertEquals(way.getTagValue("source"), ("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-55333"));
+								assertEquals(way.getTagValue("addr:full"), ("東京都大田区大森東四丁目"));
+								assertEquals(way.getTagValue("addr:ref"), ("13111007004"));
+								assertEquals(way.getTagValue("height"), ("3.7"));
 								assertEquals("1.93", way.getTagValue("ele"));
-								assertThat(way.getTagValue("start_date"), is("1977"));
-								assertThat(way.getTagValue("building:part"), is("yes"));
-								assertThat(way.getTagValue("building:levels"), is("3"));
-								assertThat(way.tags.size(), is(8));
+								assertEquals(way.getTagValue("start_date"), ("1977"));
+								assertEquals(way.getTagValue("building:part"), ("yes"));
+								assertEquals(way.getTagValue("building:levels"), ("3"));
+								assertEquals(way.getTagList().size(), is(8));
 							}
 						}
 					}
@@ -429,7 +422,6 @@ public class CitygmlFileTest_E {
 		}
 	}
     
-	@SuppressWarnings("deprecation")
 	public void checkSample_e(OsmDom osm) {
         try {
 			assertNotNull(osm.relations);
@@ -438,17 +430,17 @@ public class CitygmlFileTest_E {
 				assertNotNull(relation);
 				String type = relation.getTagValue("type");
 				if (type.equals("building")) {
-					assertThat(relation.getTagValue("type"), is("building"));
-					assertThat(relation.getTagValue("building"), is("yes"));
-					assertThat(relation.getTagValue("building:levels"), is("3"));
-					assertThat(relation.getTagValue("building:levels:underground"), is("1"));
-					assertThat(relation.getTagValue("name"), is("大田病院"));
-					assertThat(relation.getTagValue("addr:full"), is("東京都大田区大森東四丁目"));
-					assertThat(relation.getTagValue("addr:ref"), is("13111007004"));
-					assertThat(relation.getTagValue("height"), is("21.6"));
+					assertEquals("building", relation.getTagValue("type"));
+					assertEquals(relation.getTagValue("building"), ("yes"));
+					assertEquals(relation.getTagValue("building:levels"), ("3"));
+					assertEquals(relation.getTagValue("building:levels:underground"), ("1"));
+					assertEquals(relation.getTagValue("name"), ("大田病院"));
+					assertEquals(relation.getTagValue("addr:full"), ("東京都大田区大森東四丁目"));
+					assertEquals(relation.getTagValue("addr:ref"), ("13111007004"));
+					assertEquals(relation.getTagValue("height"), ("21.6"));
 					assertEquals("1.62", relation.getTagValue("ele"));
 					assertEquals("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697", relation.getTagValue("source"));
-					assertEquals(10, relation.tags.size());
+					assertEquals(10, relation.getTagList().size());
 
 					int outlineCnt = 0;
 					int partCnt = 0;
@@ -472,7 +464,7 @@ public class CitygmlFileTest_E {
 							assertEquals("1.62", polygon.getTagValue("ele"));
 							assertEquals("1976", polygon.getTagValue("start_date"));
 							assertEquals("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697", polygon.getTagValue("source"));
-							assertEquals(11, polygon.tags.size());
+							assertEquals(11, polygon.getTagList().size());
 							
 							for (MemberBean member : polygon.members) {
 								if (member.getRole().equals("outer")) {
@@ -481,7 +473,7 @@ public class CitygmlFileTest_E {
 									ElementWay way = osm.ways.get(Long.toString(member.getRef()));
 									assertNotNull(way);
 									assertEquals("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697", way.getTagValue("source"));
-									assertEquals(1, way.tags.size());
+									assertEquals(1, way.getTagList().size());
 								}
 								if (member.getRole().equals("inner")) {
 									innerCnt++;
@@ -489,39 +481,39 @@ public class CitygmlFileTest_E {
 									ElementWay way = osm.ways.get(Long.toString(member.getRef()));
 									assertNotNull(way);
 									assertEquals("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697", way.getTagValue("source"));
-									assertEquals(1, way.tags.size());
+									assertEquals(1, way.getTagList().size());
 								}
 							}
 							assertEquals(2, polygon.members.size());
 						}
 						if (mem.getRole().equals("part")) {
 							partCnt++;
-							assertThat(mem.getType(), is("way"));
+							assertEquals(mem.getType(), ("way"));
 							ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 							assertNotNull(way);
 							if (way.getTagValue("source").endsWith("; 13111-bldg-56522")) {
-								assertThat(way.getTagValue("building:part"), is("yes"));
-								assertThat(way.getTagValue("building:levels"), is("2"));
-								assertThat(way.getTagValue("building:levels:underground"), is("1"));
-								assertThat(way.getTagValue("name"), is("大田病院"));
-								assertThat(way.getTagValue("addr:full"), is("東京都大田区大森東四丁目"));
-								assertThat(way.getTagValue("addr:ref"), is("13111007004"));
-								assertThat(way.getTagValue("height"), is("21.6"));
+								assertEquals(way.getTagValue("building:part"), ("yes"));
+								assertEquals(way.getTagValue("building:levels"), ("2"));
+								assertEquals(way.getTagValue("building:levels:underground"), ("1"));
+								assertEquals(way.getTagValue("name"), ("大田病院"));
+								assertEquals(way.getTagValue("addr:full"), ("東京都大田区大森東四丁目"));
+								assertEquals(way.getTagValue("addr:ref"), ("13111007004"));
+								assertEquals(way.getTagValue("height"), ("21.6"));
 								assertEquals("1.62", way.getTagValue("ele"));
-								assertThat(way.getTagValue("start_date"), is("1976"));
-								assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-56522"));
-								assertEquals(10, way.tags.size());
+								assertEquals(way.getTagValue("start_date"), ("1976"));
+								assertEquals(way.getTagValue("source"), ("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-56522"));
+								assertEquals(10, way.getTagList().size());
 							}
 							else if (way.getTagValue("source").endsWith("; 13111-bldg-55333")) {
-								assertThat(way.getTagValue("building:part"), is("yes"));
-								assertThat(way.getTagValue("building:levels"), is("3"));
-								assertThat(way.getTagValue("addr:full"), is("東京都大田区大森東四丁目"));
-								assertThat(way.getTagValue("addr:ref"), is("13111007004"));
-								assertThat(way.getTagValue("height"), is("3.7"));
+								assertEquals(way.getTagValue("building:part"), ("yes"));
+								assertEquals(way.getTagValue("building:levels"), ("3"));
+								assertEquals(way.getTagValue("addr:full"), ("東京都大田区大森東四丁目"));
+								assertEquals(way.getTagValue("addr:ref"), ("13111007004"));
+								assertEquals(way.getTagValue("height"), ("3.7"));
 								assertEquals("1.93", way.getTagValue("ele"));
-								assertThat(way.getTagValue("start_date"), is("1977"));
-								assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-55333"));
-								assertEquals(8, way.tags.size());
+								assertEquals(way.getTagValue("start_date"), ("1977"));
+								assertEquals(way.getTagValue("source"), ("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-55333"));
+								assertEquals(8, way.getTagList().size());
 							}
 						}
 					}

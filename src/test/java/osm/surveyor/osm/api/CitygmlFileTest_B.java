@@ -53,14 +53,14 @@ public class CitygmlFileTest_B {
 							assertEquals("way", mem.getType());
 							ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 							assertEquals("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697", way.getTagValue("source"));
-							assertEquals(1, way.tags.size());
+							assertEquals(1, way.getTagList().size());
 						}
 						if (mem.getRole().equals("inner")) {
 							innerCnt++;
 							assertEquals("way", mem.getType());
 							ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 							assertEquals("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-61384", way.getTagValue("source"));
-							assertEquals(1, way.tags.size());
+							assertEquals(1, way.getTagList().size());
 						}
 					}
 					assertEquals(1, outerCnt);

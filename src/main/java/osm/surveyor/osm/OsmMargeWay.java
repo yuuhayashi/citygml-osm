@@ -93,7 +93,7 @@ public class OsmMargeWay {
 							if (ele != null) {
 								polygon.addTag("height", ele.v);
 							}
-							relation.removeMember(partWay.id);
+							relation.removeMember(partWay.getId());
 							osm.ways.remove(partWay);
 							return true;
 						}
@@ -128,7 +128,7 @@ public class OsmMargeWay {
 					}
 				}
 				if (outline != null) {
-					copyTag(relation.tags, polygon);
+					copyTag(relation.getTagList(), polygon);
 					osm.relations.remove(relation.getIdstr());
 					return true;
 				}
