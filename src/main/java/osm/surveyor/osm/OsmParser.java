@@ -36,7 +36,7 @@ public class OsmParser extends DefaultHandler {
     }
     
     ElementBounds bounds = null;					// <bounds/>
-    ElementNode node = null;						// <node/>
+    NodeBean node = null;						// <node/>
     OsmNd nd = null;								// <nd/>
     TagBean tag = null;							// <tag/>
 	ElementRelation relation = null;				// <relation/>
@@ -62,7 +62,7 @@ public class OsmParser extends DefaultHandler {
 			bounds.origin = getAttributes("origin", atts);
 		}
 		else if(qName.equals("node")){
-			node = new ElementNode(0);
+			node = new NodeBean(0);
 			node.setAction(getAttributes("action", atts));
 			node.setChangeset(getAttributes("changeset", atts));
 			node.setIdstr(getAttributes("id", atts));
@@ -148,7 +148,7 @@ public class OsmParser extends DefaultHandler {
 		else if(qName.equals("nd")){
 			if (nd != null) {
 				if (way != null) {
-					ElementNode node = osm.nodes.get(nd.id);
+					NodeBean node = osm.nodes.get(nd.id);
 					if (node != null) {
 						way.addNode(node.clone());
 					}

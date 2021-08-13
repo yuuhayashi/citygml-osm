@@ -11,16 +11,16 @@ import org.w3c.dom.NodeList;
  * 
  */
 @SuppressWarnings("serial")
-public class NodeMap extends HashMap<String, ElementNode> {
+public class NodeMap extends HashMap<String, NodeBean> {
 	public NodeMap() {
 		super();
 	}
 	
-	public void put(ElementNode node) {
+	public void put(NodeBean node) {
 		put(Long.toString(node.getId()), node);
 	}
 	
-	public ElementNode get(long id) {
+	public NodeBean get(long id) {
 		return get(Long.toString(id));
 	}
 	
@@ -33,7 +33,7 @@ public class NodeMap extends HashMap<String, ElementNode> {
 	    NodeList nList = doc.getElementsByTagName("node");
 	    for (int temp = 0; temp < nList.getLength(); temp++) {
 			Node nNode = nList.item(temp);
-			ElementNode node = (new ElementNode(0)).loadNode(nNode);
+			NodeBean node = (new NodeBean(0)).loadNode(nNode);
 			if (node != null) {
 				this.put(node);
 			}

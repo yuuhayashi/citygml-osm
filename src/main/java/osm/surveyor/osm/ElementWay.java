@@ -62,7 +62,7 @@ public class ElementWay extends PoiBean implements Cloneable {
 		this.nds.add(node);
 	}
 	
-	public void addNode(ElementNode node) {
+	public void addNode(NodeBean node) {
 		this.nds.add((new OsmNd()).set(node.getId(), node.point));
 	}
 

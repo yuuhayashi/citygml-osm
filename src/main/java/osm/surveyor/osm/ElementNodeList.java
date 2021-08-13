@@ -2,7 +2,7 @@ package osm.surveyor.osm;
 
 import java.util.HashMap;
 
-public class ElementNodeList extends HashMap<String, ElementNode> {
+public class ElementNodeList extends HashMap<String, NodeBean> {
 
 	private static final long serialVersionUID = 3570123486213986940L;
 
@@ -16,7 +16,7 @@ public class ElementNodeList extends HashMap<String, ElementNode> {
 	 * @param node
 	 * @return
 	 */
-	public ElementNode append(ElementNode node) {
+	public NodeBean append(NodeBean node) {
 		String key = new String(node.point.lat +":"+ node.point.lon);
 		if (this.containsKey(key)) {
 			return this.get(key);

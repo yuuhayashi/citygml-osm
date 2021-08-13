@@ -195,7 +195,7 @@ public class OsmDom {
 	
 	void addWay(OsmDom ddom, ElementWay way) {
 		for (OsmNd nd : way.nds) {
-			ElementNode node = this.nodes.get(nd.id);
+			NodeBean node = this.nodes.get(nd.id);
 			if (node != null) {
 				ddom.nodes.put(node.clone());
 			}

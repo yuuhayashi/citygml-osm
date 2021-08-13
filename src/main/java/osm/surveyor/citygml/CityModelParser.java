@@ -13,7 +13,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import osm.surveyor.osm.ElementBounds;
 import osm.surveyor.osm.MemberBean;
-import osm.surveyor.osm.ElementNode;
+import osm.surveyor.osm.NodeBean;
 import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.TagBean;
 import osm.surveyor.osm.ElementWay;
@@ -50,7 +50,7 @@ import osm.surveyor.osm.RelationBuilding;
  */
 public class CityModelParser extends DefaultHandler {
 	public StringBuffer outSb = null;		// TEXT待ちじゃない場合は NULL
-    HashMap<String, ElementNode> nodes = null;	// k= node.point.getGeom()
+    HashMap<String, NodeBean> nodes = null;	// k= node.point.getGeom()
 
 	OsmDom osm;
 	ConversionTable conversionTable;
@@ -234,7 +234,7 @@ public class CityModelParser extends DefaultHandler {
     public void endElement(String uri, String localName, String qName) {
 		if(qName.equals("core:CityModel")){
 			for (String key : nodes.keySet()) {
-				ElementNode node = nodes.get(key);
+				NodeBean node = nodes.get(key);
 				osm.nodes.put(Long.toString(node.getId()), node);
 			}
 		}
@@ -571,10 +571,10 @@ public class CityModelParser extends DefaultHandler {
 				
 				StringTokenizer st = new StringTokenizer(outSb.toString(), " ");
 				while(true) {
-					ElementNode node;
+					NodeBean node;
 					// lat
 					if (st.hasMoreTokens()) {
-						node = new ElementNode(osm.getNewId());
+						node = new NodeBean(osm.getNewId());
 						String lat = st.nextToken();
 						node.point.setLat(lat);
 					}
@@ -670,11 +670,11 @@ public class CityModelParser extends DefaultHandler {
      * @param node
      * @return
      */
-    ElementNode putNode(ElementNode node) {
+    NodeBean putNode(NodeBean node) {
     	if (this.nodes == null) {
     		this.nodes = new HashMap<>();
     	}
-    	ElementNode pre = this.nodes.get(node.point.getGeom());
+    	NodeBean pre = this.nodes.get(node.point.getGeom());
     	if (pre != null) {
     		return pre;
     	}

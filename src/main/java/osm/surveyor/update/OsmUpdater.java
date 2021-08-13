@@ -18,7 +18,7 @@ import org.xml.sax.SAXException;
 
 import osm.surveyor.osm.ElementBounds;
 import osm.surveyor.osm.MemberBean;
-import osm.surveyor.osm.ElementNode;
+import osm.surveyor.osm.NodeBean;
 import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.TagBean;
 import osm.surveyor.osm.ElementWay;
@@ -130,7 +130,7 @@ public class OsmUpdater {
     		
 		// インポートデータのすべてのノードを'modify'に確定する
 		for (String rKey : dom.nodes.keySet()) {
-			ElementNode node = dom.nodes.get(rKey);
+			NodeBean node = dom.nodes.get(rKey);
 			node.setAction("modify");
 			node.orignal = false;
 			ddom.nodes.put(node.clone());
@@ -232,7 +232,7 @@ public class OsmUpdater {
         		}
         		sWay.addTag(tag);
         		for (OsmNd nd : sWay.nds) {
-        			ElementNode node = sdom.nodes.get(nd.id);
+        			NodeBean node = sdom.nodes.get(nd.id);
         			node.setAction("delete");
         			ddom.nodes.put(node.clone());
         		}
