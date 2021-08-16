@@ -105,8 +105,9 @@ public class OsmDownloader {
 		return false;
 	}
 
+	/*
 	public void export(File out) throws ParserConfigurationException {
 		ddom.export(out);
 	}
-	
+	*/
 }

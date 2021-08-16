@@ -1,17 +1,8 @@
 package osm.surveyor.osm.api;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
-import java.nio.file.Paths;
 import java.util.StringTokenizer;
 
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
-
-import osm.surveyor.DetailTests;
 import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementWay;
@@ -63,15 +54,12 @@ V1.3.0で試して見ました。
 	リレーションの編集ウインドウで見ると、outlineと3つのパートは各々接続していない
 
  */
-public class CitygmlFileTest_Issue28 {
+public class CitygmlFileTest_Issue28 extends CitygmlFileTest {
 
 	@Test
 	public void test50303525() {
-		CitygmlFileTest.test_do(Paths.get("src/test/resources","Issue28_50303525_op.gml"));
-		
-		OsmDom osm = new OsmDom();
+		OsmDom osm = testdo("./src/test/resources/Issue28_50303525_op.gml");
 		try {
-			osm.parse(Paths.get("Issue28_50303525_op.osm").toFile());
 			assertNotNull(osm.relations);
 			
 			// Issue #34
@@ -84,7 +72,6 @@ public class CitygmlFileTest_Issue28 {
 			for (String id : osm.relations.keySet()) {
 				ElementRelation relation = osm.relations.get(id);
 				assertNotNull(relation);
-				//assertEquals("building", relation.getTagValue("type")); マルチポリゴンの場合もある
 				
 				// Issue #36
 				testIssue36(osm, relation);
@@ -187,44 +174,4 @@ public class CitygmlFileTest_Issue28 {
 		}
 	}
 
-	/**
-	 * `mvn test -Dtest=CitygmlFileTest_A#testSample_a2_margePart`
-	 * 
-	 */
-	@Test
-	@Category(DetailTests.class)
-	public void testSample_a2_margePart() {
-		CitygmlFileTest.test_doRelationMarge(Paths.get("src/test/resources","Issue28_50303525_op.gml"));
-        OsmDom osm = new OsmDom();
-        try {
-			osm.parse(Paths.get("Issue28_50303525_op_2.osm").toFile());
-			int i = 0;
-
-			assertNotNull(osm.relations);
-			for (String id : osm.relations.keySet()) {
-				ElementRelation relation = osm.relations.get(id);
-				assertNotNull(relation);
-				String type = relation.getTagValue("type");
-				if (type.equals("building")) {
-					for (MemberBean mem : relation.members) {
-						if (mem.getRole().equals("part")) {
-							assertEquals("way", mem.getType());
-							ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
-
-							// "40205-bldg-81197"をメンバに持つリレーションは 20個以上の建物パーツを持つべき
-							if (way.getTagValue("source").endsWith("40205-bldg-81197")) {
-								System.out.println("members: "+ relation.members.size());
-								assertTrue(relation.members.size() >= 20);
-								i++;
-							}
-						}
-					}
-				}
-			}
-			assertEquals(1, i);
-		} catch (Exception e) {
-			e.fillInStackTrace();
-			fail(e.toString());
-		}
-	}
 }

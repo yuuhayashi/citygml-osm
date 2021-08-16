@@ -28,48 +28,6 @@ import osm.surveyor.osm.WayMap;
 
 public class OsmUpdater {
 
-	/**
-	 * 指定されたOSMファイルの既存のOSMデータを取得する
-	 * 
-	 * @param args	アップデートしたいOSMデータファイル
-	 * @throws IOException 
-	 * @throws SAXException 
-	 * @throws ParserConfigurationException 
-	 */
-	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
-		String suffix1 = ".osm";
-		String suffix2 = ".mrg.osm";
-		String suffix3 = ".org.osm";
-        try {
-			File dir = new File(".");
-			Files.list(dir.toPath()).forEach(new Consumer<Path>() {
-				@Override
-				public void accept(Path a) {
-					if (Files.isRegularFile(a)) {
-						File file = a.toFile();
-						String filename = file.getName();
-						System.out.println(filename);
-						if (filename.endsWith(suffix1) && !filename.endsWith(suffix2) && !filename.endsWith(suffix3)) {
-							try {
-								OsmUpdater updater = new OsmUpdater(file);
-								updater.download();
-								updater.load();
-								filename = filename.substring(0, filename.length() - suffix1.length());
-								updater.ddom.export(Paths.get(filename + suffix2).toFile());
-								updater.sdom.export(Paths.get(filename + suffix3).toFile());
-							} catch (Exception e) {
-								e.printStackTrace();
-							}
-						}
-					}
-				}
-			});
-            
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
 	public OsmDom dom;		// source "*.osm" file.	
 	public OsmDom sdom;
 	public OsmDom ddom;
@@ -129,8 +87,7 @@ public class OsmUpdater {
 		}
     		
 		// インポートデータのすべてのノードを'modify'に確定する
-		for (String rKey : dom.nodes.keySet()) {
-			NodeBean node = dom.nodes.get(rKey);
+		for (NodeBean node : dom.nodes) {
 			node.setAction("modify");
 			node.orignal = false;
 			ddom.nodes.put(node.clone());
@@ -255,8 +212,11 @@ public class OsmUpdater {
 		return false;
 	}
 
+	/*
+	 * 
 	public void export(File out) throws ParserConfigurationException {
 		ddom.export(out);
 	}
+	 */
 	
 }

@@ -1,10 +1,8 @@
-package osm.surveyor.download;
+package osm.surveyor.osm.camel;
 
 import org.apache.camel.builder.RouteBuilder;
 
-import osm.surveyor.osm.camel.GetBoundProcessor;
-import osm.surveyor.osm.camel.OsmDownloadProcessor;
-import osm.surveyor.osm.camel.OsmParseProcessor;
+import osm.surveyor.download.OsmFiles;
 
 public class DownloadRoute extends RouteBuilder {
 
@@ -22,6 +20,7 @@ public class DownloadRoute extends RouteBuilder {
 		.split()
 			.simple("${body}")
 			.filter().method(new OsmFiles(), "filter")
+			.process(new OsmFileReadProcessor())
 			.process(new GetBoundProcessor())
 			.process(new OsmDownloadProcessor())
 	        .to("direct:osm-parse")
@@ -35,8 +34,9 @@ public class DownloadRoute extends RouteBuilder {
         .to("stream:out")
         ;
 
-		/*
 		// "building"関係のPOIのみに絞る
+		
+		/*
 		org.filterBuilding(sdom);
 		
 		filename = filename.substring(0, filename.length() - OsmFiles.SUFFIX_OSM.length());

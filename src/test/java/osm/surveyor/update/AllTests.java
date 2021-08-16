@@ -49,8 +49,8 @@ public class AllTests {
 					updater.download();
 					updater.load();
 					filename = filename.substring(0, filename.length() - suffix1.length());
-					updater.ddom.export(Paths.get(filename + suffix2).toFile());
-					updater.sdom.export(Paths.get(filename + suffix3).toFile());
+					//updater.ddom.export(Paths.get(filename + suffix2).toFile());
+					//updater.sdom.export(Paths.get(filename + suffix3).toFile());
 					return updater;
 				} catch (Exception e) {
 					e.printStackTrace();

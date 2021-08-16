@@ -87,7 +87,7 @@ public class OsmUpdaterTest_A {
     		OsmDom sdom = new OsmDom();
     		sdom.setBounds(bounds);
     		sdom.downloadMap();
-    		sdom.export(Paths.get("sample_a_bldg_6697_op2.org.osm").toFile());
+    		//sdom.export(Paths.get("sample_a_bldg_6697_op2.org.osm").toFile());
 		} catch (Exception e) {
 			e.fillInStackTrace();
 			fail(e.toString());
@@ -170,7 +170,7 @@ public class OsmUpdaterTest_A {
     		// 既存POIとマージする
 			updater.load();
 			
-			updater.ddom.export(Paths.get(filename +".mrg.osm").toFile());
+			//updater.ddom.export(Paths.get(filename +".mrg.osm").toFile());
     		
 			int waycnt = 0;
 			for (String id : updater.ddom.ways.keySet()) {
@@ -232,7 +232,7 @@ public class OsmUpdaterTest_A {
         	org.parse(Paths.get("src/test/resources/", "sample_a3_bldg_6697_op2.org.osm").toFile());
     		org.filterBuilding(sdom);
 
-    		sdom.export(Paths.get("org.xml").toFile());
+    		//sdom.export(Paths.get("org.xml").toFile());
 		} catch (Exception e) {
 			e.fillInStackTrace();
 			fail(e.toString());

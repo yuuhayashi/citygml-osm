@@ -1,21 +1,12 @@
 package osm.surveyor.osm.api;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
-
-import java.nio.file.Paths;
-
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
-
-import osm.surveyor.DetailTests;
 import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 
-public class CitygmlFileTest_Issue34 {
+public class CitygmlFileTest_Issue34 extends CitygmlFileTest {
 
 	/**
 	 * 
@@ -32,11 +23,8 @@ public class CitygmlFileTest_Issue34 {
 	 */
 	@Test
 	public void test50303525() {
-		CitygmlFileTest.test_do(Paths.get("src/test/resources","Issue34_bldg_6697_op.gml"));
-		
-		OsmDom osm = new OsmDom();
+		OsmDom osm = testdo("./src/test/resources/Issue34_bldg_6697_op.gml");
 		try {
-			osm.parse(Paths.get("Issue34_bldg_6697_op.osm").toFile());
 			checkIssue34_1(osm);
 			checkIssue34_2(osm);
 			assertEquals(1, osm.relations.size());
@@ -49,48 +37,6 @@ public class CitygmlFileTest_Issue34 {
 		}
 	}
 
-	@Test
-	@Category(DetailTests.class)
-	public void test50303525_1() {
-		CitygmlFileTest.test_doParse(Paths.get("src/test/resources","Issue34_bldg_6697_op.gml"));
-		
-		OsmDom osm = new OsmDom();
-		try {
-			osm.parse(Paths.get("Issue34_bldg_6697_op_1.osm").toFile());
-			checkIssue34_1(osm);
-		} catch (Exception e) {
-			fail(e.toString());
-		}
-	}
-
-	@Test
-	@Category(DetailTests.class)
-	public void test50303525_2() {
-		CitygmlFileTest.test_doRelationMarge(Paths.get("src/test/resources","Issue34_bldg_6697_op.gml"));
-		
-		OsmDom osm = new OsmDom();
-		try {
-			osm.parse(Paths.get("Issue34_bldg_6697_op_2.osm").toFile());
-			checkIssue34_1(osm);
-		} catch (Exception e) {
-			fail(e.toString());
-		}
-	}
-
-	@Test
-	@Category(DetailTests.class)
-	public void test50303525_3() {
-		CitygmlFileTest.test_doRemoveSinglePart(Paths.get("src/test/resources","Issue34_bldg_6697_op.gml"));
-		
-		OsmDom osm = new OsmDom();
-		try {
-			osm.parse(Paths.get("Issue34_bldg_6697_op_3.osm").toFile());
-			checkIssue34_1(osm);
-		} catch (Exception e) {
-			fail(e.toString());
-		}
-	}
-	
 	/**
 	 *	multipolygonのinnerに実在しないものがないこと。
 	 * @param osm

@@ -1,10 +1,5 @@
 package osm.surveyor.osm.camel;
 
-import java.io.File;
-import java.util.Map;
-
-import javax.xml.bind.JAXB;
-
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 
@@ -15,11 +10,9 @@ public class GetBoundProcessor implements Processor {
 
 	@Override
 	public void process(Exchange exchange) throws Exception {
-		Map<String, Object> headers = exchange.getIn().getHeaders();
-		String filepath = (String)headers.get("CamelFileAbsolutePath");
-		System.out.println("GetBoundProcessor : " + filepath);
+		System.out.println("GetBoundProcessor : ");
 		
-		ElementOsm osm = JAXB.unmarshal(new File(filepath), ElementOsm.class);
+		ElementOsm osm = exchange.getIn().getBody(ElementOsm.class);
 		ElementBounds bound = osm.getBounds();
 		exchange.getIn().setBody(bound);
 	}

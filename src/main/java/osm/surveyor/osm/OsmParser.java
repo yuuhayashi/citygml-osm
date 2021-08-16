@@ -49,7 +49,7 @@ public class OsmParser extends DefaultHandler {
     public void startElement(String uri,String localName, String qName, Attributes atts) {
     	if(qName.equals("osm")){
 			osm.bounds = new ElementBounds();
-			osm.nodes = new NodeMap();
+			osm.nodes = new NodeBeans();
 			osm.ways = new WayMap();
 			osm.relations = new RelationMap();
 		}

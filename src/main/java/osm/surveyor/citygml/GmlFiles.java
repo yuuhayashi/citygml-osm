@@ -1,0 +1,17 @@
+package osm.surveyor.citygml;
+
+import java.util.Map;
+import org.apache.camel.Exchange;
+
+public class GmlFiles {
+	public static String SUFFIX_GML = ".gml";
+
+	public boolean filter(Exchange exchange) {
+		Map<String, Object> headers = exchange.getIn().getHeaders();
+		String name = (String)headers.get("CamelFileName");
+		if (name.endsWith(SUFFIX_GML)) {
+			return true;
+		}
+		return false;
+	}
+}

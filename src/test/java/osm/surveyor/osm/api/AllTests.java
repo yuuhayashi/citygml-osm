@@ -15,7 +15,6 @@ import osm.surveyor.update.HttpGetTest;
 @RunWith(Categories.class)
 @ExcludeCategory(DetailTests.class)
 @SuiteClasses({
-	CitygmlFileTest.class, 
 	CitygmlFileTest_A.class, 
 	CitygmlFileTest_B.class, 
 	CitygmlFileTest_C.class,

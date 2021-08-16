@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.locationtech.jts.geom.Coordinate;
 import org.w3c.dom.Document;
@@ -52,6 +53,7 @@ public class NodeBean extends PoiBean implements Cloneable,Serializable {
 		this.point.setLon(lon);
 	}
 
+	@XmlTransient
 	public OsmPoint getPoint() {
 		return point;
 	}

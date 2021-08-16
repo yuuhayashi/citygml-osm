@@ -1,12 +1,10 @@
-package osm.surveyor.download;
+package osm.surveyor.osm.camel;
 
 import org.apache.camel.CamelContext;
-import org.apache.camel.ProducerTemplate;
 import org.apache.camel.impl.DefaultCamelContext;
 
 public class OsmDownload {
 	public static CamelContext camel;
-	public static ProducerTemplate producer;
 
 	public static void main(String[] args) throws Exception {
 		camel = new DefaultCamelContext();

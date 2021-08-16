@@ -2,8 +2,10 @@ package osm.surveyor.osm;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
@@ -11,22 +13,12 @@ import java.net.URL;
 import java.text.ParseException;
 import java.util.ArrayList;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.bind.JAXB;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
@@ -40,22 +32,22 @@ public class OsmDom {
 	static final String outputEncoding = "UTF-8";
 	public long idno;
 	
-    public OsmDom() {
-        super();
-        this.idno = 0;
-        nodes = new NodeMap();	// k= node.id
-        ways = new WayMap();		// k= way.id
-        relations = new RelationMap();	// k= relation.id
-    }
-
     Document doc;
     ElementBounds bounds = new ElementBounds();
 	public String source = null;
     public String srsName = null;
-    public NodeMap nodes;	// k= node.id
+    public NodeBeans nodes;	// k= node.id
     public WayMap ways;		// k= way.id
     public RelationMap relations;	// k= relation.id
     
+    public OsmDom() {
+        super();
+        this.idno = 0;
+        nodes = new NodeBeans();	// k= node.id
+        ways = new WayMap();		// k= way.id
+        relations = new RelationMap();	// k= relation.id
+    }
+
     /**
       * シリアル番号を生成する
      * @return
@@ -90,6 +82,9 @@ public class OsmDom {
 		} catch (SAXParseException e) {}
     }
     
+
+    /*
+     * 
     public Document load(File sourcefile) throws ParserConfigurationException, SAXException, IOException {
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 	    DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -116,6 +111,7 @@ public class OsmDom {
 			}
 		}
 	}
+     */
     
 	/**
 	 *  OSMから<bound>範囲内の現在のデータを取得する
@@ -204,6 +200,8 @@ public class OsmDom {
 	}
 	
 
+	/*
+	 * 
     public void export(File out) throws ParserConfigurationException {
 		DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 		Document document = documentBuilder.newDocument();
@@ -235,15 +233,31 @@ public class OsmDom {
 			e.printStackTrace();
 		}
     }
+	 */
+    public void export(PrintStream out) {
+    	JAXB.marshal(this, out);
+    }
+	
+    public void export(String filepath) {
+    	try (PrintStream ps = new PrintStream(filepath, "utf-8")) {
+        	export(ps);
+    	}
+    	catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    }
     
+    public void export(File file) {
+    	export(file.getAbsolutePath());
+    }
+
     /**
      * 
      * <bounds minlat='35.4345061' minlon='139.410131' maxlat='35.4347116' maxlon='139.4104367' origin='CGImap 0.8.3 (2061540 spike-08.openstreetmap.org)' />
      * @return
-     */
     void loadBounds(Document doc, ElementBounds bounds) {
     	Element osmElement = doc.getDocumentElement();
-    	NodeList nList = osmElement.getElementsByTagName("bounds");
+    	NodeBeans nList = osmElement.getElementsByTagName("bounds");
 	    for (int temp = 0; temp < nList.getLength(); temp++) {
 			Node nNode = nList.item(temp);
 			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
@@ -256,6 +270,7 @@ public class OsmDom {
 			}
 	    }
     }
+     */
     
     /**
      * 
@@ -333,16 +348,17 @@ public class OsmDom {
 	 * WAYに所属していないNODEを削除する
 	 */
 	public void gerbageNode() {
-		NodeMap map = new NodeMap();
+		NodeBeans list = new NodeBeans();
 		for (String wayid : this.ways.keySet()) {
 			ElementWay way = this.ways.get(wayid);
 			for (OsmNd nd : way.nds) {
-				map.put(this.nodes.get(nd.id));
+				NodeBean node = this.nodes.get(nd.id);
+				list.put(node);
 			}
 		}
 		this.nodes.clear();
-		for (String key : map.keySet()) {
-			this.nodes.put(map.get(key));
+		for (NodeBean bean : list) {
+			this.nodes.put(bean);
 		}
 	}
 }
