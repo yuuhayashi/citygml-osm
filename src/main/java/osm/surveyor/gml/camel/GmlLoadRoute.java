@@ -5,6 +5,7 @@ import org.apache.camel.builder.RouteBuilder;
 import osm.surveyor.osm.camel.BuildingGarbageProcessor;
 import osm.surveyor.osm.camel.GerbageNodeProcessor;
 import osm.surveyor.osm.camel.GerbageWayProcessor;
+import osm.surveyor.osm.camel.OsmExportProcessor;
 import osm.surveyor.osm.camel.OsmMargeWayProcessor;
 import osm.surveyor.osm.camel.OutlineFactoryProcessor;
 import osm.surveyor.osm.camel.RelationMargeProcessor;
@@ -54,16 +55,15 @@ public class GmlLoadRoute extends RouteBuilder {
 		from("direct:inOsmMargeWay")
 		.process(new OsmMargeWayProcessor())
 		.process(new GerbageWayProcessor())		// RELATIONに所属していないWAYを削除する
-        .to("stream:out")
+        .to("direct:osm-export")
         ;
 		
 		// (6) OSMファイルに出力する
-		/*
-		filename = filename.substring(0, filename.length() - OsmFiles.SUFFIX_OSM.length());
-		sdom.export(Paths.get(filename + OsmFiles.SUFFIX_ORG_OSM).toFile());
-
-		exchange.getIn().setBody(org);
-		 */
+		from("direct:osm-export")
+		.process(new GmlFileToOsmProcessor())
+		.process(new OsmExportProcessor())
+        .to("stream:out")
+        ;
 	}
 
 }

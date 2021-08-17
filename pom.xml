@@ -252,7 +252,7 @@
           </descriptorRefs>
           <archive>
             <manifest>
-              <mainClass>osm.surveyor.citygml.CitygmlFile</mainClass>
+              <mainClass>osm.surveyor.gml.camel.CitygmlLoad</mainClass>
             </manifest>
           </archive>
         </configuration>
