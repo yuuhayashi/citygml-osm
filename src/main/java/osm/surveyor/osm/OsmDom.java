@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
@@ -12,12 +11,20 @@ import java.net.URL;
 import java.text.ParseException;
 import java.util.ArrayList;
 
-import javax.xml.bind.JAXB;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
@@ -201,14 +208,15 @@ public class OsmDom {
 
 	/*
 	 * 
+	 */
     public void export(File out) throws ParserConfigurationException {
 		DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 		Document document = documentBuilder.newDocument();
 		ElementOsm ooo = new ElementOsm();
     	Node osm = ooo.toNode(document);
     	osm.appendChild(bounds.toNode(document));
-    	for (String key : nodes.keySet()) {
-        	osm.appendChild(nodes.get(key).toNode(document));
+    	for (NodeBean bean : nodes) {
+        	osm.appendChild(bean.toNode(document));
     	}
     	for (String key : ways.keySet()) {
         	osm.appendChild(ways.get(key).toNode(document));
@@ -232,11 +240,11 @@ public class OsmDom {
 			e.printStackTrace();
 		}
     }
-	 */
+/*
+ * 
     public void export(PrintStream out) {
     	JAXB.marshal(this, out);
     }
-	
     public void export(String filepath) {
     	try (PrintStream ps = new PrintStream(filepath, "utf-8")) {
         	export(ps);
@@ -245,11 +253,12 @@ public class OsmDom {
     		e.printStackTrace();
     	}
     }
-    
     public void export(File file) {
     	export(file.getAbsolutePath());
     }
 
+ */
+	
     /**
      * 
      * <bounds minlat='35.4345061' minlon='139.410131' maxlat='35.4347116' maxlon='139.4104367' origin='CGImap 0.8.3 (2061540 spike-08.openstreetmap.org)' />

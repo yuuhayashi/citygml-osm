@@ -17,10 +17,10 @@ public class GmlFileToOsmProcessor implements Processor {
 		FileEndpoint endpoint = (FileEndpoint)exchange.getFromEndpoint();
 		File file = endpoint.getFile();
 		
-		String name = file.getAbsolutePath();
+		String name = file.getName();
 		if (name.endsWith(GmlFiles.SUFFIX_GML)) {
 			String filename = name.substring(0, name.length() - GmlFiles.SUFFIX_GML.length());
-			File outf = (Paths.get(filename + OsmFiles.SUFFIX_ORG_OSM).toFile());
+			File outf = (Paths.get(".", filename + OsmFiles.SUFFIX_ORG_OSM).toFile());
 			endpoint.setFile(outf);
 			exchange.setFromEndpoint(endpoint);
 		}

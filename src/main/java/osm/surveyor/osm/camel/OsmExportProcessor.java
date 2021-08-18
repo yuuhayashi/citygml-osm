@@ -1,15 +1,11 @@
 package osm.surveyor.osm.camel;
 
 import java.io.File;
-import java.io.PrintStream;
-
-import javax.xml.bind.JAXB;
-
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.camel.component.file.FileEndpoint;
 
-import osm.surveyor.osm.ElementOsm;
+import osm.surveyor.osm.OsmDom;
 
 public class OsmExportProcessor implements Processor {
 
@@ -26,11 +22,8 @@ public class OsmExportProcessor implements Processor {
 		FileEndpoint endpoint = (FileEndpoint)exchange.getFromEndpoint();
 		File file = endpoint.getFile();
 		
-		ElementOsm osm = exchange.getIn().getBody(ElementOsm.class);
-		
-		try (PrintStream ps = new PrintStream(file, "utf-8")) {
-			JAXB.marshal(osm, ps);
-		}
+		OsmDom osm = exchange.getIn().getBody(OsmDom.class);
+		osm.export(file);
 	}
 
 }
