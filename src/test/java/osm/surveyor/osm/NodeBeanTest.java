@@ -66,6 +66,8 @@ public class NodeBeanTest {
 		a.setVisible(true);
 		a.setVersion("1");
 		a.setChangeset("12032994");
+		a.setLat("35.43464696576");
+		a.setLon("139.4102145808");
 		
 		NodeBean b = a.clone();
 		assertTrue(a.equals(b));
