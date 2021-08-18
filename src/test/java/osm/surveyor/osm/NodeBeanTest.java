@@ -77,12 +77,12 @@ public class NodeBeanTest {
 		b.setChangeset("12032994");
 		assertTrue(a.equals(b));
 
-		a.setLat("35.43464696576");
-		a.setLon("139.4102145808");
+		a.setLat("35.43464696");
+		a.setLon("139.4102145");
 		assertFalse(a.equals(b));
 		
-		b.setLat("35.43464696576");
-		b.setLon("139.4102145808");
+		a.setLat("35.43464696576");
+		a.setLon("139.4102145808");
 		assertTrue(a.equals(b));
 	}
 

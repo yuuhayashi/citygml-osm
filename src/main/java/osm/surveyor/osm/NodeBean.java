@@ -148,8 +148,7 @@ public class NodeBean extends PoiBean implements Cloneable,Serializable {
 	@Override
 	public NodeBean clone() {
 		NodeBean b = (NodeBean) super.clone();
-		b.setLat(this.getLat());
-		b.setLon(this.getLon());
+		b.point = this.point.clone();
 		b.setHeight(this.getHeight());
 		return b;
 	}

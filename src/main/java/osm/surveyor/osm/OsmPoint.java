@@ -9,7 +9,10 @@ public class OsmPoint implements Cloneable {
 	@Override
 	public OsmPoint clone() {
 		try {
-			return (OsmPoint)super.clone();
+			OsmPoint obj = (OsmPoint)super.clone();
+			obj.lat = (this.lat == null ? null : new String(this.lat));
+			obj.lon = (this.lon == null ? null : new String(this.lon));
+			return obj;
 		} catch (CloneNotSupportedException e) {
 			e.printStackTrace();
 			return null;
