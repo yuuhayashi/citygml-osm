@@ -4,7 +4,7 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 
 import osm.surveyor.osm.ElementBounds;
-import osm.surveyor.osm.ElementOsm;
+import osm.surveyor.osm.OsmBean;
 
 public class GetBoundProcessor implements Processor {
 
@@ -12,7 +12,7 @@ public class GetBoundProcessor implements Processor {
 	public void process(Exchange exchange) throws Exception {
 		System.out.println("GetBoundProcessor : ");
 		
-		ElementOsm osm = exchange.getIn().getBody(ElementOsm.class);
+		OsmBean osm = exchange.getIn().getBody(OsmBean.class);
 		ElementBounds bound = osm.getBounds();
 		exchange.getIn().setBody(bound);
 	}

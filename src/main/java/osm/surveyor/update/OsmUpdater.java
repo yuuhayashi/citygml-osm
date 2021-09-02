@@ -2,8 +2,6 @@ package osm.surveyor.update;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.nio.file.Paths;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -13,7 +11,6 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
-import osm.surveyor.osm.ElementBounds;
 import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.NodeBean;
 import osm.surveyor.osm.ElementRelation;
@@ -36,34 +33,6 @@ public class OsmUpdater {
 	public OsmUpdater(File file) throws ParserConfigurationException, SAXException, IOException, ParseException {
 		dom = new OsmDom();
 		dom.parse(file);
-	}
-	
-	/**
-	 * OpenStreetMapから 既存データを収録する
-	 * 
-	 * @throws MalformedURLException
-	 * @throws ProtocolException
-	 * @throws IOException
-	 * @throws ParserConfigurationException
-	 * @throws SAXException
-	 */
-	public void download() throws MalformedURLException, ProtocolException, IOException, ParserConfigurationException, SAXException {
-		// 指定されたOSMファイルの<bound/>を取得する
-		ElementBounds bounds = dom.getBounds();
-
-		OsmDom org = new OsmDom();
-		org.setBounds(bounds);
-		
-		// エクスポート用のOsmDomを生成する
-		this.ddom = new OsmDom();
-		this.ddom.setBounds(bounds);
-
-		// OSMから<bound>範囲内の現在のデータを取得する
-		org.downloadMap();
-		
-		// "building"関係のPOIのみに絞る
-		this.sdom = new OsmDom();
-		org.filterBuilding(this.sdom);
 	}
 	
 	/**
@@ -208,12 +177,4 @@ public class OsmUpdater {
 		}
 		return false;
 	}
-
-	/*
-	 * 
-	public void export(File out) throws ParserConfigurationException {
-		ddom.export(out);
-	}
-	 */
-	
 }

@@ -8,10 +8,10 @@ import java.util.Map;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 
-import osm.surveyor.osm.ElementOsm;
 import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.NdBean;
 import osm.surveyor.osm.NodeBean;
+import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.RelationBean;
 import osm.surveyor.osm.WayBean;
 
@@ -22,7 +22,7 @@ public class OsmBuildingFilterProcessor implements Processor {
 	 */
 	@Override
 	public void process(Exchange exchange) throws Exception {
-		ElementOsm osm = exchange.getIn().getBody(ElementOsm.class);
+		OsmBean osm = exchange.getIn().getBody(OsmBean.class);
 		
 		Map<Long,RelationBean> relationmap = new HashMap<>();
 		Map<Long,WayBean> waymap = new HashMap<>();

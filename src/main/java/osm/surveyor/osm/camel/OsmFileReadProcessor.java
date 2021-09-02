@@ -8,7 +8,7 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.camel.component.file.FileEndpoint;
 
-import osm.surveyor.osm.ElementOsm;
+import osm.surveyor.osm.OsmBean;
 
 public class OsmFileReadProcessor implements Processor {
 
@@ -20,7 +20,7 @@ public class OsmFileReadProcessor implements Processor {
 		FileEndpoint endpoint = (FileEndpoint)exchange.getFromEndpoint();
 		File file = endpoint.getFile();
 		
-		ElementOsm osm = JAXB.unmarshal(file, ElementOsm.class);
+		OsmBean osm = JAXB.unmarshal(file, OsmBean.class);
 		exchange.getIn().setBody(osm);
 	}
 

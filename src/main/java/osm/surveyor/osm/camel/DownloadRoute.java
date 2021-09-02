@@ -40,8 +40,8 @@ public class DownloadRoute extends RouteBuilder {
 		// (3) OSMから<bound>範囲内の現在のデータをダウンロードする
 		from("direct:osm-download")
 		.process(new OsmDownloadProcessor())
-		.process(new ToOrgOsmFileProcessor())	// ファイル名 "*.osm" を "*.org.osm" に変換する
-		.process(new StrExportProcessor())		// 文字データをファイルに書き出す
+		//.process(new ToOrgOsmFileProcessor())	// ファイル名 "*.osm" を "*.org.osm" に変換する
+		//.process(new StrExportProcessor())		// 文字データをファイルに書き出す
         .to("direct:osm-parse")
         ;
 
@@ -62,14 +62,12 @@ public class DownloadRoute extends RouteBuilder {
         .to("stream:out")
         ;
 		
-		/*
-		org.filterBuilding(sdom);
-		
-		filename = filename.substring(0, filename.length() - OsmFiles.SUFFIX_OSM.length());
-		sdom.export(Paths.get(filename + OsmFiles.SUFFIX_ORG_OSM).toFile());
-
-		exchange.getIn().setBody(org);
-		 */
+		// (3) OSMから<bound>範囲内の現在のデータをダウンロードする
+		// (4) ダウンロードしたデータをパースする
+		from("direct:test-file-load")
+		.process(new OsmFileReadProcessor())
+        .to("direct:osm-building-filter")
+        ;
 	}
 
 }

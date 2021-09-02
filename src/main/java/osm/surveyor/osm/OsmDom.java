@@ -4,31 +4,17 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
+import java.io.PrintStream;
 import java.text.ParseException;
 import java.util.ArrayList;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.bind.JAXB;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
-
-import osm.surveyor.osm.api.*;
 
 /**
  * Osmファイルをドムる
@@ -38,7 +24,6 @@ public class OsmDom {
 	static final String outputEncoding = "UTF-8";
 	public long idno;
 	
-    Document doc;
     ElementBounds bounds = new ElementBounds();
 	public String source = null;
     public String srsName = null;
@@ -88,101 +73,6 @@ public class OsmDom {
 		} catch (SAXParseException e) {}
     }
     
-
-    /*
-     * 
-    public Document load(File sourcefile) throws ParserConfigurationException, SAXException, IOException {
-		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-	    DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-	    doc = dBuilder.parse(sourcefile);
-	    doc.getDocumentElement().normalize();
-	    load(doc);
-	    return doc;
-	}
-
-    public void load(Document doc) throws ParserConfigurationException, SAXException, IOException {
-	    loadBounds(doc, bounds);
-	    nodes.load(doc);
-	    ways.load(doc);
-	    relations.load(doc);
-
-	    // Relation->member->WAY は、WAY.member=true にする
-		for (String rKey : relations.keySet()) {
-			ElementRelation relation = relations.get(rKey);
-			for (MemberBean menber : relation.members) {
-				ElementWay sWay = ways.get(menber.getRef());
-				if (sWay != null) {
-					sWay.member = true;
-				}
-			}
-		}
-	}
-     */
-    
-	/**
-	 *  OSMから<bound>範囲内の現在のデータを取得する
-	 * @throws SAXException 
-	 * @throws ParserConfigurationException 
-	 * @throws IOException 
-	 * @throws ProtocolException 
-	 * @throws MalformedURLException 
-	 */
-	public void downloadMap() throws MalformedURLException, ProtocolException, IOException, ParserConfigurationException, SAXException {
-		HttpGet http = new HttpGet();
-		String urlstr = http.getHost() + "/api/0.6/map" + "?"+ bounds.getBbox();
-        System.out.println("URL: " + urlstr);
-        URL url = new URL(urlstr);
-        
-        HttpURLConnection urlconn = (HttpURLConnection)url.openConnection();
-        try {
-            urlconn.setRequestMethod("GET");
-            urlconn.setInstanceFollowRedirects(false);
-            urlconn.setRequestProperty("Accept-Language", "ja;q=0.7,en;q=0.3");
-            urlconn.connect();
-
-    		GetResponse res = new GetResponse();
-            res.setCode(urlconn.getResponseCode());
-    		res.setMessage(urlconn.getResponseMessage());
-    		parse(urlconn.getInputStream());
-        }
-        finally {
-            urlconn.disconnect();
-        }
-	}
-	
-	/**
-	 * 取得したデータからRELATION:buildingオブジェクトのみ抽出する
-	 * @param ddom	抽出 destination
-	 * @return	抽出された新しいインスタンス
-	 */
-	public OsmDom filterBuilding(OsmDom ddom) {
-		ddom.setBounds(this.getBounds());
-
-		// 取得したデータからRELATION:buildingオブジェクトのみ抽出する
-		for (String rKey : this.relations.keySet()) {
-			ElementRelation relation = this.relations.get(rKey);
-			if (relation.isBuilding()) {
-				addRelation(ddom, relation);
-			}
-			else if (relation.isMultipolygon()) {
-				if (relation.getTagValue("building") != null) {
-					addRelation(ddom, relation);
-				}
-				else if (relation.getTagValue("building:part") != null) {
-					addRelation(ddom, relation);
-				}
-			}
-		}
-		
-		for (String rKey : this.ways.keySet()) {
-			ElementWay way = this.ways.get(rKey);
-			if (way.isBuilding()) {
-				addWay(ddom, way);
-			}
-		}
-		return ddom;
-	}
-	
 	void addRelation(OsmDom ddom, ElementRelation relation) {
 		for (MemberBean member : relation.members) {
 			if (member.getType().equals("way")) {
@@ -205,43 +95,6 @@ public class OsmDom {
 		ddom.ways.put(way.clone());
 	}
 	
-
-	/*
-	 * 
-	 */
-    public void export(File out) throws ParserConfigurationException {
-		DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-		Document document = documentBuilder.newDocument();
-		ElementOsm ooo = new ElementOsm();
-    	Node osm = ooo.toNode(document);
-    	osm.appendChild(bounds.toNode(document));
-    	for (NodeBean bean : nodes) {
-        	osm.appendChild(bean.toNode(document));
-    	}
-    	for (String key : ways.keySet()) {
-        	osm.appendChild(ways.get(key).toNode(document));
-    	}
-    	for (String key : relations.keySet()) {
-        	osm.appendChild(relations.get(key).toNode(document));
-    	}
-    	document.appendChild(osm);
-    	
-		try {
-			TransformerFactory transformerFactory = TransformerFactory.newInstance();
-			Transformer transformer = transformerFactory.newTransformer();
-	        transformer.setOutputProperty("indent", "yes"); //改行指定
-	        transformer.setOutputProperty("encoding", outputEncoding); // エンコーディング
-            transformer.transform(new DOMSource(document), new StreamResult(out));
-		}
-		catch (TransformerConfigurationException e) {
-			e.printStackTrace();
-		}
-		catch (TransformerException e) {
-			e.printStackTrace();
-		}
-    }
-/*
- * 
     public void export(PrintStream out) {
     	JAXB.marshal(this, out);
     }
@@ -256,29 +109,6 @@ public class OsmDom {
     public void export(File file) {
     	export(file.getAbsolutePath());
     }
-
- */
-	
-    /**
-     * 
-     * <bounds minlat='35.4345061' minlon='139.410131' maxlat='35.4347116' maxlon='139.4104367' origin='CGImap 0.8.3 (2061540 spike-08.openstreetmap.org)' />
-     * @return
-    void loadBounds(Document doc, ElementBounds bounds) {
-    	Element osmElement = doc.getDocumentElement();
-    	NodeBeans nList = osmElement.getElementsByTagName("bounds");
-	    for (int temp = 0; temp < nList.getLength(); temp++) {
-			Node nNode = nList.item(temp);
-			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-				Element eElement = (Element) nNode;
-				bounds.minlat = eElement.getAttribute("minlat");
-				bounds.minlon = eElement.getAttribute("minlon");
-				bounds.maxlat = eElement.getAttribute("maxlat");
-				bounds.maxlon = eElement.getAttribute("maxlon");
-				bounds.origin = eElement.getAttribute("origin");
-			}
-	    }
-    }
-     */
     
     /**
      * 

@@ -5,7 +5,7 @@ import java.io.StringReader;
 import javax.xml.bind.JAXB;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
-import osm.surveyor.osm.ElementOsm;
+import osm.surveyor.osm.OsmBean;
 
 public class OsmParseProcessor implements Processor {
 
@@ -16,7 +16,7 @@ public class OsmParseProcessor implements Processor {
 	public void process(Exchange exchange) throws Exception {
 		String str = exchange.getIn().getBody(String.class);
 		StringReader r = new StringReader(str);
-		ElementOsm osm = JAXB.unmarshal(r, ElementOsm.class);
+		OsmBean osm = JAXB.unmarshal(r, OsmBean.class);
 		
 		System.out.println("OsmParseProcessor : "+ osm.getNodeList().size());
 		exchange.getIn().setBody(osm);

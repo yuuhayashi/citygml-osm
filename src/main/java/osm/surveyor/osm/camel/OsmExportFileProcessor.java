@@ -9,7 +9,7 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.camel.component.file.FileEndpoint;
 
-import osm.surveyor.osm.ElementOsm;
+import osm.surveyor.osm.OsmBean;
 
 public class OsmExportFileProcessor implements Processor {
 
@@ -27,7 +27,7 @@ public class OsmExportFileProcessor implements Processor {
 		FileEndpoint endpoint = (FileEndpoint)exchange.getFromEndpoint();
 		File file = endpoint.getFile();
 		
-		ElementOsm osm = exchange.getIn().getBody(ElementOsm.class);
+		OsmBean osm = exchange.getIn().getBody(OsmBean.class);
 		try (FileWriter fw = new FileWriter(file)) {
 			JAXB.marshal(osm, fw);
 		}

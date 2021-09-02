@@ -7,10 +7,6 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.parsers.ParserConfigurationException;
-import org.w3c.dom.Element;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
 
 /**
  * CityGMLファイルをパースする
@@ -23,21 +19,14 @@ import org.w3c.dom.Node;
  * }
  */
 @XmlRootElement(name="osm")
-public class ElementOsm implements Serializable {
+public class OsmBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	public static String VERSION = "0.6";
 	public static String GENERATOR = "JOSM";
 	
-	public ElementOsm() {
+	public OsmBean() {
 		super();
 	}
-	
-	public Node toNode(Document document) throws ParserConfigurationException {
-		Element osm = document.createElement("osm");
-        osm.setAttribute("version", VERSION);
-        osm.setAttribute("generator", GENERATOR);
-        return (Node)osm;
-    }
 	
 	/**
 	 * 指定されたリレーションを取得する
@@ -85,12 +74,12 @@ public class ElementOsm implements Serializable {
 	
 	@XmlAttribute(name="version")
     public String getVersion() {
-        return ElementOsm.VERSION;
+        return OsmBean.VERSION;
     }
 	
 	@XmlAttribute(name="generator")
     public String getGenerator() {
-        return ElementOsm.GENERATOR;
+        return OsmBean.GENERATOR;
     }
 
 	private ElementBounds bounds;

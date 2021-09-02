@@ -18,7 +18,7 @@ public class TokyoStTest {
 	public void test_download() {
 		try {
 			OsmUpdater updater = new OsmUpdater(Paths.get("src/test/resources/", "tokyost_bldg_6697_op2.osm").toFile());
-			updater.download();
+			//updater.download();
 			updater.sdom.export(Paths.get("tokyost_bldg_6697_op2.org.osm").toFile());
 		}
 		catch (Exception e) {

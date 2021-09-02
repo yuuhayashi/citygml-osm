@@ -5,10 +5,6 @@ import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-
 /**
  * CityGMLファイルをパースする
  * @param gmlFile
@@ -45,15 +41,6 @@ public class ElementBounds implements Serializable {
 	 		maxlat='35.4347116' maxlon='139.4104367' 
 	 		origin='CGImap 0.8.3 (2061540 spike-08.openstreetmap.org)' />
 	 */
-    public Node toNode(Document doc) {
-		Element node = doc.createElement("bounds");
-        node.setAttribute("minlat", minlat);
-        node.setAttribute("minlon", minlon);
-        node.setAttribute("maxlat", maxlat);
-        node.setAttribute("maxlon", maxlon);
-        node.setAttribute("origin", origin);
-        return (Node)node;
-    }
     
     public String getBbox() {
 		return "bbox="+ minlon +","+ minlat +","+ maxlon +","+ maxlat;
