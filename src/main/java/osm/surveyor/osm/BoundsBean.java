@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * 
  */
 @XmlRootElement(name="bounds")
-public class ElementBounds implements Serializable {
+public class BoundsBean implements Serializable {
 	private static final long serialVersionUID = -6421750776457411407L;
 
 	@XmlAttribute(name="minlat")

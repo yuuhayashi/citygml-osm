@@ -82,14 +82,14 @@ public class OsmBean implements Serializable {
         return OsmBean.GENERATOR;
     }
 
-	private ElementBounds bounds;
+	private BoundsBean bounds;
 	
     @XmlElement(name="bounds")
-    public ElementBounds getBounds() {
+    public BoundsBean getBounds() {
 		return this.bounds;
 	}
 
-    public void setBounds(ElementBounds bounds) {
+    public void setBounds(BoundsBean bounds) {
     	this.bounds = bounds;
     }
 	

@@ -1,20 +1,10 @@
 package osm.surveyor.osm;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintStream;
-import java.text.ParseException;
 import java.util.ArrayList;
 
 import javax.xml.bind.JAXB;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-
-import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
 
 /**
  * Osmファイルをドムる
@@ -24,7 +14,7 @@ public class OsmDom {
 	static final String outputEncoding = "UTF-8";
 	public long idno;
 	
-    ElementBounds bounds = new ElementBounds();
+    BoundsBean bounds = new BoundsBean();
 	public String source = null;
     public String srsName = null;
     public NodeBeans nodes;	// k= node.id
@@ -47,22 +37,21 @@ public class OsmDom {
     	return --this.idno;
     }
     
-    public void setBounds(ElementBounds bounds) {
+    public void setBounds(BoundsBean bounds) {
     	this.bounds = bounds;
     }
     
-    public ElementBounds getBounds() {
+    public BoundsBean getBounds() {
 		return bounds;
 	}
-
-    public void parse(File file) throws ParserConfigurationException, SAXException, IOException, ParseException {
-    	parse(new FileInputStream(file));
-    }
 
     /**
      * XML SAXパースを実行する
      * 
-     */
+    public void parse(File file) throws ParserConfigurationException, SAXException, IOException, ParseException {
+    	parse(new FileInputStream(file));
+    }
+
     public void parse(InputStream is) throws ParserConfigurationException, SAXException, IOException {
         SAXParserFactory factory = SAXParserFactory.newInstance();
         factory.setValidating(false);
@@ -72,6 +61,7 @@ public class OsmDom {
 			parser.parse(is, new OsmParser(this));
 		} catch (SAXParseException e) {}
     }
+     */
     
 	void addRelation(OsmDom ddom, ElementRelation relation) {
 		for (MemberBean member : relation.members) {

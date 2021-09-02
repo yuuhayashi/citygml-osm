@@ -11,7 +11,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import osm.surveyor.osm.ElementBounds;
+import osm.surveyor.osm.BoundsBean;
 import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.NodeBean;
 import osm.surveyor.osm.ElementRelation;
@@ -80,7 +80,7 @@ public class CityModelParser extends DefaultHandler {
     	super.endDocument();
     }
     
-    ElementBounds bounds = null;					// <gml:boundedBy/>
+    BoundsBean bounds = null;					// <gml:boundedBy/>
 	RelationBuilding building = null;				// <bldg:Building/>
 	String buildingId = null;						// <bldg:Building gml:id="buildingId" />
 	String name = null;								// <gml:name/>
@@ -117,7 +117,7 @@ public class CityModelParser extends DefaultHandler {
 			nodes = new HashMap<>();
 		}
 		else if(qName.equals("gml:boundedBy")){
-			bounds = new ElementBounds();
+			bounds = new BoundsBean();
 		}
 		else if(qName.equals("gml:Envelope")){
 			// <gml:Envelope srsName="http://www.opengis.net/def/crs/EPSG/0/6697">

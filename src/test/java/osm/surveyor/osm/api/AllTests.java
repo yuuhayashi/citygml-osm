@@ -6,7 +6,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
 import osm.surveyor.DetailTests;
-import osm.surveyor.update.HttpGetTest;
 
 /**
  * `mvn test -Dtest=osm.surveyor.osm.api.AllTests`
@@ -22,8 +21,7 @@ import osm.surveyor.update.HttpGetTest;
 	CitygmlFileTest_E.class,
 	CitygmlFileTest_Issue28.class,
 	CitygmlFileTest_Issue32.class,
-	CitygmlFileTest_Issue34.class,
-	HttpGetTest.class
+	CitygmlFileTest_Issue34.class
 })
 public class AllTests {
 

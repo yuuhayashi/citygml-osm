@@ -19,25 +19,6 @@ public class OsmNd implements Cloneable {
 		this.id = Long.parseLong(id);
 	}
 	
-	@Override
-	public OsmNd clone() {
-		OsmNd copy = null;
-		try {
-			copy = (OsmNd)super.clone();
-			if (this.point == null) {
-				copy.point = null;
-			}
-			else {
-				copy.point = this.point.clone();
-			}
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			copy = null;
-		}
-		return copy;
-	}
-	
     /**
      * <nd ref='-4'/>
      */
@@ -71,6 +52,25 @@ public class OsmNd implements Cloneable {
     
     //--------------------------------------
 
+	@Override
+	public OsmNd clone() {
+		OsmNd copy = null;
+		try {
+			copy = (OsmNd)super.clone();
+			if (this.point == null) {
+				copy.point = null;
+			}
+			else {
+				copy.point = this.point.clone();
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			copy = null;
+		}
+		return copy;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -1,4 +1,4 @@
-package osm.surveyor.update;
+package osm.surveyor.download;
 
 import java.nio.file.Paths;
 
@@ -12,7 +12,7 @@ import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.WayBean;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class OsmUpdaterTest_A extends OsmUpdaterTest {
+public class Test_A extends TestDownload {
 
 	/**
 	 * 東京都大田区南六郷三丁目
@@ -44,8 +44,6 @@ public class OsmUpdaterTest_A extends OsmUpdaterTest {
 				assertNull(way.getTagValue("highway"));
 				assertNull(way.getTagValue("landuse"));
 			}
-
-			assertTrue(osm.getWayList().size() > 2);
 		} catch (Exception e) {
 			e.fillInStackTrace();
 			fail(e.toString());
@@ -68,18 +66,8 @@ public class OsmUpdaterTest_A extends OsmUpdaterTest {
         		// (4) ダウンロードしたデータをパースする
         	// (5) "building"関係のPOIのみに絞る
         	OsmBean osm = testdo(Paths.get("src/test/resources", "sample_a3_bldg_6697_op2.osm"));
-			
-        	// 既存ファイルとマージする
-	        //osm.parse(Paths.get("sample_a_bldg_6697_op2.mrg.osm").toFile());
-        	
-			assertNotNull(osm.getRelationList());
-			assertEquals(0, osm.getRelationList().size());
-			
     		assertNotNull(osm.getBounds());
-    		
 			assertNotNull(osm.getRelationList());
-			assertEquals(0, osm.getRelationList().size());
-			
 			assertTrue(osm.getWayList().size() > 10);
 			for (WayBean way : osm.getWayList()) {
 				assertNull(way.getTagValue("highway"));

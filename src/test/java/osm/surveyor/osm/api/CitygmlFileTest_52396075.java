@@ -3,7 +3,7 @@ package osm.surveyor.osm.api;
 import static org.hamcrest.CoreMatchers.is;
 
 import org.junit.Test;
-import osm.surveyor.osm.ElementBounds;
+import osm.surveyor.osm.BoundsBean;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 
@@ -26,7 +26,7 @@ public class CitygmlFileTest_52396075 extends CitygmlFileTest {
 		OsmDom osm = testdo("./src/test/resources/52396075_bldg_6697_op.gml");
 		try {
 	        assertNotNull(osm);
-	        ElementBounds bound = osm.getBounds();
+	        BoundsBean bound = osm.getBounds();
 	        assertEquals("35.231564611877225", bound.maxlat);
 	        assertEquals("139.06625261006525", bound.maxlon);
 	        assertEquals("139.06619815002912", bound.minlon);

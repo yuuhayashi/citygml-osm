@@ -8,7 +8,7 @@ import java.net.URL;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 
-import osm.surveyor.osm.ElementBounds;
+import osm.surveyor.osm.BoundsBean;
 import osm.surveyor.osm.api.GetResponse;
 import osm.surveyor.osm.api.HttpGet;
 
@@ -21,7 +21,7 @@ public class OsmDownloadProcessor implements Processor {
 	@Override
 	public void process(Exchange exchange) throws Exception {
 		// 指定されたOSMファイルの<bound/>を取得する
-		ElementBounds bound = exchange.getIn().getBody(ElementBounds.class);
+		BoundsBean bound = exchange.getIn().getBody(BoundsBean.class);
 		System.out.println("OsmDownloadProcessor : " + bound);
 		
 		// OSMから<bound>範囲内の現在のデータを取得する

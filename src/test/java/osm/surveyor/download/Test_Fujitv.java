@@ -1,4 +1,4 @@
-package osm.surveyor.update;
+package osm.surveyor.download;
 
 import static org.junit.Assert.*;
 
@@ -15,7 +15,7 @@ import osm.surveyor.osm.BoundsBean;
 import osm.surveyor.osm.camel.GetBoundProcessor;
 import osm.surveyor.osm.camel.OsmFileReadProcessor;
 
-public class FujitvTest {
+public class Test_Fujitv {
 	public static Main camel;
 	
 	@BeforeClass

@@ -33,20 +33,4 @@ public class NodeBeans extends ArrayList<NodeBean> {
 		}
 		return null;
 	}
-	
-	/**
-	 * XMLをDOMする
-	 * 
-	 * @param doc
-	public void load(Document doc) {
-		NodeList nList = doc.getElementsByTagName("node");
-		for (int temp = 0; temp < nList.getLength(); temp++) {
-			Node nNode = nList.item(temp);
-			NodeBean node = (new NodeBean(0)).loadNode(nNode);
-			if (node != null) {
-				this.put(node);
-			}
-		}
-	}
-	 */
 }

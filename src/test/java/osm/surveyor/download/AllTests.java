@@ -1,4 +1,4 @@
-package osm.surveyor.update;
+package osm.surveyor.download;
 
 import org.junit.experimental.categories.Categories;
 import org.junit.experimental.categories.Categories.ExcludeCategory;
@@ -14,13 +14,12 @@ import osm.surveyor.DetailTests;
 @RunWith(Categories.class)
 @ExcludeCategory(DetailTests.class)
 @SuiteClasses({
-	FujitvTest.class,
-	OsmUpdaterTest_53392547.class,
-	OsmUpdaterTest_A.class,
-	OsmUpdaterTest_B.class,
-	OsmUpdaterTest_haya4.class,
-	OsmUpdaterTest.class,
-	TokyoStTest.class,
+	Test_Fujitv.class,
+	Test_53392547.class,
+	Test_A.class,
+	Test_B.class,
+	Test_haya4.class,
+	Test_TokyoSt.class,
 	HttpGetTest.class
 })
 public class AllTests {
