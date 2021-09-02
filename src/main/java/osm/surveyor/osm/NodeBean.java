@@ -25,7 +25,7 @@ import org.w3c.dom.Node;
 public class NodeBean extends PoiBean implements Cloneable,Serializable {
 	private static final long serialVersionUID = -6012637985828366692L;
 
-	public OsmPoint point;
+	private OsmPoint point;
 	private String height = null;
 	
 	public NodeBean(long id) {

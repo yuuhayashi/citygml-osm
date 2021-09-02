@@ -12,6 +12,9 @@ import osm.surveyor.osm.ElementOsm;
 
 public class OsmFileReadProcessor implements Processor {
 
+	/**
+	 * .send("direct:osm-file-read", exchange);
+	 */
 	@Override
 	public void process(Exchange exchange) throws Exception {
 		FileEndpoint endpoint = (FileEndpoint)exchange.getFromEndpoint();

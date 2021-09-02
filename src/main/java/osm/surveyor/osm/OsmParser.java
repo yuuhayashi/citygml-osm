@@ -75,7 +75,7 @@ public class OsmParser extends DefaultHandler {
 			OsmPoint point = new OsmPoint();
 			point.setLat(getAttributes("lat", atts));
 			point.setLon(getAttributes("lon", atts));
-			node.point = point;
+			node.setPoint(point);
 		}
 		else if(qName.equals("way")){
 			way = new ElementWay(0);

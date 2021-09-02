@@ -576,7 +576,7 @@ public class CityModelParser extends DefaultHandler {
 					if (st.hasMoreTokens()) {
 						node = new NodeBean(osm.getNewId());
 						String lat = st.nextToken();
-						node.point.setLat(lat);
+						node.getPoint().setLat(lat);
 					}
 					else {
 						break;
@@ -584,7 +584,7 @@ public class CityModelParser extends DefaultHandler {
 					
 					// lon
 					if (st.hasMoreTokens()) {
-						node.point.lon = st.nextToken();
+						node.getPoint().lon = st.nextToken();
 					}
 					else {
 						break;
@@ -674,11 +674,11 @@ public class CityModelParser extends DefaultHandler {
     	if (this.nodes == null) {
     		this.nodes = new HashMap<>();
     	}
-    	NodeBean pre = this.nodes.get(node.point.getGeom());
+    	NodeBean pre = this.nodes.get(node.getPoint().getGeom());
     	if (pre != null) {
     		return pre;
     	}
-    	this.nodes.put(node.point.getGeom(), node);
+    	this.nodes.put(node.getPoint().getGeom(), node);
     	return node;
     }
     

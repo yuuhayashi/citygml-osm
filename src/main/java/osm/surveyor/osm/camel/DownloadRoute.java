@@ -20,21 +20,47 @@ public class DownloadRoute extends RouteBuilder {
 		.split()
 			.simple("${body}")
 			.filter().method(new OsmFiles(), "filter")
-			.process(new OsmFileReadProcessor())
-			.process(new GetBoundProcessor())
-			.process(new OsmDownloadProcessor())
-	        .to("direct:osm-parse")
+	        .to("direct:osm-file-read")
 	    .end()
 		.log("Body-after:")
 		;
 		
-		// osm.surveyor.osm.camel.OsmParseProcessor
-		from("direct:osm-parse")
-		.process(new OsmParseProcessor())
-        .to("stream:out")
+		// (1)指定されたOSMファイルをLOADする
+		from("direct:osm-file-read")
+		.process(new OsmFileReadProcessor())
+        .to("direct:get-bound")
         ;
 
-		// "building"関係のPOIのみに絞る
+		// (2) <bound/>を取得する
+		from("direct:get-bound")
+		.process(new GetBoundProcessor())
+        .to("direct:osm-download")
+        ;
+
+		// (3) OSMから<bound>範囲内の現在のデータをダウンロードする
+		from("direct:osm-download")
+		.process(new OsmDownloadProcessor())
+		.process(new ToOrgOsmFileProcessor())	// ファイル名 "*.osm" を "*.org.osm" に変換する
+		.process(new StrExportProcessor())		// 文字データをファイルに書き出す
+        .to("direct:osm-parse")
+        ;
+
+		// (4) ダウンロードしたデータをパースする
+		from("direct:osm-parse")
+		.process(new OsmParseProcessor())
+        .to("direct:osm-building-filter")
+        ;
+
+		// (5) "building"関係のPOIのみに絞る
+		from("direct:osm-building-filter")
+		.process(new OsmBuildingFilterProcessor())
+        .to("direct:osm-org-export")
+        ;
+		
+		from("direct:osm-org-export")
+		.process(new OsmExportFileProcessor())	// データをファイルに書き出す
+        .to("stream:out")
+        ;
 		
 		/*
 		org.filterBuilding(sdom);

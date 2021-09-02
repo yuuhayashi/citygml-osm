@@ -1,10 +1,5 @@
 package osm.surveyor.update;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
 import java.nio.file.Paths;
 
 import org.junit.FixMethodOrder;
@@ -13,12 +8,13 @@ import org.junit.experimental.categories.Category;
 import org.junit.runners.MethodSorters;
 
 import osm.surveyor.DetailTests;
-import osm.surveyor.osm.ElementBounds;
+import osm.surveyor.osm.ElementOsm;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
+import osm.surveyor.osm.WayBean;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class OsmUpdaterTest_A {
+public class OsmUpdaterTest_A extends OsmUpdaterTest {
 
 	/**
 	 * 東京都大田区南六郷三丁目
@@ -27,14 +23,32 @@ public class OsmUpdaterTest_A {
 	@Test
 	public void test_a() {
         try {
-			AllTests.accept(Paths.get("src/test/resources", "sample_a_bldg_6697_op2.osm"));
+        	// (1)指定されたOSMファイルをLOADする
+        	// (2) <bound/>を取得する
+    		// (3) OSMから<bound>範囲内の現在のデータをダウンロードする
+        		// (4) ダウンロードしたデータをパースする
+        	// (5) "building"関係のPOIのみに絞る
+        	ElementOsm osm = testdo(Paths.get("src/test/resources", "sample_a_bldg_6697_op2.osm"));
+			
+        	// 既存ファイルとマージする
+	        //osm.parse(Paths.get("sample_a_bldg_6697_op2.mrg.osm").toFile());
+        	
+			assertNotNull(osm.getRelationList());
+			assertEquals(0, osm.getRelationList().size());
+			
+    		assertNotNull(osm.getBounds());
+    		
+			assertNotNull(osm.getRelationList());
+			assertEquals(0, osm.getRelationList().size());
+			
+			assertTrue(osm.getWayList().size() > 10);
+			for (WayBean way : osm.getWayList()) {
+				assertNull(way.getTagValue("highway"));
+				assertNull(way.getTagValue("landuse"));
+			}
 
-			OsmDom osm = new OsmDom();
-	        osm.parse(Paths.get("sample_a_bldg_6697_op2.mrg.osm").toFile());
-			assertNotNull(osm.relations);
-			assertEquals(0, osm.relations.size());
-			for (String id : osm.ways.keySet()) {
-				ElementWay way = osm.ways.get(id);
+			assertEquals(2, osm.getWayList().size());
+			for (WayBean way : osm.getWayList()) {
 				assertNotNull(way);
 				
 				if (way.getTagValue("source").endsWith("; 13111-bldg-365")) {
@@ -61,8 +75,6 @@ public class OsmUpdaterTest_A {
 					assertEquals(9, way.getTagList().size());
 				}
 			}
-			assertEquals(2, osm.ways.size());
-			assertEquals(0, osm.relations.size());
 		} catch (Exception e) {
 			e.fillInStackTrace();
 			fail(e.toString());
@@ -78,36 +90,37 @@ public class OsmUpdaterTest_A {
 	@Category(DetailTests.class)
 	public void test_b1() {
         try {
-    		// 指定されたOSMファイルの<bound/>を取得する
-        	OsmDom dom = new OsmDom();
-        	dom.parse(Paths.get("src/test/resources/", "sample_a_bldg_6697_op2.osm").toFile());
-    		ElementBounds bounds = dom.getBounds();
-
-    		// OSMから<bound>範囲内の現在のデータを取得する
-    		OsmDom sdom = new OsmDom();
-    		sdom.setBounds(bounds);
-    		sdom.downloadMap();
-    		//sdom.export(Paths.get("sample_a_bldg_6697_op2.org.osm").toFile());
+        	// (1)指定されたOSMファイルをLOADする
+        	// (2) <bound/>を取得する
+    		// (3) OSMから<bound>範囲内の現在のデータをダウンロードする
+        		// (4) ダウンロードしたデータをパースする
+        	// (5) "building"関係のPOIのみに絞る
+        	ElementOsm osm = testdo(Paths.get("src/test/resources", "sample_b_bldg_6697_op2.osm"));
+    		assertNotNull(osm);
+    		
+    		assertNotNull(osm.getBounds());
+    		
+			assertNotNull(osm.getRelationList());
+			assertEquals(1, osm.getRelationList().size());
+			
+			assertNotNull(osm.getWayList());
+			assertTrue(osm.getWayList().size() > 10);
+			for (WayBean way : osm.getWayList()) {
+				assertNull(way.getTagValue("highway"));
+				assertNull(way.getTagValue("landuse"));
+			}
+			
+			assertNotNull(osm.getNodeList());
+			assertTrue(osm.getNodeList().size() > 40);
+			
 		} catch (Exception e) {
 			e.fillInStackTrace();
 			fail(e.toString());
 		}
-	}
 
-	/**
-	 * `mvn test -Dtest=OsmUpdaterTest_A#test_b1check`
-	 * 
-	 * "sample_a_bldg_6697_op2.org.osm"のチェック
-	 * 'filterBuilding()'のテスト
-	 * 
-	 * INPUT： "sample_a_bldg_6697_op2.org.osm"
-	 */
-	@Test
-	@Category(DetailTests.class)
-	public void test_b1check() {
         try {
 			OsmDom osm = new OsmDom();
-			osm.parse(Paths.get("src/test/resources/sample_a_bldg_6697_op2.org.osm").toFile());
+			osm.parse(Paths.get(".", "sample_b_bldg_6697_op2.org.osm").toFile());
 			assertTrue(osm.ways.size() > 0);
 			assertTrue(osm.nodes.size() > 10);
 
@@ -115,7 +128,7 @@ public class OsmUpdaterTest_A {
 			osm.filterBuilding(sdom);
 
 			assertTrue(sdom.ways.size() > 0);
-			assertEquals(0, sdom.relations.size());
+			assertEquals(1, sdom.relations.size());
 			assertTrue(sdom.nodes.size() >= 4);
         } catch (Exception e) {
 			e.fillInStackTrace();

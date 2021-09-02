@@ -1,6 +1,7 @@
 package osm.surveyor.osm;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAttribute;
@@ -38,6 +39,50 @@ public class ElementOsm implements Serializable {
         return (Node)osm;
     }
 	
+	/**
+	 * 指定されたリレーションを取得する
+	 * @param id	リレーションID
+	 * @return		null = 該当なし
+	 */
+    public RelationBean getRelation(long id) {
+    	for (RelationBean relation : relationList) {
+    		if (relation.getId() == id) {
+    	    	return relation;
+    		}
+    	}
+    	return null;
+    }
+	
+    /**
+     * 指定されたWAYを取得する
+     * @param id	WAY ID
+     * @return		null = 該当なし
+     */
+    public WayBean getWay(long id) {
+    	for (WayBean way : wayList) {
+    		if (way.getId() == id) {
+    	    	return way;
+    		}
+    	}
+    	return null;
+    }
+
+	/**
+	 * 指定されたNODEを取得する
+	 * @param id	NODE ID
+	 * @return		null = 該当なし
+	 */
+    public NodeBean getNode(long id) {
+    	for (NodeBean node : nodeList) {
+    		if (node.getId() == id) {
+    	    	return node;
+    		}
+    	}
+    	return null;
+    }
+
+	//-------------------------------------
+	
 	@XmlAttribute(name="version")
     public String getVersion() {
         return ElementOsm.VERSION;
@@ -50,16 +95,16 @@ public class ElementOsm implements Serializable {
 
 	private ElementBounds bounds;
 	
+    @XmlElement(name="bounds")
     public ElementBounds getBounds() {
 		return this.bounds;
 	}
 
-    @XmlElement(name="bounds")
     public void setBounds(ElementBounds bounds) {
     	this.bounds = bounds;
     }
 	
-    private List<NodeBean> nodeList;
+    private List<NodeBean> nodeList = new ArrayList<>();
     
     @XmlElement(name="node")
     public List<NodeBean> getNodeList() {
@@ -68,5 +113,27 @@ public class ElementOsm implements Serializable {
 
     public void setNodeList(List<NodeBean> nodeList) {
     	this.nodeList = nodeList;
+    }
+    
+    private List<WayBean> wayList = new ArrayList<>();
+    
+    @XmlElement(name="way")
+    public List<WayBean> getWayList() {
+    	return wayList;
+    }
+
+    public void setWayList(List<WayBean> wayList) {
+    	this.wayList = wayList;
+    }
+    
+    private List<RelationBean> relationList = new ArrayList<>();
+    
+    @XmlElement(name="relation")
+    public List<RelationBean> getRelationList() {
+    	return relationList;
+    }
+
+    public void setRelationList(List<RelationBean> relationList) {
+    	this.relationList = relationList;
     }
 }

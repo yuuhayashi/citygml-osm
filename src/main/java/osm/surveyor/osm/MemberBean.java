@@ -27,6 +27,14 @@ public class MemberBean implements Cloneable,Serializable {
 		this.role = "";
 	}
 	
+	public boolean isRelation() {
+		return (this.type.equals("relation"));
+	}
+	
+	public boolean isWay() {
+		return (this.type.equals("way"));
+	}
+	
 	public void setWay(ElementWay way) {
 		this.ref = way.getId();
 		this.type = "way";
@@ -37,7 +45,7 @@ public class MemberBean implements Cloneable,Serializable {
 		this.type = "relation";
 	}
 
-	@XmlAttribute(name="id")
+	@XmlAttribute(name="ref")
 	public long getRef() {
 		return this.ref;
 	}

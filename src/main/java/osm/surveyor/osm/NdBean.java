@@ -15,7 +15,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class NdBean implements Serializable {
 	private static final long serialVersionUID = 4936895079170613027L;
 
-	@XmlAttribute(name="ref")
 	private Long ref;
+	
+	@XmlAttribute(name="ref")
+	public long getRef() {
+		return ref.longValue();
+	}
+	
+	public void setRef(long ref) {
+		this.ref = new Long(ref);
+	}
 	
 }

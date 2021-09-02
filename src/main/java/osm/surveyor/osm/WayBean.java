@@ -38,4 +38,12 @@ public class WayBean extends PoiBean implements Serializable {
     	this.ndList = ndList;
     }
     
+	public boolean isBuilding() {
+		for (TagBean tag : this.getTagList()) {
+			if (tag.k.startsWith("building")) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

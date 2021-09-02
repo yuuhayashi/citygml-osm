@@ -1,6 +1,7 @@
 package osm.surveyor.osm.camel;
 
 import java.io.File;
+
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.camel.component.file.FileEndpoint;
@@ -24,6 +25,8 @@ public class OsmExportProcessor implements Processor {
 		
 		OsmDom osm = exchange.getIn().getBody(OsmDom.class);
 		osm.export(file);
+		
+		exchange.getIn().setBody(osm);
 	}
 
 }

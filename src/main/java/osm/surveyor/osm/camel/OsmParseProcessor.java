@@ -17,9 +17,8 @@ public class OsmParseProcessor implements Processor {
 		String str = exchange.getIn().getBody(String.class);
 		StringReader r = new StringReader(str);
 		ElementOsm osm = JAXB.unmarshal(r, ElementOsm.class);
-		exchange.getIn().setBody(osm);
 		
 		System.out.println("OsmParseProcessor : "+ osm.getNodeList().size());
+		exchange.getIn().setBody(osm);
 	}
-
 }

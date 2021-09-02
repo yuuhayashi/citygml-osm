@@ -1,0 +1,120 @@
+package osm.surveyor.osm.camel;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.camel.Exchange;
+import org.apache.camel.Processor;
+
+import osm.surveyor.osm.ElementOsm;
+import osm.surveyor.osm.MemberBean;
+import osm.surveyor.osm.NdBean;
+import osm.surveyor.osm.NodeBean;
+import osm.surveyor.osm.RelationBean;
+import osm.surveyor.osm.WayBean;
+
+public class OsmBuildingFilterProcessor implements Processor {
+
+	/**
+	 * "building"関係のPOIのみに絞る
+	 */
+	@Override
+	public void process(Exchange exchange) throws Exception {
+		ElementOsm osm = exchange.getIn().getBody(ElementOsm.class);
+		
+		Map<Long,RelationBean> relationmap = new HashMap<>();
+		Map<Long,WayBean> waymap = new HashMap<>();
+		Map<Long,NodeBean> nodemap = new HashMap<>();
+
+		// "building"リレーションのみ抽出する
+		List<RelationBean> buildingRelations = new ArrayList<>();
+		for (RelationBean relation : osm.getRelationList()) {
+			if (relation.isBuilding()) {
+				buildingRelations.add(relation);
+			}
+			else if (relation.isMultipolygon()) {
+				if (relation.getTagValue("building") != null) {
+					buildingRelations.add(relation);
+				}
+				else if (relation.getTagValue("building:part") != null) {
+					buildingRelations.add(relation);
+				}
+			}
+		}
+
+		// "building"リレーションのメンバーリレーションを抽出
+		for (RelationBean relation : buildingRelations) {
+			List<MemberBean> members = relation.getMemberList();
+			for (MemberBean member : members) {
+				if (member.isRelation()) {
+					long id = member.getRef();
+					RelationBean v = osm.getRelation(id);
+					if (v != null) {
+						relationmap.putIfAbsent(id, v);
+					}
+				}
+			}
+			relationmap.putIfAbsent(relation.getId(), relation);
+		}
+		
+		// "building"WAYを抽出
+		for (WayBean way : osm.getWayList()) {
+			if (way.isBuilding()) {
+				waymap.putIfAbsent(way.getId(), way);
+			}
+		}
+		
+		// ビルディングリレーションのメンバーウェイを抽出
+		for(HashMap.Entry<Long, RelationBean> entry : relationmap.entrySet()) {
+			RelationBean relation = entry.getValue();
+			List<MemberBean> members = relation.getMemberList();
+			for (MemberBean member : members) {
+				if (member.isWay()) {
+					long id = member.getRef();
+					WayBean v = osm.getWay(id);
+					if (v != null) {
+						waymap.putIfAbsent(id, v);
+					}
+				}
+			}
+        }
+		
+		// ウェイのメンバーノードを抽出
+		for(HashMap.Entry<Long, WayBean> entry : waymap.entrySet()) {
+			WayBean way = entry.getValue();
+			List<NdBean> nds = way.getNdList();
+			for (NdBean nd : nds) {
+				long ref = nd.getRef();
+				NodeBean v = osm.getNode(ref);
+				if (v != null) {
+					nodemap.putIfAbsent(ref, v);
+				}
+			}
+		}
+
+		// リレーションをMapからListに変換して格納
+		List<RelationBean> newRelations = new ArrayList<>();
+		for(HashMap.Entry<Long, RelationBean> entry : relationmap.entrySet()) {
+			newRelations.add(entry.getValue());
+        }
+		osm.setRelationList(newRelations);
+		
+		// ウェイをMapからListに変換して格納
+		List<WayBean> newWays = new ArrayList<>();
+		for(HashMap.Entry<Long, WayBean> entry : waymap.entrySet()) {
+			newWays.add(entry.getValue());
+        }
+		osm.setWayList(newWays);
+
+		// ノードをMapからListに変換して格納
+		List<NodeBean> newNodes = new ArrayList<>();
+		for(HashMap.Entry<Long, NodeBean> entry : nodemap.entrySet()) {
+			newNodes.add(entry.getValue());
+        }
+		osm.setNodeList(newNodes);
+
+		exchange.getIn().setBody(osm);
+	}
+}

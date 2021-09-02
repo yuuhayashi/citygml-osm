@@ -44,14 +44,14 @@ public class OsmDom {
     public String srsName = null;
     public NodeBeans nodes;	// k= node.id
     public WayMap ways;		// k= way.id
-    public RelationMap relations;	// k= relation.id
+    public RelationMap relations = new RelationMap();	// k= relation.id
     
     public OsmDom() {
         super();
         this.idno = 0;
         nodes = new NodeBeans();	// k= node.id
         ways = new WayMap();		// k= way.id
-        relations = new RelationMap();	// k= relation.id
+        
     }
 
     /**

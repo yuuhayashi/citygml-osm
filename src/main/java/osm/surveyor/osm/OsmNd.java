@@ -50,7 +50,7 @@ public class OsmNd implements Cloneable {
     public NodeBean toElementNode() {
     	NodeBean node = new NodeBean(0);
 		node.setId(id);
-		node.point = ((this.point == null) ? null : this.point.clone());
+		node.setPoint((this.point == null) ? null : this.point.clone());
         return node;
     }
 

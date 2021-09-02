@@ -1,36 +1,73 @@
 package osm.surveyor.update;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+
+import org.apache.camel.Exchange;
+import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.component.file.FileEndpoint;
+import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 import osm.surveyor.DetailTests;
+import osm.surveyor.osm.ElementOsm;
 import osm.surveyor.osm.ElementWay;
+import osm.surveyor.osm.camel.DownloadRoute;
 
-public class OsmUpdaterTest {
+public class OsmUpdaterTest extends CamelTestSupport {
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
+    @Override
+    protected RouteBuilder[] createRouteBuilders() throws Exception {
+        return new RouteBuilder[] {
+    		new DownloadRoute()
+        };
+    }
+    
+    /**
+      * メイン処理
+     * 指定されたOSMファイルの既存データをダウンロードする
+     * @param source
+     * @return
+     */
+    public ElementOsm testdo(Path source) {
+		Exchange exchange = createExchangeWithBody("");
+		FileEndpoint endpoint = new FileEndpoint();
+		endpoint.setFile(source.toFile());
+		exchange.setFromEndpoint(endpoint);
+		
+    	// (1)指定されたOSMファイルをLOADする
+    	// (2) <bound/>を取得する
+		// (3) OSMから<bound>範囲内の現在のデータをダウンロードする
+    		// (4) ダウンロードしたデータをパースする
+    	// (5) "building"関係のPOIのみに絞る
+        template.send(
+        		"direct:osm-file-read",
+        		exchange
+        );
+        
+        return exchange.getIn().getBody(ElementOsm.class);
+    }
+    public ElementOsm output() {
+		Exchange exchange = createExchangeWithBody("");
+		FileEndpoint endpoint = new FileEndpoint();
+		endpoint.setFile(Paths.get(".", "out.xml").toFile());
+		exchange.setFromEndpoint(endpoint);
+		
+    	// (1)指定されたOSMファイルをLOADする
+    	// (2) <bound/>を取得する
+		// (3) OSMから<bound>範囲内の現在のデータをダウンロードする
+    		// (4) ダウンロードしたデータをパースする
+    	// (5) "building"関係のPOIのみに絞る
+        template.send(
+        		"direct:osm-org-export",
+        		exchange
+        );
+        
+        return exchange.getIn().getBody(ElementOsm.class);
+    }
 
 	/**
 	 * `mvn test -Dtest=OsmUpdaterTest#test_53392547`

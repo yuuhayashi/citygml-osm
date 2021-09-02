@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -34,6 +35,8 @@ public class PoiBean implements Cloneable,Serializable {
 	private String version;
 	private String changeset;
     private List<TagBean> tags = new ArrayList<>();
+    
+	@XmlTransient
 	public boolean orignal = false;
 
 	public PoiBean() {
@@ -123,6 +126,7 @@ public class PoiBean implements Cloneable,Serializable {
     	this.tags = tagList;
     }
 
+	@XmlTransient
 	public String getIdstr() {
 		return Long.toString(getId());
 	}
