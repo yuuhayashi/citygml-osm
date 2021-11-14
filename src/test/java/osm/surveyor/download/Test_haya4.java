@@ -4,10 +4,8 @@ import java.nio.file.Paths;
 
 import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
 import org.junit.runners.MethodSorters;
 
-import osm.surveyor.DetailTests;
 import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.WayBean;
 
@@ -16,13 +14,14 @@ public class Test_haya4 extends TestDownload {
 	static final String SOURCE = "haya4_bldg_6697_op2";
 
 	/**
-	 * `mvn test -Dtest=OsmUpdaterTest_haya4#test_241755306`
+	 * `mvn test -Dtest=OsmUpdaterTest_haya4#test_way241755306`
 	 * https://www.openstreetmap.org/ウェイ/241755306
 	 * 神奈川県 綾瀬市
+	 * WAY:289757586 = "NODE:entrance=yes"を持つウェイ
+	 * WAY:241755306 = 林宅
 	 */
 	@Test
-	@Category(DetailTests.class)
-	public void test_241755306() {
+	public void test_way241755306() {
         try {
         	// (1)指定されたOSMファイルをLOADする
         	// (2) <bound/>を取得する
@@ -32,10 +31,21 @@ public class Test_haya4 extends TestDownload {
         	OsmBean osm = testdo(Paths.get("src/test/resources",  SOURCE+".osm"));
     		assertNotNull(osm.getBounds());
 			assertNotNull(osm.getRelationList());
+
 			assertTrue(osm.getWayList().size() > 10);
 			for (WayBean way : osm.getWayList()) {
+				// "highway"WAYは存在しないこと
 				assertNull(way.getTagValue("highway"));
+				// "landuse"WAYは存在しないこと
 				assertNull(way.getTagValue("landuse"));
+				if (way.getId() == 289757586l) {
+					// タグありNODEを持つWAYは、 'FIX=true' であること
+					assertTrue(way.getFix());
+				}
+				if (way.getId() == 241755306l) {
+					// リレーションメンバーのWAYは 'FIX=true' であること
+					assertTrue(way.getFix());
+				}
 			}
 		} catch (Exception e) {
 			e.fillInStackTrace();

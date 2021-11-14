@@ -40,7 +40,6 @@ public class DownloadRoute extends RouteBuilder {
 		// (3) OSMから<bound>範囲内の現在のデータをダウンロードする
 		from("direct:osm-download")
 		.process(new OsmDownloadProcessor())
-		//.process(new ToOrgOsmFileProcessor())	// ファイル名 "*.osm" を "*.org.osm" に変換する
 		//.process(new StrExportProcessor())		// 文字データをファイルに書き出す
         .to("direct:osm-parse")
         ;
@@ -52,12 +51,14 @@ public class DownloadRoute extends RouteBuilder {
         ;
 
 		// (5) "building"関係のPOIのみに絞る
+		//	更新対象のビルディングと更新しないビルディングに分割する
 		from("direct:osm-building-filter")
 		.process(new OsmBuildingFilterProcessor())
         .to("direct:osm-org-export")
         ;
 		
 		from("direct:osm-org-export")
+		.process(new ToOrgOsmFileProcessor())	// ファイル名 "*.osm" を "*.org.osm" に変換する
 		.process(new OsmExportFileProcessor())	// データをファイルに書き出す
         .to("stream:out")
         ;

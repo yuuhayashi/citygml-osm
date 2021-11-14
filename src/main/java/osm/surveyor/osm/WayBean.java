@@ -2,6 +2,8 @@ package osm.surveyor.osm;
 
 import java.io.Serializable;
 import java.util.List;
+
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -26,12 +28,25 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="way")
 public class WayBean extends PoiBean implements Serializable {
 	private static final long serialVersionUID = 5518601165141588723L;
+	
+	/**
+	 * fix=true 更新しないもの、fix=false 更新対象を示す。
+	 */
+	private boolean fix = false;
+	
+	@XmlAttribute(name="fix")
+	public boolean getFix() {
+		return this.fix;
+	}
+	public void setFix(boolean b) {
+		this.fix = b;
+	}
 
     private List<NdBean> ndList;
     
     @XmlElement(name="nd")
     public List<NdBean> getNdList() {
-    	return ndList;
+    	return this.ndList;
     }
 
     public void setNdList(List<NdBean> ndList) {

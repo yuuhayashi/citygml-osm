@@ -67,6 +67,7 @@ public class OsmBuildingFilterProcessor implements Processor {
 		}
 		
 		// ビルディングリレーションのメンバーウェイを抽出
+		// ビルディングリレーションのメンバーウェイは「非更新対象」(fix=true)にする
 		for(HashMap.Entry<Long, RelationBean> entry : relationmap.entrySet()) {
 			RelationBean relation = entry.getValue();
 			List<MemberBean> members = relation.getMemberList();
@@ -75,13 +76,15 @@ public class OsmBuildingFilterProcessor implements Processor {
 					long id = member.getRef();
 					WayBean v = osm.getWay(id);
 					if (v != null) {
-						waymap.putIfAbsent(id, v);
+						v.setFix(true);
+						waymap.put(id, v);
 					}
 				}
 			}
         }
 		
 		// ウェイのメンバーノードを抽出
+		// タグありのノードをメンバーに持つウェイは「非更新対象」(fix=true)にする
 		for(HashMap.Entry<Long, WayBean> entry : waymap.entrySet()) {
 			WayBean way = entry.getValue();
 			List<NdBean> nds = way.getNdList();
@@ -89,6 +92,10 @@ public class OsmBuildingFilterProcessor implements Processor {
 				long ref = nd.getRef();
 				NodeBean v = osm.getNode(ref);
 				if (v != null) {
+					if (v.getTagList().size() > 0) {
+						way.setFix(true);
+						//waymap.put(way.getId(), way);
+					}
 					nodemap.putIfAbsent(ref, v);
 				}
 			}
