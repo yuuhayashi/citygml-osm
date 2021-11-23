@@ -4,8 +4,6 @@ import java.io.File;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
-import org.apache.camel.component.file.FileEndpoint;
-
 import osm.surveyor.citygml.CitygmlFile;
 import osm.surveyor.osm.OsmDom;
 
@@ -13,8 +11,7 @@ public class GmlFileReadProcessor implements Processor {
 
 	@Override
 	public void process(Exchange exchange) throws Exception {
-		FileEndpoint endpoint = (FileEndpoint)exchange.getFromEndpoint();
-		File file = endpoint.getFile();
+		File file = exchange.getIn().getBody(File.class);
 		
         // (1) GMLファイルをパースする
         OsmDom osm = new OsmDom();

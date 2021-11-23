@@ -2,8 +2,6 @@ package osm.surveyor.gml.camel;
 
 import org.apache.camel.builder.RouteBuilder;
 
-import osm.surveyor.citygml.GmlFiles;
-
 public class GmlLoadDirRoute extends RouteBuilder {
 
 	@Override
@@ -16,14 +14,15 @@ public class GmlLoadDirRoute extends RouteBuilder {
         ;
 		
 		// カレントディレクトリを処理する
-		from("file:.?noop=true")
-		.split()
-			.simple("${body}")
-			.filter().method(new GmlFiles(), "filter")
-			.process(new GmlFileReadProcessor())
-	        .to("direct:gerbage-way")
-	    .end()
-		.log("Body-after:")
+		from("direct:gml-files")
+			.process(new GmlFileListProcessor())
+			.split()
+				.simple("${body}")
+				.log("Body-split: ${body}")
+				.process(new GmlFileProcessor())
+		        .to("direct:gml-file-read")
+			.end()
+			.log("Body-after: ${body}")
 		;
 	}
 

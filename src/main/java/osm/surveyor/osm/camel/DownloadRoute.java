@@ -1,7 +1,6 @@
 package osm.surveyor.osm.camel;
 
 import org.apache.camel.builder.RouteBuilder;
-
 import osm.surveyor.download.OsmFiles;
 
 public class DownloadRoute extends RouteBuilder {
@@ -24,7 +23,7 @@ public class DownloadRoute extends RouteBuilder {
 	    .end()
 		.log("Body-after:")
 		;
-		
+
 		// (1)指定されたOSMファイルをLOADする
 		from("direct:osm-file-read")
 		.process(new OsmFileReadProcessor())
