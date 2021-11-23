@@ -67,7 +67,7 @@ public class Test_A extends TestDownload {
     		// (3) OSMから<bound>範囲内の現在のデータをダウンロードする
         		// (4) ダウンロードしたデータをパースする
         	// (5) "building"関係のPOIのみに絞る
-        	OsmBean osm = testdo(Paths.get("src/test/resources", "sample_a3_bldg_6697_op2.osm"));
+        	OsmBean osm = testdo(Paths.get("src/test/resources", "sample_a3_bldg_6697_op2.org.osm"));
     		assertNotNull(osm.getBounds());
 			assertNotNull(osm.getRelationList());
 			assertTrue(osm.getWayList().size() > 10);
