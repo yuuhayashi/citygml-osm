@@ -76,7 +76,7 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 		// 'name='
 		this.margeName(parts);
 		if (multi != null) {
-			multi.replaceTag("name", new TagBean("building:name", this.getTagValue("name")));
+			multi.replaceTag("name", new TagBean("name", this.getTagValue("name")));
 		}
 
 		// 'height' and 'ele'

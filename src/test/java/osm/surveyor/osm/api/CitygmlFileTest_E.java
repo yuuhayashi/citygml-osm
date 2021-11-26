@@ -54,7 +54,7 @@ public class CitygmlFileTest_E extends CitygmlFileTest {
 							assertNotNull(polygon);
 							assertEquals("multipolygon", polygon.getTagValue("type"));
 							assertEquals("yes", polygon.getTagValue("building"));
-							assertEquals("大田病院", polygon.getTagValue("building:name"));
+							assertEquals("大田病院", polygon.getTagValue("name"));
 							assertNull(polygon.getTagValue("name"));
 							assertEquals("3", polygon.getTagValue("building:levels"));
 							assertEquals("1", polygon.getTagValue("building:levels:underground"));
