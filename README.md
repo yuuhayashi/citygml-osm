@@ -231,7 +231,7 @@ OSMファイルへの変換項目
 | --------	| ------------------------- | -------------------------------------------------	|
 | ソース		| `k="source"`				| "MLIT_PLATEAU; " + **データソース名称** + **建物ID**	|
 | 建物		| `k="building"`			| リレーション:buildingのメンバーの場合は `k="building:part"。**v**の値は'[bldg:usage 用途](conversion.json)'から取得する	|
-| 建物名称	| `k="building:name"`		| リレーション:buildingのメンバーの場合は、`k="name"`		|
+| 建物名称	| `k="name"`		| リレーション:buildingのメンバーの場合は、`k="name"`		|
 | 住所コード	| `k="addr:ref"`			| **自治体コード** ("13_区市町村コード_大字・町コード_町・丁目コード") 	|
 | 住所		| `k="addr:full"`			| **住所**											|
 | 建物高さ	| `k="height"`				| **計測高さ**`bldg:measuredHeight`, `bldg:measuredHeight`がない場合は、`lod1Solid`と`lod0[RoofEdge,FoodPrint`から算出する	|
@@ -244,7 +244,7 @@ OSMファイルへの変換項目
 - 変換表に記載がない`usage`コードは、`building=yes`とする
 - 複合ビルの場合は、最大面積のビルパーツの'usage'をリレーションの「`building=*`」とする。
 
-#### 建物名称 `k="building:name"`
+#### 建物名称 `k="name"`
 - 建物ポリゴン `Relation::type="multipolygon"` の場合は、`k="name"`とする
 - 建物リレーション `Relation::type="building"`の場合は、`k="name"`とする
 - 建物パーツ `member::role="part"`->`building=yes` の場合は、`k="name"`とする
