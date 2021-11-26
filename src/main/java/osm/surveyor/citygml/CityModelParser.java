@@ -294,7 +294,7 @@ public class CityModelParser extends DefaultHandler {
 				}
 				for (MemberBean mem : building.members) {
 					if (mem.getType().equals("way")) {
-						ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
+						ElementWay way = osm.ways.get(mem.getRef());
 						way.removeTag("maxele");
 						way.addTag("height", building.getTagValue("height"));
 						way.addTag("ele", rounding2(building.getTagValue("ele")));
@@ -310,7 +310,7 @@ public class CityModelParser extends DefaultHandler {
 						way.addTag("building:levels:underground", building.getTagValue("building:levels:underground"));
 					}
 					else if (mem.getType().equals("relation")) {
-						ElementRelation relation = osm.relations.get(Long.toString(mem.getRef()));
+						ElementRelation relation = osm.relations.get(mem.getRef());
 						relation.removeTag("maxele");
 						relation.addTag("start_date", building.getTagValue("start_date"));
 						relation.addTag("building:levels", building.getTagValue("building:levels"));

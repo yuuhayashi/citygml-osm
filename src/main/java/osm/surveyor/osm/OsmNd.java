@@ -1,12 +1,19 @@
 package osm.surveyor.osm;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlTransient;
+
 import org.locationtech.jts.geom.Coordinate;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 public class OsmNd implements Cloneable {
+	
+	@XmlAttribute(name="ref")
 	public long id = 0;
+	
+	@XmlTransient
 	public OsmPoint point = null;
 	
 	public OsmNd set(long id, OsmPoint point) {

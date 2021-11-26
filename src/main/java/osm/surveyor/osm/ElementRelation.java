@@ -3,6 +3,8 @@ package osm.surveyor.osm;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javax.xml.bind.annotation.XmlElement;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -13,6 +15,7 @@ public class ElementRelation extends PoiBean implements Cloneable,Serializable {
 	public static final String RELATION = "relation";
 	public static final String MULTIPOLYGON = "multipolygon";
 	
+	@XmlElement(name="member")
 	public ArrayList<MemberBean> members;
 	
 	public ElementRelation(long id) {

@@ -20,7 +20,7 @@ public class GmlFileToOsmProcessor implements Processor {
 		String name = file.getName();
 		if (name.endsWith(GmlFiles.SUFFIX_GML)) {
 			String filename = name.substring(0, name.length() - GmlFiles.SUFFIX_GML.length());
-			File outf = (Paths.get(".", filename + OsmFiles.SUFFIX_ORG_OSM).toFile());
+			File outf = (Paths.get(".", filename + OsmFiles.SUFFIX_OSM).toFile());
 			endpoint.setFile(outf);
 			exchange.setFromEndpoint(endpoint);
 		}

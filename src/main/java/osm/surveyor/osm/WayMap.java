@@ -2,6 +2,8 @@ package osm.surveyor.osm;
 
 import java.util.HashMap;
 
+import javax.xml.bind.annotation.XmlElement;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;

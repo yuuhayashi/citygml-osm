@@ -3,33 +3,78 @@ package osm.surveyor.osm;
 import java.io.File;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.bind.JAXB;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  * Osmファイルをドムる
  * 
  */
+@XmlRootElement(name="osm")
 public class OsmDom {
 	static final String outputEncoding = "UTF-8";
-	public long idno;
 	
-    BoundsBean bounds = new BoundsBean();
-	public String source = null;
-    public String srsName = null;
-    public NodeBeans nodes;	// k= node.id
-    public WayMap ways;		// k= way.id
-    public RelationMap relations = new RelationMap();	// k= relation.id
-    
     public OsmDom() {
         super();
         this.idno = 0;
+        bounds = new BoundsBean();
         nodes = new NodeBeans();	// k= node.id
         ways = new WayMap();		// k= way.id
-        
+        relations = new RelationMap();	// k= relation.id
     }
 
-    /**
+    @XmlTransient
+	public long idno;
+	
+    @XmlTransient
+    BoundsBean bounds = null;
+    
+    public void setBounds(BoundsBean bounds) {
+    	this.bounds = bounds;
+    }
+    
+    @XmlElement(name="bounds")
+    public BoundsBean getBounds() {
+		return bounds;
+	}
+
+    @XmlTransient
+    public String source = null;
+    
+    @XmlTransient
+    public String srsName = null;
+
+	@XmlAttribute(name="generator")
+	public String generator = "JOSM";
+	
+	@XmlAttribute(name="version")
+	public String version = "0.6";
+	
+    @XmlElement(name="node")
+    public NodeBeans nodes;	// k= node.id
+    
+    @XmlTransient
+    public WayMap ways;		// k= way.id
+
+	@XmlElement(name="way")
+	public List<ElementWay> getWays() {
+		return new ArrayList<ElementWay>(ways.values());
+	}
+
+    @XmlTransient
+    public RelationMap relations;	// k= relation.id
+    
+	@XmlElement(name="relation")
+	public List<ElementRelation> getRelations() {
+		return new ArrayList<ElementRelation>(relations.values());
+	}
+
+	/**
       * シリアル番号を生成する
      * @return
      */
@@ -37,14 +82,6 @@ public class OsmDom {
     	return --this.idno;
     }
     
-    public void setBounds(BoundsBean bounds) {
-    	this.bounds = bounds;
-    }
-    
-    public BoundsBean getBounds() {
-		return bounds;
-	}
-
     /**
      * XML SAXパースを実行する
      * 

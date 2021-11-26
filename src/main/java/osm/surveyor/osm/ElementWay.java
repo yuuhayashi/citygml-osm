@@ -2,6 +2,9 @@ package osm.surveyor.osm;
 
 import java.util.ArrayList;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 import org.geotools.geometry.jts.JTSFactoryFinder;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
@@ -21,8 +24,13 @@ import org.w3c.dom.NodeList;
  */
 public class ElementWay extends PoiBean implements Cloneable {
 	private static final long serialVersionUID = 1L;
+	
+	@XmlElement(name="nd")
 	public ArrayList<OsmNd> nds;
+
 	boolean area = false;
+	
+	@XmlTransient
 	public boolean member = false;	// 単独のWAYか、RELATIONのメンバーかを示す。
 	
 	public ElementWay(long id) {
