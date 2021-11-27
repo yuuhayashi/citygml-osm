@@ -139,12 +139,12 @@
       <type>jar</type>
     </dependency>
     
-    <!-- https://mvnrepository.com/artifact/com.google.common/google-collect -->
-    <dependency>
-      <groupId>com.google.common</groupId>
-      <artifactId>google-collect</artifactId>
-      <version>1.0-rc1</version>
-    </dependency>
+	<!-- https://mvnrepository.com/artifact/com.google.common/google-collect -->
+	<dependency>
+	    <groupId>com.google.common</groupId>
+	    <artifactId>google-collect</artifactId>
+	    <version>1.0</version>
+	</dependency>
 
     <!-- https://mvnrepository.com/artifact/org.apache.camel/camel-core -->
     <dependency>
