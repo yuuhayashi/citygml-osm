@@ -12,6 +12,10 @@ import osm.surveyor.download.OsmFiles;
 
 public class GmlFileToOsmProcessor implements Processor {
 
+	/**
+	 * "direct:osm-export"
+	 * to: OsmExportProcessor()
+	 */
 	@Override
 	public void process(Exchange exchange) throws Exception {
 		FileEndpoint endpoint = (FileEndpoint)exchange.getFromEndpoint();

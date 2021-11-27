@@ -8,6 +8,7 @@ public class GerbageWayProcessor implements Processor {
 
 	/**
 	 * RELATIONに所属していないWAYを削除する
+	 * from OsmMargeWayProcessor()
 	 */
 	@Override
 	public void process(Exchange exchange) throws Exception {

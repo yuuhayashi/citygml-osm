@@ -22,7 +22,7 @@ public class GmlLoadDirRoute extends RouteBuilder {
 				.process(new GmlFileProcessor())
 		        .to("direct:gml-file-read")
 			.end()
-			.log("Body-after: ${body}")
+			.log("direct:gml-files: ${body}")
 		;
 	}
 

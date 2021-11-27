@@ -8,6 +8,9 @@ import org.apache.camel.component.file.FileEndpoint;
 
 public class GmlFileProcessor implements Processor {
 
+	/**
+	 * "direct:gml-file-read"
+	 */
 	@Override
 	public void process(Exchange exchange) throws Exception {
 		File file = exchange.getIn().getBody(File.class);
