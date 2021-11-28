@@ -90,7 +90,7 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 ```
   $ cd (解凍先フォルダ)
-  $ java -cp citygml-osm-1.3.x-jar-with-dependencies.jar osm.surveyor.update.OsmUpdater
+  $ java -cp citygml-osm-jar-with-dependencies.jar osm.surveyor.update.OsmUpdater
 ```
 
 - (2) JOSMを起動して、「`*.mrg.osm`」ファイルをJOSMにドロップしてください。<br/>生成されたデータを確認することができます。
@@ -162,15 +162,15 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 | id	| name	| description		| OSM Tag		|
 | -----	| -----	| -----------------	| -------------	|
-| id1	| 401	| 業務施設			| `office`		|
-| id2	| 402	| 商業施設			| `commercial`	|
+| id1	| 401	| 業務施設			| `commercial`		|
+| id2	| 402	| 商業施設			| `retail`	|
 | id3	| 403	| 宿泊施設			| `hotel`		|
-| id4	| 404	| 商業系複合施設		| -				|
+| id4	| 404	| 商業系複合施設		| `retail`				|
 | id5	| 411	| 住宅				| `house`		|
 | id6	| 412	| 共同住宅			| `apartments`	|
-| id7	| 413	| 店舗等併用住宅		| -				|
-| id8	| 414	| 店舗等併用共同住宅	| -				|
-| id9	| 415	| 作業所併用住宅		| -				|
+| id7	| 413	| 店舗等併用住宅		| `residential`				|
+| id8	| 414	| 店舗等併用共同住宅	| `apartments`				|
+| id9	| 415	| 作業所併用住宅		| `residential`				|
 | id10	| 421	| 官公庁施設			| `government`	|
 | id11	| 422	| 文教厚生施設			| `public`		|
 | id12	| 431	| 運輸倉庫施設			| `warehouse`	|
@@ -192,15 +192,20 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 ```
 {
 	"usage" : [
-		{"code":"401","name":"業務施設",	"building":"office"},
-		{"code":"402","name":"商業施設",	"building":"commercial"},
+		{"code":"401","name":"業務施設",	"building":"commercial"},
+		{"code":"402","name":"商業施設",	"building":"retail"},
 		{"code":"403","name":"宿泊施設",	"building":"hotel"},
+		{"code":"404","name":"商業系複合施設",	"building":"retail"},
 		{"code":"411","name":"住宅",		"building":"house"},
 		{"code":"412","name":"共同住宅",	"building":"apartments"},
+		{"code":"413","name":"店舗等併用住宅",	"building":"residential"},
+		{"code":"414","name":"店舗等併用共同住宅",	"building":"apartments"},
+		{"code":"415","name":"作業所併用住宅",	"building":"residential"},
 		{"code":"421","name":"官公庁施設",	"building":"government"},
 		{"code":"422","name":"文教厚生施設",	"building":"public"},
 		{"code":"431","name":"運輸倉庫施設",	"building":"warehouse"},
 		{"code":"441","name":"工場",		"building":"industrial"},
+		{"code":"451","name":"農林漁施設", "building":"agricultural"},
 		{"code":"453","name":"防衛施設",	"building":"military"}
 	]
 }
@@ -231,10 +236,10 @@ OSMファイルへの変換項目
 
 | 項目		| GMLタグ					| 説明												|
 | --------	| ------------------------- | -------------------------------------------------	|
-| ソース		| `k="source"`				| "MLIT_PLATEAU; " + **データソース名称** + **建物ID**	|
+| 建物ID		| `k="ref:MLIT_PLATEAU"`		| **建物ID**	|
 | 建物		| `k="building"`			| リレーション:buildingのメンバーの場合は `k="building:part"。**v**の値は'[bldg:usage 用途](conversion.json)'から取得する	|
 | 建物名称	| `k="name"`		| リレーション:buildingのメンバーの場合は、`k="name"`		|
-| 住所コード	| `k="addr:ref"`			| **自治体コード** ("13_区市町村コード_大字・町コード_町・丁目コード") 	|
+| 住所コード	| -			| **自治体コード** ("13_区市町村コード_大字・町コード_町・丁目コード") 	|
 | 住所		| `k="addr:full"`			| **住所**											|
 | 建物高さ	| `k="height"`				| **計測高さ**`bldg:measuredHeight`, `bldg:measuredHeight`がない場合は、`lod1Solid`と`lod0[RoofEdge,FoodPrint`から算出する	|
 | 標高		| `k="ele"`				| **建築物形状の高度**	`bldg:lod1Solid`の最低高度		|
