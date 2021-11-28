@@ -97,10 +97,10 @@ public class OsmUpdaterRoute extends RouteBuilder {
             		else {
             			tag = new TagBean("fixme", "PLATEAUデータで更新されています");
             		}
-            		TagBean source = way.getTag("source");
+            		TagBean ref = way.getTag("ref:MLIT_PLATEAU");
             		TagBean height = way.getTag("height");
             		sWay.addTag(tag);
-            		sWay.addTag(source);
+            		sWay.addTag(ref);
             		sWay.addTag(height);
     				way.copyTag(sWay);
             		sWay.copyTag(way);

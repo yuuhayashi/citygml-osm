@@ -91,7 +91,6 @@ public class OutlineFactory {
 
 			if (multi != null) {
 				// マルチポリゴンが存在する場合は、マルチポリゴンにaWayを追加する
-				aWay.addTag("source", osm.getSource());
 				osm.ways.put(aWay);
 				multi.addMember(aWay, "outer");
 			}
@@ -119,7 +118,6 @@ public class OutlineFactory {
 			}
 			if (multi != null) {
 				// マルチポリゴンが存在する場合は、マルチポリゴンにiWayを追加する
-				iWay.addTag("source", osm.getSource());
 				multi.addMember(iWay, "inner");
 				building.addMember(multi, "outline");
 			}
@@ -133,13 +131,11 @@ public class OutlineFactory {
 				for (MemberBean mem : building.members) {
 					if (mem.getRole().equals("outline") && mem.getType().equals("way")) {
 						ElementWay outlineWay = osm.ways.get(mem.getRef());
-						outlineWay.addTag("source", osm.getSource());
 						multi.addMember(outlineWay, "outer");
 						building.removeMember(mem.getRef());
 						break;
 					}
 				}
-				iWay.addTag("source", osm.getSource());
 				multi.addMember(iWay, "inner");
 				building.addMember(multi, "outline");
 			}

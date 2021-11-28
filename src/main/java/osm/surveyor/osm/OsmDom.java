@@ -44,9 +44,6 @@ public class OsmDom {
 	}
 
     @XmlTransient
-    public String source = null;
-    
-    @XmlTransient
     public String srsName = null;
 
 	@XmlAttribute(name="generator")
@@ -137,23 +134,6 @@ public class OsmDom {
     	export(file.getAbsolutePath());
     }
     
-    /**
-     * 
-     * @param poi
-     * @return
-     */
-    public String getSource() {
-    	String src = "";
-    	if (this.source != null) {
-    		src += this.source;
-    	}
-    	if (this.srsName != null) {
-    		src += "; "+ this.srsName;
-    	}
-    	return src;
-    }
-    
-
 	public ArrayList<ElementRelation> getParents(PoiBean obj) {
     	ArrayList<ElementRelation> list = new ArrayList<>();
     	for (String id : relations.keySet()) {

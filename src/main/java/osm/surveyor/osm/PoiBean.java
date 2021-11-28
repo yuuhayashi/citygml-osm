@@ -208,7 +208,7 @@ public class PoiBean implements Cloneable,Serializable {
 	}
 
 	/**
-	 * sourceのタグを取り込む
+	 * タグを取り込む
 	 * @param tags
 	 * @param dest
 	 */
@@ -224,7 +224,7 @@ public class PoiBean implements Cloneable,Serializable {
 
 	/**
      * keyと一致するTAGを、destに置き換える
-     * @param source
+     * @param key
      * @param dest
      */
     public void replaceTag(String key, TagBean dest) {
@@ -247,6 +247,7 @@ public class PoiBean implements Cloneable,Serializable {
      * マルチポリゴンメンバー用のタグに変更する
      * OUTER and INNER
      * 		- remove NOT "source=*"
+     * 		- remove NOT "ref:MLIT_PLATEAU=*"
      * 		- remove NOT "fixme=*"
      */
     public void toMultipolygonMemberTag() {
@@ -254,6 +255,8 @@ public class PoiBean implements Cloneable,Serializable {
     	for (TagBean tag : this.tags) {
     		switch (tag.k) {
     		case "source":
+    			break;
+    		case "ref:MLIT_PLATEAU":
     			break;
     		case "fixme":
     			break;

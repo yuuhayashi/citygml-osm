@@ -90,11 +90,11 @@ public class BuildingGarbage {
 	 * 	- "type"はコピーしない
 	 *  - コピー先に"building:part=*"が存在すれば"building=*"とする
 	 * 	- コピー先とコピー元に"bilding"が存在しなければ"building=yes"を補完する
-	 * 	- "addr:ref"はコピーしない
-	 * 	- "addr:full"はコピーしない
+	 * 	- "addr"と"addr:*"はコピーしない
 	 * 	- "height"はコピーしない
 	 * 	- "ele"はコピーしない
-	 * 	- "source"はコピーしない
+	 * 	- "source"と"source:*"はコピーしない
+	 * 	- "ref"と"ref:*"はコピーしない
 	 * @param tags
 	 * @param dest
 	 */
@@ -117,11 +117,17 @@ public class BuildingGarbage {
 			else if (tag.k.equals("building")) {
 				building = tag.v;
 			}
-			else if (tag.k.equals("addr:full")) {
+			else if (tag.k.equals("addr")) {
 			}
-			else if (tag.k.equals("addr:ref")) {
+			else if (tag.k.startsWith("addr:*")) {
 			}
 			else if (tag.k.equals("source")) {
+			}
+			else if (tag.k.startsWith("source:")) {
+			}
+			else if (tag.k.equals("ref")) {
+			}
+			else if (tag.k.startsWith("ref:*")) {
 			}
 			else if (tag.k.equals("height")) {
 			}

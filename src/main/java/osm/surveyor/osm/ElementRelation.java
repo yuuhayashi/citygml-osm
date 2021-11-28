@@ -53,7 +53,6 @@ public class ElementRelation extends PoiBean implements Cloneable,Serializable {
 		<relation id='-1654' action='modify' visible='true'>
 			<member ref='-1655' type='way' role='part' />
 			<tag k='type' v='building' />
-			<tag k='source:ref:id' v='BLD_57cd4ea7-0fb7-4b0e-a600-9982cf3b60ca' />
 			<tag k='addr:full' v='東京都大田区南六郷三丁目' />
 		</relation>
 	 */
@@ -86,7 +85,6 @@ public class ElementRelation extends PoiBean implements Cloneable,Serializable {
      * 	<relation id='-1654' action='modify' visible='true'>
      *	  <member ref='-1655' type='way' role='part' />
      *	  <tag k='type' v='building' />
-     *	  <tag k='source:ref:id' v='BLD_57cd4ea7-0fb7-4b0e-a600-9982cf3b60ca' />
      *	  <tag k='addr:full' v='東京都大田区南六郷三丁目' />
      *	</relation>
      * @param doc

@@ -67,12 +67,6 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 		
 		RelationMultipolygon multi = (RelationMultipolygon)this.getMultiPolygon(osm);
 		
-		// 'source='
-		this.addTag("source", osm.getSource());
-		if (multi != null) {
-			multi.addTag("source", osm.getSource());
-		}
-		
 		// 'name='
 		this.margeName(parts);
 		if (multi != null) {

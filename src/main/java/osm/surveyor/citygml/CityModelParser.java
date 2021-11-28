@@ -58,7 +58,6 @@ public class CityModelParser extends DefaultHandler {
     public CityModelParser(OsmDom osm) {
         super();
         this.osm = osm;
-        this.osm.source = "MLIT_PLATEAU";
         this.storeysAboveGround = 0;
         this.storeysBelowGround = 0;
         this.conversionTable = new ConversionTable(Paths.get(ConversionTable.fileName).toFile());
@@ -290,7 +289,6 @@ public class CityModelParser extends DefaultHandler {
 						way.addTag("height", building.getTagValue("height"));
 						way.addTag("ele", rounding2(building.getTagValue("ele")));
 						way.addTag("addr:full", building.getTagValue("addr:full"));
-						way.addTag("source", getSourceStr(buildingId));
 						if ((name != null) && !name.isEmpty()) {
 							way.addTag("name", name);
 						}
@@ -298,6 +296,7 @@ public class CityModelParser extends DefaultHandler {
 						way.addTag("building:part", usage.v);
 						way.addTag("building:levels", building.getTagValue("building:levels"));
 						way.addTag("building:levels:underground", building.getTagValue("building:levels:underground"));
+						way.addTag("ref:MLIT_PLATEAU", buildingId);
 					}
 					else if (mem.getType().equals("relation")) {
 						ElementRelation relation = osm.relations.get(mem.getRef());
@@ -308,14 +307,13 @@ public class CityModelParser extends DefaultHandler {
 						relation.addTag("height", building.getTagValue("height"));
 						relation.addTag("ele", rounding2(building.getTagValue("ele")));
 						relation.addTag("addr:full", building.getTagValue("addr:full"));
-						relation.addTag("source", getSourceStr(buildingId));
 						if ((name != null) && !name.isEmpty()) {
 							relation.addTag("name", name);
 						}
 						relation.addTag(usage);
 					}
 				}
-				building.addTag("source", getSourceStr(buildingId));
+				building.removeTag("ref:MLIT_PLATEAU");
 				building.addTag(usage);
 				osm.relations.put(building);
 			}
@@ -461,7 +459,7 @@ public class CityModelParser extends DefaultHandler {
 		else if (qName.equals("gml:exterior")){
 			if (way != null) {
 				if (member != null) {
-					way.addTag("source", getSourceStr(buildingId));
+					way.addTag("ref:MLIT_PLATEAU", buildingId);
 					if (!edgeFull) {
 						if (roof != null) {
 							if ((name != null) && !name.isEmpty()) {
@@ -487,6 +485,7 @@ public class CityModelParser extends DefaultHandler {
 					if (multipolygon != null) {
 						ElementWay outer = way.copy(osm.getNewId());
 						multipolygon.copyTag(outer);
+						multipolygon.removeTag("ref:MLIT_PLATEAU");
 						outer.removeTag("name");
 						outer.removeTag("height");
 						outer.removeTag("maxele");
@@ -509,7 +508,7 @@ public class CityModelParser extends DefaultHandler {
 						way.removeTag("height");
 						way.removeTag("maxele");
 						way.removeTag("ele");
-						way.addTag("source", getSourceStr(buildingId));
+						way.addTag("ref:MLIT_PLATEAU", buildingId);
 						osm.ways.put(way);
 						multipolygon.addMember(way, "inner");
 					}
@@ -616,19 +615,12 @@ public class CityModelParser extends DefaultHandler {
     }
     
     /**
-     * 
+     * 建物ID　"13111-bldg-60802"
      * @param poi
      * @return
      */
-    String getSourceStr(String buildingId) {
-    	String src = osm.getSource();
-    	if (buildingId != null) {
-    		src += "; "+ buildingId;
-    	}
-    	return src;
-    }
-    String getSourceStr() {
-    	return osm.getSource();
+    String getBuildingId() {
+    	return buildingId;
     }
 
     /**

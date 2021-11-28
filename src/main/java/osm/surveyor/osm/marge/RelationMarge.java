@@ -69,17 +69,17 @@ public class RelationMarge {
 	/**
 	 * リレーションMAPの中から指定したBuildingに接続するリレーションを取得する
 	 * @param checked	調査対象のリレーションリスト
-	 * @param source	指定のBuilding
+	 * @param src	指定のBuilding
 	 * @return	接続するリレーションがない場合はNULL
 	 */
-	private RelationBuilding checkParts(RelationMap checked, RelationBuilding source) {
+	private RelationBuilding checkParts(RelationMap checked, RelationBuilding src) {
 		for (String relationid : checked.keySet()) {
 			RelationBuilding relation = (RelationBuilding)checked.get(relationid);
 			WayMap ways = new WayMap();
-			ways.put(source.getOutlineWay(osm));
+			ways.put(src.getOutlineWay(osm));
 			ways.put(relation.getOutlineWay(osm));
 			if ((new MargeFactory(osm, ways)).isDuplicateSegment()) {
-				source = matomeru(source, relation);
+				src = matomeru(src, relation);
 				return relation;
 			}
 		}
