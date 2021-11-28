@@ -10,10 +10,23 @@ import osm.surveyor.DetailTests;
 /**
  * `mvn test -Dtest=osm.surveyor.osm.api.AllTests`
  * 
+ * `mvn test -Dtest=osm.surveyor.osm.api.CitygmlFileTest_52396075`
+ * `mvn test -Dtest=osm.surveyor.osm.api.CitygmlFileTest_52396076_1`
+ * `mvn test -Dtest=osm.surveyor.osm.api.CitygmlFileTest_53375768`
+ * `mvn test -Dtest=osm.surveyor.osm.api.CitygmlFileTest_53392547`
+ * `mvn test -Dtest=osm.surveyor.osm.api.CitygmlFileTest_53392588`
+ * `mvn test -Dtest=osm.surveyor.osm.api.CitygmlFileTest_53392589`
+ * `mvn test -Dtest=osm.surveyor.osm.api.AllTests`
+ * `mvn test -Dtest=osm.surveyor.osm.api.AllTests`
+ * `mvn test -Dtest=osm.surveyor.osm.api.AllTests`
+ * 
  */
 @RunWith(Categories.class)
 @ExcludeCategory(DetailTests.class)
 @SuiteClasses({
+	CitygmlFileTest_52396075.class,
+	CitygmlFileTest_52396076_1.class,
+	
 	CitygmlFileTest_A.class, 
 	CitygmlFileTest_B.class, 
 	CitygmlFileTest_C.class,

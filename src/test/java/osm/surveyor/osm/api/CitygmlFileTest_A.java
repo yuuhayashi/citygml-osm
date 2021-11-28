@@ -25,24 +25,26 @@ public class CitygmlFileTest_A extends CitygmlFileTest {
 				ElementWay way = osm.ways.get(id);
 				assertNotNull(way);
 				
-				if (way.getTagValue("source").endsWith("; 13111-bldg-365")) {
-					assertEquals("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-365", way.getTagValue("source"));
-					assertEquals("東京都大田区南六郷三丁目", way.getTagValue("addr:full"));
-					assertEquals("2.4", way.getTagValue("height"));
-					assertEquals("2.75", way.getTagValue("ele"));
-					assertEquals("yes", way.getTagValue("building"));
-					assertEquals(5, way.getTagList().size());
-				}
-				else if (way.getTagValue("source").endsWith("; 13111-bldg-466")) {
-					assertEquals("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-466", way.getTagValue("source"));
-					assertEquals("東京都大田区南六郷三丁目", way.getTagValue("addr:full"));
-					assertEquals("4.6", way.getTagValue("height"));
-					assertEquals("2.67", way.getTagValue("ele"));
-					assertEquals("1976", way.getTagValue("start_date"));
-					assertEquals("house", way.getTagValue("building"));
-					assertEquals("2", way.getTagValue("building:levels"));
-					assertEquals("1", way.getTagValue("building:levels:underground"));
-					assertEquals(8, way.getTagList().size());
+				if (way.getTagValue("ref:MLIT_PLATEAU") != null) {
+					if (way.getTagValue("ref:MLIT_PLATEAU").endsWith("13111-bldg-365")) {
+						assertEquals("13111-bldg-365", way.getTagValue("ref:MLIT_PLATEAU"));
+						assertEquals("東京都大田区南六郷三丁目", way.getTagValue("addr:full"));
+						assertEquals("2.4", way.getTagValue("height"));
+						assertEquals("2.75", way.getTagValue("ele"));
+						assertEquals("yes", way.getTagValue("building"));
+						assertEquals(5, way.getTagList().size());
+					}
+					else if (way.getTagValue("ref:MLIT_PLATEAU").endsWith("13111-bldg-466")) {
+						assertEquals("13111-bldg-466", way.getTagValue("ref:MLIT_PLATEAU"));
+						assertEquals("東京都大田区南六郷三丁目", way.getTagValue("addr:full"));
+						assertEquals("4.6", way.getTagValue("height"));
+						assertEquals("2.67", way.getTagValue("ele"));
+						assertEquals("1976", way.getTagValue("start_date"));
+						assertEquals("house", way.getTagValue("building"));
+						assertEquals("2", way.getTagValue("building:levels"));
+						assertEquals("1", way.getTagValue("building:levels:underground"));
+						assertEquals(8, way.getTagList().size());
+					}
 				}
 			}
 			assertEquals(2, osm.ways.size());

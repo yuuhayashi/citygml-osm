@@ -20,17 +20,19 @@ public class CitygmlFileTest_53375768 extends CitygmlFileTest {
 				ElementWay way = osm.ways.get(id);
 				assertNotNull(way);
 
-				if (way.getTagValue("source").endsWith("20209-bldg-69160")) {
-					assertNull(way.getTagValue("building:part"));
-					assertNotNull(way.getTagValue("building"));
-				}
-				if (way.getTagValue("source").endsWith("20209-bldg-69158")) {
-					assertNull(way.getTagValue("building:part"));
-					assertNotNull(way.getTagValue("building"));
-				}
-				if (way.getTagValue("source").endsWith("20209-bldg-69157")) {
-					assertNull(way.getTagValue("building:part"));
-					assertNotNull(way.getTagValue("building"));
+				if (way.getTagValue("ref:MLIT_PLATEAU") != null) {
+					if (way.getTagValue("ref:MLIT_PLATEAU").equals("20209-bldg-69160")) {
+						assertNull(way.getTagValue("building:part"));
+						assertNotNull(way.getTagValue("building"));
+					}
+					if (way.getTagValue("ref:MLIT_PLATEAU").endsWith("20209-bldg-69158")) {
+						assertNull(way.getTagValue("building:part"));
+						assertNotNull(way.getTagValue("building"));
+					}
+					if (way.getTagValue("ref:MLIT_PLATEAU").endsWith("20209-bldg-69157")) {
+						assertNull(way.getTagValue("building:part"));
+						assertNotNull(way.getTagValue("building"));
+					}
 				}
 			}
 		} catch (Exception e) {

@@ -80,24 +80,25 @@ public class CitygmlFileTest_Issue28 extends CitygmlFileTest {
 					if (mem.getRole().equals("part")) {
 						assertEquals("way", mem.getType());
 						ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
+						assertNotNull(way.getTagValue("ref:MLIT_PLATEAU"));
 						
 						// (1) "40205-bldg-80498"をメンバに持つリレーションは building=industrial であるべき、
-						if (way.getTagValue("source").endsWith("40205-bldg-80498")) {
+						if (way.getTagValue("ref:MLIT_PLATEAU").endsWith("40205-bldg-80498")) {
 							assertEquals("industrial", relation.getTagValue("building"));
 						}
 						
 						// (2) "40205-bldg-80414"をメンバに持つリレーションは building=industrial であるべき、
-						if (way.getTagValue("source").endsWith("40205-bldg-80414")) {
+						if (way.getTagValue("ref:MLIT_PLATEAU").endsWith("40205-bldg-80414")) {
 							assertEquals("industrial", relation.getTagValue("building"));
 						}
 						
 						// (3) "40205-bldg-80732"をメンバに持つリレーションは building=industrial であるべき、
-						if (way.getTagValue("source").endsWith("40205-bldg-80732")) {
+						if (way.getTagValue("ref:MLIT_PLATEAU").endsWith("40205-bldg-80732")) {
 							assertEquals("industrial", relation.getTagValue("building"));
 						}
 						
 						// (４) "40205-bldg-80317"をメンバに持つリレーションは building=industrial であるべき、
-						if (way.getTagValue("source").endsWith("40205-bldg-80317")) {
+						if (way.getTagValue("ref:MLIT_PLATEAU").endsWith("40205-bldg-80317")) {
 							assertEquals("industrial", relation.getTagValue("building"));
 						}
 					}
@@ -128,10 +129,12 @@ public class CitygmlFileTest_Issue28 extends CitygmlFileTest {
 					ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 					
 					// "40205-bldg-81197"をメンバに持つリレーションは 20個以上の建物パーツを持つべき
-					if (way.getTagValue("source").endsWith("40205-bldg-81197")) {
-						System.out.println("members: "+ relation.members.size());
-						assertTrue(relation.members.size() >= 20);
-						i++;
+					if (way.getTagValue("ref:MLIT_PLATEAU") != null) {
+						if (way.getTagValue("ref:MLIT_PLATEAU").equals("40205-bldg-81197")) {
+							System.out.println("members: "+ relation.members.size());
+							assertTrue(relation.members.size() >= 20);
+							i++;
+						}
 					}
 				}
 			}
