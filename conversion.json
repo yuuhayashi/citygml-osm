@@ -1,14 +1,19 @@
 {
 	"usage" : [
-		{"code":"401","name":"業務施設",	"building":"office"},
-		{"code":"402","name":"商業施設",	"building":"commercial"},
+		{"code":"401","name":"業務施設",	"building":"commercial"},
+		{"code":"402","name":"商業施設",	"building":"retail"},
 		{"code":"403","name":"宿泊施設",	"building":"hotel"},
+		{"code":"404","name":"商業系複合施設",	"building":"retail"},
 		{"code":"411","name":"住宅",		"building":"house"},
 		{"code":"412","name":"共同住宅",	"building":"apartments"},
+		{"code":"413","name":"店舗等併用住宅",	"building":"residential"},
+		{"code":"414","name":"店舗等併用共同住宅",	"building":"apartments"},
+		{"code":"415","name":"作業所併用住宅",	"building":"residential"},
 		{"code":"421","name":"官公庁施設",	"building":"government"},
 		{"code":"422","name":"文教厚生施設",	"building":"public"},
 		{"code":"431","name":"運輸倉庫施設",	"building":"warehouse"},
 		{"code":"441","name":"工場",		"building":"industrial"},
+		{"code":"451","name":"農林漁施設", "building":"agricultural"},
 		{"code":"453","name":"防衛施設",	"building":"military"}
 	]
 }
