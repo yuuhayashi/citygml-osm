@@ -29,7 +29,6 @@ public class CitygmlFileTest_A_4 extends CitygmlFileTest4 {
 					assertThat(way.getTagValue("building"), is("yes"));
 					assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-365"));
 					assertThat(way.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
-					assertThat(way.getTagValue("addr:ref"), is("13111058003"));
 					assertThat(way.getTagValue("height"), is("2.4"));
 					assertThat(way.getTagValue("ele"), is("2.75"));
 					assertThat(way.getTagList().size(), is(6));

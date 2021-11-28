@@ -28,7 +28,6 @@ public class CitygmlFileTest_B extends CitygmlFileTest {
 					assertEquals("multipolygon", relation.getTagValue("type"));
 					assertEquals("yes", relation.getTagValue("building"));
 					assertEquals("東京都大田区大森西五丁目", relation.getTagValue("addr:full"));
-					assertEquals("13111006005", relation.getTagValue("addr:ref"));
 					assertEquals("16.9", relation.getTagValue("height"));
 					assertEquals("2.51", relation.getTagValue("ele"));
 					assertEquals("1976", relation.getTagValue("start_date"));

@@ -36,7 +36,6 @@ public class CitygmlFileTest_C extends CitygmlFileTest {
 					assertEquals("42.7", relation.getTagValue("height"));
 					assertEquals("2.81", relation.getTagValue("ele"));
 					assertEquals("東京都大田区南六郷三丁目", relation.getTagValue("addr:full"));
-					assertEquals("13111058003", relation.getTagValue("addr:ref"));
 					assertEquals(relation.getTagValue("source"), ("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697"));
 					int outlineCnt = 0;
 					int partCnt = 0;
@@ -48,13 +47,12 @@ public class CitygmlFileTest_C extends CitygmlFileTest {
 							assertNotNull(way);
 							assertEquals(way.getTagValue("source"), ("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697"));
 							assertEquals(way.getTagValue("addr:full"), ("東京都大田区南六郷三丁目"));
-							assertEquals(way.getTagValue("addr:ref"), ("13111058003"));
 							assertEquals(way.getTagValue("height"), ("42.7"));
 							assertEquals("2.81", way.getTagValue("ele"));
 							assertEquals(way.getTagValue("building"), ("yes"));
 							assertEquals(way.getTagValue("building:levels"), ("2"));
 							assertEquals("1", way.getTagValue("building:levels:underground"));
-							assertEquals(8, way.getTagList().size());
+							assertEquals(7, way.getTagList().size());
 						}
 						if (mem.getRole().equals("part")) {
 							partCnt++;
@@ -64,12 +62,11 @@ public class CitygmlFileTest_C extends CitygmlFileTest {
 							if (way.getTagValue("source").endsWith("; 13111-bldg-473")) {
 								assertEquals(way.getTagValue("source"), ("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-473"));
 								assertEquals(way.getTagValue("addr:full"), ("東京都大田区南六郷三丁目"));
-								assertEquals(way.getTagValue("addr:ref"), ("13111058003"));
 								assertEquals(way.getTagValue("height"), ("42.7"));
 								assertEquals("2.81", way.getTagValue("ele"));
 								assertEquals(way.getTagValue("start_date"), ("1976"));
 								assertEquals(way.getTagValue("building:part"), ("yes"));
-								assertEquals(8, way.getTagList().size());
+								assertEquals(7, way.getTagList().size());
 							}
 						}
 					}
@@ -146,9 +143,8 @@ public class CitygmlFileTest_C extends CitygmlFileTest {
 					assertEquals("7.1", relation.getTagValue("height"));
 					assertEquals("2.48", relation.getTagValue("ele"));
 					assertEquals("東京都大田区大森中一丁目", relation.getTagValue("addr:full"));
-					assertEquals("13111005001", relation.getTagValue("addr:ref"));
 					assertEquals("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697", relation.getTagValue("source"));
-					assertEquals(9, relation.getTagList().size());
+					assertEquals(8, relation.getTagList().size());
 					
 					int outlineCnt = 0;
 					int partCnt = 0;
@@ -160,13 +156,12 @@ public class CitygmlFileTest_C extends CitygmlFileTest {
 							assertNotNull(way);
 							assertEquals(way.getTagValue("source"), ("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697"));
 							assertEquals(way.getTagValue("addr:full"), ("東京都大田区大森中一丁目"));
-							assertEquals(way.getTagValue("addr:ref"), ("13111005001"));
 							assertEquals(way.getTagValue("height"), ("7.1"));
 							assertEquals("2.48", way.getTagValue("ele"));
 							assertEquals(way.getTagValue("building"), ("yes"));
 							assertEquals(way.getTagValue("building:levels"), ("3"));
 							assertEquals(way.getTagValue("building:levels:underground"), ("2"));
-							assertEquals(8, way.getTagList().size());
+							assertEquals(7, way.getTagList().size());
 						}
 						if (mem.getRole().equals("part")) {
 							partCnt++;
@@ -175,11 +170,10 @@ public class CitygmlFileTest_C extends CitygmlFileTest {
 							assertNotNull(way);
 							assertTrue(way.getTagValue("source").startsWith("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-"));
 							assertEquals(way.getTagValue("addr:full"), ("東京都大田区大森中一丁目"));
-							assertEquals(way.getTagValue("addr:ref"), ("13111005001"));
 							assertNotNull(way.getTagValue("height"));
 							assertNotNull(way.getTagValue("ele"));
 							assertEquals(way.getTagValue("building:part"), ("yes"));
-							assertTrue(way.getTagList().size() >= 6);
+							assertTrue(way.getTagList().size() >= 5);
 						}
 					}
 					assertEquals(1, outlineCnt);

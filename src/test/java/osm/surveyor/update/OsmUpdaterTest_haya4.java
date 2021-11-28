@@ -35,7 +35,7 @@ public class OsmUpdaterTest_haya4 extends OsmUpdaterTest {
 					assertTrue(way.getId() < 0);
 					assertEquals(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-365"));
 					assertEquals(way.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
-					assertEquals(way.getTagValue("addr:ref"), is("13111058003"));
+					assertNull(way.getTagValue("addr:ref"));
 					assertEquals(way.getTagValue("height"), is("2.4"));
 					assertEquals(way.getTagValue("ele"), is("2.749"));
 					assertEquals(way.getTagValue("building"), is("yes"));

@@ -28,7 +28,7 @@ public class OsmUpdaterTest_B extends OsmUpdaterTest {
         try {
         	OsmBean osm = testdo(Paths.get("src/test/resources",  SOURCE+".osm"));
 			assertNotNull(osm.getRelationList());
-			assertTrue(osm.getRelationList().size() > 1);
+			assertTrue(osm.getRelationList().size() >= 1);
 			assertTrue(osm.getWayList().size() >= 2);
 		} catch (Exception e) {
 			e.fillInStackTrace();
@@ -81,7 +81,7 @@ public class OsmUpdaterTest_B extends OsmUpdaterTest {
 					assertEquals(relation.getTagValue("type"), is("multipolygon"));
 					assertEquals(relation.getTagValue("building"), is("yes"));
 					assertEquals(relation.getTagValue("addr:full"), is("東京都大田区大森西五丁目"));
-					assertEquals(relation.getTagValue("addr:ref"), is("13111006005"));
+					assertNull(relation.getTagValue("addr:ref"));
 					assertEquals(relation.getTagValue("height"), is("16.9"));
 					assertEquals(relation.getTagValue("ele"), is("2.507"));
 					assertEquals(relation.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697"));

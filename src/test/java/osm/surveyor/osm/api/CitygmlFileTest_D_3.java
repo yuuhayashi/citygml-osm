@@ -25,7 +25,6 @@ public class CitygmlFileTest_D_3 extends CitygmlFileTest3 {
 					assertEquals(relation.getTagValue("type"), ("building"));
 					assertEquals(relation.getTagValue("source"), ("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697"));
 					assertEquals(relation.getTagValue("addr:full"), ("東京都大田区大森西三丁目"));
-					assertEquals(relation.getTagValue("addr:ref"), ("13111006003"));
 					assertNotNull(relation.getTagValue("height"));
 					assertNotNull(relation.getTagValue("ele"));
 					assertNull(relation.getTagValue("start_date"));		// Issue #39
@@ -44,7 +43,6 @@ public class CitygmlFileTest_D_3 extends CitygmlFileTest3 {
 							assertEquals(polygon.getTagValue("type"), ("multipolygon"));
 							assertTrue(polygon.getTagValue("source").startsWith("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697"));
 							assertEquals(polygon.getTagValue("addr:full"), ("東京都大田区大森西三丁目"));
-							assertEquals(polygon.getTagValue("addr:ref"), ("13111006003"));
 							assertNotNull(polygon.getTagValue("height"));
 							assertNotNull(polygon.getTagValue("ele"));
 							assertEquals(polygon.getTagValue("building"), ("yes"));
@@ -67,7 +65,6 @@ public class CitygmlFileTest_D_3 extends CitygmlFileTest3 {
 								assertEquals(way.getTagValue("building:levels"), ("2"));
 								assertEquals(way.getTagValue("building:levels:underground"), ("1"));
 								assertEquals(way.getTagValue("addr:full"), ("東京都大田区大森西三丁目"));
-								assertEquals(way.getTagValue("addr:ref"), ("13111006003"));
 								assertEquals(way.getTagValue("height"), ("34.7"));
 								assertEquals(way.getTagValue("ele"), ("2.68"));
 								assertEquals(way.getTagValue("start_date"), ("1976"));
@@ -77,7 +74,6 @@ public class CitygmlFileTest_D_3 extends CitygmlFileTest3 {
 							else if (way.getTagValue("source").endsWith("; 13111-bldg-71799")) {
 								assertEquals(way.getTagValue("source"), ("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-71799"));
 								assertEquals(way.getTagValue("addr:full"), ("東京都大田区大森西三丁目"));
-								assertEquals(way.getTagValue("addr:ref"), ("13111006003"));
 								assertEquals(way.getTagValue("height"), ("30.2"));
 								assertEquals(way.getTagValue("ele"), ("3.13"));
 								assertEquals(way.getTagValue("start_date"), ("1977"));

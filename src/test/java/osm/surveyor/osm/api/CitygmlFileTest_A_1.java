@@ -29,7 +29,6 @@ public class CitygmlFileTest_A_1 extends CitygmlFileTest1 {
 						assertThat(relation.getTagValue("type"), is("building"));
 						assertThat(relation.getTagValue("building"), is("yes"));
 						assertThat(relation.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
-						assertThat(relation.getTagValue("addr:ref"), is("13111058003"));
 						assertThat(relation.getTagValue("height"), is("2.4"));
 						assertEquals("2.75", relation.getTagValue("ele"));
 						assertThat(relation.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-365"));
@@ -46,7 +45,6 @@ public class CitygmlFileTest_A_1 extends CitygmlFileTest1 {
 								assertThat(outline.getTagValue("building"), is("yes"));
 								assertThat(outline.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-365"));
 								assertThat(outline.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
-								assertThat(outline.getTagValue("addr:ref"), is("13111058003"));
 								assertThat(outline.getTagValue("height"), is("2.4"));
 								assertEquals("2.75", outline.getTagValue("ele"));
 								assertEquals(7, outline.getTagList().size());
@@ -58,7 +56,6 @@ public class CitygmlFileTest_A_1 extends CitygmlFileTest1 {
 								assertNotNull(way);
 								assertThat(way.getTagValue("building:part"), is("yes"));
 								assertThat(way.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
-								assertThat(way.getTagValue("addr:ref"), is("13111058003"));
 								assertThat(way.getTagValue("height"), is("2.4"));
 								assertEquals("2.75", way.getTagValue("ele"));
 								assertThat(way.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-365"));
@@ -124,7 +121,6 @@ public class CitygmlFileTest_A_1 extends CitygmlFileTest1 {
 						assertThat(relation.getTagValue("type"), is("multipolygon"));
 						assertThat(relation.getTagValue("source"), is("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-365"));
 						assertThat(relation.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
-						assertThat(relation.getTagValue("addr:ref"), is("13111058003"));
 						assertThat(relation.getTagValue("height"), is("2.4"));
 						assertEquals("2.75", relation.getTagValue("ele"));
 						assertThat(relation.getTagValue("building"), is("yes"));
