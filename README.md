@@ -13,6 +13,8 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 # Release
 
+- 2021-11-28 リリース v1.3.4 / [citygml-osm v1.3.4](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.3.4)<br/>Issue #43 `building:name`タグを`name`タグに変更する<br/>Issue #44 オブジェクトへのsourceタグ付与を削除したい<br/>Issue #45 オブジェクトへの建物IDの格納について<br/>Issue #46 住所コードデータの扱いについて<br/>Issue #48 conversion.jsonを"MULTI_PLATEAU"に合わせる
+
 - 2021-07-29 リリース v1.3.1 / [citygml-osm v1.3.1](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.3.1)<br/>第一段階を完成
 
 - 2021-05-29 リリース v1.3.0 / [citygml-osm v1.3.0](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.3.0)<br/>複合ビルの場合の「用途」の扱いについて<br/>PostGISの利用を廃止<br/>GISライブラリに`GeoTools v25.1`を採用
