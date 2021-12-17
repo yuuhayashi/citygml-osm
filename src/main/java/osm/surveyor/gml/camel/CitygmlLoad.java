@@ -4,6 +4,9 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.impl.DefaultCamelContext;
 
+import osm.surveyor.download.OsmLoadDirRoute;
+import osm.surveyor.osm.camel.DownloadRoute;
+
 public class CitygmlLoad {
 	public static CamelContext camel;
 	public static ProducerTemplate producer;
@@ -16,6 +19,8 @@ public class CitygmlLoad {
 		camel = new DefaultCamelContext();
 		camel.addRoutes(new GmlLoadDirRoute());
 		camel.addRoutes(new GmlLoadRoute());
+		camel.addRoutes(new OsmLoadDirRoute());
+		camel.addRoutes(new DownloadRoute());
 		
 		System.out.println("gml.camel.start();");
 		
@@ -29,6 +34,6 @@ public class CitygmlLoad {
     		System.out.println("gml.camel.stop();");
         }));
         
-		System.out.println("gml.camel.loop();");
+		System.out.println("gml.camel.end();");
 	}
 }

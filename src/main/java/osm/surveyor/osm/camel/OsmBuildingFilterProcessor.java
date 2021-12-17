@@ -1,12 +1,12 @@
 package osm.surveyor.osm.camel;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
+import com.google.common.collect.Lists;
 
 import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.NdBean;
@@ -29,7 +29,7 @@ public class OsmBuildingFilterProcessor implements Processor {
 		Map<Long,NodeBean> nodemap = new HashMap<>();
 
 		// "building"リレーションのみ抽出する
-		List<RelationBean> buildingRelations = new ArrayList<>();
+		List<RelationBean> buildingRelations = Lists.newArrayList();
 		for (RelationBean relation : osm.getRelationList()) {
 			if (relation.isBuilding()) {
 				buildingRelations.add(relation);
@@ -46,7 +46,8 @@ public class OsmBuildingFilterProcessor implements Processor {
 
 		// "building"リレーションのメンバーリレーションを抽出
 		for (RelationBean relation : buildingRelations) {
-			List<MemberBean> members = relation.getMemberList();
+			List<MemberBean> members = Lists.newArrayList();
+			members.addAll(relation.getMemberList());
 			for (MemberBean member : members) {
 				if (member.isRelation()) {
 					long id = member.getRef();
@@ -70,7 +71,8 @@ public class OsmBuildingFilterProcessor implements Processor {
 		// ビルディングリレーションのメンバーウェイは「非更新対象」(fix=true)にする
 		for(HashMap.Entry<Long, RelationBean> entry : relationmap.entrySet()) {
 			RelationBean relation = entry.getValue();
-			List<MemberBean> members = relation.getMemberList();
+			List<MemberBean> members = Lists.newArrayList();
+			members.addAll(relation.getMemberList());
 			for (MemberBean member : members) {
 				if (member.isWay()) {
 					long id = member.getRef();
@@ -87,7 +89,8 @@ public class OsmBuildingFilterProcessor implements Processor {
 		// タグありのノードをメンバーに持つウェイは「非更新対象」(fix=true)にする
 		for(HashMap.Entry<Long, WayBean> entry : waymap.entrySet()) {
 			WayBean way = entry.getValue();
-			List<NdBean> nds = way.getNdList();
+			List<NdBean> nds = Lists.newArrayList();
+			nds.addAll(way.getNdList());
 			for (NdBean nd : nds) {
 				long ref = nd.getRef();
 				NodeBean v = osm.getNode(ref);
@@ -102,21 +105,21 @@ public class OsmBuildingFilterProcessor implements Processor {
 		}
 
 		// リレーションをMapからListに変換して格納
-		List<RelationBean> newRelations = new ArrayList<>();
+		List<RelationBean> newRelations = Lists.newArrayList();
 		for(HashMap.Entry<Long, RelationBean> entry : relationmap.entrySet()) {
 			newRelations.add(entry.getValue());
         }
 		osm.setRelationList(newRelations);
 		
 		// ウェイをMapからListに変換して格納
-		List<WayBean> newWays = new ArrayList<>();
+		List<WayBean> newWays = Lists.newArrayList();
 		for(HashMap.Entry<Long, WayBean> entry : waymap.entrySet()) {
 			newWays.add(entry.getValue());
         }
 		osm.setWayList(newWays);
 
 		// ノードをMapからListに変換して格納
-		List<NodeBean> newNodes = new ArrayList<>();
+		List<NodeBean> newNodes = Lists.newArrayList();
 		for(HashMap.Entry<Long, NodeBean> entry : nodemap.entrySet()) {
 			newNodes.add(entry.getValue());
         }

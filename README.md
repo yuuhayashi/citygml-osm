@@ -52,7 +52,9 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 # 使い方
 
-## 第一段階
+## 第一段階 : GMLからOSMへの変換
+
+第一段階ではPLATEAUの「3D都市モデル」の"GMLファイル"をOpenStreetMapの形式に変換した"OSMファイル"を生成します。
 
 ![startup.pu](doc/startup.png)
 
@@ -72,9 +74,16 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 - (5) JOSMを起動して、「`*****.osm`」ファイルをJOSMにドロップしてください。<br/>生成されたデータを確認することができます。
 
-## 既存buildingデータ
+## 第二段階 : 既存の Building データをダウンロード
 
-![download.pu](doc/download.png)
+第二段階では、第一段階で生成され"OSMファイル"からOpenStreetMapに入力済みのデータをダウンロードして「`xxxx.org.osm`」を取得します。
+
+![download.pu](doc/OsmDownloader/download.png)
+
+```
+  $ cd (解凍先フォルダ)
+  $ java -jar citygml-osm-1.3.x-jar-with-dependencies.jar
+```
 
 - Issue #41 ['fixme'による手動選別](https://github.com/yuuhayashi/citygml-osm/issues/42)
 
@@ -82,9 +91,13 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 
 
-## 第二段階
+## 第三段階 : 既存データをアップデート
 
-![startup2nd.pu](doc/startup2nd.png)
+第三段界では、「`xxxx.org.osm`」と「OSMファイル」を比較して、既存buildingと重複するデータは、既存データを更新します。
+
+第三段階 [OsmUpdater](doc/OsmUpdater/README.md)
+
+![startup2nd.pu](doc/OsmUpdater/startup2nd.png)
 
 - (1) コマンドターミナルから実行<br/>「`*.mrg.osm`」ファイルが生成される
 
