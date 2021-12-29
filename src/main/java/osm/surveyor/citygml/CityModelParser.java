@@ -274,11 +274,11 @@ public class CityModelParser extends DefaultHandler {
 					if (maxele != null) {
 						if (ele != null) {
 							double hi = Double.parseDouble(maxele) - Double.parseDouble(ele);
-							building.addTag("height", Double.toString(hi));
+							building.addTag("height", String.format("%.2d", hi));
 						}
 						else {
 							double hi = Double.parseDouble(maxele);
-							building.addTag("height", Double.toString(hi));
+							building.addTag("height", String.format("%.2d", hi));
 						}
 					}
 				}
@@ -286,8 +286,8 @@ public class CityModelParser extends DefaultHandler {
 					if (mem.getType().equals("way")) {
 						ElementWay way = osm.ways.get(mem.getRef());
 						way.removeTag("maxele");
-						way.addTag("height", building.getTagValue("height"));
-						way.addTag("ele", rounding2(building.getTagValue("ele")));
+						way.addTag("height", rounding(2, building.getTagValue("height")));
+						way.addTag("ele", rounding(1, building.getTagValue("ele")));
 						way.addTag("addr:full", building.getTagValue("addr:full"));
 						if ((name != null) && !name.isEmpty()) {
 							way.addTag("name", name);
@@ -304,8 +304,8 @@ public class CityModelParser extends DefaultHandler {
 						relation.addTag("start_date", building.getTagValue("start_date"));
 						relation.addTag("building:levels", building.getTagValue("building:levels"));
 						relation.addTag("building:levels:underground", building.getTagValue("building:levels:underground"));
-						relation.addTag("height", building.getTagValue("height"));
-						relation.addTag("ele", rounding2(building.getTagValue("ele")));
+						relation.addTag("height", rounding(2, building.getTagValue("height")));
+						relation.addTag("ele", rounding(1, building.getTagValue("ele")));
 						relation.addTag("addr:full", building.getTagValue("addr:full"));
 						if ((name != null) && !name.isEmpty()) {
 							relation.addTag("name", name);
@@ -354,7 +354,7 @@ public class CityModelParser extends DefaultHandler {
 			if ((measuredHeight != null) && (measuredHeight.isEmpty()) && (outSb != null)) {
 				measuredHeight = outSb.toString();
 				if (building != null) {
-					building.addTag("height", measuredHeight);
+					building.addTag("height", rounding(2, measuredHeight));
 				}
 			}
 			outSb = null;
@@ -433,7 +433,7 @@ public class CityModelParser extends DefaultHandler {
 				double min = Double.parseDouble(minheight);
 				double max = Double.parseDouble(maxheight);
 				if (min < 90000d) {
-					building.addTag("ele", rounding2(minheight));
+					building.addTag("ele", rounding(1, minheight));
 				}
 				if (max > -9000d) {
 					if ((max - min) > 1d) {
@@ -568,10 +568,10 @@ public class CityModelParser extends DefaultHandler {
 					if (st.hasMoreTokens()) {
 						height = st.nextToken();
 						if (Double.parseDouble(height) > Double.parseDouble(maxele)) {
-							maxele = height;
+							maxele = CityModelParser.rounding(2, height);
 						}
 						if (Double.parseDouble(height) < Double.parseDouble(minele)) {
-							minele = height;
+							minele = CityModelParser.rounding(1, height);
 						}
 						if (way != null) {
 							way.addNode(putNode(node.clone()));
@@ -585,7 +585,7 @@ public class CityModelParser extends DefaultHandler {
 					double min = Double.parseDouble(minele);
 					double max = Double.parseDouble(maxele);
 					if (min < 90000.0d) {
-						way.addTag("ele", rounding2(minele));
+						way.addTag("ele", rounding(1, minele));
 					}
 					if (max > -1000.0d) {
 						way.addTag("maxele", Double.toString(max));
@@ -664,16 +664,27 @@ public class CityModelParser extends DefaultHandler {
      * @param str
      * @return
      */
-    String rounding2(String str) {
+    public static String rounding(int scale, String str) {
     	try {
-        	double d = Double.parseDouble(str);
-    		BigDecimal bd = new BigDecimal(d).setScale(2, RoundingMode.HALF_UP);
-    		double d2 = bd.doubleValue();
-    		return Double.toString(d2);
+    		BigDecimal bd = new BigDecimal(str).setScale(scale, RoundingMode.HALF_UP);
+    		return trim0(bd.toString());
     	}
     	catch(Exception e) {
     		return null;
     	}
-    	
+    }
+    public static String trim0(String src) {
+    	String ret = src;
+		if (ret.endsWith(".")) {
+			ret = ret.substring(0, ret.length() - 1);
+		}
+    	BigDecimal d = new BigDecimal(ret);
+    	if (d.scale() > 0) {
+    		if (src.endsWith("0")) {
+    			ret = ret.substring(0, ret.length() - 1);
+    			return trim0(ret);
+    		}
+    	}
+    	return ret;
     }
 }

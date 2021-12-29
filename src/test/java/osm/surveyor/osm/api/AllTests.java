@@ -26,9 +26,15 @@ import osm.surveyor.DetailTests;
 @SuiteClasses({
 	CitygmlFileTest_52396075.class,
 	CitygmlFileTest_52396076_1.class,
+	CitygmlFileTest_53375768.class,
+	CitygmlFileTest_53392547.class,
+	CitygmlFileTest_53392588.class,
+	CitygmlFileTest_53392589.class,
+	CitygmlFileTest_53395404.class,		// Issue #49
 	
-	CitygmlFileTest_A.class, 
-	CitygmlFileTest_B.class, 
+	CitygmlFileTest_A.class,
+	CitygmlFileTest_AA.class,
+	CitygmlFileTest_B.class,
 	CitygmlFileTest_C.class,
 	CitygmlFileTest_D.class,
 	CitygmlFileTest_E.class,

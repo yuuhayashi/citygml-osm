@@ -466,7 +466,7 @@ OSMファイルへの変換項目
 
  - [3D都市モデル（Project PLATEAU）ポータルサイト](https://www.geospatial.jp/ckan/dataset/plateau)
 
- - [OpenStreetMap Wiki - MLIT_PLATEAU](https://wiki.openstreetmap.org/wiki/MLIT_PLATEAU)
+ - [OpenStreetMap Wiki - MLIT_PLATEAU](https://wiki.openstreetmap.org/wiki/MLIT_PLATEAU/)
 
  - [210327PLATEAUを触ってみよう](https://hackmd.io/@geopythonjp/HkZOmNpqL/%2FhfZTkl5FQGy8YHrgzc7ohQ)
 

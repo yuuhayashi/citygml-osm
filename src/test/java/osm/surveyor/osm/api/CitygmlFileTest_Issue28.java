@@ -54,7 +54,7 @@ V1.3.0で試して見ました。
 	リレーションの編集ウインドウで見ると、outlineと3つのパートは各々接続していない
 
  */
-public class CitygmlFileTest_Issue28 extends CitygmlFileTest {
+public class CitygmlFileTest_Issue28 extends GmlLoadRouteTest {
 
 	@Test
 	public void test50303525() {

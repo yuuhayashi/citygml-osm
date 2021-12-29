@@ -2,7 +2,7 @@ package osm.surveyor.osm.api;
 
 import org.apache.camel.builder.RouteBuilder;
 
-public class CitygmlFileTest4 extends CitygmlFileTest {
+public class CitygmlFileTest4 extends GmlLoadRouteTest {
 
     @Override
     protected RouteBuilder[] createRouteBuilders() throws Exception {

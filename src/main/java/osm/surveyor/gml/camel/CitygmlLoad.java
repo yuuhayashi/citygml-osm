@@ -19,8 +19,8 @@ public class CitygmlLoad {
 		camel = new DefaultCamelContext();
 		camel.addRoutes(new GmlLoadDirRoute());
 		camel.addRoutes(new GmlLoadRoute());
-		camel.addRoutes(new OsmLoadDirRoute());
-		camel.addRoutes(new DownloadRoute());
+		//camel.addRoutes(new OsmLoadDirRoute());
+		//camel.addRoutes(new DownloadRoute());
 		
 		System.out.println("gml.camel.start();");
 		

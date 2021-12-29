@@ -7,7 +7,7 @@ import osm.surveyor.osm.BoundsBean;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 
-public class CitygmlFileTest_52396075 extends CitygmlFileTest {
+public class CitygmlFileTest_52396075 extends GmlLoadRouteTest {
 
 	/**
 	 * Issue #13 「v1.2.4 「箱根町」のデータを変換できない」

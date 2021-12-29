@@ -5,7 +5,7 @@ import org.junit.Test;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 
-public class CitygmlFileTest_53375768 extends CitygmlFileTest {
+public class CitygmlFileTest_53375768 extends GmlLoadRouteTest {
 
 	/**
 	 * Issue #12 「v1.2.4 単独の建物でもbuilding:part」

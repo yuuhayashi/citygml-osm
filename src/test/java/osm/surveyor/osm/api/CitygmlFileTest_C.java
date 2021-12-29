@@ -8,7 +8,7 @@ import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 
-public class CitygmlFileTest_C extends CitygmlFileTest {
+public class CitygmlFileTest_C extends GmlLoadRouteTest {
 	
 	@Test
 	public void testSample_c() {

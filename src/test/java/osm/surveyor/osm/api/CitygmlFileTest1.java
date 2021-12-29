@@ -2,7 +2,7 @@ package osm.surveyor.osm.api;
 
 import org.apache.camel.builder.RouteBuilder;
 
-public class CitygmlFileTest1 extends CitygmlFileTest {
+public class CitygmlFileTest1 extends GmlLoadRouteTest {
 
     // (1) GMLファイルをパースする
     // RELATIONに所属していないWAYを削除する

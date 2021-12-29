@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  *    <nd ref='-3'/>
  *    <nd ref='-4'/>
  *    <nd ref='-5'/>
- *    <tag k='height' v='14.072000000000001' />
+ *    <tag k='height' v='14.07' />
  *    <tag k='building:part' v='yes' />
  *  </way>
  *         :

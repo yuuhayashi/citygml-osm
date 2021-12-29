@@ -4,7 +4,7 @@ import org.junit.Test;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 
-public class CitygmlFileTest_Issue32 extends CitygmlFileTest {
+public class CitygmlFileTest_Issue32 extends GmlLoadRouteTest {
 
 	/**
 	 * 

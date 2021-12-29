@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import osm.surveyor.osm.OsmDom;
 
-public class CitygmlFileTest_53392547 extends CitygmlFileTest {
+public class CitygmlFileTest_53392547 extends GmlLoadRouteTest {
 
 	@Test
 	public void test53392547() {

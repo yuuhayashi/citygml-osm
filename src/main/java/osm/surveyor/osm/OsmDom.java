@@ -11,6 +11,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import osm.surveyor.citygml.CityModelParser;
+
 /**
  * Osmファイルをドムる
  * 
@@ -160,7 +162,7 @@ public class OsmDom {
 				}
 			}
 		}
-		return maxheight;
+		return CityModelParser.rounding(2, maxheight);
 	}
 	
 	/**
@@ -206,4 +208,48 @@ public class OsmDom {
 			this.nodes.put(bean);
 		}
 	}
+	
+	/**
+	 * 指定された"ref:MLIT_PLATEAU"のWAYを取得する
+	 * 
+	 * @param buildingid
+	 * @return
+	 */
+    public List<ElementWay> getWay(String buildingid) {
+    	List<ElementWay> ret = new ArrayList<>();
+    	for (String wayid : this.ways.keySet()) {
+			ElementWay way = this.ways.get(wayid);
+			List<TagBean> tags = way.getTagList();
+			for (TagBean tag : tags) {
+				if (tag.k.equals("ref:MLIT_PLATEAU") && tag.v.equals(buildingid)) {
+					ret.add(way);
+				}
+			}
+		}
+    	return ret;
+    }
+
+    /**
+	 * 指定された"ref:MLIT_PLATEAU"のWAYの親リレーションを取得する
+	 * 
+	 * @param buildingid
+	 * @return
+	 */
+    public List<ElementRelation> getRelation(String buildingid) {
+    	List<ElementRelation> ret = new ArrayList<>();
+    	List<ElementWay> ways = getWay(buildingid);
+    	for (ElementWay way : ways) {
+    		long wayid = way.getId();
+			for (ElementRelation relation : getRelations()) {
+				for (MemberBean member : relation.members) {
+					if (member.isWay()) {
+						if (wayid == member.getRef()) {
+							ret.add(relation);
+						}
+					}
+				}
+			}
+		}
+    	return ret;
+    }
 }

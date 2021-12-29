@@ -1,5 +1,9 @@
 package osm.surveyor.osm;
 
+import java.math.BigDecimal;
+
+import osm.surveyor.citygml.CityModelParser;
+
 /**
  * https://wiki.openstreetmap.org/wiki/JA:Relations/Proposed/Buildings
  *  type=building
@@ -76,7 +80,7 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 		// 'height' and 'ele'
 		margeEleHeight(parts);
 		if (multi != null) {
-			multi.addTag("height", this.getTagValue("height"));
+			multi.addTag("height", CityModelParser.rounding(2, this.getTagValue("height")));
 			multi.addTag("ele", this.getTagValue("ele"));
 		}
 		
@@ -143,8 +147,7 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 					return hi;
 				}
 				else {
-					double h = Double.parseDouble(ele) - Double.parseDouble(minele) + Double.parseDouble(hi);
-					return Double.toString(h);
+					return CityModelParser.rounding(1, (new BigDecimal(ele)).subtract(new BigDecimal(minele)).add(new BigDecimal(hi)).toString());
 				}
 			}
 		}

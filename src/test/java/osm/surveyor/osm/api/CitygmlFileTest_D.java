@@ -6,7 +6,7 @@ import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 
-public class CitygmlFileTest_D extends CitygmlFileTest {
+public class CitygmlFileTest_D extends GmlLoadRouteTest {
 
 	/*
  	map "13111-bldg-71799 : building" as building {

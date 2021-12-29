@@ -3,29 +3,72 @@ package osm.surveyor.osm.api;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 
+import org.apache.camel.EndpointInject;
 import org.apache.camel.Exchange;
+import org.apache.camel.Produce;
+import org.apache.camel.ProducerTemplate;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.file.FileEndpoint;
+import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.junit4.CamelTestSupport;
+
 import osm.surveyor.citygml.CitygmlFile;
 import osm.surveyor.gml.camel.GmlLoadRoute;
+import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.OsmDom;
 import osm.surveyor.osm.marge.BuildingGarbage;
 import osm.surveyor.osm.marge.OutlineFactory;
 import osm.surveyor.osm.marge.RelationMarge;
 
-public class CitygmlFileTest extends CamelTestSupport {
+public abstract class GmlLoadRouteTest extends CamelTestSupport {
+	
+    @EndpointInject(uri = "mock:result")
+    protected MockEndpoint resultEndpoint;
 
+    @Produce(uri = "direct:start")
+    protected ProducerTemplate template;
+    
     @Override
-    protected RouteBuilder[] createRouteBuilders() throws Exception {
-        return new RouteBuilder[] {
-    		new GmlLoadRoute()
-        };
+    protected RouteBuilder createRouteBuilder() throws Exception {
+        return new GmlLoadRoute();
+    		/*
+        		public void configure() {
+    			from("direct:gml-file-read").filter(header("foo").isEqualTo("bar")).to("mock:result");
+    		}*/
+        
     }
     
     /**
-     * (2) メイン処理
+     * メイン処理
+    * 指定されたGMLファイルをOSMファイルに変換する
+    * @param source
+    * @return
+    */
+    public OsmDom testdo(String source) {
+		Exchange exchange = createExchangeWithBody("");
+		FileEndpoint endpoint = new FileEndpoint();
+		endpoint.setFile(new File(source));
+		exchange.setFromEndpoint(endpoint);
+	
+		// (1) GMLファイルをパースする
+		// (2) 各WAYのノードで、他のWAYと共有されたノードを探す
+		// (3) メンバーが一つしかないRelation:building を削除する
+		// (3) メンバーが一つしかないRelation:multipolygon と polygon:member を削除する
+		// (4) Relation:building->member:role=port のWay:outlineを作成する
+		// (4) Relation:multipolygon->outerにWay:outline
+		// (5) "outline"と"part"が重複しているPART を削除する
+		//template.sendBody("direct:gml-file-read", exchange);
+		//List<Exchange> list = resultEndpoint.getReceivedExchanges();
+		//return list.get(0).getIn().getBody(OsmDom.class);
+		
+		template.send("direct:gml-file-read", exchange);
+		return exchange.getIn().getBody(OsmDom.class);
+	}
+
+    /**
+      * (2) メイン処理
      * 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる
      * @param a
      */
@@ -157,30 +200,4 @@ public class CitygmlFileTest extends CamelTestSupport {
 		}
     }
 
-    /**
-      * メイン処理
-     * 指定されたGMLファイルをOSMファイルに変換する
-     * @param source
-     * @return
-     */
-    public OsmDom testdo(String source) {
-		Exchange exchange = createExchangeWithBody("");
-		FileEndpoint endpoint = new FileEndpoint();
-		endpoint.setFile(new File(source));
-		exchange.setFromEndpoint(endpoint);
-		
-        // (1) GMLファイルをパースする
-        // (2) 各WAYのノードで、他のWAYと共有されたノードを探す
-		// (3) メンバーが一つしかないRelation:building を削除する
-		// (3) メンバーが一つしかないRelation:multipolygon と polygon:member を削除する
-        // (4) Relation:building->member:role=port のWay:outlineを作成する
-        // (4) Relation:multipolygon->outerにWay:outline
-		// (5) "outline"と"part"が重複しているPART を削除する
-        template.send(
-        		"direct:gml-file-read",
-        		exchange
-        );
-        
-        return exchange.getIn().getBody(OsmDom.class);
-    }
 }
