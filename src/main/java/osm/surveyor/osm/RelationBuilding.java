@@ -80,7 +80,7 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 		// 'height' and 'ele'
 		margeEleHeight(parts);
 		if (multi != null) {
-			multi.addTag("height", CityModelParser.rounding(2, this.getTagValue("height")));
+			multi.addTag("height", CityModelParser.rounding(1, this.getTagValue("height")));
 			multi.addTag("ele", this.getTagValue("ele"));
 		}
 		
@@ -147,7 +147,7 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 					return hi;
 				}
 				else {
-					return CityModelParser.rounding(1, (new BigDecimal(ele)).subtract(new BigDecimal(minele)).add(new BigDecimal(hi)).toString());
+					return CityModelParser.rounding(2, (new BigDecimal(ele)).subtract(new BigDecimal(minele)).add(new BigDecimal(hi)).toString());
 				}
 			}
 		}

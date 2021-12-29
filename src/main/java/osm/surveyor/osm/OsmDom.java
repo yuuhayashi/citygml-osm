@@ -162,7 +162,7 @@ public class OsmDom {
 				}
 			}
 		}
-		return CityModelParser.rounding(2, maxheight);
+		return CityModelParser.rounding(1, maxheight);
 	}
 	
 	/**
