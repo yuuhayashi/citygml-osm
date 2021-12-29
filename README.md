@@ -13,40 +13,42 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 # Release
 
-- 2021-11-28 リリース v1.3.4 / [citygml-osm v1.3.4](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.3.4)<br/>Issue #43 `building:name`タグを`name`タグに変更する<br/>Issue #44 オブジェクトへのsourceタグ付与を削除したい<br/>Issue #45 オブジェクトへの建物IDの格納について<br/>Issue #46 住所コードデータの扱いについて<br/>Issue #48 conversion.jsonを"MULTI_PLATEAU"に合わせる
+- 2021-12-30 リリース<br/>[Issue #51](https://github.com/yuuhayashi/citygml-osm/issues/51) マルチポリゴン建物への name タグ付与<br/>[Issue #49](https://github.com/yuuhayashi/citygml-osm/issues/49) Multipolygonリレーションに対するheightの値
+
+- 2021-11-28 リリース v1.3.4 / [citygml-osm v1.3.4](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.3.4)<br/>[Issue #43](https://github.com/yuuhayashi/citygml-osm/issues/43) `building:name`タグを`name`タグに変更する<br/>[Issue #44](https://github.com/yuuhayashi/citygml-osm/issues/44) オブジェクトへのsourceタグ付与を削除したい<br/>[Issue #45](https://github.com/yuuhayashi/citygml-osm/issues/45) オブジェクトへの建物IDの格納について<br/>[Issue #46](https://github.com/yuuhayashi/citygml-osm/issues/46) 住所コードデータの扱いについて<br/>[Issue #48](https://github.com/yuuhayashi/citygml-osm/issues/48) conversion.jsonを"MULTI_PLATEAU"に合わせる
 
 - 2021-07-29 リリース v1.3.1 / [citygml-osm v1.3.1](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.3.1)<br/>第一段階を完成
 
 - 2021-05-29 リリース v1.3.0 / [citygml-osm v1.3.0](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.3.0)<br/>複合ビルの場合の「用途」の扱いについて<br/>PostGISの利用を廃止<br/>GISライブラリに`GeoTools v25.1`を採用
 
-- 2021-05-29 リリース v1.2.10 / [citygml-osm v1.2.10](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.2.10)<br/>Issue #30<br/>「建築物:建築年」「地上階」「地下階」に対応。
+- 2021-05-29 リリース v1.2.10 / [citygml-osm v1.2.10](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.2.10)<br/>[Issue #30](https://github.com/yuuhayashi/citygml-osm/issues/30) 「建築物:建築年」「地上階」「地下階」に対応。
 
-- 2021-05-23 リリース v1.2.9 / [citygml-osm v1.2.9](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.2.9)<br/>Issue #26<br/>「建築物:用途」に対応。「建築物:計測高」に対応。
+- 2021-05-23 リリース v1.2.9 / [citygml-osm v1.2.9](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.2.9)<br/>[Issue #26](https://github.com/yuuhayashi/citygml-osm/issues/26) 「建築物:用途」に対応。「建築物:計測高」に対応。
 
-- 2021-05-16 リリース v1.2.8 / [citygml-osm v1.2.8](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.2.8)<br/>Issue #18<br/>既存POIとのマージ機能を強化
+- 2021-05-16 リリース v1.2.8 / [citygml-osm v1.2.8](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.2.8)<br/>[Issue #18](https://github.com/yuuhayashi/citygml-osm/issues/18) 既存POIとのマージ機能を強化
 
-- 2021-05-08 リリース v1.2.7 / [citygml-osm v1.2.7](https://github.com/yuuhayashi/citygml-osm/releases/download/v1.2.7/citygml-osm-1.2.7-jar-with-dependencies.jar)<br/>Issue #13 ／ 「箱根町」の `bldg:lod0FootPrint`(床形状)に対応<br/>Issue #13 ／ `bldg:lod0RoofEdge`が存在する場合は`bldg:lod0RoofEdge`を建物形状とする<br/>Issue #16 / `bldg:lod0FootPrint`を建物形状とした場合には`bldg:measuredHeight`を`osm:{building:height}`にする<br/>Issue #16 / `bldg:lod0FootPrint`を建物形状とした場合には`gml:posList`の高度を`osm:{building:ele}`にする
+- 2021-05-08 リリース v1.2.7 / [citygml-osm v1.2.7](https://github.com/yuuhayashi/citygml-osm/releases/download/v1.2.7/citygml-osm-1.2.7-jar-with-dependencies.jar)<br/>[Issue #13](https://github.com/yuuhayashi/citygml-osm/issues/13) ／ 「箱根町」の `bldg:lod0FootPrint`(床形状)に対応<br/>[Issue #13](https://github.com/yuuhayashi/citygml-osm/issues/13) `bldg:lod0RoofEdge`が存在する場合は`bldg:lod0RoofEdge`を建物形状とする<br/>[Issue #16](https://github.com/yuuhayashi/citygml-osm/issues/16) / `bldg:lod0FootPrint`を建物形状とした場合には`bldg:measuredHeight`を`osm:{building:height}`にする<br/>[Issue #16](https://github.com/yuuhayashi/citygml-osm/issues/16) `bldg:lod0FootPrint`を建物形状とした場合には`gml:posList`の高度を`osm:{building:ele}`にする
 
-- 2021-05-08 リリース v1.2.6 / [citygml-osm v1.2.6](https://github.com/yuuhayashi/citygml-osm/releases/download/v1.2.6/citygml-osm-1.2.6-jar-with-dependencies.jar)<br/>Issue #12 ／ [単独の建物でもbuilding:part](https://github.com/yuuhayashi/citygml-osm/issues/12)<br/>マルチスレッド対策： 複合ビルディングなどで"building:part"が統合されたり、されなかったりする問題を解決しました。
+- 2021-05-08 リリース v1.2.6 / [citygml-osm v1.2.6](https://github.com/yuuhayashi/citygml-osm/releases/download/v1.2.6/citygml-osm-1.2.6-jar-with-dependencies.jar)<br/>[Issue #12](https://github.com/yuuhayashi/citygml-osm/issues/12) 単独の建物でも"building:part"<br/>マルチスレッド対策： 複合ビルディングなどで"building:part"が統合されたり、されなかったりする問題を解決しました。
 
-- 2021-05-07 リリース v1.2.5 / [citygml-osm v1.2.5]<br/>Issue #12 ／ [単独の建物でもbuilding:part](https://github.com/yuuhayashi/citygml-osm/issues/12)
+- 2021-05-07 リリース v1.2.5 / [citygml-osm v1.2.5]<br/>[Issue #12](https://github.com/yuuhayashi/citygml-osm/issues/12) 単独の建物でもbuilding:part
 
-- 2021-05-05 リリース v1.2.4 / [citygml-osm v1.2.4]<br/>Issue #10 ／ 「箱根町」のデータファイル名に対応した。
+- 2021-05-05 リリース v1.2.4 / [citygml-osm v1.2.4]<br/>[Issue #10](https://github.com/yuuhayashi/citygml-osm/issues/10) 「箱根町」のデータファイル名に対応した。
 
 - 2021-05-05 リリース v1.2.3 / [citygml-osm v1.2.3]<br/>第一段階（OSMへの変換）／複数の建物が接触している場合の変換に対応した。
 
 - 2021-04-18 リリース v1.2.2 / [citygml-osm v1.2.2]<br/>既存データとの重複をチェックして、既存データと重複する場合には既存データを修復する。
 
-- 2021-04-11 リリース v0.2.0 fixed #7 / [citygml-osm v0.2.0]<br/>JOSMと同じ"Java8"で実行可能
+- 2021-04-11 リリース v0.2.0 [fixed #7](https://github.com/yuuhayashi/citygml-osm/issues/7) [citygml-osm v0.2.0]<br/>JOSMと同じ"Java8"で実行可能
 
 - 2021-04-10 リリース v0.1.1 [citygml-osm v0.1.1]
 - 2021-04-10<br/> "source='MLIT_PLATEAU'"<br/>"source:name='http://www.opengis.net/def/crs/EPSG/0/6697'"
-- 2021-04-10<br/> fixed #3 / 自治体コード「全国地方公共団体コード」を"addr:ref"としてタグ付け 
-- 2021-04-10<br/> fixed #7 / 'relasion'メンバーのタグを"building=yes"に修正<br/>"outline"-> "building" には "height"をつけない
-- 2021-04-10<br/> fixed #5 / 「bouns」を復活
-- 2021-04-10<br/> fixed #4 / ロール「outlineがありません（警告）」を解決
-- 2021-04-08<br/> fixed #1 / Issue#1を解決<br/> 接触した建物はリレーション building:part=yes にまとめる、単独の建物は buildhing=yes にする
-- 2021-04-05<br/> fixed #2 / Issue#2を解決
+- 2021-04-10<br/> [fixed #3](https://github.com/yuuhayashi/citygml-osm/issues/3) 自治体コード「全国地方公共団体コード」を"addr:ref"としてタグ付け 
+- 2021-04-10<br/> [fixed #7](https://github.com/yuuhayashi/citygml-osm/issues/7) 'relasion'メンバーのタグを"building=yes"に修正<br/>"outline"-> "building" には "height"をつけない
+- 2021-04-10<br/> [fixed #5](https://github.com/yuuhayashi/citygml-osm/issues/5) 「bouns」を復活
+- 2021-04-10<br/> [fixed #4](https://github.com/yuuhayashi/citygml-osm/issues/4) ロール「outlineがありません（警告）」を解決
+- 2021-04-08<br/> [fixed #1](https://github.com/yuuhayashi/citygml-osm/issues/1) 接触した建物はリレーション building:part=yes にまとめる、単独の建物は buildhing=yes にする
+- 2021-04-05<br/> [fixed #2](https://github.com/yuuhayashi/citygml-osm/issues/2) Issue#2を解決
 - 2021-04-04<br/> リリース: 'citygml-osm v0.0.4'
 
 
