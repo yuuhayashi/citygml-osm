@@ -4,9 +4,6 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.impl.DefaultCamelContext;
 
-import osm.surveyor.download.OsmLoadDirRoute;
-import osm.surveyor.osm.camel.DownloadRoute;
-
 public class CitygmlLoad {
 	public static CamelContext camel;
 	public static ProducerTemplate producer;
