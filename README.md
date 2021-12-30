@@ -13,7 +13,7 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 # Release
 
-- 2021-12-30 リリース<br/>[Issue #51](https://github.com/yuuhayashi/citygml-osm/issues/51) マルチポリゴン建物への name タグ付与<br/>[Issue #49](https://github.com/yuuhayashi/citygml-osm/issues/49) Multipolygonリレーションに対するheightの値
+- 2021-12-30 [リリース v1.3.5](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.3.5)<br/>[Issue #51](https://github.com/yuuhayashi/citygml-osm/issues/51) マルチポリゴン建物への name タグ付与<br/>[Issue #49](https://github.com/yuuhayashi/citygml-osm/issues/49) Multipolygonリレーションに対するheightの値
 
 - 2021-11-28 リリース v1.3.4 / [citygml-osm v1.3.4](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.3.4)<br/>[Issue #43](https://github.com/yuuhayashi/citygml-osm/issues/43) `building:name`タグを`name`タグに変更する<br/>[Issue #44](https://github.com/yuuhayashi/citygml-osm/issues/44) オブジェクトへのsourceタグ付与を削除したい<br/>[Issue #45](https://github.com/yuuhayashi/citygml-osm/issues/45) オブジェクトへの建物IDの格納について<br/>[Issue #46](https://github.com/yuuhayashi/citygml-osm/issues/46) 住所コードデータの扱いについて<br/>[Issue #48](https://github.com/yuuhayashi/citygml-osm/issues/48) conversion.jsonを"MULTI_PLATEAU"に合わせる
 
