@@ -8,11 +8,13 @@ import org.junit.experimental.categories.Category;
 import org.junit.runners.MethodSorters;
 
 import osm.surveyor.DetailTests;
+import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.WayBean;
+import osm.surveyor.update.OsmUpdaterTest;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class Test_A extends TestDownload {
+public class Test_A extends DownloadTest {
 
 	/**
 	 * 東京都大田区南六郷三丁目 "53392547_bldg_6697_op2"
@@ -27,20 +29,22 @@ public class Test_A extends TestDownload {
 	@Test
 	public void test_a() {
         try {
-        	// (1)指定されたOSMファイルをLOADする
+    		// (1)指定されたOSMファイルをLOADする
         	// (2) <bound/>を取得する
     		// (3) OSMから<bound>範囲内の現在のデータをダウンロードする
         		// (4) ダウンロードしたデータをパースする
         	// (5) "building"関係のPOIのみに絞る
-        	OsmBean osm = testdo(Paths.get("src/test/resources", "53392547_bldg_6697_op2.osm"));
-    		assertNotNull(osm.getBounds());
-			assertNotNull(osm.getRelationList());
+    		BodyMap map = testdo(Paths.get("./src/test/resources/53392547_bldg_6697_op2.osm"));
+    		OsmBean org = (OsmBean) map.get("org");
+
+    		assertNotNull(org.getBounds());
+			assertNotNull(org.getRelationList());
 			
 			// ビルディングリレーションは存在しない
-			assertEquals(0, osm.getRelationList().size());
+			assertEquals(0, org.getRelationList().size());
 
-			assertTrue(osm.getWayList().size() > 10);
-			for (WayBean way : osm.getWayList()) {
+			assertTrue(org.getWayList().size() > 10);
+			for (WayBean way : org.getWayList()) {
 				// "highway"WAYは存在しないこと
 				assertNull(way.getTagValue("highway"));
 				// "landuse"WAYは存在しないこと
@@ -67,11 +71,13 @@ public class Test_A extends TestDownload {
     		// (3) OSMから<bound>範囲内の現在のデータをダウンロードする
         		// (4) ダウンロードしたデータをパースする
         	// (5) "building"関係のPOIのみに絞る
-        	OsmBean osm = testdo(Paths.get("src/test/resources", "sample_a3_bldg_6697_op2.org.osm"));
-    		assertNotNull(osm.getBounds());
-			assertNotNull(osm.getRelationList());
-			assertTrue(osm.getWayList().size() > 10);
-			for (WayBean way : osm.getWayList()) {
+    		BodyMap map = testdo(Paths.get("./src/test/resources/sample_a_bldg_6697_op2.osm"));
+    		OsmBean org = (OsmBean) map.get("org");
+
+    		assertNotNull(org.getBounds());
+			assertNotNull(org.getRelationList());
+			assertTrue(org.getWayList().size() > 10);
+			for (WayBean way : org.getWayList()) {
 				assertNull(way.getTagValue("highway"));
 				assertNull(way.getTagValue("landuse"));
 			}

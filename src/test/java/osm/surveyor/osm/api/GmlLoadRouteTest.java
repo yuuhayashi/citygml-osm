@@ -3,7 +3,6 @@ package osm.surveyor.osm.api;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
 
 import org.apache.camel.EndpointInject;
 import org.apache.camel.Exchange;
@@ -16,7 +15,6 @@ import org.apache.camel.test.junit4.CamelTestSupport;
 
 import osm.surveyor.citygml.CitygmlFile;
 import osm.surveyor.gml.camel.GmlLoadRoute;
-import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.OsmDom;
 import osm.surveyor.osm.marge.BuildingGarbage;
 import osm.surveyor.osm.marge.OutlineFactory;
@@ -33,11 +31,6 @@ public abstract class GmlLoadRouteTest extends CamelTestSupport {
     @Override
     protected RouteBuilder createRouteBuilder() throws Exception {
         return new GmlLoadRoute();
-    		/*
-        		public void configure() {
-    			from("direct:gml-file-read").filter(header("foo").isEqualTo("bar")).to("mock:result");
-    		}*/
-        
     }
     
     /**

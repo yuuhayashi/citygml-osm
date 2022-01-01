@@ -6,11 +6,13 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.WayBean;
+import osm.surveyor.update.OsmUpdaterTest;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class Test_haya4 extends TestDownload {
+public class Test_haya4 extends DownloadTest {
 	static final String SOURCE = "haya4_bldg_6697_op2";
 
 	/**
@@ -28,12 +30,14 @@ public class Test_haya4 extends TestDownload {
     		// (3) OSMから<bound>範囲内の現在のデータをダウンロードする
         		// (4) ダウンロードしたデータをパースする
         	// (5) "building"関係のPOIのみに絞る
-        	OsmBean osm = testdo(Paths.get("src/test/resources",  SOURCE+".osm"));
-    		assertNotNull(osm.getBounds());
-			assertNotNull(osm.getRelationList());
+        	BodyMap map = testdo(Paths.get("src/test/resources",  SOURCE+".osm"));
+    		OsmBean org = (OsmBean) map.get("org");
 
-			assertTrue(osm.getWayList().size() > 10);
-			for (WayBean way : osm.getWayList()) {
+    		assertNotNull(org.getBounds());
+			assertNotNull(org.getRelationList());
+
+			assertTrue(org.getWayList().size() > 10);
+			for (WayBean way : org.getWayList()) {
 				// "highway"WAYは存在しないこと
 				assertNull(way.getTagValue("highway"));
 				// "landuse"WAYは存在しないこと

@@ -7,13 +7,15 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.RelationBean;
 import osm.surveyor.osm.WayBean;
+import osm.surveyor.update.OsmUpdaterTest;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class Test_B extends TestDownload {
+public class Test_B extends DownloadTest {
 	static final String SOURCE = "sample_b_bldg_6697_op2";
 
 	/**
@@ -28,25 +30,27 @@ public class Test_B extends TestDownload {
 	@Test
 	public void testSample_b() {
         try {
-        	OsmBean osm = testdo(Paths.get("src/test/resources",  SOURCE+".osm"));
-    		assertNotNull(osm.getBounds());
-			assertNotNull(osm.getRelationList());
+        	BodyMap map = testdo(Paths.get("src/test/resources/", SOURCE +".osm"));
+    		OsmBean org = (OsmBean) map.get("org");
+
+    		assertNotNull(org.getBounds());
+			assertNotNull(org.getRelationList());
 			
 			// 中空を持つビルディングリレーションが存在する
-			assertTrue(osm.getRelationList().size() >= 1);
-			for (RelationBean relation : osm.getRelationList()) {
+			assertTrue(org.getRelationList().size() >= 1);
+			for (RelationBean relation : org.getRelationList()) {
 				List<MemberBean> members = relation.getMemberList();
 				for (MemberBean member : members) {
 					// リレーションメンバーのWAYは 'FIX=true' であること
 					if (member.isWay()) {
-						WayBean way = osm.getWay(member.getRef());
+						WayBean way = org.getWay(member.getRef());
 						assertTrue(way.getFix());
 					}
 				}
 			}
 			
-			assertTrue(osm.getWayList().size() > 100);
-			for (WayBean way : osm.getWayList()) {
+			assertTrue(org.getWayList().size() > 100);
+			for (WayBean way : org.getWayList()) {
 				// "highway"WAYは存在しないこと
 				assertNull(way.getTagValue("highway"));
 				// "landuse"WAYは存在しないこと

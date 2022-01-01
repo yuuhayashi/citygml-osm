@@ -8,6 +8,7 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import com.google.common.collect.Lists;
 
+import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.NdBean;
 import osm.surveyor.osm.NodeBean;
@@ -22,7 +23,8 @@ public class OsmBuildingFilterProcessor implements Processor {
 	 */
 	@Override
 	public void process(Exchange exchange) throws Exception {
-		OsmBean osm = exchange.getIn().getBody(OsmBean.class);
+		BodyMap map = exchange.getIn().getBody(BodyMap.class);
+		OsmBean org = (OsmBean) map.get("org");
 		
 		Map<Long,RelationBean> relationmap = new HashMap<>();
 		Map<Long,WayBean> waymap = new HashMap<>();
@@ -30,7 +32,7 @@ public class OsmBuildingFilterProcessor implements Processor {
 
 		// "building"リレーションのみ抽出する
 		List<RelationBean> buildingRelations = Lists.newArrayList();
-		for (RelationBean relation : osm.getRelationList()) {
+		for (RelationBean relation : org.getRelationList()) {
 			if (relation.isBuilding()) {
 				buildingRelations.add(relation);
 			}
@@ -51,7 +53,7 @@ public class OsmBuildingFilterProcessor implements Processor {
 			for (MemberBean member : members) {
 				if (member.isRelation()) {
 					long id = member.getRef();
-					RelationBean v = osm.getRelation(id);
+					RelationBean v = org.getRelation(id);
 					if (v != null) {
 						relationmap.putIfAbsent(id, v);
 					}
@@ -61,7 +63,7 @@ public class OsmBuildingFilterProcessor implements Processor {
 		}
 		
 		// "building"WAYを抽出
-		for (WayBean way : osm.getWayList()) {
+		for (WayBean way : org.getWayList()) {
 			if (way.isBuilding()) {
 				waymap.putIfAbsent(way.getId(), way);
 			}
@@ -76,7 +78,7 @@ public class OsmBuildingFilterProcessor implements Processor {
 			for (MemberBean member : members) {
 				if (member.isWay()) {
 					long id = member.getRef();
-					WayBean v = osm.getWay(id);
+					WayBean v = org.getWay(id);
 					if (v != null) {
 						v.setFix(true);
 						waymap.put(id, v);
@@ -93,7 +95,7 @@ public class OsmBuildingFilterProcessor implements Processor {
 			nds.addAll(way.getNdList());
 			for (NdBean nd : nds) {
 				long ref = nd.getRef();
-				NodeBean v = osm.getNode(ref);
+				NodeBean v = org.getNode(ref);
 				if (v != null) {
 					if (v.getTagList().size() > 0) {
 						way.setFix(true);
@@ -109,22 +111,23 @@ public class OsmBuildingFilterProcessor implements Processor {
 		for(HashMap.Entry<Long, RelationBean> entry : relationmap.entrySet()) {
 			newRelations.add(entry.getValue());
         }
-		osm.setRelationList(newRelations);
+		org.setRelationList(newRelations);
 		
 		// ウェイをMapからListに変換して格納
 		List<WayBean> newWays = Lists.newArrayList();
 		for(HashMap.Entry<Long, WayBean> entry : waymap.entrySet()) {
 			newWays.add(entry.getValue());
         }
-		osm.setWayList(newWays);
+		org.setWayList(newWays);
 
 		// ノードをMapからListに変換して格納
 		List<NodeBean> newNodes = Lists.newArrayList();
 		for(HashMap.Entry<Long, NodeBean> entry : nodemap.entrySet()) {
 			newNodes.add(entry.getValue());
         }
-		osm.setNodeList(newNodes);
+		org.setNodeList(newNodes);
 
-		exchange.getIn().setBody(osm);
+        map.put("org", org);
+		exchange.getIn().setBody(map);
 	}
 }

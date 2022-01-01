@@ -8,6 +8,7 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.camel.component.file.FileEndpoint;
 
+import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.OsmBean;
 
 public class OsmFileReadProcessor implements Processor {
@@ -21,7 +22,9 @@ public class OsmFileReadProcessor implements Processor {
 		File file = endpoint.getFile();
 		
 		OsmBean osm = JAXB.unmarshal(file, OsmBean.class);
-		exchange.getIn().setBody(osm);
+		BodyMap map = new BodyMap();
+		map.put("osm", osm);
+		exchange.getIn().setBody(map);
 	}
 
 }

@@ -9,15 +9,18 @@ public class CitygmlLoad {
 	public static ProducerTemplate producer;
 
 	public static void main(String[] args) throws Exception {
-		loadDir();
+		if (args[0].equals("2nd")) {
+			osm.surveyor.osm.camel.OsmDownload.osmDownload();
+		}
+		else {
+			loadDir();
+		}
 	}
 
 	public static void loadDir() throws Exception {
 		camel = new DefaultCamelContext();
 		camel.addRoutes(new GmlLoadDirRoute());
 		camel.addRoutes(new GmlLoadRoute());
-		//camel.addRoutes(new OsmLoadDirRoute());
-		//camel.addRoutes(new DownloadRoute());
 		
 		System.out.println("gml.camel.start();");
 		

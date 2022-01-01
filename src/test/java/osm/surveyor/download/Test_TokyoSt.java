@@ -4,10 +4,12 @@ import java.nio.file.Paths;
 
 import org.junit.Test;
 
+import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.WayBean;
+import osm.surveyor.update.OsmUpdaterTest;
 
-public class Test_TokyoSt extends TestDownload {
+public class Test_TokyoSt extends DownloadTest {
 
 	/**
 	 * `mvn test -Dtest=TokyoStTest#test_download`
@@ -26,14 +28,16 @@ public class Test_TokyoSt extends TestDownload {
     		// (3) OSMから<bound>範囲内の現在のデータをダウンロードする
         		// (4) ダウンロードしたデータをパースする
         	// (5) "building"関係のPOIのみに絞る
-        	OsmBean osm = testdo(Paths.get("src/test/resources", "tokyost_bldg_6697_op2.osm"));
-    		assertNotNull(osm.getBounds());
-			assertNotNull(osm.getRelationList());
-			assertTrue(osm.getRelationList().size() >= 2);
+			BodyMap map = testdo(Paths.get("src/test/resources", "tokyost_bldg_6697_op2.osm"));
+    		OsmBean org = (OsmBean) map.get("org");
+
+    		assertNotNull(org.getBounds());
+			assertNotNull(org.getRelationList());
+			assertTrue(org.getRelationList().size() >= 2);
 			
 			int wcnt = 0;
-			assertTrue(osm.getWayList().size() > 10);
-			for (WayBean way : osm.getWayList()) {
+			assertTrue(org.getWayList().size() > 10);
+			for (WayBean way : org.getWayList()) {
 				// "highway"WAYは存在しないこと
 				assertNull(way.getTagValue("highway"));
 				// "landuse"WAYは存在しないこと

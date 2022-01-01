@@ -14,14 +14,6 @@ import osm.surveyor.DetailTests;
 @RunWith(Categories.class)
 @ExcludeCategory(DetailTests.class)
 @SuiteClasses({
-	FujitvTest.class,
-	OsmUpdaterTest_53392547.class,
-	OsmUpdaterTest_A.class,
-	OsmUpdaterTest_B.class,
-	OsmUpdaterTest_haya4.class,
-	OsmUpdaterTest.class,
-	TokyoStTest.class,
-	HttpGetTest.class
 })
 public class AllTests {
 }
