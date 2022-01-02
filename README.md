@@ -13,7 +13,7 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 # Release
 
-- 2022-01-02 [リリース v1.3.6-SNAPSHOT](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.3.6)<br/>[Fixed #54](https://github.com/yuuhayashi/citygml-osm/issues/54) 第二段階が起動できません
+- 2022-01-02 [リリース v1.3.6-SNAPSHOT](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.3.6)<br/>第二段階：既存データのダウンロード機能<br/>[Fixed #54](https://github.com/yuuhayashi/citygml-osm/issues/54) 第二段階が起動できません
 
 - 2021-12-30 [リリース v1.3.5](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.3.5)<br/>[Issue #51](https://github.com/yuuhayashi/citygml-osm/issues/51) マルチポリゴン建物への name タグ付与<br/>[Issue #49](https://github.com/yuuhayashi/citygml-osm/issues/49) Multipolygonリレーションに対するheightの値
 

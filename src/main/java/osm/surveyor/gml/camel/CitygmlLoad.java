@@ -16,8 +16,12 @@ public class CitygmlLoad {
 			else if (args[0].equals("2nd")) {
 				osm.surveyor.osm.camel.OsmDownload.osmDownload();
 			}
+			else if (args[0].equals("3rd")) {
+				osm.surveyor.update.OsmUpdater.osmUpdate();
+			}
 		}
 		else {
+			loadDir();
 		}
 	}
 

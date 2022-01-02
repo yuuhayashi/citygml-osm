@@ -17,7 +17,7 @@ public class OsmDownload {
 		camel.addRoutes(new OsmLoadDirRoute());
 		camel.addRoutes(new DownloadRoute());
 		
-		System.out.println("osm-download.camel.start();");
+		System.out.println("osm-2nd.camel.start();");
 		
         camel.start();
         camel.createProducerTemplate().sendBody("direct:osm-files", ".");
@@ -26,10 +26,10 @@ public class OsmDownload {
             try {
                 camel.stop();
             } catch (Exception e) {}
-    		System.out.println("osm-download.camel.stop();");
+    		System.out.println("osm-2nd.camel.stop();");
         }));
         
-		System.out.println("osm-download.camel.end();");
+		System.out.println("osm-2nd.camel.end();");
 	}
 
 }

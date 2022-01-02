@@ -1,85 +1,58 @@
-package osm.surveyor.osm.camel;
+package osm.surveyor.update;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
-import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.Exchange;
+import org.apache.camel.Processor;
 
+import osm.surveyor.osm.BodyMap;
+import osm.surveyor.osm.ElementRelation;
+import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.NodeBean;
-import osm.surveyor.osm.ElementRelation;
-import osm.surveyor.osm.TagBean;
-import osm.surveyor.osm.ElementWay;
-import osm.surveyor.osm.OsmDom;
+import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.OsmNd;
+import osm.surveyor.osm.PoiBean;
+import osm.surveyor.osm.TagBean;
+import osm.surveyor.osm.WayBean;
 import osm.surveyor.osm.WayMap;
-import osm.surveyor.update.OrgFileReadProcessor;
-import osm.surveyor.update.OrgUpdateProcessor;
 
-public class OsmUpdaterRoute extends RouteBuilder {
-	
+public class OrgUpdateProcessor implements Processor {
+
 	@Override
-	public void configure() throws Exception {
-		onException(Exception.class)
-        .handled(false)
-        .log("Error")
-        .setBody().constant("[３ｒｄ：OsmUpdaterRoute]なにかエラーが発生")
-        .log("Error: ${body}")
-        ;
+	public void process(Exchange exchange) throws Exception {
+		BodyMap map = exchange.getIn().getBody(BodyMap.class);
+		OsmBean osm = (OsmBean) map.get("osm");		// dom
+		OsmBean org = (OsmBean) map.get("org");		// sdom
+		OsmBean mrg = new OsmBean();				// ddom
 		
-		// (1) OSMファイルとORGファイルををLOADする
-		from("direct:osm-file-read")
-		.process(new OsmFileReadProcessor())
-		.process(new OrgFileReadProcessor())
-        .to("direct:osm-updater")
-        ;
-
-		// (2) 既存POIとマージする
-		from("direct:osm-updater")
-		.process(new OrgUpdateProcessor())
-        //.to("direct:osm-download")
-        .to("stream:out")
-        ;
-
+		
 		// TODO Auto-generated method stub
 		
-		
-	}
-	
-	// TODO
-
-	public OsmDom dom;		// source "*.osm" file.	
-	public OsmDom sdom;
-	public OsmDom ddom;
-	
-	/**
-	 * 既存POIとマージする
-	 * @throws Exception 
-	 */
-	public void load() throws Exception {
 		// 既存データの内で、インポートデータと重複しないものを削除
-		ArrayList<ElementWay> list = new ArrayList<>();
-		for (String rKey : sdom.ways.keySet()) {
-			ElementWay way = sdom.ways.get(rKey);
-			if (!way.isIntersect(dom.ways)) {
+		List<WayBean> list = new ArrayList<>();
+		for (WayBean way : org.getWayList()) {
+			if (!way.isIntersect(osm.getWayList())) {
 				list.add(way);
 			}
 		}
-		for (ElementWay way : list) {
-			sdom.ways.remove(way.getId());
+		for (WayBean way : list) {
+			org.getWayList().remove(way.getId());
 		}
     		
 		// インポートデータのすべてのノードを'modify'に確定する
-		for (NodeBean node : dom.nodes) {
+		for (NodeBean node : osm.getNodeList()) {
 			node.setAction("modify");
 			node.orignal = false;
-			ddom.nodes.put(node.clone());
+			replacePoi(mrg.getNodeList(), node.clone());
 		}
 
     		// インポートデータの内で、既存データと重複しないものを'modify'に確定する
-		ArrayList<ElementWay> modifyList = new ArrayList<>();
-		for (String rKey : dom.ways.keySet()) {
-			ElementWay way = dom.ways.get(rKey);
-			if (way.isInnerWay(dom.relations)) {
+		List<WayBean> modifyList = new ArrayList<>();
+		for (WayBean way : osm.getWayList()) {
+			if (way.isInnerWay(osm.getRelationList())) {
 				modifyList.add(way);
 			}
 			else if (!way.isIntersect(sdom.ways)) {
@@ -178,5 +151,29 @@ public class OsmUpdaterRoute extends RouteBuilder {
         		ddom.ways.put(sWay.clone());
 			}
 		}
+	}
+
+	void replaceNode(List<NodeBean> list, NodeBean poi) {
+		for (NodeBean w : list) {
+			if (w.getId() == poi.getId()) {
+				list.remove(w);
+				break;
+			}
+		}
+		list.add(poi);
+	}
+	
+	/**
+	 * tag.key=`building*` を有するPOIを'building'POIとみなす
+	 * 
+	 */
+	static boolean isBuildingTag(HashMap<String,TagBean> tags) {
+		for (String k : tags.keySet()) {
+			TagBean tag = tags.get(k);
+			if (tag.k.startsWith("building")) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

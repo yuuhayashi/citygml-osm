@@ -22,7 +22,6 @@ public class OsmLoadDirRoute extends RouteBuilder {
 			.process(new OsmFileListProcessor())
 			.split()
 				.simple("${body}")
-				.log("Body-split: ${body}")
 				.process(new OsmFileProcessor())
 		        .to("direct:osm-file-read")
 			.end()

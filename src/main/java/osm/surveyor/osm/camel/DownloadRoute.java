@@ -9,7 +9,7 @@ public class DownloadRoute extends RouteBuilder {
 		onException(Exception.class)
         .handled(false)
         .log("Error")
-        .setBody().constant("なにかエラーが発生")
+        .setBody().constant("[2nd:DownloadRoute] なにかエラーが発生")
         .log("Error: ${body}")
         ;
 		
@@ -28,7 +28,7 @@ public class DownloadRoute extends RouteBuilder {
 		
 		// (3) データをファイルに書き出す
 		from("direct:osm-org-export")
-		.process(new OsmExportFileProcessor())	// データをファイルに書き出す
+		.process(new OrgExportFileProcessor())	// データをファイルに書き出す
         .to("stream:out")
         ;
 	}
