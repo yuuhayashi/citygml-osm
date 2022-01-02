@@ -9,11 +9,15 @@ public class CitygmlLoad {
 	public static ProducerTemplate producer;
 
 	public static void main(String[] args) throws Exception {
-		if (args[0].equals("2nd")) {
-			osm.surveyor.osm.camel.OsmDownload.osmDownload();
+		if (args.length > 0) {
+			if (args[0].equals("1st")) {
+				loadDir();
+			}
+			else if (args[0].equals("2nd")) {
+				osm.surveyor.osm.camel.OsmDownload.osmDownload();
+			}
 		}
 		else {
-			loadDir();
 		}
 	}
 
