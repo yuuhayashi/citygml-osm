@@ -34,8 +34,16 @@ import org.locationtech.jts.geom.Polygon;
  * 
  */
 @XmlRootElement(name="way")
-public class WayBean extends PoiBean implements Serializable {
+public class WayBean extends PoiBean implements Cloneable, Serializable {
 	private static final long serialVersionUID = 5518601165141588723L;
+	
+	public WayBean() {
+		this(0);
+	}
+	
+	public WayBean(long id) {
+		super(id);
+	}
 	
 	/**
 	 * fix=true 更新しないもの、fix=false 更新対象を示す。
@@ -50,7 +58,7 @@ public class WayBean extends PoiBean implements Serializable {
 		this.fix = b;
 	}
 
-    private List<NdBean> ndList;
+    private List<NdBean> ndList = new ArrayList<>();
     
     @XmlElement(name="nd")
     public List<NdBean> getNdList() {
@@ -61,6 +69,28 @@ public class WayBean extends PoiBean implements Serializable {
     	this.ndList = ndList;
     }
     
+	@Override
+	public WayBean clone() {
+		WayBean copy = null;
+		try {
+			copy = (WayBean) super.clone();
+			
+			copy.fix = this.fix;
+			
+			ArrayList<NdBean> nds = new ArrayList<>();
+			for (NdBean nd : this.ndList) {
+				nds.add(nd.clone());
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			copy = null;
+		}
+		return copy;
+	}
+	
+	//--------------------------------------
+	
 	public boolean isBuilding() {
 		for (TagBean tag : this.getTagList()) {
 			if (tag.k.startsWith("building")) {
@@ -76,6 +106,28 @@ public class WayBean extends PoiBean implements Serializable {
     		list.add(nd.getCoordinate());
     	}
 		return list.toArray(new Coordinate[list.size()]);
+	}
+	
+	/**
+	 * このWAYがマルチポリゴンのINNERであるかどうか
+	 * @param relations
+	 * @return
+	 */
+	public boolean isInnerWay(List<RelationBean> relations) {
+		for (RelationBean relation : relations) {
+			if (relation.hasMember(this.getId())) {
+				if (relation.isMultipolygon()) {
+					for (MemberBean member : relation.getMemberList()) {
+						if (member.getRole().equals("inner")) {
+							if (member.getRef() == this.getId()) {
+								return true;
+							}
+						}
+					}
+				}
+			}
+		}
+		return false;
 	}
 	
 	/**
@@ -129,4 +181,24 @@ public class WayBean extends PoiBean implements Serializable {
         return false;
 	}
 	
+	/**
+	 * このWAYと重複する面積が最大の WAY.id を返す
+	 * @param db
+	 * @param where　例: "WHERE (tWay.orignal=true)"
+	 * @return
+	 * @throws Exception
+	 */
+	public long getIntersect(List<WayBean> ways) throws Exception {
+		double max = 0.0d;
+		long maxid = 0;
+        for (WayBean way : ways) {
+        	double area = getIntersectArea(way);
+			if (area > max) {
+				max = area;
+				maxid = way.getId(); 
+			}
+        }
+        return maxid;
+	}
+
 }

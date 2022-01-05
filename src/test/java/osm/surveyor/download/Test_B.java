@@ -12,7 +12,6 @@ import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.RelationBean;
 import osm.surveyor.osm.WayBean;
-import osm.surveyor.update.OsmUpdaterTest;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Test_B extends DownloadTest {

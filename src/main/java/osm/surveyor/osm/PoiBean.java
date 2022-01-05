@@ -27,7 +27,7 @@ public class PoiBean implements Cloneable,Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private long id;
-	private String action;
+	private String action = null;
 	private boolean visible = true;
 	private String timestamp;
 	private String uid;
@@ -140,12 +140,19 @@ public class PoiBean implements Cloneable,Serializable {
 		PoiBean copy = null;
 		try {
 			copy = (PoiBean)super.clone();
+			copy.id = this.id;
+			copy.action = (this.action==null ? null : new String(this.action));
+			copy.visible = this.visible;
+			copy.timestamp = (this.timestamp==null ? null : new String(this.timestamp));
+			copy.uid = (this.uid==null ? null : new String(this.uid));
+			copy.user = (this.user==null ? null : new String(this.user));
+			copy.version = (this.version==null ? null : new String(this.version));
+			copy.changeset = (this.changeset==null ? null : new String(this.changeset));
 			copy.tags = new ArrayList<>();
-			if (tags != null) {
-				for (TagBean tag : tags) {
-					copy.tags.add(tag.clone());
-				}
+			for (TagBean tag : this.tags) {
+				copy.tags.add(tag.clone());
 			}
+			copy.orignal = this.orignal;
 		}
 		catch (Exception e) {
 			e.printStackTrace();

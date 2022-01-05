@@ -18,13 +18,14 @@ import org.locationtech.jts.geom.Coordinate;
 public class NdBean implements Serializable, Cloneable {
 	private static final long serialVersionUID = 4936895079170613027L;
 
+	private long ref = 0;
+
 	@XmlAttribute(name="ref")
-	private Long ref;
 	public long getRef() {
-		return ref.longValue();
+		return ref;
 	}
 	public void setRef(long ref) {
-		this.ref = new Long(ref);
+		this.ref = ref;
 	}
 
 	@XmlTransient
@@ -40,10 +41,11 @@ public class NdBean implements Serializable, Cloneable {
     //--------------------------------------
 
 	@Override
-	public OsmNd clone() {
-		OsmNd copy = null;
+	public NdBean clone() {
+		NdBean copy = null;
 		try {
-			copy = (OsmNd)super.clone();
+			copy = (NdBean)super.clone();
+			copy.ref = this.ref;
 			if (this.point == null) {
 				copy.point = null;
 			}

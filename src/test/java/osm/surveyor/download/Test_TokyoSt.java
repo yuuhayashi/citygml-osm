@@ -7,7 +7,6 @@ import org.junit.Test;
 import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.WayBean;
-import osm.surveyor.update.OsmUpdaterTest;
 
 public class Test_TokyoSt extends DownloadTest {
 

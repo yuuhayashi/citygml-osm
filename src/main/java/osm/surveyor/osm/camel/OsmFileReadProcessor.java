@@ -22,6 +22,7 @@ public class OsmFileReadProcessor implements Processor {
 		File file = endpoint.getFile();
 		
 		OsmBean osm = JAXB.unmarshal(file, OsmBean.class);
+		osm.build();
 		BodyMap map = new BodyMap();
 		map.put("osm", osm);
 		exchange.getIn().setBody(map);

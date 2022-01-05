@@ -1,13 +1,14 @@
 package osm.surveyor.download;
 
 import java.nio.file.Paths;
+import java.util.List;
 
 import org.junit.Test;
 
 import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.BoundsBean;
+import osm.surveyor.osm.NodeBean;
 import osm.surveyor.osm.OsmBean;
-import osm.surveyor.update.OsmUpdaterTest;
 
 public class Test_Fujitv extends DownloadTest {
 	
@@ -29,10 +30,12 @@ public class Test_Fujitv extends DownloadTest {
 	        assertEquals("139.7782000", bound.maxlon);
 	        assertEquals("139.7713000", bound.minlon);
 	        assertEquals("35.6255000", bound.minlat);
-		
-			//OsmUpdater updater = new OsmUpdater(Paths.get("src/test/resources/", "fujitv_bldg_6697_op2.osm").toFile());
-			//updater.download();
-			//updater.sdom.export(Paths.get("fujitv_bldg_6697_op2.org.osm").toFile());
+	        
+	        List<NodeBean> nodes = org.getNodeList();
+	        assertNotNull(nodes);
+	        for (NodeBean node : nodes) {
+	        	assertNotEquals(0, node.getId());
+	        }
 		}
 		catch (Exception e) {
 			e.printStackTrace();

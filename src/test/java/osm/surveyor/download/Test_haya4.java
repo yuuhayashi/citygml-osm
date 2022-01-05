@@ -9,7 +9,6 @@ import org.junit.runners.MethodSorters;
 import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.WayBean;
-import osm.surveyor.update.OsmUpdaterTest;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Test_haya4 extends DownloadTest {

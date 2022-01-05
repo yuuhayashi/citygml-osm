@@ -59,4 +59,18 @@ public class RelationBean extends PoiBean implements Serializable {
 		}
 		return false;
 	}
+
+    /**
+     * 指定されたPOIをメンバーに持っているかどうか
+     * @param id	POIのID
+     * @return	メンバーが存在すればtrue
+     */
+    public boolean hasMember(long id) {
+    	for (MemberBean member : this.memberList) {
+			if (member.getRef() == id) {
+				return true;
+			}
+    	}
+		return false;
+    }
 }

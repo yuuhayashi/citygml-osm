@@ -1,292 +1,148 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<osm generator="JOSM" version="0.6">
-    <bounds minlat="35.4338942" minlon="139.4108766" maxlat="35.4342351" maxlon="139.4114131" origin="CGImap 0.8.3 (2061540 spike-08.openstreetmap.org)"/>
-    <node lat="35.4342076" lon="139.4112156" changeset="105065457" id="2933003090" timestamp="2021-05-21T06:05:44Z" uid="621319" user="hayashi" version="2" visible="true"/>
-    <node lat="35.4340633" lon="139.4110818" changeset="105115302" id="8754418638" timestamp="2021-05-22T00:10:57Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4340569" lon="139.4111189" changeset="105115302" id="8754418637" timestamp="2021-05-22T00:10:57Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4342018" lon="139.4112651" changeset="23152340" id="2933003088" timestamp="2014-06-25T15:02:17Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4340399" lon="139.4111145" changeset="105115302" id="8754418636" timestamp="2021-05-22T00:10:57Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4340462" lon="139.4110774" changeset="105115302" id="8754418635" timestamp="2021-05-22T00:10:57Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4342301" lon="139.4110995" changeset="105065457" id="2933003094" timestamp="2021-05-21T06:05:44Z" uid="621319" user="hayashi" version="2" visible="true"/>
-    <node lat="35.4340730" lon="139.4110382" changeset="105115302" id="8754418634" timestamp="2021-05-22T00:10:57Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4344026" lon="139.4110185" changeset="105115364" id="2934311523" timestamp="2021-05-22T00:16:38Z" uid="621319" user="hayashi" version="2" visible="true"/>
-    <node lat="35.4340654" lon="139.4110821" changeset="105115302" id="8754418633" timestamp="2021-05-22T00:10:57Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4340440" lon="139.4110766" changeset="105115302" id="8754418632" timestamp="2021-05-22T00:10:57Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4340584" lon="139.4111908" changeset="105115051" id="2493516071" timestamp="2021-05-21T23:49:26Z" uid="621319" user="hayashi" version="4" visible="true"/>
-    <node lat="35.4341030" lon="139.4110830" changeset="105115051" id="8751378965" timestamp="2021-05-21T23:49:26Z" uid="621319" user="hayashi" version="3" visible="true"/>
-    <node lat="35.4340515" lon="139.4110327" changeset="105115302" id="8754418631" timestamp="2021-05-22T00:10:57Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4340757" lon="139.4110899" changeset="105115051" id="2493516072" timestamp="2021-05-21T23:49:26Z" uid="621319" user="hayashi" version="4" visible="true"/>
-    <node lat="35.4341007" lon="139.4110964" changeset="105115051" id="8751378964" timestamp="2021-05-21T23:49:26Z" uid="621319" user="hayashi" version="3" visible="true"/>
-    <node lat="35.4341264" lon="139.4110890" changeset="105115051" id="8751378966" timestamp="2021-05-21T23:49:26Z" uid="621319" user="hayashi" version="3" visible="true"/>
-    <node lat="35.4340530" lon="139.4111927" changeset="105115051" id="8751378961" timestamp="2021-05-21T23:49:26Z" uid="621319" user="hayashi" version="3" visible="true"/>
-    <node lat="35.4344289" lon="139.4109080" changeset="105115364" id="2934311530" timestamp="2021-05-22T00:16:38Z" uid="621319" user="hayashi" version="2" visible="true"/>
-    <node lat="35.4340716" lon="139.4110846" changeset="105115051" id="8751378960" timestamp="2021-05-21T23:49:26Z" uid="621319" user="hayashi" version="3" visible="true"/>
-    <node lat="35.4341279" lon="139.4110992" changeset="105063418" id="8751378963" timestamp="2021-05-21T05:32:46Z" uid="621319" user="hayashi" version="2" visible="true"/>
-    <node lat="35.4342444" lon="139.4113783" changeset="23152340" id="2933003100" timestamp="2014-06-25T15:02:17Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4341093" lon="139.4112073" changeset="105063418" id="8751378962" timestamp="2021-05-21T05:32:46Z" uid="621319" user="hayashi" version="2" visible="true"/>
-    <node lat="35.4341068" lon="139.4112033" changeset="105115051" id="2493516079" timestamp="2021-05-21T23:49:26Z" uid="621319" user="hayashi" version="3" visible="true"/>
-    <node lat="35.4340669" lon="139.4110876" changeset="105115051" id="8751378957" timestamp="2021-05-21T23:49:26Z" uid="621319" user="hayashi" version="3" visible="true"/>
-    <node lat="35.4340779" lon="139.4113586" changeset="23152340" id="2933003074" timestamp="2014-06-25T15:02:16Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4341241" lon="139.4111024" changeset="105115051" id="2493516080" timestamp="2021-05-21T23:49:26Z" uid="621319" user="hayashi" version="3" visible="true"/>
-    <node lat="35.4340496" lon="139.4111885" changeset="105115051" id="8751378956" timestamp="2021-05-21T23:49:26Z" uid="621319" user="hayashi" version="3" visible="true"/>
-    <node lat="35.4340999" lon="139.4112307" changeset="23152340" id="2933003075" timestamp="2014-06-25T15:02:16Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4341014" lon="139.4110923" changeset="105115051" id="8751378959" timestamp="2021-05-21T23:49:26Z" uid="621319" user="hayashi" version="3" visible="true"/>
-    <node lat="35.4340566" lon="139.4115218" changeset="23152340" id="2933003072" timestamp="2014-06-25T15:02:16Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4341248" lon="139.4110984" changeset="105115051" id="8751378958" timestamp="2021-05-21T23:49:26Z" uid="621319" user="hayashi" version="3" visible="true"/>
-    <node lat="35.4340703" lon="139.4113968" changeset="23152340" id="2933003073" timestamp="2014-06-25T15:02:16Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4342664" lon="139.4112328" changeset="105065457" id="2933003206" timestamp="2021-05-21T06:05:44Z" uid="621319" user="hayashi" version="2" visible="true"/>
-    <node lat="35.4342612" lon="139.4112804" changeset="23152340" id="2933003205" timestamp="2014-06-25T15:02:17Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4340021" lon="139.4109176" changeset="23187362" id="2934311422" timestamp="2014-06-26T14:29:40Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4340095" lon="139.4108872" changeset="23187362" id="2934311423" timestamp="2014-06-26T14:29:40Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4342889" lon="139.4111167" changeset="105065457" id="2933003208" timestamp="2021-05-21T06:05:44Z" uid="621319" user="hayashi" version="2" visible="true"/>
-    <node lat="35.4341851" lon="139.4113631" changeset="23152340" id="2933003084" timestamp="2014-06-25T15:02:16Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4342151" lon="139.4109514" changeset="105115364" id="2934311489" timestamp="2021-05-22T00:16:38Z" uid="621319" user="hayashi" version="2" visible="true"/>
-    <node lat="35.4342414" lon="139.4108409" changeset="105115364" id="2934311496" timestamp="2021-05-22T00:16:38Z" uid="621319" user="hayashi" version="2" visible="true"/>
-    <node lat="35.4338789" lon="139.4114878" changeset="23152340" id="2933003027" timestamp="2014-06-25T15:02:15Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4338833" lon="139.4114481" changeset="23152340" id="2933003028" timestamp="2014-06-25T15:02:15Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4340955" lon="139.4109133" changeset="23187362" id="2934311457" timestamp="2014-06-26T14:29:41Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4339213" lon="139.4114948" changeset="23152340" id="2933003034" timestamp="2014-06-25T15:02:15Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4341307" lon="139.4107858" changeset="23187362" id="2934311470" timestamp="2014-06-26T14:29:41Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4339222" lon="139.4114860" changeset="23152340" id="2933003035" timestamp="2014-06-25T15:02:15Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4341311" lon="139.4109281" changeset="23187362" id="2934311471" timestamp="2014-06-26T14:29:41Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4339110" lon="139.4114527" changeset="23152340" id="2933003032" timestamp="2014-06-25T15:02:15Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4339188" lon="139.4113812" changeset="23152340" id="2933003033" timestamp="2014-06-25T15:02:15Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4339304" lon="139.4112998" changeset="23152340" id="2933003037" timestamp="2014-06-25T15:02:15Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4341662" lon="139.4108005" changeset="23187362" id="2934311478" timestamp="2014-06-26T14:29:41Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4339996" lon="139.4115125" changeset="23152340" id="2933003057" timestamp="2014-06-25T15:02:16Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4340133" lon="139.4113874" changeset="23152340" id="2933003062" timestamp="2014-06-25T15:02:16Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4340049" lon="139.4111803" changeset="23152340" id="2933003060" timestamp="2014-06-25T15:02:16Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4340057" lon="139.4112139" changeset="23152340" id="2933003061" timestamp="2014-06-25T15:02:16Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4340307" lon="139.4110619" changeset="23152340" id="2933003066" timestamp="2014-06-25T15:02:16Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4340510" lon="139.4108592" changeset="23187362" id="2934311439" timestamp="2014-06-26T14:29:40Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4340231" lon="139.4113443" changeset="23152340" id="2933003064" timestamp="2014-06-25T15:02:16Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4340452" lon="139.4112165" changeset="23152340" id="2933003070" timestamp="2014-06-25T15:02:16Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4340413" lon="139.4108989" changeset="23187362" id="2934311434" timestamp="2014-06-26T14:29:40Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4340729" lon="139.4109093" changeset="23187362" id="2934311446" timestamp="2014-06-26T14:29:40Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4339410" lon="139.4112033" changeset="23152340" id="2933003040" timestamp="2014-06-25T15:02:16Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4339418" lon="139.4111596" changeset="23152340" id="2933003041" timestamp="2014-06-25T15:02:16Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4340689" lon="139.4109422" changeset="23187362" id="2934311445" timestamp="2014-06-26T14:29:40Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4339625" lon="139.4114926" changeset="23152340" id="2933003047" timestamp="2014-06-25T15:02:16Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4340823" lon="139.4108707" changeset="23187362" id="2934311454" timestamp="2014-06-26T14:29:40Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4339676" lon="139.4110411" changeset="23152340" id="2933003048" timestamp="2014-06-25T15:02:16Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4339737" lon="139.4113903" changeset="23152340" id="2933003049" timestamp="2014-06-25T15:02:16Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4340766" lon="139.4109107" changeset="23187362" id="2934311450" timestamp="2014-06-26T14:29:40Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4339951" lon="139.4113104" changeset="23152340" id="2933003055" timestamp="2014-06-25T15:02:16Z" uid="621319" user="hayashi" version="1" visible="true"/>
-    <node lat="35.4340535" lon="139.4111895" changeset="105115051" id="8751827162" timestamp="2021-05-21T23:49:26Z" uid="621319" user="hayashi" version="2" visible="true"/>
-    <node lat="35.4340709" lon="139.4110886" changeset="105115051" id="8751827163" timestamp="2021-05-21T23:49:26Z" uid="621319" user="hayashi" version="2" visible="true"/>
-    <relation changeset="105054278" id="12738006" timestamp="2021-05-20T23:40:08Z" uid="621319" user="hayashi" version="1" visible="true">
-        <tag k="building" v="house"/>
-        <tag k="building:levels" v="2"/>
-        <tag k="height" v="6.2"/>
-        <tag k="ref" v="7"/>
-        <tag k="type" v="building"/>
-        <member ref="241755306" role="outline" type="way"/>
-        <member ref="945294863" role="part" type="way"/>
-        <member ref="945294863" role="part" type="way"/>
-        <member ref="945294861" role="part" type="way"/>
-        <member ref="945294860" role="part" type="way"/>
-    </relation>
-    <way changeset="47163717" id="289757604" timestamp="2017-03-25T22:04:05Z" uid="621319" user="hayashi" version="3" visible="true">
-        <tag k="building" v="house"/>
-        <tag k="building:levels" v="2"/>
-        <nd ref="2933003035"/>
-        <nd ref="2933003034"/>
-        <nd ref="2933003027"/>
-        <nd ref="2933003028"/>
-        <nd ref="2933003032"/>
-        <nd ref="2933003033"/>
-        <nd ref="2933003049"/>
-        <nd ref="2933003047"/>
-        <nd ref="2933003035"/>
-    </way>
-    <way changeset="105063418" id="241755306" timestamp="2021-05-21T05:32:46Z" uid="621319" user="hayashi" version="5" visible="true">
-        <tag k="building" v="house"/>
-        <tag k="building:levels" v="2"/>
-        <tag k="height" v="6.2"/>
-        <tag k="ref" v="7"/>
-        <nd ref="8751378961"/>
-        <nd ref="8751827162"/>
-        <nd ref="8751378956"/>
-        <nd ref="8751378957"/>
-        <nd ref="8751827163"/>
-        <nd ref="8751378960"/>
-        <nd ref="8751378959"/>
-        <nd ref="8751378965"/>
-        <nd ref="8751378966"/>
-        <nd ref="8751378958"/>
-        <nd ref="8751378963"/>
-        <nd ref="8751378962"/>
-        <nd ref="8751378961"/>
-    </way>
-    <way changeset="47163717" id="289757568" timestamp="2017-03-25T22:04:02Z" uid="621319" user="hayashi" version="3" visible="true">
-        <tag k="building" v="house"/>
-        <tag k="building:levels" v="2"/>
-        <nd ref="2933003066"/>
-        <nd ref="2933003060"/>
-        <nd ref="2933003041"/>
-        <nd ref="2933003048"/>
-        <nd ref="2933003066"/>
-    </way>
-    <way changeset="105117851" id="289897932" timestamp="2021-05-22T04:33:49Z" uid="621319" user="hayashi" version="4" visible="true">
-        <tag k="building" v="house"/>
-        <tag k="building:levels" v="2"/>
-        <nd ref="2934311471"/>
-        <nd ref="2934311457"/>
-        <nd ref="2934311470"/>
-        <nd ref="2934311478"/>
-        <nd ref="2934311471"/>
-    </way>
-    <way changeset="42473652" id="289757577" timestamp="2016-09-27T15:53:30Z" uid="621319" user="hayashi" version="3" visible="true">
-        <tag k="building" v="house"/>
-        <tag k="building:levels" v="2"/>
-        <nd ref="2933003075"/>
-        <nd ref="2933003074"/>
-        <nd ref="2933003064"/>
-        <nd ref="2933003070"/>
-        <nd ref="2933003075"/>
-    </way>
-    <way changeset="47163717" id="289757576" timestamp="2017-03-25T22:04:02Z" uid="621319" user="hayashi" version="3" visible="true">
-        <tag k="building" v="house"/>
-        <tag k="building:levels" v="2"/>
-        <nd ref="2933003061"/>
-        <nd ref="2933003055"/>
-        <nd ref="2933003037"/>
-        <nd ref="2933003040"/>
-        <nd ref="2933003061"/>
-    </way>
-    <way changeset="42473652" id="289757589" timestamp="2016-09-27T15:53:32Z" uid="621319" user="hayashi" version="3" visible="true">
-        <tag k="building" v="house"/>
-        <tag k="building:levels" v="2"/>
-        <nd ref="2933003073"/>
-        <nd ref="2933003072"/>
-        <nd ref="2933003057"/>
-        <nd ref="2933003062"/>
-        <nd ref="2933003073"/>
-    </way>
-    <way changeset="105115302" id="945645167" timestamp="2021-05-22T00:10:57Z" uid="621319" user="hayashi" version="1" visible="true">
-        <tag k="building" v="container"/>
-        <tag k="building:levels" v="1"/>
-        <tag k="building:material" v="metal"/>
-        <tag k="height" v="2.0"/>
-        <tag k="roof:material" v="metal"/>
-        <tag k="roof:shape" v="flat"/>
-        <nd ref="8754418638"/>
-        <nd ref="8754418637"/>
-        <nd ref="8754418636"/>
-        <nd ref="8754418635"/>
-        <nd ref="8754418638"/>
-    </way>
-    <way changeset="105115302" id="945645166" timestamp="2021-05-22T00:10:57Z" uid="621319" user="hayashi" version="1" visible="true">
-        <tag k="building" v="garage"/>
-        <tag k="building:material" v="concrete"/>
-        <tag k="height" v="2.0"/>
-        <nd ref="8754418634"/>
-        <nd ref="8754418633"/>
-        <nd ref="8754418632"/>
-        <nd ref="8754418631"/>
-        <nd ref="8754418634"/>
-    </way>
-    <way changeset="105063418" id="945294860" timestamp="2021-05-21T05:32:46Z" uid="621319" user="hayashi" version="2" visible="true">
-        <tag k="building:part" v="yes"/>
-        <tag k="height" v="3.1"/>
-        <tag k="min_height" v="3"/>
-        <nd ref="2493516072"/>
-        <nd ref="8751827163"/>
-        <nd ref="8751378957"/>
-        <nd ref="8751378956"/>
-        <nd ref="8751827162"/>
-        <nd ref="2493516071"/>
-        <nd ref="2493516072"/>
-    </way>
-    <way changeset="105131724" id="289757584" timestamp="2021-05-22T12:49:21Z" uid="616774" user="mueschel" version="6" visible="true">
-        <tag k="building" v="house"/>
-        <tag k="building:colour" v="#a52a2a"/>
-        <tag k="building:levels" v="2"/>
-        <tag k="building:material" v="brick"/>
-        <tag k="height" v="7.5"/>
-        <tag k="roof:height" v="1.5"/>
-        <tag k="roof:material" v="slate"/>
-        <tag k="roof:shape" v="hipped"/>
-        <nd ref="2933003208"/>
-        <nd ref="2933003206"/>
-        <nd ref="2933003090"/>
-        <nd ref="2933003094"/>
-        <nd ref="2933003208"/>
-    </way>
-    <way changeset="105130745" id="945294861" timestamp="2021-05-22T12:20:40Z" uid="621319" user="hayashi" version="3" visible="true">
-        <tag k="building:colour" v="#40e0d4"/>
-        <tag k="building:material" v="vinyl"/>
-        <tag k="building:part" v="yes"/>
-        <tag k="height" v="6"/>
-        <nd ref="2493516080"/>
-        <nd ref="2493516079"/>
-        <nd ref="2493516071"/>
-        <nd ref="2493516072"/>
-        <nd ref="8751378964"/>
-        <nd ref="2493516080"/>
-    </way>
-    <way changeset="105117851" id="945294862" timestamp="2021-05-22T04:33:49Z" uid="621319" user="hayashi" version="4" visible="true">
-        <tag k="building:colour" v="#20b2aa"/>
-        <tag k="building:part" v="roof"/>
-        <tag k="height" v="1"/>
-        <tag k="min_height" v="6"/>
-        <tag k="roof:shape" v="hipped"/>
-        <nd ref="8751378963"/>
-        <nd ref="8751378962"/>
-        <nd ref="8751378961"/>
-        <nd ref="8751827162"/>
-        <nd ref="8751827163"/>
-        <nd ref="8751378960"/>
-        <nd ref="8751378959"/>
-        <nd ref="8751378958"/>
-        <nd ref="8751378963"/>
-    </way>
-    <way changeset="23181712" id="289757586" timestamp="2014-06-26T13:05:51Z" uid="621319" user="hayashi" version="2" visible="true">
-        <tag k="building" v="house"/>
-        <nd ref="2933003205"/>
-        <nd ref="2933003100"/>
-        <nd ref="2933003084"/>
-        <nd ref="2933003088"/>
-        <nd ref="2933003205"/>
-    </way>
-    <way changeset="105130631" id="289897904" timestamp="2021-05-22T12:17:54Z" uid="621319" user="hayashi" version="7" visible="true">
-        <tag k="building" v="apartments"/>
-        <tag k="building:levels" v="2"/>
-        <tag k="building:material" v="vinyl"/>
-        <tag k="height" v="7.5"/>
-        <tag k="roof:height" v="1.5"/>
-        <tag k="roof:material" v="slate"/>
-        <tag k="roof:shape" v="hipped"/>
-        <nd ref="2934311523"/>
-        <nd ref="2934311489"/>
-        <nd ref="2934311496"/>
-        <nd ref="2934311530"/>
-        <nd ref="2934311523"/>
-    </way>
-    <way changeset="23210839" id="289897936" timestamp="2014-06-27T10:41:39Z" uid="621319" user="hayashi" version="2" visible="true">
-        <tag k="building" v="house"/>
-        <nd ref="2934311446"/>
-        <nd ref="2934311450"/>
-        <nd ref="2934311445"/>
-        <nd ref="2934311422"/>
-        <nd ref="2934311423"/>
-        <nd ref="2934311434"/>
-        <nd ref="2934311439"/>
-        <nd ref="2934311454"/>
-        <nd ref="2934311446"/>
-    </way>
-    <way changeset="105115051" id="945294863" timestamp="2021-05-21T23:49:26Z" uid="621319" user="hayashi" version="2" visible="true">
-        <tag k="building:colour" v="#20b2aa"/>
-        <tag k="building:part" v="roof"/>
-        <tag k="height" v="3"/>
-        <tag k="min_height" v="2.8"/>
-        <tag k="roof:shape" v="flat"/>
-        <nd ref="2493516080"/>
-        <nd ref="8751378964"/>
-        <nd ref="8751378959"/>
-        <nd ref="8751378965"/>
-        <nd ref="8751378966"/>
-        <nd ref="8751378958"/>
-        <nd ref="2493516080"/>
-    </way>
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <bounds minlat='35.4338942' minlon='139.4108766' maxlat='35.4342351' maxlon='139.4114131' origin='CGImap 0.8.3 (2061540 spike-08.openstreetmap.org)' />
+  <node id='-101869' action='modify' visible='true' lat='35.43418980312' lon='139.41104628079' />
+  <node id='-101870' action='modify' visible='true' lat='35.4341663099' lon='139.41115625136' />
+  <node id='-101871' action='modify' visible='true' lat='35.43408728424' lon='139.41113082108' />
+  <node id='-101872' action='modify' visible='true' lat='35.43411077748' lon='139.41102085052' />
+  <node id='-101873' action='modify' visible='true' lat='35.43409419114' lon='139.41091954641' />
+  <node id='-101874' action='modify' visible='true' lat='35.43408053227' lon='139.41099330716' />
+  <node id='-101875' action='modify' visible='true' lat='35.43401700913' lon='139.41097558824' />
+  <node id='-101876' action='modify' visible='true' lat='35.434030668' lon='139.4109018275' />
+  <node id='-101877' action='modify' visible='true' lat='35.43418871042' lon='139.41095106237' />
+  <node id='-101878' action='modify' visible='true' lat='35.4341734125' lon='139.41102281146' />
+  <node id='-101879' action='modify' visible='true' lat='35.43412503124' lon='139.41100727293' />
+  <node id='-101880' action='modify' visible='true' lat='35.43414032916' lon='139.41093552384' />
+  <node id='-101881' action='modify' visible='true' lat='35.43422203854' lon='139.41124409303' />
+  <node id='-101882' action='modify' visible='true' lat='35.43422203854' lon='139.41139295563' />
+  <node id='-101883' action='modify' visible='true' lat='35.4341728667' lon='139.41139295563' />
+  <node id='-101884' action='modify' visible='true' lat='35.4341728667' lon='139.41124409303' />
+  <node id='-101890' action='modify' visible='true' lat='35.43400648674' lon='139.41103084419' />
+  <node id='-101891' action='modify' visible='true' lat='35.43397532147' lon='139.41118368132' />
+  <node id='-101892' action='modify' visible='true' lat='35.43392188894' lon='139.41116726927' />
+  <node id='-101893' action='modify' visible='true' lat='35.43395305423' lon='139.41101443215' />
+  <node id='-101896' action='modify' visible='true' lat='35.43397782224' lon='139.41117141732' />
+  <node id='-101897' action='modify' visible='true' lat='35.43398501185' lon='139.4111361589' />
+  <node id='-101900' action='modify' visible='true' lat='35.4339997945' lon='139.41106366354' />
+  <node id='-101912' action='modify' visible='true' lat='35.43403589008' lon='139.41103987556' />
+  <node id='-101913' action='modify' visible='true' lat='35.43400722559' lon='139.4111804487' />
+  <node id='-101914' action='modify' visible='true' lat='35.43400175303' lon='139.41114130103' />
+  <node id='-101915' action='modify' visible='true' lat='35.43401653568' lon='139.41106880567' />
+  <node id='-101918' action='modify' visible='true' lat='35.43402261866' lon='139.4112132483' />
+  <node id='-101919' action='modify' visible='true' lat='35.43399475455' lon='139.411363452' />
+  <node id='-101920' action='modify' visible='true' lat='35.43390343929' lon='139.4113379354' />
+  <node id='-101921' action='modify' visible='true' lat='35.43393130343' lon='139.4111877317' />
+  <node id='-101922' action='modify' visible='true' lat='35.43399131937' lon='139.41124645654' />
+  <node id='-101923' action='modify' visible='true' lat='35.43397796708' lon='139.41131955593' />
+  <node id='-101924' action='modify' visible='true' lat='35.43392907576' lon='139.41130610388' />
+  <node id='-101925' action='modify' visible='true' lat='35.43394242806' lon='139.41123300449' />
+  <way id='-101863' action='modify' visible='true'>
+    <nd ref='-101869' />
+    <nd ref='-101870' />
+    <nd ref='-101871' />
+    <nd ref='-101872' />
+    <nd ref='-101869' />
+    <tag k='building' v='yes' />
+  </way>
+  <way id='-101864' action='modify' visible='true'>
+    <nd ref='-101873' />
+    <nd ref='-101874' />
+    <nd ref='-101875' />
+    <nd ref='-101876' />
+    <nd ref='-101873' />
+    <tag k='building' v='yes' />
+  </way>
+  <way id='-101865' action='modify' visible='true'>
+    <nd ref='-101877' />
+    <nd ref='-101878' />
+    <nd ref='-101879' />
+    <nd ref='-101880' />
+    <nd ref='-101877' />
+    <tag k='building' v='yes' />
+  </way>
+  <way id='-101866' action='modify' visible='true'>
+    <nd ref='-101881' />
+    <nd ref='-101882' />
+    <nd ref='-101883' />
+    <nd ref='-101884' />
+    <nd ref='-101881' />
+    <tag k='building' v='yes' />
+  </way>
+  <way id='-101873' action='modify' visible='true'>
+    <nd ref='-101890' />
+    <nd ref='-101900' />
+    <nd ref='-101897' />
+    <nd ref='-101896' />
+    <nd ref='-101891' />
+    <nd ref='-101892' />
+    <nd ref='-101893' />
+    <nd ref='-101890' />
+    <tag k='building:part' v='yes' />
+    <tag k='height' v='15' />
+  </way>
+  <way id='-101892' action='modify' visible='true'>
+    <nd ref='-101890' />
+    <nd ref='-101912' />
+    <nd ref='-101913' />
+    <nd ref='-101896' />
+    <nd ref='-101897' />
+    <nd ref='-101914' />
+    <nd ref='-101915' />
+    <nd ref='-101900' />
+    <nd ref='-101890' />
+    <tag k='building:part' v='yes' />
+    <tag k='height' v='15.5' />
+  </way>
+  <way id='-101916' action='modify' visible='true'>
+    <nd ref='-101918' />
+    <nd ref='-101919' />
+    <nd ref='-101920' />
+    <nd ref='-101921' />
+    <nd ref='-101918' />
+  </way>
+  <way id='-101917' action='modify' visible='true'>
+    <nd ref='-101922' />
+    <nd ref='-101923' />
+    <nd ref='-101924' />
+    <nd ref='-101925' />
+    <nd ref='-101922' />
+  </way>
+  <way id='-101931' action='modify' visible='true'>
+    <nd ref='-101912' />
+    <nd ref='-101913' />
+    <nd ref='-101896' />
+    <nd ref='-101891' />
+    <nd ref='-101892' />
+    <nd ref='-101893' />
+    <nd ref='-101890' />
+    <nd ref='-101912' />
+  </way>
+  <way id='-101946' action='modify' visible='true'>
+    <nd ref='-101915' />
+    <nd ref='-101914' />
+    <nd ref='-101897' />
+    <nd ref='-101900' />
+    <nd ref='-101915' />
+  </way>
+  <relation id='-99749' action='modify' visible='true'>
+    <member type='way' ref='-101946' role='inner' />
+    <member type='way' ref='-101931' role='outer' />
+    <tag k='building' v='yes' />
+    <tag k='height' v='15.5' />
+    <tag k='type' v='multipolygon' />
+  </relation>
+  <relation id='-99764' action='modify' visible='true'>
+    <member type='way' ref='-101892' role='part' />
+    <member type='way' ref='-101873' role='part' />
+    <member type='way' ref='-101931' role='outline' />
+    <tag k='building' v='yes' />
+    <tag k='height' v='15.5' />
+    <tag k='type' v='building' />
+  </relation>
+  <relation id='-99765' action='modify' visible='true'>
+    <member type='way' ref='-101917' role='inner' />
+    <member type='way' ref='-101916' role='outer' />
+    <tag k='building' v='yes' />
+    <tag k='type' v='multipolygon' />
+  </relation>
 </osm>

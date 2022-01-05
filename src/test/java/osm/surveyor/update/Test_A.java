@@ -1,4 +1,4 @@
-package osm.surveyor.download;
+package osm.surveyor.update;
 
 import java.nio.file.Paths;
 
@@ -13,7 +13,7 @@ import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.WayBean;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class Test_A extends DownloadTest {
+public class Test_A extends OsmUpdaterTest {
 
 	/**
 	 * 東京都大田区南六郷三丁目 "53392547_bldg_6697_op2"
@@ -26,29 +26,16 @@ public class Test_A extends DownloadTest {
 	 * - "landuse"WAYは存在しないこと
 	 */
 	@Test
-	public void test_a() {
+	public void test_53392547() {
+		BodyMap map = testdo(Paths.get("./src/test/resources/53392547_bldg_6697_op2.osm"));
         try {
     		// (1)指定されたOSMファイルをLOADする
         	// (2) <bound/>を取得する
     		// (3) OSMから<bound>範囲内の現在のデータをダウンロードする
         		// (4) ダウンロードしたデータをパースする
         	// (5) "building"関係のPOIのみに絞る
-    		BodyMap map = testdo(Paths.get("./src/test/resources/53392547_bldg_6697_op2.osm"));
-    		OsmBean org = (OsmBean) map.get("org");
-
-    		assertNotNull(org.getBounds());
-			assertNotNull(org.getRelationList());
-			
-			// ビルディングリレーションは存在しない
-			assertEquals(0, org.getRelationList().size());
-
-			assertTrue(org.getWayList().size() > 10);
-			for (WayBean way : org.getWayList()) {
-				// "highway"WAYは存在しないこと
-				assertNull(way.getTagValue("highway"));
-				// "landuse"WAYは存在しないこと
-				assertNull(way.getTagValue("landuse"));
-			}
+    		OsmBean mrg = (OsmBean) map.get("mrg");
+	        assertNotNull(mrg);
 		} catch (Exception e) {
 			e.fillInStackTrace();
 			fail(e.toString());
@@ -71,15 +58,8 @@ public class Test_A extends DownloadTest {
         		// (4) ダウンロードしたデータをパースする
         	// (5) "building"関係のPOIのみに絞る
     		BodyMap map = testdo(Paths.get("./src/test/resources/sample_a_bldg_6697_op2.osm"));
-    		OsmBean org = (OsmBean) map.get("org");
-
-    		assertNotNull(org.getBounds());
-			assertNotNull(org.getRelationList());
-			assertTrue(org.getWayList().size() > 10);
-			for (WayBean way : org.getWayList()) {
-				assertNull(way.getTagValue("highway"));
-				assertNull(way.getTagValue("landuse"));
-			}
+    		OsmBean mrg = (OsmBean) map.get("mrg");
+	        assertNotNull(mrg);
 		} catch (Exception e) {
 			e.fillInStackTrace();
 			fail(e.toString());

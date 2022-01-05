@@ -8,7 +8,7 @@ import org.junit.runners.Suite.SuiteClasses;
 import osm.surveyor.DetailTests;
 
 /**
- * `mvn test -Dtest=osm.surveyor.update.AllTests`
+ * `mvn test -Dtest=osm.surveyor.download.AllTests`
  * 
  */
 @RunWith(Categories.class)

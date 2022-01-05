@@ -12,6 +12,7 @@ import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 import osm.surveyor.osm.OsmNd;
 import osm.surveyor.osm.WayMap;
+import osm.surveyor.update.MrgExportProcessor;
 import osm.surveyor.update.OrgFileReadProcessor;
 import osm.surveyor.update.OrgUpdateProcessor;
 
@@ -36,17 +37,16 @@ public class OsmUpdaterRoute extends RouteBuilder {
 		// (2) 既存POIとマージする
 		from("direct:osm-updater")
 		.process(new OrgUpdateProcessor())
-        //.to("direct:osm-download")
-        .to("stream:out")
+        .to("direct:mrg-export")
         ;
 
-		// TODO Auto-generated method stub
-		
-		
+		// (3) MRGファイルに出力する
+		from("direct:mrg-export")
+		.process(new MrgExportProcessor())
+		.to("stream:out")
+        ;
 	}
 	
-	// TODO
-
 	public OsmDom dom;		// source "*.osm" file.	
 	public OsmDom sdom;
 	public OsmDom ddom;
