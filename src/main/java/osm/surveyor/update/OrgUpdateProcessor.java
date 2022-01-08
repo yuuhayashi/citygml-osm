@@ -26,7 +26,6 @@ public class OrgUpdateProcessor implements Processor {
 		OsmBean mrg = (OsmBean) map.get("mrg");		// ddom
 
 		// タグありのノードをメンバーに持つウェイは「非更新対象」(fix=true)にする
-		org.build();
 		fixWayWithNode(org);
 		
 		// リレーションとそのメンバーをFIXにする
