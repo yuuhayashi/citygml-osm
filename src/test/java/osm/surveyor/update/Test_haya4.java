@@ -79,12 +79,23 @@ public class Test_haya4 extends OsmUpdaterTest {
 	        
 	        List<WayBean> ways = mrg.getWayList();
 	        assertNotNull(ways);
+			int checkcnt = 0;
 	        for (WayBean way : ways) {
 	        	assertFalse(way.getFix());
 	        	for (NdBean nd : way.getNdList()) {
 	        		assertNotNull(mrg.getNode(nd.getRef()));
 	        	}
+
+	        	if (way.getId() == 289757586l) {
+					// タグありNODEを持つWAYは、WAYは存在しないこと
+	        		assertTrue(false);
+				}
+				if (way.getId() == 241755306l) {
+					// リレーションメンバーのWAYは WAYは存在しないこと
+	        		assertTrue(false);
+				}
 	        }
+			assertEquals(2, checkcnt);
 	        
 	        List<RelationBean> relations = mrg.getRelationList();
 	        assertNotNull(relations);

@@ -58,6 +58,9 @@ public class WayBean extends PoiBean implements Cloneable, Serializable {
 		this.fix = b;
 	}
 
+	/**
+	 * WAYノードメンバー
+	 */
     private List<NdBean> ndList = new ArrayList<>();
     
     @XmlElement(name="nd")

@@ -10,7 +10,6 @@ import org.junit.runners.MethodSorters;
 import osm.surveyor.DetailTests;
 import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.OsmBean;
-import osm.surveyor.osm.WayBean;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Test_A extends OsmUpdaterTest {

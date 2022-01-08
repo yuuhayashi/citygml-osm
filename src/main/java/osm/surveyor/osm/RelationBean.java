@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -27,6 +28,22 @@ public class RelationBean extends PoiBean implements Serializable {
 	public static final String RELATION = "relation";
 	public static final String MULTIPOLYGON = "multipolygon";
 
+	/**
+	 * fix=true 更新しないもの、fix=false 更新対象を示す。
+	 */
+	private boolean fix = false;
+	
+	@XmlAttribute(name="fix")
+	public boolean getFix() {
+		return this.fix;
+	}
+	public void setFix(boolean b) {
+		this.fix = b;
+	}
+
+	/**
+	 * リレーションメンバー
+	 */
     private List<MemberBean> memberList = new ArrayList<>();
     
     @XmlElement(name="member")

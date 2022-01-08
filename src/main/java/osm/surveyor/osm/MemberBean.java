@@ -35,6 +35,16 @@ public class MemberBean implements Cloneable,Serializable {
 		return (this.type.equals("way"));
 	}
 	
+	public void setWay(WayBean way) {
+		this.ref = way.getId();
+		this.type = "way";
+	}
+	
+	public void setRelation(RelationBean relation) {
+		this.ref = relation.getId();
+		this.type = "relation";
+	}
+
 	public void setWay(ElementWay way) {
 		this.ref = way.getId();
 		this.type = "way";

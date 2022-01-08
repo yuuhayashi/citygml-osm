@@ -9,6 +9,7 @@ import org.apache.camel.Processor;
 
 import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.MemberBean;
+import osm.surveyor.osm.NdBean;
 import osm.surveyor.osm.NodeBean;
 import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.RelationBean;
@@ -23,8 +24,16 @@ public class OrgUpdateProcessor implements Processor {
 		OsmBean osm = (OsmBean) map.get("osm");		// dom
 		OsmBean org = (OsmBean) map.get("org");		// sdom
 		OsmBean mrg = (OsmBean) map.get("mrg");		// ddom
+
+		// タグありのノードをメンバーに持つウェイは「非更新対象」(fix=true)にする
+		org.build();
+		fixWayWithNode(org);
+		
+		// リレーションとそのメンバーをFIXにする
+		fixRelation(org);
 		
 		// インポートデータの内で、Fix=trueの既存データと重複するものを削除
+		// その後、既存データからFix=trueのPOIを削除する
 		removeFixed(osm, org);
 
 		// 既存データの内で、インポートデータと重複しないものを削除
@@ -37,26 +46,83 @@ public class OrgUpdateProcessor implements Processor {
 		
 		// インポートデータの内で、既存データと重複しないものを'modify'に確定する
 		notDuplicatedToModify(osm, org, mrg);
-    		
+    	
 		// インポートデータの内で、既存データと重複するWAYを'modify'に確定する
+		duplicatedToModify(osm, org, mrg);
+
 		// インポートデータの内で、既存データと重複するMultipolygonを'modify'に確定する
 		// インポートデータの内で、既存データと重複するbuilding RELATIONを'modify'に確定する
-		OsmBean overlapping = new OsmBean();
-		duplicatedToModify(osm, org, mrg, overlapping);
-		fixToModify(osm, org, mrg, overlapping);
+		//fixToModify(osm, org, mrg);
+		map.put("mrg", org);
 		
 		// actionが未定のまま残存しているWAYを削除する
-		removeNoAction(mrg);
+		//removeNoAction(mrg);
 
 		// WAYに所属していないNODEを削除する
 		mrg.gerbageNode();
+		
+	}
+	
+	/**
+	 * 全てのリレーションとそのメンバーをFIXにする
+	 * リレーションのメンバーウェイは「非更新対象」(fix=true)にする
+	 */
+	private void fixRelation(OsmBean org) {
+		for (RelationBean relation : org.getRelationList()) {
+			fixRelation(org, relation);
+        }
+	}
+
+	/**
+	 * 指定のリレーションとそのメンバーをFIXにする
+	 * リレーションのメンバーウェイは「非更新対象」(fix=true)にする
+	 */
+	private void fixRelation(OsmBean org, RelationBean relation) {
+		relation.setFix(true);
+		for (MemberBean member : relation.getMemberList()) {
+			if (member.isWay()) {
+				org.getWay(member.getRef()).setFix(true);
+			}
+		}
+	}
+	
+	/**
+	 * タグありのノードをメンバーに持つウェイは「非更新対象」(fix=true)にする
+	 * @param org
+	 */
+	private void fixWayWithNode(OsmBean org) {
+		for (WayBean way : org.getWayList()) {
+			for (NdBean nd : way.getNdList()) {
+				NodeBean node = org.getNode(nd.getRef());
+				if (node != null) {
+					if (node.getTagList().size() > 0) {
+						fixWay(org, way);
+					}
+				}
+			}
+		}
+	}
+	
+	/**
+	 * 指定のWAYとそのWAYをメンバーに持つリレーションをFIXにする
+	 * @param org
+	 * @param way
+	 */
+	private void fixWay(OsmBean org, WayBean way) {
+		way.setFix(true);
+		for (RelationBean relation : org.getParents(way)) {
+			fixRelation(org, relation);
+		}
 	}
 	
 	/**
 	 * インポートデータの内で、Fix=trueの既存データと重複するものを削除
+	 * その後、既存データからFix=trueのPOIを削除する
 	 * @throws Exception 
 	 */
 	private void removeFixed(OsmBean osm, OsmBean org) throws Exception {
+		List<RelationBean> fixedrelation = new ArrayList<>();
+		List<WayBean> fixedway = new ArrayList<>();
 		for (WayBean obj : org.getWayList()) {
 			if (obj.getFix()) {
 				// `fix=true`
@@ -69,7 +135,20 @@ public class OrgUpdateProcessor implements Processor {
 					}
 					osm.removeWay(osm.getWay(wayid));
 				}
+				fixedway.add(obj);
 			}
+		}
+		for (RelationBean obj : org.getRelationList()) {
+			if (obj.getFix()) {
+				// `fix=true`
+				fixedrelation.add(obj);
+			}
+		}
+		for (RelationBean obj : fixedrelation) {
+			org.removeRelation(obj);
+		}
+		for (WayBean obj : fixedway) {
+			org.removeWay(obj);
 		}
 	}
 	
@@ -126,24 +205,28 @@ public class OrgUpdateProcessor implements Processor {
 	}
 	
 	/**
-	 * インポートデータの内で、既存データと重複するWAYを'modify'に確定する
-	 * @throws Exception 
+	 * 既存データの内で、インポートデータと重複するWAYをインポートデータへマージする
+	 * @throws Exception
 	 */
-	private void duplicatedToModify(OsmBean osm, OsmBean org, OsmBean mrg, OsmBean overlapping) throws Exception {
-		for (WayBean way : osm.getWayList()) {
-			long wayid = way.getIntersect(org.getWayList());
+	private void duplicatedToModify(OsmBean osm, OsmBean org, OsmBean mrg) throws Exception {
+		for (WayBean way : org.getWayList()) {
+			// org.WAYと重複する面積が最大の osm.WAY.id を返す
+			long wayid = way.getIntersect(osm.getWayList());
 			if (wayid > 0) {
-				WayBean sWay = org.getWay(wayid);
+				WayBean sWay = osm.getWay(wayid);
 				sWay.setAction("modify");
 				sWay.orignal = false;
-				sWay.setNdList(way.getNdList());
-        		sWay.addTag(new TagBean("MLIT_PLATEAU:fixme", "PLATEAUデータで更新されています"));
-        		sWay.addTag(way.getTag("ref:MLIT_PLATEAU"));
-        		sWay.addTag(way.getTag("height"));
+				sWay.addTag(new TagBean("MLIT_PLATEAU:fixme", "PLATEAUデータで更新されています"));
 				way.copyTag(sWay);
-        		sWay.copyTag(way);
-        		mrg.putWay(sWay);
-        		overlapping.putWay(sWay);
+        		
+        		for (RelationBean relation : osm.getRelationList()) {
+        			relation.setAction("modify");
+        			for (MemberBean member : relation.getMemberList()) {
+        				if (member.getRef() == sWay.getId()) {
+        					member.setWay(way);
+        				}
+        			}
+        		}
 			}
 		}
 	}
@@ -152,25 +235,27 @@ public class OrgUpdateProcessor implements Processor {
 	 * インポートデータの内で、既存データと重複するMultipolygonを'modify'に確定する
 	 * インポートデータの内で、既存データと重複するbuilding RELATIONを'modify'に確定する
 	 */
-	private void fixToModify(OsmBean osm, OsmBean org, OsmBean mrg, OsmBean overlapping) throws Exception {
+	private void fixToModify(OsmBean osm, OsmBean org, OsmBean mrg) throws Exception {
 		for (RelationBean relation : osm.getRelationList()) {
 			if (relation.isMultipolygon()) {
     			for (MemberBean member : relation.getMemberList()) {
-					if (member.getType().equals("way")) {
-        				WayBean sWay = overlapping.getWay(member.getRef());
+					if (member.isWay()) {
+        				WayBean sWay = org.getWay(member.getRef());
             			if (sWay != null) {
                     		sWay.toMultipolygonMemberTag();
             				member.setRef(sWay.getId());
+            				mrg.putWay(org.getWay(sWay.getId()));
             			}
 					}
     			}
 			}
 			else if (relation.isBuilding()) {
 				for (MemberBean member : relation.getMemberList()) {
-					if (member.getType().equals("way")) {
-        				WayBean sWay = overlapping.getWay(member.getRef());
+					if (member.isWay()) {
+        				WayBean sWay = org.getWay(member.getRef());
         				if (sWay != null) {
             				member.setRef(sWay.getId());
+            				mrg.putWay(org.getWay(sWay.getId()));
         				}
 					}
 				}

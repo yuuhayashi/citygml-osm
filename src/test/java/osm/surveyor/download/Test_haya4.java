@@ -41,14 +41,6 @@ public class Test_haya4 extends DownloadTest {
 				assertNull(way.getTagValue("highway"));
 				// "landuse"WAYは存在しないこと
 				assertNull(way.getTagValue("landuse"));
-				if (way.getId() == 289757586l) {
-					// タグありNODEを持つWAYは、 'FIX=true' であること
-					assertTrue(way.getFix());
-				}
-				if (way.getId() == 241755306l) {
-					// リレーションメンバーのWAYは 'FIX=true' であること
-					assertTrue(way.getFix());
-				}
 			}
 		} catch (Exception e) {
 			e.fillInStackTrace();
