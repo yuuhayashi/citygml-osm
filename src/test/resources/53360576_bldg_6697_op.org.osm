@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<osm generator="JOSM" version="0.6">
+    <bounds minlat="35.3915544" minlon="136.7046955" maxlat="35.4002105" maxlon="136.7124931" origin="CGImap 0.8.3 (2061540 spike-08.openstreetmap.org)"/>
+    <node lat="35.3922313" lon="136.7121636" changeset="11582410" id="1750554623" timestamp="2012-05-13T04:14:56Z" uid="628459" user="hide30" version="1" visible="true"/>
+    <node lat="35.3920922" lon="136.7121316" changeset="11582410" id="1750554591" timestamp="2012-05-13T04:14:55Z" uid="628459" user="hide30" version="1" visible="true"/>
+    <node lat="35.3920500" lon="136.7120585" changeset="11582410" id="1750554590" timestamp="2012-05-13T04:14:55Z" uid="628459" user="hide30" version="1" visible="true"/>
+    <node lat="35.3922238" lon="136.7119442" changeset="11582410" id="1750554621" timestamp="2012-05-13T04:14:56Z" uid="628459" user="hide30" version="1" visible="true"/>
+    <node lat="35.3920480" lon="136.7119257" changeset="11582410" id="1750554589" timestamp="2012-05-13T04:14:55Z" uid="628459" user="hide30" version="1" visible="true"/>
+    <node lat="35.3920458" lon="136.7118183" changeset="11582410" id="1750554588" timestamp="2012-05-13T04:14:55Z" uid="628459" user="hide30" version="1" visible="true"/>
+    <node lat="35.3922102" lon="136.7121955" changeset="11582410" id="1750554619" timestamp="2012-05-13T04:14:56Z" uid="628459" user="hide30" version="1" visible="true"/>
+    <node lat="35.3920413" lon="136.7119717" changeset="11582410" id="1750554587" timestamp="2012-05-13T04:14:55Z" uid="628459" user="hide30" version="1" visible="true"/>
+    <node lat="35.3921940" lon="136.7121971" changeset="11582410" id="1750554617" timestamp="2012-05-13T04:14:56Z" uid="628459" user="hide30" version="1" visible="true"/>
+    <node lat="35.3921543" lon="136.7119458" changeset="11582410" id="1750554599" timestamp="2012-05-13T04:14:55Z" uid="628459" user="hide30" version="1" visible="true"/>
+    <node lat="35.3921419" lon="136.7121651" changeset="11582410" id="1750554597" timestamp="2012-05-13T04:14:55Z" uid="628459" user="hide30" version="1" visible="true"/>
+    <node lat="35.3922715" lon="136.7119186" changeset="11582410" id="1750554628" timestamp="2012-05-13T04:14:56Z" uid="628459" user="hide30" version="1" visible="true"/>
+    <node lat="35.3922692" lon="136.7118112" changeset="11582410" id="1750554627" timestamp="2012-05-13T04:14:56Z" uid="628459" user="hide30" version="1" visible="true"/>
+    <node lat="35.3921108" lon="136.7119458" changeset="11582410" id="1750554592" timestamp="2012-05-13T04:14:55Z" uid="628459" user="hide30" version="1" visible="true"/>
+    <node lat="35.3921940" lon="136.7121605" changeset="11582410" id="1750554604" timestamp="2012-05-13T04:14:55Z" uid="628459" user="hide30" version="1" visible="true"/>
+    <node lat="35.3921617" lon="136.7121620" changeset="11582410" id="1750554601" timestamp="2012-05-13T04:14:55Z" uid="628459" user="hide30" version="1" visible="true"/>
+    <way fix="false" changeset="11582410" id="163341206" timestamp="2012-05-13T04:14:57Z" uid="628459" user="hide30" version="1" visible="true">
+        <tag k="building" v="yes"/>
+        <tag k="source" v="Bing"/>
+        <nd ref="1750554621"/>
+        <nd ref="1750554623"/>
+        <nd ref="1750554619"/>
+        <nd ref="1750554617"/>
+        <nd ref="1750554604"/>
+        <nd ref="1750554601"/>
+        <nd ref="1750554599"/>
+        <nd ref="1750554621"/>
+    </way>
+    <way fix="false" changeset="11582410" id="163341207" timestamp="2012-05-13T04:14:57Z" uid="628459" user="hide30" version="1" visible="true">
+        <tag k="building" v="yes"/>
+        <tag k="source" v="Bing"/>
+        <nd ref="1750554599"/>
+        <nd ref="1750554592"/>
+        <nd ref="1750554587"/>
+        <nd ref="1750554590"/>
+        <nd ref="1750554591"/>
+        <nd ref="1750554597"/>
+        <nd ref="1750554601"/>
+        <nd ref="1750554599"/>
+    </way>
+    <way fix="false" changeset="11582410" id="163341201" timestamp="2012-05-13T04:14:57Z" uid="628459" user="hide30" version="1" visible="true">
+        <tag k="building" v="yes"/>
+        <tag k="source" v="Bing"/>
+        <nd ref="1750554627"/>
+        <nd ref="1750554628"/>
+        <nd ref="1750554589"/>
+        <nd ref="1750554588"/>
+        <nd ref="1750554627"/>
+    </way>
+</osm>

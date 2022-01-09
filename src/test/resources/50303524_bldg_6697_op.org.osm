@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<osm generator="JOSM" version="0.6">
+    <bounds minlat="33.6002339" minlon="130.6748489" maxlat="33.6083837" maxlon="130.6874967" origin="CGImap 0.8.3 (2061540 spike-08.openstreetmap.org)"/>
+    <node lat="33.6052916" lon="130.6777815" changeset="63784268" id="6006786824" timestamp="2018-10-23T07:49:03Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6054680" lon="130.6780371" changeset="63784268" id="6006786827" timestamp="2018-10-23T07:49:03Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6054740" lon="130.6780114" changeset="63784268" id="6006786826" timestamp="2018-10-23T07:49:03Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6053329" lon="130.6780037" changeset="63784268" id="6006786829" timestamp="2018-10-23T07:49:03Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6053366" lon="130.6779876" changeset="63784268" id="6006786828" timestamp="2018-10-23T07:49:03Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6053717" lon="130.6777353" changeset="63784268" id="6006786817" timestamp="2018-10-23T07:49:03Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6053685" lon="130.6777479" changeset="63784268" id="6006786816" timestamp="2018-10-23T07:49:03Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6053946" lon="130.6777586" changeset="63784268" id="6006786819" timestamp="2018-10-23T07:49:03Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6053981" lon="130.6777450" changeset="63784268" id="6006786818" timestamp="2018-10-23T07:49:03Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6054160" lon="130.6778541" changeset="63784268" id="6006786821" timestamp="2018-10-23T07:49:03Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6054363" lon="130.6777738" changeset="63784268" id="6006786820" timestamp="2018-10-23T07:49:03Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6052651" lon="130.6779339" changeset="63784268" id="6006786832" timestamp="2018-10-23T07:49:03Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6052916" lon="130.6777815" changeset="63784268" id="6006786794" timestamp="2018-10-23T07:49:03Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6051764" lon="130.6777812" changeset="63784268" id="6006786797" timestamp="2018-10-23T07:49:03Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6052824" lon="130.6778186" changeset="63784268" id="6006786796" timestamp="2018-10-23T07:49:03Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6052651" lon="130.6779339" changeset="63784268" id="6006786799" timestamp="2018-10-23T07:49:03Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6051490" lon="130.6778929" changeset="63784268" id="6006786798" timestamp="2018-10-23T07:49:03Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6054762" lon="130.6779279" changeset="63784268" id="6006786809" timestamp="2018-10-23T07:49:03Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6054892" lon="130.6778808" changeset="63784268" id="6006786808" timestamp="2018-10-23T07:49:03Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6051965" lon="130.6775944" changeset="76283315" id="6923847362" timestamp="2019-10-28T06:15:19Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6052947" lon="130.6777696" changeset="63784268" id="6006786811" timestamp="2018-10-23T07:49:03Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6047853" lon="130.6774755" changeset="76283315" id="6923847363" timestamp="2019-10-28T06:15:19Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6052741" lon="130.6778507" changeset="63784268" id="6006786810" timestamp="2018-10-23T07:49:03Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6047673" lon="130.6775584" changeset="76283315" id="6923847364" timestamp="2019-10-28T06:15:19Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6053263" lon="130.6777572" changeset="63784268" id="6006786813" timestamp="2018-10-23T07:49:03Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6048798" lon="130.6775926" changeset="76283315" id="6923847365" timestamp="2019-10-28T06:15:19Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6053207" lon="130.6777792" changeset="63784268" id="6006786812" timestamp="2018-10-23T07:49:03Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6048888" lon="130.6775476" changeset="76283315" id="6923847366" timestamp="2019-10-28T06:15:19Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6053459" lon="130.6777396" changeset="63784268" id="6006786815" timestamp="2018-10-23T07:49:03Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6051875" lon="130.6776413" changeset="76283315" id="6923847367" timestamp="2019-10-28T06:15:19Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6053401" lon="130.6777623" changeset="63784268" id="6006786814" timestamp="2018-10-23T07:49:03Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6051470" lon="130.6762863" changeset="76283315" id="6923847368" timestamp="2019-10-28T06:15:19Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6051109" lon="130.6779242" changeset="63784268" id="6006786801" timestamp="2018-10-23T07:49:03Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6051229" lon="130.6763494" changeset="76283315" id="6923847369" timestamp="2019-10-28T06:15:19Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6052550" lon="130.6779751" changeset="63784268" id="6006786800" timestamp="2018-10-23T07:49:03Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6051394" lon="130.6763620" changeset="76283315" id="6923847370" timestamp="2019-10-28T06:15:19Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6051019" lon="130.6764467" changeset="76283315" id="6923847371" timestamp="2019-10-28T06:15:19Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6051574" lon="130.6777342" changeset="63784268" id="6006786802" timestamp="2018-10-23T07:49:03Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6050194" lon="130.6763963" changeset="76283315" id="6923847372" timestamp="2019-10-28T06:15:19Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6050599" lon="130.6763080" changeset="76283315" id="6923847373" timestamp="2019-10-28T06:15:19Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6050749" lon="130.6763224" changeset="76283315" id="6923847374" timestamp="2019-10-28T06:15:19Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6052550" lon="130.6779751" changeset="63784268" id="6006786807" timestamp="2018-10-23T07:49:03Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <node lat="33.6051034" lon="130.6762539" changeset="76283315" id="6923847375" timestamp="2019-10-28T06:15:19Z" uid="912581" user="nekomanma" version="1" visible="true"/>
+    <way fix="false" changeset="76283315" id="739480323" timestamp="2019-10-28T06:15:19Z" uid="912581" user="nekomanma" version="1" visible="true">
+        <tag k="amenity" v="bicycle_parking"/>
+        <tag k="bicycle_parking" v="shed"/>
+        <tag k="building" v="yes"/>
+        <nd ref="6923847362"/>
+        <nd ref="6923847363"/>
+        <nd ref="6923847364"/>
+        <nd ref="6923847365"/>
+        <nd ref="6923847366"/>
+        <nd ref="6923847367"/>
+        <nd ref="6923847362"/>
+    </way>
+    <way fix="false" changeset="76283315" id="739480324" timestamp="2019-10-28T06:15:19Z" uid="912581" user="nekomanma" version="1" visible="true">
+        <tag k="amenity" v="place_of_worship"/>
+        <tag k="building" v="yes"/>
+        <tag k="name" v="天道宮"/>
+        <tag k="religion" v="shinto"/>
+        <nd ref="6923847368"/>
+        <nd ref="6923847369"/>
+        <nd ref="6923847370"/>
+        <nd ref="6923847371"/>
+        <nd ref="6923847372"/>
+        <nd ref="6923847373"/>
+        <nd ref="6923847374"/>
+        <nd ref="6923847375"/>
+        <nd ref="6923847368"/>
+    </way>
+    <way fix="false" changeset="63785018" id="637099745" timestamp="2018-10-23T08:12:57Z" uid="912581" user="nekomanma" version="2" visible="true">
+        <tag k="building" v="train_station"/>
+        <tag k="layer" v="1"/>
+        <nd ref="6006786808"/>
+        <nd ref="6006786809"/>
+        <nd ref="6006786810"/>
+        <nd ref="6006786824"/>
+        <nd ref="6006786811"/>
+        <nd ref="6006786812"/>
+        <nd ref="6006786813"/>
+        <nd ref="6006786814"/>
+        <nd ref="6006786815"/>
+        <nd ref="6006786816"/>
+        <nd ref="6006786817"/>
+        <nd ref="6006786818"/>
+        <nd ref="6006786819"/>
+        <nd ref="6006786820"/>
+        <nd ref="6006786821"/>
+        <nd ref="6006786808"/>
+    </way>
+    <way fix="false" changeset="63785018" id="637099744" timestamp="2018-10-23T08:12:57Z" uid="912581" user="nekomanma" version="2" visible="true">
+        <tag k="building" v="yes"/>
+        <tag k="layer" v="2"/>
+        <nd ref="6006786796"/>
+        <nd ref="6006786797"/>
+        <nd ref="6006786798"/>
+        <nd ref="6006786799"/>
+        <nd ref="6006786800"/>
+        <nd ref="6006786801"/>
+        <nd ref="6006786802"/>
+        <nd ref="6006786794"/>
+        <nd ref="6006786796"/>
+    </way>
+    <way fix="false" changeset="63784268" id="637099746" timestamp="2018-10-23T07:49:04Z" uid="912581" user="nekomanma" version="1" visible="true">
+        <tag k="building" v="roof"/>
+        <nd ref="6006786832"/>
+        <nd ref="6006786826"/>
+        <nd ref="6006786827"/>
+        <nd ref="6006786828"/>
+        <nd ref="6006786829"/>
+        <nd ref="6006786807"/>
+        <nd ref="6006786832"/>
+    </way>
+</osm>
