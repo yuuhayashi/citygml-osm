@@ -1,7 +1,11 @@
 package osm.surveyor.update;
 
+import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -14,6 +18,33 @@ import osm.surveyor.osm.OsmBean;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Test_A extends OsmUpdaterTest {
 
+	@Before
+	public void setup() {
+		try {
+			Files.copy(
+				Paths.get("./src/test/resources/53392547_bldg_6697_op2.osm"),
+				Paths.get("./53392547_bldg_6697_op2.osm")
+			);
+			Files.copy(
+				Paths.get("./src/test/resources/53392547_bldg_6697_op2.org.osm"),
+				Paths.get("./53392547_bldg_6697_op2.org.osm")
+			);
+			Files.copy(
+				Paths.get("./src/test/resources/sample_a_bldg_6697_op2.osm"),
+				Paths.get("./sample_a_bldg_6697_op2.osm")
+			);
+			Files.copy(
+				Paths.get("./src/test/resources/sample_a_bldg_6697_op2.org.osm"),
+				Paths.get("./sample_a_bldg_6697_op2.org.osm")
+			);
+		}
+		catch (FileAlreadyExistsException ee) {}
+		catch (IOException e) {
+			e.printStackTrace();
+			fail();
+		}
+	}
+	
 	/**
 	 * 東京都大田区南六郷三丁目 "53392547_bldg_6697_op2"
 	 * `mvn test -Dtest=OsmUpdaterTest_A#test_a`
@@ -26,7 +57,7 @@ public class Test_A extends OsmUpdaterTest {
 	 */
 	@Test
 	public void test_53392547() {
-		BodyMap map = testdo(Paths.get("./src/test/resources/53392547_bldg_6697_op2.osm"));
+		BodyMap map = testdo(Paths.get("./53392547_bldg_6697_op2.osm"));
         try {
     		// (1)指定されたOSMファイルをLOADする
         	// (2) <bound/>を取得する
@@ -56,7 +87,7 @@ public class Test_A extends OsmUpdaterTest {
     		// (3) OSMから<bound>範囲内の現在のデータをダウンロードする
         		// (4) ダウンロードしたデータをパースする
         	// (5) "building"関係のPOIのみに絞る
-    		BodyMap map = testdo(Paths.get("./src/test/resources/sample_a_bldg_6697_op2.osm"));
+    		BodyMap map = testdo(Paths.get("./sample_a_bldg_6697_op2.osm"));
     		OsmBean mrg = (OsmBean) map.get("mrg");
 	        assertNotNull(mrg);
 		} catch (Exception e) {

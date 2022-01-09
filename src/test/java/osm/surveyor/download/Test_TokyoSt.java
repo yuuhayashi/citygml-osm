@@ -41,12 +41,10 @@ public class Test_TokyoSt extends DownloadTest {
 				assertNull(way.getTagValue("highway"));
 				// "landuse"WAYは存在しないこと
 				assertNull(way.getTagValue("landuse"));
-				if (!way.getFix()) {
-					wcnt++;
-				}
+				wcnt++;
 			}
 			// リレーションのメンバーでないWAYは８個のみ
-			assertEquals(8, wcnt);
+			assertEquals(80, wcnt);
 		}
 		catch (Exception e) {
 			e.printStackTrace();

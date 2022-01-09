@@ -59,20 +59,20 @@ public class Test_Fujitv extends OsmUpdaterTest {
 	        assertNotNull(osm);
 	        assertNotNull(org);
 	        assertNotNull(mrg);
-	        BoundsBean bound = org.getBounds();
+	        BoundsBean bound = mrg.getBounds();
 	        assertNotNull(bound);
-	        assertEquals("35.6282000", bound.maxlat);
-	        assertEquals("139.7782000", bound.maxlon);
-	        assertEquals("139.7713000", bound.minlon);
-	        assertEquals("35.6255000", bound.minlat);
+	        assertEquals("35.6282", bound.maxlat);
+	        assertEquals("139.7782", bound.maxlon);
+	        assertEquals("139.7713", bound.minlon);
+	        assertEquals("35.6255", bound.minlat);
 	        
-	        List<NodeBean> nodes = org.getNodeList();
+	        List<NodeBean> nodes = mrg.getNodeList();
 	        assertNotNull(nodes);
 	        for (NodeBean node : nodes) {
 	        	assertNotEquals(0, node.getId());
 	        }
 	        
-	        List<WayBean> ways = org.getWayList();
+	        List<WayBean> ways = mrg.getWayList();
 	        assertNotNull(ways);
 	        for (WayBean way : ways) {
 	        	assertFalse(way.getFix());

@@ -1,16 +1,13 @@
 package osm.surveyor.download;
 
 import java.nio.file.Paths;
-import java.util.List;
 
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import osm.surveyor.osm.BodyMap;
-import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.OsmBean;
-import osm.surveyor.osm.RelationBean;
 import osm.surveyor.osm.WayBean;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -37,17 +34,6 @@ public class Test_B extends DownloadTest {
 			
 			// 中空を持つビルディングリレーションが存在する
 			assertTrue(org.getRelationList().size() >= 1);
-			for (RelationBean relation : org.getRelationList()) {
-				List<MemberBean> members = relation.getMemberList();
-				for (MemberBean member : members) {
-					// リレーションメンバーのWAYは 'FIX=true' であること
-					if (member.isWay()) {
-						WayBean way = org.getWay(member.getRef());
-						assertTrue(way.getFix());
-					}
-				}
-			}
-			
 			assertTrue(org.getWayList().size() > 100);
 			for (WayBean way : org.getWayList()) {
 				// "highway"WAYは存在しないこと

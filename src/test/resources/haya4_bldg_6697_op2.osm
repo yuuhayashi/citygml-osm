@@ -105,6 +105,7 @@
     <nd ref='-101995' />
     <nd ref='-101996' />
     <nd ref='-101993' />
+    <tag k='ref:MLIT_PLATEAU' v='11111-bldg-101981' />
   </way>
   <way id='-101982' action='modify' visible='true'>
     <nd ref='-101997' />
@@ -112,6 +113,7 @@
     <nd ref='-101999' />
     <nd ref='-102000' />
     <nd ref='-101997' />
+    <tag k='ref:MLIT_PLATEAU' v='11111-bldg-101982' />
   </way>
   <way id='-101983' action='modify' visible='true'>
     <nd ref='-101989' />

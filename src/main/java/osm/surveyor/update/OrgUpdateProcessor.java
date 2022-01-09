@@ -23,7 +23,6 @@ public class OrgUpdateProcessor implements Processor {
 		BodyMap map = exchange.getIn().getBody(BodyMap.class);
 		OsmBean osm = (OsmBean) map.get("osm");		// dom
 		OsmBean org = (OsmBean) map.get("org");		// sdom
-		//OsmBean mrg = (OsmBean) map.get("mrg");		// ddom
 
 		// タグありのノードをメンバーに持つウェイは「非更新対象」(fix=true)にする
 		fixWayWithNode(org);
@@ -41,20 +40,11 @@ public class OrgUpdateProcessor implements Processor {
 		// すべてのノードを'modify'に確定する
 		fixToModify(osm);
 
-		//mrg.setNodeList(osm.getNodeList());
-		
-		// インポートデータの内で、既存データと重複しないものを'modify'に確定する
-		//notDuplicatedToModify(osm, org);
-    	
 		// インポートデータの内で、既存データと重複するWAYを'modify'に確定する
 		duplicatedToModify(osm, org);
-		//fixToModify(osm, mrg);
-		
-		// actionが未定のまま残存しているWAYを削除する
-		//removeNoAction(mrg);
 
 		// WAYに所属していないNODEを削除する
-		//osm.gerbageNode();
+		osm.gerbageNode();
 		map.put("mrg", osm);
 	}
 	
@@ -76,7 +66,10 @@ public class OrgUpdateProcessor implements Processor {
 		relation.setFix(true);
 		for (MemberBean member : relation.getMemberList()) {
 			if (member.isWay()) {
-				org.getWay(member.getRef()).setFix(true);
+				WayBean way = org.getWay(member.getRef());
+				if (way != null) {
+					way.setFix(true);
+				}
 			}
 		}
 	}
@@ -168,105 +161,40 @@ public class OrgUpdateProcessor implements Processor {
 	}
 	
 	/**
-	 * インポートデータの内で、既存データと重複しないものを'modify'に確定する
-	 * @throws Exception 
-	 */
-	private void notDuplicatedToModify(OsmBean osm, OsmBean org) throws Exception {
-		List<WayBean> modifyList = new ArrayList<>();
-		
-		// リレーションに所属しないWAYを処理する
-		for (WayBean way : osm.getWayList()) {
-			if (!way.isInnerWay(osm.getRelationList())) {
-				if (!way.isIntersect(org.getWayList())) {
-					modifyList.add(way);
-				}
-			}
-		}
-		for (WayBean way : modifyList) {
-			way.setAction("modify");
-			way.orignal = false;
-		}
-		
-		// TODO リレーションに所属するWAYも同様に処理する
-	}
-	
-	/**
 	 * インポートデータの内で、既存データと重複するWAYをインポートデータへマージする
 	 * @throws Exception
 	 */
 	private void duplicatedToModify(OsmBean osm, OsmBean org) throws Exception {
+		List<WayBean> work = new ArrayList<>();
 		for (WayBean way : osm.getWayList()) {
+			work.add(way);
+		}
+		for (WayBean way : work) {
 			long oldid = way.getId();
 			
 			// org.WAYと重複する面積が最大の osm.WAY.id を返す
 			long wayid = way.getIntersect(org.getWayList());
 			if (wayid > 0) {
 				WayBean sWay = org.getWay(wayid);
-				way.setAction("modify");
-				way.orignal = false;
-				way.addTag(new TagBean("MLIT_PLATEAU:fixme", "PLATEAUデータで更新されています"));
 				way.copyTag(sWay);
-				way.setId(sWay.getId());
+				way.addTag(new TagBean("MLIT_PLATEAU:fixme", "PLATEAUデータで更新されています"));
+				sWay.copyTag(way);
+				sWay.setAction("modify");
+				sWay.orignal = false;
+				sWay.setNdList(way.getNdList());
+				osm.removeWay(way);
+				osm.putWay(sWay);
         		
         		for (RelationBean relation : osm.getRelationList()) {
         			relation.setAction("modify");
         			for (MemberBean member : relation.getMemberList()) {
         				if (member.getRef() == oldid) {
-        					member.setWay(way);
+        					member.setWay(sWay);
         				}
         			}
         		}
 			}
 		}
-	}
-	
-	/**
-	 * インポートデータの内で、Multipolygonを'modify'に確定する
-	 * インポートデータの内で、building RELATIONを'modify'に確定する
-	 */
-	private void fixToModify(OsmBean osm, OsmBean mrg) throws Exception {
-		for (RelationBean relation : osm.getRelationList()) {
-			if (relation.isMultipolygon()) {
-    			for (MemberBean member : relation.getMemberList()) {
-					if (member.isWay()) {
-        				WayBean sWay = osm.getWay(member.getRef());
-            			if (sWay != null) {
-                    		sWay.toMultipolygonMemberTag();
-            				member.setRef(sWay.getId());
-            				mrg.putWay(osm.getWay(sWay.getId()));
-            			}
-					}
-    			}
-			}
-			else if (relation.isBuilding()) {
-				for (MemberBean member : relation.getMemberList()) {
-					if (member.isWay()) {
-        				WayBean sWay = osm.getWay(member.getRef());
-        				if (sWay != null) {
-            				member.setRef(sWay.getId());
-            				mrg.putWay(osm.getWay(sWay.getId()));
-        				}
-					}
-				}
-			}
-			relation.setAction("modify");
-			mrg.putRelation(relation);
-		}
-	}
-
-	/**
-	 * actionが未定のまま残存しているWAYを削除する
-	 */
-	private void removeNoAction(OsmBean mrg) {
-		List<WayBean> removeList = new ArrayList<>();
-		for (WayBean sWay : mrg.getWayList()) {
-			if (sWay.getAction() == null) {
-				removeList.add(sWay);
-			}
-		}
-    	for (WayBean obj : removeList) {
-    		mrg.getWayList().remove(mrg.getWayList().indexOf(obj));
-    	}
 	}
 	
 	/**
