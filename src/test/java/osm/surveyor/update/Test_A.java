@@ -8,10 +8,8 @@ import java.nio.file.Paths;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
 import org.junit.runners.MethodSorters;
 
-import osm.surveyor.DetailTests;
 import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.OsmBean;
 
@@ -25,14 +23,35 @@ public class Test_A extends OsmUpdaterTest {
 				Paths.get("./src/test/resources/53392547_bldg_6697_op2.osm"),
 				Paths.get("./53392547_bldg_6697_op2.osm")
 			);
+		}
+		catch (FileAlreadyExistsException ee) {}
+		catch (IOException e) {
+			e.printStackTrace();
+			fail();
+		}
+		try {
 			Files.copy(
 				Paths.get("./src/test/resources/53392547_bldg_6697_op2.org.osm"),
 				Paths.get("./53392547_bldg_6697_op2.org.osm")
 			);
+		}
+		catch (FileAlreadyExistsException ee) {}
+		catch (IOException e) {
+			e.printStackTrace();
+			fail();
+		}
+		try {
 			Files.copy(
 				Paths.get("./src/test/resources/sample_a_bldg_6697_op2.osm"),
 				Paths.get("./sample_a_bldg_6697_op2.osm")
 			);
+		}
+		catch (FileAlreadyExistsException ee) {}
+		catch (IOException e) {
+			e.printStackTrace();
+			fail();
+		}
+		try {
 			Files.copy(
 				Paths.get("./src/test/resources/sample_a_bldg_6697_op2.org.osm"),
 				Paths.get("./sample_a_bldg_6697_op2.org.osm")
@@ -76,18 +95,17 @@ public class Test_A extends OsmUpdaterTest {
 	 * `mvn test -Dtest=OsmUpdaterTest_A#test_d1`
 	 * 
 	 * INPUT: "sample_a_bldg_6697_op2.osm"
-	 * INPUT: "sample_a3_bldg_6697_op2.org.osm"
+	 * INPUT: "sample_a_bldg_6697_op2.org.osm"
 	 */
 	@Test
-	@Category(DetailTests.class)
-	public void test_a3() {
+	public void test_a() {
         try {
         	// (1)指定されたOSMファイルをLOADする
         	// (2) <bound/>を取得する
     		// (3) OSMから<bound>範囲内の現在のデータをダウンロードする
         		// (4) ダウンロードしたデータをパースする
         	// (5) "building"関係のPOIのみに絞る
-    		BodyMap map = testdo(Paths.get("./sample_a_bldg_6697_op2.osm"));
+    		BodyMap map = testdo(Paths.get("sample_a_bldg_6697_op2.osm"));
     		OsmBean mrg = (OsmBean) map.get("mrg");
 	        assertNotNull(mrg);
 		} catch (Exception e) {
