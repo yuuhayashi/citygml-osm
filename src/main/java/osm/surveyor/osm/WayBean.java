@@ -156,7 +156,13 @@ public class WayBean extends PoiBean implements Cloneable, Serializable {
 	 */
 	public double getIntersectArea(WayBean way) {
         Polygon polygon = this.getPolygon();
+        if (polygon == null) {
+        	return 0.0d;
+        }
         Polygon polygon2 = way.getPolygon();
+        if (polygon2 == null) {
+        	return 0.0d;
+        }
         Geometry intersect = polygon.intersection(polygon2);
 		if (intersect == null) {
 			return 0.0d;
