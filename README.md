@@ -64,7 +64,7 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 ![startup.pu](doc/startup.png)
 
-- (1) [GitHub-Release](https://github.com/yuuhayashi/citygml-osm/releases) から 'citygml-osm-1.3.x.zip' をダウンロードして、'任意のフォルダ'に解凍する<br/> `citygml-osm-1.3.x-jar-with-dependencies.jar` と `conversion.json` が解凍されます
+- (1) [GitHub-Release](https://github.com/yuuhayashi/citygml-osm/releases) から 'citygml-osm-1.3.x.zip' をダウンロードして、'任意のフォルダ'に解凍する<br/> `citygml-osm-jar-with-dependencies.jar` と `conversion.json` が解凍されます
   - [GitHub](https://github.com/yuuhayashi/citygml-osm)の右側にある「[Release](https://github.com/yuuhayashi/citygml-osm/releases)」欄から最新'Latest'版をダウンロードしてください
 
 - (2) [オープンデータ公開サイト](https://www.geospatial.jp/ckan/dataset/plateau)から「3D都市データ」をダウンロードする
@@ -75,7 +75,7 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 ```
   $ cd (解凍先フォルダ)
-  $ java -jar citygml-osm-1.3.x-jar-with-dependencies.jar
+  $ java -jar citygml-osm-jar-with-dependencies.jar 1st
 ```
 
 - (5) JOSMを起動して、「`*****.osm`」ファイルをJOSMにドロップしてください。<br/>生成されたデータを確認することができます。
@@ -88,7 +88,7 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 ```
   $ cd (解凍先フォルダ)
-  $ java -jar citygml-osm-1.3.x-jar-with-dependencies.jar
+  $ java -jar citygml-osm-jar-with-dependencies.jar 2nd
 ```
 
 - Issue #41 ['fixme'による手動選別](https://github.com/yuuhayashi/citygml-osm/issues/42)
@@ -109,7 +109,7 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 ```
   $ cd (解凍先フォルダ)
-  $ java -cp citygml-osm-jar-with-dependencies.jar osm.surveyor.update.OsmUpdater
+  $ java -jar citygml-osm-jar-with-dependencies.jar 3rd
 ```
 
 - (2) JOSMを起動して、「`*.mrg.osm`」ファイルをJOSMにドロップしてください。<br/>生成されたデータを確認することができます。

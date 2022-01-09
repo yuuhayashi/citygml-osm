@@ -9,19 +9,17 @@ node PC {
 
  folder 任意のフォルダ {
 
-  file "citygml-osm-1.3.x-jar-with-dependencies.jar" as jar
+  file "citygml-osm-jar-with-dependencies.jar" as jar
   collections "`*.osm`\n第一段階 生成物\n(範囲のみ)" as osm
   step1 --> osm
  
-  () "OsmDownloader" as cmd
+  () "cmd 2nd" as cmd
   jar .. cmd
   osm .. cmd
   osmapi .. cmd
  
-  file "第二段階 生成物\n変更しない既存データ\n'xxxx.fixed.org.osm'" as fixed
-  file "第二段階 生成物\n変更する既存データ\n'xxxx.target.org.osm'" as target
-  cmd --> fixed
-  cmd --> target
+  file "第二段階 生成物\n既存データ\n`*.org.osm`" as org
+  cmd -> org
  }
 
 }
