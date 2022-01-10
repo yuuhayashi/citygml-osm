@@ -44,7 +44,7 @@ public class OsmUpdaterTest extends CamelTestSupport {
 		// (3) OSMから<bound>範囲内の現在のデータをダウンロードする
     		// (4) ダウンロードしたデータをパースする
     	// (5) "building"関係のPOIのみに絞る
-        template.send("direct:osm-file-read",exchange);
+        template.send("direct:org-file-read",exchange);
         
         return exchange.getIn().getBody(BodyMap.class);
     }

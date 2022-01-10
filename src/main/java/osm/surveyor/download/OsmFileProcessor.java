@@ -17,6 +17,8 @@ public class OsmFileProcessor implements Processor {
 	public void process(Exchange exchange) throws Exception {
 		File file = exchange.getIn().getBody(File.class);
 
+		System.out.println("OsmFileProcessor : \""+ file.getName() +"\"");
+		
         FileEndpoint endpoint = new FileEndpoint();
 		endpoint.setFile(file);
 		exchange.setFromEndpoint(endpoint);

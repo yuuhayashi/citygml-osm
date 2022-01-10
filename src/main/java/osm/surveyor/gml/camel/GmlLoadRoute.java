@@ -63,7 +63,7 @@ public class GmlLoadRoute extends RouteBuilder {
 		from("direct:osm-export")
 		.process(new GmlFileToOsmProcessor())
 		.process(new OsmExportProcessor())
-		.to("stream:out")
+		//.to("stream:out")
         ;
 	}
 

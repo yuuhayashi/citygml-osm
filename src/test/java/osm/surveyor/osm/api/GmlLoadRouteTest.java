@@ -89,10 +89,6 @@ public abstract class GmlLoadRouteTest extends CamelTestSupport {
 			    	// 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる
 			    	// Relation:multipolygon の MaxHeightを outline->Multipolygonへ設定する
 			    	while((new RelationMarge(osm)).relationMarge());
-			    	
-		            // Export
-			    	//osm.export(new File(filename + "_2.osm"));
-			    	
 				} catch (Exception e) {
 					e.printStackTrace();
 					fail(e.toString());
@@ -133,10 +129,6 @@ public abstract class GmlLoadRouteTest extends CamelTestSupport {
 					// (3) メンバーが一つしかないRelation:building を削除する
 					// (3) メンバーが一つしかないRelation:multipolygon と polygon:member を削除する
 			    	(new BuildingGarbage(osm)).garbage();
-			    	
-		            // Export
-			    	//osm.export(new File(filename + "_3.osm"));
-		            
 				} catch (Exception e) {
 					e.printStackTrace();
 					fail(e.toString());
@@ -181,10 +173,6 @@ public abstract class GmlLoadRouteTest extends CamelTestSupport {
 		            // (4) Relation:building->member:role=port のWay:outlineを作成する
 		            // (4) Relation:multipolygon->outerにWay:outline
 			    	(new OutlineFactory(osm)).relationOutline();
-			    	
-		            // Export
-			    	//osm.export(new File(filename + "_4.osm"));
-			    	
 				} catch (Exception e) {
 					e.printStackTrace();
 					fail(e.toString());

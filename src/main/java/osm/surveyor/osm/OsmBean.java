@@ -183,7 +183,10 @@ public class OsmBean implements Serializable {
 			}
 		}
     	for (RelationBean obj : removeList) {
-    		this.relationList.remove(this.relationList.indexOf(obj));
+    		int index = this.relationList.indexOf(obj);
+    		if (index >= 0) {
+        		this.relationList.remove(index);
+    		}
     	}
 		getRelationList().add(poi);
 	}
@@ -215,7 +218,10 @@ public class OsmBean implements Serializable {
 				removeWay(this.getWay(member.getRef()));
 			}
 		}
-		this.relationList.remove(this.relationList.indexOf(poi));
+		int index = this.relationList.indexOf(poi);
+		if (index >= 0) {
+			this.relationList.remove(index);
+		}
 	}
 
 	/**

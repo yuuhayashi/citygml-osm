@@ -19,6 +19,8 @@ public class GmlFileReadProcessor implements Processor {
 		FileEndpoint endpoint = (FileEndpoint)exchange.getFromEndpoint();
 		File file = endpoint.getFile();
 		
+		System.out.println("GmlFileReadProcessor : \""+ file.getName() +"\"");
+		
         // (1) GMLファイルをパースする
         OsmDom osm = new OsmDom();
         CitygmlFile target = new CitygmlFile(file, osm);

@@ -23,6 +23,8 @@ public class OsmExportProcessor implements Processor {
 		FileEndpoint endpoint = (FileEndpoint)exchange.getFromEndpoint();
 		File file = endpoint.getFile();
 		
+		System.out.println("OsmExportProcessor : \""+ file.getName() +"\"");
+		
 		OsmDom osm = exchange.getIn().getBody(OsmDom.class);
 		osm.export(file);
 		

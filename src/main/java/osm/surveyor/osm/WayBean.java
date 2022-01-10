@@ -138,15 +138,20 @@ public class WayBean extends PoiBean implements Cloneable, Serializable {
 	 * @return	ラインが閉じたエリア出ない場合は0.0d
 	 */
 	public Polygon getPolygon() {
-        GeometryFactory geometryFactory = JTSFactoryFinder.getGeometryFactory();
-        LinearRing ring = geometryFactory.createLinearRing(getCoordinates());
-        Polygon polygon = geometryFactory.createPolygon(ring, null);
-        if (polygon.isValid()) {
-            return polygon;
-        }
-        else {
-        	return null;
-        }
+		try {
+	        GeometryFactory geometryFactory = JTSFactoryFinder.getGeometryFactory();
+	        LinearRing ring = geometryFactory.createLinearRing(getCoordinates());
+	        Polygon polygon = geometryFactory.createPolygon(ring, null);
+	        if (polygon.isValid()) {
+	            return polygon;
+	        }
+	        else {
+	        	return null;
+	        }
+		}
+		catch (Exception e) {
+			return null;
+		}
 	}
 
 	/**

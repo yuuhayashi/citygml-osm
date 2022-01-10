@@ -29,7 +29,7 @@ public class DownloadRoute extends RouteBuilder {
 		// (3) データをファイルに書き出す
 		from("direct:osm-org-export")
 		.process(new OrgExportFileProcessor())	// データをファイルに書き出す
-        .to("stream:out")
+        //.to("stream:out")
         ;
 	}
 
