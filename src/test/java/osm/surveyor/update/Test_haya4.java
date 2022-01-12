@@ -80,7 +80,6 @@ public class Test_haya4 extends OsmUpdaterTest {
 	        List<WayBean> ways = mrg.getWayList();
 	        assertNotNull(ways);
 	        for (WayBean way : ways) {
-	        	assertFalse(way.getFix());
 	        	for (NdBean nd : way.getNdList()) {
 	        		assertNotNull(mrg.getNode(nd.getRef()));
 	        	}
@@ -98,6 +97,38 @@ public class Test_haya4 extends OsmUpdaterTest {
 	        List<RelationBean> relations = mrg.getRelationList();
 	        assertNotNull(relations);
 	        for (RelationBean relation : relations) {
+	        	if (relation.getId() == -178479) {
+	        		assertTrue(relation.isMultipolygon());
+	        		assertEquals(3, relation.getMemberList().size());
+		        	for (MemberBean member : relation.getMemberList()) {
+		        		assertTrue(member.isWay());
+		        		if (member.getRole().equals("outer")) {
+		        			assertEquals(289757576, member.getRef());
+		        			WayBean way = mrg.getWay(member.getRef());
+		        			assertNotNull(way);
+		        			assertNull(way.getTag("building:part"));
+		        		}
+		        		if (member.getRole().equals("inner")) {
+		        			assertTrue(member.getRef() < 0);
+		        		}
+		        	}
+	        	}
+	        	if (relation.getId() == -178478) {
+	        		assertTrue(relation.isBuilding());
+	        		assertEquals(3, relation.getMemberList().size());
+		        	for (MemberBean member : relation.getMemberList()) {
+		        		if (member.getRole().equals("outline")) {
+		        			assertTrue(member.getRef() < 0);
+		        		}
+		        		if (member.getRole().equals("part")) {
+			        		assertTrue(member.isWay());
+		        			WayBean way = mrg.getWay(member.getRef());
+		        			assertNotNull(way);
+		        			assertNotNull(way.getTag("building:part"));
+		        			assertNull(way.getTag("building"));
+		        		}
+		        	}
+	        	}
 	        	for (MemberBean member : relation.getMemberList()) {
 	        		if (member.isWay()) {
 		        		assertNotNull(mrg.getWay(member.getRef()));
@@ -108,7 +139,7 @@ public class Test_haya4 extends OsmUpdaterTest {
 	        	}
 	        }
 	        
-	        assertEquals(5, ways.size());
+	        assertEquals(9, ways.size());
 	        assertEquals(3, mrg.getRelationList().size());
 		} catch (Exception e) {
 			e.fillInStackTrace();

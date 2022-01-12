@@ -200,7 +200,11 @@ public class PoiBean implements Cloneable,Serializable {
 		}
 	}
 	
-	public String getTagValue(String key) {
+    public void removeTagAll() {
+    	this.tags.clear();
+    }
+
+    public String getTagValue(String key) {
 		TagBean tag = getTag(key);
 		if (tag == null) {
 			return null;

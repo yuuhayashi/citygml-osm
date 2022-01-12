@@ -165,6 +165,26 @@ public class OsmDom {
 		return CityModelParser.rounding(1, maxheight);
 	}
 	
+	public void toOutline() {
+		for (String id : this.relations.keySet()) {
+			ElementRelation relation = this.relations.get(id);
+			if (relation.isBuilding()) {
+				for (MemberBean member : relation.members) {
+					if (member.getRole().equals("outline") && member.getType().equals("relation")) {
+						ElementRelation multi = this.relations.get(member.getRef());
+						if (multi.isMultipolygon()) {
+							TagBean buil = multi.getTag("building");
+							if (buil != null) {
+								multi.replaceTag("building", new TagBean("building:part", buil.v));
+							}
+						}
+					}
+				}
+				
+			}
+		}
+	}
+
 	/**
 	 * RELATIONに所属していないWAYを削除する
 	 */

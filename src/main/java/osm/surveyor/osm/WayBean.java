@@ -206,11 +206,13 @@ public class WayBean extends PoiBean implements Cloneable, Serializable {
 		double max = 0.0d;
 		long maxid = 0;
         for (WayBean way : ways) {
-        	double area = getIntersectArea(way);
-			if (area > max) {
-				max = area;
-				maxid = way.getId(); 
-			}
+        	if (!way.getFix()) {
+            	double area = getIntersectArea(way);
+    			if (area > max) {
+    				max = area;
+    				maxid = way.getId(); 
+    			}
+        	}
         }
         return maxid;
 	}

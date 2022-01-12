@@ -14,6 +14,7 @@ public class GerbageWayProcessor implements Processor {
 	public void process(Exchange exchange) throws Exception {
 		OsmDom osm = exchange.getIn().getBody(OsmDom.class);
 		osm.gerbageWay();
+		osm.toOutline();		// Issue #40
 		exchange.getIn().setBody(osm);
 	}
 

@@ -64,7 +64,6 @@ public class Test_Issue33 extends OsmUpdaterTest {
 	        List<WayBean> ways = mrg.getWayList();
 	        assertNotNull(ways);
 	        for (WayBean way : ways) {
-	        	assertFalse(way.getFix());
 	        	for (NdBean nd : way.getNdList()) {
 	        		assertNotNull(mrg.getNode(nd.getRef()));
 	        	}

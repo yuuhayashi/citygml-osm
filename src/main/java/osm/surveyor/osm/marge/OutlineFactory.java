@@ -3,13 +3,13 @@ package osm.surveyor.osm.marge;
 import java.util.ArrayList;
 import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.ElementRelation;
-import osm.surveyor.osm.TagBean;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 import osm.surveyor.osm.OsmLine;
 import osm.surveyor.osm.RelationBuilding;
 import osm.surveyor.osm.RelationMap;
 import osm.surveyor.osm.RelationMultipolygon;
+import osm.surveyor.osm.TagBean;
 
 public class OutlineFactory {
 	
@@ -119,13 +119,19 @@ public class OutlineFactory {
 			if (multi != null) {
 				// マルチポリゴンが存在する場合は、マルチポリゴンにiWayを追加する
 				multi.addMember(iWay, "inner");
+				TagBean buil = multi.getTag("building");
+				if (buil != null) {
+					multi.replaceTag("building", new TagBean("building:part", buil.v));
+				}
 				building.addMember(multi, "outline");
 			}
 			else {
 				// マルチポリゴンが存在しない場合は、マルチポリゴンを作成する
 				multi = new RelationMultipolygon(osm.getNewId());
-				multi.copyTag(building);
-				multi.replaceTag("type", new TagBean("type","multipolygon"));
+				TagBean buil = multi.getTag("building");
+				if (buil != null) {
+					multi.replaceTag("building", new TagBean("building:part", buil.v));
+				}
 				
 				// "outer"に、"bulding:Relation"の"outline"WAYをMEMBERとして追加する
 				for (MemberBean mem : building.members) {

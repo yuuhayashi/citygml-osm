@@ -60,6 +60,8 @@ public class CitygmlFileTest_D extends GmlLoadRouteTest {
 							assertEquals("relation", mem.getType());
 							ElementRelation multiporygon = osm.relations.get(Long.toString(mem.getRef()));
 							assertNotNull(multiporygon);
+							assertTrue(multiporygon.isMultipolygon());
+							assertNull(multiporygon.getTag("building"));	// Issue #40 [バリデーション警告「重なった建物」が発生する]
 						}
 						if (mem.getRole().equals("part")) {
 							partCnt++;
@@ -103,7 +105,7 @@ public class CitygmlFileTest_D extends GmlLoadRouteTest {
 						}
 					 */
 					assertEquals("multipolygon", relation.getTagValue("type"));
-					assertEquals("yes", relation.getTagValue("building"));
+					assertEquals("yes", relation.getTagValue("building:part"));
 					assertEquals("3", relation.getTagValue("building:levels"));
 					assertEquals("1", relation.getTagValue("building:levels:underground"));
 					assertEquals("34.7", relation.getTagValue("height"));
