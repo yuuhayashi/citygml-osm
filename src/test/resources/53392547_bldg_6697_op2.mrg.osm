@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<osm generator="JOSM" version="0.6">
+    <bounds minlat="35.54070862164589" minlon="139.71245218213994" maxlat="35.542252321638614" maxlon="139.7156383865409" origin="CGImap 0.8.3 (2061540 spike-08.openstreetmap.org)"/>
+    <node lat="35.541438333025894" lon="139.71394769910043" action="modify" id="-89" visible="true"/>
+    <node lat="35.54136531676588" lon="139.71394416788792" action="modify" id="-90" visible="true"/>
+    <node lat="35.54136453204228" lon="139.71397096839829" action="modify" id="-91" visible="true"/>
+    <node lat="35.541437548301566" lon="139.7139744996351" action="modify" id="-88" visible="true"/>
+    <node lat="35.54113659761786" lon="139.71330136292485" action="modify" id="-371" visible="true"/>
+    <node lat="35.54113062176147" lon="139.7132745725591" action="modify" id="-372" visible="true"/>
+    <node lat="35.540888677667766" lon="139.71335466897793" action="modify" id="-373" visible="true"/>
+    <node lat="35.540894653506456" lon="139.7133814592693" action="modify" id="-370" visible="true"/>
+    <node lat="35.54117570539155" lon="139.71416843796854" action="modify" id="-1495" visible="true"/>
+    <node lat="35.54116145158618" lon="139.71411089022885" action="modify" id="-1496" visible="true"/>
+    <node lat="35.54109819716753" lon="139.7141344745469" action="modify" id="-1497" visible="true"/>
+    <node lat="35.541112315426226" lon="139.71419169159097" action="modify" id="-1494" visible="true"/>
+    <node lat="35.5415848357262" lon="139.7137469826227" action="modify" id="-136" visible="true"/>
+    <node lat="35.54157520572637" lon="139.71371655807323" action="modify" id="-137" visible="true"/>
+    <node lat="35.541470332724145" lon="139.713766011419" action="modify" id="-138" visible="true"/>
+    <node lat="35.5414799627116" lon="139.71379643593485" action="modify" id="-135" visible="true"/>
+    <node lat="35.541162822093874" lon="139.7142663901982" action="modify" id="-183" visible="true"/>
+    <node lat="35.541143014322714" lon="139.71419826329537" action="modify" id="-184" visible="true"/>
+    <node lat="35.54111747100356" lon="139.71420955014332" action="modify" id="-185" visible="true"/>
+    <node lat="35.5411374136504" lon="139.71427734597282" action="modify" id="-182" visible="true"/>
+    <node lat="35.541274819215964" lon="139.71428834899584" action="modify" id="-714" visible="true"/>
+    <node lat="35.5412680896011" lon="139.71426570414434" action="modify" id="-715" visible="true"/>
+    <node lat="35.541243217593504" lon="139.71427676832317" action="modify" id="-716" visible="true"/>
+    <node lat="35.54124994630491" lon="139.71429941316995" action="modify" id="-713" visible="true"/>
+    <node lat="35.54093143105161" lon="139.7135345514793" action="modify" id="-1625" visible="true"/>
+    <node lat="35.5409019819405" lon="139.71342508251772" action="modify" id="-1626" visible="true"/>
+    <node lat="35.54087846517793" lon="139.71343471229" action="modify" id="-1627" visible="true"/>
+    <node lat="35.540907913951706" lon="139.71354385036943" action="modify" id="-1624" visible="true"/>
+    <node lat="35.54125637323291" lon="139.7132981681648" action="modify" id="-277" visible="true"/>
+    <node lat="35.54123968459845" lon="139.71323996244044" action="modify" id="-278" visible="true"/>
+    <node lat="35.541145348837674" lon="139.71328013655102" action="modify" id="-279" visible="true"/>
+    <node lat="35.541162172990724" lon="139.71333867286907" action="modify" id="-276" visible="true"/>
+    <node lat="35.541422725768555" lon="139.7132082582225" action="modify" id="-230" visible="true"/>
+    <node lat="35.541415121124885" lon="139.71317518392723" action="modify" id="-231" visible="true"/>
+    <node lat="35.541241031083466" lon="139.7132343358875" action="modify" id="-232" visible="true"/>
+    <node lat="35.541248635711" lon="139.71326741011697" action="modify" id="-229" visible="true"/>
+    <node lat="35.54122603209489" lon="139.7141978096723" action="modify" id="-954" visible="true"/>
+    <node lat="35.54119482260233" lon="139.7140850341186" action="modify" id="-955" visible="true"/>
+    <node lat="35.541170495190364" lon="139.71409532664407" action="modify" id="-956" visible="true"/>
+    <node lat="35.54120170467339" lon="139.71420810216776" action="modify" id="-953" visible="true"/>
+    <node lat="35.54129367060523" lon="139.7139588317228" action="modify" id="-1430" visible="true"/>
+    <node lat="35.54129242555891" lon="139.713930379965" action="modify" id="-1431" visible="true"/>
+    <node lat="35.541287405476595" lon="139.7139128520468" action="modify" id="-1432" visible="true"/>
+    <node lat="35.54127846401389" lon="139.71389499908867" action="modify" id="-1433" visible="true"/>
+    <node lat="35.540903645531564" lon="139.7133304557272" action="modify" id="-1755" visible="true"/>
+    <node lat="35.54089902868296" lon="139.71331061135066" action="modify" id="-1756" visible="true"/>
+    <node lat="35.540855912604165" lon="139.71332622572578" action="modify" id="-1757" visible="true"/>
+    <node lat="35.54086066432969" lon="139.71334573903766" action="modify" id="-1754" visible="true"/>
+    <node lat="35.54141077895425" lon="139.71315964015625" action="modify" id="-324" visible="true"/>
+    <node lat="35.54139516763394" lon="139.71309713161" action="modify" id="-325" visible="true"/>
+    <node lat="35.54134475361942" lon="139.7131160656475" action="modify" id="-326" visible="true"/>
+    <node lat="35.5413605001386" lon="139.71317857395672" action="modify" id="-323" visible="true"/>
+    <node lat="35.54125670905719" lon="139.71309237542178" action="modify" id="-1257" visible="true"/>
+    <node lat="35.5412280556082" lon="139.71296768563553" action="modify" id="-1258" visible="true"/>
+    <node lat="35.54121108119853" lon="139.7128942610742" action="modify" id="-1259" visible="true"/>
+    <node lat="35.54118378558464" lon="139.71277552479435" action="modify" id="-1260" visible="true"/>
+    <node lat="35.54104578486628" lon="139.7128230435479" action="modify" id="-1261" visible="true"/>
+    <node lat="35.54103831598691" lon="139.71279063095028" action="modify" id="-1262" visible="true"/>
+    <node lat="35.54094208017937" lon="139.71282352953085" action="modify" id="-1263" visible="true"/>
+    <node lat="35.54093420402065" lon="139.71278946331242" action="modify" id="-1264" visible="true"/>
+    <node lat="35.540812017080775" lon="139.7128313337254" action="modify" id="-1265" visible="true"/>
+    <node lat="35.54082668340064" lon="139.71289516659633" action="modify" id="-1266" visible="true"/>
+    <node lat="35.54079167658971" lon="139.71290746052026" action="modify" id="-1267" visible="true"/>
+    <node lat="35.54088008037469" lon="139.7132914500394" action="modify" id="-1270" visible="true"/>
+    <node lat="35.541038490867244" lon="139.713236953812" action="modify" id="-1271" visible="true"/>
+    <node lat="35.54103061482526" lon="139.71320288751207" action="modify" id="-1272" visible="true"/>
+    <node lat="35.54107494809391" lon="139.7131876020765" action="modify" id="-1273" visible="true"/>
+    <node lat="35.541068157663524" lon="139.71315750440556" action="modify" id="-1256" visible="true"/>
+    <node lat="35.5415996233245" lon="139.71379725095164" action="modify" id="-1001" visible="true"/>
+    <node lat="35.541591617152896" lon="139.71376814740879" action="modify" id="-1002" visible="true"/>
+    <node lat="35.54150403738886" lon="139.7138040099169" action="modify" id="-1003" visible="true"/>
+    <node lat="35.54151204355187" lon="139.71383311343172" action="modify" id="-1000" visible="true"/>
+    <node lat="35.542252321638614" lon="139.71535363948732" action="modify" id="-6" visible="true"/>
+    <node lat="35.54210367440277" lon="139.7148860223014" action="modify" id="-7" visible="true"/>
+    <node lat="35.54206164434519" lon="139.71490626649856" action="modify" id="-8" visible="true"/>
+    <node lat="35.5420440155531" lon="139.7148536858433" action="modify" id="-9" visible="true"/>
+    <node lat="35.541981356256336" lon="139.7146575788015" action="modify" id="-10" visible="true"/>
+    <node lat="35.54142914946131" lon="139.71491844541285" action="modify" id="-11" visible="true"/>
+    <node lat="35.54153100551663" lon="139.71523889596378" action="modify" id="-12" visible="true"/>
+    <node lat="35.541657275471835" lon="139.7156383865409" action="modify" id="-5" visible="true"/>
+    <node lat="35.54142732424439" lon="139.71375383356497" action="modify" id="-530" visible="true"/>
+    <node lat="35.541313211888045" lon="139.71334936614474" action="modify" id="-531" visible="true"/>
+    <node lat="35.54122063281673" lon="139.71338854498205" action="modify" id="-532" visible="true"/>
+    <node lat="35.54123501526781" lon="139.71343914447652" action="modify" id="-533" visible="true"/>
+    <node lat="35.541193388442984" lon="139.71345674176507" action="modify" id="-534" visible="true"/>
+    <node lat="35.54127914248125" lon="139.7137610014878" action="modify" id="-535" visible="true"/>
+    <node lat="35.54132076935018" lon="139.71374340433744" action="modify" id="-536" visible="true"/>
+    <node lat="35.54133474471467" lon="139.71379268113824" action="modify" id="-529" visible="true"/>
+    <node lat="35.54087778005558" lon="139.71272593661917" action="modify" id="-1672" visible="true"/>
+    <node lat="35.54083347153819" lon="139.71253712725172" action="modify" id="-1673" visible="true"/>
+    <node lat="35.540850547813456" lon="139.7125311286294" action="modify" id="-1674" visible="true"/>
+    <node lat="35.54084408065918" lon="139.7125035704688" action="modify" id="-1675" visible="true"/>
+    <node lat="35.54082607627865" lon="139.7125098958281" action="modify" id="-1676" visible="true"/>
+    <node lat="35.54081253271364" lon="139.71245218213994" action="modify" id="-1677" visible="true"/>
+    <node lat="35.54070862164589" lon="139.7124886845105" action="modify" id="-1678" visible="true"/>
+    <node lat="35.54077294079812" lon="139.71276276539515" action="modify" id="-1671" visible="true"/>
+    <node lat="35.54085142746041" lon="139.71316709161786" action="modify" id="-808" visible="true"/>
+    <node lat="35.54080593493194" lon="139.71296897802156" action="modify" id="-809" visible="true"/>
+    <node lat="35.54079971797653" lon="139.71297163414053" action="modify" id="-810" visible="true"/>
+    <node lat="35.54080136887468" lon="139.713000085103" action="modify" id="-811" visible="true"/>
+    <node lat="35.54078459210938" lon="139.71298919198784" action="modify" id="-812" visible="true"/>
+    <node lat="35.540776715006594" lon="139.71295413325993" action="modify" id="-813" visible="true"/>
+    <node lat="35.5407638748099" lon="139.71295878439753" action="modify" id="-814" visible="true"/>
+    <node lat="35.54077297374116" lon="139.71299880410083" action="modify" id="-815" visible="true"/>
+    <node lat="35.54080287366528" lon="139.71301761810838" action="modify" id="-816" visible="true"/>
+    <node lat="35.54080628358483" lon="139.71304738986194" action="modify" id="-817" visible="true"/>
+    <node lat="35.540811584768285" lon="139.71307550452556" action="modify" id="-818" visible="true"/>
+    <node lat="35.540818507459264" lon="139.71310262421133" action="modify" id="-819" visible="true"/>
+    <node lat="35.54082637165783" lon="139.71312477968803" action="modify" id="-820" visible="true"/>
+    <node lat="35.540837214069214" lon="139.71315057011978" action="modify" id="-821" visible="true"/>
+    <node lat="35.54084723764115" lon="139.71316875213742" action="modify" id="-807" visible="true"/>
+    <node lat="35.54152340205619" lon="139.71465560657532" action="modify" id="-418" visible="true"/>
+    <node lat="35.5413910271429" lon="139.71423859184893" action="modify" id="-419" visible="true"/>
+    <node lat="35.54130183126393" lon="139.714281073262" action="modify" id="-420" visible="true"/>
+    <node lat="35.54134957321918" lon="139.71443154222655" action="modify" id="-421" visible="true"/>
+    <node lat="35.541225779839095" lon="139.71449028637193" action="modify" id="-422" visible="true"/>
+    <node lat="35.54131041252268" lon="139.71475683139562" action="modify" id="-417" visible="true"/>
+    <node lat="35.5417997080234" lon="139.71404575922477" action="modify" id="-613" visible="true"/>
+    <node lat="35.541739734209926" lon="139.71383211396727" action="modify" id="-614" visible="true"/>
+    <node lat="35.54156538752602" lon="139.71390549197884" action="modify" id="-615" visible="true"/>
+    <node lat="35.54157963455137" lon="139.71395609198288" action="modify" id="-616" visible="true"/>
+    <node lat="35.54154544118005" lon="139.71397070035476" action="modify" id="-617" visible="true"/>
+    <node lat="35.54157312128553" lon="139.71406925472792" action="modify" id="-618" visible="true"/>
+    <node lat="35.54156447153297" lon="139.71407290695987" action="modify" id="-619" visible="true"/>
+    <node lat="35.54157831122697" lon="139.71412185331073" action="modify" id="-620" visible="true"/>
+    <node lat="35.54158669056377" lon="139.71411820148353" action="modify" id="-621" visible="true"/>
+    <node lat="35.541591032283854" lon="139.7141334144839" action="modify" id="-612" visible="true"/>
+    <node lat="35.54148871794623" lon="139.71349038054228" action="modify" id="-483" visible="true"/>
+    <node lat="35.5414416376926" lon="139.7133266766337" action="modify" id="-484" visible="true"/>
+    <node lat="35.54133500351648" lon="139.71337249361054" action="modify" id="-485" visible="true"/>
+    <node lat="35.541382218917" lon="139.7135361971285" action="modify" id="-482" visible="true"/>
+    <node lat="35.54150304722172" lon="139.71403296422943" action="modify" id="-1048" visible="true"/>
+    <node lat="35.54149412279802" lon="139.71403231573208" action="modify" id="-1049" visible="true"/>
+    <node lat="35.54149530792287" lon="139.71400022087923" action="modify" id="-1050" visible="true"/>
+    <node lat="35.54125759708146" lon="139.71398634619936" action="modify" id="-1051" visible="true"/>
+    <node lat="35.541252848734416" lon="139.71397014130528" action="modify" id="-1052" visible="true"/>
+    <node lat="35.541235347206424" lon="139.71390995151518" action="modify" id="-1053" visible="true"/>
+    <node lat="35.541194781810944" lon="139.71377072150702" action="modify" id="-1054" visible="true"/>
+    <node lat="35.54121721660215" lon="139.7137607625451" action="modify" id="-1055" visible="true"/>
+    <node lat="35.54121043320529" lon="139.71373761272775" action="modify" id="-1056" visible="true"/>
+    <node lat="35.54119137699125" lon="139.71374591240297" action="modify" id="-1057" visible="true"/>
+    <node lat="35.541184593263374" lon="139.7137224317394" action="modify" id="-1058" visible="true"/>
+    <node lat="35.541113365653175" lon="139.7134777047117" action="modify" id="-1059" visible="true"/>
+    <node lat="35.54107659876772" lon="139.71335170367303" action="modify" id="-1060" visible="true"/>
+    <node lat="35.54096496481712" lon="139.71340050554153" action="modify" id="-1061" visible="true"/>
+    <node lat="35.54114595043809" lon="139.7140225748187" action="modify" id="-1062" visible="true"/>
+    <node lat="35.541233122682655" lon="139.7139847281788" action="modify" id="-1063" visible="true"/>
+    <node lat="35.54124207689941" lon="139.71401548448782" action="modify" id="-1064" visible="true"/>
+    <node lat="35.541299273749615" lon="139.7140190391891" action="modify" id="-1065" visible="true"/>
+    <node lat="35.541295449224876" lon="139.71411664733156" action="modify" id="-1066" visible="true"/>
+    <node lat="35.541479614492594" lon="139.7141276239222" action="modify" id="-1067" visible="true"/>
+    <node lat="35.54148119545439" lon="139.71408560279195" action="modify" id="-1068" visible="true"/>
+    <node lat="35.54150107210343" lon="139.71408656594016" action="modify" id="-1047" visible="true"/>
+    <node lat="35.54133788986974" lon="139.71560624176954" action="modify" id="-761" visible="true"/>
+    <node lat="35.541303003280085" lon="139.71549548249433" action="modify" id="-762" visible="true"/>
+    <node lat="35.541276002798384" lon="139.71550821361615" action="modify" id="-763" visible="true"/>
+    <node lat="35.541310888473944" lon="139.71561897175823" action="modify" id="-760" visible="true"/>
+    <node lat="35.5415369124557" lon="139.712736947809" action="modify" id="-1542" visible="true"/>
+    <node lat="35.54147334356041" lon="139.7127161990047" action="modify" id="-1543" visible="true"/>
+    <node lat="35.54144965632675" lon="139.7128257479667" action="modify" id="-1544" visible="true"/>
+    <node lat="35.54147237864774" lon="139.712832992822" action="modify" id="-1545" visible="true"/>
+    <node lat="35.54146618747908" lon="139.71286145574626" action="modify" id="-1546" visible="true"/>
+    <node lat="35.54150703370132" lon="139.71287462893292" action="modify" id="-1547" visible="true"/>
+    <node lat="35.541514167036006" lon="139.71284186344832" action="modify" id="-1548" visible="true"/>
+    <node lat="35.54152076217255" lon="139.71281174561736" action="modify" id="-1541" visible="true"/>
+    <relation fix="false" action="modify" id="-1425" visible="true">
+        <tag k="type" v="building"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="height" v="42.7"/>
+        <tag k="ele" v="2.81"/>
+        <tag k="building" v="yes"/>
+        <member ref="-1436" role="part" type="way"/>
+        <member ref="169195171" role="part" type="way"/>
+        <member ref="-1805" role="outline" type="way"/>
+    </relation>
+    <relation fix="false" action="modify" id="-803" visible="true">
+        <tag k="type" v="building"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="height" v="33"/>
+        <tag k="ele" v="2.57"/>
+        <tag k="building" v="yes"/>
+        <member ref="169195170" role="part" type="way"/>
+        <member ref="-1275" role="part" type="way"/>
+        <member ref="-1808" role="outline" type="way"/>
+    </relation>
+    <way fix="false" id="-93" visible="true">
+        <tag k="height" v="2.2"/>
+        <tag k="ele" v="2.83"/>
+        <tag k="ref:MLIT_PLATEAU" v="13111-bldg-446"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
+        <nd ref="-88"/>
+        <nd ref="-89"/>
+        <nd ref="-90"/>
+        <nd ref="-91"/>
+        <nd ref="-88"/>
+    </way>
+    <way fix="true" id="-1805" visible="true">
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="ele" v="2.81"/>
+        <tag k="height" v="42.7"/>
+        <tag k="building:part" v="yes"/>
+        <nd ref="-1052"/>
+        <nd ref="-1430"/>
+        <nd ref="-1431"/>
+        <nd ref="-1432"/>
+        <nd ref="-1433"/>
+        <nd ref="-1053"/>
+        <nd ref="-1054"/>
+        <nd ref="-1055"/>
+        <nd ref="-1056"/>
+        <nd ref="-1057"/>
+        <nd ref="-1058"/>
+        <nd ref="-1059"/>
+        <nd ref="-1060"/>
+        <nd ref="-1061"/>
+        <nd ref="-1062"/>
+        <nd ref="-1063"/>
+        <nd ref="-1064"/>
+        <nd ref="-1065"/>
+        <nd ref="-1066"/>
+        <nd ref="-1067"/>
+        <nd ref="-1068"/>
+        <nd ref="-1047"/>
+        <nd ref="-1048"/>
+        <nd ref="-1049"/>
+        <nd ref="-1050"/>
+        <nd ref="-1051"/>
+        <nd ref="-1052"/>
+    </way>
+    <way fix="true" id="-1808" visible="true">
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="ele" v="2.57"/>
+        <tag k="height" v="33"/>
+        <tag k="building:part" v="yes"/>
+        <nd ref="-807"/>
+        <nd ref="-808"/>
+        <nd ref="-1270"/>
+        <nd ref="-1271"/>
+        <nd ref="-1272"/>
+        <nd ref="-1273"/>
+        <nd ref="-1256"/>
+        <nd ref="-1257"/>
+        <nd ref="-1258"/>
+        <nd ref="-1259"/>
+        <nd ref="-1260"/>
+        <nd ref="-1261"/>
+        <nd ref="-1262"/>
+        <nd ref="-1263"/>
+        <nd ref="-1264"/>
+        <nd ref="-1265"/>
+        <nd ref="-1266"/>
+        <nd ref="-1267"/>
+        <nd ref="-809"/>
+        <nd ref="-810"/>
+        <nd ref="-811"/>
+        <nd ref="-812"/>
+        <nd ref="-813"/>
+        <nd ref="-814"/>
+        <nd ref="-815"/>
+        <nd ref="-816"/>
+        <nd ref="-817"/>
+        <nd ref="-818"/>
+        <nd ref="-819"/>
+        <nd ref="-820"/>
+        <nd ref="-821"/>
+        <nd ref="-807"/>
+    </way>
+    <way fix="false" id="-375" visible="true">
+        <tag k="height" v="2.1"/>
+        <tag k="ele" v="2.79"/>
+        <tag k="ref:MLIT_PLATEAU" v="13111-bldg-315"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
+        <nd ref="-370"/>
+        <nd ref="-371"/>
+        <nd ref="-372"/>
+        <nd ref="-373"/>
+        <nd ref="-370"/>
+    </way>
+    <way fix="false" id="-1499" visible="true">
+        <tag k="height" v="3.9"/>
+        <tag k="ele" v="2.88"/>
+        <tag k="ref:MLIT_PLATEAU" v="13111-bldg-327"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
+        <nd ref="-1494"/>
+        <nd ref="-1495"/>
+        <nd ref="-1496"/>
+        <nd ref="-1497"/>
+        <nd ref="-1494"/>
+    </way>
+    <way fix="false" id="-140" visible="true">
+        <tag k="height" v="2.3"/>
+        <tag k="ele" v="2.81"/>
+        <tag k="ref:MLIT_PLATEAU" v="13111-bldg-512"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
+        <nd ref="-135"/>
+        <nd ref="-136"/>
+        <nd ref="-137"/>
+        <nd ref="-138"/>
+        <nd ref="-135"/>
+    </way>
+    <way fix="false" id="-187" visible="true">
+        <tag k="height" v="3"/>
+        <tag k="ele" v="2.93"/>
+        <tag k="ref:MLIT_PLATEAU" v="13111-bldg-324"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
+        <nd ref="-182"/>
+        <nd ref="-183"/>
+        <nd ref="-184"/>
+        <nd ref="-185"/>
+        <nd ref="-182"/>
+    </way>
+    <way fix="false" id="-718" visible="true">
+        <tag k="height" v="2.2"/>
+        <tag k="ele" v="2.98"/>
+        <tag k="ref:MLIT_PLATEAU" v="13111-bldg-374"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
+        <nd ref="-713"/>
+        <nd ref="-714"/>
+        <nd ref="-715"/>
+        <nd ref="-716"/>
+        <nd ref="-713"/>
+    </way>
+    <way fix="false" id="-1629" visible="true">
+        <tag k="height" v="5.5"/>
+        <tag k="ele" v="2.91"/>
+        <tag k="ref:MLIT_PLATEAU" v="13111-bldg-239"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
+        <nd ref="-1624"/>
+        <nd ref="-1625"/>
+        <nd ref="-1626"/>
+        <nd ref="-1627"/>
+        <nd ref="-1624"/>
+    </way>
+    <way fix="false" id="-281" visible="true">
+        <tag k="height" v="2.4"/>
+        <tag k="ele" v="2.75"/>
+        <tag k="ref:MLIT_PLATEAU" v="13111-bldg-365"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
+        <nd ref="-276"/>
+        <nd ref="-277"/>
+        <nd ref="-278"/>
+        <nd ref="-279"/>
+        <nd ref="-276"/>
+    </way>
+    <way fix="false" id="-234" visible="true">
+        <tag k="height" v="2.3"/>
+        <tag k="ele" v="2.67"/>
+        <tag k="ref:MLIT_PLATEAU" v="13111-bldg-441"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
+        <nd ref="-229"/>
+        <nd ref="-230"/>
+        <nd ref="-231"/>
+        <nd ref="-232"/>
+        <nd ref="-229"/>
+    </way>
+    <way fix="false" id="-958" visible="true">
+        <tag k="height" v="2.2"/>
+        <tag k="ele" v="2.86"/>
+        <tag k="ref:MLIT_PLATEAU" v="13111-bldg-353"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
+        <nd ref="-953"/>
+        <nd ref="-954"/>
+        <nd ref="-955"/>
+        <nd ref="-956"/>
+        <nd ref="-953"/>
+    </way>
+    <way fix="false" id="-1436" visible="true">
+        <tag k="height" v="7.3"/>
+        <tag k="ele" v="2.81"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="ref:MLIT_PLATEAU" v="13111-bldg-386"/>
+        <nd ref="-1052"/>
+        <nd ref="-1430"/>
+        <nd ref="-1431"/>
+        <nd ref="-1432"/>
+        <nd ref="-1433"/>
+        <nd ref="-1053"/>
+        <nd ref="-1052"/>
+    </way>
+    <way fix="false" id="-1759" visible="true">
+        <tag k="height" v="5.6"/>
+        <tag k="ele" v="2.85"/>
+        <tag k="ref:MLIT_PLATEAU" v="13111-bldg-224"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
+        <nd ref="-1754"/>
+        <nd ref="-1755"/>
+        <nd ref="-1756"/>
+        <nd ref="-1757"/>
+        <nd ref="-1754"/>
+    </way>
+    <way fix="false" id="-328" visible="true">
+        <tag k="height" v="3"/>
+        <tag k="ele" v="2.71"/>
+        <tag k="ref:MLIT_PLATEAU" v="13111-bldg-436"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
+        <nd ref="-323"/>
+        <nd ref="-324"/>
+        <nd ref="-325"/>
+        <nd ref="-326"/>
+        <nd ref="-323"/>
+    </way>
+    <way fix="false" id="-1275" visible="true">
+        <tag k="height" v="33"/>
+        <tag k="ele" v="2.57"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="ref:MLIT_PLATEAU" v="13111-bldg-366"/>
+        <nd ref="-1256"/>
+        <nd ref="-1257"/>
+        <nd ref="-1258"/>
+        <nd ref="-1259"/>
+        <nd ref="-1260"/>
+        <nd ref="-1261"/>
+        <nd ref="-1262"/>
+        <nd ref="-1263"/>
+        <nd ref="-1264"/>
+        <nd ref="-1265"/>
+        <nd ref="-1266"/>
+        <nd ref="-1267"/>
+        <nd ref="-809"/>
+        <nd ref="-808"/>
+        <nd ref="-1270"/>
+        <nd ref="-1271"/>
+        <nd ref="-1272"/>
+        <nd ref="-1273"/>
+        <nd ref="-1256"/>
+    </way>
+    <way fix="true" action="modify" changeset="41678526" id="438929454" timestamp="2016-08-25T04:37:47Z" uid="1056221" user="kawah64" version="1" visible="true">
+        <tag k="height" v="2.4"/>
+        <tag k="ele" v="2.82"/>
+        <tag k="ref:MLIT_PLATEAU" v="13111-bldg-519"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
+        <tag k="source" v="GSI/KIBAN 2500; NARO"/>
+        <tag k="MLIT_PLATEAU:fixme" v="PLATEAUデータで更新されています"/>
+        <nd ref="-1000"/>
+        <nd ref="-1001"/>
+        <nd ref="-1002"/>
+        <nd ref="-1003"/>
+        <nd ref="-1000"/>
+    </way>
+    <way fix="true" action="modify" changeset="36849875" id="169195180" timestamp="2016-01-28T04:01:25Z" uid="1056221" user="kawah64" version="2" visible="true">
+        <tag k="height" v="11.5"/>
+        <tag k="ele" v="3.4"/>
+        <tag k="ref:MLIT_PLATEAU" v="13111-bldg-726"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
+        <tag k="name" v="東京都下水道局 雑色ポンプ所"/>
+        <tag k="source" v="Bing"/>
+        <tag k="MLIT_PLATEAU:fixme" v="PLATEAUデータで更新されています"/>
+        <nd ref="-5"/>
+        <nd ref="-6"/>
+        <nd ref="-7"/>
+        <nd ref="-8"/>
+        <nd ref="-9"/>
+        <nd ref="-10"/>
+        <nd ref="-11"/>
+        <nd ref="-12"/>
+        <nd ref="-5"/>
+    </way>
+    <way fix="true" action="modify" changeset="12032994" id="169195181" timestamp="2012-06-27T05:23:32Z" uid="618878" user="nakanao" version="1" visible="true">
+        <tag k="height" v="4.5"/>
+        <tag k="ele" v="2.82"/>
+        <tag k="ref:MLIT_PLATEAU" v="13111-bldg-444"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="amenity" v="parking"/>
+        <tag k="building" v="yes"/>
+        <tag k="source" v="Bing"/>
+        <tag k="MLIT_PLATEAU:fixme" v="PLATEAUデータで更新されています"/>
+        <nd ref="-529"/>
+        <nd ref="-530"/>
+        <nd ref="-531"/>
+        <nd ref="-532"/>
+        <nd ref="-533"/>
+        <nd ref="-534"/>
+        <nd ref="-535"/>
+        <nd ref="-536"/>
+        <nd ref="-529"/>
+    </way>
+    <way fix="true" action="modify" changeset="12032994" id="169195179" timestamp="2012-06-27T05:23:32Z" uid="618878" user="nakanao" version="1" visible="true">
+        <tag k="height" v="20.6"/>
+        <tag k="ele" v="2.72"/>
+        <tag k="ref:MLIT_PLATEAU" v="13111-bldg-146894"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
+        <tag k="source" v="Bing"/>
+        <tag k="MLIT_PLATEAU:fixme" v="PLATEAUデータで更新されています"/>
+        <nd ref="-1671"/>
+        <nd ref="-1672"/>
+        <nd ref="-1673"/>
+        <nd ref="-1674"/>
+        <nd ref="-1675"/>
+        <nd ref="-1676"/>
+        <nd ref="-1677"/>
+        <nd ref="-1678"/>
+        <nd ref="-1671"/>
+    </way>
+    <way fix="true" action="modify" changeset="12032994" id="169195170" timestamp="2012-06-27T05:23:31Z" uid="618878" user="nakanao" version="1" visible="true">
+        <tag k="height" v="14.2"/>
+        <tag k="ele" v="2.88"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="ref:MLIT_PLATEAU" v="13111-bldg-202"/>
+        <tag k="source" v="Bing"/>
+        <tag k="MLIT_PLATEAU:fixme" v="PLATEAUデータで更新されています"/>
+        <nd ref="-807"/>
+        <nd ref="-808"/>
+        <nd ref="-809"/>
+        <nd ref="-810"/>
+        <nd ref="-811"/>
+        <nd ref="-812"/>
+        <nd ref="-813"/>
+        <nd ref="-814"/>
+        <nd ref="-815"/>
+        <nd ref="-816"/>
+        <nd ref="-817"/>
+        <nd ref="-818"/>
+        <nd ref="-819"/>
+        <nd ref="-820"/>
+        <nd ref="-821"/>
+        <nd ref="-807"/>
+    </way>
+    <way fix="true" action="modify" changeset="12032994" id="169195177" timestamp="2012-06-27T05:23:32Z" uid="618878" user="nakanao" version="1" visible="true">
+        <tag k="height" v="9.8"/>
+        <tag k="ele" v="2.91"/>
+        <tag k="ref:MLIT_PLATEAU" v="13111-bldg-486"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
+        <tag k="source" v="Bing"/>
+        <tag k="MLIT_PLATEAU:fixme" v="PLATEAUデータで更新されています"/>
+        <nd ref="-417"/>
+        <nd ref="-418"/>
+        <nd ref="-419"/>
+        <nd ref="-420"/>
+        <nd ref="-421"/>
+        <nd ref="-422"/>
+        <nd ref="-417"/>
+    </way>
+    <way fix="true" action="modify" changeset="12032994" id="169195178" timestamp="2012-06-27T05:23:32Z" uid="618878" user="nakanao" version="1" visible="true">
+        <tag k="height" v="4.4"/>
+        <tag k="ele" v="2.75"/>
+        <tag k="ref:MLIT_PLATEAU" v="13111-bldg-578"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="amenity" v="parking"/>
+        <tag k="building" v="yes"/>
+        <tag k="source" v="Bing"/>
+        <tag k="MLIT_PLATEAU:fixme" v="PLATEAUデータで更新されています"/>
+        <nd ref="-612"/>
+        <nd ref="-613"/>
+        <nd ref="-614"/>
+        <nd ref="-615"/>
+        <nd ref="-616"/>
+        <nd ref="-617"/>
+        <nd ref="-618"/>
+        <nd ref="-619"/>
+        <nd ref="-620"/>
+        <nd ref="-621"/>
+        <nd ref="-612"/>
+    </way>
+    <way fix="true" action="modify" changeset="12032994" id="169195173" timestamp="2012-06-27T05:23:31Z" uid="618878" user="nakanao" version="1" visible="true">
+        <tag k="height" v="4.6"/>
+        <tag k="ele" v="2.67"/>
+        <tag k="ref:MLIT_PLATEAU" v="13111-bldg-466"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
+        <tag k="source" v="Bing"/>
+        <tag k="MLIT_PLATEAU:fixme" v="PLATEAUデータで更新されています"/>
+        <nd ref="-482"/>
+        <nd ref="-483"/>
+        <nd ref="-484"/>
+        <nd ref="-485"/>
+        <nd ref="-482"/>
+    </way>
+    <way fix="true" action="modify" changeset="41678543" id="169195171" timestamp="2016-08-25T04:39:25Z" uid="1056221" user="kawah64" version="2" visible="true">
+        <tag k="height" v="42.7"/>
+        <tag k="ele" v="2.81"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="ref:MLIT_PLATEAU" v="13111-bldg-473"/>
+        <tag k="name" v="南六郷住宅"/>
+        <tag k="source" v="Bing"/>
+        <tag k="MLIT_PLATEAU:fixme" v="PLATEAUデータで更新されています"/>
+        <nd ref="-1047"/>
+        <nd ref="-1048"/>
+        <nd ref="-1049"/>
+        <nd ref="-1050"/>
+        <nd ref="-1051"/>
+        <nd ref="-1052"/>
+        <nd ref="-1053"/>
+        <nd ref="-1054"/>
+        <nd ref="-1055"/>
+        <nd ref="-1056"/>
+        <nd ref="-1057"/>
+        <nd ref="-1058"/>
+        <nd ref="-1059"/>
+        <nd ref="-1060"/>
+        <nd ref="-1061"/>
+        <nd ref="-1062"/>
+        <nd ref="-1063"/>
+        <nd ref="-1064"/>
+        <nd ref="-1065"/>
+        <nd ref="-1066"/>
+        <nd ref="-1067"/>
+        <nd ref="-1068"/>
+        <nd ref="-1047"/>
+    </way>
+    <way fix="true" action="modify" changeset="15780370" id="217920228" timestamp="2013-04-19T04:12:40Z" uid="621319" user="hayashi" version="1" visible="true">
+        <tag k="height" v="8.2"/>
+        <tag k="ele" v="2.02"/>
+        <tag k="ref:MLIT_PLATEAU" v="13111-bldg-405"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
+        <tag k="MLIT_PLATEAU:fixme" v="PLATEAUデータで更新されています"/>
+        <nd ref="-760"/>
+        <nd ref="-761"/>
+        <nd ref="-762"/>
+        <nd ref="-763"/>
+        <nd ref="-760"/>
+    </way>
+    <way fix="true" action="modify" changeset="75597675" id="733860311" timestamp="2019-10-12T11:07:27Z" uid="9600679" user="Yoqtan" version="1" visible="true">
+        <tag k="height" v="3.4"/>
+        <tag k="ele" v="2.31"/>
+        <tag k="ref:MLIT_PLATEAU" v="13111-bldg-493"/>
+        <tag k="addr:full" v="東京都大田区南六郷三丁目"/>
+        <tag k="building" v="yes"/>
+        <tag k="MLIT_PLATEAU:fixme" v="PLATEAUデータで更新されています"/>
+        <nd ref="-1541"/>
+        <nd ref="-1542"/>
+        <nd ref="-1543"/>
+        <nd ref="-1544"/>
+        <nd ref="-1545"/>
+        <nd ref="-1546"/>
+        <nd ref="-1547"/>
+        <nd ref="-1548"/>
+        <nd ref="-1541"/>
+    </way>
+</osm>

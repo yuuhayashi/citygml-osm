@@ -6,16 +6,18 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 ## 生成物の例
 
-- 第一段階生成ファイル: [53392547_bldg_6697_op2.osm](53392547_bldg_6697_op2.osm) ... CityGMLファイルからOSMファイルへ変換
+- 変換元ファイル: [53392547_bldg_6697_op2.gml](https://yuuhayashi.github.io/citygml-osm/src/test/resources/53392547_bldg_6697_op2.gml) ... 変換元のCityGMLファイル
 
-- 第二段階生成ファイル: [53392547_bldg_6697_op2.org.osm](53392547_bldg_6697_op2.org.osm) ... 既存のOSMデータ
+- 第一段階生成ファイル: [53392547_bldg_6697_op2.osm](https://yuuhayashi.github.io/citygml-osm/src/test/resources/53392547_bldg_6697_op2.osm) ... CityGMLファイルからOSMファイルへ変換
 
-- 第三段階生成ファイル: [53392547_bldg_6697_op2.mrg.osm](53392547_bldg_6697_op2.mrg.osm) ... 既存のOSMデータとマージしたOSMファイル
+- 第二段階生成ファイル: [53392547_bldg_6697_op2.org.osm](https://yuuhayashi.github.io/citygml-osm/src/test/resources/53392547_bldg_6697_op2.org.osm) ... 既存のOSMデータ
+
+- 第三段階生成ファイル: [53392547_bldg_6697_op2.mrg.osm](https://yuuhayashi.github.io/citygml-osm/src/test/resources/53392547_bldg_6697_op2.mrg.osm) ... 既存のOSMデータとマージしたOSMファイル
 
 
 # Release
 
-- 2022-01-02 [リリース v1.3.6-SNAPSHOT](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.3.6)<br/>第三段階：既存データとの統合機能<br/>第二段階：既存データのダウンロード機能<br/>[Fixed #54](https://github.com/yuuhayashi/citygml-osm/issues/54) 第二段階が起動できません<br/>[Fixed #33](https://github.com/yuuhayashi/citygml-osm/issues/33) v1.3.0 第2段階の変換でjavaのエラーが発生<br/>[Fixed #53](https://github.com/yuuhayashi/citygml-osm/issues/53) 既存データのダウンロード
+- 2022-01-02 [リリース v1.3.6-SNAPSHOT](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.3.6)<br/>第三段階：既存データとの統合機能<br/>第二段階：既存データのダウンロード機能<br/>[Fixed #54](https://github.com/yuuhayashi/citygml-osm/issues/54) 第二段階が起動できません<br/>[Fixed #33](https://github.com/yuuhayashi/citygml-osm/issues/33) v1.3.0 第2段階の変換でjavaのエラーが発生<br/>[Fixed #53](https://github.com/yuuhayashi/citygml-osm/issues/53) 既存データのダウンロード<br/>[Fixed #40](https://github.com/yuuhayashi/citygml-osm/issues/40) バリデーション警告「重なった建物」が発生する
 
 - 2021-12-30 [リリース v1.3.5](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.3.5)<br/>[Issue #51](https://github.com/yuuhayashi/citygml-osm/issues/51) マルチポリゴン建物への name タグ付与<br/>[Issue #49](https://github.com/yuuhayashi/citygml-osm/issues/49) Multipolygonリレーションに対するheightの値
 

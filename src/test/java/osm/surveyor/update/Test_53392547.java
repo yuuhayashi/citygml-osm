@@ -1,0 +1,101 @@
+package osm.surveyor.update;
+
+import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+
+import org.junit.Before;
+import org.junit.FixMethodOrder;
+import org.junit.Test;
+import org.junit.runners.MethodSorters;
+
+import osm.surveyor.osm.BodyMap;
+import osm.surveyor.osm.BoundsBean;
+import osm.surveyor.osm.MemberBean;
+import osm.surveyor.osm.NdBean;
+import osm.surveyor.osm.NodeBean;
+import osm.surveyor.osm.OsmBean;
+import osm.surveyor.osm.RelationBean;
+import osm.surveyor.osm.WayBean;
+
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class Test_53392547 extends OsmUpdaterTest {
+	
+	@Before
+	public void setup() {
+		try {
+			Files.copy(
+				Paths.get("./src/test/resources/53392547_bldg_6697_op2.osm"),
+				Paths.get("./53392547_bldg_6697_op2.osm")
+			);
+		}
+		catch (FileAlreadyExistsException ee) {}
+		catch (IOException e) {
+			e.printStackTrace();
+			fail();
+		}
+		try {
+			Files.copy(
+				Paths.get("./src/test/resources/53392547_bldg_6697_op2.org.osm"),
+				Paths.get("./53392547_bldg_6697_op2.org.osm")
+			);
+		}
+		catch (FileAlreadyExistsException ee) {}
+		catch (IOException e) {
+			e.printStackTrace();
+			fail();
+		}
+		
+	}
+
+	/**
+	 * `mvn test -Dtest=Test_53392547#test`
+	 * 東京都大田区
+	 */
+	@Test
+	public void test() {
+		BodyMap map = testdo(Paths.get("./53392547_bldg_6697_op2.osm"));
+		OsmBean osm = (OsmBean) map.get("osm");
+		OsmBean org = (OsmBean) map.get("org");
+		OsmBean mrg = (OsmBean) map.get("mrg");
+        try {
+	        assertNotNull(osm);
+	        assertNotNull(org);
+	        assertNotNull(mrg);
+	        BoundsBean bound = mrg.getBounds();
+	        assertNotNull(bound);
+	        
+	        List<NodeBean> nodes = mrg.getNodeList();
+	        assertNotNull(nodes);
+	        for (NodeBean node : nodes) {
+	        	assertNotEquals(0, node.getId());
+	        }
+	        
+	        List<WayBean> ways = mrg.getWayList();
+	        assertNotNull(ways);
+	        for (WayBean way : ways) {
+	        	for (NdBean nd : way.getNdList()) {
+	        		assertNotNull(mrg.getNode(nd.getRef()));
+	        	}
+	        }
+	        
+	        List<RelationBean> relations = mrg.getRelationList();
+	        assertNotNull(relations);
+	        for (RelationBean relation : relations) {
+	        	for (MemberBean member : relation.getMemberList()) {
+	        		if (member.isWay()) {
+		        		assertNotNull(mrg.getWay(member.getRef()));
+	        		}
+	        		if (member.isRelation()) {
+		        		assertNotNull(mrg.getRelation(member.getRef()));
+	        		}
+	        	}
+	        }
+		} catch (Exception e) {
+			e.fillInStackTrace();
+			fail(e.toString());
+		}
+	}
+}

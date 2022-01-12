@@ -15,6 +15,7 @@ import osm.surveyor.DetailTests;
 @ExcludeCategory(DetailTests.class)
 @SuiteClasses({
 	Test_A.class,
+	Test_53392547.class,
 	osm.surveyor.update.Test_Fujitv.class,
 	osm.surveyor.update.Test_haya4.class
 })
