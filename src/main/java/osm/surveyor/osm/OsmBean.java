@@ -209,18 +209,20 @@ public class OsmBean implements Serializable {
 	 * @param poi
 	 */
 	public void removeRelation(RelationBean poi) {
-		List<MemberBean> members = poi.getMemberList();
-		for (MemberBean member : members) {
-			if (member.isRelation()) {
-				removeRelation(this.getRelation(member.getRef()));
+		if (poi != null) {
+			List<MemberBean> members = poi.getMemberList();
+			for (MemberBean member : members) {
+				if (member.isRelation()) {
+					removeRelation(this.getRelation(member.getRef()));
+				}
+				else if (member.isWay()) {
+					removeWay(this.getWay(member.getRef()));
+				}
 			}
-			else if (member.isWay()) {
-				removeWay(this.getWay(member.getRef()));
+			int index = this.relationList.indexOf(poi);
+			if (index >= 0) {
+				this.relationList.remove(index);
 			}
-		}
-		int index = this.relationList.indexOf(poi);
-		if (index >= 0) {
-			this.relationList.remove(index);
 		}
 	}
 
