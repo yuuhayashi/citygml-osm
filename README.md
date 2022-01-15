@@ -17,7 +17,9 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 # Release
 
-- 2022-01-02 [リリース v1.3.6-SNAPSHOT](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.3.6)<br/>第三段階：既存データとの統合機能<br/>第二段階：既存データのダウンロード機能<br/>[Fixed #54](https://github.com/yuuhayashi/citygml-osm/issues/54) 第二段階が起動できません<br/>[Fixed #33](https://github.com/yuuhayashi/citygml-osm/issues/33) v1.3.0 第2段階の変換でjavaのエラーが発生<br/>[Fixed #53](https://github.com/yuuhayashi/citygml-osm/issues/53) 既存データのダウンロード<br/>[Fixed #40](https://github.com/yuuhayashi/citygml-osm/issues/40) バリデーション警告「重なった建物」が発生する
+- 2022-01-15 [v1.3.7-SNAPSHOT](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.3.7)<br/>[Fixed #58](https://github.com/yuuhayashi/citygml-osm/issues/58) Windows 10 に対応
+
+- 2022-01-15 [リリース v1.3.6](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.3.6)<br/>第三段階：既存データとの統合機能<br/>第二段階：既存データのダウンロード機能<br/>[Fixed #54](https://github.com/yuuhayashi/citygml-osm/issues/54) 第二段階が起動できません<br/>[Fixed #33](https://github.com/yuuhayashi/citygml-osm/issues/33) v1.3.0 第2段階の変換でjavaのエラーが発生<br/>[Fixed #53](https://github.com/yuuhayashi/citygml-osm/issues/53) 既存データのダウンロード<br/>[Fixed #40](https://github.com/yuuhayashi/citygml-osm/issues/40) バリデーション警告「重なった建物」が発生する
 
 - 2021-12-30 [リリース v1.3.5](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.3.5)<br/>[Issue #51](https://github.com/yuuhayashi/citygml-osm/issues/51) マルチポリゴン建物への name タグ付与<br/>[Issue #49](https://github.com/yuuhayashi/citygml-osm/issues/49) Multipolygonリレーションに対するheightの値
 
