@@ -1,23 +1,56 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <osm generator="JOSM" version="0.6">
-    <bounds maxlat="35.57509621366029" maxlon="139.737560968697" minlat="35.56647195757135" minlon="139.7241207469562" origin="CGImap 0.8.3 (2061540 spike-08.openstreetmap.org)"/>
-    <node id="-70" lat="35.574666237081175" lon="139.72773624343722" visible="true"/>
-    <node id="-71" lat="35.57448857297453" lon="139.72773548362352" visible="true"/>
-    <node id="-5" lat="35.57466593925221" lon="139.7278593732507" visible="true"/>
-    <node id="-62" lat="35.57476926611107" lon="139.7277367702098" visible="true"/>
-    <node id="-6" lat="35.57475990877071" lon="139.7278592500697" visible="true"/>
-    <node id="-63" lat="35.57476907550811" lon="139.7276735507023" visible="true"/>
-    <node id="-7" lat="35.57475975734357" lon="139.72784071463457" visible="true"/>
-    <node id="-8" lat="35.57466592303307" lon="139.72784083765995" visible="true"/>
-    <node id="-64" lat="35.57499122156624" lon="139.72767259699572" visible="true"/>
-    <node id="-53" lat="35.57503842032038" lon="139.7278396872893" visible="true"/>
-    <node id="-65" lat="35.574991277251996" lon="139.72773614784924" visible="true"/>
-    <node id="-54" lat="35.575038186560214" lon="139.7275729059462" visible="true"/>
-    <node id="-55" lat="35.57443786418458" lon="139.7275746879966" visible="true"/>
-    <node id="-56" lat="35.57443890947473" lon="139.72784179727742" visible="true"/>
-    <node id="-68" lat="35.57448865510807" lon="139.72767491191715" visible="true"/>
-    <node id="-69" lat="35.57466645413269" lon="139.72767534042688" visible="true"/>
+    <node lat="35.57503842032038" lon="139.7278396872893" id="-53" visible="true"/>
+    <node lat="35.575038186560214" lon="139.7275729059462" id="-54" visible="true"/>
+    <node lat="35.57443786418458" lon="139.7275746879966" id="-55" visible="true"/>
+    <node lat="35.57443890947473" lon="139.72784179727742" id="-56" visible="true"/>
+    <node lat="35.57476907550811" lon="139.7276735507023" id="-63" visible="true"/>
+    <node lat="35.57499122156624" lon="139.72767259699572" id="-64" visible="true"/>
+    <node lat="35.574991277251996" lon="139.72773614784924" id="-65" visible="true"/>
+    <node lat="35.57476926611107" lon="139.7277367702098" id="-62" visible="true"/>
+    <node lat="35.57475990877071" lon="139.7278592500697" id="-6" visible="true"/>
+    <node lat="35.57475975734357" lon="139.72784071463457" id="-7" visible="true"/>
+    <node lat="35.57466592303307" lon="139.72784083765995" id="-8" visible="true"/>
+    <node lat="35.57466593925221" lon="139.7278593732507" id="-5" visible="true"/>
+    <node lat="35.57466645413269" lon="139.72767534042688" id="-69" visible="true"/>
+    <node lat="35.574666237081175" lon="139.72773624343722" id="-70" visible="true"/>
+    <node lat="35.57448857297453" lon="139.72773548362352" id="-71" visible="true"/>
+    <node lat="35.57448865510807" lon="139.72767491191715" id="-68" visible="true"/>
+    <bounds minlat="35.56647195757135" minlon="139.7241207469562" maxlat="35.57509621366029" maxlon="139.737560968697" origin="CGImap 0.8.3 (2061540 spike-08.openstreetmap.org)"/>
+    <relation id="-1" visible="true">
+        <tag k="type" v="building"/>
+        <tag k="addr:full" v="東京都大田区大森西三丁目"/>
+        <tag k="height" v="34.7"/>
+        <tag k="ele" v="2.68"/>
+        <tag k="building" v="yes"/>
+        <tag k="building:levels" v="3"/>
+        <tag k="building:levels:underground" v="1"/>
+        <member ref="-10" role="part" type="way"/>
+        <member ref="-3" role="outline" type="relation"/>
+        <member ref="-59" role="part" type="way"/>
+    </relation>
+    <relation id="-3" visible="true">
+        <tag k="type" v="multipolygon"/>
+        <tag k="start_date" v="1977"/>
+        <tag k="addr:full" v="東京都大田区大森西三丁目"/>
+        <tag k="height" v="34.7"/>
+        <tag k="ele" v="2.68"/>
+        <tag k="building:levels" v="3"/>
+        <tag k="building:levels:underground" v="1"/>
+        <tag k="building:part" v="yes"/>
+        <member ref="-61" role="inner" type="way"/>
+        <member ref="-67" role="inner" type="way"/>
+        <member ref="-202" role="outer" type="way"/>
+    </relation>
     <way id="-59" visible="true">
+        <tag k="height" v="34.7"/>
+        <tag k="ele" v="2.68"/>
+        <tag k="addr:full" v="東京都大田区大森西三丁目"/>
+        <tag k="start_date" v="1976"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="building:levels" v="2"/>
+        <tag k="building:levels:underground" v="1"/>
+        <tag k="ref:MLIT_PLATEAU" v="13111-bldg-72601"/>
         <nd ref="-7"/>
         <nd ref="-53"/>
         <nd ref="-54"/>
@@ -25,17 +58,8 @@
         <nd ref="-56"/>
         <nd ref="-8"/>
         <nd ref="-7"/>
-        <tag k="addr:ref" v="13111006003"/>
-        <tag k="addr:full" v="東京都大田区大森西三丁目"/>
-        <tag k="building:part" v="yes"/>
-        <tag k="building:levels" v="2"/>
-        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-72601"/>
-        <tag k="building:levels:underground" v="1"/>
-        <tag k="ele" v="2.682"/>
-        <tag k="height" v="34.7"/>
-        <tag k="start_date" v="1976"/>
     </way>
-    <way id="-199" visible="true">
+    <way id="-202" visible="true">
         <nd ref="-7"/>
         <nd ref="-53"/>
         <nd ref="-54"/>
@@ -45,67 +69,35 @@
         <nd ref="-5"/>
         <nd ref="-6"/>
         <nd ref="-7"/>
-        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697"/>
     </way>
     <way id="-61" visible="true">
+        <tag k="ref:MLIT_PLATEAU" v="13111-bldg-72601"/>
         <nd ref="-62"/>
         <nd ref="-63"/>
         <nd ref="-64"/>
         <nd ref="-65"/>
         <nd ref="-62"/>
-        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-72601"/>
     </way>
     <way id="-10" visible="true">
+        <tag k="height" v="30.2"/>
+        <tag k="ele" v="3.13"/>
+        <tag k="addr:full" v="東京都大田区大森西三丁目"/>
+        <tag k="start_date" v="1977"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="building:levels" v="3"/>
+        <tag k="ref:MLIT_PLATEAU" v="13111-bldg-71799"/>
         <nd ref="-5"/>
         <nd ref="-6"/>
         <nd ref="-7"/>
         <nd ref="-8"/>
         <nd ref="-5"/>
-        <tag k="addr:ref" v="13111006003"/>
-        <tag k="addr:full" v="東京都大田区大森西三丁目"/>
-        <tag k="building:part" v="yes"/>
-        <tag k="building:levels" v="3"/>
-        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-71799"/>
-        <tag k="ele" v="3.126"/>
-        <tag k="height" v="30.2"/>
-        <tag k="start_date" v="1977"/>
     </way>
     <way id="-67" visible="true">
+        <tag k="ref:MLIT_PLATEAU" v="13111-bldg-72601"/>
         <nd ref="-68"/>
         <nd ref="-69"/>
         <nd ref="-70"/>
         <nd ref="-71"/>
         <nd ref="-68"/>
-        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13111-bldg-72601"/>
     </way>
-    <relation id="-48" visible="true">
-        <member ref="-59" role="part" type="way"/>
-        <member ref="-50" role="outline" type="relation"/>
-        <member ref="-10" role="part" type="way"/>
-        <tag k="addr:ref" v="13111006003"/>
-        <tag k="addr:full" v="東京都大田区大森西三丁目"/>
-        <tag k="building:levels" v="3"/>
-        <tag k="building:levels:underground" v="1"/>
-        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697"/>
-        <tag k="type" v="building"/>
-        <tag k="building" v="yes"/>
-        <tag k="start_date" v="1976"/>
-        <tag k="height" v="34.7"/>
-        <tag k="ele" v="2.682"/>
-    </relation>
-    <relation id="-50" visible="true">
-        <member ref="-61" role="inner" type="way"/>
-        <member ref="-67" role="inner" type="way"/>
-        <member ref="-199" role="outer" type="way"/>
-        <tag k="addr:ref" v="13111006003"/>
-        <tag k="addr:full" v="東京都大田区大森西三丁目"/>
-        <tag k="building:levels" v="3"/>
-        <tag k="source" v="MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697"/>
-        <tag k="building:levels:underground" v="1"/>
-        <tag k="type" v="multipolygon"/>
-        <tag k="building" v="yes"/>
-        <tag k="ele" v="2.682"/>
-        <tag k="start_date" v="1976"/>
-        <tag k="height" v="34.7"/>
-    </relation>
 </osm>

@@ -1,9 +1,8 @@
 package osm.surveyor.update;
 
-import java.io.IOException;
-import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -20,79 +19,28 @@ public class Test_A extends OsmUpdaterTest {
 	public void setup() {
 		try {
 			Files.copy(
-				Paths.get("./src/test/resources/53392547_bldg_6697_op2.osm"),
-				Paths.get("./53392547_bldg_6697_op2.osm")
-			);
-		}
-		catch (FileAlreadyExistsException ee) {}
-		catch (IOException e) {
-			e.printStackTrace();
-			fail();
-		}
-		try {
-			Files.copy(
-				Paths.get("./src/test/resources/53392547_bldg_6697_op2.org.osm"),
-				Paths.get("./53392547_bldg_6697_op2.org.osm")
-			);
-		}
-		catch (FileAlreadyExistsException ee) {}
-		catch (IOException e) {
-			e.printStackTrace();
-			fail();
-		}
-		try {
-			Files.copy(
 				Paths.get("./src/test/resources/sample_a_bldg_6697_op2.osm"),
-				Paths.get("./sample_a_bldg_6697_op2.osm")
+				Paths.get("./sample_a_bldg_6697_op2.osm"), REPLACE_EXISTING
 			);
 		}
-		catch (FileAlreadyExistsException ee) {}
-		catch (IOException e) {
+		catch (Exception e) {
 			e.printStackTrace();
 			fail();
 		}
 		try {
 			Files.copy(
 				Paths.get("./src/test/resources/sample_a_bldg_6697_op2.org.osm"),
-				Paths.get("./sample_a_bldg_6697_op2.org.osm")
+				Paths.get("./sample_a_bldg_6697_op2.org.osm"), REPLACE_EXISTING
 			);
 		}
-		catch (FileAlreadyExistsException ee) {}
-		catch (IOException e) {
+		catch (Exception e) {
 			e.printStackTrace();
 			fail();
 		}
 	}
 	
 	/**
-	 * 東京都大田区南六郷三丁目 "53392547_bldg_6697_op2"
-	 * `mvn test -Dtest=OsmUpdaterTest_A#test_a`
-	 * 東京都大田区 多摩川右岸付近
-	 * <bounds minlat="35.5407086" minlon="139.7124522" maxlat="35.5422523" maxlon="139.7156384"/>
-	 * ・ビルディングリレーションは存在しない
-	 * ・タグありのノードを含むWAYは存在しない
-	 * - "highway"WAYは存在しないこと
-	 * - "landuse"WAYは存在しないこと
-	 */
-	@Test
-	public void test_53392547() {
-		BodyMap map = testdo(Paths.get("./53392547_bldg_6697_op2.osm"));
-        try {
-    		// (1)指定されたOSMファイルをLOADする
-        	// (2) <bound/>を取得する
-    		// (3) OSMから<bound>範囲内の現在のデータをダウンロードする
-        		// (4) ダウンロードしたデータをパースする
-        	// (5) "building"関係のPOIのみに絞る
-    		OsmBean mrg = (OsmBean) map.get("mrg");
-	        assertNotNull(mrg);
-		} catch (Exception e) {
-			e.fillInStackTrace();
-			fail(e.toString());
-		}
-	}
-
-	/**
-	 * `mvn test -Dtest=OsmUpdaterTest_A#test_d1`
+	 * `mvn test -Dtest=OsmUpdaterTest_A`
 	 * 
 	 * INPUT: "sample_a_bldg_6697_op2.osm"
 	 * INPUT: "sample_a_bldg_6697_op2.org.osm"
@@ -105,7 +53,7 @@ public class Test_A extends OsmUpdaterTest {
     		// (3) OSMから<bound>範囲内の現在のデータをダウンロードする
         		// (4) ダウンロードしたデータをパースする
         	// (5) "building"関係のPOIのみに絞る
-    		BodyMap map = testdo(Paths.get("sample_a_bldg_6697_op2.osm"));
+    		BodyMap map = testdo(Paths.get("./sample_a_bldg_6697_op2.osm"));
     		OsmBean mrg = (OsmBean) map.get("mrg");
 	        assertNotNull(mrg);
 		} catch (Exception e) {

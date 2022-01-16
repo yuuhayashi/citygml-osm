@@ -6,6 +6,10 @@ import osm.surveyor.osm.OsmDom;
 
 public class CitygmlFileTest_53392588 extends GmlLoadRouteTest {
 
+	/**
+	 * 東京都大田区大森西三丁目
+	 * 
+	 */
 	@Test
 	public void test53392588() {
 		try {

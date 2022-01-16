@@ -111,9 +111,11 @@ public class CitygmlFileTest_D extends GmlLoadRouteTest {
 					assertEquals("34.7", relation.getTagValue("height"));
 					assertEquals("2.68", relation.getTagValue("ele"));
 					assertEquals("東京都大田区大森西三丁目", relation.getTagValue("addr:full"));
-					assertEquals(8, relation.getTagList().size());
+					assertNull(relation.getTag("start_date"));			// Issue #39 複合ビルでの”建築年”の扱い
 					assertNull(relation.getTagValue("ref:MLIT_PLATEAU"));
 					assertNull(relation.getTagValue("addr:ref"));
+					assertEquals(7, relation.getTagList().size());
+					
 					int outerCnt = 0;
 					int innerCnt = 0;
 					for (MemberBean mem : relation.members) {

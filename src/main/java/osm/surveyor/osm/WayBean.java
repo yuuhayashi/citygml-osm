@@ -217,4 +217,18 @@ public class WayBean extends PoiBean implements Cloneable, Serializable {
         return maxid;
 	}
 
+	/**
+	 * AREAの面積を求める。ただし、面積の単位は直行座標（メートルではない）
+	 * @return	ラインが閉じたエリア出ない場合は0.0d
+	 */
+	public double getArea() {
+        Polygon polygon = getPolygon();
+        if (polygon != null) {
+            return polygon.getArea();
+        }
+        else {
+        	return 0.0d;
+        }
+	}
+	
 }

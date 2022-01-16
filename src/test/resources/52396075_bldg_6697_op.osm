@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<osm generator="JOSM" version="0.6">
+    <node lat="35.23151999674047" lon="139.06625261006525" id="-6" visible="true"/>
+    <node lat="35.231564611877225" lon="139.06625186049507" id="-7" visible="true"/>
+    <node lat="35.23156337006881" lon="139.06619815002912" id="-8" visible="true"/>
+    <node lat="35.23151859137091" lon="139.06620153783723" id="-5" visible="true"/>
+    <bounds minlat="35.23151859137091" minlon="139.06619815002912" maxlat="35.231564611877225" maxlon="139.06625261006525" origin="CGImap 0.8.3 (2061540 spike-08.openstreetmap.org)"/>
+    <way id="-10" visible="true">
+        <tag k="height" v="13.3"/>
+        <tag k="ele" v="728.31"/>
+        <tag k="ref:MLIT_PLATEAU" v="14382-bldg-10718"/>
+        <tag k="building:levels" v="1"/>
+        <tag k="building" v="yes"/>
+        <nd ref="-5"/>
+        <nd ref="-6"/>
+        <nd ref="-7"/>
+        <nd ref="-8"/>
+        <nd ref="-5"/>
+    </way>
+</osm>

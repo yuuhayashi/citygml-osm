@@ -16,6 +16,7 @@ import osm.surveyor.DetailTests;
 @SuiteClasses({
 	Test_A.class,
 	Test_53392547.class,
+	Test_D.class,
 	osm.surveyor.update.Test_Fujitv.class,
 	osm.surveyor.update.Test_haya4.class
 })

@@ -36,6 +36,20 @@ public class RelationProcessor implements Processor {
 							}
 						}
 					}
+					else if (member.isRelation()) {
+						ElementRelation polygon = osm.relations.get(member.getRef());
+						if (polygon.getTagValue("type").equals(ElementRelation.MULTIPOLYGON)) {
+							for (MemberBean mmem : polygon.members) {
+								ElementWay way = osm.ways.get(mmem.getRef());
+								if (way.getArea() > max) {
+									max = way.getArea();
+									if (way.getTagValue("name") != null) {
+										name = way.getTagValue("name");
+									}
+								}
+							}
+						}
+					}
 				}
 				relation.removeTag("name");
 				if (name != null) {

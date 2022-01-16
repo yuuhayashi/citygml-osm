@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<osm generator="JOSM" version="0.6">
+    <node lat="33.60258224446268" lon="130.6946638382427" id="-6" visible="true"/>
+    <node lat="33.60257012383934" lon="130.69461183581348" id="-7" visible="true"/>
+    <node lat="33.60227873623877" lon="130.69466199862168" id="-147" visible="true"/>
+    <node lat="33.60239656130412" lon="130.69516425443123" id="-148" visible="true"/>
+    <node lat="33.602666840426316" lon="130.69507365200448" id="-149" visible="true"/>
+    <node lat="33.602571523669624" lon="130.69466753966253" id="-5" visible="true"/>
+    <node lat="33.60255931288117" lon="130.69461553755704" id="-8" visible="true"/>
+    <node lat="33.60254892482351" lon="130.69457139507495" id="-156" visible="true"/>
+    <node lat="33.60250748220039" lon="130.69458533367919" id="-157" visible="true"/>
+    <node lat="33.60231089941658" lon="130.69465121765376" id="-146" visible="true"/>
+    <node lat="33.6026085192871" lon="130.6947880937283" id="-100" visible="true"/>
+    <node lat="33.6025969439698" lon="130.69473781340767" id="-101" visible="true"/>
+    <node lat="33.60258865554792" lon="130.6947406442165" id="-102" visible="true"/>
+    <node lat="33.602600410399965" lon="130.6947906006383" id="-99" visible="true"/>
+    <node lat="33.60265473257667" lon="130.69499018524223" id="-53" visible="true"/>
+    <node lat="33.60263531904411" lon="130.69490588220032" id="-54" visible="true"/>
+    <node lat="33.60262802138893" lon="130.69490827848912" id="-55" visible="true"/>
+    <node lat="33.60264779558658" lon="130.69499258025465" id="-52" visible="true"/>
+    <bounds minlat="33.5996536684474" minlon="130.68743573838526" maxlat="33.60849676596271" maxlon="130.69864081238504" origin="CGImap 0.8.3 (2061540 spike-08.openstreetmap.org)"/>
+    <relation id="-95" visible="true">
+        <tag k="type" v="building"/>
+        <tag k="height" v="9.3"/>
+        <tag k="ele" v="46.46"/>
+        <tag k="building" v="industrial"/>
+        <tag k="building:levels" v="1"/>
+        <tag k="building:levels:underground" v="0"/>
+        <member ref="-104" role="part" type="way"/>
+        <member ref="-159" role="part" type="way"/>
+        <member ref="-57" role="part" type="way"/>
+        <member ref="-10" role="part" type="way"/>
+        <member ref="-281" role="outline" type="way"/>
+    </relation>
+    <way id="-281" visible="true">
+        <tag k="ele" v="46.46"/>
+        <tag k="building" v="industrial"/>
+        <tag k="building:levels" v="1"/>
+        <tag k="building:levels:underground" v="0"/>
+        <tag k="height" v="9.3"/>
+        <nd ref="-5"/>
+        <nd ref="-6"/>
+        <nd ref="-7"/>
+        <nd ref="-8"/>
+        <nd ref="-156"/>
+        <nd ref="-157"/>
+        <nd ref="-146"/>
+        <nd ref="-147"/>
+        <nd ref="-148"/>
+        <nd ref="-149"/>
+        <nd ref="-52"/>
+        <nd ref="-53"/>
+        <nd ref="-54"/>
+        <nd ref="-55"/>
+        <nd ref="-99"/>
+        <nd ref="-100"/>
+        <nd ref="-101"/>
+        <nd ref="-102"/>
+        <nd ref="-5"/>
+    </way>
+    <way id="-10" visible="true">
+        <tag k="height" v="7.6"/>
+        <tag k="ele" v="46.58"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="ref:MLIT_PLATEAU" v="40205-bldg-81258"/>
+        <nd ref="-5"/>
+        <nd ref="-6"/>
+        <nd ref="-7"/>
+        <nd ref="-8"/>
+        <nd ref="-5"/>
+    </way>
+    <way id="-104" visible="true">
+        <tag k="height" v="7.8"/>
+        <tag k="ele" v="46.55"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="ref:MLIT_PLATEAU" v="40205-bldg-81336"/>
+        <nd ref="-99"/>
+        <nd ref="-100"/>
+        <nd ref="-101"/>
+        <nd ref="-102"/>
+        <nd ref="-99"/>
+    </way>
+    <way id="-159" visible="true">
+        <tag k="height" v="9.3"/>
+        <tag k="ele" v="46.46"/>
+        <tag k="building:part" v="industrial"/>
+        <tag k="building:levels" v="1"/>
+        <tag k="building:levels:underground" v="0"/>
+        <tag k="ref:MLIT_PLATEAU" v="40205-bldg-81188"/>
+        <nd ref="-146"/>
+        <nd ref="-147"/>
+        <nd ref="-148"/>
+        <nd ref="-149"/>
+        <nd ref="-52"/>
+        <nd ref="-55"/>
+        <nd ref="-99"/>
+        <nd ref="-102"/>
+        <nd ref="-5"/>
+        <nd ref="-8"/>
+        <nd ref="-156"/>
+        <nd ref="-157"/>
+        <nd ref="-146"/>
+    </way>
+    <way id="-57" visible="true">
+        <tag k="height" v="6.6"/>
+        <tag k="ele" v="46.56"/>
+        <tag k="building:part" v="yes"/>
+        <tag k="ref:MLIT_PLATEAU" v="40205-bldg-81360"/>
+        <nd ref="-52"/>
+        <nd ref="-53"/>
+        <nd ref="-54"/>
+        <nd ref="-55"/>
+        <nd ref="-52"/>
+    </way>
+</osm>

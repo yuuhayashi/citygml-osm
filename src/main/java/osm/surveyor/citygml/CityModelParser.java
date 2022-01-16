@@ -299,7 +299,7 @@ public class CityModelParser extends DefaultHandler {
 					else if (mem.getType().equals("relation")) {
 						ElementRelation relation = osm.relations.get(mem.getRef());
 						relation.removeTag("maxele");
-						relation.addTag("start_date", building.getTagValue("start_date"));
+						// Issue #39 relation.addTag("start_date", building.getTagValue("start_date"));
 						relation.addTag("building:levels", building.getTagValue("building:levels"));
 						relation.addTag("building:levels:underground", building.getTagValue("building:levels:underground"));
 						relation.addTag("height", rounding(1, building.getTagValue("height")));

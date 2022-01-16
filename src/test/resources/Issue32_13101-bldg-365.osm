@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<osm generator="JOSM" version="0.6">
+    <node lat="35.67590226150992" lon="139.7613816969819" id="-6" visible="true"/>
+    <node lat="35.6760061457164" lon="139.7614166272612" id="-7" visible="true"/>
+    <node lat="35.67600430830747" lon="139.7614249926208" id="-8" visible="true"/>
+    <node lat="35.67602620876471" lon="139.7614322253563" id="-9" visible="true"/>
+    <node lat="35.67615504999368" lon="139.76084587671974" id="-10" visible="true"/>
+    <node lat="35.67615544847788" lon="139.76084600560995" id="-11" visible="true"/>
+    <node lat="35.6762492206066" lon="139.76042891380712" id="-12" visible="true"/>
+    <node lat="35.67564954185824" lon="139.76023233344196" id="-13" visible="true"/>
+    <node lat="35.67555849718525" lon="139.76064964744737" id="-14" visible="true"/>
+    <node lat="35.6754298629844" lon="139.7612354505462" id="-15" visible="true"/>
+    <node lat="35.67545353949578" lon="139.76124324608077" id="-16" visible="true"/>
+    <node lat="35.67545614911554" lon="139.7612314477893" id="-17" visible="true"/>
+    <node lat="35.67555645780696" lon="139.76126517014646" id="-18" visible="true"/>
+    <node lat="35.67555477225366" lon="139.76127272226879" id="-19" visible="true"/>
+    <node lat="35.675900622680835" lon="139.7613890148956" id="-5" visible="true"/>
+    <bounds minlat="35.6745024961797" minlon="139.74952568294003" maxlat="35.683338686491325" maxlon="139.7628945026216" origin="CGImap 0.8.3 (2061540 spike-08.openstreetmap.org)"/>
+    <way id="-21" visible="true">
+        <tag k="height" v="114.7"/>
+        <tag k="ele" v="2.14"/>
+        <tag k="ref:MLIT_PLATEAU" v="13101-bldg-365"/>
+        <tag k="name" v="第一生命館内郵便局"/>
+        <tag k="addr:full" v="東京都千代田区有楽町一丁目"/>
+        <tag k="building" v="yes"/>
+        <nd ref="-5"/>
+        <nd ref="-6"/>
+        <nd ref="-7"/>
+        <nd ref="-8"/>
+        <nd ref="-9"/>
+        <nd ref="-10"/>
+        <nd ref="-11"/>
+        <nd ref="-12"/>
+        <nd ref="-13"/>
+        <nd ref="-14"/>
+        <nd ref="-15"/>
+        <nd ref="-16"/>
+        <nd ref="-17"/>
+        <nd ref="-18"/>
+        <nd ref="-19"/>
+        <nd ref="-5"/>
+    </way>
+</osm>

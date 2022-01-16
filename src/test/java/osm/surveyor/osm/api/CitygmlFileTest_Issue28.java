@@ -10,7 +10,7 @@ import osm.surveyor.osm.OsmDom;
 import osm.surveyor.osm.RelationMap;
 
 /**
- * 
+ * 福岡県飯塚市
  * v1.3.0 リレーションでbldg:usageが未反映のものがある。 #35
 V1.3.0で試して見ました。
 最初の例の(3)、(4)とも、(目視で)一番大きなbuilding:partがindustrialなのですが、リレーション自体はまだbuilding=yesでした。。
@@ -56,6 +56,12 @@ V1.3.0で試して見ました。
  */
 public class CitygmlFileTest_Issue28 extends GmlLoadRouteTest {
 
+	/**
+	 * Issue #37 複雑系の複合ビルが一つのOUTLINEにまとまらない
+	 * Issue #36 "k=ele,v=23.3"で"Unnecessary amount of decimal places(716)"の警告
+	 * Issue #34 v1.3.0 mrg.osmファイルで読み込めないものがある。
+	 * Issue #28 v1.2.9 リレーションでbldg:usageが反映されないものがある。 #28
+	 */
 	@Test
 	public void test50303525() {
 		OsmDom osm = testdo("./src/test/resources/Issue28_50303525_op.gml");

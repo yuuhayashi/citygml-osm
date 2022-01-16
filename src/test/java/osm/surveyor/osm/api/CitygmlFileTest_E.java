@@ -61,9 +61,9 @@ public class CitygmlFileTest_E extends GmlLoadRouteTest {
 							assertNull(polygon.getTagValue("addr:ref"));
 							assertEquals("21.6", polygon.getTagValue("height"));
 							assertEquals("1.62", polygon.getTagValue("ele"));
-							assertEquals("1976", polygon.getTagValue("start_date"));
+							assertNull(polygon.getTagValue("start_date"));
 							assertNull(polygon.getTagValue("ref:MLIT_PLATEAU"));
-							assertEquals(9, polygon.getTagList().size());
+							assertEquals(8, polygon.getTagList().size());
 							
 							for (MemberBean member : polygon.members) {
 								if (member.getRole().equals("outer")) {

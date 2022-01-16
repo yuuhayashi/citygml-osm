@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 import java.util.List;
 
 import org.junit.Before;
@@ -20,6 +21,12 @@ import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.RelationBean;
 import osm.surveyor.osm.WayBean;
 
+/**
+ * `mvn test -Dtest=Test_53392547`
+ * 
+ * @author hayashi
+ *
+ */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Test_53392547 extends OsmUpdaterTest {
 	
@@ -28,7 +35,7 @@ public class Test_53392547 extends OsmUpdaterTest {
 		try {
 			Files.copy(
 				Paths.get("./src/test/resources/53392547_bldg_6697_op2.osm"),
-				Paths.get("./53392547_bldg_6697_op2.osm")
+				Paths.get("./53392547_bldg_6697_op2.osm"), REPLACE_EXISTING
 			);
 		}
 		catch (FileAlreadyExistsException ee) {}
@@ -39,7 +46,7 @@ public class Test_53392547 extends OsmUpdaterTest {
 		try {
 			Files.copy(
 				Paths.get("./src/test/resources/53392547_bldg_6697_op2.org.osm"),
-				Paths.get("./53392547_bldg_6697_op2.org.osm")
+				Paths.get("./53392547_bldg_6697_op2.org.osm"), REPLACE_EXISTING
 			);
 		}
 		catch (FileAlreadyExistsException ee) {}
@@ -47,12 +54,18 @@ public class Test_53392547 extends OsmUpdaterTest {
 			e.printStackTrace();
 			fail();
 		}
-		
 	}
 
 	/**
-	 * `mvn test -Dtest=Test_53392547#test`
-	 * 東京都大田区
+	 * 東京都大田区南六郷三丁目 "53392547_bldg_6697_op2"
+	 * 東京都大田区 多摩川右岸付近
+	 * <bounds minlat="35.5407086" minlon="139.7124522" maxlat="35.5422523" maxlon="139.7156384"/>
+	 * ・ビルディングリレーションは存在しない
+	 * ・タグありのノードを含むWAYは存在しない
+	 * - "highway"WAYは存在しないこと
+	 * - "landuse"WAYは存在しないこと
+	 * 
+	 * 東京都大田区 多摩川左岸 モデル地域
 	 */
 	@Test
 	public void test() {

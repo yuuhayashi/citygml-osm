@@ -27,7 +27,7 @@ public class RelationBean extends PoiBean implements Serializable {
 	private static final long serialVersionUID = -4269249218172121296L;
 	public static final String RELATION = "relation";
 	public static final String MULTIPOLYGON = "multipolygon";
-
+	
 	/**
 	 * fix=true 更新しないもの、fix=false 更新対象を示す。
 	 */

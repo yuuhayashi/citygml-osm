@@ -44,6 +44,7 @@ public class OrgUpdateProcessor implements Processor {
 		// インポートデータの内で、既存データと重複するWAYを'modify'に確定する
 		duplicatedToModify(osm, org);
 
+		// リレーションのメンバーWAYには"building"タグをつけない
 		for (RelationBean relation : osm.getRelationList()) {
 			relation.setAction("modify");
 			for (MemberBean member : relation.getMemberList()) {
@@ -75,6 +76,10 @@ public class OrgUpdateProcessor implements Processor {
 
 		// WAYに所属していないNODEを削除する
 		osm.gerbageNode();
+		
+		// リレーションの"name"を決定する
+		fixRelationsName(osm);
+		
 		map.put("mrg", osm);
 	}
 	
@@ -286,7 +291,124 @@ public class OrgUpdateProcessor implements Processor {
 				}
 			}
 		}
-		
+	}
+	
+	/**
+	 * リレーションの"name=xxxx"を決定する
+	 * リレーションの"building=xxxx"を決定する
+	 * 
+	 */
+	private void fixRelationsName(OsmBean mrg) throws Exception {
+		for (RelationBean relation : mrg.getRelationList()) {
+			if (relation.isBuilding()) {
+				double max = 0;
+				double maxBuilding = 0;
+				String name = null;
+				String building = "yes";
+				for (MemberBean member : relation.getMemberList()) {
+					if (member.isWay()) {
+						WayBean way = mrg.getWay(member.getRef());
+						if (way.getArea() > max) {
+							if (way.getTagValue("name") != null) {
+								name = way.getTagValue("name");
+								max = way.getArea();
+							}
+						}
+						if (way.getArea() > maxBuilding) {
+							String buildingValue = way.getTagValue("building:part");
+							if ((buildingValue != null) && !buildingValue.isEmpty() && !buildingValue.equals("yes")) {
+								building = new String(buildingValue);
+								maxBuilding = way.getArea();
+							}
+							buildingValue = way.getTagValue("building");
+							if ((buildingValue != null) && !buildingValue.isEmpty() && !buildingValue.equals("yes")) {
+								building = new String(buildingValue);
+								maxBuilding = way.getArea();
+							}
+						}
+					}
+					else if (member.isRelation()) {
+						RelationBean polygon = mrg.getRelation(member.getRef());
+						if (polygon.isMultipolygon()) {
+							for (MemberBean mmem : polygon.getMemberList()) {
+								WayBean way = mrg.getWay(mmem.getRef());
+								if (way.getArea() > max) {
+									if (way.getTagValue("name") != null) {
+										name = way.getTagValue("name");
+										max = way.getArea();
+									}
+								}
+								if (way.getArea() > maxBuilding) {
+									String buildingValue = way.getTagValue("building:part");
+									if ((buildingValue != null) && !buildingValue.isEmpty() && !buildingValue.equals("yes")) {
+										building = new String(buildingValue);
+										maxBuilding = way.getArea();
+									}
+									buildingValue = way.getTagValue("building");
+									if ((buildingValue != null) && !buildingValue.isEmpty() && !buildingValue.equals("yes")) {
+										building = new String(buildingValue);
+										maxBuilding = way.getArea();
+									}
+								}
+							}
+						}
+					}
+				}
+				relation.removeTag("name");
+				if (name != null) {
+					relation.addTag("name", name);
+				}
+				relation.removeTag("building");
+				if (building != null) {
+					relation.addTag("building", building);
+				}
+			}
+			else if (relation.isMultipolygon()) {
+				double max = 0;
+				double maxBuilding = 0;
+				String name = null;
+				String building = "yes";
+				for (MemberBean member : relation.getMemberList()) {
+					if (member.isWay()) {
+						WayBean way = mrg.getWay(member.getRef());
+						if (way.getArea() > max) {
+							if (way.getTagValue("name") != null) {
+								name = way.getTagValue("name");
+								max = way.getArea();
+							}
+						}
+						if (way.getArea() > maxBuilding) {
+							String buildingValue = way.getTagValue("building:part");
+							if ((buildingValue != null) && !buildingValue.isEmpty() && !buildingValue.equals("yes")) {
+								building = new String(buildingValue);
+								maxBuilding = way.getArea();
+							}
+							buildingValue = way.getTagValue("building");
+							if ((buildingValue != null) && !buildingValue.isEmpty() && !buildingValue.equals("yes")) {
+								building = new String(buildingValue);
+								maxBuilding = way.getArea();
+							}
+						}
+					}
+				}
+				relation.removeTag("name");
+				if (name != null) {
+					relation.addTag("name", name);
+				}
+				if (mrg.getParents(relation).size() > 0) {
+					relation.removeTag("building:part");
+					if (building != null) {
+						relation.addTag("building:part", building);
+					}
+				}
+				else {
+					relation.removeTag("building");
+					if (building != null) {
+						relation.addTag("building", building);
+					}
+				}
+			}
+		}
 	}
 	
 	/**
