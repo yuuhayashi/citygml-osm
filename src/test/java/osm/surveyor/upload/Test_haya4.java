@@ -1,4 +1,4 @@
-package osm.surveyor.update;
+package osm.surveyor.upload;
 
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
@@ -22,15 +22,14 @@ import osm.surveyor.osm.RelationBean;
 import osm.surveyor.osm.WayBean;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class Test_haya4 extends OsmUpdaterTest {
-	static final String SOURCE = "haya4_bldg_6697_op2";
+public class Test_haya4 extends OsmUploadTest {
 	
 	@Before
 	public void setup() {
 		try {
 			Files.copy(
-				Paths.get("./src/test/resources/haya4_bldg_6697_op2.osm"),
-				Paths.get("./haya4_bldg_6697_op2.osm"), REPLACE_EXISTING
+				Paths.get("./src/test/resources/haya4_bldg_6697.checked.osm"),
+				Paths.get("./haya4_bldg_6697.checked.osm"), REPLACE_EXISTING
 			);
 		}
 		catch (FileAlreadyExistsException ee) {}
@@ -38,18 +37,6 @@ public class Test_haya4 extends OsmUpdaterTest {
 			e.printStackTrace();
 			fail();
 		}
-		try {
-			Files.copy(
-				Paths.get("./src/test/resources/haya4_bldg_6697_op2.org.osm"),
-				Paths.get("./haya4_bldg_6697_op2.org.osm"), REPLACE_EXISTING
-			);
-		}
-		catch (FileAlreadyExistsException ee) {}
-		catch (IOException e) {
-			e.printStackTrace();
-			fail();
-		}
-		
 	}
 
 	/**

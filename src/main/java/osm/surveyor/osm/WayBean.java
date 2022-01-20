@@ -205,7 +205,7 @@ public class WayBean extends PoiBean implements Cloneable, Serializable {
 	public long getIntersect(List<WayBean> ways) throws Exception {
 		double max = 0.0d;
 		long maxid = 0;
-        for (WayBean way : ways) {
+        for (WayBean way : getIntersects(ways)) {
         	if (!way.getFix()) {
             	double area = getIntersectArea(way);
     			if (area > max) {
@@ -215,6 +215,19 @@ public class WayBean extends PoiBean implements Cloneable, Serializable {
         	}
         }
         return maxid;
+	}
+
+	public List<WayBean> getIntersects(List<WayBean> ways) throws Exception {
+		List<WayBean> ret = new ArrayList<>();
+        for (WayBean way : ways) {
+        	if (!way.getFix()) {
+            	double area = getIntersectArea(way);
+    			if (area > 0) {
+    				ret.add(way);
+    			}
+        	}
+        }
+        return ret;
 	}
 
 	/**

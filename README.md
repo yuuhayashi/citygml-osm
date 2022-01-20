@@ -62,7 +62,7 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 # 使い方
 
-## 第一段階 : GMLからOSMへの変換
+## Step 1 : GMLからOSMへの変換
 
 第一段階ではPLATEAUの「3D都市モデル」の"GMLファイル"をOpenStreetMapの形式に変換した"OSMファイル"を生成します。
 
@@ -73,51 +73,43 @@ CityGMLから、OpenStreetMapへのJOSM用のOSMデータを生成する
 
 - (2) [オープンデータ公開サイト](https://www.geospatial.jp/ckan/dataset/plateau)から「3D都市データ」をダウンロードする
 
-- (3) ダウンロードしたZIPファイルを'任意のフォルダ'に解凍する。<br/>ファイル末尾が「`*****.gml`」のファイルをため置きます。
+- (3) ダウンロードしたZIPファイルを'任意のフォルダ'に解凍する。<br/>ファイル末尾が「`*.gml`」のファイルをため置きます。
 
-- (4) コマンドターミナルから実行<br/>「`*****.osm`」ファイルが生成される
+- (4) コマンドターミナルから実行<br/>「`*.osm`」、「`*.org.osm`」、「`*.mrg.osm`」ファイルが生成される
 
 ```
   $ cd (解凍先フォルダ)
   $ java -jar citygml-osm-jar-with-dependencies.jar 1st
-```
-
-- (5) JOSMを起動して、「`*****.osm`」ファイルをJOSMにドロップしてください。<br/>生成されたデータを確認することができます。
-
-## 第二段階 : 既存の Building データをダウンロード
-
-第二段階では、第一段階で生成され"OSMファイル"からOpenStreetMapに入力済みのデータをダウンロードして「`xxxx.org.osm`」を取得します。
-
-![download.pu](doc/OsmDownloader/download.png)
-
-```
-  $ cd (解凍先フォルダ)
   $ java -jar citygml-osm-jar-with-dependencies.jar 2nd
+  $ java -jar citygml-osm-jar-with-dependencies.jar 3rd
 ```
+
+- (5) JOSMを起動して、「`*.mrg.osm`」ファイルをJOSMにドロップしてください。<br/>生成されたデータを確認することができます。
+
+
+## Step 2 : 変換されたPOIの確認
+
+- (6) JOSM上で、変換後のPOIを確認します。<br/>不要な（アップロードしたくない）POIは削除してください。（JOSM上から消えたPOIは更新されません）
+
+- (7) 不要な（アップロードしたくない）POIを削除したら、レイヤ「`*.mrg.osm`」を『名前をつけて保存』してください。保存ファイル名は「`checked.osm`」とします。
 
 - Issue #41 ['fixme'による手動選別](https://github.com/yuuhayashi/citygml-osm/issues/42)
 
 - Issue #21 [既存'relation:building'には上書きしないようにする](https://github.com/yuuhayashi/citygml-osm/issues/21) 
 
 
+## Step 3 : OpenStreetMapへアップロード
 
-## 第三段階 : 既存データをアップデート
-
-第三段界では、「`xxxx.org.osm`」と「OSMファイル」を比較して、既存buildingと重複するデータは、既存データを更新します。
-
-第三段階 [OsmUpdater](doc/OsmUpdater/README.md)
-
-![startup2nd.pu](doc/OsmUpdater/startup2nd.png)
-
-- (1) コマンドターミナルから実行<br/>「`*.mrg.osm`」ファイルが生成される
+- (8) コマンドターミナルから実行<br/>「`upload.osm`」ファイルが生成される
 
 ```
   $ cd (解凍先フォルダ)
-  $ java -jar citygml-osm-jar-with-dependencies.jar 3rd
+  $ java -jar citygml-osm-jar-with-dependencies.jar 4th checked.osm upload.osm
 ```
 
-- (2) JOSMを起動して、「`*.mrg.osm`」ファイルをJOSMにドロップしてください。<br/>生成されたデータを確認することができます。
+- (9) JOSMを起動して、「`upload.osm`」ファイルをJOSMにドロップしてください。
 
+- (10) レイヤ「`upload.osm`」を"アップロード"してください。
 
 
 **絶対にOSMへの「アップロード」は実行しないこと！！**

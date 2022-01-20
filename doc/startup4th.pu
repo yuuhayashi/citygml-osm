@@ -1,0 +1,63 @@
+@startuml
+title CityGML-OSM 実行イメージ
+
+cloud OpenStreetMap
+
+cloud PLATEAU
+
+node PC {
+
+ folder 任意のフォルダ {
+  file "`#####_bldg_#####_op2.gml`" as gml
+  () "実行 citygml-osm.jar" as run
+  note right of run
+  	処理内容
+  	(1) GMLファイルを"osm"ファイルに変換する
+  	(2) OpenStreetMapに存在する既存データを読み取る
+  	(3) GMLと既存データとの重複チェックを行う
+  	(4) 既存データとの重複を考慮した`mrg`ファイルを生成する
+  end note
+  file "`*.osm`\n第一段階 生成物" as osm
+  file "`*.org.osm`\n第二段階 生成物" as org
+  file "`*.mrg.osm`\n第三段階 生成物" as mrg
+  PLATEAU --> gml : ダウンロード and 解凍
+  OpenStreetMap ..> run : 既存データの参照
+  gml ..> run
+  run --> osm
+  run --> org
+  run --> mrg
+ }
+
+  node JOSM
+  mrg --> JOSM : drop
+
+  note right of JOSM
+	不要なPOIを消去する
+  end note
+
+  () "cmd リリース" as 4th
+  file "`checked.osm`" as checked
+  JOSM --> checked : 名前をつけて保存
+  checked ..> 4th
+  note bottom of 4th
+	リリース処理内容
+	(1) POI `action=delete` を除去する
+	(2) POI `MLIT_PLATEAU:fixme=delete *` を `action=delete` にする
+	(3) タグ `MLIT_PLATEAU:fixme=*` を除去する
+	(4) ファイル`upload.osm` に書き出す
+  end note
+
+  file "`upload.osm`" as upload
+  node "JOSM" as JOSM2
+
+  4th -> upload
+  JOSM2 <-- upload : drop
+
+  note right of JOSM2
+	`upload.osm`をアップロードする
+  end note
+}
+
+OpenStreetMap <-- JOSM2 : アップロード
+
+@enduml

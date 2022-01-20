@@ -100,7 +100,10 @@ public class OsmBean implements Serializable {
     	}
     	for (WayBean way : this.wayList) {
     		for (NdBean nd : way.getNdList()) {
-    			nd.setPoint(getNode(nd.getRef()).getPoint());
+    			NodeBean node = getNode(nd.getRef());
+    			if (node != null) {
+        			nd.setPoint(node.getPoint());
+    			}
     		}
     	}
     }

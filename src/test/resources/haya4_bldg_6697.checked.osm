@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <bounds minlat='35.4338571' minlon='139.4107023' maxlat='35.4344471' maxlon='139.4116035' origin='CGImap 0.8.6 (4022191 spike-07.openstreetmap.org)' />
+  <node id='-229806' action='modify' visible='true' lat='35.4341734125' lon='139.41102281146' />
+  <node id='-229807' action='modify' visible='true' lat='35.43412503124' lon='139.41100727293' />
+  <node id='-229808' action='modify' visible='true' lat='35.43414032916' lon='139.41093552384' />
+  <node id='-229809' action='modify' visible='true' lat='35.43418871042' lon='139.41095106237' />
+  <node id='-229814' action='modify' visible='true' lat='35.43400719888' lon='139.41118044888' />
+  <node id='-229815' action='modify' visible='true' lat='35.4340359772' lon='139.41103957967' />
+  <node id='-229816' action='modify' visible='true' lat='35.43400173917' lon='139.41114130155' />
+  <node id='-229817' action='modify' visible='true' lat='35.4340165477' lon='139.41106881416' />
+  <node id='-229827' action='modify' visible='true' lat='35.43399981452' lon='139.41106366491' />
+  <node id='-229828' action='modify' visible='true' lat='35.43398500598' lon='139.41113615231' />
+  <node id='-229829' action='modify' visible='true' lat='35.43397780448' lon='139.41117140345' />
+  <node id='-229830' action='modify' visible='true' lat='35.4339752651' lon='139.41118383366' />
+  <node id='-229831' action='modify' visible='true' lat='35.43395126858' lon='139.4111764493' />
+  <node id='-229832' action='modify' visible='true' lat='35.43398258631' lon='139.41102314988' />
+  <node id='-229833' action='modify' visible='true' lat='35.43400658282' lon='139.41103053424' />
+  <node id='-229848' action='modify' visible='true' lat='35.43432693838' lon='139.41155657038' />
+  <node id='-229849' action='modify' visible='true' lat='35.43424224015' lon='139.41153726498' />
+  <node id='-229850' action='modify' visible='true' lat='35.43427065053' lon='139.41134951035' />
+  <node id='-229851' action='modify' visible='true' lat='35.43435534873' lon='139.41136881575' />
+  <node id='2933003207' timestamp='2014-10-15T13:25:49Z' uid='621319' user='hayashi' visible='true' version='2' changeset='26095090' lat='35.434275' lon='139.4113939' />
+  <node id='2933003210' timestamp='2014-10-15T13:25:49Z' uid='621319' user='hayashi' visible='true' version='2' changeset='26095090' lat='35.4342886' lon='139.4112862' />
+  <node id='2933003214' action='delete' timestamp='2014-10-15T13:25:49Z' uid='621319' user='hayashi' visible='true' version='2' changeset='26095090' lat='35.4343062' lon='139.4112477' />
+  <node id='2933003218' action='delete' timestamp='2014-10-15T13:25:49Z' uid='621319' user='hayashi' visible='true' version='2' changeset='26095090' lat='35.4343201' lon='139.4111375' />
+  <node id='2933003220' timestamp='2014-10-15T13:25:49Z' uid='621319' user='hayashi' visible='true' version='2' changeset='26095090' lat='35.4343362' lon='139.4114055' />
+  <node id='2933003221' timestamp='2014-10-15T13:25:49Z' uid='621319' user='hayashi' visible='true' version='2' changeset='26095090' lat='35.4343498' lon='139.4112978' />
+  <node id='2933003222' action='delete' timestamp='2014-10-15T13:25:49Z' uid='621319' user='hayashi' visible='true' version='2' changeset='26095090' lat='35.4343595' lon='139.4112579' />
+  <node id='2933003223' action='delete' timestamp='2014-10-15T13:25:49Z' uid='621319' user='hayashi' visible='true' version='2' changeset='26095090' lat='35.4343734' lon='139.4111477' />
+  <way id='-185908' action='modify' visible='true'>
+    <nd ref='-229809' />
+    <nd ref='-229806' />
+    <nd ref='-229807' />
+    <nd ref='-229808' />
+    <nd ref='-229809' />
+    <tag k='building' v='yes' />
+    <tag k='ref:MLIT_PLATEAU' v='11111-bldg-101977' />
+  </way>
+  <way id='-185909' action='modify' visible='true'>
+    <nd ref='-229833' />
+    <nd ref='-229815' />
+    <nd ref='-229814' />
+    <nd ref='-229829' />
+    <nd ref='-229828' />
+    <nd ref='-229816' />
+    <nd ref='-229817' />
+    <nd ref='-229827' />
+    <nd ref='-229833' />
+    <tag k='building:part' v='yes' />
+    <tag k='height' v='15.5' />
+    <tag k='ref:MLIT_PLATEAU' v='11111-bldg-101980' />
+  </way>
+  <way id='-185911' action='modify' visible='true'>
+    <nd ref='-229815' />
+    <nd ref='-229814' />
+    <nd ref='-229829' />
+    <nd ref='-229830' />
+    <nd ref='-229831' />
+    <nd ref='-229832' />
+    <nd ref='-229833' />
+    <nd ref='-229815' />
+  </way>
+  <way id='-185912' action='modify' visible='true'>
+    <nd ref='-229817' />
+    <nd ref='-229816' />
+    <nd ref='-229828' />
+    <nd ref='-229827' />
+    <nd ref='-229817' />
+  </way>
+  <way id='289757565' action='modify' timestamp='2014-06-26T13:06:47Z' uid='621319' user='hayashi' visible='true' version='2' changeset='23181752'>
+    <nd ref='-229851' />
+    <nd ref='-229848' />
+    <nd ref='-229849' />
+    <nd ref='-229850' />
+    <nd ref='-229851' />
+    <tag k='MLIT_PLATEAU:fixme' v='PLATEAUデータで更新されています' />
+    <tag k='building' v='house' />
+    <tag k='ref:MLIT_PLATEAU' v='11111-bldg-185842' />
+  </way>
+  <way id='289757568' action='modify' timestamp='2017-03-25T22:04:02Z' uid='621319' user='hayashi' visible='true' version='3' changeset='47163717'>
+    <nd ref='-229833' />
+    <nd ref='-229827' />
+    <nd ref='-229828' />
+    <nd ref='-229829' />
+    <nd ref='-229830' />
+    <nd ref='-229831' />
+    <nd ref='-229832' />
+    <nd ref='-229833' />
+    <tag k='MLIT_PLATEAU:fixme' v='PLATEAUデータで更新されています' />
+    <tag k='building:levels' v='2' />
+    <tag k='building:part' v='house' />
+    <tag k='height' v='15' />
+    <tag k='ref:MLIT_PLATEAU' v='11111-bldg-101979' />
+  </way>
+  <way id='289757576' action='delete' timestamp='2017-03-25T22:04:02Z' uid='621319' user='hayashi' visible='true' version='3' changeset='47163717'>
+    <tag k='MLIT_PLATEAU:fixme' v='PLATEAUデータで更新されています' />
+    <tag k='ref:MLIT_PLATEAU' v='11111-bldg-101981' />
+  </way>
+  <way id='289757584' action='delete' timestamp='2021-05-22T12:49:21Z' uid='616774' user='mueschel' visible='true' version='6' changeset='105131724'>
+    <tag k='MLIT_PLATEAU:fixme' v='PLATEAUデータで更新されています' />
+    <tag k='building' v='house' />
+    <tag k='building:colour' v='#a52a2a' />
+    <tag k='building:levels' v='2' />
+    <tag k='building:material' v='brick' />
+    <tag k='height' v='7.5' />
+    <tag k='ref:MLIT_PLATEAU' v='11111-bldg-185616' />
+    <tag k='roof:height' v='1.5' />
+    <tag k='roof:material' v='slate' />
+    <tag k='roof:shape' v='hipped' />
+  </way>
+  <way id='289757595' action='delete' timestamp='2014-06-26T13:06:21Z' uid='621319' user='hayashi' visible='true' version='2' changeset='23181731'>
+    <tag k='MLIT_PLATEAU:fixme' v='delete 削除されます' />
+    <tag k='building' v='house' />
+  </way>
+  <way id='289757601' action='modify' timestamp='2014-06-26T13:06:33Z' uid='621319' user='hayashi' visible='true' version='2' changeset='23181740'>
+    <nd ref='2933003221' />
+    <nd ref='2933003220' />
+    <nd ref='2933003207' />
+    <nd ref='2933003210' />
+    <nd ref='2933003221' />
+    <tag k='MLIT_PLATEAU:fixme' v='delete 削除されます' />
+    <tag k='building' v='house' />
+  </way>
+  <way id='289897904' action='delete' timestamp='2022-01-17T12:44:46Z' uid='621319' user='hayashi' visible='true' version='8' changeset='116253093'>
+    <tag k='MLIT_PLATEAU:fixme' v='PLATEAUデータで更新されています' />
+    <tag k='building' v='apartments' />
+    <tag k='building:levels' v='2' />
+    <tag k='building:material' v='vinyl' />
+    <tag k='height' v='7.5' />
+    <tag k='name' v='宮久保 ９２' />
+    <tag k='ref:MLIT_PLATEAU' v='11111-bldg-185615' />
+    <tag k='roof:height' v='1.5' />
+    <tag k='roof:material' v='slate' />
+    <tag k='roof:shape' v='hipped' />
+  </way>
+  <way id='289897936' action='delete' timestamp='2014-06-27T10:41:39Z' uid='621319' user='hayashi' visible='true' version='2' changeset='23210839'>
+    <tag k='MLIT_PLATEAU:fixme' v='PLATEAUデータで更新されています' />
+    <tag k='building' v='house' />
+    <tag k='ref:MLIT_PLATEAU' v='11111-bldg-101976' />
+  </way>
+  <relation id='-178532' action='modify' visible='true'>
+    <member type='way' ref='-185912' role='inner' />
+    <member type='way' ref='-185911' role='outer' />
+    <tag k='building' v='yes' />
+    <tag k='building:part' v='yes' />
+    <tag k='height' v='15.5' />
+    <tag k='type' v='multipolygon' />
+  </relation>
+  <relation id='-178533' action='modify' visible='true'>
+    <member type='way' ref='-185909' role='part' />
+    <member type='way' ref='289757568' role='part' />
+    <member type='relation' ref='-178532' role='outline' />
+    <tag k='building' v='house' />
+    <tag k='height' v='15.5' />
+    <tag k='type' v='building' />
+  </relation>
+  <relation id='-178534' action='modify' visible='true'>
+    <tag k='building' v='yes' />
+    <tag k='building:levels' v='2' />
+    <tag k='type' v='multipolygon' />
+  </relation>
+</osm>

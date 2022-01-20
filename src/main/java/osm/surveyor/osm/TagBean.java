@@ -52,6 +52,14 @@ public class TagBean implements Cloneable,Serializable {
 		}
 	}
 	
+	public String getKey() {
+		return k;
+	}
+	
+	public String getValue() {
+		return v;
+	}
+	
     /*
 		<tag k='height' v='14.072000000000001' />
      */
