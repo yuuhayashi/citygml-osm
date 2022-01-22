@@ -38,8 +38,8 @@ public class OsmUploadTest extends CamelTestSupport {
 		endpoint.setFile(source.toFile());
 		exchange.setFromEndpoint(endpoint);
 		
-    	// (1)指定されたOSMファイルをLOADする
-        template.send("direct:checked-file-read",exchange);
+    	// 指定されたOSMファイルをLOADする
+        template.send("direct:checked-file-read", exchange);
         
         return exchange.getIn().getBody(BodyMap.class);
     }

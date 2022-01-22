@@ -29,7 +29,7 @@ public class Test_haya4 extends OsmUploadTest {
 		try {
 			Files.copy(
 				Paths.get("./src/test/resources/haya4_bldg_6697.checked.osm"),
-				Paths.get("./haya4_bldg_6697.checked.osm"), REPLACE_EXISTING
+				Paths.get("./checked.osm"), REPLACE_EXISTING
 			);
 		}
 		catch (FileAlreadyExistsException ee) {}
@@ -47,31 +47,30 @@ public class Test_haya4 extends OsmUploadTest {
 	 * org:WAY:241755306 = 林宅
 	 */
 	@Test
-	public void test_way241755306() {
-		BodyMap map = testdo(Paths.get("./haya4_bldg_6697_op2.osm"));
-		OsmBean osm = (OsmBean) map.get("osm");
-		OsmBean org = (OsmBean) map.get("org");
-		OsmBean mrg = (OsmBean) map.get("mrg");
+	public void test_4th() {
+		BodyMap map = testdo(Paths.get("./checked.osm"));
+		OsmBean release = (OsmBean) map.get("release");
         try {
-	        assertNotNull(osm);
-	        assertNotNull(org);
-	        assertNotNull(mrg);
-	        BoundsBean bound = mrg.getBounds();
+	        assertNotNull(release);
+	        BoundsBean bound = release.getBounds();
 	        assertNotNull(bound);
 	        
-	        List<NodeBean> nodes = mrg.getNodeList();
+	        List<NodeBean> nodes = release.getNodeList();
 	        assertNotNull(nodes);
 	        for (NodeBean node : nodes) {
 	        	assertNotEquals(0, node.getId());
 	        }
 	        
 	        int checkCnt = 0;
-	        List<WayBean> ways = mrg.getWayList();
+	        List<WayBean> ways = release.getWayList();
 	        assertNotNull(ways);
 	        for (WayBean way : ways) {
 	        	for (NdBean nd : way.getNdList()) {
-	        		assertNotNull(mrg.getNode(nd.getRef()));
+	        		assertNotNull(release.getNode(nd.getRef()));
 	        	}
+	        	
+	        	// `fixme`タグは除去されていること
+				assertNull(way.getTag("MLIT_PLATEAU:fixme"));
 
 	        	if (way.getId() == 289757586l) {
 					// タグありNODEを持つWAYは、WAYは存在しないこと
@@ -84,7 +83,6 @@ public class Test_haya4 extends OsmUploadTest {
 				if (way.getId() == 289897904) {
 					// アパート「宮久保 ９２」
 					assertEquals("modify", way.getAction());
-					assertEquals("PLATEAUデータで更新されています", way.getTag("MLIT_PLATEAU:fixme").getValue());
 	        		assertEquals("宮久保 ９２", way.getTag("name").v);
 	        		assertEquals("apartments", way.getTag("building").getValue());
 	        		assertNotNull(way.getTag("ref:MLIT_PLATEAU"));
@@ -93,36 +91,32 @@ public class Test_haya4 extends OsmUploadTest {
 				}
 				else if (way.getId() == 289757595) {
 					// delete
-					assertEquals("modify", way.getAction());
-					assertEquals("delete 削除されます", way.getTag("MLIT_PLATEAU:fixme").getValue());
+					assertEquals("delete", way.getAction());
 	        		assertEquals("house", way.getTag("building").getValue());
 	        		checkCnt++;
 				}
 				else if (way.getId() == 289757584) {
 					// modify
 					assertEquals("modify", way.getAction());
-					assertEquals("PLATEAUデータで更新されています", way.getTag("MLIT_PLATEAU:fixme").getValue());
 	        		assertEquals("house", way.getTag("building").getValue());
 	        		checkCnt++;
 				}
 				else if (way.getId() == 289757601) {
 					// delete
-					assertEquals("modify", way.getAction());
-					assertEquals("delete 削除されます", way.getTag("MLIT_PLATEAU:fixme").getValue());
+					assertEquals("delete", way.getAction());
 	        		assertEquals("house", way.getTag("building").getValue());
 	        		checkCnt++;
 				}
 				else if (way.getId() == 289757565) {
 					// modify
 					assertEquals("modify", way.getAction());
-					assertEquals("PLATEAUデータで更新されています", way.getTag("MLIT_PLATEAU:fixme").getValue());
 	        		assertEquals("house", way.getTag("building").getValue());
 	        		checkCnt++;
 				}
 	        }
 	        assertEquals(5, checkCnt);
 	        
-	        List<RelationBean> relations = mrg.getRelationList();
+	        List<RelationBean> relations = release.getRelationList();
 	        assertNotNull(relations);
 	        for (RelationBean relation : relations) {
 	        	if (relation.getId() == -178479) {
@@ -132,7 +126,7 @@ public class Test_haya4 extends OsmUploadTest {
 		        		assertTrue(member.isWay());
 		        		if (member.getRole().equals("outer")) {
 		        			assertEquals(289757576, member.getRef());
-		        			WayBean way = mrg.getWay(member.getRef());
+		        			WayBean way = release.getWay(member.getRef());
 		        			assertNotNull(way);
 		        			assertNull(way.getTag("building:part"));
 		        		}
@@ -150,7 +144,7 @@ public class Test_haya4 extends OsmUploadTest {
 		        		}
 		        		if (member.getRole().equals("part")) {
 			        		assertTrue(member.isWay());
-		        			WayBean way = mrg.getWay(member.getRef());
+		        			WayBean way = release.getWay(member.getRef());
 		        			assertNotNull(way);
 		        			assertNotNull(way.getTag("building:part"));
 		        			assertNull(way.getTag("building"));
@@ -159,16 +153,16 @@ public class Test_haya4 extends OsmUploadTest {
 	        	}
 	        	for (MemberBean member : relation.getMemberList()) {
 	        		if (member.isWay()) {
-		        		assertNotNull(mrg.getWay(member.getRef()));
+		        		assertNotNull(release.getWay(member.getRef()));
 	        		}
 	        		if (member.isRelation()) {
-		        		assertNotNull(mrg.getRelation(member.getRef()));
+		        		assertNotNull(release.getRelation(member.getRef()));
 	        		}
 	        	}
 	        }
 	        
 	        assertEquals(14, ways.size());
-	        assertEquals(3, mrg.getRelationList().size());
+	        assertEquals(3, release.getRelationList().size());
 		} catch (Exception e) {
 			e.fillInStackTrace();
 			fail(e.toString());

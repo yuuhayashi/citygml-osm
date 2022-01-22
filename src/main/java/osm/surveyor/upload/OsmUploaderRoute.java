@@ -3,9 +3,6 @@ package osm.surveyor.upload;
 import org.apache.camel.builder.RouteBuilder;
 
 import osm.surveyor.osm.camel.OsmFileReadProcessor;
-import osm.surveyor.update.MrgExportProcessor;
-import osm.surveyor.update.OrgFileReadProcessor;
-import osm.surveyor.update.OrgUpdateProcessor;
 
 public class OsmUploaderRoute extends RouteBuilder {
 	
@@ -18,19 +15,19 @@ public class OsmUploaderRoute extends RouteBuilder {
         .log("Error: ${body}")
         ;
 		
-		// (1) OSMファイルとORGファイルををLOADする
+		// (1) ファイル`checked.osm`をLOADする
 		from("direct:checked-file-read")
 		.process(new OsmFileReadProcessor())
         .to("direct:checked-convert")
         ;
 
-		// (2) 既存POIとマージする
+		// (2) OpenStreetMapへのアップロード用に変換する
 		from("direct:checked-convert")
 		.process(new CheckedConvertProcessor())
         .to("direct:release-export")
         ;
 
-		// (3) RELEASEファイルに出力する
+		// (3) RELEASEファイル(`upload.osm`)に出力する
 		from("direct:release-export")
 		.process(new ReleaseExportProcessor())
 		//.to("stream:out")
