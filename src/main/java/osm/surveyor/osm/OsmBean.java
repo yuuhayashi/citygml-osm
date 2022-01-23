@@ -159,8 +159,8 @@ public class OsmBean implements Serializable {
     			removeList.add(obj);
     		}
     	}
-    	for (NodeBean node : removeList) {
-    		this.nodeList.remove(this.nodeList.indexOf(node));
+    	for (NodeBean obj : removeList) {
+    		this.nodeList.remove(this.nodeList.indexOf(obj));
     	}
 		this.nodeList.add(poi);
 	}
@@ -194,6 +194,23 @@ public class OsmBean implements Serializable {
 		getRelationList().add(poi);
 	}
     
+	/**
+	 * NODEを削除する
+	 * @param poi
+	 */
+	public void removeNode(NodeBean poi) {
+		long id = poi.getId();
+		for (NodeBean node : this.nodeList) {
+			if (node.getId() == id) {
+		    	int index = this.nodeList.indexOf(node);
+		    	if (index >= 0) {
+		    		this.nodeList.remove(index);
+		    	}
+		    	return;
+			}
+		}
+	}
+	
 	/**
 	 * WAYを削除する
 	 * WAYに紐づくNODEも削除する

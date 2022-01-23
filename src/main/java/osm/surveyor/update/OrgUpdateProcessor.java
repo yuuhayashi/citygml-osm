@@ -165,6 +165,7 @@ public class OrgUpdateProcessor implements Processor {
 		for (NodeBean node : osm.getNodeList()) {
 			node.setAction("modify");
 			node.orignal = false;
+			//osm.putNode(node);
 		}
 		for (WayBean way : osm.getWayList()) {
 			way.setFix(false);

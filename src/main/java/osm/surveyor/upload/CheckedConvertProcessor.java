@@ -20,14 +20,14 @@ public class CheckedConvertProcessor implements Processor {
 		BodyMap map = exchange.getIn().getBody(BodyMap.class);
 		OsmBean osm = (OsmBean) map.get("osm");		// dom
 
-		// POI `action=delete` を削除する
+		// (1) POI `action=delete` を削除する
 		removeActionDelete(osm);
 		osm.gerbageNode();
 		
-		// POI `MLIT_PLATEAU:fixme=delete *` を`action=delete`に変換する
+		// (2) POI `MLIT_PLATEAU:fixme=delete *` を`action=delete`に変換する
 		convertToActionDelete(osm);
 		
-		// タグ `MLIT_PLATEAU:fixme=*` を除去する
+		// (3) タグ `MLIT_PLATEAU:fixme=*` を除去する
 		removeFixmeTag(osm);
 		
 		map.put("release", osm);
@@ -46,12 +46,18 @@ public class CheckedConvertProcessor implements Processor {
 			}
 		}
 		for (WayBean way : work) {
-			for (NdBean nd : way.getNdList()) {
-				NodeBean node = osm.getNode(nd.getRef());
-				node.setAction("delete");
-				osm.putNode(node);
-			}
 			osm.removeWay(way);
+		}
+		
+		List<NodeBean> list = new ArrayList<>();
+		for (NodeBean node : osm.getNodeList()) {
+			String action = node.getAction();
+			if (action != null && action.equals("delete")) {
+				list.add(node);
+			}
+		}
+		for (NodeBean node : list) {
+			osm.removeNode(node);
 		}
 	}
 	
@@ -65,6 +71,12 @@ public class CheckedConvertProcessor implements Processor {
 			if (fixme != null) {
 				String v = fixme.getValue();
 				if (v != null && v.startsWith("delete")) {
+					for (NdBean nd : way.getNdList()) {
+						NodeBean node = osm.getNode(nd.getRef());
+						if (node != null) {
+							node.setAction("delete");
+						}
+					}
 					way.setAction("delete");
 				}
 			}
