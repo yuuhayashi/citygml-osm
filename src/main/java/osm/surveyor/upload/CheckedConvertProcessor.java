@@ -7,6 +7,8 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 
 import osm.surveyor.osm.BodyMap;
+import osm.surveyor.osm.NdBean;
+import osm.surveyor.osm.NodeBean;
 import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.TagBean;
 import osm.surveyor.osm.WayBean;
@@ -44,6 +46,11 @@ public class CheckedConvertProcessor implements Processor {
 			}
 		}
 		for (WayBean way : work) {
+			for (NdBean nd : way.getNdList()) {
+				NodeBean node = osm.getNode(nd.getRef());
+				node.setAction("delete");
+				osm.putNode(node);
+			}
 			osm.removeWay(way);
 		}
 	}

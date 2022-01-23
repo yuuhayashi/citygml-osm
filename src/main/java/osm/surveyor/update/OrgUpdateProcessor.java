@@ -1,7 +1,6 @@
 package osm.surveyor.update;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.camel.Exchange;
@@ -44,41 +43,14 @@ public class OrgUpdateProcessor implements Processor {
 		// インポートデータの内で、既存データと重複するWAYを'modify'に確定する
 		duplicatedToModify(osm, org);
 
-		// リレーションのメンバーWAYには"building"タグをつけない
-		for (RelationBean relation : osm.getRelationList()) {
-			relation.setAction("modify");
-			for (MemberBean member : relation.getMemberList()) {
-				WayBean way = osm.getWay(member.getRef());
-				if (way != null) {
-					if (member.getRole().equals("part")) {
-						toPart(way);
-					}
-					else if (member.getRole().equals("outline")) {
-						toPart(way);
-					}
-					else if (member.getRole().equals("outer")) {
-						List<TagBean> tags = new ArrayList<>();
-						for (TagBean tag : way.getTagList()) {
-							if (tag.k.startsWith("building")) {
-								relation.addTag(tag.k, tag.v);
-								tags.add(tag);
-							}
-						}
-						for (TagBean tag : tags) {
-							way.removeTag(tag.k);
-						}
-						toPart(way);
-					}
-					member.setWay(way);
-				}
-			}
-		}
-
 		// WAYに所属していないNODEを削除する
 		osm.gerbageNode();
 		
-		// リレーションの"name"を決定する
-		fixRelationsName(osm);
+		// 建物リレーションのタグを決定する
+		fixBuildingRelation(osm);
+		
+		// リレーションのメンバーWAYには"building"タグをつけない
+		fixMemberWaysTag(osm);
 		
 		map.put("mrg", osm);
 	}
@@ -245,29 +217,17 @@ public class OrgUpdateProcessor implements Processor {
 			        		
 			        		for (RelationBean relation : osm.getRelationList()) {
 			        			relation.setAction("modify");
+			        			String buildingValue = "yes";
 			        			for (MemberBean member : relation.getMemberList()) {
 			        				if (member.getRef() == oldid) {
-			        					if (member.getRole().equals("part")) {
-			        						toPart(sWay);
-			        					}
-			        					else if (member.getRole().equals("outline")) {
-			        						toPart(sWay);
-			        					}
-			        					else if (member.getRole().equals("outer")) {
-			        						List<TagBean> tags = new ArrayList<>();
-			        						for (TagBean tag : sWay.getTagList()) {
-			        							if (tag.k.startsWith("building")) {
-			        								relation.addTag(tag.k, tag.v);
-			        								tags.add(tag);
-			        							}
-			        						}
-			        						for (TagBean tag : tags) {
-			        							sWay.removeTag(tag.k);
-			        						}
-			        						toPart(sWay);
-			        					}
 			        					member.setWay(sWay);
 			        				}
+			        			}
+			        			if (relation.getTag("building") == null) {
+			        				relation.addTag("building", buildingValue);
+			        			}
+			        			else {
+			        				relation.getTag("building").setValue(buildingValue);
 			        			}
 			        		}
 						}
@@ -285,6 +245,36 @@ public class OrgUpdateProcessor implements Processor {
 							osm.putWay(sWay);
 						}
 					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * 建物リレーションのタグを決定する
+	 * 
+	 */
+	private void fixBuildingRelation(OsmBean mrg) throws Exception {
+		for (RelationBean relation : mrg.getRelationList()) {
+			if (relation.isBuilding() ) {
+				WayBean maxway = getMaxPart(relation, mrg);
+				if (maxway != null) {
+					maxway.removeTag("building:levels");
+					maxway.removeTag("building:part");
+					maxway.removeTag("height");
+					maxway.removeTag("MLIT_PLATEAU:fixme");
+					maxway.removeTag("ref:MLIT_PLATEAU");
+					maxway.removeTag("start_date");		// Issue #39 複合ビルでの”建築年”の扱い
+					relation.copyTag(maxway);
+				}
+			}
+			else if (relation.isMultipolygon()) {
+				WayBean maxway = getMaxPart(relation, mrg);
+				if (maxway != null) {
+					maxway.removeTag("MLIT_PLATEAU:fixme");
+					maxway.removeTag("ref:MLIT_PLATEAU");
+					maxway.removeTag("start_date");		// Issue #39 複合ビルでの”建築年”の扱い
+					relation.copyTag(maxway);
 				}
 			}
 		}
@@ -310,134 +300,99 @@ public class OrgUpdateProcessor implements Processor {
 	}
 	
 	/**
-	 * リレーションの"name=xxxx"を決定する
-	 * リレーションの"building=xxxx"を決定する
-	 * 
+	 * リレーションのメンバーWAYには"building"タグをつけない
+	 * @param mrg
 	 */
-	private void fixRelationsName(OsmBean mrg) throws Exception {
+	private void fixMemberWaysTag(OsmBean mrg) {
 		for (RelationBean relation : mrg.getRelationList()) {
-			if (relation.isBuilding()) {
-				double max = 0;
-				double maxBuilding = 0;
-				String name = null;
-				String building = "yes";
-				for (MemberBean member : relation.getMemberList()) {
-					if (member.isWay()) {
-						WayBean way = mrg.getWay(member.getRef());
-						if (way.getArea() > max) {
-							if (way.getTagValue("name") != null) {
-								name = way.getTagValue("name");
-								max = way.getArea();
-							}
+			relation.setAction("modify");
+			for (MemberBean member : relation.getMemberList()) {
+				if (member.isWay()) {
+					WayBean way = mrg.getWay(member.getRef());
+					if (way != null) {
+						if (member.getRole().equals("part")) {
+							toPart(way);
 						}
-						if (way.getArea() > maxBuilding) {
-							String buildingValue = way.getTagValue("building:part");
-							if ((buildingValue != null) && !buildingValue.isEmpty() && !buildingValue.equals("yes")) {
-								building = new String(buildingValue);
-								maxBuilding = way.getArea();
-							}
-							buildingValue = way.getTagValue("building");
-							if ((buildingValue != null) && !buildingValue.isEmpty() && !buildingValue.equals("yes")) {
-								building = new String(buildingValue);
-								maxBuilding = way.getArea();
-							}
-						}
-					}
-					else if (member.isRelation()) {
-						RelationBean polygon = mrg.getRelation(member.getRef());
-						if (polygon.isMultipolygon()) {
-							for (MemberBean mmem : polygon.getMemberList()) {
-								WayBean way = mrg.getWay(mmem.getRef());
-								if (way.getArea() > max) {
-									if (way.getTagValue("name") != null) {
-										name = way.getTagValue("name");
-										max = way.getArea();
-									}
+						else if (member.getRole().equals("outline")) {
+							List<TagBean> tags = new ArrayList<>();
+							for (TagBean tag : way.getTagList()) {
+								if (tag.k.equals("building")) {
+									tags.add(tag);
 								}
-								if (way.getArea() > maxBuilding) {
-									String buildingValue = way.getTagValue("building:part");
-									if ((buildingValue != null) && !buildingValue.isEmpty() && !buildingValue.equals("yes")) {
-										building = new String(buildingValue);
-										maxBuilding = way.getArea();
-									}
-									buildingValue = way.getTagValue("building");
-									if ((buildingValue != null) && !buildingValue.isEmpty() && !buildingValue.equals("yes")) {
-										building = new String(buildingValue);
-										maxBuilding = way.getArea();
-									}
+								else if (tag.k.equals("building:part")) {
+									tags.add(tag);
+								}
+								else {
+									tags.add(tag);
 								}
 							}
-						}
-					}
-				}
-				relation.removeTag("name");
-				if (name != null) {
-					relation.addTag("name", name);
-				}
-				relation.removeTag("building");
-				if (building != null) {
-					relation.addTag("building", building);
-				}
-			}
-			else if (relation.isMultipolygon()) {
-				double max = 0;
-				double maxBuilding = 0;
-				String name = null;
-				String building = "yes";
-				for (MemberBean member : relation.getMemberList()) {
-					if (member.isWay()) {
-						WayBean way = mrg.getWay(member.getRef());
-						if (way.getArea() > max) {
-							if (way.getTagValue("name") != null) {
-								name = way.getTagValue("name");
-								max = way.getArea();
+							for (TagBean tag : tags) {
+								way.removeTag(tag.k);
 							}
+							toPart(way);
 						}
-						if (way.getArea() > maxBuilding) {
-							String buildingValue = way.getTagValue("building:part");
-							if ((buildingValue != null) && !buildingValue.isEmpty() && !buildingValue.equals("yes")) {
-								building = new String(buildingValue);
-								maxBuilding = way.getArea();
+						else if (member.getRole().equals("outer")) {
+							List<TagBean> tags = new ArrayList<>();
+							for (TagBean tag : way.getTagList()) {
+								if (tag.k.startsWith("MLIT_PLATEAU:fixme")) {
+									// Do nothing
+								}
+								else if (tag.k.equals("building")) {
+									tags.add(tag);
+								}
+								else if (tag.k.equals("building:part")) {
+									tags.add(tag);
+								}
+								else {
+									tags.add(tag);
+								}
 							}
-							buildingValue = way.getTagValue("building");
-							if ((buildingValue != null) && !buildingValue.isEmpty() && !buildingValue.equals("yes")) {
-								building = new String(buildingValue);
-								maxBuilding = way.getArea();
+							for (TagBean tag : tags) {
+								way.removeTag(tag.k);
 							}
+							toPart(way);
 						}
+						member.setWay(way);
 					}
+					
 				}
-				relation.removeTag("name");
-				if (name != null) {
-					relation.addTag("name", name);
-				}
-				if (mrg.getParents(relation).size() > 0) {
-					relation.removeTag("building:part");
-					if (building != null) {
-						relation.addTag("building:part", building);
-					}
-				}
-				else {
-					relation.removeTag("building");
-					if (building != null) {
-						relation.addTag("building", building);
+				else if (member.isRelation()) {
+					RelationBean outline = mrg.getRelation(member.getRef());
+					if (outline != null) {
+						toPart(outline);
 					}
 				}
 			}
 		}
 	}
-	
+
 	/**
-	 * tag.key=`building*` を有するPOIを'building'POIとみなす
-	 * 
+	 * 建物リレーションの"part"メンバー内で最大のWAYを取得する
+	 * @param polygon
+	 * @param mrg
+	 * @return
 	 */
-	static boolean isBuildingTag(HashMap<String,TagBean> tags) {
-		for (String k : tags.keySet()) {
-			TagBean tag = tags.get(k);
-			if (tag.k.startsWith("building")) {
-				return true;
+	private WayBean getMaxPart(RelationBean polygon, OsmBean mrg) {
+		double max = 0;
+		WayBean maxway = null;
+		for (MemberBean member : polygon.getMemberList()) {
+			if (member.getRole().equals("part")) {
+				if (member.isWay()) {
+					WayBean way = mrg.getWay(member.getRef());
+					if (way.getArea() > max) {
+						maxway = way.clone();
+					}
+				}
+			}
+			else if (member.getRole().equals("outer")) {
+				if (member.isWay()) {
+					WayBean way = mrg.getWay(member.getRef());
+					if (way.getArea() > max) {
+						maxway = way.clone();
+					}
+				}
 			}
 		}
-		return false;
+		return maxway;
 	}
 }

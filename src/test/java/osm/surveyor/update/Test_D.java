@@ -119,9 +119,10 @@ public class Test_D extends OsmUpdaterTest {
 					assertEquals("apartments", relation.getTagValue("building"));		// 既存タグの値で書き換えられる
 					assertEquals("3", relation.getTagValue("building:levels"));
 					assertEquals("1", relation.getTagValue("building:levels:underground"));
+					assertNotNull(relation.getTagValue("source"));
 					assertNull(relation.getTagValue("ref:MLIT_PLATEAU"));
 					assertNull(relation.getTagValue("start_date"));		// Issue #39
-					assertEquals(8, relation.getTagList().size());
+					assertEquals(9, relation.getTagList().size());
 
 					int outlineCnt = 0;
 					int partCnt = 0;

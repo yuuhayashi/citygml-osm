@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <osm version='0.6' generator='JOSM'>
-  <bounds minlat='35.4338571' minlon='139.4107023' maxlat='35.4344471' maxlon='139.4116035' origin='CGImap 0.8.6 (4022191 spike-07.openstreetmap.org)' />
+  <bounds minlat='35.4338112' minlon='139.4106674' maxlat='35.434799' maxlon='139.411633' origin='CGImap 0.8.6 (3955209 spike-08.openstreetmap.org)' />
   <node id='-229513' action='modify' visible='true' lat='35.43418980312' lon='139.41104628079' />
   <node id='-229514' action='modify' visible='true' lat='35.4341663099' lon='139.41115625136' />
   <node id='-229515' action='modify' visible='true' lat='35.43408728424' lon='139.41113082108' />

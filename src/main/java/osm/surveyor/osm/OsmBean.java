@@ -233,11 +233,10 @@ public class OsmBean implements Serializable {
 	 * WAYに所属していないNODEを削除する
 	 */
 	public void gerbageNode() {
-		NodeBeans list = new NodeBeans();
+		List<NodeBean> list = new ArrayList<>();
 		for (WayBean way : this.wayList) {
 			for (NdBean nd : way.getNdList()) {
-				NodeBean node = this.getNode(nd.getRef());
-				list.put(node);
+				list.add(this.getNode(nd.getRef()));
 			}
 		}
 		this.nodeList.clear();
@@ -255,7 +254,7 @@ public class OsmBean implements Serializable {
     	}
     	return list;
     }
-
+	
     public void export(PrintStream out) {
     	JAXB.marshal(this, out);
     }

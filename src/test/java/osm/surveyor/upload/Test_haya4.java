@@ -19,11 +19,24 @@ import osm.surveyor.osm.NdBean;
 import osm.surveyor.osm.NodeBean;
 import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.RelationBean;
+import osm.surveyor.osm.TagBean;
 import osm.surveyor.osm.WayBean;
 
+/**
+ * `mvn test -Dtest=osm.surveyor.upload.Test_haya4`
+ * @author hayashi
+ *
+ */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Test_haya4 extends OsmUploadTest {
 	
+	/**
+	 * "haya4_bldg_6697.checked.osm"
+	 * 6-7 remove
+	 * 6-6 remove
+	 * 11-1-2 remove
+	 * 7-5 remove (relation)
+	 */
 	@Before
 	public void setup() {
 		try {
@@ -40,8 +53,6 @@ public class Test_haya4 extends OsmUploadTest {
 	}
 
 	/**
-	 * `mvn test -Dtest=OsmUpdaterTest_haya4#test_way241755306`
-	 * https://www.openstreetmap.org/ウェイ/241755306
 	 * 神奈川県 綾瀬市
 	 * org:WAY:289757586 = "NODE:entrance=yes"を持つウェイ
 	 * org:WAY:241755306 = 林宅
@@ -73,59 +84,90 @@ public class Test_haya4 extends OsmUploadTest {
 				assertNull(way.getTag("MLIT_PLATEAU:fixme"));
 
 	        	if (way.getId() == 289757586l) {
-					// タグありNODEを持つWAYは、WAYは存在しないこと
+					// 6-5 タグありNODEを持つ建物(6-5)は存在しないこと
 	        		assertTrue(false);
 				}
 	        	else if (way.getId() == 241755306l) {
-					// リレーションメンバーのWAYは WAYは存在しないこと
+					// 7-7 リレーションメンバーの建物は存在しないこと
 	        		assertTrue(false);
 				}
 				if (way.getId() == 289897904) {
-					// アパート「宮久保 ９２」
+					// 11-20 アパート「宮久保 93」
 					assertEquals("modify", way.getAction());
-	        		assertEquals("宮久保 ９２", way.getTag("name").v);
+	        		assertEquals("宮久保 93", way.getTag("name").v);
 	        		assertEquals("apartments", way.getTag("building").getValue());
 	        		assertNotNull(way.getTag("ref:MLIT_PLATEAU"));
 	        		assertEquals("11111-bldg-185615", way.getTag("ref:MLIT_PLATEAU").getValue());
+	        		assertNotNull(way.getTag("addr:housenumber"));
+	        		assertEquals("11-20", way.getTag("addr:housenumber").getValue());
 	        		checkCnt++;
 				}
 				else if (way.getId() == 289757595) {
-					// delete
-					assertEquals("delete", way.getAction());
-	        		assertEquals("house", way.getTag("building").getValue());
-	        		checkCnt++;
+					// 6-7 delete ６−６に吸収される　→ 除去された
+	        		assertTrue(false);
 				}
 				else if (way.getId() == 289757584) {
-					// modify
-					assertEquals("modify", way.getAction());
-	        		assertEquals("house", way.getTag("building").getValue());
-	        		checkCnt++;
+					// 6-6 modify　→ 除去された
+	        		assertTrue(false);
 				}
 				else if (way.getId() == 289757601) {
-					// delete
+					// 6-8 delete  6-9に吸収される
 					assertEquals("delete", way.getAction());
-	        		assertEquals("house", way.getTag("building").getValue());
 	        		checkCnt++;
 				}
 				else if (way.getId() == 289757565) {
-					// modify
+					// 6-9 modify
 					assertEquals("modify", way.getAction());
 	        		assertEquals("house", way.getTag("building").getValue());
+	        		assertNotNull(way.getTag("addr:housenumber"));
+	        		assertEquals("6-9", way.getTag("addr:housenumber").getValue());
 	        		checkCnt++;
+				}
+				else if (way.getId() == 289897936) {
+					// 11-1-2 modify PLATEAUで形状変更される -> 除去された
+	        		assertTrue(false);
+				}
+				else if (way.getId() == 289757568) {
+					// 7-6 modify PLATEAUでリレーションメンバーに変更される
+					assertEquals("modify", way.getAction());
+					assertNull(way.getTag("building"));
+					assertNotNull(way.getTag("building:part"));
+	        		assertEquals("house", way.getTag("building:part").getValue());
+	        		assertNotNull(way.getTag("addr:housenumber"));
+	        		assertEquals("7-6", way.getTag("addr:housenumber").getValue());
+	        		checkCnt++;
+				}
+				else if (way.getId() == 289757576) {
+					// 7-5 modify PLATEAUでリレーションメンバー"outer"に変更される -> 除去された
+	        		assertTrue(false);
+				}
+				else {
+					TagBean refTag = way.getTag("ref:MLIT_PLATEAU");
+					if (refTag != null) {
+						String ref = refTag.getValue();
+						assertNotNull(ref);
+						if (ref.equals("11111-bldg-101977")) {
+							// 既存建物と重複しない
+			        		checkCnt++;
+						}
+					}
 				}
 	        }
 	        assertEquals(5, checkCnt);
 	        
 	        List<RelationBean> relations = release.getRelationList();
 	        assertNotNull(relations);
+	        assertEquals(2, release.getRelationList().size());
+	        
+	        checkCnt = 0;
 	        for (RelationBean relation : relations) {
-	        	if (relation.getId() == -178479) {
+	        	if (relation.isMultipolygon()) {
+	        		// 7-6 Relation:multipolygon
 	        		assertTrue(relation.isMultipolygon());
-	        		assertEquals(3, relation.getMemberList().size());
+	        		assertEquals(2, relation.getMemberList().size());
 		        	for (MemberBean member : relation.getMemberList()) {
 		        		assertTrue(member.isWay());
 		        		if (member.getRole().equals("outer")) {
-		        			assertEquals(289757576, member.getRef());
 		        			WayBean way = release.getWay(member.getRef());
 		        			assertNotNull(way);
 		        			assertNull(way.getTag("building:part"));
@@ -134,8 +176,10 @@ public class Test_haya4 extends OsmUploadTest {
 		        			assertTrue(member.getRef() < 0);
 		        		}
 		        	}
+	        		checkCnt++;
 	        	}
-	        	if (relation.getId() == -178478) {
+	        	else if (relation.isBuilding()) {
+	        		// 7-6 Relation:building
 	        		assertTrue(relation.isBuilding());
 	        		assertEquals(3, relation.getMemberList().size());
 		        	for (MemberBean member : relation.getMemberList()) {
@@ -150,6 +194,7 @@ public class Test_haya4 extends OsmUploadTest {
 		        			assertNull(way.getTag("building"));
 		        		}
 		        	}
+	        		checkCnt++;
 	        	}
 	        	for (MemberBean member : relation.getMemberList()) {
 	        		if (member.isWay()) {
@@ -161,8 +206,8 @@ public class Test_haya4 extends OsmUploadTest {
 	        	}
 	        }
 	        
-	        assertEquals(14, ways.size());
-	        assertEquals(3, release.getRelationList().size());
+	        assertEquals(8, ways.size());
+	        assertEquals(2, checkCnt);
 		} catch (Exception e) {
 			e.fillInStackTrace();
 			fail(e.toString());

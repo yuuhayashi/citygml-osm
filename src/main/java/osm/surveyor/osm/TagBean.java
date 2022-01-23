@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -52,12 +53,22 @@ public class TagBean implements Cloneable,Serializable {
 		}
 	}
 	
+	@XmlTransient
 	public String getKey() {
 		return k;
 	}
 	
+	public void setKey(String k) {
+		this.k = k;
+	}
+	
+	@XmlTransient
 	public String getValue() {
 		return v;
+	}
+	
+	public void setValue(String v) {
+		this.v = v;
 	}
 	
     /*
