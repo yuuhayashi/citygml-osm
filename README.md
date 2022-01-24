@@ -91,12 +91,14 @@ PLATEAUの「3D都市モデル」の"GMLファイル"から、OpenStreetMapへ�
   - [GitHub](https://github.com/yuuhayashi/citygml-osm)の右側にある「[Release](https://github.com/yuuhayashi/citygml-osm/releases)」欄から最新'Latest'版をダウンロードしてください
 
 - (2) [オープンデータ公開サイト](https://www.geospatial.jp/ckan/dataset/plateau)から「3D都市データ」をダウンロードする
+  - 「3D都市データ」（地域を選択）→「CityGML」→ ダウンロード
 
 - (3) ダウンロードしたZIPファイルを'任意のフォルダ'に解凍する。<br/>ファイル末尾が「`*.gml`」のファイルをため置きます。
+  - 解凍されたフォルダ → 「udx」 → 「bldg」 にZIPファイルがあり、このZIPを解凍すると 「`*.gml`」が得られます。
 
-- (4) コマンドターミナルから実行<br/>「`*.osm`」、「`*.org.osm`」、「`*.mrg.osm`」ファイルが生成される
+- (4) コマンドターミナルから`run.sh`または`run.bat`を実行<br/>「`*.osm`」、「`*.org.osm`」、「`*.mrg.osm`」ファイルが生成される
 
-```
+```:run.sh
   $ cd (解凍先フォルダ)
   $ java -Dfile.encoding=utf-8 -jar citygml-osm-jar-with-dependencies.jar 1st
   $ java -Dfile.encoding=utf-8 -jar citygml-osm-jar-with-dependencies.jar 2nd
@@ -112,9 +114,8 @@ PLATEAUの「3D都市モデル」の"GMLファイル"から、OpenStreetMapへ�
 
 - (7) 不要な（アップロードしたくない）POIを削除したら、レイヤ「`*.mrg.osm`」を『名前をつけて保存』してください。保存ファイル名は「`checked.osm`」とします。
 
-- Issue #41 ['fixme'による手動選別](https://github.com/yuuhayashi/citygml-osm/issues/42)
-
-- Issue #21 [既存'relation:building'には上書きしないようにする](https://github.com/yuuhayashi/citygml-osm/issues/21) 
+  - Issue #41 ['fixme'による手動選別](https://github.com/yuuhayashi/citygml-osm/issues/42)
+  - Issue #21 [既存'relation:building'には上書きしないようにする](https://github.com/yuuhayashi/citygml-osm/issues/21) 
 
 
 ## Step 3 : OpenStreetMapへアップロード
