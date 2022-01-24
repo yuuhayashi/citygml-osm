@@ -110,31 +110,31 @@ PLATEAUの「3D都市モデル」の"GMLファイル"から、OpenStreetMapへ�
 
 ## Step 2 : 変換されたPOIの確認
 
+`run.sh`を実行して `*.mrg.osm` を作成した後に、JOSMで `*.mrg.osm` を開くことで既存データと重複するPOIが確認できるようになります。JOSMのフィルタ機能を使って `MLIT_PLATEAU:fixme` がついたPOIを表示することで確認できます。
+（但し、この重複確認機能のために `*.mrg.osm` をOpenStreetMapへアップロードすることはできなくなりました。）
+
+
 - (6) JOSM上で、変換後のPOIを確認します。<br/>不要な（アップロードしたくない）POIは削除してください。（JOSM上から消えたPOIは更新されません）
+  - JOSMで 既存データとの重複を確認し、PLATEAUデータのインポートをやめたい場合には その部分のPOIをJOSM上で「削除」してください。削除予定のPOIもそのPOIを「削除」することで削除を取りやめることができます。（削除予定のPOIをJOSM状に残すとそのPOIが削除されます）
 
 - (7) 不要な（アップロードしたくない）POIを削除したら、レイヤ「`*.mrg.osm`」を『名前をつけて保存』してください。保存ファイル名は「`checked.osm`」とします。
-
-  - Issue #41 ['fixme'による手動選別](https://github.com/yuuhayashi/citygml-osm/issues/42)
-  - Issue #21 [既存'relation:building'には上書きしないようにする](https://github.com/yuuhayashi/citygml-osm/issues/21) 
-
+  - 保存ファイル名は「`checked.osm`」固定です。
+  - 「`checked.osm`」や「`*.mrg.osm`」は、そのままではOSMにアップロードすることはできません（できるけど既存データを壊してしまいます）。
 
 ## Step 3 : OpenStreetMapへアップロード
 
-- (8) コマンドターミナルから実行<br/>「`upload.osm`」ファイルが生成される
+- (8) コマンドターミナルから`uploader.sh`または`uploader.bat`を実行してください。<br/>「`upload.osm`」ファイルが生成されます。
 
-```
+```:uploader.sh
   $ cd (解凍先フォルダ)
   $ java -Dfile.encoding=utf-8 -jar citygml-osm-jar-with-dependencies.jar 4th checked.osm upload.osm
 ```
 
 - (9) JOSMを起動して、「`upload.osm`」ファイルをJOSMにドロップしてください。
+  - 生成された`upload.osm`は、JOSMで開くことで、OpenStreetMapへアップロードすることができます。
 
 - (10) レイヤ「`upload.osm`」を"アップロード"してください。
-
-
-**絶対にOSMへの「アップロード」は実行しないこと！！**
-
-**確認のみ！！  確認し終わったら破棄すること！！**
+  - アップロード実行前に、妥当性検証などを行って最終調整を行ってからアップロードしてください。
 
 
 # データフォーマット変換
