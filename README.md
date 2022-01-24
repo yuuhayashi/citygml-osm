@@ -1,12 +1,23 @@
 # citygml-osm
 
-PLATEAUの「3D都市モデル」の"GMLファイル"から、OpenStreetMapへのJOSM用のOSMデータを生成する
+PLATEAUの「3D都市モデル」の"GMLファイル"から、OpenStreetMapへのJOSM用のOSMデータを生成します。
 
-![Screenshot.png](doc/Screenshot.png)
+![Screenshot.png](https://yuuhayashi.github.io/citygml-osm/doc/Screenshot.png)
 
-
-
-
+- PLATEAUの「3D都市モデル」の"GMLファイル"から、OpenStreetMap形式に変換します。
+ - 複合建物は「[リレーション:building](https://wiki.openstreetmap.org/wiki/JA:%E5%9F%BA%E6%9C%AC%E7%9A%84%E3%81%AA3D%E3%81%AE%E5%BB%BA%E7%89%A9)」へ変換します。
+ - 中空（Inner）部分がある建物も「[リレーション:マルチポリゴン](https://wiki.openstreetmap.org/wiki/JA:Relation:multipolygon)」に変換します。
+- 既存データとの調整も行います。
+ - OpenStreetMapから現在の建物データ(既存データ)をダウンロードして、変換データと重複チェックを自動的に行います。
+ - アップデートするとデータの欠損が発生するような既存データ(リレーションのメンバーやエントランスなどのノードを持つもの等)と重複するPOIはアップデート対象から自動的に除外します。
+ - 既存データのタグはそのまま継承されます。
+ - 既存データのアップデートを行うので既存データの履歴も継承されます。
+ - 複数の既存データと重複する場合は、重複面積が最大の既存データをアップデートします。
+ - JOSM上で変換後の状況を確認することができます。
+  - 既存データと重複するPOI場合は、`MLIT_PLATEAU:fixme=*`が付加され、重複しないPOIと区別できます。
+  - 他の建物に統合されて削除されてしまう予定の既存建物もJOSM上で確認可能です。
+ - アップデートを行いたくないPOIを手動で指定することができるようにしています。
+ - アップロード前にJOSM上で最終的な目視チェックを行うことができる様にしています。
 
 
 ## 生成物の例
@@ -23,7 +34,6 @@ PLATEAUの「3D都市モデル」の"GMLファイル"から、OpenStreetMapへ�
 # Release
 
 - 2022-01-23 [v1.4.1](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.4.1)<br/>[Fixed #42](https://github.com/yuuhayashi/citygml-osm/issues/42) 'fixme'による手動選別<br/>[Fixed #24](https://github.com/yuuhayashi/citygml-osm/issues/24) 削除される既存POIがJOSMで確認できない<br/>[Fixed #22](https://github.com/yuuhayashi/citygml-osm/issues/22) 既存building との「building=*」タグの値の扱い
-
   - [v1.4.1](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.4.1)より、第三段階生成物(`*.mrg.osm`)の出力形式を変更しています。（`*.mrg.osm`をそのままOSMへアップロードできなくなりました）
 
 - 2022-01-16 [v1.3.7](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.3.7)<br/>[Fixed #58](https://github.com/yuuhayashi/citygml-osm/issues/58) Windows 10 に対応<br/>[Fixed #22](https://github.com/yuuhayashi/citygml-osm/issues/22) 既存building との「building=*」タグの値の扱い<br/>[Fixed #21](https://github.com/yuuhayashi/citygml-osm/issues/21) 既存'relation:building'には上書きしないようにする
