@@ -127,7 +127,7 @@ PLATEAUの「3D都市モデル」の"GMLファイル"から、OpenStreetMapへ�
 
 ```:uploader.sh
   $ cd (解凍先フォルダ)
-  $ java -Dfile.encoding=utf-8 -jar citygml-osm-jar-with-dependencies.jar 4th checked.osm upload.osm
+  $ java -Dfile.encoding=utf-8 -jar citygml-osm-jar-with-dependencies.jar 4th
 ```
 
 - (9) JOSMを起動して、「`upload.osm`」ファイルをJOSMにドロップしてください。
@@ -488,7 +488,7 @@ OSMファイルへの変換項目
 
  - [3D都市モデル（Project PLATEAU）ポータルサイト](https://www.geospatial.jp/ckan/dataset/plateau)
 
- - [OpenStreetMap Wiki - MLIT_PLATEAU](https://wiki.openstreetmap.org/wiki/MLIT_PLATEAU/)
+ - [OpenStreetMap Wiki - JA:MLIT_PLATEAU](https://wiki.openstreetmap.org/wiki/JA:MLIT_PLATEAU)
 
  - [210327PLATEAUを触ってみよう](https://hackmd.io/@geopythonjp/HkZOmNpqL/%2FhfZTkl5FQGy8YHrgzc7ohQ)
 
