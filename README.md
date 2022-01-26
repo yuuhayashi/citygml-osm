@@ -7,6 +7,7 @@ PLATEAUの「3D都市モデル」の"GMLファイル"から、OpenStreetMapへ�
 - PLATEAUの「3D都市モデル」の"GMLファイル"から、OpenStreetMap形式に変換します。
   - 複合建物は「[リレーション:building](https://wiki.openstreetmap.org/wiki/JA:%E5%9F%BA%E6%9C%AC%E7%9A%84%E3%81%AA3D%E3%81%AE%E5%BB%BA%E7%89%A9)」へ変換します。
   - 中空（Inner）部分がある建物も「[リレーション:マルチポリゴン](https://wiki.openstreetmap.org/wiki/JA:Relation:multipolygon)」に変換します。
+    - 変換方式は"[リレーション / マルチポリゴン構成](doc/building/Relations.md)"を参照してください。
 - 既存データとの調整も行います。
   - OpenStreetMapから現在の建物データ(既存データ)をダウンロードして、変換データと重複チェックを自動的に行います。
   - アップデートするとデータの欠損が発生するような既存データ(リレーションのメンバーやエントランスなどのノードを持つもの等)と重複するPOIはアップデート対象から自動的に除外します。
