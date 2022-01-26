@@ -315,130 +315,11 @@ OSMファイルへの変換項目
 - ビルパーツの'建築年'を「建築年`start_date`」とする。
 - ビルリレーションには「建築年」を反映させない。[Issue 39](https://github.com/yuuhayashi/citygml-osm/issues/39)
 
-### POI構成
 
-「建物Way」の同士の接触状態によって、「連接ビルディング」や「マルチポリゴン」を形成する。
+## POI構成
 
-#### a. 単純ビルディング
+- 接触した建物は「リレーション:type=building」に変換します　－＞ [リレーション / マルチポリゴン構成](doc/building/Relations.md)
 
-他のビルディングと接触しないもの
-
-![sample a GML](doc/building/sample-a/sample-a-gml.png)
-
-一つのWAYのみで完結させる
-
-- Step 1. parse GML file [sample-a-osm1](doc/building/sample-a/sample-a-osm1.png)
-
-- Step 2. 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる (Step1から変化なし)
-
-- Step 3. メンバーが一つしかないRelation:building を削除する [sample-a-osm3](doc/building/sample-a/sample-a-osm3.png)
-
-- Step 4. Relation:building->member:role=port のWay:outlineを作成する
-- Step 4. Relation:multipolygon->outerにWay:outline (Step3から変化なし)
-
-- Step 5. 不要なPOIを削除する　(Step3から変化なし)
-
-![sample a OSM](doc/building/sample-a/sample-a-osm.png)
-
-##### a-1. 線で接触していないビルディング
-
-接触していないが他の建物のノードと共有しているパターン　[接点パターン](doc/building/sample-a/Sample-a-SharePoint.png)
-
-
-#### b. 中空部を持つ単一ビルディング
-
-中空部分('gml:interior')があるビルディングで、他のビルディングと接触しないもの
-
-![sample b GML](doc/building/sample-b/sample-b-gml.png)
-
-マルチポリゴン・リレーションでビルディングを描く
-
-- Step 1. parse GML file [sample-b-osm1.png](doc/building/sample-b/sample-b-osm1.png)
-
-- Step 2. 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる (Step1から変化なし)
-
-- Step 3. Relation:building->member:role=port のWay:outlineを作成する
-
-- Step 3. Relation:multipolygon->outerにWay:outline (Step1から変化なし)
-
-- Step 4. メンバーが一つしかないRelation:building を削除する (Step1から変化なし)
-
-- Step 5. 不要なPOIを削除する　[sample a OSM](doc/building/sample-b/sample-b-osm.pu.png)
-
-![InnerBuilding](doc/building/sample-b/sample-b-osm.png)
-
-
-#### c. 複数のビルディングが接触しているもの（連接ビルディング）
-
-中空部分('gml:interior')がない建物同士が、接触しているもの。
-
-![sample c GML](doc/building/sample-c/gml.png)
-
-ビルディング・リレーションを使って描く
-
-- Step 1. parse GML file "[sample-c-osm1](doc/building/sample-c/osm1-parse.png)"
-
-- Step 2. 接触しているBUILDINGのWAYを"Relation:building"にまとめる "[osm2 RelationMarge](doc/building/sample-c/osm2-RelationMarge.png)"
-
-- Step 3. メンバーが一つしかないRelation:building を削除する "[osm3 RemoveSinglePart](doc/building/sample-c/osm3-RemoveSinglePart.png)"
-
-- Step 4. Relation:building->member:role=port のWay:outlineを作成する
-
-- Step 4. Relation:multipolygon->outerにWay:outline "[osm4 Create Outline](doc/building/sample-c/osm4-CreateOutline.png)"
-
-- Step 5. 不要なPOIを削除する　"[sample a OSM](doc/building/sample-c/osm.pu.png)"
-
-![sample c OSM](doc/building/sample-c/osm.png)
- 
-
-#### d. 中空部分がある連接ビルディング
-
-他のビルディングと接触しているビルディングで、中空部分を含む場合。
-
-![sample d GML](doc/building/sample-d/sample-d-gml.png)
-
-ビルディング・リレーションのOutlineに、マルチポリゴン・リレーションを使って描く
-
-- Step 1. parse GML file "[sample-D Parse](doc/building/sample-d/osm1-parse.png)"
-
-- Step 2. 接触しているBUILDINGのWAYを"Relation:building"にまとめる "[osm2 RelationMarge](doc/building/sample-c/osm2-RelationMarge.png)"
-
-- Step 3. メンバーが一つしかないRelation:building を削除する "[osm3 RemoveSinglePart](doc/building/sample-c/osm3-RemoveSinglePart.png)"
-
-- Step 4. Relation:building->member:role=port のWay:outlineを作成する
-
-- Step 4. Relation:multipolygon->outerにWay:outline "[osm4 Create Outline](doc/building/sample-c/osm4-CreateOutline.png)"
-
-- Step 5. 不要なPOIを削除する　"[sample a OSM](doc/building/sample-c/osm.pu.png)"
-
-![building :リレーション](doc/building/sample-d/sample-d-osm.png)
-
-- [中空部分がある複合ビルディングの書き方](doc/building/Building.md)
-
-
-#### e. 空白部分がある連接ビルディング
-
-連接ビルディングに囲まれた「空白」ができたもの
-
-![sample e GML](doc/building/sample-e/sample-e-gml.png)
-
-* "outline:way"(外郭線)を補完する
-* "inner:way"（空白部分）をインナーラインとして補完する
-* "name=..."の継承
-
-- Step 1. parse GML file "[sample-D Parse](doc/building/sample-e/osm1-parse.png)"
-
-- Step 2. 接触しているBUILDINGのWAYを"Relation:building"にまとめる "[osm2 RelationMarge](doc/building/sample-e/osm2-RelationMarge.png)"
-
-- Step 3. メンバーが一つしかないRelation:building を削除する "[osm3 RemoveSinglePart](doc/building/sample-e/osm3-RemoveSinglePart.png)"
-
-- Step 4. Relation:building->member:role=port のWay:outlineを作成する
-
-- Step 4. Relation:multipolygon->outerにWay:outline "[osm4 Create Outline](doc/building/sample-e/osm4-CreateOutline.png)"
-
-- Step 5. 不要なPOIを削除する　(変更なし)
-
-![sample e OSM](doc/building/sample-e/sample-e-osm.png)
 
 ### 既存POIとのオーバーラップ
 
@@ -480,7 +361,6 @@ OSMファイルへの変換項目
 
 - [データベース テーブル 関連図](doc/citygml/dbTables.png)
 
-- 第二段階 [OsmUpdater](doc/OsmUpdater/README.md)
 
 ----------------
 
