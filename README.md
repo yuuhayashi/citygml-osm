@@ -362,13 +362,13 @@ OSMファイルへの変換項目
 
 | import POI | 既存POI         |  合成後    | 説明 |
 | -------------- | ------------------- | ------------------- | -------------- |
-| なし            | なし                 |  'building=yes'    | IMPORT POIに'building'タグがない場合は、単なるプログラミングバグ |
-|  なし            | 'building=yes' |  'building=yes'   | IMPORT POIに'building'タグがない場合は、単なるプログラミングバグ | |
-|  なし            | 'building=parking' | 'building=parking'       | IMPORT POIに'building'タグがない場合は、単なるプログラミングバグ | |
-| 'building=yes' | なし                |  'building=yes'    | 既存POIがにタグがない場合は補完する |
+| なし            | なし                 |  'building=yes'    | タグがない場合は補完する |
+|  なし            | 'building=yes' |  'building=yes'   | PLATEAUにタグがない場合は既存データのまま |
+|  なし            | 'building=parking' | 'building=parking'       | PLATEAUにタグがない場合は既存データのまま |
+| 'building=yes' | なし                |  'building=yes'    | 既存POIにタグがない場合は補完する |
 | 'building=yes' | 'building=yes' |  'building=yes'   |  |
 | 'building=yes' | 'building=parking' |  'building=parking' |  |
-| 'building=public' | なし                |  'building=public'    | 既存POIがにタグがない場合は補完する |
+| 'building=public' | なし                |  'building=public'    | 既存POIにタグがない場合は補完する |
 | 'building=public' | 'building=yes' |  'building=public'   |  |
 | 'building=public' | 'building=parking' |  'building=public' | 既存POIの値を書き換える |
 
@@ -378,7 +378,15 @@ OSMファイルへの変換項目
 
 ### 建物高さ `ele`
 
-- TBD
+- `ele=*` は、PLATEAUデータの値を優先する
+
+| import POI | 既存POI         |  合成後    | 説明 |
+| -------------- | ------------------- | ------------------- | -------------- |
+| なし            | なし                 |  なし    |  |
+|  なし            | 'ele=7.5' |  'ele=7.5'   |  |
+| 'ele=8.9' | なし                |  'ele=8.9'    | 既存POIにタグがない場合は補完する |
+| 'ele=8.9' | 'ele=7.5' |  'ele=8.9' | 既存POIの値を書き換える |
+
 
 ### 建物高さ `height`
 
@@ -387,17 +395,32 @@ OSMファイルへの変換項目
 | import POI | 既存POI         |  合成後    | 説明 |
 | -------------- | ------------------- | ------------------- | -------------- |
 | なし            | なし                 |  なし    |  |
-|  なし            | 'height=7.5' |  'height=7.5'   |  | |
-| 'height=8.9' | なし                |  'height=8.9'    | 既存POIがにタグがない場合は補完する |
+|  なし            | 'height=7.5' |  'height=7.5'   | PLATEAUにタグがない場合は既存データのまま |
+| 'height=8.9' | なし                |  'height=8.9'    | 既存POIにタグがない場合は補完する |
 | 'height=8.9' | 'height=7.5' |  'height=8.9' | 既存POIの値を書き換える |
 
 ### 地上階 `building:levels`
 
-- TBD
+- `building:levels=*` は、PLATEAUデータの値を優先する
+
+| import POI | 既存POI         |  合成後    | 説明 |
+| -------------- | ------------------- | ------------------- | -------------- |
+| なし            | なし                 |  なし    |  |
+|  なし            | 'building:levels=7' |  'building:levels=7'   | PLATEAUにタグがない場合は既存データのまま |
+| 'building:levels=8' | なし                |  'building:levels=8'    | 既存POIにタグがない場合は補完する |
+| 'building:levels=8' | 'building:levels=7' |  'building:levels=8' | 既存POIの値を書き換える |
 
 ### 地下階 `building:levels:underground`
 
-- TBD
+- `building:levels:underground=*` は、PLATEAUデータの値を優先する
+
+| import POI | 既存POI         |  合成後    | 説明 |
+| -------------- | ------------------- | ------------------- | -------------- |
+| なし            | なし                 |  なし    |  |
+|  なし            | 'building:levels:underground=2' |  'building:levels:underground=2'   | PLATEAUにタグがない場合は既存データのまま |
+| 'building:levels:underground=1' | なし                |  'building:levels:underground=1'    | 既存POIにタグがない場合は補完する |
+| 'building:levels:underground=1' | 'building:levels:underground=2' |  'building:levels:underground=1' | 既存POIの値を書き換える |
+
 
 ### 建築年 `start_date`
 
