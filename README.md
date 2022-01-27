@@ -374,11 +374,11 @@ OSMファイルへの変換項目
 
 ### 建物名称 `k="name"`
 
-- TBD
+- TBD --> [Issue #22](https://github.com/yuuhayashi/citygml-osm/issues/22)
 
 ### 建物高さ `ele`
 
-- `ele=*` は、PLATEAUデータの値を優先する
+- `ele=*` は、PLATEAUデータの値を優先する --> [Issue #63](https://github.com/yuuhayashi/citygml-osm/issues/63)
 
 | import POI | 既存POI         |  合成後    | 説明 |
 | -------------- | ------------------- | ------------------- | -------------- |
@@ -401,7 +401,7 @@ OSMファイルへの変換項目
 
 ### 地上階 `building:levels`
 
-- `building:levels=*` は、PLATEAUデータの値を優先する
+- `building:levels=*` は、PLATEAUデータの値を優先する --> [Issue #62](https://github.com/yuuhayashi/citygml-osm/issues/62)
 
 | import POI | 既存POI         |  合成後    | 説明 |
 | -------------- | ------------------- | ------------------- | -------------- |
@@ -412,7 +412,7 @@ OSMファイルへの変換項目
 
 ### 地下階 `building:levels:underground`
 
-- `building:levels:underground=*` は、PLATEAUデータの値を優先する
+- `building:levels:underground=*` は、PLATEAUデータの値を優先する --> [Issue #62](https://github.com/yuuhayashi/citygml-osm/issues/62)
 
 | import POI | 既存POI         |  合成後    | 説明 |
 | -------------- | ------------------- | ------------------- | -------------- |
@@ -424,9 +424,9 @@ OSMファイルへの変換項目
 
 ### 建築年 `start_date`
 
-- TBD
+- TBD --> [Issue #61](https://github.com/yuuhayashi/citygml-osm/issues/61)
 
-### SOURCE `source`
+### SOURCE `source=GSI/KIBAN 25000;NARO`
 
 - `source=*`に`[S|s]urvey`、が含まれる場合は、`source=survey`に変換する --> [Issue #56](https://github.com/yuuhayashi/citygml-osm/issues/56)
 
