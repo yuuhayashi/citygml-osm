@@ -34,7 +34,7 @@ PLATEAUの「3D都市モデル」の"GMLファイル"から、OpenStreetMapへ�
 
 # Release
 
-- 2022-01-27 [v1.4.2-SNAPSHOT](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.4.2)<br/>[Issue #60](https://github.com/yuuhayashi/citygml-osm/issues/60) 取り壊された建物に重複するデータは対象外にする
+- 2022-01-27 [v1.4.2-SNAPSHOT](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.4.2)<br/>[Fixed #60](https://github.com/yuuhayashi/citygml-osm/issues/60) 取り壊された建物に重複するデータは対象外にする
 
 - 2022-01-23 [v1.4.1](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.4.1)<br/>[Fixed #42](https://github.com/yuuhayashi/citygml-osm/issues/42) 'fixme'による手動選別<br/>[Fixed #24](https://github.com/yuuhayashi/citygml-osm/issues/24) 削除される既存POIがJOSMで確認できない<br/>[Fixed #22](https://github.com/yuuhayashi/citygml-osm/issues/22) 既存building との「building=*」タグの値の扱い
   - [v1.4.1](https://github.com/yuuhayashi/citygml-osm/releases/tag/v1.4.1)より、第三段階生成物(`*.mrg.osm`)の出力形式を変更しています。（`*.mrg.osm`をそのままOSMへアップロードできなくなりました）
