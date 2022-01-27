@@ -262,7 +262,7 @@ PLATEAUの「3D都市モデル」の"GMLファイル"から、OpenStreetMapへ�
 
 ## "building" OSMフォーマットへの変換
 
-### タグ付け
+## タグ付け
 
 OSMファイルへの変換項目
 
@@ -284,36 +284,36 @@ OSMファイルへの変換項目
 | 地上階数	| `k="building:levels"`	| 建物の地上部分の階数（日本的な数え方） 正の整数値			|
 | 地下階数	| `k="building:levels:underground"`	| 建物の地下部分の階数 正の整数値				|
 
-#### 建物種別 `k="building"`
+### 建物種別 `k="building"`
 - GML::`bldg:usage`の値を'[conversion.json](conversion.json)'で変換して、`building=*`に割り当てる。	
 - 変換表に記載がない`usage`コードは、`building=yes`とする
 - 複合ビルの場合は、最大面積のビルパーツの'usage'をリレーションの「`building=*`」とする。
 
-#### 建物名称 `k="name"`
+### 建物名称 `k="name"`
 - 建物ポリゴン `Relation::type="multipolygon"` の場合は、`k="name"`とする
 - 建物リレーション `Relation::type="building"`の場合は、`k="name"`とする
 - 建物パーツ `member::role="part"`->`building=yes` の場合は、`k="name"`とする
-- 複合ビルの場合は、構成部位の名称のうちで、最も文字数が多いものを「合成名称」にする（Relation:`k="name"`の`v=合成名称`）
+- <del>複合ビルの場合は、構成部位の名称のうちで、最も文字数が多いものを「合成名称」にする（Relation:`k="name"`の`v=合成名称`）</del> --> [Issue #51](https://github.com/yuuhayashi/citygml-osm/issues/51)
 
-#### 建物高さ `ele`
+### 建物高さ `ele`
 - `bldg:lod1Solid`の'高度'値の最低値
 - 複合ビルの場合は、全ビルパーツの最低値
 
-#### 建物高さ `height`
+### 建物高さ `height`
 - `building:height`とはしない
 - 単体ビルの場合は、`bldg:measuredHeight`。
 - 単体ビルで、`bldg:measuredHeight`がない場合は、`lod1Solid`と`lod0[RoofEdge,FoodPrint`から算出する
 - 複合ビルの場合は、複合ビルの'最低標高'を求め、全ビルパーツの'最低標高'からの'高さ'の最大値。'標高'が設定されていないビルパーツは全ビルパーツの'最低標高’からの高さが設定されているとみなす。
 
-#### 地上階 `building:levels`
+### 地上階 `building:levels`
 - 単体ビルの場合は、`building:levels`。
 - 複合ビルの場合は、全ビルパーツの最大'地上階'をリレーションの「地上階'building:levels'」とする。
 
-#### 地下階 `building:levels:underground`
+### 地下階 `building:levels:underground`
 - 単体ビルの場合は、`building:levels:underground`。
 - 複合ビルの場合は、全ビルパーツの最大'地下階'をリレーションの「地下階'building:levels:underground'」とする。
 
-#### 建築年 `start_date`
+### 建築年 `start_date`
 - GML::`bldg:yearOfConstruction`の値を`start_date`の値とする
 - ビルパーツの'建築年'を「建築年`start_date`」とする。
 - ビルリレーションには「建築年」を反映させない。[Issue 39](https://github.com/yuuhayashi/citygml-osm/issues/39)
@@ -324,18 +324,16 @@ OSMファイルへの変換項目
 - 接触した建物は「リレーション:type=building」に変換します　－＞ [リレーション / マルチポリゴン構成](doc/building/Relations.md)
 
 
-### 既存POIとのオーバーラップ
+# 既存POIとのオーバーラップ
 
-#### pattern A-1
+## オーバーラップパターン
 
-オーバーラップする既存WAYが存在しない場合
+### pattern A-1 オーバーラップする既存WAYが存在しない場合
 
 * 例: '13111-bldg-365'
 * WAYを"action=modify"にする
 
-#### pattern A-2
-
-オーバーラップする既存WAYが存在する場合
+### pattern A-2 オーバーラップする既存WAYが存在する場合
 
 * 例: '13111-bldg-466'
 * WAYを"action=modify"にする
@@ -344,16 +342,66 @@ OSMファイルへの変換項目
 
 	* この際に、既存WAY.TAGsに"height=*"があれば WAY.TAGの値は上書きされる
 	* TAG "building"のvalue は、既存WAY.TAGの値に上書き
-	* "source"TAGは WAYで書き換えられる。
+	* "source"TAGは WAYで書き換えられる。 --> [Issue #56](https://github.com/yuuhayashi/citygml-osm/issues/56)
 
 * WAY.TAGsに"fixme=PLATEAUデータで更新されています"を追加
 
-#### pattern A-3
-
-オーバーラップする既存WAYが複数存在する場合
+### pattern A-3 オーバーラップする既存WAYが複数存在する場合
 
 * 重なる面積が最大の既存WAYを'更新'する
 * 他の重複する既存WAYは'削除'する。'fixme=PLATEAUデータで置き換えられました'
+
+
+## 既存データとPLATEAUデータとの合成
+
+既存building とのタグの値の扱い --> [Issue #22](https://github.com/yuuhayashi/citygml-osm/issues/22)
+
+### 建物種別 `k="building"`
+
+- `building=*` は、PLATEAUデータの値を優先する --> [Issue #22](https://github.com/yuuhayashi/citygml-osm/issues/22)
+
+| import POI | 既存POI         |  合成後    | 説明 |
+| -------------- | ------------------- | ------------------- | -------------- |
+| なし            | なし                 |  'building=yes'    | IMPORT POIに'building'タグがない場合は、単なるプログラミングバグ |
+|  なし            | 'building=yes' |  'building=yes'   | IMPORT POIに'building'タグがない場合は、単なるプログラミングバグ | |
+|  なし            | 'building=parking' | 'building=parking'       | IMPORT POIに'building'タグがない場合は、単なるプログラミングバグ | |
+| 'building=yes' | なし                |  'building=yes'    | 既存POIがにタグがない場合は補完する |
+| 'building=yes' | 'building=yes' |  'building=yes'   |  |
+| 'building=yes' | 'building=parking' |  'building=parking' |  |
+| 'building=public' | なし                |  'building=public'    | 既存POIがにタグがない場合は補完する |
+| 'building=public' | 'building=yes' |  'building=public'   |  |
+| 'building=public' | 'building=parking' |  'building=public' | 既存POIの値を書き換える |
+
+### 建物名称 `k="name"`
+
+- TBD
+
+### 建物高さ `ele`
+
+- TBD
+
+### 建物高さ `height`
+
+- `height=*` は、PLATEAUデータの値を優先する --> [Issue #22](https://github.com/yuuhayashi/citygml-osm/issues/22)
+
+| import POI | 既存POI         |  合成後    | 説明 |
+| -------------- | ------------------- | ------------------- | -------------- |
+| なし            | なし                 |  なし    |  |
+|  なし            | 'height=7.5' |  'height=7.5'   |  | |
+| 'height=8.9' | なし                |  'height=8.9'    | 既存POIがにタグがない場合は補完する |
+| 'height=8.9' | 'height=7.5' |  'height=8.9' | 既存POIの値を書き換える |
+
+### 地上階 `building:levels`
+
+- TBD
+
+### 地下階 `building:levels:underground`
+
+- TBD
+
+### 建築年 `start_date`
+
+- TBD
 
 
 ------
