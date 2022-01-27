@@ -426,6 +426,16 @@ OSMファイルへの変換項目
 
 - TBD
 
+### SOURCE `source`
+
+- `source=*`に`[S|s]urvey`、が含まれる場合は、`source=survey`に変換する --> [Issue #56](https://github.com/yuuhayashi/citygml-osm/issues/56)
+
+| import POI | 既存POI         |  合成後    | 説明 |
+| -------------- | ------------------- | ------------------- | -------------- |
+| なし           | なし                 |  なし    |  |
+|  なし          | 'source=GSI/KIBAN 25000;NARO' |  なし   | PLATEAUによって書き換えられたので、`source=GSI/KIBAN 25000;NARO` は無効になった |
+| なし           | 'source=GSI/KIBAN 25000;Survey' |  'source=survey' | `survey`だけ残す |
+
 
 ------
 
