@@ -99,7 +99,15 @@ public class Test_haya4 extends OsmUpdaterTest {
 					// 7-7 リレーションメンバーの建物は存在しないこと
 	        		assertTrue(false);
 				}
-				if (way.getId() == 289897904) {
+	        	else if (way.getId() == 289757569) {
+					// 5-6 Issue #60 "end_date"
+	        		assertTrue(false);
+				}
+	        	else if (way.getId() == 289757602) {
+					// 5-5 Issue #60 "demolished:building"
+	        		assertTrue(false);
+				}
+				else if (way.getId() == 289897904) {
 					// 11-20 アパート「宮久保 93」
 					assertEquals("modify", way.getAction());
 					assertEquals("PLATEAUデータで更新されています", way.getTag("MLIT_PLATEAU:fixme").getValue());
@@ -112,21 +120,12 @@ public class Test_haya4 extends OsmUpdaterTest {
 	        		checkCnt++;
 				}
 				else if (way.getId() == 289757595) {
-					// 6-7 delete ６−６に吸収される
-					assertEquals("modify", way.getAction());
-					assertEquals("delete 削除されます", way.getTag("MLIT_PLATEAU:fixme").getValue());
-	        		assertEquals("house", way.getTag("building").getValue());
-	        		assertNotNull(way.getTag("addr:housenumber"));
-	        		assertEquals("6-7", way.getTag("addr:housenumber").getValue());
-	        		checkCnt++;
-				}
-				else if (way.getId() == 289757584) {
-					// 6-6 modify
+					// 6-7 modify
 					assertEquals("modify", way.getAction());
 					assertEquals("PLATEAUデータで更新されています", way.getTag("MLIT_PLATEAU:fixme").getValue());
 	        		assertEquals("house", way.getTag("building").getValue());
 	        		assertNotNull(way.getTag("addr:housenumber"));
-	        		assertEquals("6-6", way.getTag("addr:housenumber").getValue());
+	        		assertEquals("6-7", way.getTag("addr:housenumber").getValue());
 	        		checkCnt++;
 				}
 				else if (way.getId() == 289757601) {
@@ -194,7 +193,7 @@ public class Test_haya4 extends OsmUpdaterTest {
 					}
 				}
 	        }
-	        assertEquals(11, checkCnt);
+	        assertEquals(10, checkCnt);
 	        
 	        List<RelationBean> relations = mrg.getRelationList();
 	        assertNotNull(relations);
@@ -277,7 +276,7 @@ public class Test_haya4 extends OsmUpdaterTest {
 	        	}
 	        }
 	        
-	        assertEquals(14, ways.size());
+	        assertEquals(13, ways.size());
 	        assertEquals(3, mrg.getRelationList().size());
 	        assertEquals(3, checkCnt);
 		} catch (Exception e) {

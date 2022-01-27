@@ -30,6 +30,9 @@ public class OrgUpdateProcessor implements Processor {
 		// リレーションとそのメンバーをFIXにする
 		fixRelation(org);
 		
+		// Issue #60 "end_date"と"demolished:building"
+		fixEndDate(org);
+		
 		// インポートデータの内で、Fix=trueの既存データと重複するものを削除
 		// その後、既存データからFix=trueのPOIを削除する
 		removeFixed(osm, org);
@@ -94,6 +97,23 @@ public class OrgUpdateProcessor implements Processor {
 						fixWay(org, way);
 					}
 				}
+			}
+		}
+	}
+	
+	/**
+	 * Issue #60 取り壊された建物に重複するデータは「非更新対象」(fix=true)
+	 * (5) end_date=* タグがある"WAY:building"
+	 * (6) WAY demolished:building=*
+	 * @param org
+	 */
+	private void fixEndDate(OsmBean org) {
+		for (WayBean way : org.getWayList()) {
+			if (way.getTag("end_date") != null) {
+				fixWay(org, way);
+			}
+			if (way.getTag("demolished:building") != null) {
+				fixWay(org, way);
 			}
 		}
 	}

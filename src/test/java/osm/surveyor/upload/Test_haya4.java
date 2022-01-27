@@ -107,7 +107,7 @@ public class Test_haya4 extends OsmUploadTest {
 	        		assertTrue(false);
 				}
 				else if (way.getId() == 289757584) {
-					// 6-6 modify　→ 除去された
+					// 6-6 modify　重複なし→変更なし
 	        		assertTrue(false);
 				}
 				else if (way.getId() == 289757601) {

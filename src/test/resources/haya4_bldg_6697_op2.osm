@@ -47,14 +47,22 @@
   <node id='-229556' action='modify' visible='true' lat='35.43422203854' lon='139.4109664844' />
   <node id='-229557' action='modify' visible='true' lat='35.4342485779' lon='139.41085535518' />
   <node id='-229558' action='modify' visible='true' lat='35.43443870869' lon='139.41092375151' />
-  <node id='-229559' action='modify' visible='true' lat='35.43437173931' lon='139.41124945745' />
-  <node id='-229560' action='modify' visible='true' lat='35.43419909169' lon='139.41120117769' />
-  <node id='-229561' action='modify' visible='true' lat='35.43421921282' lon='139.41109279356' />
-  <node id='-229562' action='modify' visible='true' lat='35.4343918604' lon='139.41114107333' />
+  <node id='-229559' action='modify' visible='true' lat='35.4343582812' lon='139.41133661847' />
+  <node id='-229560' action='modify' visible='true' lat='35.4342791237' lon='139.41131593107' />
+  <node id='-229561' action='modify' visible='true' lat='35.43431353125' lon='139.41111761477' />
+  <node id='-229562' action='modify' visible='true' lat='35.43439268871' lon='139.41113830217' />
   <node id='-229563' action='modify' visible='true' lat='35.43435534873' lon='139.41136881575' />
   <node id='-229564' action='modify' visible='true' lat='35.43432693838' lon='139.41155657038' />
   <node id='-229565' action='modify' visible='true' lat='35.43424224015' lon='139.41153726498' />
   <node id='-229566' action='modify' visible='true' lat='35.43427065053' lon='139.41134951035' />
+  <node id='-229611' action='modify' visible='true' lat='35.43458309154' lon='139.41135914962' />
+  <node id='-229612' action='modify' visible='true' lat='35.43453201375' lon='139.41134572219' />
+  <node id='-229613' action='modify' visible='true' lat='35.43454829699' lon='139.41125241805' />
+  <node id='-229614' action='modify' visible='true' lat='35.43459937477' lon='139.41126584549' />
+  <node id='-229627' action='modify' visible='true' lat='35.43449512895' lon='139.41130952876' />
+  <node id='-229628' action='modify' visible='true' lat='35.4344440511' lon='139.41129610132' />
+  <node id='-229629' action='modify' visible='true' lat='35.43446033436' lon='139.41120279719' />
+  <node id='-229630' action='modify' visible='true' lat='35.4345114122' lon='139.41121622462' />
   <way id='-185828' action='modify' visible='true'>
     <nd ref='-229513' />
     <nd ref='-229514' />
@@ -188,6 +196,24 @@
     <nd ref='-229563' />
     <tag k='building' v='yes' />
     <tag k='ref:MLIT_PLATEAU' v='11111-bldg-185842' />
+  </way>
+  <way id='-186018' action='modify' visible='true'>
+    <nd ref='-229611' />
+    <nd ref='-229612' />
+    <nd ref='-229613' />
+    <nd ref='-229614' />
+    <nd ref='-229611' />
+    <tag k='building' v='yes' />
+    <tag k='ref:MLIT_PLATEAU' v='5555-bldg-666666' />
+  </way>
+  <way id='-186097' action='modify' visible='true'>
+    <nd ref='-229627' />
+    <nd ref='-229628' />
+    <nd ref='-229629' />
+    <nd ref='-229630' />
+    <nd ref='-229627' />
+    <tag k='building' v='yes' />
+    <tag k='ref:MLIT_PLATEAU' v='5555-bldg-555555' />
   </way>
   <relation id='-178512' action='modify' visible='true'>
     <member type='way' ref='-185837' role='inner' />
