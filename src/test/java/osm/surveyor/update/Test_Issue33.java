@@ -1,5 +1,7 @@
 package osm.surveyor.update;
 
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
+
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
@@ -28,11 +30,11 @@ public class Test_Issue33 extends OsmUpdaterTest {
 		try {
 			Files.copy(
 				Paths.get("./src/test/resources/50303524_bldg_6697_op.osm"),
-				Paths.get("./50303524_bldg_6697_op.osm")
+				Paths.get("./50303524_bldg_6697_op.osm"), REPLACE_EXISTING
 			);
 			Files.copy(
 				Paths.get("./src/test/resources/50303524_bldg_6697_op.org.osm"),
-				Paths.get("./50303524_bldg_6697_op.org.osm")
+				Paths.get("./50303524_bldg_6697_op.org.osm"), REPLACE_EXISTING
 			);
 		}
 		catch (FileAlreadyExistsException ee) {}
