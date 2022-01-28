@@ -367,13 +367,8 @@ OSMファイルへの変換項目
 
 | import POI | 既存POI         |  合成後    | 説明 |
 | -------------- | ------------------- | ------------------- | -------------- |
-| なし            | なし                 |  'building=yes'    | タグがない場合は補完する |
-|  なし            | 'building=yes' |  'building=yes'   | PLATEAUにタグがない場合は既存データのまま |
-|  なし            | 'building=parking' | 'building=parking'       | PLATEAUにタグがない場合は既存データのまま |
-| 'building=yes' | なし                |  'building=yes'    | 既存POIにタグがない場合は補完する |
 | 'building=yes' | 'building=yes' |  'building=yes'   |  |
 | 'building=yes' | 'building=parking' |  'building=parking' |  |
-| 'building=public' | なし                |  'building=public'    | 既存POIにタグがない場合は補完する |
 | 'building=public' | 'building=yes' |  'building=public'   |  |
 | 'building=public' | 'building=parking' |  'building=public' | 既存POIの値を書き換える |
 
@@ -430,6 +425,11 @@ OSMファイルへの変換項目
 ### 建築年 `start_date`
 
 - TBD --> [Issue #61](https://github.com/yuuhayashi/citygml-osm/issues/61)
+
+### 名称 `name`
+
+- TBD --> [Issue #63](https://github.com/yuuhayashi/citygml-osm/issues/63)
+
 
 ### SOURCE `source=GSI/KIBAN 25000;NARO`
 
