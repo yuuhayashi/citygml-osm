@@ -331,6 +331,9 @@
     <nd ref='2933003242' />
     <tag k='addr:housenumber' v='5-4' />
     <tag k='building' v='house' />
+    <tag k='building:levels' v='7' />
+    <tag k='building:levels:underground' v='2' />
+    <tag k='ele' v='7.5' />
     <tag k='source' v='GSI/KIBAN 25000;NARO' />
   </way>
   <way id='289757584' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='7' changeset='116452117'>
@@ -396,7 +399,7 @@
     <tag k='addr:housenumber' v='6-10' />
     <tag k='building' v='house' />
   </way>
-  <way id='289757595' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='3' changeset='116452117'>
+  <way id='289757595' action='modify' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='3' changeset='116452117'>
     <nd ref='2933003223' />
     <nd ref='2933003222' />
     <nd ref='2933003214' />
@@ -404,6 +407,9 @@
     <nd ref='2933003223' />
     <tag k='addr:housenumber' v='6-7' />
     <tag k='building' v='house' />
+    <tag k='building:levels' v='7' />
+    <tag k='building:levels:underground' v='2' />
+    <tag k='ele' v='7.5' />
   </way>
   <way id='289757597' timestamp='2014-06-26T12:57:52Z' uid='621319' user='hayashi' visible='true' version='2' changeset='23181390'>
     <nd ref='2933003021' />
@@ -543,7 +549,7 @@
     <tag k='building' v='apartments' />
     <tag k='name' v='ハイツ宮久保' />
   </way>
-  <way id='289897936' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='3' changeset='116452117'>
+  <way id='289897936' action='modify' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='3' changeset='116452117'>
     <nd ref='2934311446' />
     <nd ref='2934311450' />
     <nd ref='2934311445' />
@@ -554,7 +560,7 @@
     <nd ref='2934311454' />
     <nd ref='2934311446' />
     <tag k='addr:housenumber' v='11-1-2' />
-    <tag k='building' v='house' />
+    <tag k='building' v='yes' />
   </way>
   <way id='289897937' timestamp='2014-06-27T00:19:39Z' uid='621319' user='hayashi' visible='true' version='2' changeset='23204051'>
     <nd ref='2934310888' />
@@ -568,7 +574,7 @@
     <nd ref='2934310888' />
     <tag k='building' v='house' />
   </way>
-  <way id='289897938' timestamp='2014-06-27T10:41:27Z' uid='621319' user='hayashi' visible='true' version='2' changeset='23210836'>
+  <way id='289897938' action='modify' timestamp='2014-06-27T10:41:27Z' uid='621319' user='hayashi' visible='true' version='2' changeset='23210836'>
     <nd ref='2934311462' />
     <nd ref='2934311459' />
     <nd ref='2934311455' />
@@ -578,7 +584,7 @@
     <nd ref='2934311460' />
     <nd ref='2934311458' />
     <nd ref='2934311462' />
-    <tag k='building' v='house' />
+    <tag k='building' v='yes' />
   </way>
   <way id='289899982' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='3' changeset='116452117'>
     <nd ref='2934330268' />

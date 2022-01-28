@@ -128,6 +128,12 @@ public class Test_haya4 extends OsmUpdaterTest {
 	        		assertNotNull(way.getTag("addr:housenumber"));
 	        		assertEquals("5-4", way.getTag("addr:housenumber").getValue());
 	        		assertNull(way.getTag("source"));
+	        		assertNotNull(way.getTag("ele"));
+	        		assertEquals("7.5", way.getTag("ele").getValue());
+	        		assertNotNull(way.getTag("building:levels"));
+	        		assertEquals("7", way.getTag("building:levels").getValue());
+	        		assertNotNull(way.getTag("building:levels:underground"));
+	        		assertEquals("2", way.getTag("building:levels:underground").getValue());
 	        		checkCnt++;
 				}
 	        	else if (way.getId() == 289757585) {
@@ -140,6 +146,12 @@ public class Test_haya4 extends OsmUpdaterTest {
 	        		assertEquals("5-3", way.getTag("addr:housenumber").getValue());
 	        		assertNotNull(way.getTag("source"));
 	        		assertEquals("survey", way.getTag("source").getValue());
+	        		assertNotNull(way.getTag("ele"));
+	        		assertEquals("8.9", way.getTag("ele").getValue());
+	        		assertNotNull(way.getTag("building:levels"));
+	        		assertEquals("8", way.getTag("building:levels").getValue());
+	        		assertNotNull(way.getTag("building:levels:underground"));
+	        		assertEquals("1", way.getTag("building:levels:underground").getValue());
 	        		checkCnt++;
 				}
 				else if (way.getId() == 289757595) {
@@ -149,6 +161,12 @@ public class Test_haya4 extends OsmUpdaterTest {
 	        		assertEquals("house", way.getTag("building").getValue());
 	        		assertNotNull(way.getTag("addr:housenumber"));
 	        		assertEquals("6-7", way.getTag("addr:housenumber").getValue());
+	        		assertNotNull(way.getTag("ele"));
+	        		assertEquals("8.9", way.getTag("ele").getValue());
+	        		assertNotNull(way.getTag("building:levels"));
+	        		assertEquals("8", way.getTag("building:levels").getValue());
+	        		assertNotNull(way.getTag("building:levels:underground"));
+	        		assertEquals("1", way.getTag("building:levels:underground").getValue());
 	        		checkCnt++;
 				}
 				else if (way.getId() == 289757601) {

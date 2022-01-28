@@ -86,7 +86,7 @@
     <nd ref='-229519' />
     <nd ref='-229520' />
     <nd ref='-229517' />
-    <tag k='building' v='yes' />
+    <tag k='building' v='house' />
     <tag k='ref:MLIT_PLATEAU' v='11111-bldg-101976' />
   </way>
   <way id='-185830' action='modify' visible='true'>
@@ -194,6 +194,9 @@
     <nd ref='-229562' />
     <nd ref='-229559' />
     <tag k='building' v='yes' />
+    <tag k='building:levels' v='8' />
+    <tag k='building:levels:underground' v='1' />
+    <tag k='ele' v='8.9' />
     <tag k='ref:MLIT_PLATEAU' v='11111-bldg-185616' />
   </way>
   <way id='-185842' action='modify' visible='true'>
@@ -239,6 +242,9 @@
     <nd ref='-229682' />
     <nd ref='-229679' />
     <tag k='building' v='yes' />
+    <tag k='building:levels' v='8' />
+    <tag k='building:levels:underground' v='1' />
+    <tag k='ele' v='8.9' />
     <tag k='ref:MLIT_PLATEAU' v='5555-bldg-333333' />
   </way>
   <relation id='-178512' action='modify' visible='true'>

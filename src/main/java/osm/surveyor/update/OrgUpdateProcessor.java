@@ -235,8 +235,15 @@ public class OrgUpdateProcessor implements Processor {
 									sWay.addTag("source", "survey");
 								}
 							}
-							way.copyTag(sWay);
+							if (way.getTag("building") != null) {
+								// Issue #56
+								TagBean buildingTag = way.getTag("building");
+								if (buildingTag.getValue().toLowerCase().equals("yes")) {
+									way.removeTag("building");
+								}
+							}
 							sWay.copyTag(way);
+							way.copyTag(sWay);
 							sWay.addTag(new TagBean("MLIT_PLATEAU:fixme", "PLATEAUデータで更新されています"));
 							sWay.setAction("modify");
 							sWay.orignal = false;
