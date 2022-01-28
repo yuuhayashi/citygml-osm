@@ -119,6 +119,29 @@ public class Test_haya4 extends OsmUpdaterTest {
 	        		assertEquals("11-20", way.getTag("addr:housenumber").getValue());
 	        		checkCnt++;
 				}
+	        	else if (way.getId() == 289757583) {
+					// 5-4 `source=`
+					assertEquals("modify", way.getAction());
+	        		assertEquals("house", way.getTag("building").getValue());
+	        		assertNotNull(way.getTag("ref:MLIT_PLATEAU"));
+	        		assertEquals("5555-bldg-444444", way.getTag("ref:MLIT_PLATEAU").getValue());
+	        		assertNotNull(way.getTag("addr:housenumber"));
+	        		assertEquals("5-4", way.getTag("addr:housenumber").getValue());
+	        		assertNull(way.getTag("source"));
+	        		checkCnt++;
+				}
+	        	else if (way.getId() == 289757585) {
+					// 5-3 `source=`
+					assertEquals("modify", way.getAction());
+	        		assertEquals("house", way.getTag("building").getValue());
+	        		assertNotNull(way.getTag("ref:MLIT_PLATEAU"));
+	        		assertEquals("5555-bldg-333333", way.getTag("ref:MLIT_PLATEAU").getValue());
+	        		assertNotNull(way.getTag("addr:housenumber"));
+	        		assertEquals("5-3", way.getTag("addr:housenumber").getValue());
+	        		assertNotNull(way.getTag("source"));
+	        		assertEquals("survey", way.getTag("source").getValue());
+	        		checkCnt++;
+				}
 				else if (way.getId() == 289757595) {
 					// 6-7 modify
 					assertEquals("modify", way.getAction());
@@ -193,7 +216,7 @@ public class Test_haya4 extends OsmUpdaterTest {
 					}
 				}
 	        }
-	        assertEquals(10, checkCnt);
+	        assertEquals(12, checkCnt);
 	        
 	        List<RelationBean> relations = mrg.getRelationList();
 	        assertNotNull(relations);
@@ -276,7 +299,7 @@ public class Test_haya4 extends OsmUpdaterTest {
 	        	}
 	        }
 	        
-	        assertEquals(13, ways.size());
+	        assertEquals(15, ways.size());
 	        assertEquals(3, mrg.getRelationList().size());
 	        assertEquals(3, checkCnt);
 		} catch (Exception e) {

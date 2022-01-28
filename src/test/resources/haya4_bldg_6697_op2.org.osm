@@ -323,7 +323,7 @@
     <tag k='building' v='house' />
     <tag k='building:levels' v='2' />
   </way>
-  <way id='289757583' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='3' changeset='116452117'>
+  <way id='289757583' action='modify' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='3' changeset='116452117'>
     <nd ref='2933003242' />
     <nd ref='2933003238' />
     <nd ref='2933003228' />
@@ -331,6 +331,7 @@
     <nd ref='2933003242' />
     <tag k='addr:housenumber' v='5-4' />
     <tag k='building' v='house' />
+    <tag k='source' v='GSI/KIBAN 25000;NARO' />
   </way>
   <way id='289757584' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='7' changeset='116452117'>
     <nd ref='2933003208' />
@@ -348,7 +349,7 @@
     <tag k='roof:material' v='slate' />
     <tag k='roof:shape' v='hipped' />
   </way>
-  <way id='289757585' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='3' changeset='116452117'>
+  <way id='289757585' action='modify' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='3' changeset='116452117'>
     <nd ref='2933003235' />
     <nd ref='2933003233' />
     <nd ref='2933003226' />
@@ -356,6 +357,7 @@
     <nd ref='2933003235' />
     <tag k='addr:housenumber' v='5-3' />
     <tag k='building' v='house' />
+    <tag k='source' v='GSI/KIBAN 25000; Survey' />
   </way>
   <way id='289757586' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='4' changeset='116452117'>
     <nd ref='2933003205' />

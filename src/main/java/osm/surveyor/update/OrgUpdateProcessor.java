@@ -227,6 +227,14 @@ public class OrgUpdateProcessor implements Processor {
 					for (WayBean sWay : way.getIntersects(org.getWayList())) {
 						if (sWay.getId() == wayid) {
 							sWay.setFix(true);
+							if (sWay.getTag("source") != null) {
+								// Issue #56
+								TagBean sourceTag = sWay.getTag("source");
+								sWay.removeTag("source");
+								if (sourceTag.getValue().toLowerCase().contains("survey")) {
+									sWay.addTag("source", "survey");
+								}
+							}
 							way.copyTag(sWay);
 							sWay.copyTag(way);
 							sWay.addTag(new TagBean("MLIT_PLATEAU:fixme", "PLATEAUデータで更新されています"));

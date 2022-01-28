@@ -91,7 +91,7 @@ public class Test_haya4 extends OsmUploadTest {
 					// 7-7 リレーションメンバーの建物は存在しないこと
 	        		assertTrue(false);
 				}
-				if (way.getId() == 289897904) {
+	        	else if (way.getId() == 289897904) {
 					// 11-20 アパート「宮久保 93」
 					assertEquals("modify", way.getAction());
 	        		assertEquals("宮久保 93", way.getTag("name").v);
