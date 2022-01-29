@@ -367,7 +367,7 @@ OSMファイルへの変換項目
 
 - `building=*` は、PLATEAUデータの値を優先する --> [Issue #22](https://github.com/yuuhayashi/citygml-osm/issues/22)
 
-| import POI | 既存POI         |  合成後    | 説明 |
+| PLATEAU  | 既存         |  合成後    | 説明 |
 | -------------- | ------------------- | ------------------- | -------------- |
 | 'building=yes' | 'building=yes' |  'building=yes'   |  |
 | 'building=yes' | 'building=parking' |  'building=parking' |  |
@@ -378,7 +378,7 @@ OSMファイルへの変換項目
 
 - `name=*` は、既存データの値を優先する --> [Issue #22](https://github.com/yuuhayashi/citygml-osm/issues/22), [Issue #64](https://github.com/yuuhayashi/citygml-osm/issues/64)
 
-| PLATEAU POI | 既存POI         |  マージPOI    | 説明 |
+| PLATEAU  | 既存         |  合成後    | 説明 |
 | -------------- | ------------------- | ------------------- | -------------- |
 | なし            | なし                 |  なし    |      |
 |  なし            | 'name=A棟' |  'name=A棟'   |    |
@@ -390,7 +390,7 @@ OSMファイルへの変換項目
 
 - `ele=*` は、PLATEAUデータの値を優先する --> [Issue #63](https://github.com/yuuhayashi/citygml-osm/issues/63)
 
-| import POI | 既存POI         |  合成後    | 説明 |
+| PLATEAU  | 既存         |  合成後    | 説明 |
 | -------------- | ------------------- | ------------------- | -------------- |
 | なし            | なし                 |  なし    |  |
 |  なし            | 'ele=7.5' |  'ele=7.5'   |  |
@@ -402,7 +402,7 @@ OSMファイルへの変換項目
 
 - `height=*` は、PLATEAUデータの値を優先する --> [Issue #22](https://github.com/yuuhayashi/citygml-osm/issues/22)
 
-| import POI | 既存POI         |  合成後    | 説明 |
+| PLATEAU  | 既存         |  合成後    | 説明 |
 | -------------- | ------------------- | ------------------- | -------------- |
 | なし            | なし                 |  なし    |  |
 |  なし            | 'height=7.5' |  'height=7.5'   | PLATEAUにタグがない場合は既存データのまま |
@@ -413,7 +413,7 @@ OSMファイルへの変換項目
 
 - `building:levels=*` は、PLATEAUデータの値を優先する --> [Issue #62](https://github.com/yuuhayashi/citygml-osm/issues/62)
 
-| import POI | 既存POI         |  合成後    | 説明 |
+| PLATEAU  | 既存         |  合成後    | 説明 |
 | -------------- | ------------------- | ------------------- | -------------- |
 | なし            | なし                 |  なし    |  |
 |  なし            | 'building:levels=7' |  'building:levels=7'   | PLATEAUにタグがない場合は既存データのまま |
@@ -424,7 +424,7 @@ OSMファイルへの変換項目
 
 - `building:levels:underground=*` は、PLATEAUデータの値を優先する --> [Issue #62](https://github.com/yuuhayashi/citygml-osm/issues/62)
 
-| import POI | 既存POI         |  合成後    | 説明 |
+| PLATEAU  | 既存         |  合成後    | 説明 |
 | -------------- | ------------------- | ------------------- | -------------- |
 | なし            | なし                 |  なし    |  |
 |  なし            | 'building:levels:underground=2' |  'building:levels:underground=2'   | PLATEAUにタグがない場合は既存データのまま |
@@ -436,7 +436,7 @@ OSMファイルへの変換項目
 
 - `start_date=*` は、既存データを優先する --> [Issue #61](https://github.com/yuuhayashi/citygml-osm/issues/61)
 
-| PLATEAU POI | 既存POI         |  マージPOI    | 説明 |
+| PLATEAU  | 既存         |  合成後    | 説明 |
 | -------------- | ------------------- | ------------------- | -------------- |
 | なし            | なし                 |  なし    |      |
 |  なし            | 'start_date=2021-03' |  'start_date=2021-03'   |    |
@@ -448,7 +448,7 @@ OSMファイルへの変換項目
 
 - `source=*`に`[S|s]urvey`、が含まれる場合は、`source=survey`に変換する --> [Issue #56](https://github.com/yuuhayashi/citygml-osm/issues/56)
 
-| import POI | 既存POI         |  合成後    | 説明 |
+| PLATEAU  | 既存         |  合成後    | 説明 |
 | -------------- | ------------------- | ------------------- | -------------- |
 | なし           | なし                 |  なし    |  |
 |  なし          | 'source=GSI/KIBAN 25000;NARO' |  なし   | PLATEAUによって書き換えられたので、`source=GSI/KIBAN 25000;NARO` は無効になった |
