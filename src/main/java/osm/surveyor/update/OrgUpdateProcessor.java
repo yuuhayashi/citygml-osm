@@ -242,6 +242,13 @@ public class OrgUpdateProcessor implements Processor {
 									way.removeTag("building");
 								}
 							}
+							if (way.getTag("start_date") != null) {
+								// Issue #61 「start_date」は既存データ優先とする
+								TagBean startTag = sWay.getTag("start_date");
+								if (startTag != null) {
+									way.removeTag("start_date");
+								}
+							}
 							sWay.copyTag(way);
 							way.copyTag(sWay);
 							sWay.addTag(new TagBean("MLIT_PLATEAU:fixme", "PLATEAUデータで更新されています"));

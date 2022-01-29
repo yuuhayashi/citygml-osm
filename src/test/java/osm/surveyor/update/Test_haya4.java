@@ -134,6 +134,8 @@ public class Test_haya4 extends OsmUpdaterTest {
 	        		assertEquals("7", way.getTag("building:levels").getValue());
 	        		assertNotNull(way.getTag("building:levels:underground"));
 	        		assertEquals("2", way.getTag("building:levels:underground").getValue());
+	        		assertNotNull(way.getTag("start_date"));
+	        		assertEquals("2021-03", way.getTag("start_date").getValue());
 	        		checkCnt++;
 				}
 	        	else if (way.getId() == 289757585) {
@@ -152,6 +154,8 @@ public class Test_haya4 extends OsmUpdaterTest {
 	        		assertEquals("8", way.getTag("building:levels").getValue());
 	        		assertNotNull(way.getTag("building:levels:underground"));
 	        		assertEquals("1", way.getTag("building:levels:underground").getValue());
+	        		assertNotNull(way.getTag("start_date"));
+	        		assertEquals("2019", way.getTag("start_date").getValue());
 	        		checkCnt++;
 				}
 				else if (way.getId() == 289757595) {
@@ -167,6 +171,8 @@ public class Test_haya4 extends OsmUpdaterTest {
 	        		assertEquals("8", way.getTag("building:levels").getValue());
 	        		assertNotNull(way.getTag("building:levels:underground"));
 	        		assertEquals("1", way.getTag("building:levels:underground").getValue());
+	        		assertNotNull(way.getTag("start_date"));
+	        		assertEquals("2021-03", way.getTag("start_date").getValue());
 	        		checkCnt++;
 				}
 				else if (way.getId() == 289757601) {
