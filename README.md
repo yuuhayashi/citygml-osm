@@ -460,7 +460,6 @@ OSMファイルへの変換項目
 ## 内部資料
 
 - [クラス関連図](doc/citygml/class.png)
-
 - [データベース テーブル 関連図](doc/citygml/dbTables.png)
 
 
@@ -469,20 +468,13 @@ OSMファイルへの変換項目
 ## 関連サイト
 
  - [3D都市モデル（Project PLATEAU）ポータルサイト](https://www.geospatial.jp/ckan/dataset/plateau)
-
- - [OpenStreetMap Wiki - JA:MLIT_PLATEAU](https://wiki.openstreetmap.org/wiki/JA:MLIT_PLATEAU)
-
- - [210327PLATEAUを触ってみよう](https://hackmd.io/@geopythonjp/HkZOmNpqL/%2FhfZTkl5FQGy8YHrgzc7ohQ)
-
  - [オープンデータ公開サイト](https://www.geospatial.jp/ckan/dataset/plateau)
 
- - [GitHub yuuhayashi/citygml-osm](https://github.com/yuuhayashi/citygml-osm)
-
- - [中空部分がある複合ビルディングの書き方](doc/building/Building.md)
+ - [OpenStreetMap Wiki - JA:MLIT_PLATEAU](https://wiki.openstreetmap.org/wiki/JA:MLIT_PLATEAU)
+ - [OpenStreetMap Wiki - JA:MLIT_PLATEAU/imports_outline](https://wiki.openstreetmap.org/wiki/JA:MLIT_PLATEAU/imports_outline)
 
  - [JA:基本的な3Dの建物](https://wiki.openstreetmap.org/wiki/JA:%E5%9F%BA%E6%9C%AC%E7%9A%84%E3%81%AA3D%E3%81%AE%E5%BB%BA%E7%89%A9)
- 
  - [JA:Relation:multipolygon](https://wiki.openstreetmap.org/wiki/JA:Relation:multipolygon)
- 
+ - [中空部分がある複合ビルディングの書き方](doc/building/Building.md)
  - [osmbuilding 東京駅](https://osmbuildings.org/?lat=35.62651&lon=139.77533&zoom=17.0&tilt=45&rotation=109)
 
