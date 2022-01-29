@@ -374,7 +374,8 @@ OSMファイルへの変換項目
 
 ### 建物名称 `k="name"`
 
-- TBD --> [Issue #22](https://github.com/yuuhayashi/citygml-osm/issues/22)
+- TBD --> [Issue #22](https://github.com/yuuhayashi/citygml-osm/issues/22), [Issue #64](https://github.com/yuuhayashi/citygml-osm/issues/64)
+
 
 ### 建物高さ `ele`
 
@@ -424,11 +425,14 @@ OSMファイルへの変換項目
 
 ### 建築年 `start_date`
 
-- TBD --> [Issue #61](https://github.com/yuuhayashi/citygml-osm/issues/61)
+- `start_date=*` は、既存データを優先する --> [Issue #61](https://github.com/yuuhayashi/citygml-osm/issues/61)
 
-### 名称 `name`
-
-- TBD --> [Issue #63](https://github.com/yuuhayashi/citygml-osm/issues/63)
+| PLATEAU POI | 既存POI         |  マージPOI    | 説明 |
+| -------------- | ------------------- | ------------------- | -------------- |
+| なし            | なし                 |  なし    |      |
+|  なし            | 'start_date=2021-03' |  'start_date=2021-03'   |    |
+| 'start_date=2019' | なし                |  'start_date=2019'    | 既存POIがにタグがない場合は補完する |
+| 'start_date=2019' | 'start_date=2021-03' |  'start_date=2021-03'   |  既存データを優先する |
 
 
 ### SOURCE `source=GSI/KIBAN 25000;NARO`
