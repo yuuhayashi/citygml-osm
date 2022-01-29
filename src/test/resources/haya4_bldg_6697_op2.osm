@@ -71,6 +71,10 @@
   <node id='-229680' action='modify' visible='true' lat='35.43439487939' lon='139.41161260198' />
   <node id='-229681' action='modify' visible='true' lat='35.43441116266' lon='139.41151929785' />
   <node id='-229682' action='modify' visible='true' lat='35.43446224053' lon='139.41153272528' />
+  <node id='-229728' action='modify' visible='true' lat='35.43462769966' lon='139.41111855585' />
+  <node id='-229729' action='modify' visible='true' lat='35.43446289515' lon='139.41106166765' />
+  <node id='-229730' action='modify' visible='true' lat='35.43448522767' lon='139.41096421237' />
+  <node id='-229731' action='modify' visible='true' lat='35.43465003214' lon='139.41102110057' />
   <way id='-185828' action='modify' visible='true'>
     <nd ref='-229513' />
     <nd ref='-229514' />
@@ -185,6 +189,7 @@
     <nd ref='-229558' />
     <nd ref='-229555' />
     <tag k='building' v='yes' />
+    <tag k='name' v='コーポ 宮久保９３' />
     <tag k='ref:MLIT_PLATEAU' v='11111-bldg-185615' />
   </way>
   <way id='-185840' action='modify' visible='true'>
@@ -197,6 +202,7 @@
     <tag k='building:levels' v='8' />
     <tag k='building:levels:underground' v='1' />
     <tag k='ele' v='8.9' />
+    <tag k='name' v='建て替え' />
     <tag k='ref:MLIT_PLATEAU' v='11111-bldg-185616' />
     <tag k='start_date' v='2019' />
   </way>
@@ -248,6 +254,15 @@
     <tag k='ele' v='8.9' />
     <tag k='ref:MLIT_PLATEAU' v='5555-bldg-333333' />
     <tag k='start_date' v='2019' />
+  </way>
+  <way id='-186393' action='modify' visible='true'>
+    <nd ref='-229728' />
+    <nd ref='-229729' />
+    <nd ref='-229730' />
+    <nd ref='-229731' />
+    <nd ref='-229728' />
+    <tag k='building' v='yes' />
+    <tag k='ref:MLIT_PLATEAU' v='11111-bldg-99999' />
   </way>
   <relation id='-178512' action='modify' visible='true'>
     <member type='way' ref='-185837' role='inner' />

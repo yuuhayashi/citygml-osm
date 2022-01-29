@@ -111,12 +111,24 @@ public class Test_haya4 extends OsmUpdaterTest {
 					// 11-20 アパート「宮久保 93」
 					assertEquals("modify", way.getAction());
 					assertEquals("PLATEAUデータで更新されています", way.getTag("MLIT_PLATEAU:fixme").getValue());
-	        		assertEquals("宮久保 93", way.getTag("name").v);
+	        		assertEquals("宮久保 93", way.getTag("name").getValue());
 	        		assertEquals("apartments", way.getTag("building").getValue());
 	        		assertNotNull(way.getTag("ref:MLIT_PLATEAU"));
 	        		assertEquals("11111-bldg-185615", way.getTag("ref:MLIT_PLATEAU").getValue());
 	        		assertNotNull(way.getTag("addr:housenumber"));
 	        		assertEquals("11-20", way.getTag("addr:housenumber").getValue());
+	        		checkCnt++;
+				}
+				else if (way.getId() == 289897935) {
+					// 11-9 アパート「ハイツ宮久保」
+					assertEquals("modify", way.getAction());
+					assertEquals("PLATEAUデータで更新されています", way.getTag("MLIT_PLATEAU:fixme").getValue());
+	        		assertEquals("ハイツ宮久保", way.getTag("name").getValue());
+	        		assertEquals("apartments", way.getTag("building").getValue());
+	        		assertNotNull(way.getTag("ref:MLIT_PLATEAU"));
+	        		assertEquals("11111-bldg-99999", way.getTag("ref:MLIT_PLATEAU").getValue());
+	        		assertNotNull(way.getTag("addr:housenumber"));
+	        		assertEquals("11-9", way.getTag("addr:housenumber").getValue());
 	        		checkCnt++;
 				}
 	        	else if (way.getId() == 289757583) {
@@ -173,6 +185,8 @@ public class Test_haya4 extends OsmUpdaterTest {
 	        		assertEquals("1", way.getTag("building:levels:underground").getValue());
 	        		assertNotNull(way.getTag("start_date"));
 	        		assertEquals("2021-03", way.getTag("start_date").getValue());
+	        		assertNotNull(way.getTag("name"));
+	        		assertEquals("建て替え", way.getTag("name").getValue());
 	        		checkCnt++;
 				}
 				else if (way.getId() == 289757601) {
@@ -240,7 +254,7 @@ public class Test_haya4 extends OsmUpdaterTest {
 					}
 				}
 	        }
-	        assertEquals(12, checkCnt);
+	        assertEquals(13, checkCnt);
 	        
 	        List<RelationBean> relations = mrg.getRelationList();
 	        assertNotNull(relations);
@@ -323,7 +337,7 @@ public class Test_haya4 extends OsmUpdaterTest {
 	        	}
 	        }
 	        
-	        assertEquals(15, ways.size());
+	        assertEquals(16, ways.size());
 	        assertEquals(3, mrg.getRelationList().size());
 	        assertEquals(3, checkCnt);
 		} catch (Exception e) {
