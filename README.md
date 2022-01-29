@@ -374,7 +374,14 @@ OSMファイルへの変換項目
 
 ### 建物名称 `k="name"`
 
-- TBD --> [Issue #22](https://github.com/yuuhayashi/citygml-osm/issues/22), [Issue #64](https://github.com/yuuhayashi/citygml-osm/issues/64)
+- `name=*` は、既存データの値を優先する --> [Issue #22](https://github.com/yuuhayashi/citygml-osm/issues/22), [Issue #64](https://github.com/yuuhayashi/citygml-osm/issues/64)
+
+| PLATEAU POI | 既存POI         |  マージPOI    | 説明 |
+| -------------- | ------------------- | ------------------- | -------------- |
+| なし            | なし                 |  なし    |      |
+|  なし            | 'name=A棟' |  'name=A棟'   |    |
+| 'name=大口病院' | なし                |  'name=大口病院'    | 既存POIがにタグがない場合は補完する |
+| 'name=市立栗原小学校' | 'name=新座市立栗原小学校' |  'name=新座市立栗原小学校'   |  既存データを優先する |
 
 
 ### 建物高さ `ele`
