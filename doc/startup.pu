@@ -1,27 +1,35 @@
 @startuml
+ skinparam {
+    defaultFontName Noto Sans CJK JP Black
+ }
+
 title CityGML-OSM 実行イメージ
 
-cloud OpenStreetMap
-
-cloud PLATEAU
+ cloud Internet {
+  node PLATEAU {
+   collections "「3D都市データ」\nCityGML" as citygml
+  }
+  node OpenStreetMap {
+   database "OpenStreetMap\n既存データ" as osmdb
+  }
+ }
 
 node PC {
 
  folder 任意のフォルダ {
   file "`#####_bldg_#####_op2.gml`" as gml
-  () "実行 citygml-osm.jar" as run
-  note right of run
+  () "`run.sh`を実行 (1st,2nd,3rd)" as run
+  note top of run
   	処理内容
-  	(1) GMLファイルを"osm"ファイルに変換する
-  	(2) OpenStreetMapに存在する既存データを読み取る
-  	(3) GMLと既存データとの重複チェックを行う
-  	(4) 既存データとの重複を考慮した`mrg`ファイルを生成する
+  	(1) 1st: "CityGML"ファイルを"osm"ファイルに変換されます
+  	(2) 2nd: "CityGML"と既存データとの重複チェックが行われます
+  	(3) 3rd: 既存データとの重複を考慮した`mrg`ファイルが生成されます
   end note
   file "`*.osm`\n第一段階 生成物" as osm
   file "`*.org.osm`\n第二段階 生成物" as org
   file "`*.mrg.osm`\n第三段階 生成物" as mrg
-  PLATEAU --> gml : ダウンロード and 解凍
-  OpenStreetMap ..> run : 既存データの参照
+  citygml --> gml : ダウンロード and 解凍
+  osmdb ..> run : 既存データの参照
   gml ..> run
   run --> osm
   run --> org
@@ -35,16 +43,16 @@ node PC {
 	不要なPOIを消去する
   end note
 
-  () "cmd リリース" as 4th
+  () "`uploader.sh`を実行 (4th)" as 4th
   file "`checked.osm`" as checked
   JOSM --> checked : 名前をつけて保存
   checked ..> 4th
   note bottom of 4th
-	リリース処理内容
-	(1) POI `action=delete` を除去する
-	(2) POI `MLIT_PLATEAU:fixme=delete *` を `action=delete` にする
-	(3) タグ `MLIT_PLATEAU:fixme=*` を除去する
-	(4) ファイル`upload.osm` に書き出す
+	"uploader"の処理内容
+	1. アクションが `delete` のPOIが除去されます
+	2. タグ`MLIT_PLATEAU:fixme=delete *` があるPOIのアクションが `delete` になります
+	3. タグ `MLIT_PLATEAU:fixme=*` が除去されます
+	4. 処理結果が ファイル`upload.osm` に書き出されます
   end note
 
   file "`upload.osm`" as upload
@@ -58,6 +66,6 @@ node PC {
   end note
 }
 
-OpenStreetMap <-- JOSM2 : アップロード
+osmdb <-- JOSM2 : アップロード
 
 @enduml
