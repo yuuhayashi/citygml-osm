@@ -350,7 +350,7 @@ public class OrgUpdateProcessor implements Processor {
 	}
 	
 	/**
-	 * リレーションのメンバーWAYには"building"タグをつけない
+	 * マルチポリゴンの"outer"メンバーWAYには"building"タグをつけない[Issue #40]
 	 * @param mrg
 	 */
 	private void fixMemberWaysTag(OsmBean mrg) {
@@ -366,20 +366,26 @@ public class OrgUpdateProcessor implements Processor {
 						else if (member.getRole().equals("outline")) {
 							List<TagBean> tags = new ArrayList<>();
 							for (TagBean tag : way.getTagList()) {
-								if (tag.k.equals("building")) {
+								if (tag.k.startsWith("MLIT_PLATEAU:fixme")) {
+									tags.add(tag);
+								}
+								else if (tag.k.equals("addr:full")) {
 									tags.add(tag);
 								}
 								else if (tag.k.equals("building:part")) {
 									tags.add(tag);
+									way.addTag(new TagBean("building", relation.getTag("building").getValue()));
 								}
-								else {
-									tags.add(tag);
+								else if (tag.k.equals("ele")) {
+									tag.v = relation.getTag("ele").getValue();
+								}
+								else if (tag.k.equals("height")) {
+									tag.v = relation.getTag("height").getValue();
 								}
 							}
 							for (TagBean tag : tags) {
 								way.removeTag(tag.k);
 							}
-							toPart(way);
 						}
 						else if (member.getRole().equals("outer")) {
 							List<TagBean> tags = new ArrayList<>();
@@ -387,20 +393,14 @@ public class OrgUpdateProcessor implements Processor {
 								if (tag.k.startsWith("MLIT_PLATEAU:fixme")) {
 									// Do nothing
 								}
-								else if (tag.k.equals("building")) {
-									tags.add(tag);
-								}
-								else if (tag.k.equals("building:part")) {
-									tags.add(tag);
-								}
 								else {
 									tags.add(tag);
 								}
 							}
+							// {Issue#40]
 							for (TagBean tag : tags) {
 								way.removeTag(tag.k);
 							}
-							toPart(way);
 						}
 						member.setWay(way);
 					}
