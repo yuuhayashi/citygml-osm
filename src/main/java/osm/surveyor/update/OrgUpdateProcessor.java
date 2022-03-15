@@ -1,6 +1,7 @@
 package osm.surveyor.update;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import org.apache.camel.Exchange;
@@ -216,14 +217,26 @@ public class OrgUpdateProcessor implements Processor {
 	private void duplicatedToModify(OsmBean osm, OsmBean org) throws Exception {
 		List<WayBean> work = new ArrayList<>();
 		for (WayBean way : osm.getWayList()) {
+			way.setArea(way.getAreaValue());
 			work.add(way);
 		}
-		for (WayBean way : work) {
-			long oldid = way.getId();
-			if (!way.getFix()) {
-				// org.WAYと重複する面積が最大の osm.WAY.id を返す
-				long wayid = way.getIntersect(org.getWayList());
-				if (wayid > 0) {
+		Comparator<WayBean> comparator = Comparator.comparing(WayBean::getArea).reversed();
+		work.stream().sorted(comparator)
+			.forEach(way -> duplicatedToModify(way, osm, org));
+	}
+	
+	private void duplicatedToModify(WayBean way, OsmBean osm, OsmBean org) {
+		long oldid = way.getId();
+		if (!way.getFix()) {
+			// org.WAYと重複する面積が最大の osm.WAY.id を返す
+			long wayid;
+			try {
+				wayid = way.getIntersect(org.getWayList());
+			} catch (Exception e) {
+				wayid = 0;
+			}
+			if (wayid > 0) {
+				try {
 					for (WayBean sWay : way.getIntersects(org.getWayList())) {
 						if (sWay.getId() == wayid) {
 							sWay.setFix(true);
@@ -264,22 +277,22 @@ public class OrgUpdateProcessor implements Processor {
 							sWay.setNdList(way.getNdList());
 							osm.removeWay(way);
 							osm.putWay(sWay);
-			        		
-			        		for (RelationBean relation : osm.getRelationList()) {
-			        			relation.setAction("modify");
-			        			String buildingValue = "yes";
-			        			for (MemberBean member : relation.getMemberList()) {
-			        				if (member.getRef() == oldid) {
-			        					member.setWay(sWay);
-			        				}
-			        			}
-			        			if (relation.getTag("building") == null) {
-			        				relation.addTag("building", buildingValue);
-			        			}
-			        			else {
-			        				relation.getTag("building").setValue(buildingValue);
-			        			}
-			        		}
+							
+							for (RelationBean relation : osm.getRelationList()) {
+								relation.setAction("modify");
+								String buildingValue = "yes";
+								for (MemberBean member : relation.getMemberList()) {
+									if (member.getRef() == oldid) {
+										member.setWay(sWay);
+									}
+								}
+								if (relation.getTag("building") == null) {
+									relation.addTag("building", buildingValue);
+								}
+								else {
+									relation.getTag("building").setValue(buildingValue);
+								}
+							}
 						}
 						else {
 							sWay.setFix(true);
@@ -295,6 +308,8 @@ public class OrgUpdateProcessor implements Processor {
 							osm.putWay(sWay);
 						}
 					}
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
 			}
 		}

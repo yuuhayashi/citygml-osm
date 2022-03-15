@@ -59,6 +59,22 @@ public class WayBean extends PoiBean implements Cloneable, Serializable {
 	}
 
 	/**
+	 * area=# 面積
+	 */
+	private double area = 0d;
+	
+	@XmlAttribute(name="area")
+	public double getArea() {
+		if (this.area == 0d) {
+			this.area = getAreaValue();
+		}
+		return this.area;
+	}
+	public void setArea(double d) {
+		this.area = d;
+	}
+
+	/**
 	 * WAYノードメンバー
 	 */
     private List<NdBean> ndList = new ArrayList<>();
@@ -234,7 +250,7 @@ public class WayBean extends PoiBean implements Cloneable, Serializable {
 	 * AREAの面積を求める。ただし、面積の単位は直行座標（メートルではない）
 	 * @return	ラインが閉じたエリア出ない場合は0.0d
 	 */
-	public double getArea() {
+	public double getAreaValue() {
         Polygon polygon = getPolygon();
         if (polygon != null) {
             return polygon.getArea();

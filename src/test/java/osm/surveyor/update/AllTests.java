@@ -18,6 +18,7 @@ import osm.surveyor.DetailTests;
 	Test_53392547.class,
 	Test_C.class,
 	Test_D.class,
+	Test_70.class,		// Issue#71
 	osm.surveyor.update.Test_Fujitv.class,
 	osm.surveyor.update.Test_haya4.class
 })
