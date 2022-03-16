@@ -279,12 +279,11 @@ OSMファイルへの変換項目
 
 閉じたWAYへのタグ付け項目
 
-| 項目		| GMLタグ					| 説明												|
+| 項目		| OSMタグ					| 説明												|
 | --------	| ------------------------- | -------------------------------------------------	|
 | 建物ID		| `k="ref:MLIT_PLATEAU"`		| **建物ID**	|
 | 建物		| `k="building"`			| リレーション:buildingのメンバーの場合は `k="building:part"。**v**の値は'[bldg:usage 用途](conversion.json)'から取得する	|
 | 建物名称	| `k="name"`		| リレーション:buildingのメンバーの場合は、`k="name"`		|
-| 住所コード	| -			| **自治体コード** ("13_区市町村コード_大字・町コード_町・丁目コード") 	|
 | 住所		| `k="addr:full"`			| **住所**											|
 | 建物高さ	| `k="height"`				| **計測高さ**`bldg:measuredHeight`, `bldg:measuredHeight`がない場合は、`lod1Solid`と`lod0[RoofEdge,FoodPrint`から算出する	|
 | 標高		| `k="ele"`				| **建築物形状の高度**	`bldg:lod1Solid`の最低高度		|
