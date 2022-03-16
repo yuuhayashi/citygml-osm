@@ -285,8 +285,8 @@ OSMファイルへの変換項目
 | 建物		| `k="building"`			| リレーション:buildingのメンバーの場合は `k="building:part"。**v**の値は'[bldg:usage 用途](conversion.json)'から取得する	|
 | 建物名称	| `k="name"`		| リレーション:buildingのメンバーの場合は、`k="name"`		|
 | 住所		| `k="addr:full"`			| **住所**											|
-| 建物高さ	| `k="height"`				| **計測高さ**`bldg:measuredHeight`, `bldg:measuredHeight`がない場合は、`lod1Solid`と`lod0[RoofEdge,FoodPrint`から算出する	|
-| 標高		| `k="ele"`				| **建築物形状の高度**	`bldg:lod1Solid`の最低高度		|
+| 建物高さ	| `k="height"`				| **計測高さ(m)**`bldg:measuredHeight`, `bldg:measuredHeight`がない場合は、`lod1Solid`と`lod0[RoofEdge,FoodPrint`から算出する<br/>(小数点以下2桁まで有効)	|
+| 標高		| `k="ele"`				| **建築物形状の高度(m)**	`bldg:lod1Solid`の最低高度<br/>(小数点以下1桁まで有効)		|
 | 地上階数	| `k="building:levels"`	| 建物の地上部分の階数（日本的な数え方） 正の整数値			|
 | 地下階数	| `k="building:levels:underground"`	| 建物の地下部分の階数 正の整数値				|
 

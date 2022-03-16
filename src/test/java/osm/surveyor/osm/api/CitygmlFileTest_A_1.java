@@ -44,7 +44,7 @@ public class CitygmlFileTest_A_1 extends CitygmlFileTest1 {
 								assertThat(outline.getTagValue("building"), is("yes"));
 								assertThat(outline.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 								assertThat(outline.getTagValue("height"), is("2.4"));
-								assertEquals("2.75", outline.getTagValue("ele"));
+								assertEquals("2.8", outline.getTagValue("ele"));
 								assertEquals(5, outline.getTagList().size());
 							}
 							if (mem.getRole().equals("part")) {
@@ -55,7 +55,7 @@ public class CitygmlFileTest_A_1 extends CitygmlFileTest1 {
 								assertThat(way.getTagValue("building:part"), is("yes"));
 								assertThat(way.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 								assertThat(way.getTagValue("height"), is("2.4"));
-								assertEquals("2.75", way.getTagValue("ele"));
+								assertEquals("2.8", way.getTagValue("ele"));
 								assertThat(way.getTagValue("ref:MLIT_PLATEAU"), is("13111-bldg-365"));
 								assertEquals(5, way.getTagList().size());
 							}
@@ -67,7 +67,7 @@ public class CitygmlFileTest_A_1 extends CitygmlFileTest1 {
 						assertThat(relation.getTagValue("type"), is("building"));
 						assertThat(relation.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 						assertThat(relation.getTagValue("height"), is("4.6"));
-						assertEquals("2.67", relation.getTagValue("ele"));
+						assertEquals("2.7", relation.getTagValue("ele"));
 						assertThat(relation.getTagValue("start_date"), is("1976"));
 						assertThat(relation.getTagValue("building"), is("house"));
 						assertThat(relation.getTagValue("building:levels"), is("2"));
@@ -87,7 +87,7 @@ public class CitygmlFileTest_A_1 extends CitygmlFileTest1 {
 								assertThat(outline.getTagValue("building:levels:underground"), is("1"));
 								assertThat(outline.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 								assertThat(outline.getTagValue("height"), is("4.6"));
-								assertEquals("2.67", outline.getTagValue("ele"));
+								assertEquals("2.7", outline.getTagValue("ele"));
 								assertThat(outline.getTagValue("start_date"), is("1976"));
 								assertEquals(8, outline.getTagList().size());
 							}
@@ -99,7 +99,7 @@ public class CitygmlFileTest_A_1 extends CitygmlFileTest1 {
 								assertThat(way.getTagValue("ref:MLIT_PLATEAU"), is("13111-bldg-466"));
 								assertThat(way.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 								assertThat(way.getTagValue("height"), is("4.6"));
-								assertEquals("2.67", way.getTagValue("ele"));
+								assertEquals("2.7", way.getTagValue("ele"));
 								assertThat(way.getTagValue("start_date"), is("1976"));
 								assertThat(way.getTagValue("building:part"), is("house"));
 								assertThat(way.getTagValue("building:levels"), is("2"));
@@ -113,7 +113,7 @@ public class CitygmlFileTest_A_1 extends CitygmlFileTest1 {
 					assertEquals(2, relation.members.size());
 				}
 				else if (type.equals("multipolygon")) {
-					if (relation.getTagValue("ele").endsWith("2.75")) {
+					if (relation.getTagValue("ele").endsWith("2.8")) {
 						assertThat(relation.getTagValue("type"), is("multipolygon"));
 						assertThat(relation.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 						assertThat(relation.getTagValue("height"), is("2.4"));
@@ -143,11 +143,11 @@ public class CitygmlFileTest_A_1 extends CitygmlFileTest1 {
 						assertEquals(1, outerCnt);
 						assertEquals(0, innerCnt);
 					}
-					else if (relation.getTagValue("ele").endsWith("2.67")) {
+					else if (relation.getTagValue("ele").endsWith("2.7")) {
 						assertThat(relation.getTagValue("type"), is("multipolygon"));
 						assertThat(relation.getTagValue("addr:full"), is("東京都大田区南六郷三丁目"));
 						assertThat(relation.getTagValue("height"), is("4.6"));
-						assertEquals("2.67", relation.getTagValue("ele"));
+						assertEquals("2.7", relation.getTagValue("ele"));
 						assertThat(relation.getTagValue("start_date"), is("1976"));
 						assertThat(relation.getTagValue("building"), is("house"));
 						assertThat(relation.getTagValue("building:levels"), is("2"));

@@ -2,6 +2,8 @@ package osm.surveyor.osm;
 
 import java.util.List;
 
+import osm.surveyor.citygml.CityModelParser;
+
 public class OsmMargeWay {
 
 	/**
@@ -16,32 +18,12 @@ public class OsmMargeWay {
 		return null;
 	}
 	
-	/*
-	 * 
-	static String getMaxHeight(ElementRelation relation, OsmDom osm) {
-		String maxheight = "0";
-		for (ElementMember member : relation.members) {
-			if (member.role.equals("part")) {
-				ElementWay way = osm.ways.get(Long.toString(member.ref));
-				String ele = getHeight(way);
-				if (ele != null) {
-					if (Double.parseDouble(ele) > Double.parseDouble(maxheight)) {
-						maxheight = ele;
-					}
-				}
-			}
-		}
-		return maxheight;
-	}
-	 */
-	
 	static String getHeight(ElementWay way) {
 		TagBean tag = way.getTag("height");
 		if (tag == null) {
 			return null;
 		}
-		return tag.v;
-		
+		return CityModelParser.rounding(2, String.valueOf(tag.v));
 	}
 	
 	
@@ -91,7 +73,7 @@ public class OsmMargeWay {
 						if (partWay.isSame(outer)) {
 							TagBean ele = partWay.getTag("height");
 							if (ele != null) {
-								polygon.addTag("height", ele.v);
+								polygon.addTag("height", CityModelParser.rounding(2, String.valueOf(ele.v)));
 							}
 							relation.removeMember(partWay.getId());
 							osm.ways.remove(partWay);

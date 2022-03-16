@@ -38,7 +38,7 @@ public class CitygmlFileTest_E extends GmlLoadRouteTest {
 					assertEquals(relation.getTagValue("addr:full"), ("東京都大田区大森東四丁目"));
 					assertNull(relation.getTagValue("addr:ref"));
 					assertEquals(relation.getTagValue("height"), ("21.6"));
-					assertEquals("1.62", relation.getTagValue("ele"));
+					assertEquals("1.6", relation.getTagValue("ele"));
 					assertNull(relation.getTagValue("ref:MLIT_PLATEAU"));
 					assertEquals(8, relation.getTagList().size());
 
@@ -60,7 +60,7 @@ public class CitygmlFileTest_E extends GmlLoadRouteTest {
 							assertEquals("東京都大田区大森東四丁目", polygon.getTagValue("addr:full"));
 							assertNull(polygon.getTagValue("addr:ref"));
 							assertEquals("21.6", polygon.getTagValue("height"));
-							assertEquals("1.62", polygon.getTagValue("ele"));
+							assertEquals("1.6", polygon.getTagValue("ele"));
 							assertNull(polygon.getTagValue("start_date"));
 							assertNull(polygon.getTagValue("ref:MLIT_PLATEAU"));
 							assertEquals(8, polygon.getTagList().size());
@@ -98,7 +98,7 @@ public class CitygmlFileTest_E extends GmlLoadRouteTest {
 								assertEquals(way.getTagValue("addr:full"), ("東京都大田区大森東四丁目"));
 								assertNull(way.getTagValue("addr:ref"));
 								assertEquals(way.getTagValue("height"), ("21.6"));
-								assertEquals("1.62", way.getTagValue("ele"));
+								assertEquals("1.6", way.getTagValue("ele"));
 								assertEquals(way.getTagValue("start_date"), ("1976"));
 								assertEquals(way.getTagValue("ref:MLIT_PLATEAU"), "13111-bldg-56522");
 								assertEquals(9, way.getTagList().size());
@@ -109,7 +109,7 @@ public class CitygmlFileTest_E extends GmlLoadRouteTest {
 								assertEquals(way.getTagValue("addr:full"), ("東京都大田区大森東四丁目"));
 								assertNull(way.getTagValue("addr:ref"));
 								assertEquals(way.getTagValue("height"), ("3.7"));
-								assertEquals("1.93", way.getTagValue("ele"));
+								assertEquals("1.9", way.getTagValue("ele"));
 								assertEquals(way.getTagValue("start_date"), ("1977"));
 								assertEquals(way.getTagValue("ref:MLIT_PLATEAU"), "13111-bldg-55333");
 								assertEquals(7, way.getTagList().size());

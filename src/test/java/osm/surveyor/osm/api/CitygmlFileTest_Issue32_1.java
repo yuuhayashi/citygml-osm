@@ -38,7 +38,7 @@ public class CitygmlFileTest_Issue32_1 extends CitygmlFileTest1 {
 						assertEquals("building", relation.getTagValue("type"));
 						assertEquals("yes", relation.getTagValue("building"));
 						assertEquals("114.7", relation.getTagValue("height"));
-						assertEquals("2.14", relation.getTagValue("ele"));
+						assertEquals("2.1", relation.getTagValue("ele"));
 						assertEquals("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13101-bldg-365", relation.getTagValue("source"));
 
 						int outlineCnt = 0;
@@ -53,7 +53,7 @@ public class CitygmlFileTest_Issue32_1 extends CitygmlFileTest1 {
 								assertEquals(outline.getTagValue("building"), ("yes"));
 								assertEquals(outline.getTagValue("source"), ("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13101-bldg-365"));
 								assertEquals(outline.getTagValue("height"), ("114.7"));
-								assertEquals("2.14", outline.getTagValue("ele"));
+								assertEquals("2.1", outline.getTagValue("ele"));
 								assertTrue(outline.getTagList().size() >= 5);
 							}
 							if (mem.getRole().equals("part")) {
@@ -63,7 +63,7 @@ public class CitygmlFileTest_Issue32_1 extends CitygmlFileTest1 {
 								assertNotNull(way);
 								assertEquals(way.getTagValue("building:part"), ("yes"));
 								assertEquals(way.getTagValue("height"), ("114.7"));
-								assertEquals("2.14", way.getTagValue("ele"));
+								assertEquals("2.1", way.getTagValue("ele"));
 								assertEquals(way.getTagValue("source"), ("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697; 13101-bldg-365"));
 								assertTrue(way.getTagList().size() >= 5);
 							}

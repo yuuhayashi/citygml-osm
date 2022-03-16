@@ -38,7 +38,7 @@ public class CitygmlFileTest_52396075 extends GmlLoadRouteTest {
 				assertNotNull(way);
 				assertThat(way.getTagValue("building"), is("yes"));
 				assertThat(way.getTagValue("height"), is("13.3"));
-				assertThat(way.getTagValue("ele"), is("728.31"));
+				assertThat(way.getTagValue("ele"), is("728.3"));
 				assertThat(way.getTagValue("ref:MLIT_PLATEAU"), is("14382-bldg-10718"));
 				assertTrue(way.getTagList().size() >= 4);
 			}

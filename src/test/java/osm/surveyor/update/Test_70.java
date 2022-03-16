@@ -21,7 +21,7 @@ import osm.surveyor.osm.BoundsBean;
 import osm.surveyor.osm.WayBean;
 
 /**
- * `mvn test -Dtest=Test_53395403`
+ * `mvn test -Dtest=osm.surveyor.update.Test_Test_70`
  * 新座市（11230_niiza-shi_CityGML2）
  * 
  */

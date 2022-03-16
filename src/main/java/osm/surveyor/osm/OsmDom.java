@@ -149,22 +149,48 @@ public class OsmDom {
     	return list;
     }
 	
-	public String getMaxHeight(ElementRelation relation) {
-		String maxheight = "0";
+	public String getMinEle(ElementRelation relation) {
+		String minele = "10000";
 		for (MemberBean member : relation.members) {
 			if (member.getRole().equals("part")) {
 				ElementWay way = ways.get(member.getRef());
-				String height = way.getTagValue("height");
-				if (height != null) {
-					if (Double.parseDouble(maxheight) < Double.parseDouble(height)) {
-						maxheight = height;
+				String ele = way.getTagValue("ele");
+				if (ele != null) {
+					if (Double.parseDouble(minele) > Double.parseDouble(ele)) {
+						minele = ele;
 					}
 				}
 			}
 		}
-		return CityModelParser.rounding(1, maxheight);
+		return CityModelParser.rounding(1, minele);
 	}
 	
+	public String getMaxHeight(ElementRelation relation) {
+		String minele = getMinEle(relation);
+		String maxheight = "0";
+		for (MemberBean member : relation.members) {
+			if (member.getRole().equals("part")) {
+				ElementWay way = ways.get(member.getRef());
+				String ele = way.getTagValue("ele");
+				String height = way.getTagValue("height");
+				if (height != null) {
+					if (ele != null) {
+						double height1 = (Double.parseDouble(ele) - Double.parseDouble(minele) + Double.parseDouble(height));
+						if (Double.parseDouble(maxheight) < height1) {
+							maxheight = CityModelParser.rounding(2, String.valueOf(height1));
+						}
+					}
+					else {
+						if (Double.parseDouble(maxheight) < Double.parseDouble(height)) {
+							maxheight = height;
+						}
+					}
+				}
+			}
+		}
+		return CityModelParser.rounding(2, maxheight);
+	}
+
 	public void toOutline() {
 		for (String id : this.relations.keySet()) {
 			ElementRelation relation = this.relations.get(id);
@@ -180,7 +206,6 @@ public class OsmDom {
 						}
 					}
 				}
-				
 			}
 		}
 	}

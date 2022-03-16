@@ -273,10 +273,10 @@ public class CityModelParser extends DefaultHandler {
 				if (building.getTagValue("height") == null) {
 					if (maxele != null) {
 						if (ele != null) {
-							building.addTag("height", rounding(1, new BigDecimal(maxele).subtract(new BigDecimal(ele)).toString()));
+							building.addTag("height", rounding(2, new BigDecimal(maxele).subtract(new BigDecimal(ele)).toString()));
 						}
 						else {
-							building.addTag("height", rounding(1, new BigDecimal(maxele).toString()));
+							building.addTag("height", rounding(2, new BigDecimal(maxele).toString()));
 						}
 					}
 				}
@@ -284,8 +284,8 @@ public class CityModelParser extends DefaultHandler {
 					if (mem.getType().equals("way")) {
 						ElementWay way = osm.ways.get(mem.getRef());
 						way.removeTag("maxele");
-						way.addTag("height", rounding(1, building.getTagValue("height")));
-						way.addTag("ele", rounding(2, building.getTagValue("ele")));
+						way.addTag("height", rounding(2, building.getTagValue("height")));
+						way.addTag("ele", rounding(1, building.getTagValue("ele")));
 						way.addTag("addr:full", building.getTagValue("addr:full"));
 						if ((name != null) && !name.isEmpty()) {
 							way.addTag("name", name);
@@ -302,8 +302,8 @@ public class CityModelParser extends DefaultHandler {
 						// Issue #39 relation.addTag("start_date", building.getTagValue("start_date"));
 						relation.addTag("building:levels", building.getTagValue("building:levels"));
 						relation.addTag("building:levels:underground", building.getTagValue("building:levels:underground"));
-						relation.addTag("height", rounding(1, building.getTagValue("height")));
-						relation.addTag("ele", rounding(2, building.getTagValue("ele")));
+						relation.addTag("height", rounding(2, building.getTagValue("height")));
+						relation.addTag("ele", rounding(1, building.getTagValue("ele")));
 						relation.addTag("addr:full", building.getTagValue("addr:full"));
 						if ((name != null) && !name.isEmpty()) {
 							relation.addTag("name", name);
@@ -431,7 +431,7 @@ public class CityModelParser extends DefaultHandler {
 				double min = Double.parseDouble(minheight);
 				double max = Double.parseDouble(maxheight);
 				if (min < 90000d) {
-					building.addTag("ele", rounding(2, minheight));
+					building.addTag("ele", rounding(1, minheight));
 				}
 				if (max > -9000d) {
 					if ((max - min) > 1d) {
@@ -566,7 +566,7 @@ public class CityModelParser extends DefaultHandler {
 					if (st.hasMoreTokens()) {
 						height = st.nextToken();
 						if (Double.parseDouble(height) > Double.parseDouble(maxele)) {
-							maxele = CityModelParser.rounding(1, height);
+							maxele = CityModelParser.rounding(2, height);
 						}
 						if (Double.parseDouble(height) < Double.parseDouble(minele)) {
 							minele = CityModelParser.rounding(2, height);
@@ -583,7 +583,7 @@ public class CityModelParser extends DefaultHandler {
 					double min = Double.parseDouble(minele);
 					double max = Double.parseDouble(maxele);
 					if (min < 90000.0d) {
-						way.addTag("ele", rounding(2, minele));
+						way.addTag("ele", rounding(1, minele));
 					}
 					if (max > -1000.0d) {
 						way.addTag("maxele", Double.toString(max));

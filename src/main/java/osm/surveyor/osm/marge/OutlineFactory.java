@@ -40,6 +40,7 @@ public class OutlineFactory {
 	
 	public RelationBuilding createOutline(RelationBuilding building) {
 		// Relationのメンバーから"height"の最大値を取得
+		String minele = osm.getMinEle(building);
 		String maxheight = osm.getMaxHeight(building);
 		RelationMultipolygon multi = null;
 		MargeFactory factory = (new MargeFactory(osm, osm.ways)).createOutline(building);
@@ -100,6 +101,7 @@ public class OutlineFactory {
 				aWay.removeTag("type");
 				aWay.removeTag("building:part");
 				aWay.addTag("height", maxheight);
+				aWay.addTag("ele", minele);
 				osm.ways.put(aWay);
 				
 				building.addMember(aWay, "outline");

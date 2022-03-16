@@ -33,7 +33,7 @@ public class CitygmlFileTest_C extends GmlLoadRouteTest {
 					assertEquals("2", relation.getTagValue("building:levels"));
 					assertEquals("1", relation.getTagValue("building:levels:underground"));
 					assertEquals("42.7", relation.getTagValue("height"));
-					assertEquals("2.81", relation.getTagValue("ele"));
+					assertEquals("2.8", relation.getTagValue("ele"));
 					assertEquals("東京都大田区南六郷三丁目", relation.getTagValue("addr:full"));
 					assertNull(relation.getTagValue("ref:MLIT_PLATEAU"));
 					int outlineCnt = 0;
@@ -47,7 +47,7 @@ public class CitygmlFileTest_C extends GmlLoadRouteTest {
 							assertNull(way.getTagValue("ref:MLIT_PLATEAU"));
 							assertEquals(way.getTagValue("addr:full"), ("東京都大田区南六郷三丁目"));
 							assertEquals("42.7", way.getTagValue("height"));
-							assertEquals("2.81", way.getTagValue("ele"));
+							assertEquals("2.8", way.getTagValue("ele"));
 							assertEquals(way.getTagValue("building"), ("yes"));
 							assertEquals(way.getTagValue("building:levels"), ("2"));
 							assertEquals("1", way.getTagValue("building:levels:underground"));
@@ -137,7 +137,7 @@ public class CitygmlFileTest_C extends GmlLoadRouteTest {
 					assertEquals("3", relation.getTagValue("building:levels"));
 					assertEquals("2", relation.getTagValue("building:levels:underground"));
 					assertEquals("7.1", relation.getTagValue("height"));
-					assertEquals("2.48", relation.getTagValue("ele"));
+					assertEquals("2.5", relation.getTagValue("ele"));
 					assertEquals("東京都大田区大森中一丁目", relation.getTagValue("addr:full"));
 					assertNull(relation.getTagValue("ref:MLIT_PLATEAU"));
 					assertEquals(7, relation.getTagList().size());
@@ -153,7 +153,7 @@ public class CitygmlFileTest_C extends GmlLoadRouteTest {
 							assertNull(way.getTagValue("ref:MLIT_PLATEAU"));
 							assertEquals(way.getTagValue("addr:full"), ("東京都大田区大森中一丁目"));
 							assertEquals(way.getTagValue("height"), ("7.1"));
-							assertEquals("2.48", way.getTagValue("ele"));
+							assertEquals("2.5", way.getTagValue("ele"));
 							assertEquals(way.getTagValue("building"), ("yes"));
 							assertEquals(way.getTagValue("building:levels"), ("3"));
 							assertEquals(way.getTagValue("building:levels:underground"), ("2"));

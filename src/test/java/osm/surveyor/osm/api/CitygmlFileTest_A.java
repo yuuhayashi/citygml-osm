@@ -24,7 +24,7 @@ public class CitygmlFileTest_A extends GmlLoadRouteTest {
 						assertEquals("13111-bldg-365", way.getTagValue("ref:MLIT_PLATEAU"));
 						assertEquals("東京都大田区南六郷三丁目", way.getTagValue("addr:full"));
 						assertEquals("2.4", way.getTagValue("height"));
-						assertEquals("2.75", way.getTagValue("ele"));
+						assertEquals("2.8", way.getTagValue("ele"));
 						assertEquals("yes", way.getTagValue("building"));
 						assertEquals(5, way.getTagList().size());
 					}
@@ -32,7 +32,7 @@ public class CitygmlFileTest_A extends GmlLoadRouteTest {
 						assertEquals("13111-bldg-466", way.getTagValue("ref:MLIT_PLATEAU"));
 						assertEquals("東京都大田区南六郷三丁目", way.getTagValue("addr:full"));
 						assertEquals("4.6", way.getTagValue("height"));
-						assertEquals("2.67", way.getTagValue("ele"));
+						assertEquals("2.7", way.getTagValue("ele"));
 						assertEquals("1976", way.getTagValue("start_date"));
 						assertEquals("house", way.getTagValue("building"));
 						assertEquals("2", way.getTagValue("building:levels"));
