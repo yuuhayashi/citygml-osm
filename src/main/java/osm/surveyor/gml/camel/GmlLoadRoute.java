@@ -55,7 +55,7 @@ public class GmlLoadRoute extends RouteBuilder {
 		from("direct:inOsmMargeWay")
 		.process(new OsmMargeWayProcessor())
 		.process(new GerbageWayProcessor())		// RELATIONに所属していないWAYを削除する
-		.process(new RelationProcessor())		// RELATIONの"name"を決定する。
+		.process(new RelationProcessor())		// RELATIONの"name"を決定する。#76:オブジェクトが存在しないメンバーをRELATIONから削除する
         .to("direct:osm-export")
         ;
 		

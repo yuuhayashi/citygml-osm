@@ -38,10 +38,10 @@ public class RelationProcessor implements Processor {
 					}
 					else if (member.isRelation()) {
 						ElementRelation polygon = osm.relations.get(member.getRef());
-						if (polygon.getTagValue("type").equals(ElementRelation.MULTIPOLYGON)) {
+						if ((polygon != null) && polygon.getTagValue("type").equals(ElementRelation.MULTIPOLYGON)) {
 							for (MemberBean mmem : polygon.members) {
 								ElementWay way = osm.ways.get(mmem.getRef());
-								if (way.getArea() > max) {
+								if (way !=null && way.getArea() > max) {
 									max = way.getArea();
 									if (way.getTagValue("name") != null) {
 										name = way.getTagValue("name");
@@ -57,6 +57,8 @@ public class RelationProcessor implements Processor {
 				}
 			}
 		}
+		
+		osm.gerbageMember();	// Issue #76 オブジェクトが存在しないメンバーをRELATIONから削除する
 		
 		exchange.getIn().setBody(osm);
 	}

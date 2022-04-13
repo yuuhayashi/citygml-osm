@@ -198,7 +198,7 @@ public class OsmDom {
 				for (MemberBean member : relation.members) {
 					if (member.getRole().equals("outline") && member.getType().equals("relation")) {
 						ElementRelation multi = this.relations.get(member.getRef());
-						if (multi.isMultipolygon()) {
+						if (multi !=null && multi.isMultipolygon()) {
 							TagBean buil = multi.getTag("building");
 							if (buil != null) {
 								multi.replaceTag("building", new TagBean("building:part", buil.v));
@@ -210,6 +210,33 @@ public class OsmDom {
 		}
 	}
 
+	/**
+	 * オブジェクトが存在しないメンバーをRELATIONから削除する
+	 */
+	public void gerbageMember() {
+		for (String id : this.relations.keySet()) {
+			ElementRelation relation = this.relations.get(id);
+			ArrayList<MemberBean> mems = new ArrayList<>();
+			for (MemberBean member : relation.members) {
+				if (member.isWay()) {
+					ElementWay way = this.ways.get(member.getRef());
+					if (way == null) {
+						mems.add(member);
+					}
+				}
+				else if (member.isRelation()) {
+					ElementRelation r = this.relations.get(member.getRef());
+					if (r == null) {
+						mems.add(member);
+					}
+				}
+			}
+			for (MemberBean member : mems) {
+				relation.removeMember(member.getRef());
+			}
+		}
+	}
+	
 	/**
 	 * RELATIONに所属していないWAYを削除する
 	 */
