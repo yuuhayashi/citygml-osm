@@ -1,8 +1,14 @@
 package osm.surveyor.gml.camel;
 
+import java.io.File;
+import java.util.List;
+import java.util.stream.Stream;
+
 import org.apache.camel.CamelContext;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.impl.DefaultCamelContext;
+
+import com.google.common.collect.Lists;
 
 public class CitygmlLoad {
 	public static CamelContext camel;
@@ -46,5 +52,26 @@ public class CitygmlLoad {
         }));
         
 		System.out.println("gml.camel.end();");
+	}
+	
+	/**
+	 * 指定のディレクトリに指定のファイル名のファイルが存在するかどうか
+	 * @param directory
+	 * @param osmName
+	 * @return true:存在する
+	 */
+	public static boolean isExit(File directory, String osmName) {
+        Stream<File> stream = Stream.of(directory.listFiles((dir, name) -> {
+            return !(name.contains("RECYCLE.BIN") || name.contains("System Volume Information"));
+        }));
+        List<File> osmfiles = Lists.newArrayList();
+        stream.forEach(file -> {
+            if (!file.isDirectory()) {
+                if (file.getName().equals(osmName)) {
+                	osmfiles.add(file);
+                };
+            }
+        });
+		return (osmfiles.size() > 0);
 	}
 }

@@ -42,7 +42,7 @@ public class GmlFileListProcessor implements Processor {
             	}
             	osmName += "osm";
             	
-            	if (isExit(directory, osmName)) {
+            	if (CitygmlLoad.isExit(directory, osmName)) {
             		System.out.println("SKIP: '"+ osmName +"' already exists.");
             	}
             	else {
@@ -54,18 +54,4 @@ public class GmlFileListProcessor implements Processor {
         return files;
     }
 	
-	private boolean isExit(File directory, String osmName) {
-        Stream<File> stream = Stream.of(directory.listFiles((dir, name) -> {
-            return !(name.contains("RECYCLE.BIN") || name.contains("System Volume Information"));
-        }));
-        List<File> osmfiles = Lists.newArrayList();
-        stream.forEach(file -> {
-            if (!file.isDirectory()) {
-                if (file.getName().equals(osmName)) {
-                	osmfiles.add(file);
-                };
-            }
-        });
-		return (osmfiles.size() > 0);
-	}
 }
