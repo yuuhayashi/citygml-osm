@@ -2,6 +2,7 @@ package osm.surveyor.gml.camel;
 
 import java.io.File;
 import java.util.List;
+import java.util.StringTokenizer;
 import java.util.stream.Stream;
 
 import org.apache.camel.Exchange;
@@ -30,9 +31,41 @@ public class GmlFileListProcessor implements Processor {
             if (file.isDirectory()) {
                 files.addAll(getFiles(file.getAbsolutePath()));
             } else {
-                files.add(file);
+            	String osmName = new String();
+            	String filename = file.getName();
+            	StringTokenizer st = new StringTokenizer(filename, ".");
+            	if (st.countTokens() > 1) {
+                	for (int i = 0; i < (st.countTokens() - 1); i++) {
+                        String token = st.nextElement().toString();
+                		osmName += token +".";
+                	}
+            	}
+            	osmName += "osm";
+            	
+            	if (isExit(directory, osmName)) {
+            		System.out.println("SKIP: '"+ osmName +"' already exists.");
+            	}
+            	else {
+            		System.out.println("INFO: Not exists  '"+ osmName +"'.");
+                    files.add(file);
+            	}
             }
         });
         return files;
     }
+	
+	private boolean isExit(File directory, String osmName) {
+        Stream<File> stream = Stream.of(directory.listFiles((dir, name) -> {
+            return !(name.contains("RECYCLE.BIN") || name.contains("System Volume Information"));
+        }));
+        List<File> osmfiles = Lists.newArrayList();
+        stream.forEach(file -> {
+            if (!file.isDirectory()) {
+                if (file.getName().equals(osmName)) {
+                	osmfiles.add(file);
+                };
+            }
+        });
+		return (osmfiles.size() > 0);
+	}
 }
