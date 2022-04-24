@@ -270,6 +270,8 @@ public class Test_haya4 extends OsmUpdaterTest {
 					assertNotNull(relation.getTag("addr:housenumber"));
 	        		assertEquals("7-6", relation.getTag("addr:housenumber").getValue());
 	        		assertNull(relation.getTag("building:levels"));
+	        		assertNotNull(relation.getTag("amenity"));
+	        		assertEquals("veterinary", relation.getTag("amenity").getValue());
 	        		
 	        		assertEquals(3, relation.getMemberList().size());
 		        	for (MemberBean member : relation.getMemberList()) {
@@ -316,6 +318,9 @@ public class Test_haya4 extends OsmUpdaterTest {
 	        		assertEquals("7-5", relation.getTag("addr:housenumber").getValue());
 	        		assertNotNull(relation.getTag("building:levels"));
 	        		assertEquals("2", relation.getTag("building:levels").getValue());
+	        		assertNotNull(relation.getTag("amenity"));
+	        		assertEquals("cafe", relation.getTag("amenity").getValue());
+	        		
 		        	for (MemberBean member : relation.getMemberList()) {
 		        		assertTrue(member.isWay());
 		        		if (member.getRole().equals("outer")) {

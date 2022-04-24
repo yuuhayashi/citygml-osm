@@ -255,13 +255,14 @@
     <tag k='addr:housenumber' v='5-7' />
     <tag k='building' v='house' />
   </way>
-  <way id='289757568' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='4' changeset='116452117'>
+  <way id='289757568' action='modify' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='4' changeset='116452117'>
     <nd ref='2933003066' />
     <nd ref='2933003060' />
     <nd ref='2933003041' />
     <nd ref='2933003048' />
     <nd ref='2933003066' />
     <tag k='addr:housenumber' v='7-6' />
+    <tag k='amenity' v='veterinary' />
     <tag k='building' v='house' />
     <tag k='building:levels' v='2' />
   </way>
@@ -293,13 +294,14 @@
     <tag k='addr:housenumber' v='5-8' />
     <tag k='building' v='house' />
   </way>
-  <way id='289757576' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='4' changeset='116452117'>
+  <way id='289757576' action='modify' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='4' changeset='116452117'>
     <nd ref='2933003061' />
     <nd ref='2933003055' />
     <nd ref='2933003037' />
     <nd ref='2933003040' />
     <nd ref='2933003061' />
     <tag k='addr:housenumber' v='7-5' />
+    <tag k='amenity' v='cafe' />
     <tag k='building' v='house' />
     <tag k='building:levels' v='2' />
   </way>
