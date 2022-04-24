@@ -32,5 +32,4 @@ public class DownloadRoute extends RouteBuilder {
         //.to("stream:out")
         ;
 	}
-
 }

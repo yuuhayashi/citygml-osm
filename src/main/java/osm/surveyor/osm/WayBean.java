@@ -113,7 +113,9 @@ public class WayBean extends PoiBean implements Cloneable, Serializable {
 	public boolean isBuilding() {
 		for (TagBean tag : this.getTagList()) {
 			if (tag.k.startsWith("building")) {
-				return true;
+				if (!tag.v.equals("no")) {
+					return true;
+				}
 			}
 		}
 		return false;
