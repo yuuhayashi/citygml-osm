@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <bounds minlat='35.4338112' minlon='139.4106674' maxlat='35.434799' maxlon='139.411633' origin='CGImap 0.8.6 (3955209 spike-08.openstreetmap.org)' />
+  <node id='-230082' action='modify' visible='true' lat='35.43402224655' lon='139.4112125914' />
+  <node id='-230083' action='modify' visible='true' lat='35.43397375366' lon='139.4113552897' />
+  <node id='-230084' action='modify' visible='true' lat='35.43390426361' lon='139.41133672027' />
+  <node id='-230085' action='modify' visible='true' lat='35.43393062781' lon='139.41118810863' />
+  <node id='-230086' action='modify' visible='true' lat='35.4339912456' lon='139.41124720627' />
+  <node id='-230087' action='modify' visible='true' lat='35.4339852708' lon='139.41127857515' />
+  <node id='-230088' action='modify' visible='true' lat='35.43396876031' lon='139.4112738382' />
+  <node id='-230089' action='modify' visible='true' lat='35.43397473511' lon='139.41124246931' />
+  <node id='-230090' action='modify' visible='true' lat='35.43396119605' lon='139.41123949491' />
+  <node id='-230091' action='modify' visible='true' lat='35.43395522125' lon='139.4112708638' />
+  <node id='-230092' action='modify' visible='true' lat='35.43393871076' lon='139.41126612685' />
+  <node id='-230093' action='modify' visible='true' lat='35.43394468556' lon='139.41123475796' />
+  <node id='-230094' action='modify' visible='true' lat='35.4339638852' lon='139.41125616398' />
+  <node id='-230095' action='modify' visible='true' lat='35.43400126943' lon='139.41133083694' />
+  <node id='-230096' action='modify' visible='true' lat='35.4339791407' lon='139.4113249236' />
+  <way id='-185916' action='modify' visible='true'>
+    <nd ref='-230082' />
+    <nd ref='-230095' />
+    <nd ref='-230096' />
+    <nd ref='-230083' />
+    <nd ref='-230084' />
+    <nd ref='-230085' />
+    <nd ref='-230082' />
+    <tag k='ref:MLIT_PLATEAU' v='11111-bldg-101981' />
+  </way>
+  <way id='-185917' action='modify' visible='true'>
+    <nd ref='-230086' />
+    <nd ref='-230087' />
+    <nd ref='-230088' />
+    <nd ref='-230089' />
+    <nd ref='-230086' />
+    <tag k='ref:MLIT_PLATEAU' v='11111-bldg-101982' />
+  </way>
+  <way id='-185920' action='modify' visible='true'>
+    <nd ref='-230090' />
+    <nd ref='-230094' />
+    <nd ref='-230091' />
+    <nd ref='-230092' />
+    <nd ref='-230093' />
+    <nd ref='-230090' />
+    <tag k='ref:MLIT_PLATEAU' v='11111-bldg-101982' />
+  </way>
+  <relation id='-178520' action='modify' visible='true'>
+    <member type='way' ref='-185917' role='inner' />
+    <member type='way' ref='-185916' role='outer' />
+    <member type='way' ref='-185920' role='inner' />
+    <tag k='building' v='yes' />
+    <tag k='type' v='multipolygon' />
+  </relation>
+</osm>

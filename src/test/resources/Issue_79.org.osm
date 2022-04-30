@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <bounds minlat='36.2249772' minlon='139.5124381' maxlat='36.2335123' maxlon='139.5250815' origin='CGImap 0.8.3 (2061540 spike-08.openstreetmap.org)' />
+  <node id='4996843759' timestamp='2020-01-28T00:23:31Z' uid='902727' user='javbw' visible='true' version='2' changeset='80165473' lat='36.2296137' lon='139.520225' />
+  <node id='4996843760' timestamp='2020-01-28T00:23:31Z' uid='902727' user='javbw' visible='true' version='2' changeset='80165473' lat='36.2292675' lon='139.5200695' />
+  <node id='4996843761' timestamp='2020-01-28T00:23:31Z' uid='902727' user='javbw' visible='true' version='2' changeset='80165473' lat='36.2293838' lon='139.5195871' />
+  <node id='4996843763' timestamp='2020-01-28T00:23:31Z' uid='902727' user='javbw' visible='true' version='2' changeset='80165473' lat='36.229642' lon='139.5195784' />
+  <node id='4996843764' timestamp='2020-01-28T00:23:31Z' uid='902727' user='javbw' visible='true' version='2' changeset='80165473' lat='36.2297645' lon='139.5196329' />
+  <node id='4996843791' timestamp='2020-01-28T00:23:31Z' uid='902727' user='javbw' visible='true' version='2' changeset='80165473' lat='36.229522' lon='139.5206862' />
+  <node id='4996843792' timestamp='2020-01-28T00:23:31Z' uid='902727' user='javbw' visible='true' version='2' changeset='80165473' lat='36.2295577' lon='139.5205664' />
+  <node id='4996843793' timestamp='2020-01-28T00:23:31Z' uid='902727' user='javbw' visible='true' version='2' changeset='80165473' lat='36.2294879' lon='139.520529' />
+  <node id='4996843794' timestamp='2020-01-28T00:23:31Z' uid='902727' user='javbw' visible='true' version='2' changeset='80165473' lat='36.229449' lon='139.5206501' />
+  <way id='510741270' timestamp='2020-01-28T00:23:31Z' uid='902727' user='javbw' visible='true' version='2' changeset='80165473'>
+    <nd ref='4996843759' />
+    <nd ref='4996843760' />
+    <nd ref='4996843761' />
+    <nd ref='4996843763' />
+    <nd ref='4996843764' />
+    <nd ref='4996843759' />
+    <tag k='building' v='yes' />
+    <tag k='leisure' v='adult_gaming_centre' />
+  </way>
+  <way id='510741277' timestamp='2017-07-27T12:02:47Z' uid='6199030' user='fuzisan01' visible='true' version='1' changeset='50618000'>
+    <nd ref='4996843791' />
+    <nd ref='4996843792' />
+    <nd ref='4996843793' />
+    <nd ref='4996843794' />
+    <nd ref='4996843791' />
+    <tag k='building' v='yes' />
+  </way>
+</osm>

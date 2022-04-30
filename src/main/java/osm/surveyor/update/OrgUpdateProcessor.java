@@ -280,11 +280,14 @@ public class OrgUpdateProcessor implements Processor {
 							
 							for (RelationBean relation : osm.getRelationList()) {
 								relation.setAction("modify");
-								String buildingValue = "yes";
 								for (MemberBean member : relation.getMemberList()) {
 									if (member.getRef() == oldid) {
 										member.setWay(sWay);
 									}
+								}
+								String buildingValue = sWay.getTagValue("building");
+								if (buildingValue == null || buildingValue.isEmpty()) {
+									buildingValue = "yes";
 								}
 								if (relation.getTag("building") == null) {
 									relation.addTag("building", buildingValue);
@@ -320,26 +323,70 @@ public class OrgUpdateProcessor implements Processor {
 	 * 
 	 */
 	private void fixBuildingRelation(OsmBean mrg) throws Exception {
+		// Relation: type=Multipolygon
 		for (RelationBean relation : mrg.getRelationList()) {
-			if (relation.isBuilding() ) {
-				WayBean maxway = getMaxPart(relation, mrg);
-				if (maxway != null) {
-					maxway.removeTag("building:levels");
-					maxway.removeTag("building:part");
-					maxway.removeTag("height");
-					maxway.removeTag("MLIT_PLATEAU:fixme");
-					maxway.removeTag("ref:MLIT_PLATEAU");
-					maxway.removeTag("start_date");		// Issue #39 複合ビルでの”建築年”の扱い
-					relation.copyTag(maxway);
+			if (relation.isMultipolygon() ) {
+				WayBean outer = null;
+				WayBean way = null;
+				for (MemberBean member : relation.getMemberList()) {
+					if (member.getRole().equals("outer")) {
+						if (member.isWay()) {
+							outer = mrg.getWay(member.getRef());
+							way = outer.clone();
+							String building = outer.getTagValue("building");
+							if (building != null && building.equals("yes")) {
+								way.addTag(new TagBean("building", outer.getTagValue("building:part")));
+							}
+							way.removeTag("building:part");
+							way.removeTag("MLIT_PLATEAU:fixme");
+							way.removeTag("ref:MLIT_PLATEAU");
+						}
+					}
+				}
+				if (way != null) {
+					relation.copyTag(way);
 				}
 			}
-			else if (relation.isMultipolygon()) {
-				WayBean maxway = getMaxPart(relation, mrg);
+		}
+		
+		// Relation: type=building
+		for (RelationBean relation : mrg.getRelationList()) {
+			WayBean maxway = getMaxPart(relation, mrg);
+			if (relation.isBuilding() ) {
+				WayBean outline = null;
+				RelationBean outer = null;
+				for (MemberBean member : relation.getMemberList()) {
+					if (member.getRole().equals("outline")) {
+						if (member.isWay()) {
+							outline = mrg.getWay(member.getRef());
+						}
+						else if (member.isRelation()) {
+							outer = mrg.getRelation(member.getRef());
+						}
+					}
+				}
+				
 				if (maxway != null) {
-					maxway.removeTag("MLIT_PLATEAU:fixme");
-					maxway.removeTag("ref:MLIT_PLATEAU");
-					maxway.removeTag("start_date");		// Issue #39 複合ビルでの”建築年”の扱い
-					relation.copyTag(maxway);
+					WayBean way = maxway.clone();
+					String build = maxway.getTagValue("building");
+					if (build == null || build.equals("yes")) {
+						way.addTag(new TagBean("building", maxway.getTagValue("building:part")));
+					}
+					way.removeTag("building:part");
+					way.removeTag("building:levels");
+					way.removeTag("building:levels:underground");
+					way.removeTag("height");
+					way.removeTag("ele");
+					way.removeTag("MLIT_PLATEAU:fixme");
+					way.removeTag("ref:MLIT_PLATEAU");
+					way.removeTag("start_date");		// Issue #39 複合ビルでの”建築年”の扱い
+					if (outline != null) {
+						outline.copyTag(way);
+					}
+					if (outer != null) {
+						outer.copyTag(way);
+					}
+					relation.copyTag(way);
 				}
 			}
 		}

@@ -1,0 +1,437 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <bounds minlat='35.4338112' minlon='139.4106674' maxlat='35.434799' maxlon='139.411633' origin='CGImap 0.8.3 (2061540 spike-08.openstreetmap.org)' />
+  <node id='2493516071' action='delete' timestamp='2021-05-21T23:49:26Z' uid='621319' user='hayashi' visible='true' version='4' changeset='105115051' lat='35.4340584' lon='139.4111908' />
+  <node id='2493516072' action='delete' timestamp='2021-05-21T23:49:26Z' uid='621319' user='hayashi' visible='true' version='4' changeset='105115051' lat='35.4340757' lon='139.4110899' />
+  <node id='2493516079' action='delete' timestamp='2021-05-21T23:49:26Z' uid='621319' user='hayashi' visible='true' version='3' changeset='105115051' lat='35.4341068' lon='139.4112033' />
+  <node id='2493516080' action='delete' timestamp='2021-05-21T23:49:26Z' uid='621319' user='hayashi' visible='true' version='3' changeset='105115051' lat='35.4341241' lon='139.4111024' />
+  <node id='2933003002' action='delete' timestamp='2014-06-25T15:02:15Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4337507' lon='139.4114614' />
+  <node id='2933003003' action='delete' timestamp='2014-06-25T15:02:15Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4337568' lon='139.4113643' />
+  <node id='2933003007' action='delete' timestamp='2014-06-25T15:02:15Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4337749' lon='139.4112786' />
+  <node id='2933003012' action='delete' timestamp='2014-06-25T15:02:15Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.433797' lon='139.4111545' />
+  <node id='2933003015' action='delete' timestamp='2014-06-25T15:02:15Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.433806' lon='139.4111194' />
+  <node id='2933003016' action='delete' timestamp='2014-06-25T15:02:15Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4338103' lon='139.411467' />
+  <node id='2933003018' action='delete' timestamp='2014-06-25T15:02:15Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4338164' lon='139.4113699' />
+  <node id='2933003019' action='delete' timestamp='2014-06-25T15:02:15Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4338326' lon='139.4109925' />
+  <node id='2933003020' action='delete' timestamp='2014-06-25T15:02:15Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4338339' lon='139.4112944' />
+  <node id='2933003021' action='delete' timestamp='2014-06-25T15:02:15Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.433856' lon='139.4111703' />
+  <node id='2933003025' action='delete' timestamp='2014-06-25T15:02:15Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4338666' lon='139.4111386' />
+  <node id='2933003027' action='delete' timestamp='2014-06-25T15:02:15Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4338789' lon='139.4114878' />
+  <node id='2933003028' action='delete' timestamp='2014-06-25T15:02:15Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4338833' lon='139.4114481' />
+  <node id='2933003029' action='delete' timestamp='2014-06-25T15:02:15Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4338909' lon='139.4116441' />
+  <node id='2933003030' action='delete' timestamp='2014-06-25T15:02:15Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4338932' lon='139.4110117' />
+  <node id='2933003031' action='delete' timestamp='2014-06-25T15:02:15Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4338964' lon='139.411539' />
+  <node id='2933003032' action='delete' timestamp='2014-06-25T15:02:15Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.433911' lon='139.4114527' />
+  <node id='2933003033' action='delete' timestamp='2014-06-25T15:02:15Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4339188' lon='139.4113812' />
+  <node id='2933003034' action='delete' timestamp='2014-06-25T15:02:15Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4339213' lon='139.4114948' />
+  <node id='2933003035' action='delete' timestamp='2014-06-25T15:02:15Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4339222' lon='139.411486' />
+  <node id='2933003037' timestamp='2014-06-25T15:02:15Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4339304' lon='139.4112998' />
+  <node id='2933003040' timestamp='2014-06-25T15:02:16Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.433941' lon='139.4112033' />
+  <node id='2933003041' action='delete' timestamp='2014-06-25T15:02:16Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4339418' lon='139.4111596' />
+  <node id='2933003043' action='delete' timestamp='2014-06-25T15:02:16Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4339454' lon='139.4116484' />
+  <node id='2933003044' action='delete' timestamp='2014-06-25T15:02:16Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4339509' lon='139.4115433' />
+  <node id='2933003047' action='delete' timestamp='2014-06-25T15:02:16Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4339625' lon='139.4114926' />
+  <node id='2933003048' action='delete' timestamp='2014-06-25T15:02:16Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4339676' lon='139.4110411' />
+  <node id='2933003049' action='delete' timestamp='2014-06-25T15:02:16Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4339737' lon='139.4113903' />
+  <node id='2933003054' action='delete' timestamp='2014-06-25T15:02:16Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4339892' lon='139.4116699' />
+  <node id='2933003055' timestamp='2014-06-25T15:02:16Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4339951' lon='139.4113104' />
+  <node id='2933003056' action='delete' timestamp='2014-06-25T15:02:16Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4339953' lon='139.4115673' />
+  <node id='2933003057' action='delete' timestamp='2014-06-25T15:02:16Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4339996' lon='139.4115125' />
+  <node id='2933003060' action='delete' timestamp='2014-06-25T15:02:16Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4340049' lon='139.4111803' />
+  <node id='2933003061' timestamp='2014-06-25T15:02:16Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4340057' lon='139.4112139' />
+  <node id='2933003062' action='delete' timestamp='2014-06-25T15:02:16Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4340133' lon='139.4113874' />
+  <node id='2933003064' action='delete' timestamp='2014-06-25T15:02:16Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4340231' lon='139.4113443' />
+  <node id='2933003066' action='delete' timestamp='2014-06-25T15:02:16Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4340307' lon='139.4110619' />
+  <node id='2933003069' action='delete' timestamp='2014-06-25T15:02:16Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4340444' lon='139.4116749' />
+  <node id='2933003070' action='delete' timestamp='2014-06-25T15:02:16Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4340452' lon='139.4112165' />
+  <node id='2933003071' action='delete' timestamp='2014-06-25T15:02:16Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4340505' lon='139.4115722' />
+  <node id='2933003072' action='delete' timestamp='2014-06-25T15:02:16Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4340566' lon='139.4115218' />
+  <node id='2933003073' action='delete' timestamp='2014-06-25T15:02:16Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4340703' lon='139.4113968' />
+  <node id='2933003074' action='delete' timestamp='2014-06-25T15:02:16Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4340779' lon='139.4113586' />
+  <node id='2933003075' action='delete' timestamp='2014-06-25T15:02:16Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4340999' lon='139.4112307' />
+  <node id='2933003080' action='delete' timestamp='2014-06-25T15:02:16Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4341568' lon='139.4116917' />
+  <node id='2933003081' action='delete' timestamp='2014-06-25T15:02:16Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4341621' lon='139.4115192' />
+  <node id='2933003082' action='delete' timestamp='2014-06-25T15:02:16Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4341637' lon='139.4115863' />
+  <node id='2933003083' action='delete' timestamp='2014-06-25T15:02:16Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4341697' lon='139.4114371' />
+  <node id='2933003084' action='delete' timestamp='2014-06-25T15:02:16Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4341851' lon='139.4113631' />
+  <node id='2933003088' action='delete' timestamp='2014-06-25T15:02:17Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4342018' lon='139.4112651' />
+  <node id='2933003090' action='delete' timestamp='2021-05-21T06:05:44Z' uid='621319' user='hayashi' visible='true' version='2' changeset='105065457' lat='35.4342076' lon='139.4112156' />
+  <node id='2933003091' action='delete' timestamp='2014-06-25T15:02:17Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4342155' lon='139.4116974' />
+  <node id='2933003092' action='delete' timestamp='2014-06-25T15:02:17Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4342224' lon='139.4115276' />
+  <node id='2933003093' action='delete' timestamp='2014-06-25T15:02:17Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4342224' lon='139.411592' />
+  <node id='2933003094' timestamp='2021-05-21T06:05:44Z' uid='621319' user='hayashi' visible='true' version='2' changeset='105065457' lat='35.4342301' lon='139.4110995' />
+  <node id='2933003096' action='delete' timestamp='2014-06-25T15:02:17Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.43423' lon='139.4114455' />
+  <node id='2933003100' action='delete' timestamp='2014-06-25T15:02:17Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4342444' lon='139.4113783' />
+  <node id='2933003201' action='delete' timestamp='2014-10-15T13:25:49Z' uid='621319' user='hayashi' visible='true' version='2' changeset='26095090' lat='35.4342432' lon='139.4116998' />
+  <node id='2933003202' action='delete' timestamp='2014-10-15T13:25:49Z' uid='621319' user='hayashi' visible='true' version='2' changeset='26095090' lat='35.4342568' lon='139.4115922' />
+  <node id='2933003203' action='delete' timestamp='2014-10-15T13:25:49Z' uid='621319' user='hayashi' visible='true' version='2' changeset='26095090' lat='35.4342524' lon='139.4115477' />
+  <node id='2933003204' action='delete' timestamp='2014-10-15T13:25:49Z' uid='621319' user='hayashi' visible='true' version='2' changeset='26095090' lat='35.4342634' lon='139.4114609' />
+  <node id='2933003205' action='delete' timestamp='2014-06-25T15:02:17Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4342612' lon='139.4112804' />
+  <node id='2933003206' action='delete' timestamp='2021-05-21T06:05:44Z' uid='621319' user='hayashi' visible='true' version='2' changeset='105065457' lat='35.4342664' lon='139.4112328' />
+  <node id='2933003207' action='delete' timestamp='2014-10-15T13:25:49Z' uid='621319' user='hayashi' visible='true' version='2' changeset='26095090' lat='35.434275' lon='139.4113939' />
+  <node id='2933003208' action='delete' timestamp='2021-05-21T06:05:44Z' uid='621319' user='hayashi' visible='true' version='2' changeset='105065457' lat='35.4342889' lon='139.4111167' />
+  <node id='2933003210' action='delete' timestamp='2014-10-15T13:25:49Z' uid='621319' user='hayashi' visible='true' version='2' changeset='26095090' lat='35.4342886' lon='139.4112862' />
+  <node id='2933003214' action='delete' timestamp='2014-10-15T13:25:49Z' uid='621319' user='hayashi' visible='true' version='2' changeset='26095090' lat='35.4343062' lon='139.4112477' />
+  <node id='2933003215' action='delete' timestamp='2014-10-15T13:25:49Z' uid='621319' user='hayashi' visible='true' version='2' changeset='26095090' lat='35.4343004' lon='139.4117107' />
+  <node id='2933003216' action='delete' timestamp='2014-10-15T13:25:49Z' uid='621319' user='hayashi' visible='true' version='2' changeset='26095090' lat='35.4343141' lon='139.4116031' />
+  <node id='2933003217' action='delete' timestamp='2014-10-15T13:25:49Z' uid='621319' user='hayashi' visible='true' version='2' changeset='26095090' lat='35.4343154' lon='139.4115597' />
+  <node id='2933003218' action='delete' timestamp='2014-10-15T13:25:49Z' uid='621319' user='hayashi' visible='true' version='2' changeset='26095090' lat='35.4343201' lon='139.4111375' />
+  <node id='2933003219' action='delete' timestamp='2014-10-15T13:25:49Z' uid='621319' user='hayashi' visible='true' version='2' changeset='26095090' lat='35.4343264' lon='139.4114729' />
+  <node id='2933003220' action='delete' timestamp='2014-10-15T13:25:49Z' uid='621319' user='hayashi' visible='true' version='2' changeset='26095090' lat='35.4343362' lon='139.4114055' />
+  <node id='2933003221' action='delete' timestamp='2014-10-15T13:25:49Z' uid='621319' user='hayashi' visible='true' version='2' changeset='26095090' lat='35.4343498' lon='139.4112978' />
+  <node id='2933003222' action='delete' timestamp='2014-10-15T13:25:49Z' uid='621319' user='hayashi' visible='true' version='2' changeset='26095090' lat='35.4343595' lon='139.4112579' />
+  <node id='2933003223' action='delete' timestamp='2014-10-15T13:25:49Z' uid='621319' user='hayashi' visible='true' version='2' changeset='26095090' lat='35.4343734' lon='139.4111477' />
+  <node id='2933003226' action='delete' timestamp='2014-06-25T15:02:17Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4343988' lon='139.411664' />
+  <node id='2933003227' action='delete' timestamp='2014-06-25T15:02:17Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4344148' lon='139.4115361' />
+  <node id='2933003228' action='delete' timestamp='2014-06-25T15:02:17Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4344173' lon='139.4114634' />
+  <node id='2933003229' action='delete' timestamp='2014-06-25T15:02:18Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4344379' lon='139.4113552' />
+  <node id='2933003232' action='delete' timestamp='2014-06-25T15:02:18Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4344516' lon='139.4112946' />
+  <node id='2933003233' action='delete' timestamp='2014-06-25T15:02:18Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4344527' lon='139.4116741' />
+  <node id='2933003235' action='delete' timestamp='2014-06-25T15:02:18Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4344687' lon='139.4115463' />
+  <node id='2933003236' action='delete' timestamp='2014-06-25T15:02:18Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4344722' lon='139.4111855' />
+  <node id='2933003238' action='delete' timestamp='2014-06-25T15:02:18Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4344755' lon='139.41148' />
+  <node id='2933003241' action='delete' timestamp='2014-06-25T15:02:18Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4344936' lon='139.4116485' />
+  <node id='2933003242' action='delete' timestamp='2014-06-25T15:02:18Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4344961' lon='139.4113718' />
+  <node id='2933003243' action='delete' timestamp='2014-06-25T15:02:18Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4345067' lon='139.4113102' />
+  <node id='2933003244' action='delete' timestamp='2014-06-25T15:02:18Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4345118' lon='139.4115365' />
+  <node id='2933003245' action='delete' timestamp='2014-06-25T15:02:18Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4345197' lon='139.4114997' />
+  <node id='2933003248' action='delete' timestamp='2014-06-25T15:02:18Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4345272' lon='139.4112011' />
+  <node id='2933003251' action='delete' timestamp='2014-06-25T15:02:18Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4345342' lon='139.4114167' />
+  <node id='2933003256' action='delete' timestamp='2014-06-25T15:02:18Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4345485' lon='139.411662' />
+  <node id='2933003257' action='delete' timestamp='2014-06-25T15:02:18Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4345504' lon='139.4113284' />
+  <node id='2933003259' action='delete' timestamp='2014-06-25T15:02:18Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4345664' lon='139.4112426' />
+  <node id='2933003260' action='delete' timestamp='2014-06-25T15:02:18Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4345668' lon='139.41155' />
+  <node id='2933003261' action='delete' timestamp='2014-06-25T15:02:18Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4345729' lon='139.4115136' />
+  <node id='2933003262' action='delete' timestamp='2014-06-25T15:02:18Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4345873' lon='139.4114306' />
+  <node id='2933003263' action='delete' timestamp='2014-06-25T15:02:18Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4345987' lon='139.411342' />
+  <node id='2933003264' action='delete' timestamp='2014-06-25T15:02:18Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23152340' lat='35.4346147' lon='139.4112561' />
+  <node id='2934310882' action='delete' timestamp='2014-06-26T14:29:39Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4337605' lon='139.4108218' />
+  <node id='2934310883' action='delete' timestamp='2014-06-26T14:29:39Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4337665' lon='139.4107434' />
+  <node id='2934310884' action='delete' timestamp='2014-06-26T14:29:39Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4337791' lon='139.4107025' />
+  <node id='2934310885' action='delete' timestamp='2014-06-26T14:29:39Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4337823' lon='139.4107507' />
+  <node id='2934310886' action='delete' timestamp='2014-06-26T14:29:39Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4338068' lon='139.4106607' />
+  <node id='2934310887' action='delete' timestamp='2014-06-26T14:29:39Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.433827' lon='139.4107581' />
+  <node id='2934310888' action='delete' timestamp='2014-06-26T14:29:39Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4338296' lon='139.4108536' />
+  <node id='2934310889' action='delete' timestamp='2014-06-26T14:29:39Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4338359' lon='139.4107287' />
+  <node id='2934310890' action='delete' timestamp='2014-06-26T14:29:39Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4338365' lon='139.4105533' />
+  <node id='2934310892' action='delete' timestamp='2014-06-26T14:29:39Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4338549' lon='139.410771' />
+  <node id='2934310893' action='delete' timestamp='2014-06-26T14:29:39Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4338639' lon='139.4108149' />
+  <node id='2934310894' action='delete' timestamp='2014-06-26T14:29:39Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4338662' lon='139.4106855' />
+  <node id='2934310896' action='delete' timestamp='2014-06-26T14:29:39Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4338778' lon='139.4107463' />
+  <node id='2934310898' action='delete' timestamp='2014-06-26T14:29:39Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4338904' lon='139.4106625' />
+  <node id='2934310899' action='delete' timestamp='2014-06-26T14:29:39Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4338959' lon='139.4105781' />
+  <node id='2934311401' action='delete' timestamp='2014-06-26T14:29:39Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4339115' lon='139.4105896' />
+  <node id='2934311404' action='delete' timestamp='2014-06-26T14:29:39Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4339264' lon='139.4108341' />
+  <node id='2934311409' action='delete' timestamp='2014-06-26T14:29:40Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4339403' lon='139.4107655' />
+  <node id='2934311413' action='delete' timestamp='2014-06-26T14:29:40Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4339522' lon='139.4106894' />
+  <node id='2934311416' action='delete' timestamp='2014-06-26T14:29:40Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4339733' lon='139.4106165' />
+  <node id='2934311422' action='delete' timestamp='2014-06-26T14:29:40Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4340021' lon='139.4109176' />
+  <node id='2934311423' action='delete' timestamp='2014-06-26T14:29:40Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4340095' lon='139.4108872' />
+  <node id='2934311434' action='delete' timestamp='2014-06-26T14:29:40Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4340413' lon='139.4108989' />
+  <node id='2934311435' action='delete' timestamp='2014-06-26T14:29:40Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.434042' lon='139.410837' />
+  <node id='2934311439' action='delete' timestamp='2014-06-26T14:29:40Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.434051' lon='139.4108592' />
+  <node id='2934311440' action='delete' timestamp='2014-06-26T14:29:40Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4340581' lon='139.4106834' />
+  <node id='2934311441' action='delete' timestamp='2014-06-26T14:29:40Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4340602' lon='139.4107587' />
+  <node id='2934311445' action='delete' timestamp='2014-06-26T14:29:40Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4340689' lon='139.4109422' />
+  <node id='2934311446' action='delete' timestamp='2014-06-26T14:29:40Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4340729' lon='139.4109093' />
+  <node id='2934311450' action='delete' timestamp='2014-06-26T14:29:40Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4340766' lon='139.4109107' />
+  <node id='2934311451' action='delete' timestamp='2014-06-26T14:29:40Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4340779' lon='139.410602' />
+  <node id='2934311453' action='delete' timestamp='2014-06-26T14:29:40Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4340803' lon='139.4108504' />
+  <node id='2934311454' action='delete' timestamp='2014-06-26T14:29:40Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4340823' lon='139.4108707' />
+  <node id='2934311455' action='delete' timestamp='2014-06-26T14:29:41Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4340861' lon='139.4108254' />
+  <node id='2934311457' action='delete' timestamp='2014-06-26T14:29:41Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4340955' lon='139.4109133' />
+  <node id='2934311458' action='delete' timestamp='2014-06-26T14:29:41Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4340965' lon='139.4107808' />
+  <node id='2934311459' action='delete' timestamp='2014-06-26T14:29:41Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4340982' lon='139.4108303' />
+  <node id='2934311460' action='delete' timestamp='2014-06-26T14:29:41Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4340985' lon='139.4107721' />
+  <node id='2934311462' action='delete' timestamp='2014-06-26T14:29:41Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.43411' lon='139.4107861' />
+  <node id='2934311470' action='delete' timestamp='2014-06-26T14:29:41Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4341307' lon='139.4107858' />
+  <node id='2934311471' action='delete' timestamp='2014-06-26T14:29:41Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4341311' lon='139.4109281' />
+  <node id='2934311478' action='delete' timestamp='2014-06-26T14:29:41Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4341662' lon='139.4108005' />
+  <node id='2934311480' action='delete' timestamp='2014-06-26T14:29:41Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4341811' lon='139.4107286' />
+  <node id='2934311487' action='delete' timestamp='2014-06-26T14:29:41Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4342009' lon='139.4106473' />
+  <node id='2934311489' action='delete' timestamp='2021-05-22T00:16:38Z' uid='621319' user='hayashi' visible='true' version='2' changeset='105115364' lat='35.4342151' lon='139.4109514' />
+  <node id='2934311496' action='delete' timestamp='2021-05-22T00:16:38Z' uid='621319' user='hayashi' visible='true' version='2' changeset='105115364' lat='35.4342414' lon='139.4108409' />
+  <node id='2934311505' action='delete' timestamp='2014-06-26T14:29:41Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4342889' lon='139.4106452' />
+  <node id='2934311510' action='delete' timestamp='2014-06-26T14:29:42Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4343207' lon='139.4105329' />
+  <node id='2934311523' action='delete' timestamp='2021-05-22T00:16:38Z' uid='621319' user='hayashi' visible='true' version='2' changeset='105115364' lat='35.4344026' lon='139.4110185' />
+  <node id='2934311530' action='delete' timestamp='2021-05-22T00:16:38Z' uid='621319' user='hayashi' visible='true' version='2' changeset='105115364' lat='35.4344289' lon='139.410908' />
+  <node id='2934311534' action='delete' timestamp='2014-06-26T14:29:42Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4344625' lon='139.4110473' />
+  <node id='2934311537' action='delete' timestamp='2014-06-26T14:29:42Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4344732' lon='139.4107238' />
+  <node id='2934311541' action='delete' timestamp='2014-06-26T14:29:42Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.434505' lon='139.4106115' />
+  <node id='2934311543' action='delete' timestamp='2014-06-26T14:29:42Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.434513' lon='139.4108313' />
+  <node id='2934311547' action='delete' timestamp='2014-06-26T14:29:42Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4345406' lon='139.4107698' />
+  <node id='2934311548' action='delete' timestamp='2014-06-26T14:29:42Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4345463' lon='139.4109814' />
+  <node id='2934311552' action='delete' timestamp='2014-06-26T14:29:42Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4345762' lon='139.4108535' />
+  <node id='2934311553' action='delete' timestamp='2014-06-26T14:29:43Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4345912' lon='139.4105537' />
+  <node id='2934311556' action='delete' timestamp='2014-06-26T14:29:43Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4346244' lon='139.4107039' />
+  <node id='2934311558' action='delete' timestamp='2014-06-26T14:29:43Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4346352' lon='139.4111081' />
+  <node id='2934311561' action='delete' timestamp='2014-06-26T14:29:43Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4346543' lon='139.410576' />
+  <node id='2934311562' action='delete' timestamp='2014-06-26T14:29:43Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4346558' lon='139.41102' />
+  <node id='2934311565' action='delete' timestamp='2014-06-26T14:29:43Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.4347134' lon='139.4108306' />
+  <node id='2934311568' action='delete' timestamp='2014-06-26T14:29:43Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187362' lat='35.434734' lon='139.4107425' />
+  <node id='2934330262' action='delete' timestamp='2014-06-26T14:42:51Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187656' lat='35.4347626' lon='139.4111605' />
+  <node id='2934330263' action='delete' timestamp='2014-06-26T14:42:51Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187656' lat='35.4347821' lon='139.4110471' />
+  <node id='2934330264' action='delete' timestamp='2014-06-26T14:42:51Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187656' lat='35.4347891' lon='139.4110037' />
+  <node id='2934330265' action='delete' timestamp='2014-06-26T14:42:51Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187656' lat='35.434819' lon='139.4108953' />
+  <node id='2934330266' action='delete' timestamp='2014-06-26T14:42:51Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187656' lat='35.4348205' lon='139.4111754' />
+  <node id='2934330268' action='delete' timestamp='2014-06-26T14:42:51Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187656' lat='35.4348399' lon='139.411062' />
+  <node id='2934330269' action='delete' timestamp='2014-06-26T14:42:51Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187656' lat='35.4348407' lon='139.4110252' />
+  <node id='2934330274' action='delete' timestamp='2014-06-26T14:42:52Z' uid='621319' user='hayashi' visible='true' version='1' changeset='23187656' lat='35.4348707' lon='139.4109168' />
+  <node id='8751378956' action='delete' timestamp='2021-05-21T23:49:26Z' uid='621319' user='hayashi' visible='true' version='3' changeset='105115051' lat='35.4340496' lon='139.4111885' />
+  <node id='8751378957' action='delete' timestamp='2021-05-21T23:49:26Z' uid='621319' user='hayashi' visible='true' version='3' changeset='105115051' lat='35.4340669' lon='139.4110876' />
+  <node id='8751378958' action='delete' timestamp='2021-05-21T23:49:26Z' uid='621319' user='hayashi' visible='true' version='3' changeset='105115051' lat='35.4341248' lon='139.4110984' />
+  <node id='8751378959' action='delete' timestamp='2021-05-21T23:49:26Z' uid='621319' user='hayashi' visible='true' version='3' changeset='105115051' lat='35.4341014' lon='139.4110923' />
+  <node id='8751378960' action='delete' timestamp='2021-05-21T23:49:26Z' uid='621319' user='hayashi' visible='true' version='3' changeset='105115051' lat='35.4340716' lon='139.4110846' />
+  <node id='8751378961' action='delete' timestamp='2021-05-21T23:49:26Z' uid='621319' user='hayashi' visible='true' version='3' changeset='105115051' lat='35.434053' lon='139.4111927' />
+  <node id='8751378962' action='delete' timestamp='2021-05-21T05:32:46Z' uid='621319' user='hayashi' visible='true' version='2' changeset='105063418' lat='35.4341093' lon='139.4112073' />
+  <node id='8751378963' action='delete' timestamp='2021-05-21T05:32:46Z' uid='621319' user='hayashi' visible='true' version='2' changeset='105063418' lat='35.4341279' lon='139.4110992' />
+  <node id='8751378964' action='delete' timestamp='2021-05-21T23:49:26Z' uid='621319' user='hayashi' visible='true' version='3' changeset='105115051' lat='35.4341007' lon='139.4110964' />
+  <node id='8751378965' action='delete' timestamp='2021-05-21T23:49:26Z' uid='621319' user='hayashi' visible='true' version='3' changeset='105115051' lat='35.434103' lon='139.411083' />
+  <node id='8751378966' action='delete' timestamp='2021-05-21T23:49:26Z' uid='621319' user='hayashi' visible='true' version='3' changeset='105115051' lat='35.4341264' lon='139.411089' />
+  <node id='8751827162' action='delete' timestamp='2021-05-21T23:49:26Z' uid='621319' user='hayashi' visible='true' version='2' changeset='105115051' lat='35.4340535' lon='139.4111895' />
+  <node id='8751827163' action='delete' timestamp='2021-05-21T23:49:26Z' uid='621319' user='hayashi' visible='true' version='2' changeset='105115051' lat='35.4340709' lon='139.4110886' />
+  <node id='8754418631' action='delete' timestamp='2021-05-22T00:10:57Z' uid='621319' user='hayashi' visible='true' version='1' changeset='105115302' lat='35.4340515' lon='139.4110327' />
+  <node id='8754418632' action='delete' timestamp='2021-05-22T00:10:57Z' uid='621319' user='hayashi' visible='true' version='1' changeset='105115302' lat='35.434044' lon='139.4110766' />
+  <node id='8754418633' action='delete' timestamp='2021-05-22T00:10:57Z' uid='621319' user='hayashi' visible='true' version='1' changeset='105115302' lat='35.4340654' lon='139.4110821' />
+  <node id='8754418634' action='delete' timestamp='2021-05-22T00:10:57Z' uid='621319' user='hayashi' visible='true' version='1' changeset='105115302' lat='35.434073' lon='139.4110382' />
+  <node id='8754418635' action='delete' timestamp='2021-05-22T00:10:57Z' uid='621319' user='hayashi' visible='true' version='1' changeset='105115302' lat='35.4340462' lon='139.4110774' />
+  <node id='8754418636' action='delete' timestamp='2021-05-22T00:10:57Z' uid='621319' user='hayashi' visible='true' version='1' changeset='105115302' lat='35.4340399' lon='139.4111145' />
+  <node id='8754418637' action='delete' timestamp='2021-05-22T00:10:57Z' uid='621319' user='hayashi' visible='true' version='1' changeset='105115302' lat='35.4340569' lon='139.4111189' />
+  <node id='8754418638' action='delete' timestamp='2021-05-22T00:10:57Z' uid='621319' user='hayashi' visible='true' version='1' changeset='105115302' lat='35.4340633' lon='139.4110818' />
+  <node id='9057699531' action='delete' timestamp='2021-09-03T04:20:40Z' uid='621319' user='hayashi' visible='true' version='1' changeset='110648354' lat='35.4341989' lon='139.4112811'>
+    <tag k='entrance' v='yes' />
+  </node>
+  <way id='241755306' action='delete' timestamp='2021-05-21T05:32:46Z' uid='621319' user='hayashi' visible='true' version='5' changeset='105063418'>
+    <tag k='building' v='house' />
+    <tag k='building:levels' v='2' />
+    <tag k='height' v='6.2' />
+    <tag k='ref' v='7' />
+  </way>
+  <way id='289757564' action='delete' timestamp='2014-06-26T12:58:11Z' uid='621319' user='hayashi' visible='true' version='2' changeset='23181400'>
+    <tag k='building' v='house' />
+  </way>
+  <way id='289757565' action='delete' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='3' changeset='116452117'>
+    <tag k='addr:housenumber' v='6-9' />
+    <tag k='building' v='house' />
+  </way>
+  <way id='289757566' action='delete' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='3' changeset='116452117'>
+    <tag k='addr:housenumber' v='7-3' />
+    <tag k='building' v='house' />
+  </way>
+  <way id='289757567' action='delete' timestamp='2014-06-26T13:08:31Z' uid='621319' user='hayashi' visible='true' version='2' changeset='23181838'>
+    <tag k='addr:housenumber' v='5-7' />
+    <tag k='building' v='house' />
+  </way>
+  <way id='289757568' action='delete' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='4' changeset='116452117'>
+    <tag k='addr:housenumber' v='7-6' />
+    <tag k='amenity' v='veterinary' />
+    <tag k='building' v='house' />
+    <tag k='building:levels' v='2' />
+  </way>
+  <way id='289757569' action='delete' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='3' changeset='116452117'>
+    <tag k='addr:housenumber' v='5-6' />
+    <tag k='building' v='house' />
+    <tag k='end_date' v='2021' />
+  </way>
+  <way id='289757572' action='delete' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='3' changeset='116452117'>
+    <tag k='addr:housenumber' v='6-3' />
+    <tag k='building' v='house' />
+  </way>
+  <way id='289757573' action='delete' timestamp='2014-06-26T13:08:43Z' uid='621319' user='hayashi' visible='true' version='2' changeset='23181856'>
+    <tag k='addr:housenumber' v='5-8' />
+    <tag k='building' v='house' />
+  </way>
+  <way id='289757576' action='modify' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='4' changeset='116452117'>
+    <nd ref='2933003061' />
+    <nd ref='2933003055' />
+    <nd ref='2933003037' />
+    <nd ref='2933003040' />
+    <nd ref='2933003061' />
+    <tag k='addr:housenumber' v='7-5' />
+    <tag k='amenity' v='cafe' />
+    <tag k='building' v='house' />
+    <tag k='building:levels' v='2' />
+  </way>
+  <way id='289757577' action='delete' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='4' changeset='116452117'>
+    <tag k='addr:housenumber' v='7-8' />
+    <tag k='building' v='house' />
+    <tag k='building:levels' v='2' />
+  </way>
+  <way id='289757582' action='delete' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='4' changeset='116452117'>
+    <tag k='addr:housenumber' v='7-10' />
+    <tag k='building' v='house' />
+    <tag k='building:levels' v='2' />
+  </way>
+  <way id='289757583' action='delete' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='3' changeset='116452117'>
+    <tag k='addr:housenumber' v='5-4' />
+    <tag k='building' v='house' />
+    <tag k='building:levels' v='7' />
+    <tag k='building:levels:underground' v='2' />
+    <tag k='ele' v='7.5' />
+    <tag k='source' v='GSI/KIBAN 25000;NARO' />
+    <tag k='start_date' v='2021-03' />
+  </way>
+  <way id='289757584' action='delete' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='7' changeset='116452117'>
+    <tag k='addr:housenumber' v='6-6' />
+    <tag k='building' v='house' />
+    <tag k='building:colour' v='#a52a2a' />
+    <tag k='building:levels' v='2' />
+    <tag k='building:material' v='brick' />
+    <tag k='height' v='7.5' />
+    <tag k='roof:height' v='1.5' />
+    <tag k='roof:material' v='slate' />
+    <tag k='roof:shape' v='hipped' />
+  </way>
+  <way id='289757585' action='delete' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='3' changeset='116452117'>
+    <tag k='addr:housenumber' v='5-3' />
+    <tag k='building' v='house' />
+    <tag k='source' v='GSI/KIBAN 25000; Survey' />
+  </way>
+  <way id='289757586' action='delete' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='4' changeset='116452117'>
+    <tag k='addr:housenumber' v='6-5' />
+    <tag k='building' v='house' />
+  </way>
+  <way id='289757589' action='delete' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='4' changeset='116452117'>
+    <tag k='addr:housenumber' v='7-9' />
+    <tag k='building' v='house' />
+    <tag k='building:levels' v='2' />
+  </way>
+  <way id='289757590' action='delete' timestamp='2014-06-26T12:58:53Z' uid='621319' user='hayashi' visible='true' version='2' changeset='23181422'>
+    <tag k='building' v='house' />
+  </way>
+  <way id='289757591' action='delete' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='3' changeset='116452117'>
+    <tag k='addr:housenumber' v='6-10' />
+    <tag k='building' v='house' />
+  </way>
+  <way id='289757595' action='delete' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='3' changeset='116452117'>
+    <tag k='addr:housenumber' v='6-7' />
+    <tag k='building' v='house' />
+    <tag k='building:levels' v='7' />
+    <tag k='building:levels:underground' v='2' />
+    <tag k='ele' v='7.5' />
+    <tag k='start_date' v='2021-03' />
+  </way>
+  <way id='289757597' action='delete' timestamp='2014-06-26T12:57:52Z' uid='621319' user='hayashi' visible='true' version='2' changeset='23181390'>
+    <tag k='building' v='house' />
+  </way>
+  <way id='289757598' action='delete' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='3' changeset='116452117'>
+    <tag k='addr:housenumber' v='6-4' />
+    <tag k='building' v='house' />
+  </way>
+  <way id='289757601' action='delete' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='3' changeset='116452117'>
+    <tag k='addr:housenumber' v='6-8' />
+    <tag k='building' v='house' />
+  </way>
+  <way id='289757602' action='delete' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='3' changeset='116452117'>
+    <tag k='addr:housenumber' v='5-5' />
+    <tag k='demolished:building' v='house' />
+  </way>
+  <way id='289757604' action='delete' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='4' changeset='116452117'>
+    <tag k='addr:housenumber' v='7-4' />
+    <tag k='building' v='house' />
+    <tag k='building:levels' v='2' />
+  </way>
+  <way id='289897898' action='delete' timestamp='2014-06-27T10:42:27Z' uid='621319' user='hayashi' visible='true' version='2' changeset='23210859'>
+    <tag k='building' v='house' />
+  </way>
+  <way id='289897904' action='delete' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='9' changeset='116452117'>
+    <tag k='addr:housenumber' v='11-20' />
+    <tag k='building' v='apartments' />
+    <tag k='building:levels' v='2' />
+    <tag k='building:material' v='vinyl' />
+    <tag k='height' v='7.5' />
+    <tag k='name' v='宮久保 93' />
+    <tag k='roof:height' v='1.5' />
+    <tag k='roof:material' v='slate' />
+    <tag k='roof:shape' v='hipped' />
+  </way>
+  <way id='289897920' action='delete' timestamp='2014-06-27T00:20:31Z' uid='621319' user='hayashi' visible='true' version='2' changeset='23204058'>
+    <tag k='building' v='house' />
+  </way>
+  <way id='289897921' action='delete' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='3' changeset='116452117'>
+    <tag k='addr:housenumber' v='9-12' />
+    <tag k='building' v='house' />
+  </way>
+  <way id='289897925' action='delete' timestamp='2014-06-27T00:20:12Z' uid='621319' user='hayashi' visible='true' version='2' changeset='23204056'>
+    <tag k='building' v='house' />
+  </way>
+  <way id='289897927' action='delete' timestamp='2014-06-27T10:40:29Z' uid='621319' user='hayashi' visible='true' version='2' changeset='23210822'>
+    <tag k='building' v='house' />
+  </way>
+  <way id='289897932' action='delete' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='5' changeset='116452117'>
+    <tag k='addr:housenumber' v='11-1-1' />
+    <tag k='building' v='house' />
+    <tag k='building:levels' v='2' />
+  </way>
+  <way id='289897934' action='delete' timestamp='2014-06-27T10:42:54Z' uid='621319' user='hayashi' visible='true' version='2' changeset='23210865'>
+    <tag k='building' v='house' />
+  </way>
+  <way id='289897935' action='delete' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='3' changeset='116452117'>
+    <tag k='addr:housenumber' v='11-9' />
+    <tag k='building' v='apartments' />
+    <tag k='name' v='ハイツ宮久保' />
+  </way>
+  <way id='289897936' action='delete' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='3' changeset='116452117'>
+    <tag k='addr:housenumber' v='11-1-2' />
+    <tag k='building' v='yes' />
+  </way>
+  <way id='289897937' action='delete' timestamp='2014-06-27T00:19:39Z' uid='621319' user='hayashi' visible='true' version='2' changeset='23204051'>
+    <tag k='building' v='house' />
+  </way>
+  <way id='289897938' action='delete' timestamp='2014-06-27T10:41:27Z' uid='621319' user='hayashi' visible='true' version='2' changeset='23210836'>
+    <tag k='building' v='yes' />
+  </way>
+  <way id='289899982' action='delete' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='3' changeset='116452117'>
+    <tag k='addr:housenumber' v='12-1' />
+    <tag k='building' v='house' />
+  </way>
+  <way id='289899985' action='delete' timestamp='2022-01-22T00:49:38Z' uid='621319' user='hayashi' visible='true' version='3' changeset='116452117'>
+    <tag k='addr:housenumber' v='12-2' />
+    <tag k='building' v='house' />
+  </way>
+  <way id='945294860' action='delete' timestamp='2021-05-21T05:32:46Z' uid='621319' user='hayashi' visible='true' version='2' changeset='105063418'>
+    <tag k='building:part' v='yes' />
+    <tag k='height' v='3.1' />
+    <tag k='min_height' v='3' />
+  </way>
+  <way id='945294861' action='delete' timestamp='2021-05-22T12:20:40Z' uid='621319' user='hayashi' visible='true' version='3' changeset='105130745'>
+    <tag k='building:colour' v='#40e0d4' />
+    <tag k='building:material' v='vinyl' />
+    <tag k='building:part' v='yes' />
+    <tag k='height' v='6' />
+  </way>
+  <way id='945294862' action='delete' timestamp='2021-05-22T04:33:49Z' uid='621319' user='hayashi' visible='true' version='4' changeset='105117851'>
+    <tag k='building:colour' v='#20b2aa' />
+    <tag k='building:part' v='roof' />
+    <tag k='height' v='1' />
+    <tag k='min_height' v='6' />
+    <tag k='roof:shape' v='hipped' />
+  </way>
+  <way id='945294863' action='delete' timestamp='2021-05-21T23:49:26Z' uid='621319' user='hayashi' visible='true' version='2' changeset='105115051'>
+    <tag k='building:colour' v='#20b2aa' />
+    <tag k='building:part' v='roof' />
+    <tag k='height' v='3' />
+    <tag k='min_height' v='2.8' />
+    <tag k='roof:shape' v='flat' />
+  </way>
+  <way id='945645166' action='delete' timestamp='2021-05-22T00:10:57Z' uid='621319' user='hayashi' visible='true' version='1' changeset='105115302'>
+    <tag k='building' v='garage' />
+    <tag k='building:material' v='concrete' />
+    <tag k='height' v='2.0' />
+  </way>
+  <way id='945645167' action='delete' timestamp='2021-05-22T00:10:57Z' uid='621319' user='hayashi' visible='true' version='1' changeset='105115302'>
+    <tag k='building' v='container' />
+    <tag k='building:levels' v='1' />
+    <tag k='building:material' v='metal' />
+    <tag k='height' v='2.0' />
+    <tag k='roof:material' v='metal' />
+    <tag k='roof:shape' v='flat' />
+  </way>
+  <relation id='12738006' action='delete' timestamp='2021-05-20T23:40:08Z' uid='621319' user='hayashi' visible='true' version='1' changeset='105054278'>
+    <tag k='building' v='house' />
+    <tag k='building:levels' v='2' />
+    <tag k='height' v='6.2' />
+    <tag k='ref' v='7' />
+    <tag k='type' v='building' />
+  </relation>
+</osm>

@@ -31,6 +31,7 @@ import osm.surveyor.DetailTests;
 	//CitygmlFileTest_53392588.class,		// 東京都大田区 「name=都営大森西三丁目第2アパート」 innerあり
 	CitygmlFileTest_53392589.class,
 	CitygmlFileTest_53395404.class,		// Issue #49
+	Test_79.class,						// Issue #79
 	
 	CitygmlFileTest_A.class,
 	CitygmlFileTest_AA.class,

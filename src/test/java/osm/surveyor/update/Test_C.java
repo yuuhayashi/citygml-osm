@@ -206,7 +206,7 @@ public class Test_C extends OsmUpdaterTest {
 					assertEquals("3", relation.getTagValue("building:levels"));
 					assertEquals("2", relation.getTagValue("building:levels:underground"));
 					assertEquals("7.1", relation.getTagValue("height"));
-					assertEquals("2.54", relation.getTagValue("ele"));
+					assertEquals("2.48", relation.getTagValue("ele"));
 					assertEquals("東京都大田区大森中一丁目", relation.getTagValue("addr:full"));
 					assertNull(relation.getTagValue("ref:MLIT_PLATEAU"));
 					assertEquals(7, relation.getTagList().size());
@@ -222,7 +222,7 @@ public class Test_C extends OsmUpdaterTest {
 							assertNull(way.getTagValue("ref:MLIT_PLATEAU"));
 							assertNull(way.getTagValue("addr:full"));
 							assertEquals(way.getTagValue("height"), ("7.1"));
-							assertEquals("2.54", way.getTagValue("ele"));
+							assertEquals("2.48", way.getTagValue("ele"));
 							assertEquals(way.getTagValue("building"), ("yes"));
 							assertEquals(way.getTagValue("building:levels"), ("3"));
 							assertEquals(way.getTagValue("building:levels:underground"), ("2"));

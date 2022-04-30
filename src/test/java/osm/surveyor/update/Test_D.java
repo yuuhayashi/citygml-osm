@@ -145,16 +145,17 @@ public class Test_D extends OsmUpdaterTest {
 								}
 							*/
 							assertEquals("multipolygon", multiporygon.getTagValue("type"));
-							assertEquals("yes", multiporygon.getTagValue("building:part"));		// PLATEAUの値
+							assertEquals("apartments", multiporygon.getTagValue("building:part"));		// PLATEAUの値
 							assertEquals("3", multiporygon.getTagValue("building:levels"));
 							assertEquals("1", multiporygon.getTagValue("building:levels:underground"));
 							assertEquals("34.7", multiporygon.getTagValue("height"));
 							assertEquals("2.68", multiporygon.getTagValue("ele"));
 							assertEquals("東京都大田区大森西三丁目", multiporygon.getTagValue("addr:full"));
+							assertEquals("都営大森西三丁目第2アパート", multiporygon.getTagValue("name"));		// Issue #55
 							assertNotNull(multiporygon.getTag("start_date"));			// Issue #39 複合ビルでの”建築年”の扱い
 							assertNull(multiporygon.getTagValue("ref:MLIT_PLATEAU"));
 							assertNull(multiporygon.getTagValue("addr:ref"));
-							assertEquals(8, multiporygon.getTagList().size());
+							assertEquals(9, multiporygon.getTagList().size());
 							int outerCnt = 0;
 							int innerCnt = 0;
 							for (MemberBean member : multiporygon.getMemberList()) {
