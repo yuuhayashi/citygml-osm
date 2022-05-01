@@ -28,6 +28,9 @@ public class CitygmlLoad {
 			else if (args[0].equals("4th")) {
 				osm.surveyor.upload.OsmUploaderRoute.osmUploader();
 			}
+			else if (args[0].equals("pack")) {
+				osm.surveyor.tools.Pack.gmlPackage();
+			}
 		}
 		else {
 			loadDir();
