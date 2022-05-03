@@ -2,11 +2,14 @@ package osm.surveyor.download;
 
 import java.io.File;
 import java.util.List;
+import java.util.StringTokenizer;
 import java.util.stream.Stream;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import com.google.common.collect.Lists;
+
+import osm.surveyor.gml.camel.CitygmlLoad;
 
 public class OsmFileListProcessor implements Processor {
 
@@ -28,7 +31,24 @@ public class OsmFileListProcessor implements Processor {
             if (file.isDirectory()) {
                 files.addAll(getFiles(file.getAbsolutePath()));
             } else {
-                files.add(file);
+            	String osmName = new String();
+            	String filename = file.getName();
+            	StringTokenizer st = new StringTokenizer(filename, ".");
+            	if (st.countTokens() > 1) {
+                	for (int i = 0; i < (st.countTokens() - 1); i++) {
+                        String token = st.nextElement().toString();
+                		osmName += token +".";
+                	}
+            	}
+            	osmName += "org.osm";
+            	
+            	if (CitygmlLoad.isExit(directory, osmName)) {
+            		System.out.println("SKIP: '"+ osmName +"' already exists.");
+            	}
+            	else {
+            		System.out.println("INFO: Not exists '"+ osmName +"'.");
+                    files.add(file);
+            	}
             }
         });
         return files;
