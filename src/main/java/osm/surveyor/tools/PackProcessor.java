@@ -62,8 +62,13 @@ public class PackProcessor implements Processor {
         		files.add(new File(directory, mrgName));
         	}
     	}
-    	
-    	compress(gmlName, files);
+    	try {
+        	compress(gmlName, files);
+        	delete(files);
+    	}
+    	catch(Exception e) {
+    		throw e;
+    	}
 	}
 	
     public void compress(String name, List<File> files) throws IOException {
@@ -87,5 +92,17 @@ public class PackProcessor implements Processor {
     	}
     	os.close();
     	System.out.println("}");
+    }
+
+    public void delete(List<File> files) throws IOException {
+    	for (File file : files) {
+        	try {
+            	System.out.println("[INFO] delete file \t'"+ file.getName() +"';");
+            	Files.delete(file.toPath());
+        	}
+        	catch (Exception e) {
+        		System.out.println(e.toString());
+        	}
+    	}
     }
 }
