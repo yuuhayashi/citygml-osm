@@ -20,6 +20,7 @@ public class OsmLoadDirRoute extends RouteBuilder {
 		// カレントディレクトリを処理する
 		from("direct:osm-files")
 			.process(new OsmFileListProcessor())
+			.streamCaching()
 			.split()
 				.simple("${body}")
 				.process(new OsmFileProcessor())

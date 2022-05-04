@@ -19,6 +19,7 @@ public class OsmUpdaterRoute extends RouteBuilder {
 		
 		// (1) OSMファイルとORGファイルををLOADする
 		from("direct:org-file-read")
+		.streamCaching()
 		.process(new OsmFileReadProcessor())
 		.process(new OrgFileReadProcessor())
         .to("direct:org-updater")
@@ -26,14 +27,15 @@ public class OsmUpdaterRoute extends RouteBuilder {
 
 		// (2) 既存POIとマージする
 		from("direct:org-updater")
+		.streamCaching()
 		.process(new OrgUpdateProcessor())
         .to("direct:mrg-export")
         ;
 
 		// (3) MRGファイルに出力する
 		from("direct:mrg-export")
+		.streamCaching()
 		.process(new MrgExportProcessor())
-		//.to("stream:out")
         ;
 	}
 }

@@ -14,6 +14,7 @@ public class OsmDownload {
 
 	public static void osmDownload() throws Exception {
 		camel = new DefaultCamelContext();
+		camel.getStreamCachingStrategy().setBufferSize(64 * 4096);
 		camel.addRoutes(new OsmLoadDirRoute());
 		camel.addRoutes(new DownloadRoute());
 		

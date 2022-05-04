@@ -16,6 +16,7 @@ public class GmlLoadDirRoute extends RouteBuilder {
 		// カレントディレクトリを処理する
 		from("direct:gml-files")
 			.process(new GmlFileListProcessor())
+			.streamCaching()
 			.split()
 				.simple("${body}")
 				.process(new GmlFileProcessor())
