@@ -9,13 +9,13 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import com.google.common.collect.Lists;
 
-import osm.surveyor.citygml.OsmFiles;
+import osm.surveyor.citygml.OsmMrgFiles;
 import osm.surveyor.citygml.OsmOrgFiles;
 import osm.surveyor.gml.camel.CitygmlLoad;
 
-public class OsmFileListProcessor implements Processor {
+public class OrgFileListProcessor implements Processor {
 
-	// "direct:osm-files"
+	// "direct:org-files"
 	@Override
 	public void process(Exchange exchange) throws Exception {
 		List<File> files = getFiles(exchange.getIn().getBody(String.class));
@@ -27,7 +27,7 @@ public class OsmFileListProcessor implements Processor {
         List<File> files = Lists.newArrayList();
         Stream<File> stream = Stream.of(directory.listFiles((dir, name) -> {
             return !(name.contains("RECYCLE.BIN") || name.contains("System Volume Information"))
-                && OsmFiles.filter(name);
+                && OsmOrgFiles.filter(name);
         }));
         stream.forEach(file -> {
             if (file.isDirectory()) {
@@ -42,7 +42,7 @@ public class OsmFileListProcessor implements Processor {
                 		osmName += token +".";
                 	}
             	}
-            	osmName += OsmOrgFiles.SUFFIX;
+            	osmName += OsmMrgFiles.SUFFIX;
             	
             	if (CitygmlLoad.isExit(directory, osmName)) {
             		System.out.println("SKIP: '"+ osmName +"' already exists.");

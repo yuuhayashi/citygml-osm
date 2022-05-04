@@ -10,7 +10,8 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.camel.component.file.FileEndpoint;
 
-import osm.surveyor.download.OsmFiles;
+import osm.surveyor.citygml.OsmFiles;
+import osm.surveyor.citygml.OsmOrgFiles;
 import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.OsmBean;
 
@@ -36,9 +37,9 @@ public class OrgExportFileProcessor implements Processor {
 		File file = endpoint.getFile();
 		
 		String name = file.getName();
-		if (name.endsWith(OsmFiles.SUFFIX_OSM)) {
-			String filename = name.substring(0, name.length() - OsmFiles.SUFFIX_OSM.length());
-			File outf = (Paths.get(".", filename + OsmFiles.SUFFIX_ORG_OSM).toFile());
+		if (name.endsWith(OsmFiles.SUFFIX)) {
+			String filename = name.substring(0, name.length() - OsmFiles.SUFFIX.length());
+			File outf = (Paths.get(".", filename + OsmOrgFiles.SUFFIX).toFile());
 
 			try (FileWriter fw = new FileWriter(outf)) {
 				JAXB.marshal(org, fw);

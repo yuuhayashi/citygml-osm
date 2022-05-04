@@ -1,12 +1,10 @@
-package osm.surveyor.download;
+package osm.surveyor.citygml;
 
 import java.util.Map;
 import org.apache.camel.Exchange;
 
 public class OsmFiles {
-	public static String SUFFIX_OSM = ".osm";
-	public static String SUFFIX_MRG_OSM = ".mrg.osm";
-	public static String SUFFIX_ORG_OSM = ".org.osm";
+	public static String SUFFIX = ".osm";
 
 	public boolean filter(Exchange exchange) {
 		Map<String, Object> headers = exchange.getIn().getHeaders();
@@ -15,8 +13,8 @@ public class OsmFiles {
 	}
 	
 	public static boolean filter(String name) {
-		if (name.endsWith(SUFFIX_OSM)) {
-			if (!name.endsWith(SUFFIX_MRG_OSM) && !name.endsWith(SUFFIX_ORG_OSM)) {
+		if (name.endsWith(SUFFIX)) {
+			if (!name.endsWith(SUFFIX) && !name.endsWith(OsmOrgFiles.SUFFIX)) {
 				return true;
 			}
 		}
