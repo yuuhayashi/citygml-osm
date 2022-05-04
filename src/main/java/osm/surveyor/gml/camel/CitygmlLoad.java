@@ -39,6 +39,8 @@ public class CitygmlLoad {
 
 	public static void loadDir() throws Exception {
 		camel = new DefaultCamelContext();
+		camel.getStreamCachingStrategy().setSpoolThreshold(80 * 256 * 4096);
+		camel.getStreamCachingStrategy().setBufferSize(20 * 256 * 4096);
 		camel.addRoutes(new GmlLoadDirRoute());
 		camel.addRoutes(new GmlLoadRoute());
 		

@@ -15,6 +15,7 @@ public class OsmUploaderRoute extends RouteBuilder {
 	
 	public static void osmUploader() throws Exception {
 		camel = new DefaultCamelContext();
+		camel.getStreamCachingStrategy().setBufferSize(64 * 4096);
 		camel.addRoutes(new OsmUploaderRoute());
 		
 		System.out.println("osm-4th.camel.start();");
@@ -43,6 +44,7 @@ public class OsmUploaderRoute extends RouteBuilder {
 		
 		// (1) ファイル`checked.osm`をLOADする
 		from("direct:checked-file-read")
+		.streamCaching()
 		.process(new CheckedFileProcessor())
 		.process(new OsmFileReadProcessor())
         .to("direct:checked-convert")
@@ -50,14 +52,15 @@ public class OsmUploaderRoute extends RouteBuilder {
 
 		// (2) OpenStreetMapへのアップロード用に変換する
 		from("direct:checked-convert")
+		.streamCaching()
 		.process(new CheckedConvertProcessor())
         .to("direct:release-export")
         ;
 
 		// (3) RELEASEファイル(`upload.osm`)に出力する
 		from("direct:release-export")
+		.streamCaching()
 		.process(new ReleaseExportProcessor())
-		//.to("stream:out")
         ;
 	}
 }

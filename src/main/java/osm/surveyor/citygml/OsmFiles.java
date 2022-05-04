@@ -14,7 +14,7 @@ public class OsmFiles {
 	
 	public static boolean filter(String name) {
 		if (name.endsWith(SUFFIX)) {
-			if (!name.endsWith(SUFFIX) && !name.endsWith(OsmOrgFiles.SUFFIX)) {
+			if (!name.endsWith(OsmOrgFiles.SUFFIX) && !name.endsWith(OsmMrgFiles.SUFFIX)) {
 				return true;
 			}
 		}

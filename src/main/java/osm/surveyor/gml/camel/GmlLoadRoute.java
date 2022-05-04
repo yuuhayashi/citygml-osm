@@ -23,6 +23,7 @@ public class GmlLoadRoute extends RouteBuilder {
 		
 		// (1) GMLファイルをパースする
 		from("direct:gml-file-read")
+		.streamCaching()
 		.process(new GmlFileReadProcessor())	// GMLファイルをパース
 		.process(new GerbageWayProcessor())		// RELATIONに所属していないWAYを削除する
 		.process(new GerbageNodeProcessor())	// WAYに所属しないNODEを削除する
@@ -33,6 +34,7 @@ public class GmlLoadRoute extends RouteBuilder {
     	// 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる
     	// Relation:multipolygon の MaxHeightを outline->Multipolygonへ設定する
 		from("direct:inRelationMarge")
+		.streamCaching()
 		.process(new RelationMargeProcessor())
         .to("direct:inBuildingGarbage")
         ;
@@ -40,6 +42,7 @@ public class GmlLoadRoute extends RouteBuilder {
 		// (3) メンバーが一つしかないRelation:building を削除する
 		// (3) メンバーが一つしかないRelation:multipolygon と polygon:member を削除する
 		from("direct:inBuildingGarbage")
+		.streamCaching()
 		.process(new BuildingGarbageProcessor())
         .to("direct:inOutlineFactory")
         ;
@@ -47,12 +50,14 @@ public class GmlLoadRoute extends RouteBuilder {
         // (4) Relation:building->member:role=port のWay:outlineを作成する
         // (4) Relation:multipolygon->outerにWay:outline
 		from("direct:inOutlineFactory")
+		.streamCaching()
 		.process(new OutlineFactoryProcessor())
         .to("direct:inOsmMargeWay")
         ;
 		
         // (5) "outline"と"part"が重複しているPART を削除する
 		from("direct:inOsmMargeWay")
+		.streamCaching()
 		.process(new OsmMargeWayProcessor())
 		.process(new GerbageWayProcessor())		// RELATIONに所属していないWAYを削除する
 		.process(new RelationProcessor())		// RELATIONの"name"を決定する。#76:オブジェクトが存在しないメンバーをRELATIONから削除する
@@ -61,9 +66,9 @@ public class GmlLoadRoute extends RouteBuilder {
 		
 		// (6) OSMファイルに出力する
 		from("direct:osm-export")
+		.streamCaching()
 		.process(new GmlFileToOsmProcessor())
 		.process(new OsmExportProcessor())
-		//.to("stream:out")
         ;
 	}
 

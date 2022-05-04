@@ -15,6 +15,7 @@ public class OsmUpdater {
 	
 	public static void osmUpdate() throws Exception {
 		camel = new DefaultCamelContext();
+		camel.getStreamCachingStrategy().setBufferSize(64 * 4096);
 		camel.addRoutes(new OrgLoadDirRoute());
 		camel.addRoutes(new OsmUpdaterRoute());
 		
