@@ -4,7 +4,7 @@ import java.util.Map;
 import org.apache.camel.Exchange;
 
 public class GmlFiles {
-	public static String SUFFIX_GML = ".gml";
+	public static String SUFFIX = ".gml";
 
 	public boolean filter(Exchange exchange) {
 		Map<String, Object> headers = exchange.getIn().getHeaders();
@@ -13,7 +13,7 @@ public class GmlFiles {
 	}
 
 	public static boolean filter(String name) {
-		if (name.endsWith(SUFFIX_GML)) {
+		if (name.endsWith(SUFFIX)) {
 			return true;
 		}
 		return false;

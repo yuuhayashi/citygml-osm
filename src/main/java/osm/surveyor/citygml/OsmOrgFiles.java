@@ -1,16 +1,18 @@
-package osm.surveyor.download;
+package osm.surveyor.citygml;
 
 import java.io.File;
 import java.nio.file.Files;
 
 import org.apache.camel.Exchange;
 
-public class OsmMrgFiles extends OsmFiles {
+public class OsmOrgFiles extends OsmFiles {
+	public static String SUFFIX = ".org.osm";
+	
 	public boolean filter(Exchange exchange) {
 		File file = exchange.getIn().getBody(File.class);
 		if (Files.isRegularFile(file.toPath())) {
 			String name = file.getName();
-			if (name.endsWith(SUFFIX_MRG_OSM)) {
+			if (name.endsWith(SUFFIX)) {
 				return true;
 			}
 		}

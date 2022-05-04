@@ -2,7 +2,7 @@ package osm.surveyor.osm.camel;
 
 import org.apache.camel.builder.RouteBuilder;
 
-import osm.surveyor.download.OsmFileListProcessor;
+import osm.surveyor.download.OrgFileListProcessor;
 import osm.surveyor.download.OsmFileProcessor;
 
 public class OrgLoadDirRoute extends RouteBuilder {
@@ -22,7 +22,7 @@ public class OrgLoadDirRoute extends RouteBuilder {
 		
 		// カレントディレクトリを処理する
 		from("direct:org-files")
-			.process(new OsmFileListProcessor())
+			.process(new OrgFileListProcessor())
 			.split()
 				.simple("${body}")
 				.process(new OsmFileProcessor())

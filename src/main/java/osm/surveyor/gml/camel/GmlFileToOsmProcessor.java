@@ -8,7 +8,7 @@ import org.apache.camel.Processor;
 import org.apache.camel.component.file.FileEndpoint;
 
 import osm.surveyor.citygml.GmlFiles;
-import osm.surveyor.download.OsmFiles;
+import osm.surveyor.citygml.OsmFiles;
 
 public class GmlFileToOsmProcessor implements Processor {
 
@@ -22,9 +22,9 @@ public class GmlFileToOsmProcessor implements Processor {
 		File file = endpoint.getFile();
 		
 		String name = file.getName();
-		if (name.endsWith(GmlFiles.SUFFIX_GML)) {
-			String filename = name.substring(0, name.length() - GmlFiles.SUFFIX_GML.length());
-			File outf = (Paths.get(".", filename + OsmFiles.SUFFIX_OSM).toFile());
+		if (name.endsWith(GmlFiles.SUFFIX)) {
+			String filename = name.substring(0, name.length() - GmlFiles.SUFFIX.length());
+			File outf = (Paths.get(".", filename + OsmFiles.SUFFIX).toFile());
 			endpoint.setFile(outf);
 			exchange.setFromEndpoint(endpoint);
 		}
