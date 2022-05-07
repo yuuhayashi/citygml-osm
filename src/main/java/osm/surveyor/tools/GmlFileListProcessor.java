@@ -1,6 +1,7 @@
 package osm.surveyor.tools;
 
 import java.io.File;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.stream.Stream;
@@ -11,6 +12,7 @@ import com.google.common.collect.Lists;
 
 import osm.surveyor.citygml.GmlFiles;
 import osm.surveyor.gml.camel.CitygmlLoad;
+import osm.surveyor.tools.geojson.GeoJson;
 
 public class GmlFileListProcessor implements Processor {
 
@@ -19,6 +21,44 @@ public class GmlFileListProcessor implements Processor {
 	public void process(Exchange exchange) throws Exception {
 		List<File> files = getFiles(exchange.getIn().getBody(String.class));
         exchange.getIn().setBody(files);
+		
+		// インデックス用のGeojsonファイルを作成する
+		String name = null;
+		GeoJson json = new GeoJson();
+		for (File file : files) {
+			if (name == null) {
+				File dir = getDir(file);
+				name = dir.getName();
+				json.setName(name);
+			}
+        	String code = new String();
+        	String filename = file.getName();
+        	StringTokenizer st = new StringTokenizer(filename, "_.-");
+        	if (st.countTokens() > 1) {
+                code = st.nextElement().toString();
+        	}
+        	try {
+        		Long.parseLong(code);
+            	json.put(code);
+        	}
+        	catch (NumberFormatException e) {
+        		// 何もしない
+        	}
+		}
+		if (name != null) {
+			json.export(new File(name + ".geojson"));
+		}
+	}
+	
+	File getDir(File file) {
+		File dir = new File(Paths.get(file.getAbsolutePath()).getParent().toString());
+		if (dir.getName().equals("bldg")) {
+			return getDir(new File(dir.getParent()));
+		}
+		if (dir.getName().equals(".")) {
+			return getDir(new File(dir.getParent()));
+		}
+		return dir;
 	}
 
 	/**
