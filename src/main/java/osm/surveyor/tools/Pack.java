@@ -29,4 +29,22 @@ public class Pack {
 		System.out.println("pack.camel.end();");
 	}
 
+	public static void unpack() throws Exception {
+		camel = new DefaultCamelContext();
+		camel.addRoutes(new UnPackRoute());
+		
+		System.out.println("pack.camel.start();");
+		
+        camel.start();
+        camel.createProducerTemplate().sendBody("direct:zip-files", ".");
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            try {
+                camel.stop();
+            } catch (Exception e) {}
+    		System.out.println("pack.camel.stop();");
+        }));
+        
+		System.out.println("pack.camel.end();");
+	}
 }

@@ -133,6 +133,20 @@
   </pluginRepositories>
   
   <dependencies>
+    <!-- http://surveyor.mydns.jp/archiva/#artifact/haya4.tools/haya4-jpmesh -->
+    <dependency>
+      <groupId>haya4.tools</groupId>
+      <artifactId>haya4-jpmesh</artifactId>
+      <version>1.0.1</version>
+    </dependency>
+    
+    <!-- http://surveyor.mydns.jp/archiva/#artifact/haya4.tools/haya4-compress -->
+    <dependency>
+      <groupId>haya4.tools</groupId>
+      <artifactId>haya4-compress</artifactId>
+      <version>0.0.3</version>
+    </dependency>
+  
     <!-- https://mvnrepository.com/artifact/com.googlecode.maven-download-plugin/download-maven-plugin -->
     <dependency>
       <groupId>com.googlecode.maven-download-plugin</groupId>

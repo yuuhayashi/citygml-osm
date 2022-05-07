@@ -31,6 +31,9 @@ public class CitygmlLoad {
 			else if (args[0].equals("pack")) {
 				osm.surveyor.tools.Pack.gmlPackage();
 			}
+			else if (args[0].equals("unpack")) {
+				osm.surveyor.tools.Pack.unpack();
+			}
 		}
 		else {
 			loadDir();
