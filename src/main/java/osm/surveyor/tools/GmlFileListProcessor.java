@@ -10,6 +10,7 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import com.google.common.collect.Lists;
 
+import osm.surveyor.citygml.ConversionTable;
 import osm.surveyor.citygml.GmlFiles;
 import osm.surveyor.gml.camel.CitygmlLoad;
 import osm.surveyor.tools.geojson.GeoJson;
@@ -21,10 +22,16 @@ public class GmlFileListProcessor implements Processor {
 	public void process(Exchange exchange) throws Exception {
 		List<File> files = getFiles(exchange.getIn().getBody(String.class));
         exchange.getIn().setBody(files);
-		
+        
 		// インデックス用のGeojsonファイルを作成する
 		String name = null;
 		GeoJson json = new GeoJson();
+		ConversionTable table = new ConversionTable(Paths.get(ConversionTable.fileName).toFile());
+		if (table != null) {
+			if (table.version != null) {
+				json.setVersion(table.version);
+			}
+		}
 		for (File file : files) {
 			if (name == null) {
 				File dir = getDir(file);

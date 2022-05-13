@@ -18,7 +18,9 @@ public class ConversionTable {
 	public static void main(String[] args) {
 		
 		ConversionTable table = new ConversionTable(Paths.get(ConversionTable.fileName).toFile());
-		
+		if (table.version != null) {
+			System.out.println("version: "+ table.version + ",\t");
+		}
 		for (Usage usage : table.usageList) {
 			System.out.print(usage.code + ",\t");
 			System.out.print(usage.name + ",\t");
@@ -47,10 +49,12 @@ public class ConversionTable {
 		}
 	}
 	
+	public String version = null;
 	public ArrayList<Usage> usageList = new ArrayList<>();
 	
 	void parseUsage(StringBuilder sbSentence) {
 		JSONObject jsonObj = new JSONObject(sbSentence.toString());
+		version = jsonObj.getString("version");
 		JSONArray usageList = jsonObj.getJSONArray("usage");
 		for (int i = 0; i < usageList.length(); i++) {
 			Usage usage = new Usage(usageList.getJSONObject(i));

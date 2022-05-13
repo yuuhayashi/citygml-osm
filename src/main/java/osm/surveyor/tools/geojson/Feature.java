@@ -18,16 +18,22 @@ import org.json.JSONObject;
  *
  */
 public class Feature extends JSONObject {
+	JSONObject prop = new JSONObject();
+	
 	public Feature() {
 		this.put("type", "Feature");
-		this.put("properties", new JSONObject());
+		this.put("properties", prop);
 	}
 	
 	public void setId(String id) {
 		if (id != null) {
-			JSONObject prop = new JSONObject();
 			prop.put("id", id);
-			this.put("properties", prop);
+		}
+	}
+	
+	public void setVersion(String version) {
+		if (version != null) {
+			prop.put("version", version);
 		}
 	}
 	

@@ -1,4 +1,5 @@
 {
+	"version": "1.4.9",
 	"usage" : [
 		{"code":"401","name":"業務施設",	"building":"commercial"},
 		{"code":"402","name":"商業施設",	"building":"retail"},
