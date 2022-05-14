@@ -5,7 +5,7 @@ import org.json.JSONObject;
 /**
  * {
  * 		"type": "Feature",
- * 		"properties": {"id": "53394526"},
+ * 		"properties": {"id": "53394526", "version": "1.4.9-SNAPSHOT", "path": "54392356_bldg_6697_op.zip"},
  * 		"geometry": Point.class
  * },
  * {
@@ -34,6 +34,12 @@ public class Feature extends JSONObject {
 	public void setVersion(String version) {
 		if (version != null) {
 			prop.put("version", version);
+		}
+	}
+	
+	public void setPath(String path) {
+		if (path != null) {
+			prop.put("path", path);
 		}
 	}
 	

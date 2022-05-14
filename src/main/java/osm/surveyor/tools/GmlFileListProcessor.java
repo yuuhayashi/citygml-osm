@@ -20,8 +20,8 @@ public class GmlFileListProcessor implements Processor {
 	// "direct:gml-files"
 	@Override
 	public void process(Exchange exchange) throws Exception {
-		List<File> files = getFiles(exchange.getIn().getBody(String.class));
-        exchange.getIn().setBody(files);
+		List<File> gmlfiles = getFiles(exchange.getIn().getBody(String.class));
+        exchange.getIn().setBody(gmlfiles);
         
 		// インデックス用のGeojsonファイルを作成する
 		String name = null;
@@ -32,14 +32,15 @@ public class GmlFileListProcessor implements Processor {
 				json.setVersion(table.version);
 			}
 		}
-		for (File file : files) {
+		for (File gmlfile : gmlfiles) {
 			if (name == null) {
-				File dir = getDir(file);
+				File dir = getDir(gmlfile);
 				name = dir.getName();
 				json.setName(name);
 			}
         	String code = new String();
-        	String filename = file.getName();
+        	String filename = gmlfile.getName();
+        	json.setPath(withoutExt(filename));
         	StringTokenizer st = new StringTokenizer(filename, "_.-");
         	if (st.countTokens() > 1) {
                 code = st.nextElement().toString();
@@ -55,6 +56,14 @@ public class GmlFileListProcessor implements Processor {
 		if (name != null) {
 			json.export(new File(name + ".geojson"));
 		}
+	}
+	
+	String withoutExt(String filename) {
+		int i = filename.lastIndexOf('.');
+		if (i > 0) {
+		    return filename.substring(0, i);
+		}
+		return filename;
 	}
 	
 	File getDir(File file) {
@@ -75,14 +84,14 @@ public class GmlFileListProcessor implements Processor {
 	 */
 	private List<File> getFiles(String path) {
         File directory = new File(path);
-        List<File> files = Lists.newArrayList();
+        List<File> gmlfiles = Lists.newArrayList();
         Stream<File> stream = Stream.of(directory.listFiles((dir, name) -> {
             return !(name.contains("RECYCLE.BIN") || name.contains("System Volume Information"))
                 && GmlFiles.filter(name);
         }));
         stream.forEach(file -> {
             if (file.isDirectory()) {
-                files.addAll(getFiles(file.getAbsolutePath()));
+                gmlfiles.addAll(getFiles(file.getAbsolutePath()));
             } else {
             	String osmName = new String();
             	String filename = file.getName();
@@ -96,13 +105,13 @@ public class GmlFileListProcessor implements Processor {
             	osmName += "osm";
             	
             	if (CitygmlLoad.isExit(directory, osmName)) {
-                    files.add(file);
+                    gmlfiles.add(file);
             	}
             	else {
             		System.out.println("SKIP: Not exists  '"+ osmName +"'.");
             	}
             }
         });
-        return files;
+        return gmlfiles;
     }
 }
