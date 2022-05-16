@@ -15,9 +15,7 @@ import osm.surveyor.citygml.ConversionTable;
  * 		"type": "FeatureCollection",
  * 		"crs": {
  * 			"type": "name",
- * 			"properties": {
- * 				"name": "10207_tatebayashi-shi_2020"
- * 			}
+ * 			"properties": {"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}
  * 		},
  * 		"features": [ Feature.class ]
  * 	}
@@ -35,17 +33,14 @@ public class GeoJson extends JSONObject {
 	ConversionTable conversion = null;
 	
 	public GeoJson() {
-		crs.put("type", "name");
-		crs.put("properties", properties);
+		this.properties.put("name", "urn:ogc:def:crs:OGC:1.3:CRS84");
+		this.crs.put("type", "name");
+		this.crs.put("properties", this.properties);
 		this.put("type", this.type);
 		this.put("crs", crs);
 		this.put("features", this.features);
 	}
 
-	public void setName(String name) {
-		this.properties.put("name", name);
-	}
-	
 	public void setVersion(String version) {
 		this.version = version;
 	}
