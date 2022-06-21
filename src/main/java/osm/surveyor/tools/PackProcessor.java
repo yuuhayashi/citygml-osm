@@ -14,6 +14,10 @@ import org.apache.camel.Processor;
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream;
 
+import osm.surveyor.citygml.GmlFiles;
+import osm.surveyor.citygml.OsmFiles;
+import osm.surveyor.citygml.OsmMrgFiles;
+import osm.surveyor.citygml.OsmOrgFiles;
 import osm.surveyor.gml.camel.CitygmlLoad;
 
 public class PackProcessor implements Processor {
@@ -40,23 +44,23 @@ public class PackProcessor implements Processor {
         	}
     	}
     	
-    	if (CitygmlLoad.isExit(directory, gmlName+".gml")) {
+    	if (CitygmlLoad.isExit(directory, gmlName + GmlFiles.SUFFIX)) {
     		System.out.println("INFO: exists '"+ gmlName +".gml'");
     		files.add(file);
     		
-    		String osmName = gmlName + ".osm";
+    		String osmName = gmlName + OsmFiles.SUFFIX;
         	if (CitygmlLoad.isExit(directory, osmName)) {
         		System.out.println("INFO: '"+ osmName +"' exists.");
         		files.add(new File(directory, osmName));
         	}
     		
-    		String orgName = gmlName + ".org.osm";
+    		String orgName = gmlName + OsmOrgFiles.SUFFIX;
         	if (CitygmlLoad.isExit(directory, orgName)) {
         		System.out.println("INFO: '"+ orgName +"' exists.");
         		files.add(new File(directory, orgName));
         	}
     		
-    		String mrgName = gmlName + ".mrg.osm";
+    		String mrgName = gmlName + OsmMrgFiles.SUFFIX;
         	if (CitygmlLoad.isExit(directory, mrgName)) {
         		System.out.println("INFO: '"+ mrgName +"' exists.");
         		files.add(new File(directory, mrgName));

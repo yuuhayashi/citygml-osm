@@ -42,11 +42,10 @@ public class GmlFileListProcessor implements Processor {
 					name = dir.getName();
 					path = name + "/" + path;
 				}
-				json.setName(name);
 			}
         	String code = new String();
         	String filename = gmlfile.getName();
-        	json.setPath(path + withoutExt(filename) + ".zip");
+        	json.setPath(withoutExt(filename) + ".zip");
         	StringTokenizer st = new StringTokenizer(filename, "_.-");
         	if (st.countTokens() > 1) {
                 code = st.nextElement().toString();
@@ -60,7 +59,7 @@ public class GmlFileListProcessor implements Processor {
         	}
 		}
 		if (name != null) {
-			json.export(new File(name + ".geojson"));
+			json.export(new File("index.geojson"));
 		}
 	}
 	
