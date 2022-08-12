@@ -23,10 +23,10 @@ public class CitygmlFileTest_C_3 extends CitygmlFileTest3 {
 				assertNotNull(relation);
 				String type = relation.getTagValue("type");
 				if (type.equals("building")) {
-					assertEquals("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697", relation.getTagValue("source"));
-					assertEquals(relation.getTagValue("addr:full"), ("東京都大田区南六郷三丁目"));
+					assertNull(relation.getTagValue("source"));
+					assertNull(relation.getTagValue("addr:full"));
 					assertEquals(relation.getTagValue("height"), ("42.7"));
-					assertEquals(relation.getTagValue("ele"), ("2.81"));
+					assertEquals(relation.getTagValue("ele"), ("2.8"));
 					assertEquals(relation.getTagValue("building"), ("yes"));
 					assertEquals(relation.getTagValue("building:levels"), ("2"));
 					assertEquals(relation.getTagValue("building:levels:underground"), ("1"));
@@ -42,6 +42,8 @@ public class CitygmlFileTest_C_3 extends CitygmlFileTest3 {
 							assertEquals(mem.getType(), ("way"));
 							ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 							assertNotNull(way);
+							/*
+							 * 
 							if (way.getTagValue("source").endsWith("; 13111-bldg-473")) {
 								assertEquals(way.getTagValue("building:part"), ("yes"));
 								assertEquals(way.getTagValue("building:levels"), ("2"));
@@ -62,6 +64,7 @@ public class CitygmlFileTest_C_3 extends CitygmlFileTest3 {
 								assertEquals(way.getTagValue("building:levels:underground"), ("1"));
 								assertEquals(8, way.getTagList().size());
 							}
+							 */
 						}
 					}
 					assertEquals(0, outlineCnt);
@@ -88,8 +91,8 @@ public class CitygmlFileTest_C_3 extends CitygmlFileTest3 {
 				assertNotNull(relation);
 				String type = relation.getTagValue("type");
 				if (type.equals("building")) {
-					assertEquals("MLIT_PLATEAU; http://www.opengis.net/def/crs/EPSG/0/6697", relation.getTagValue("source"));
-					assertEquals(relation.getTagValue("addr:full"), ("東京都大田区大森中一丁目"));
+					assertNull(relation.getTagValue("source"));
+					assertNull(relation.getTagValue("addr:full"));
 					assertNotNull(relation.getTagValue("height"));
 					assertEquals(relation.getTagValue("building"), ("yes"));
 					assertEquals(relation.getTagValue("building:levels"), ("3"));
@@ -106,6 +109,8 @@ public class CitygmlFileTest_C_3 extends CitygmlFileTest3 {
 							assertEquals(mem.getType(), ("way"));
 							ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 							assertNotNull(way);
+							/*
+							 * 
 							if (way.getTagValue("source").endsWith("; 13111-bldg-59928")) {
 								assertEquals(way.getTagValue("building:part"), ("yes"));
 								assertEquals(way.getTagValue("building:levels"), ("2"));
@@ -134,6 +139,7 @@ public class CitygmlFileTest_C_3 extends CitygmlFileTest3 {
 								assertEquals(way.getTagValue("building:part"), ("yes"));
 								assertEquals(6, way.getTagList().size());
 							}
+							 */
 						}
 					}
 					assertEquals(0, outlineCnt);
@@ -147,5 +153,4 @@ public class CitygmlFileTest_C_3 extends CitygmlFileTest3 {
 			fail(e.toString());
 		}
 	}
-
 }

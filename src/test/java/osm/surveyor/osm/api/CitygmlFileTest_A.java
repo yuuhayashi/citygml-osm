@@ -22,22 +22,22 @@ public class CitygmlFileTest_A extends GmlLoadRouteTest {
 				if (way.getTagValue("ref:MLIT_PLATEAU") != null) {
 					if (way.getTagValue("ref:MLIT_PLATEAU").equals("13111-bldg-365")) {
 						assertEquals("13111-bldg-365", way.getTagValue("ref:MLIT_PLATEAU"));
-						assertEquals("東京都大田区南六郷三丁目", way.getTagValue("addr:full"));
+						assertNull(way.getTagValue("addr:full"));
 						assertEquals("2.4", way.getTagValue("height"));
 						assertEquals("2.8", way.getTagValue("ele"));
 						assertEquals("yes", way.getTagValue("building"));
-						assertEquals(5, way.getTagList().size());
+						assertEquals(4, way.getTagList().size());
 					}
 					else if (way.getTagValue("ref:MLIT_PLATEAU").equals("13111-bldg-466")) {
 						assertEquals("13111-bldg-466", way.getTagValue("ref:MLIT_PLATEAU"));
-						assertEquals("東京都大田区南六郷三丁目", way.getTagValue("addr:full"));
+						assertNull(way.getTagValue("addr:full"));
 						assertEquals("4.6", way.getTagValue("height"));
 						assertEquals("2.7", way.getTagValue("ele"));
 						assertEquals("1976", way.getTagValue("start_date"));
 						assertEquals("house", way.getTagValue("building"));
 						assertEquals("2", way.getTagValue("building:levels"));
 						assertEquals("1", way.getTagValue("building:levels:underground"));
-						assertEquals(8, way.getTagList().size());
+						assertEquals(7, way.getTagList().size());
 					}
 				}
 			}

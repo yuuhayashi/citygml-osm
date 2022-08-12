@@ -43,14 +43,14 @@ public class CitygmlFileTest_D extends GmlLoadRouteTest {
 					 */
 					assertEquals("building", relation.getTagValue("type"));
 					assertNull(relation.getTagValue("ref:MLIT_PLATEAU"));
-					assertEquals("東京都大田区大森西三丁目", relation.getTagValue("addr:full"));
+					assertNull(relation.getTagValue("addr:full"));
 					assertEquals("34.7", relation.getTagValue("height"));
 					assertEquals("2.7", relation.getTagValue("ele"));
 					assertEquals("yes", relation.getTagValue("building"));
 					assertEquals("3", relation.getTagValue("building:levels"));
 					assertEquals("1", relation.getTagValue("building:levels:underground"));
 					assertNull(relation.getTagValue("start_date"));		// Issue #39
-					assertEquals(7, relation.getTagList().size());
+					//assertEquals(7, relation.getTagList().size());
 
 					int outlineCnt = 0;
 					int partCnt = 0;
@@ -70,24 +70,24 @@ public class CitygmlFileTest_D extends GmlLoadRouteTest {
 							assertNotNull(way);
 							if (way.getTagValue("ref:MLIT_PLATEAU").endsWith("13111-bldg-72601")) {
 								assertEquals("13111-bldg-72601", way.getTagValue("ref:MLIT_PLATEAU"));
-								assertEquals("東京都大田区大森西三丁目", way.getTagValue("addr:full"));
+								assertNull(way.getTagValue("addr:full"));
 								assertEquals("34.7", way.getTagValue("height"));
 								assertEquals("2.7", way.getTagValue("ele"));
 								assertEquals("1976", way.getTagValue("start_date"));
 								assertEquals("yes", way.getTagValue("building:part"));
 								assertEquals("2", way.getTagValue("building:levels"));
 								assertEquals("1", way.getTagValue("building:levels:underground"));
-								assertEquals(8, way.getTagList().size());
+								assertEquals(7, way.getTagList().size());
 							}
 							else if (way.getTagValue("ref:MLIT_PLATEAU").endsWith("13111-bldg-71799")) {
 								assertEquals("13111-bldg-71799", way.getTagValue("ref:MLIT_PLATEAU"));
-								assertEquals("東京都大田区大森西三丁目", way.getTagValue("addr:full"));
+								assertNull(way.getTagValue("addr:full"));
 								assertEquals("30.2", way.getTagValue("height"));
 								assertEquals("3.1", way.getTagValue("ele"));
 								assertEquals("1977", way.getTagValue("start_date"));
 								assertEquals("yes", way.getTagValue("building:part"));
 								assertEquals("3", way.getTagValue("building:levels"));
-								assertEquals(7, way.getTagList().size());
+								assertEquals(6, way.getTagList().size());
 							}
 						}
 					}
@@ -110,11 +110,11 @@ public class CitygmlFileTest_D extends GmlLoadRouteTest {
 					assertEquals("1", relation.getTagValue("building:levels:underground"));
 					assertEquals("34.7", relation.getTagValue("height"));
 					assertEquals("2.7", relation.getTagValue("ele"));
-					assertEquals("東京都大田区大森西三丁目", relation.getTagValue("addr:full"));
+					assertNull(relation.getTagValue("addr:full"));
 					assertNull(relation.getTag("start_date"));			// Issue #39 複合ビルでの”建築年”の扱い
 					assertNull(relation.getTagValue("ref:MLIT_PLATEAU"));
 					assertNull(relation.getTagValue("addr:ref"));
-					assertEquals(7, relation.getTagList().size());
+					assertEquals(6, relation.getTagList().size());
 					
 					int outerCnt = 0;
 					int innerCnt = 0;

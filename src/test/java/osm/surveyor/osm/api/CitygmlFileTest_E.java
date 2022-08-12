@@ -35,12 +35,12 @@ public class CitygmlFileTest_E extends GmlLoadRouteTest {
 					assertEquals(relation.getTagValue("building:levels"), ("3"));
 					assertEquals(relation.getTagValue("building:levels:underground"), ("1"));
 					assertEquals(relation.getTagValue("name"), ("大田病院"));
-					assertEquals(relation.getTagValue("addr:full"), ("東京都大田区大森東四丁目"));
+					assertNull(relation.getTagValue("addr:full"));
 					assertNull(relation.getTagValue("addr:ref"));
 					assertEquals(relation.getTagValue("height"), ("21.6"));
 					assertEquals("1.6", relation.getTagValue("ele"));
 					assertNull(relation.getTagValue("ref:MLIT_PLATEAU"));
-					assertEquals(8, relation.getTagList().size());
+					//assertEquals(8, relation.getTagList().size());
 
 					int outlineCnt = 0;
 					int partCnt = 0;
@@ -57,13 +57,13 @@ public class CitygmlFileTest_E extends GmlLoadRouteTest {
 							assertEquals("大田病院", polygon.getTagValue("name"));
 							assertEquals("3", polygon.getTagValue("building:levels"));
 							assertEquals("1", polygon.getTagValue("building:levels:underground"));
-							assertEquals("東京都大田区大森東四丁目", polygon.getTagValue("addr:full"));
+							assertNull(polygon.getTagValue("addr:full"));
 							assertNull(polygon.getTagValue("addr:ref"));
 							assertEquals("21.6", polygon.getTagValue("height"));
 							assertEquals("1.6", polygon.getTagValue("ele"));
 							assertNull(polygon.getTagValue("start_date"));
 							assertNull(polygon.getTagValue("ref:MLIT_PLATEAU"));
-							assertEquals(8, polygon.getTagList().size());
+							assertEquals(7, polygon.getTagList().size());
 							
 							for (MemberBean member : polygon.members) {
 								if (member.getRole().equals("outer")) {
@@ -95,24 +95,24 @@ public class CitygmlFileTest_E extends GmlLoadRouteTest {
 								assertEquals(way.getTagValue("building:levels"), ("2"));
 								assertEquals(way.getTagValue("building:levels:underground"), ("1"));
 								assertEquals(way.getTagValue("name"), ("大田病院"));
-								assertEquals(way.getTagValue("addr:full"), ("東京都大田区大森東四丁目"));
+								assertNull(way.getTagValue("addr:full"));
 								assertNull(way.getTagValue("addr:ref"));
 								assertEquals(way.getTagValue("height"), ("21.6"));
 								assertEquals("1.6", way.getTagValue("ele"));
 								assertEquals(way.getTagValue("start_date"), ("1976"));
 								assertEquals(way.getTagValue("ref:MLIT_PLATEAU"), "13111-bldg-56522");
-								assertEquals(9, way.getTagList().size());
+								assertEquals(8, way.getTagList().size());
 							}
 							else if (way.getTagValue("ref:MLIT_PLATEAU").endsWith("13111-bldg-55333")) {
 								assertEquals(way.getTagValue("building:part"), ("yes"));
 								assertEquals(way.getTagValue("building:levels"), ("3"));
-								assertEquals(way.getTagValue("addr:full"), ("東京都大田区大森東四丁目"));
+								assertNull(way.getTagValue("addr:full"));
 								assertNull(way.getTagValue("addr:ref"));
 								assertEquals(way.getTagValue("height"), ("3.7"));
 								assertEquals("1.9", way.getTagValue("ele"));
 								assertEquals(way.getTagValue("start_date"), ("1977"));
 								assertEquals(way.getTagValue("ref:MLIT_PLATEAU"), "13111-bldg-55333");
-								assertEquals(7, way.getTagList().size());
+								assertEquals(6, way.getTagList().size());
 							}
 						}
 					}
