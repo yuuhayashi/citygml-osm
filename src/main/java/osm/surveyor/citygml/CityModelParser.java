@@ -598,7 +598,7 @@ public class CityModelParser extends DefaultHandler {
 			// <xAL:LocalityName>東京都大田区南六郷三丁目</xAL:LocalityName>
 			if (outSb != null) {
 				if (building != null) {
-					building.addTag("addr:full", outSb.toString());
+					// building.addTag("addr:full", outSb.toString());
 				}
 			}
 			outSb = null;
