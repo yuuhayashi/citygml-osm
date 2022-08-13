@@ -30,6 +30,9 @@ public class CheckedConvertProcessor implements Processor {
 		// (3) タグ `MLIT_PLATEAU:fixme=*` を除去する
 		removeFixmeTag(osm);
 		
+		// (4) タグ `ref:MLIT_PLATEAU=*` を除去する (Issue #92)
+		removeMlitplateauTag(osm);
+		
 		map.put("release", osm);
 	}
 	
@@ -92,6 +95,19 @@ public class CheckedConvertProcessor implements Processor {
 			TagBean fixme = way.getTag("MLIT_PLATEAU:fixme");
 			if (fixme != null) {
 				way.removeTag("MLIT_PLATEAU:fixme");
+			}
+		}
+	}
+	
+	/**
+	 * タグ `ref:MLIT_PLATEAU=*` を除去する (Issue #92)
+	 * @throws Exception
+	 */
+	private void removeMlitplateauTag(OsmBean osm) throws Exception {
+		for (WayBean way : osm.getWayList()) {
+			TagBean fixme = way.getTag("ref:MLIT_PLATEAU");
+			if (fixme != null) {
+				way.removeTag("ref:MLIT_PLATEAU");
 			}
 		}
 	}

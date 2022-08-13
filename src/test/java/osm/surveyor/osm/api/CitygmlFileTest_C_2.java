@@ -19,7 +19,6 @@ public class CitygmlFileTest_C_2 extends CitygmlFileTest2 {
             OsmDom osm = testdo("./src/test/resources/sample_c_bldg_6697_op2.gml");
     		
 			assertNotNull(osm.relations);
-			int partCnt = 0;
 			for (String id : osm.relations.keySet()) {
 				ElementRelation relation = osm.relations.get(id);
 				assertNotNull(relation);

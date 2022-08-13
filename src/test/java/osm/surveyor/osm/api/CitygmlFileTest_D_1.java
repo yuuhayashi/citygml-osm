@@ -3,9 +3,7 @@ package osm.surveyor.osm.api;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import osm.surveyor.DetailTests;
-import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.ElementRelation;
-import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 
 public class CitygmlFileTest_D_1 extends CitygmlFileTest1 {

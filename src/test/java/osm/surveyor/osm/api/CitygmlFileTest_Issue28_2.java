@@ -6,7 +6,6 @@ import org.junit.experimental.categories.Category;
 import osm.surveyor.DetailTests;
 import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.ElementRelation;
-import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 
 public class CitygmlFileTest_Issue28_2 extends CitygmlFileTest2 {
@@ -20,7 +19,6 @@ public class CitygmlFileTest_Issue28_2 extends CitygmlFileTest2 {
 	public void testSample_a2_margePart() {
 		try {
 			OsmDom osm = testdo("./src/test/resources/Issue28_50303525_op.gml");
-	        int i = 0;
 
 			assertNotNull(osm.relations);
 			for (String id : osm.relations.keySet()) {
