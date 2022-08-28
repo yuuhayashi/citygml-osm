@@ -144,20 +144,17 @@ public class ElementWay extends PoiBean implements Cloneable {
      */
     ElementWay loadWay(Node nNode) {
 		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-			Element eElement = (Element) nNode;
-			loadElement(eElement);
+			loadElement((Element) nNode);
 			
 			NodeList list2 = nNode.getChildNodes();
 		    for (int temp2 = 0; temp2 < list2.getLength(); temp2++) {
 				Node node2 = list2.item(temp2);
 				if (node2.getNodeType() == Node.ELEMENT_NODE) {
-					Element e2 = (Element) node2;
 					if (node2.getNodeName().equals("nd")) {
-						OsmNd nd = new OsmNd();
-						nd.loadElement(e2);
-						this.addNode(nd);
+						this.addNode((new OsmNd()).loadElement((Element) node2));
 					}
-					if (node2.getNodeName().equals("tag")) {
+					else if (node2.getNodeName().equals("tag")) {
+						Element e2 = (Element) node2;
 						String k = e2.getAttribute("k");
 						String v = e2.getAttribute("v");
 						this.addTag(k, v);

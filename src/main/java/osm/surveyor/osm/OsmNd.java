@@ -31,7 +31,7 @@ public class OsmNd implements Cloneable {
      */
     public Node toNodeNd(Document doc) {
 		Element node = (Element) doc.createElement("nd");
-        node.setAttribute("ref", Long.toString(id));
+        node.setAttribute("ref", Long.toString(this.id));
         return (Node)node;
     }
     
