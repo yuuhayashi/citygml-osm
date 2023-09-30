@@ -133,20 +133,6 @@
   </pluginRepositories>
   
   <dependencies>
-    <!-- http://surveyor.mydns.jp/archiva/#artifact/haya4.tools/haya4-jpmesh -->
-    <dependency>
-      <groupId>haya4.tools</groupId>
-      <artifactId>haya4-jpmesh</artifactId>
-      <version>1.0.1</version>
-    </dependency>
-    
-    <!-- http://surveyor.mydns.jp/archiva/#artifact/haya4.tools/haya4-compress -->
-    <dependency>
-      <groupId>haya4.tools</groupId>
-      <artifactId>haya4-compress</artifactId>
-      <version>0.0.3</version>
-    </dependency>
-  
     <!-- https://mvnrepository.com/artifact/com.googlecode.maven-download-plugin/download-maven-plugin -->
     <dependency>
       <groupId>com.googlecode.maven-download-plugin</groupId>
@@ -156,15 +142,6 @@
       <type>jar</type>
     </dependency>
     
-	<!-- https://mvnrepository.com/artifact/com.google.common/google-collect -->
-    <!-- 
-	<dependency>
-	    <groupId>com.google.common</groupId>
-	    <artifactId>google-collect</artifactId>
-	    <version>1.0</version>
-	</dependency>
-    -->
-
     <!-- https://mvnrepository.com/artifact/org.apache.camel/camel-core -->
     <dependency>
       <groupId>org.apache.camel</groupId>
@@ -243,7 +220,22 @@
 		<artifactId>json</artifactId>
 		<version>20210307</version>
 	</dependency>
+
+    <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>2.10.5</version>
+    </dependency>
     
+    <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.18.22</version>
+        <scope>provided</scope>
+    </dependency>
+
     <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-compress -->
     <dependency>
       <groupId>org.apache.commons</groupId>
@@ -256,7 +248,7 @@
       <groupId>org.apache.maven.plugins</groupId>
       <artifactId>maven-release-plugin</artifactId>
       <version>2.5.3</version>
-      <scope>release</scope>
+      <scope>runtime</scope>
       <type>jar</type>
     </dependency>
     
