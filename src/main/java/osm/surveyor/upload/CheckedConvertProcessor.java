@@ -24,13 +24,17 @@ public class CheckedConvertProcessor implements Processor {
 		removeActionDelete(osm);
 		osm.gerbageNode();
 		
-		// (2) POI `MLIT_PLATEAU:fixme=delete *` を`action=delete`に変換する
+		// (2-1) `MLIT_PLATEAU:fixme="更新前です"` がついたWAYに紐づくNODEをaction="delete" に変換する
+		// (2-2) MLIT_PLATEAU:fixme="更新前です"がついたWAYを除去する。
+		convertNodeToActionDelete(osm);
+		
+		// (3) POI `MLIT_PLATEAU:fixme=delete *` を`action=delete`に変換する
 		convertToActionDelete(osm);
 		
-		// (3) タグ `MLIT_PLATEAU:fixme=*` を除去する
+		// (4) タグ `MLIT_PLATEAU:fixme=*` を除去する
 		removeFixmeTag(osm);
 		
-		// (4) タグ `ref:MLIT_PLATEAU=*` を除去する (Issue #92)
+		// (5) タグ `ref:MLIT_PLATEAU=*` を除去する (Issue #92)
 		removeMlitplateauTag(osm);
 		
 		map.put("release", osm);
@@ -61,6 +65,33 @@ public class CheckedConvertProcessor implements Processor {
 		}
 		for (NodeBean node : list) {
 			osm.removeNode(node);
+		}
+	}
+	
+	/**
+	 * POI `MLIT_PLATEAU:fixme="更新前です"`に紐づくNODEをaction="delete" に変換する
+	 * POI `MLIT_PLATEAU:fixme="更新前です"`がついたWAYを除去する。
+	 * @param poi
+	 */
+	private void convertNodeToActionDelete(OsmBean osm) {
+		for (WayBean way : osm.getWayList()) {
+			TagBean fixme = way.getTag("MLIT_PLATEAU:fixme");
+			if (fixme != null) {
+				String v = fixme.getValue();
+				if (v != null && v.startsWith("更新前です")) {
+					for (NdBean nd : way.getNdList()) {
+						
+						// `MLIT_PLATEAU:fixme="更新前です"`に紐づくNODEをaction="delete" に変換する
+						NodeBean node = osm.getNode(nd.getRef());
+						if (node != null) {
+							node.setAction("delete");
+						}
+					}
+					
+					// `MLIT_PLATEAU:fixme="更新前です"`がついたWAYを除去する。
+					osm.removeWay(way);
+				}
+			}
 		}
 	}
 	

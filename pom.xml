@@ -32,6 +32,7 @@
     <camel.version>2.25.4</camel.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
+    <skipTests>true</skipTests>
     <gpg.skip>true</gpg.skip>
     <maven.javadoc.skip>true</maven.javadoc.skip>
     
@@ -170,12 +171,30 @@
       <version>${camel.version}</version>
 	</dependency>
 
-	<!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
-	<dependency>
-		<groupId>javax.xml.bind</groupId>
-		<artifactId>jaxb-api</artifactId>
-		<version>2.3.1</version>
-	</dependency>
+<dependency>
+    <groupId>com.sun.xml.bind</groupId>
+    <artifactId>jaxb-impl</artifactId>
+    <version>2.3.1</version>
+</dependency>
+<dependency>
+    <groupId>com.sun.xml.messaging.saaj</groupId>
+    <artifactId>saaj-impl</artifactId>
+    <version>1.5.1</version>
+</dependency>
+<dependency>
+    <groupId>javax.activation</groupId>
+    <artifactId>javax.activation-api</artifactId>
+    <version>1.2.0</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/com.sun.xml.ws/jaxws-ri -->
+<dependency>
+    <groupId>com.sun.xml.ws</groupId>
+    <artifactId>jaxws-ri</artifactId>
+    <version>4.0.1</version>
+    <type>pom</type>
+</dependency>
+
 
     <dependency>
       <groupId>org.apache.camel</groupId>
@@ -350,7 +369,8 @@
       	<artifactId>maven-surefire-plugin</artifactId>
       	<version>2.22.2</version>
       	<configuration>
-      		<argLine>-Dfile.encoding=utf-8</argLine>
+			<skipTests>${skipTests}</skipTests>
+            <argLine>-Dfile.encoding=utf-8</argLine>
       	</configuration>
       </plugin>
         

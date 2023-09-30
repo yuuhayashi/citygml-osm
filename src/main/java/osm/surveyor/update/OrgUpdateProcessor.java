@@ -237,8 +237,26 @@ public class OrgUpdateProcessor implements Processor {
 			}
 			if (wayid > 0) {
 				try {
+					List<NodeBean> nodes = org.getNodeList();
 					for (WayBean sWay : way.getIntersects(org.getWayList())) {
 						if (sWay.getId() == wayid) {
+							
+							// MLIT_PLATEAU:fixme="更新前です"
+							// Issue #115
+							WayBean preObject = sWay.clone();
+							preObject.setId(preObject.getId() * -1);
+							preObject.addTag(new TagBean("MLIT_PLATEAU:fixme", "更新前です"));
+							List<NdBean> ndlist = preObject.getNdList();
+							for (NdBean nd : ndlist) {
+								for (NodeBean node : nodes) {
+									if (nd.getRef() == node.getId()) {
+										osm.putNode(node);
+									}
+								}
+							}
+							osm.putWay(preObject);
+							
+							// MLIT_PLATEAU:fixme="PLATEAUデータで更新されています"
 							sWay.setFix(true);
 							if (sWay.getTag("source") != null) {
 								// Issue #56
