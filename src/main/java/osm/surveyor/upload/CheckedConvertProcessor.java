@@ -74,6 +74,7 @@ public class CheckedConvertProcessor implements Processor {
 	 * @param poi
 	 */
 	private void convertNodeToActionDelete(OsmBean osm) {
+		List<WayBean> removeList = new ArrayList<>();
 		for (WayBean way : osm.getWayList()) {
 			TagBean fixme = way.getTag("MLIT_PLATEAU:fixme");
 			if (fixme != null) {
@@ -88,10 +89,15 @@ public class CheckedConvertProcessor implements Processor {
 						}
 					}
 					
-					// `MLIT_PLATEAU:fixme="更新前です"`がついたWAYを除去する。
-					osm.removeWay(way);
+					// 除去対象に追加する。
+					removeList.add(way);
 				}
 			}
+		}
+		
+		// `MLIT_PLATEAU:fixme="更新前です"`がついたWAYを除去する。
+		for (WayBean way : removeList) {
+			osm.removeWay(way);
 		}
 	}
 	
