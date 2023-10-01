@@ -342,7 +342,7 @@ public class Test_haya4 extends OsmUpdaterTest {
 	        	}
 	        }
 	        
-	        assertEquals(16, ways.size());
+	        assertEquals(25, ways.size());
 	        assertEquals(3, mrg.getRelationList().size());
 	        assertEquals(3, checkCnt);
 		} catch (Exception e) {

@@ -83,9 +83,6 @@ public class Test_haya4 extends OsmUploadTest {
 	        	// `fixme`タグは除去されていること
 				assertNull(way.getTag("MLIT_PLATEAU:fixme"));
 
-	        	// #92 `ref:MLIT_PLATEAU`タグは除去されていること
-				assertNull(way.getTag("ref:MLIT_PLATEAU"));
-
 	        	if (way.getId() == 289757586l) {
 					// 6-5 タグありNODEを持つ建物(6-5)は存在しないこと
 	        		assertTrue(false);
@@ -99,7 +96,7 @@ public class Test_haya4 extends OsmUploadTest {
 					assertEquals("modify", way.getAction());
 	        		assertEquals("宮久保 93", way.getTag("name").v);
 	        		assertEquals("apartments", way.getTag("building").getValue());
-	        		assertNull(way.getTag("ref:MLIT_PLATEAU"));
+	        		assertNotNull(way.getTag("ref:MLIT_PLATEAU"));		// #117
 	        		assertNotNull(way.getTag("addr:housenumber"));
 	        		assertEquals("11-20", way.getTag("addr:housenumber").getValue());
 	        		checkCnt++;
@@ -155,7 +152,7 @@ public class Test_haya4 extends OsmUploadTest {
 					}
 				}
 	        }
-	        assertEquals(4, checkCnt);
+	        assertEquals(5, checkCnt);
 	        
 	        List<RelationBean> relations = release.getRelationList();
 	        assertNotNull(relations);
