@@ -96,7 +96,8 @@ public class Test_haya4 extends OsmUploadTest {
 					assertEquals("modify", way.getAction());
 	        		assertEquals("宮久保 93", way.getTag("name").v);
 	        		assertEquals("apartments", way.getTag("building").getValue());
-	        		assertNotNull(way.getTag("ref:MLIT_PLATEAU"));		// #117
+	        		assertNull(way.getTag("ref:MLIT_PLATEAU"));		// #117
+	        		assertNotNull(way.getTag("source"));		// #117
 	        		assertNotNull(way.getTag("addr:housenumber"));
 	        		assertEquals("11-20", way.getTag("addr:housenumber").getValue());
 	        		checkCnt++;
@@ -120,6 +121,10 @@ public class Test_haya4 extends OsmUploadTest {
 	        		assertEquals("house", way.getTag("building").getValue());
 	        		assertNotNull(way.getTag("addr:housenumber"));
 	        		assertEquals("6-9", way.getTag("addr:housenumber").getValue());
+	        		// Issue #117
+	        		TagBean source = way.getTag("source");
+	        		assertNotNull(source);
+	        		assertEquals("MLIT_PLATEAU 11111-bldg-185842", source.getValue());
 	        		checkCnt++;
 				}
 				else if (way.getId() == 289897936) {
@@ -131,7 +136,9 @@ public class Test_haya4 extends OsmUploadTest {
 					assertEquals("modify", way.getAction());
 					assertNull(way.getTag("building"));
 					assertNotNull(way.getTag("building:part"));
-	        		assertEquals("house", way.getTag("building:part").getValue());
+					TagBean part = way.getTag("building:part");
+					assertNotNull(part);
+	        		assertEquals("house", part.getValue());
 	        		assertNotNull(way.getTag("addr:housenumber"));
 	        		assertEquals("7-6", way.getTag("addr:housenumber").getValue());
 	        		checkCnt++;
@@ -141,11 +148,11 @@ public class Test_haya4 extends OsmUploadTest {
 	        		assertTrue(false);
 				}
 				else {
-					TagBean refTag = way.getTag("ref:MLIT_PLATEAU");
+					TagBean refTag = way.getTag("source");
 					if (refTag != null) {
 						String ref = refTag.getValue();
 						assertNotNull(ref);
-						if (ref.equals("11111-bldg-101977")) {
+						if (ref.equals("MLIT_PLATEAU 11111-bldg-101977")) {
 							// 既存建物と重複しない
 			        		checkCnt++;
 						}

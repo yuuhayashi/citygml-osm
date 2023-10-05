@@ -33,7 +33,10 @@ public class CheckedConvertProcessor implements Processor {
 		
 		// (4) タグ `MLIT_PLATEAU:fixme=*` を除去する
 		removeFixmeTag(osm);
-				
+		
+		// (5) タグ `ref:MLIT_PLATEAU=*` を`source`に移行する
+		moveRefTag(osm);
+		
 		map.put("release", osm);
 	}
 	
@@ -129,6 +132,34 @@ public class CheckedConvertProcessor implements Processor {
 			TagBean fixme = way.getTag("MLIT_PLATEAU:fixme");
 			if (fixme != null) {
 				way.removeTag("MLIT_PLATEAU:fixme");
+			}
+		}
+	}
+	
+	
+	/**
+	 * タグ `ref:MLIT_PLATEAU=*` を`source`に移行する
+	 * @throws Exception
+	 */
+	private void moveRefTag(OsmBean osm) throws Exception {
+		for (WayBean way : osm.getWayList()) {
+			TagBean refTag = way.getTag("ref:MLIT_PLATEAU");
+			if (refTag != null) {
+				String ref = refTag.getValue();
+				way.removeTag("ref:MLIT_PLATEAU");
+				TagBean sourceTag = way.getTag("source");
+				if (sourceTag != null) {
+					String source = sourceTag.getValue();
+					if ((source != null) && !source.isEmpty()) {
+						sourceTag.setValue(String.format("%s; MLIT_PLATEAU %s",  source, ref));
+					}
+					else {
+						sourceTag.setValue(String.format("MLIT_PLATEAU %s", ref));
+					}
+				}
+				else {
+					way.addTag("source", String.format("MLIT_PLATEAU %s", ref));
+				}
 			}
 		}
 	}
