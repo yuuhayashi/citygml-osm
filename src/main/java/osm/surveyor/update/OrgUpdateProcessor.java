@@ -56,6 +56,9 @@ public class OrgUpdateProcessor implements Processor {
 		// リレーションのメンバーWAYには"building"タグをつけない
 		fixMemberWaysTag(osm);
 		
+		// Issue #119 
+		fix119(osm);
+		
 		map.put("mrg", osm);
 	}
 	
@@ -494,6 +497,48 @@ public class OrgUpdateProcessor implements Processor {
 				}
 			}
 		}
+	}
+
+	/**
+	 * 妥当性検証エラー：「リレーションメンバーのロールがプリセットBuildingのテンプレートの式'building=*'に含まれていません。」の対策。[Issue #119]
+	 * @param mrg
+	 */
+	private void fix119(OsmBean mrg) {
+		for (RelationBean relation : mrg.getRelationList()) {
+			for (MemberBean member : relation.getMemberList()) {
+				if (member.getRole().equals("outline")) {
+					TagBean buildingTag = relation.getTag("building");
+					if (member.isWay()) {
+						WayBean way = mrg.getWay(member.getRef());
+						member.setWay((WayBean)changeBuildingYes(way, buildingTag.getValue()));
+						
+					}
+					else if (member.isRelation()) {
+						RelationBean outline = mrg.getRelation(member.getRef());
+						member.setRelation((RelationBean)changeBuildingYes(outline, buildingTag.getValue()));
+					}
+				}
+			}
+		}
+	}
+	
+	private PoiBean changeBuildingYes(PoiBean poi, String v) {
+		List<TagBean> dels = new ArrayList<>();
+		for (TagBean tag : poi.getTagList()) {
+			if (tag.getKey().equals("building:part")) {
+				dels.add(tag);
+			}
+			else if (tag.getKey().equals("building")) {
+				dels.add(tag);
+			}
+		}
+		if (dels.size() > 0) {
+			for (TagBean tag : dels) {
+				poi.removeTag(tag.k);
+			}
+			poi.addTag("building",v);
+		}
+		return poi;
 	}
 
 	/**

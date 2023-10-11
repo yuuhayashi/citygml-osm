@@ -83,7 +83,7 @@ public class Test_Issue79 extends OsmUpdaterTest {
 		        		assertNotNull(way);
 	        			if (member.getRole().equals("outline")) {
 	        				outlineCnt++;
-	                		assertEquals("retail", way.getTagValue("building"));
+	                		assertEquals("retail", way.getTagValue("building"));	// fix #119
 	                		assertEquals("18.7", way.getTagValue("ele"));
 	                		assertEquals("9.7", way.getTagValue("height"));
 	                		assertEquals("adult_gaming_centre", way.getTagValue("leisure"));

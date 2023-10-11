@@ -171,29 +171,36 @@
       <version>${camel.version}</version>
 	</dependency>
 
-<dependency>
-    <groupId>com.sun.xml.bind</groupId>
-    <artifactId>jaxb-impl</artifactId>
-    <version>2.3.1</version>
-</dependency>
-<dependency>
-    <groupId>com.sun.xml.messaging.saaj</groupId>
-    <artifactId>saaj-impl</artifactId>
-    <version>1.5.1</version>
-</dependency>
-<dependency>
-    <groupId>javax.activation</groupId>
-    <artifactId>javax.activation-api</artifactId>
-    <version>1.2.0</version>
-</dependency>
-
-<!-- https://mvnrepository.com/artifact/com.sun.xml.ws/jaxws-ri -->
-<dependency>
-    <groupId>com.sun.xml.ws</groupId>
-    <artifactId>jaxws-ri</artifactId>
-    <version>4.0.1</version>
-    <type>pom</type>
-</dependency>
+	<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+	<dependency>
+	    <groupId>com.fasterxml.jackson.core</groupId>
+	    <artifactId>jackson-databind</artifactId>
+	    <version>2.15.2</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>com.sun.xml.bind</groupId>
+	    <artifactId>jaxb-impl</artifactId>
+	    <version>2.3.1</version>
+	</dependency>
+	<dependency>
+	    <groupId>com.sun.xml.messaging.saaj</groupId>
+	    <artifactId>saaj-impl</artifactId>
+	    <version>1.5.1</version>
+	</dependency>
+	<dependency>
+	    <groupId>javax.activation</groupId>
+	    <artifactId>javax.activation-api</artifactId>
+	    <version>1.2.0</version>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/com.sun.xml.ws/jaxws-ri -->
+	<dependency>
+	    <groupId>com.sun.xml.ws</groupId>
+	    <artifactId>jaxws-ri</artifactId>
+	    <version>4.0.1</version>
+	    <type>pom</type>
+	</dependency>
 
 
     <dependency>

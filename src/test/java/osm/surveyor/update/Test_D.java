@@ -135,7 +135,7 @@ public class Test_D extends OsmUpdaterTest {
 							RelationBean multiporygon = mrg.getRelation(mem.getRef());
 							assertNotNull(multiporygon);
 							assertTrue(multiporygon.isMultipolygon());
-							assertNull(multiporygon.getTag("building"));	// Issue #40 [バリデーション警告「重なった建物」が発生する]
+							assertNotNull(multiporygon.getTag("building"));	// Issue #40 [バリデーション警告「重なった建物」が発生する]
 							
 							/*
 								map "multipolygon :Relation" as multipolygon {
@@ -145,7 +145,7 @@ public class Test_D extends OsmUpdaterTest {
 								}
 							*/
 							assertEquals("multipolygon", multiporygon.getTagValue("type"));
-							assertEquals("apartments", multiporygon.getTagValue("building:part"));		// PLATEAUの値
+							assertEquals("apartments", multiporygon.getTagValue("building"));		// PLATEAUの値
 							assertEquals("3", multiporygon.getTagValue("building:levels"));
 							assertEquals("1", multiporygon.getTagValue("building:levels:underground"));
 							assertEquals("34.7", multiporygon.getTagValue("height"));

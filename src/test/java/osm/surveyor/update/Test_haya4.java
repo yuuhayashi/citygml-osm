@@ -291,8 +291,7 @@ public class Test_haya4 extends OsmUpdaterTest {
 	        		checkCnt++;
 	        		// 7-6 Relation:multipolygon
 	        		assertTrue(relation.isMultipolygon());
-	        		assertNull(relation.getTag("building"));
-	        		assertNotNull(relation.getTag("building:part"));
+	        		assertNotNull(relation.getTag("building"));	// fix #119
 					assertEquals(2, relation.getMemberList().size());
 		        	for (MemberBean member : relation.getMemberList()) {
 		        		assertTrue(member.isWay());
