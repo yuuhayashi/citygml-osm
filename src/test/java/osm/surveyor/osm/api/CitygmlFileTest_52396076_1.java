@@ -1,7 +1,5 @@
 package osm.surveyor.osm.api;
 
-import static org.hamcrest.CoreMatchers.is;
-
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
@@ -24,7 +22,6 @@ public class CitygmlFileTest_52396076_1 extends CitygmlFileTest1 {
 	 *  Envelope:srsName => http://www.opengis.net/def/crs/EPSG/0/6697
 	 * }
 	 */
-	@SuppressWarnings("deprecation")
 	@Test
 	@Category(DetailTests.class)
 	public void test52396075_a1_parse() {
@@ -38,48 +35,48 @@ public class CitygmlFileTest_52396076_1 extends CitygmlFileTest1 {
 				assertNotNull(relation);
 				String type = relation.getTagValue("type");
 				if (type.equals("building")) {
-					assertThat(relation.getTagValue("type"), is("building"));
-					assertThat(relation.getTagValue("building"), is("yes"));
-					assertThat(relation.getTagValue("height"), is("13.3"));
-					assertThat(relation.getTagValue("ele"), is("728.3"));
+					assertEquals(relation.getTagValue("type"), "building");
+					assertEquals(relation.getTagValue("building"), ("yes"));
+					assertEquals(relation.getTagValue("height"), ("13.3"));
+					assertEquals(relation.getTagValue("ele"), ("728.3"));
 
 					int outlineCnt = 0;
 					int partCnt = 0;
 					for (MemberBean mem : relation.members) {
 						if (mem.getRole().equals("outline")) {
 							outlineCnt++;
-							assertThat(mem.getType(), is("relation"));
+							assertEquals(mem.getType(), ("relation"));
 							ElementRelation outline = osm.relations.get(mem.getRef());
 							assertNotNull(outline);
-							assertThat(outline.getTagValue("type"), is("multipolygon"));
+							assertEquals(outline.getTagValue("type"), ("multipolygon"));
 							//assertThat(outline.getTagValue("building"), is("yes"));
 							assertNull(outline.getTagValue("ref:MLIT_PLATEAU"));
-							assertThat(outline.getTagValue("height"), is("13.3"));
-							assertThat(outline.getTagValue("ele"), is("728.3"));
+							assertEquals(outline.getTagValue("height"), ("13.3"));
+							assertEquals(outline.getTagValue("ele"), ("728.3"));
 							assertTrue(outline.getTagList().size() >= 5);
 						}
 						if (mem.getRole().equals("part")) {
 							partCnt++;
-							assertThat(mem.getType(), is("way"));
+							assertEquals(mem.getType(), ("way"));
 							ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 							assertNotNull(way);
-							assertThat(way.getTagValue("building:part"), is("yes"));
-							assertThat(way.getTagValue("building:levels"), is("1"));
-							assertThat(way.getTagValue("height"), is("13.3"));
-							assertThat(way.getTagValue("ele"), is("728.3"));
-							assertThat(way.getTagValue("ref:MLIT_PLATEAU"), is("14382-bldg-10718"));
+							assertEquals(way.getTagValue("building:part"), ("yes"));
+							assertEquals(way.getTagValue("building:levels"), ("1"));
+							assertEquals(way.getTagValue("height"), ("13.3"));
+							assertEquals(way.getTagValue("ele"), ("728.3"));
+							assertEquals(way.getTagValue("ref:MLIT_PLATEAU"), ("14382-bldg-10718"));
 							assertTrue(way.getTagList().size() >= 5);
 						}
 					}
-					assertThat(outlineCnt, is(1));
-					assertThat(partCnt, is(1));
-					assertThat(relation.members.size(), is(2));
+					assertEquals(outlineCnt, (1));
+					assertEquals(partCnt, (1));
+					assertEquals(relation.members.size(), (2));
 				}
 				else if (type.equals("multipolygon")) {
-					assertThat(relation.getTagValue("type"), is("multipolygon"));
+					assertEquals(relation.getTagValue("type"), ("multipolygon"));
 					assertNull(relation.getTagValue("ref:MLIT_PLATEAU"));
-					assertThat(relation.getTagValue("height"), is("13.3"));
-					assertThat(relation.getTagValue("ele"), is("728.3"));
+					assertEquals(relation.getTagValue("height"), ("13.3"));
+					assertEquals(relation.getTagValue("ele"), ("728.3"));
 					//assertThat(relation.getTagValue("building"), is("yes"));
 
 					int outerCnt = 0;

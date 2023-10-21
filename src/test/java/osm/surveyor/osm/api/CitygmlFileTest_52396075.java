@@ -1,11 +1,8 @@
 package osm.surveyor.osm.api;
 
-import static org.hamcrest.CoreMatchers.is;
-
 import org.junit.Test;
-import osm.surveyor.osm.BoundsBean;
-import osm.surveyor.osm.ElementWay;
-import osm.surveyor.osm.OsmDom;
+
+import osm.surveyor.osm.*;
 
 public class CitygmlFileTest_52396075 extends GmlLoadRouteTest {
 
@@ -20,7 +17,6 @@ public class CitygmlFileTest_52396075 extends GmlLoadRouteTest {
 	 *  Envelope:srsName => http://www.opengis.net/def/crs/EPSG/0/6697
 	 * }
 	 */
-	@SuppressWarnings("deprecation")
 	@Test
 	public void test52396075() {
 		OsmDom osm = testdo("./src/test/resources/52396075_bldg_6697_op.gml");
@@ -36,10 +32,10 @@ public class CitygmlFileTest_52396075 extends GmlLoadRouteTest {
 			for (String id : osm.ways.keySet()) {
 				ElementWay way = osm.ways.get(id);
 				assertNotNull(way);
-				assertThat(way.getTagValue("building"), is("yes"));
-				assertThat(way.getTagValue("height"), is("13.3"));
-				assertThat(way.getTagValue("ele"), is("728.3"));
-				assertThat(way.getTagValue("ref:MLIT_PLATEAU"), is("14382-bldg-10718"));
+				assertEquals(way.getTagValue("building"), ("yes"));
+				assertEquals(way.getTagValue("height"), ("13.3"));
+				assertEquals(way.getTagValue("ele"), ("728.3"));
+				assertEquals(way.getTagValue("ref:MLIT_PLATEAU"), ("14382-bldg-10718"));
 				assertTrue(way.getTagList().size() >= 4);
 			}
 			assertEquals(1, osm.ways.size());

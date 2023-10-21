@@ -1,7 +1,5 @@
 package osm.surveyor.osm.api;
 
-import static org.hamcrest.CoreMatchers.is;
-
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
@@ -13,7 +11,6 @@ import osm.surveyor.osm.OsmDom;
 
 public class CitygmlFileTest_A_1 extends CitygmlFileTest1 {
 
-	@SuppressWarnings("deprecation")
 	@Test
 	@Category(DetailTests.class)
 	public void testSample_a1_parse() {
@@ -26,8 +23,8 @@ public class CitygmlFileTest_A_1 extends CitygmlFileTest1 {
 				String type = relation.getTagValue("type");
 				if (type.equals("building")) {
 					if (relation.getTagValue("ele").endsWith("2.8")) {
-						assertThat(relation.getTagValue("type"), is("building"));
-						assertThat(relation.getTagValue("building"), is("yes"));
+						assertEquals(relation.getTagValue("type"), ("building"));
+						assertEquals(relation.getTagValue("building"), ("yes"));
 						assertNull(relation.getTagValue("addr:full"));
 						assertEquals("2.4", relation.getTagValue("height"));
 	
@@ -36,26 +33,26 @@ public class CitygmlFileTest_A_1 extends CitygmlFileTest1 {
 						for (MemberBean mem : relation.members) {
 							if (mem.getRole().equals("outline")) {
 								outlineCnt++;
-								assertThat(mem.getType(), is("relation"));
+								assertEquals(mem.getType(), ("relation"));
 								ElementRelation outline = osm.relations.get(mem.getRef());
 								assertNotNull(outline);
-								assertThat(outline.getTagValue("type"), is("multipolygon"));
+								assertEquals(outline.getTagValue("type"), ("multipolygon"));
 								//assertEquals("yes", outline.getTagValue("building"));
 								assertNull(outline.getTagValue("addr:full"));
-								assertThat(outline.getTagValue("height"), is("2.4"));
+								assertEquals(outline.getTagValue("height"), ("2.4"));
 								assertEquals("2.8", outline.getTagValue("ele"));
 								assertEquals(4, outline.getTagList().size());
 							}
 							if (mem.getRole().equals("part")) {
 								partCnt++;
-								assertThat(mem.getType(), is("way"));
+								assertEquals(mem.getType(), ("way"));
 								ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 								assertNotNull(way);
-								assertThat(way.getTagValue("building:part"), is("yes"));
+								assertEquals(way.getTagValue("building:part"), ("yes"));
 								assertNull(way.getTagValue("addr:full"));
-								assertThat(way.getTagValue("height"), is("2.4"));
+								assertEquals(way.getTagValue("height"), ("2.4"));
 								assertEquals("2.8", way.getTagValue("ele"));
-								assertThat(way.getTagValue("ref:MLIT_PLATEAU"), is("13111-bldg-365"));
+								assertEquals(way.getTagValue("ref:MLIT_PLATEAU"), ("13111-bldg-365"));
 								assertEquals(4, way.getTagList().size());
 							}
 						}
@@ -63,46 +60,46 @@ public class CitygmlFileTest_A_1 extends CitygmlFileTest1 {
 						assertEquals(1, partCnt);
 					}
 					else if (relation.getTagValue("ele").endsWith("2.7")) {
-						assertThat(relation.getTagValue("type"), is("building"));
+						assertEquals(relation.getTagValue("type"), ("building"));
 						assertNull(relation.getTagValue("addr:full"));
 						assertEquals("4.6", relation.getTagValue("height"));
 						assertEquals("2.7", relation.getTagValue("ele"));
-						assertThat(relation.getTagValue("start_date"), is("1976"));
-						assertThat(relation.getTagValue("building"), is("house"));
-						assertThat(relation.getTagValue("building:levels"), is("2"));
-						assertThat(relation.getTagValue("building:levels:underground"), is("1"));
+						assertEquals(relation.getTagValue("start_date"), ("1976"));
+						assertEquals(relation.getTagValue("building"), ("house"));
+						assertEquals(relation.getTagValue("building:levels"), ("2"));
+						assertEquals(relation.getTagValue("building:levels:underground"), ("1"));
 	
 						int outlineCnt = 0;
 						int partCnt = 0;
 						for (MemberBean mem : relation.members) {
 							if (mem.getRole().equals("outline")) {
 								outlineCnt++;
-								assertThat(mem.getType(), is("relation"));
+								assertEquals(mem.getType(), ("relation"));
 								ElementRelation outline = osm.relations.get(mem.getRef());
 								assertNotNull(outline);
-								assertThat(outline.getTagValue("type"), is("multipolygon"));
+								assertEquals(outline.getTagValue("type"), ("multipolygon"));
 								//assertThat(outline.getTagValue("building"), is("house"));
-								assertThat(outline.getTagValue("building:levels"), is("2"));
-								assertThat(outline.getTagValue("building:levels:underground"), is("1"));
+								assertEquals(outline.getTagValue("building:levels"), ("2"));
+								assertEquals(outline.getTagValue("building:levels:underground"), ("1"));
 								assertNull(outline.getTagValue("addr:full"));
-								assertThat(outline.getTagValue("height"), is("4.6"));
+								assertEquals(outline.getTagValue("height"), ("4.6"));
 								assertEquals("2.7", outline.getTagValue("ele"));
 								//assertThat(outline.getTagValue("start_date"), is("1976"));
 								assertEquals(6, outline.getTagList().size());
 							}
 							if (mem.getRole().equals("part")) {
 								partCnt++;
-								assertThat(mem.getType(), is("way"));
+								assertEquals(mem.getType(), ("way"));
 								ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 								assertNotNull(way);
-								assertThat(way.getTagValue("ref:MLIT_PLATEAU"), is("13111-bldg-466"));
+								assertEquals(way.getTagValue("ref:MLIT_PLATEAU"), ("13111-bldg-466"));
 								assertNull(way.getTagValue("addr:full"));
-								assertThat(way.getTagValue("height"), is("4.6"));
+								assertEquals(way.getTagValue("height"), ("4.6"));
 								assertEquals("2.7", way.getTagValue("ele"));
-								assertThat(way.getTagValue("start_date"), is("1976"));
-								assertThat(way.getTagValue("building:part"), is("house"));
-								assertThat(way.getTagValue("building:levels"), is("2"));
-								assertThat(way.getTagValue("building:levels:underground"), is("1"));
+								assertEquals(way.getTagValue("start_date"), ("1976"));
+								assertEquals(way.getTagValue("building:part"), ("house"));
+								assertEquals(way.getTagValue("building:levels"), ("2"));
+								assertEquals(way.getTagValue("building:levels:underground"), ("1"));
 								assertEquals(7, way.getTagList().size());
 							}
 						}
@@ -113,9 +110,9 @@ public class CitygmlFileTest_A_1 extends CitygmlFileTest1 {
 				}
 				else if (type.equals("multipolygon")) {
 					if (relation.getTagValue("ele").endsWith("2.8")) {
-						assertThat(relation.getTagValue("type"), is("multipolygon"));
+						assertEquals(relation.getTagValue("type"), ("multipolygon"));
 						assertNull(relation.getTagValue("addr:full"));	// "東京都大田区南六郷三丁目"
-						assertThat(relation.getTagValue("height"), is("2.4"));
+						assertEquals(relation.getTagValue("height"), ("2.4"));
 						assertEquals("2.8", relation.getTagValue("ele"));
 						//assertThat(relation.getTagValue("building"), is("yes"));
 	
@@ -124,18 +121,18 @@ public class CitygmlFileTest_A_1 extends CitygmlFileTest1 {
 						for (MemberBean mem : relation.members) {
 							if (mem.getRole().equals("outer")) {
 								outerCnt++;
-								assertThat(mem.getType(), is("way"));
+								assertEquals(mem.getType(), ("way"));
 								ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 								assertNotNull(way);
-								assertThat(way.getTagValue("ref:MLIT_PLATEAU"), is("13111-bldg-365"));
+								assertEquals(way.getTagValue("ref:MLIT_PLATEAU"), ("13111-bldg-365"));
 								assertEquals(1, way.getTagList().size());
 							}
 							if (mem.getRole().equals("inner")) {
 								innerCnt++;
-								assertThat(mem.getType(), is("way"));
+								assertEquals(mem.getType(), ("way"));
 								ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 								assertNotNull(way);
-								assertThat(way.getTagValue("ref:MLIT_PLATEAU"), is("13111-bldg-365"));
+								assertEquals(way.getTagValue("ref:MLIT_PLATEAU"), ("13111-bldg-365"));
 								assertEquals(1, way.getTagList().size());
 							}
 						}
@@ -143,32 +140,32 @@ public class CitygmlFileTest_A_1 extends CitygmlFileTest1 {
 						assertEquals(0, innerCnt);
 					}
 					else if (relation.getTagValue("ele").endsWith("2.7")) {
-						assertThat(relation.getTagValue("type"), is("multipolygon"));
+						assertEquals(relation.getTagValue("type"), ("multipolygon"));
 						assertNull(relation.getTagValue("addr:full"));	// "東京都大田区南六郷三丁目"
-						assertThat(relation.getTagValue("height"), is("4.6"));
+						assertEquals(relation.getTagValue("height"), ("4.6"));
 						assertEquals("2.7", relation.getTagValue("ele"));
 						//assertThat(relation.getTagValue("start_date"), is("1976"));
 						//assertThat(relation.getTagValue("building"), is("house"));
-						assertThat(relation.getTagValue("building:levels"), is("2"));
-						assertThat(relation.getTagValue("building:levels:underground"), is("1"));
+						assertEquals(relation.getTagValue("building:levels"), ("2"));
+						assertEquals(relation.getTagValue("building:levels:underground"), ("1"));
 	
 						int outerCnt = 0;
 						int innerCnt = 0;
 						for (MemberBean mem : relation.members) {
 							if (mem.getRole().equals("outer")) {
 								outerCnt++;
-								assertThat(mem.getType(), is("way"));
+								assertEquals(mem.getType(), ("way"));
 								ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 								assertNotNull(way);
-								assertThat(way.getTagValue("ref:MLIT_PLATEAU"), is("13111-bldg-466"));
+								assertEquals(way.getTagValue("ref:MLIT_PLATEAU"), ("13111-bldg-466"));
 								assertEquals(1, way.getTagList().size());
 							}
 							if (mem.getRole().equals("inner")) {
 								innerCnt++;
-								assertThat(mem.getType(), is("way"));
+								assertEquals(mem.getType(), ("way"));
 								ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
 								assertNotNull(way);
-								assertThat(way.getTagValue("ref:MLIT_PLATEAU"), is("13111-bldg-466"));
+								assertEquals(way.getTagValue("ref:MLIT_PLATEAU"), ("13111-bldg-466"));
 								assertEquals(1, way.getTagList().size());
 							}
 						}

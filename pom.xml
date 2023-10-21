@@ -28,8 +28,8 @@
   
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <java.version>1.8</java.version>
-    <camel.version>2.25.4</camel.version>
+    <java.version>11</java.version>
+    <camel.version>3.0.1</camel.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <skipTests>false</skipTests>
@@ -57,6 +57,21 @@
       <url>http://surveyor.mydns.jp/archiva/repository/snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
+
+	<!-- DEPENDENCY セット -->
+	<dependencyManagement>
+	    <dependencies>
+	        <!-- https://mvnrepository.com/artifact/org.apache.camel.springboot/camel-spring-boot-dependencies -->
+	        <dependency>
+	            <groupId>org.apache.camel.springboot</groupId>
+	            <artifactId>camel-spring-boot-dependencies</artifactId>
+				<version>${camel.version}</version>
+	            <type>pom</type>
+	            <scope>import</scope>
+	        </dependency>
+	        <!-- ... other BOMs or dependencies ... -->
+	    </dependencies>
+	</dependencyManagement>
 
   <repositories>
     <repository>
@@ -134,6 +149,49 @@
   </pluginRepositories>
   
   <dependencies>
+	<!-- Java11 以降でJAXB を使用する場合 -->
+	<dependency>
+	    <groupId>javax.xml.bind</groupId>
+	    <artifactId>jaxb-api</artifactId>
+	    <version>2.3.1</version>
+	</dependency>
+	<dependency>
+	    <groupId>com.sun.xml.bind</groupId>
+	    <artifactId>jaxb-core</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>com.sun.xml.bind</groupId>
+	    <artifactId>jaxb-impl</artifactId>
+	</dependency>
+	
+	<!-- Apache Camel -->
+	<!-- https://mvnrepository.com/artifact/org.apache.camel/camel-core -->
+	<dependency>
+	    <groupId>org.apache.camel</groupId>
+	    <artifactId>camel-core</artifactId>
+	</dependency>
+
+	<!-- https://mvnrepository.com/artifact/org.apache.camel/camel-jackson -->
+	<dependency>
+	    <groupId>org.apache.camel</groupId>
+	    <artifactId>camel-jackson</artifactId>
+	</dependency>
+
+	<!-- https://mvnrepository.com/artifact/org.apache.camel/camel-test -->
+	<dependency>
+	    <groupId>org.apache.camel</groupId>
+	    <artifactId>camel-test</artifactId>
+	    <scope>test</scope>
+	</dependency>
+
+	<!-- JSON -->
+	<!-- https://mvnrepository.com/artifact/org.json/json -->
+	<dependency>
+	    <groupId>org.json</groupId>
+	    <artifactId>json</artifactId>
+	    <version>20231013</version>
+	</dependency>
+
     <!-- https://mvnrepository.com/artifact/com.googlecode.maven-download-plugin/download-maven-plugin -->
     <dependency>
       <groupId>com.googlecode.maven-download-plugin</groupId>
@@ -143,57 +201,6 @@
       <type>jar</type>
     </dependency>
     
-    <!-- https://mvnrepository.com/artifact/org.apache.camel/camel-core -->
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-core</artifactId>
-      <version>${camel.version}</version>
-    </dependency>
-
-    <!-- https://mvnrepository.com/artifact/org.apache.camel/camel-stream -->
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-stream</artifactId>
-      <version>${camel.version}</version>
-    </dependency>
-    
-    <!-- https://mvnrepository.com/artifact/org.apache.camel/camel-http4 -->
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-http4</artifactId>
-      <version>${camel.version}</version>
-    </dependency>
-    
-	<!-- https://mvnrepository.com/artifact/org.apache.camel/camel-jaxb -->
-	<dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-jaxb</artifactId>
-      <version>${camel.version}</version>
-	</dependency>
-
-	<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-	<dependency>
-	    <groupId>com.fasterxml.jackson.core</groupId>
-	    <artifactId>jackson-databind</artifactId>
-	    <version>2.15.2</version>
-	</dependency>
-	
-	<dependency>
-	    <groupId>com.sun.xml.bind</groupId>
-	    <artifactId>jaxb-impl</artifactId>
-	    <version>2.3.1</version>
-	</dependency>
-	<dependency>
-	    <groupId>com.sun.xml.messaging.saaj</groupId>
-	    <artifactId>saaj-impl</artifactId>
-	    <version>1.5.1</version>
-	</dependency>
-	<dependency>
-	    <groupId>javax.activation</groupId>
-	    <artifactId>javax.activation-api</artifactId>
-	    <version>1.2.0</version>
-	</dependency>
-	
 	<!-- https://mvnrepository.com/artifact/com.sun.xml.ws/jaxws-ri -->
 	<dependency>
 	    <groupId>com.sun.xml.ws</groupId>
@@ -201,36 +208,11 @@
 	    <version>4.0.1</version>
 	    <type>pom</type>
 	</dependency>
-
-
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-test</artifactId>
-      <version>${camel.version}</version>
-      <scope>test</scope>
-    </dependency>
     
     <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
-      <version>1.7.32</version>
-    </dependency>
-
-    <!-- for JUnit test -->
-    <dependency>
-      <groupId>org.hamcrest</groupId>
-      <artifactId>hamcrest-core</artifactId>
-      <version>${hamcrest.version}</version>
-      <scope>test</scope>
-      <type>jar</type>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>${junit.version}</version>
-      <scope>test</scope>
-      <type>jar</type>
     </dependency>
     
     <!-- org.geotools -->
@@ -240,20 +222,6 @@
       <version>${geotools.version}</version>
     </dependency>
 
-	<!-- https://mvnrepository.com/artifact/org.json/json -->
-	<dependency>
-		<groupId>org.json</groupId>
-		<artifactId>json</artifactId>
-		<version>20210307</version>
-	</dependency>
-
-    <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
-    <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-databind</artifactId>
-        <version>2.10.5</version>
-    </dependency>
-    
     <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
     <dependency>
         <groupId>org.projectlombok</groupId>
@@ -269,6 +237,7 @@
       <version>1.21</version>
     </dependency>
 
+	<!-- MAVEN プラグイン -->
     <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-release-plugin -->
     <dependency>
       <groupId>org.apache.maven.plugins</groupId>

@@ -1,7 +1,5 @@
 package osm.surveyor.osm.api;
 
-import static org.hamcrest.CoreMatchers.is;
-
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
@@ -15,7 +13,6 @@ public class CitygmlFileTest_A_4 extends CitygmlFileTest4 {
 	 * `mvn test -Dtest=CitygmlFileTest_A#testSample_a4_createOutline`
 	 * 
 	 */
-	@SuppressWarnings("deprecation")
 	@Test
 	@Category(DetailTests.class)
 	public void testSample_a4_createOutline() {
@@ -26,23 +23,23 @@ public class CitygmlFileTest_A_4 extends CitygmlFileTest4 {
 				ElementWay way = osm.ways.get(id);
 				assertNotNull(way);
 				if (way.getTagValue("ref:MLIT_PLATEAU").equals("13111-bldg-365")) {
-					assertThat(way.getTagValue("building"), is("yes"));
-					assertThat(way.getTagValue("ref:MLIT_PLATEAU"), is("13111-bldg-365"));
+					assertEquals(way.getTagValue("building"), ("yes"));
+					assertEquals(way.getTagValue("ref:MLIT_PLATEAU"), ("13111-bldg-365"));
 					assertNull(way.getTagValue("addr:full"));
-					assertThat(way.getTagValue("height"), is("2.4"));
-					assertThat(way.getTagValue("ele"), is("2.8"));
+					assertEquals(way.getTagValue("height"), ("2.4"));
+					assertEquals(way.getTagValue("ele"), ("2.8"));
 					assertEquals(4, way.getTagList().size());
 				}
 				else if (way.getTagValue("ref:MLIT_PLATEAU").endsWith("13111-bldg-466")) {
-					assertThat(way.getTagValue("building"), is("house"));
-					assertThat(way.getTagValue("building:levels"), is("2"));
-					assertThat(way.getTagValue("building:levels:underground"), is("1"));
-					assertThat(way.getTagValue("ref:MLIT_PLATEAU"), is("13111-bldg-466"));
+					assertEquals(way.getTagValue("building"), ("house"));
+					assertEquals(way.getTagValue("building:levels"), ("2"));
+					assertEquals(way.getTagValue("building:levels:underground"), ("1"));
+					assertEquals(way.getTagValue("ref:MLIT_PLATEAU"), ("13111-bldg-466"));
 					assertNull(way.getTagValue("addr:full"));
-					assertThat(way.getTagValue("height"), is("4.6"));
-					assertThat(way.getTagValue("ele"), is("2.7"));
-					assertThat(way.getTagValue("start_date"), is("1976"));
-					assertThat(way.getTagList().size(), is(7));
+					assertEquals(way.getTagValue("height"), ("4.6"));
+					assertEquals(way.getTagValue("ele"), ("2.7"));
+					assertEquals(way.getTagValue("start_date"), ("1976"));
+					assertEquals(way.getTagList().size(), (7));
 				}
 				else {
 					fail(way.getTagValue("source"));
