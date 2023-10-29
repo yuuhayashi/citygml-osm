@@ -23,7 +23,7 @@ public class OrgFileReadProcessor implements Processor {
 	public void process(Exchange exchange) throws Exception {
 		BodyMap map = exchange.getIn().getBody(BodyMap.class);
 		
-		FileEndpoint endpoint = (FileEndpoint)exchange.getFromEndpoint();
+		FileEndpoint endpoint = (FileEndpoint)exchange.getProperty(Exchange.TO_ENDPOINT);
 		File file = endpoint.getFile();
 		
 		String name = file.getName();

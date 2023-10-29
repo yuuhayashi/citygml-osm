@@ -26,7 +26,7 @@ public class GmlFileToOsmProcessor implements Processor {
 			String filename = name.substring(0, name.length() - GmlFiles.SUFFIX.length());
 			File outf = (Paths.get(".", filename + OsmFiles.SUFFIX).toFile());
 			endpoint.setFile(outf);
-			exchange.setFromEndpoint(endpoint);
+			exchange.setProperty(Exchange.TO_ENDPOINT, endpoint);
 		}
 	}
 

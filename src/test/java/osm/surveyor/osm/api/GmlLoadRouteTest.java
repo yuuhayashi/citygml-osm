@@ -43,7 +43,7 @@ public abstract class GmlLoadRouteTest extends CamelTestSupport {
 		Exchange exchange = createExchangeWithBody("");
 		FileEndpoint endpoint = new FileEndpoint();
 		endpoint.setFile(new File(source));
-		exchange.setFromEndpoint(endpoint);
+		exchange.setProperty(Exchange.TO_ENDPOINT, endpoint);
 	
 		// (1) GMLファイルをパースする
 		// (2) 各WAYのノードで、他のWAYと共有されたノードを探す

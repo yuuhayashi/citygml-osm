@@ -19,6 +19,6 @@ public class GmlFileProcessor implements Processor {
 
         FileEndpoint endpoint = new FileEndpoint();
 		endpoint.setFile(file);
-		exchange.setFromEndpoint(endpoint);
+		exchange.setProperty(Exchange.TO_ENDPOINT, endpoint);
 	}
 }

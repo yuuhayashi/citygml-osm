@@ -37,7 +37,7 @@ public class DownloadTest extends CamelTestSupport {
 		Exchange exchange = createExchangeWithBody("");
 		FileEndpoint endpoint = new FileEndpoint();
 		endpoint.setFile(source.toFile());
-		exchange.setFromEndpoint(endpoint);
+		exchange.setProperty(Exchange.TO_ENDPOINT, endpoint);
 		
     	// (1)指定されたOSMファイルをLOADする
     	// (2) <bound/>を取得する

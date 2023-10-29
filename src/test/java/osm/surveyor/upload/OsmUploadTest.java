@@ -15,10 +15,10 @@ import osm.surveyor.osm.BodyMap;
 
 public class OsmUploadTest extends CamelTestSupport {
 
-    @EndpointInject(uri = "mock:result")
+    @EndpointInject("mock:result")
     protected MockEndpoint resultEndpoint;
 
-    @Produce(uri = "direct:start")
+    @Produce("direct:start")
     protected ProducerTemplate template;
     
     @Override
@@ -36,7 +36,7 @@ public class OsmUploadTest extends CamelTestSupport {
 		Exchange exchange = createExchangeWithBody("");
 		FileEndpoint endpoint = new FileEndpoint();
 		endpoint.setFile(source.toFile());
-		exchange.setFromEndpoint(endpoint);
+		exchange.setProperty(Exchange.TO_ENDPOINT, endpoint);
 		
     	// 指定されたOSMファイルをLOADする
         template.send("direct:checked-file-read", exchange);

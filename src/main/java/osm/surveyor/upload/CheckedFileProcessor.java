@@ -17,7 +17,7 @@ public class CheckedFileProcessor implements Processor {
 	public void process(Exchange exchange) throws Exception {
 		FileEndpoint endpoint = new FileEndpoint();
 		endpoint.setFile(Paths.get(".", "checked.osm").toFile());
-		exchange.setFromEndpoint(endpoint);
+		exchange.setProperty(Exchange.TO_ENDPOINT, endpoint);
 	}
 
 }

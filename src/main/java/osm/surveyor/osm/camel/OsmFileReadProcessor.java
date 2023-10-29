@@ -6,7 +6,6 @@ import javax.xml.bind.JAXB;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
-import org.apache.camel.component.file.FileEndpoint;
 
 import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.OsmBean;
@@ -18,8 +17,9 @@ public class OsmFileReadProcessor implements Processor {
 	 */
 	@Override
 	public void process(Exchange exchange) throws Exception {
-		FileEndpoint endpoint = (FileEndpoint)exchange.getFromEndpoint();
-		File file = endpoint.getFile();
+		File file = exchange.getIn().getBody(File.class);
+
+		System.out.println("OsmFileProcessor : \""+ file.getName() +"\"");
 		
 		OsmBean osm = JAXB.unmarshal(file, OsmBean.class);
 		osm.build();
