@@ -3,7 +3,6 @@ package osm.surveyor.osm.camel;
 import org.apache.camel.builder.RouteBuilder;
 
 import osm.surveyor.download.OrgFileListProcessor;
-import osm.surveyor.download.OsmFileProcessor;
 
 public class OrgLoadDirRoute extends RouteBuilder {
 
@@ -25,7 +24,6 @@ public class OrgLoadDirRoute extends RouteBuilder {
 			.process(new OrgFileListProcessor())
 			.split()
 				.simple("${body}")
-				.process(new OsmFileProcessor())
 		        .to("direct:org-file-read")
 			.end()
 		;

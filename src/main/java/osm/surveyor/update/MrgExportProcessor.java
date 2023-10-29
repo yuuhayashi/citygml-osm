@@ -5,7 +5,6 @@ import java.nio.file.Paths;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
-import org.apache.camel.component.file.FileEndpoint;
 
 import osm.surveyor.citygml.OsmFiles;
 import osm.surveyor.citygml.OsmMrgFiles;
@@ -25,10 +24,7 @@ public class MrgExportProcessor implements Processor {
 	@Override
 	public void process(Exchange exchange) throws Exception {
 		BodyMap map = exchange.getIn().getBody(BodyMap.class);
-
-		FileEndpoint endpoint = (FileEndpoint)exchange.getFromEndpoint();
-		File file = endpoint.getFile();
-		String name = file.getName();
+		String name = (String) exchange.getProperty(Exchange.FILE_NAME);
 		if (name.endsWith(OsmFiles.SUFFIX)) {
 			String filename = name.substring(0, name.length() - OsmFiles.SUFFIX.length());
 			File mrgf = (Paths.get(".", filename + OsmMrgFiles.SUFFIX).toFile());

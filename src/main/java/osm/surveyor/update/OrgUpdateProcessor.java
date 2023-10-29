@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
+import org.apache.camel.component.file.FileEndpoint;
 
 import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.MemberBean;
@@ -24,6 +25,7 @@ public class OrgUpdateProcessor implements Processor {
 		BodyMap map = exchange.getIn().getBody(BodyMap.class);
 		OsmBean osm = (OsmBean) map.get("osm");		// dom
 		OsmBean org = (OsmBean) map.get("org");		// sdom
+		String filename = (String) exchange.getProperty(Exchange.FILE_NAME);
 
 		// タグありのノードをメンバーに持つウェイは「非更新対象」(fix=true)にする
 		fixWayWithNode(org);
@@ -60,6 +62,8 @@ public class OrgUpdateProcessor implements Processor {
 		fix119(osm);
 		
 		map.put("mrg", osm);
+		exchange.getIn().setBody(map);
+		exchange.setProperty(Exchange.FILE_NAME, filename);
 	}
 	
 	/**

@@ -11,6 +11,9 @@ public class OsmFileProcessor implements Processor {
 	/**
 	 * from("direct:osm-files").process(new OsmFileListProcessor()).split()
 	 * 
+	 * In.Body --> File "org-file"
+	 * .property.TO_ENDPOINT <-- File "org-file"
+	 * 
 	 * to("direct:osm-file-read")
 	 */
 	@Override
@@ -21,6 +24,6 @@ public class OsmFileProcessor implements Processor {
 		
         FileEndpoint endpoint = new FileEndpoint();
 		endpoint.setFile(file);
-		exchange.setFromEndpoint(endpoint);
+		exchange.setProperty(Exchange.TO_ENDPOINT, endpoint);
 	}
 }

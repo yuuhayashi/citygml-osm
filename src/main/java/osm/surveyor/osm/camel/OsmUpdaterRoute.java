@@ -18,6 +18,7 @@ public class OsmUpdaterRoute extends RouteBuilder {
         ;
 		
 		// (1) OSMファイルとORGファイルををLOADする
+		// In.Body : new File("org-file")
 		from("direct:org-file-read")
 		.streamCaching()
 		.process(new OsmFileReadProcessor())

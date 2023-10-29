@@ -16,6 +16,7 @@ public class OsmFileReadProcessor implements Processor {
 	 * .send("direct:osm-file-read", exchange);
 	 * In.Body --> File(入力ファイル/"./checked.osm")
 	 * Body <-- map.put("osm", osm);
+	 * Property.TO_ENDPOINT <-- File(入力ファイル/"./checked.osm")
 	 */
 	@Override
 	public void process(Exchange exchange) throws Exception {
@@ -29,6 +30,9 @@ public class OsmFileReadProcessor implements Processor {
 		BodyMap map = new BodyMap();
 		map.put("osm", osm);
 		exchange.getIn().setBody(map);
+		
+		// ENDPOINTに入力ファイルを登録する
+		exchange.setProperty(Exchange.FILE_NAME, file.getName());
 	}
 
 }
