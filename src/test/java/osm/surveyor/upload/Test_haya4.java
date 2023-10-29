@@ -59,7 +59,7 @@ public class Test_haya4 extends OsmUploadTest {
 	 */
 	@Test
 	public void test_4th() {
-		BodyMap map = testdo(Paths.get("./checked.osm"));
+		BodyMap map = testdo("./checked.osm");
 		OsmBean release = (OsmBean) map.get("release");
         try {
 	        assertNotNull(release);

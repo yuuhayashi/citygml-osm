@@ -14,6 +14,8 @@ public class OsmFileReadProcessor implements Processor {
 
 	/**
 	 * .send("direct:osm-file-read", exchange);
+	 * In.Body --> File(入力ファイル/"./checked.osm")
+	 * Body <-- map.put("osm", osm);
 	 */
 	@Override
 	public void process(Exchange exchange) throws Exception {
