@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
-import org.apache.camel.component.file.FileEndpoint;
 
 import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.MemberBean;

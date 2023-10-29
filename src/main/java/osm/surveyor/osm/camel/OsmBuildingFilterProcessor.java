@@ -23,6 +23,7 @@ public class OsmBuildingFilterProcessor implements Processor {
 	 */
 	@Override
 	public void process(Exchange exchange) throws Exception {
+		String filename = (String) exchange.getProperty(Exchange.FILE_NAME);
 		BodyMap map = exchange.getIn().getBody(BodyMap.class);
 		OsmBean org = (OsmBean) map.get("org");
 		
@@ -122,5 +123,6 @@ public class OsmBuildingFilterProcessor implements Processor {
 
         map.put("org", org);
 		exchange.getIn().setBody(map);
+		exchange.setProperty(Exchange.FILE_NAME, filename);
 	}
 }

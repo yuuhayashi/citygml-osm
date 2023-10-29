@@ -4,7 +4,6 @@ import java.io.File;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
-import org.apache.camel.component.file.FileEndpoint;
 
 public class OsmFileProcessor implements Processor {
 
@@ -21,9 +20,6 @@ public class OsmFileProcessor implements Processor {
 		File file = exchange.getIn().getBody(File.class);
 
 		System.out.println("OsmFileProcessor : \""+ file.getName() +"\"");
-		
-        FileEndpoint endpoint = new FileEndpoint();
-		endpoint.setFile(file);
-		exchange.setProperty(Exchange.TO_ENDPOINT, endpoint);
+		exchange.setProperty(Exchange.FILE_NAME, file.getName());
 	}
 }

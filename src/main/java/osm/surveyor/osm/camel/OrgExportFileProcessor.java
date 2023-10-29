@@ -8,7 +8,6 @@ import javax.xml.bind.JAXB;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
-import org.apache.camel.component.file.FileEndpoint;
 
 import osm.surveyor.citygml.OsmFiles;
 import osm.surveyor.citygml.OsmOrgFiles;
@@ -33,10 +32,7 @@ public class OrgExportFileProcessor implements Processor {
 			throw new Exception("ORGが設定されていません");
 		}
 
-		FileEndpoint endpoint = (FileEndpoint)exchange.getFromEndpoint();
-		File file = endpoint.getFile();
-		
-		String name = file.getName();
+		String name = (String) exchange.getProperty(Exchange.FILE_NAME);
 		if (name.endsWith(OsmFiles.SUFFIX)) {
 			String filename = name.substring(0, name.length() - OsmFiles.SUFFIX.length());
 			File outf = (Paths.get(".", filename + OsmOrgFiles.SUFFIX).toFile());
