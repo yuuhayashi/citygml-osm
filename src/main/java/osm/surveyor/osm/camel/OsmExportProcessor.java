@@ -4,7 +4,6 @@ import java.io.File;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
-import org.apache.camel.component.file.FileEndpoint;
 
 import osm.surveyor.osm.OsmDom;
 
@@ -20,13 +19,11 @@ public class OsmExportProcessor implements Processor {
 	 */
 	@Override
 	public void process(Exchange exchange) throws Exception {
-		FileEndpoint endpoint = (FileEndpoint)exchange.getFromEndpoint();
-		File file = endpoint.getFile();
-		
-		System.out.println("OsmExportProcessor : \""+ file.getName() +"\"");
+		String name = (String) exchange.getProperty(Exchange.FILE_NAME);
+		System.out.println("OsmExportProcessor : \""+ name +"\"");
 		
 		OsmDom osm = exchange.getIn().getBody(OsmDom.class);
-		osm.export(file);
+		osm.export(new File(name));
 		
 		exchange.getIn().setBody(osm);
 	}

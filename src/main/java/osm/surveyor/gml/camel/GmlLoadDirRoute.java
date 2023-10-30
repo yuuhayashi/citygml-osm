@@ -19,7 +19,6 @@ public class GmlLoadDirRoute extends RouteBuilder {
 			.streamCaching()
 			.split()
 				.simple("${body}")
-				.process(new GmlFileProcessor())
 		        .to("direct:gml-file-read")
 			.end()
 		;

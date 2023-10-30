@@ -14,9 +14,11 @@ public class RelationMargeProcessor implements Processor {
 	 */
 	@Override
 	public void process(Exchange exchange) throws Exception {
+		String name = (String) exchange.getProperty(Exchange.FILE_NAME);
 		OsmDom osm = exchange.getIn().getBody(OsmDom.class);
 		while((new RelationMarge(osm)).relationMarge());
 		exchange.getIn().setBody(osm);
+		exchange.setProperty(Exchange.FILE_NAME, name);
 	}
 
 }

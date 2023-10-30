@@ -3,13 +3,13 @@ package osm.surveyor.osm.api;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.apache.camel.EndpointInject;
 import org.apache.camel.Exchange;
 import org.apache.camel.Produce;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.component.file.FileEndpoint;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.junit4.CamelTestSupport;
 
@@ -22,10 +22,10 @@ import osm.surveyor.osm.marge.RelationMarge;
 
 public abstract class GmlLoadRouteTest extends CamelTestSupport {
 	
-    @EndpointInject(uri = "mock:result")
+    @EndpointInject("mock:result")
     protected MockEndpoint resultEndpoint;
 
-    @Produce(uri = "direct:start")
+    @Produce("direct:start")
     protected ProducerTemplate template;
     
     @Override
@@ -41,9 +41,8 @@ public abstract class GmlLoadRouteTest extends CamelTestSupport {
     */
     public OsmDom testdo(String source) {
 		Exchange exchange = createExchangeWithBody("");
-		FileEndpoint endpoint = new FileEndpoint();
-		endpoint.setFile(new File(source));
-		exchange.setProperty(Exchange.TO_ENDPOINT, endpoint);
+		exchange.setProperty(Exchange.FILE_NAME, source);
+		exchange.getIn().setBody(new File(source));
 	
 		// (1) GMLファイルをパースする
 		// (2) 各WAYのノードで、他のWAYと共有されたノードを探す
