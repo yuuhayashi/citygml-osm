@@ -3,14 +3,11 @@ package osm.surveyor.osm.api;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
-import org.apache.camel.EndpointInject;
 import org.apache.camel.Exchange;
 import org.apache.camel.Produce;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.junit4.CamelTestSupport;
 
 import osm.surveyor.citygml.CitygmlFile;
@@ -22,9 +19,6 @@ import osm.surveyor.osm.marge.RelationMarge;
 
 public abstract class GmlLoadRouteTest extends CamelTestSupport {
 	
-    @EndpointInject("mock:result")
-    protected MockEndpoint resultEndpoint;
-
     @Produce("direct:start")
     protected ProducerTemplate template;
     

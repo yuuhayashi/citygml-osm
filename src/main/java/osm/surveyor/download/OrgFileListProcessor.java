@@ -39,7 +39,7 @@ public class OrgFileListProcessor implements Processor {
             	if (st.countTokens() > 1) {
                 	for (int i = 0; i < (st.countTokens() - 1); i++) {
                         String token = st.nextElement().toString();
-                		osmName += token +".";
+                		osmName += token;
                 	}
             	}
             	osmName += OsmMrgFiles.SUFFIX;

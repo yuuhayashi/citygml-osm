@@ -13,7 +13,7 @@ public class OsmUpdaterRoute extends RouteBuilder {
 		onException(Exception.class)
         .handled(false)
         .log("Error")
-        .setBody().constant("[３ｒｄ：OsmUpdaterRoute]なにかエラーが発生")
+        .setBody().constant("[3rd：OsmUpdaterRoute]なにかエラーが発生")
         .log("Error: ${body}")
         ;
 		

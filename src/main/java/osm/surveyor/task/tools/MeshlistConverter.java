@@ -48,7 +48,7 @@ public class MeshlistConverter {
 	 * @param args
 	 * @throws IOException 
 	 */
-	@SuppressWarnings({ "deprecation", "removal" })
+	@SuppressWarnings({ "deprecation" })
 	private void proc(String sourceName) throws IOException {
     	ObjectMapper mapper = new ObjectMapper();
     	JsonNode node = mapper.readTree(Paths.get(sourceName).toFile());
