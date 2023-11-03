@@ -16,7 +16,6 @@ public class Jpmesh {
 	 * @param level	取得するメッシュコードのレベル[1,2,3]
 	 * @return
 	 */
-	@SuppressWarnings("deprecation")
 	public static String getMesh(double lon, double lat, int level) {
 		if (level < 1) {
 			return null;
