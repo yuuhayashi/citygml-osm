@@ -1,6 +1,7 @@
 package osm.surveyor.task.util;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class Point extends JsonNumberArray {
 	}
 	
 	public void setLng(double d) {
-		setLng(new BigDecimal(d).setScale(5, BigDecimal.ROUND_HALF_UP));
+		setLng(new BigDecimal(d).setScale(5, RoundingMode.HALF_EVEN));
 	}
 
 	public String getLng() {
@@ -42,7 +43,7 @@ public class Point extends JsonNumberArray {
 	}
 
 	public void setLat(double d) {
-		setLat(new BigDecimal(d).setScale(6, BigDecimal.ROUND_HALF_UP));
+		setLat(new BigDecimal(d).setScale(6, RoundingMode.HALF_EVEN));
 	}
 
 	public void setLat(BigDecimal dec) {
