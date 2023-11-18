@@ -11,11 +11,9 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import com.google.common.collect.Lists;
 
-import osm.surveyor.citygml.CitygmlFile;
 import osm.surveyor.citygml.ConversionTable;
 import osm.surveyor.citygml.GmlFiles;
 import osm.surveyor.gml.camel.CitygmlLoad;
-import osm.surveyor.osm.OsmDom;
 import osm.surveyor.tools.geojson.GeoJson;
 
 public class GmlFileListProcessor implements Processor {
@@ -45,33 +43,34 @@ public class GmlFileListProcessor implements Processor {
 					path = name + "/" + path;
 				}
 			}
-        	String code = new String();
-        	String filename = gmlfile.getName();
-        	json.setPath(withoutExt(filename) + ".zip");
-        	StringTokenizer st = new StringTokenizer(filename, "_.-");
-        	if (st.countTokens() > 1) {
-                code = st.nextElement().toString();
-        	}
-        	try {
-        		Long.parseLong(code);
-            	json.put(code);
-        	}
-        	catch (NumberFormatException e) {
-        		// 何もしない
-        	}
         	
         	// GMLファイルをパースして、<uro:surveyYear/> 測量年を読み取る
         	try {
                 // GMLファイルをパースする
-                OsmDom osm = new OsmDom();
-                CitygmlFile target = new CitygmlFile(gmlfile, osm);
+        		CitygmlPackFile target = new CitygmlPackFile(gmlfile);
                 target.parse();
                 String surveyYear = target.getGml().getSurveyYear();
                 if ((surveyYear != null) && !surveyYear.isEmpty()) {
-                	json.setSurveyYear(target.getGml().getSurveyYear());
+                	json.setSurveyYear(surveyYear);
                 }
         	}
         	catch (Exception e) {
+        		// 何もしない
+        		System.out.println(e.toString());
+        	}
+
+        	try {
+            	String code = new String();
+            	String filename = gmlfile.getName();
+            	json.setPath(withoutExt(filename) + ".zip");
+            	StringTokenizer st = new StringTokenizer(filename, "_.-");
+            	if (st.countTokens() > 1) {
+                    code = st.nextElement().toString();
+            	}
+        		Long.parseLong(code);
+            	json.put(code);
+        	}
+        	catch (NumberFormatException e) {
         		// 何もしない
         		System.out.println(e.toString());
         	}
