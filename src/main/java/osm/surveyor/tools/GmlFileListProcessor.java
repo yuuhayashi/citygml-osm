@@ -11,9 +11,11 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import com.google.common.collect.Lists;
 
+import osm.surveyor.citygml.CitygmlFile;
 import osm.surveyor.citygml.ConversionTable;
 import osm.surveyor.citygml.GmlFiles;
 import osm.surveyor.gml.camel.CitygmlLoad;
+import osm.surveyor.osm.OsmDom;
 import osm.surveyor.tools.geojson.GeoJson;
 
 public class GmlFileListProcessor implements Processor {
@@ -56,6 +58,22 @@ public class GmlFileListProcessor implements Processor {
         	}
         	catch (NumberFormatException e) {
         		// 何もしない
+        	}
+        	
+        	// GMLファイルをパースして、<uro:surveyYear/> 測量年を読み取る
+        	try {
+                // GMLファイルをパースする
+                OsmDom osm = new OsmDom();
+                CitygmlFile target = new CitygmlFile(gmlfile, osm);
+                target.parse();
+                String surveyYear = target.getGml().getSurveyYear();
+                if ((surveyYear != null) && !surveyYear.isEmpty()) {
+                	json.setSurveyYear(target.getGml().getSurveyYear());
+                }
+        	}
+        	catch (Exception e) {
+        		// 何もしない
+        		System.out.println(e.toString());
         	}
 		}
 		if (name != null) {

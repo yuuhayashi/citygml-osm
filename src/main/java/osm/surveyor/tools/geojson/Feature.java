@@ -8,6 +8,7 @@ import org.json.JSONObject;
  * 		"properties": {
  * 			"id": "53394526",
  * 			"version": "1.4.9-SNAPSHOT",
+ * 			"surveyYear": "2021",
  * 			"path": "10207_tatebayashi-shi_2020/bldg/54392356_bldg_6697_op.zip"
  * 		},
  * 		"geometry": Point.class
@@ -38,6 +39,12 @@ public class Feature extends JSONObject {
 	public void setVersion(String version) {
 		if (version != null) {
 			prop.put("version", version);
+		}
+	}
+	
+	public void setSurveyYear(String year) {
+		if (year != null) {
+			prop.put("surveyYear", year);
 		}
 	}
 	

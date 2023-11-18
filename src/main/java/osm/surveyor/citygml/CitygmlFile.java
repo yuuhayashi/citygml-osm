@@ -11,9 +11,11 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
+import lombok.Getter;
 import osm.surveyor.osm.OsmDom;
 
 @SuppressWarnings("serial")
+@Getter
 public class CitygmlFile extends File {
 	CityModelParser gml;
     OsmDom osm;

@@ -30,6 +30,7 @@ public class GeoJson extends JSONObject {
 	JSONObject crs = new JSONObject();
 	String version = null;
 	String path = null;	// Feature name
+	String surveyYear = null;	// 測量年
 	ConversionTable conversion = null;
 	
 	public GeoJson() {
@@ -49,11 +50,16 @@ public class GeoJson extends JSONObject {
 		this.path = path;
 	}
 	
+	public void setSurveyYear(String surveyYear) {
+		this.surveyYear = surveyYear;
+	}
+	
 	public void put(String code) {
 		Feature fpoint = new Feature();
 		fpoint.setId(code);
 		fpoint.setVersion(this.version);
 		fpoint.setPath(this.path);
+		fpoint.setSurveyYear(this.surveyYear);
 		fpoint.setPoint(code);
 		this.features.put(fpoint);
 		

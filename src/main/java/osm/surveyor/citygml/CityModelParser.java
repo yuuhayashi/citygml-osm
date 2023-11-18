@@ -11,6 +11,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import lombok.Getter;
 import osm.surveyor.osm.BoundsBean;
 import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.NodeBean;
@@ -48,6 +49,7 @@ import osm.surveyor.osm.RelationBuilding;
  * }
  * 
  */
+@Getter
 public class CityModelParser extends DefaultHandler {
 	public StringBuffer outSb = null;		// TEXT待ちじゃない場合は NULL
     HashMap<String, NodeBean> nodes = null;	// k= node.point.getGeom()
@@ -80,6 +82,7 @@ public class CityModelParser extends DefaultHandler {
     }
     
     BoundsBean bounds = null;					// <gml:boundedBy/>
+	String surveyYear = null;					// <uro:surveyYear/> 測量年
 	RelationBuilding building = null;				// <bldg:Building/>
 	String buildingId = null;						// <bldg:Building gml:id="buildingId" />
 	String name = null;								// <gml:name/>
@@ -116,6 +119,10 @@ public class CityModelParser extends DefaultHandler {
 		}
 		else if(qName.equals("gml:boundedBy")){
 			bounds = new BoundsBean();
+		}
+		else if(qName.equals("uro:surveyYear")){
+			surveyYear = "";
+	    	outSb = new StringBuffer();
 		}
 		else if(qName.equals("gml:Envelope")){
 			// <gml:Envelope srsName="http://www.opengis.net/def/crs/EPSG/0/6697">
@@ -325,6 +332,12 @@ public class CityModelParser extends DefaultHandler {
     	else if(qName.equals("gml:name")){
 			if ((name != null) && (name.isEmpty()) && (outSb != null)) {
 				name = outSb.toString();
+			}
+			outSb = null;
+		}
+    	else if(qName.equals("uro:surveyYear")){
+			if ((surveyYear != null) && (surveyYear.isEmpty()) && (outSb != null)) {
+				surveyYear = outSb.toString();
 			}
 			outSb = null;
 		}
@@ -603,13 +616,6 @@ public class CityModelParser extends DefaultHandler {
 			}
 			outSb = null;
 		}
-
-		else if(qName.equals("core:CityModel")){
-        }
-		else if(qName.equals("core:cityObjectMember")){
-		}
-        else {
-        }
     }
     
     /**
