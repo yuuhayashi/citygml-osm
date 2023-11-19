@@ -24,11 +24,11 @@ public class Jpmesh {
 		// １次メッシュ
 		BigDecimal lat0 = BigDecimal.valueOf(lat);
 		BigDecimal lat1 = lat0.multiply(BigDecimal.valueOf(3)).divide(BigDecimal.valueOf(2));
-		lat1 = lat1.setScale(6, BigDecimal.ROUND_HALF_UP);
+		lat1 = lat1.setScale(6, RoundingMode.HALF_UP);
 		String y1 = get2(lat1);
 
 		BigDecimal lon1 = BigDecimal.valueOf(lon).subtract(BigDecimal.valueOf(100));
-		lon1 = lon1.setScale(7, BigDecimal.ROUND_HALF_UP);
+		lon1 = lon1.setScale(7, RoundingMode.HALF_UP);
 		String x1 = get2(lon1);
 		
 		if (level < 2) {

@@ -3,6 +3,7 @@ package osm.surveyor.task.tools;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -100,8 +101,8 @@ public class MeshlistConverter {
             	DirectPosition2D center = Jpmesh.getCenterPosition(meshcode.toString());
         		JsonGeometryPoint geop = new JsonGeometryPoint();
         		Point point = new Point();
-        		point.setLng(new BigDecimal(center.getX()).setScale(5, BigDecimal.ROUND_HALF_UP));
-        		point.setLat(new BigDecimal(center.getY()).setScale(6, BigDecimal.ROUND_HALF_UP));
+        		point.setLng(new BigDecimal(center.getX()).setScale(5, RoundingMode.HALF_UP));
+        		point.setLat(new BigDecimal(center.getY()).setScale(6, RoundingMode.HALF_UP));
         		geop.setCoordinates(point);
         		total.add(point);		// 中心点
         		
