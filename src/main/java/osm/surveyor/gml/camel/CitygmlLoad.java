@@ -33,16 +33,36 @@ public class CitygmlLoad {
 				}
 			}
 			else if (args[0].equals("3rd")) {
-				osm.surveyor.update.OsmUpdater.osmUpdate();
+				if (args.length > 1) {
+					osm.surveyor.update.OsmUpdater.osmUpdate(args[1]);
+				}
+				else {
+					osm.surveyor.update.OsmUpdater.osmUpdate(".");
+				}
 			}
 			else if (args[0].equals("4th")) {
-				osm.surveyor.upload.OsmUploaderRoute.osmUploader();
+				if (args.length > 1) {
+					osm.surveyor.upload.OsmUploaderRoute.osmUploader(args[1]);
+				}
+				else {
+					osm.surveyor.upload.OsmUploaderRoute.osmUploader(".");
+				}
 			}
 			else if (args[0].equals("pack")) {
-				osm.surveyor.tools.Pack.gmlPackage();
+				if (args.length > 1) {
+					osm.surveyor.tools.Pack.gmlPackage(args[1]);
+				}
+				else {
+					osm.surveyor.tools.Pack.gmlPackage(".");
+				}
 			}
 			else if (args[0].equals("unpack")) {
-				osm.surveyor.tools.Pack.unpack();
+				if (args.length > 1) {
+					osm.surveyor.tools.Pack.unpack(args[1]);
+				}
+				else {
+					osm.surveyor.tools.Pack.unpack(".");
+				}
 			}
 		}
 		else {

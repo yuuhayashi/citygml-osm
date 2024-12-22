@@ -10,10 +10,15 @@ public class OsmUploaderRoute extends RouteBuilder {
 	public static CamelContext camel;
 
 	public static void main(String[] args) throws Exception {
-		osmUploader();
+		if (args.length > 0) {
+			osmUploader(args[0]);
+		}
+		else {
+			osmUploader(".");
+		}
 	}
 	
-	public static void osmUploader() throws Exception {
+	public static void osmUploader(String dPath) throws Exception {
 		camel = new DefaultCamelContext();
 		camel.getStreamCachingStrategy().setBufferSize(64 * 4096);
 		camel.addRoutes(new OsmUploaderRoute());
@@ -21,7 +26,7 @@ public class OsmUploaderRoute extends RouteBuilder {
 		System.out.println("osm-4th.camel.start();");
 		
         camel.start();
-        camel.createProducerTemplate().sendBody("direct:checked-file-read", "./checked.osm");
+        camel.createProducerTemplate().sendBody("direct:checked-file-read", dPath + "/checked.osm");
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             try {

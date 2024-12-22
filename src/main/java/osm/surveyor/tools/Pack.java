@@ -7,17 +7,22 @@ public class Pack {
 	public static CamelContext camel;
 
 	public static void main(String[] args) throws Exception {
-		gmlPackage();
+		if (args.length > 0) {
+			gmlPackage(args[0]);
+		}
+		else {
+			gmlPackage(".");
+		}
 	}
 
-	public static void gmlPackage() throws Exception {
+	public static void gmlPackage(String dPath) throws Exception {
 		camel = new DefaultCamelContext();
 		camel.addRoutes(new PackRoute());
 		
 		System.out.println("pack.camel.start();");
 		
         camel.start();
-        camel.createProducerTemplate().sendBody("direct:gml-files", ".");
+        camel.createProducerTemplate().sendBody("direct:gml-files", dPath);
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             try {
@@ -29,14 +34,14 @@ public class Pack {
 		System.out.println("pack.camel.end();");
 	}
 
-	public static void unpack() throws Exception {
+	public static void unpack(String dPath) throws Exception {
 		camel = new DefaultCamelContext();
 		camel.addRoutes(new UnPackRoute());
 		
 		System.out.println("pack.camel.start();");
 		
         camel.start();
-        camel.createProducerTemplate().sendBody("direct:zip-files", ".");
+        camel.createProducerTemplate().sendBody("direct:zip-files", dPath);
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             try {

@@ -10,10 +10,15 @@ public class OsmUpdater {
 	public static CamelContext camel;
 
 	public static void main(String[] args) throws Exception {
-		osmUpdate();
+		if (args.length > 0) {
+			osmUpdate(args[0]);
+		}
+		else {
+			osmUpdate(".");
+		}
 	}
 	
-	public static void osmUpdate() throws Exception {
+	public static void osmUpdate(String dPath) throws Exception {
 		camel = new DefaultCamelContext();
 		camel.getStreamCachingStrategy().setBufferSize(64 * 4096);
 		camel.addRoutes(new OrgLoadDirRoute());
@@ -22,7 +27,7 @@ public class OsmUpdater {
 		System.out.println("osm-3rd.camel.start();");
 		
         camel.start();
-        camel.createProducerTemplate().sendBody("direct:org-files", ".");
+        camel.createProducerTemplate().sendBody("direct:org-files", dPath);
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             try {
