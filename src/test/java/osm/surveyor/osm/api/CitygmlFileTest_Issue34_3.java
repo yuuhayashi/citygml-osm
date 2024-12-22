@@ -6,7 +6,7 @@ import org.junit.experimental.categories.Category;
 import osm.surveyor.DetailTests;
 import osm.surveyor.osm.OsmDom;
 
-public class CitygmlFileTest_Issue34_3 extends CitygmlFileTest3 {
+public class CitygmlFileTest_Issue34_3 extends GmlLoadRouteTest {
 
 	/*
 	 * test_doRemoveSinglePart

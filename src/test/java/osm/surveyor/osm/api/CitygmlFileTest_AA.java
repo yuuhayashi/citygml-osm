@@ -1,7 +1,5 @@
 package osm.surveyor.osm.api;
 
-import static org.hamcrest.CoreMatchers.startsWith;
-
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
@@ -55,7 +53,7 @@ public class CitygmlFileTest_AA extends GmlLoadRouteTest {
 			for (String id : osm.ways.keySet()) {
 				ElementWay way = osm.ways.get(id);
 				assertNotNull(way);
-				assertEquals(way.getTagValue("ref:MLIT_PLATEAU"), startsWith("13111-bldg-"));
+				assertTrue(way.getTagValue("ref:MLIT_PLATEAU").startsWith("13111-bldg-"));
 				assertNull(way.getTagValue("addr:full"));
 				assertNotNull(way.getTagValue("height"));
 				assertNotNull(way.getTagValue("ele"));
