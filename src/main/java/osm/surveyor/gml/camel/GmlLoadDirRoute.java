@@ -20,8 +20,8 @@ public class GmlLoadDirRoute extends RouteBuilder {
 			.split()
 				.simple("${body}")
 		        .to("direct:gml-file-read")
+		        
 			.end()
 		;
 	}
-
 }

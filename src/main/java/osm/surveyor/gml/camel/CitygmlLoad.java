@@ -17,10 +17,20 @@ public class CitygmlLoad {
 	public static void main(String[] args) throws Exception {
 		if (args.length > 0) {
 			if (args[0].equals("1st")) {
-				loadDir();
+				if (args.length > 1) {
+					loadDir(args[1]);
+				}
+				else {
+					loadDir(".");
+				}
 			}
 			else if (args[0].equals("2nd")) {
-				osm.surveyor.osm.camel.OsmDownload.osmDownload();
+				if (args.length > 1) {
+					osm.surveyor.osm.camel.OsmDownload.osmDownload(args[1]);
+				}
+				else {
+					osm.surveyor.osm.camel.OsmDownload.osmDownload(".");
+				}
 			}
 			else if (args[0].equals("3rd")) {
 				osm.surveyor.update.OsmUpdater.osmUpdate();
@@ -36,11 +46,11 @@ public class CitygmlLoad {
 			}
 		}
 		else {
-			loadDir();
+			loadDir(".");
 		}
 	}
 
-	public static void loadDir() throws Exception {
+	public static void loadDir(String dPath) throws Exception {
 		camel = new DefaultCamelContext();
 		camel.getStreamCachingStrategy().setSpoolThreshold(80 * 256 * 4096);
 		camel.getStreamCachingStrategy().setBufferSize(20 * 256 * 4096);
@@ -50,7 +60,7 @@ public class CitygmlLoad {
 		System.out.println("gml.camel.start();");
 		
         camel.start();
-        camel.createProducerTemplate().sendBody("direct:gml-files", ".");
+        camel.createProducerTemplate().sendBody("direct:gml-files", dPath);
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             try {
