@@ -9,7 +9,7 @@ import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 
-public class CitygmlFileTest_Issue34_1 extends CitygmlFileTest1 {
+public class CitygmlFileTest_Issue34_1 extends GmlLoadRouteTest {
 
 	/**
 	 * 

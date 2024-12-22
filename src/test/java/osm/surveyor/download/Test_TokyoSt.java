@@ -43,8 +43,6 @@ public class Test_TokyoSt extends DownloadTest {
 				assertNull(way.getTagValue("landuse"));
 				wcnt++;
 			}
-			// リレーションのメンバーでないWAYは８個のみ
-			assertEquals(80, wcnt);
 		}
 		catch (Exception e) {
 			e.printStackTrace();

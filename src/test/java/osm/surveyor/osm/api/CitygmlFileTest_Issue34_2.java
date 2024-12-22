@@ -6,7 +6,7 @@ import org.junit.experimental.categories.Category;
 import osm.surveyor.DetailTests;
 import osm.surveyor.osm.OsmDom;
 
-public class CitygmlFileTest_Issue34_2 extends CitygmlFileTest2 {
+public class CitygmlFileTest_Issue34_2 extends GmlLoadRouteTest {
 
 	@Test
 	@Category(DetailTests.class)

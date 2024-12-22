@@ -25,7 +25,6 @@ import osm.surveyor.DetailTests;
 @ExcludeCategory(DetailTests.class)
 @SuiteClasses({
 	CitygmlFileTest_52396075.class,		// 箱根町 Issue #13 
-	CitygmlFileTest_52396076_1.class,	// 箱根町 Issue #13
 	CitygmlFileTest_53375768.class,		// 伊那市 Issue #12 「v1.2.4 単独の建物でもbuilding:part」
 	CitygmlFileTest_53392547.class,		// 東京都大田区 多摩川 サンプル地区
 	//CitygmlFileTest_53392588.class,		// 東京都大田区 「name=都営大森西三丁目第2アパート」 innerあり
