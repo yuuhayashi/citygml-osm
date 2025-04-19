@@ -272,8 +272,8 @@ public class CityModelParser extends DefaultHandler {
 				if (usage == null) {
 					usage = new TagBean("building", "yes");
 				}
-				String ele = building.getTagValue("ele");
-				String maxele = building.getTagValue("maxele");
+				String ele = checkNumberString(building.getTagValue("ele"));
+				String maxele = checkNumberString(building.getTagValue("maxele"));
 				if (maxele != null) {
 					building.removeTag("maxele");
 				}
@@ -291,8 +291,14 @@ public class CityModelParser extends DefaultHandler {
 					if (mem.getType().equals("way")) {
 						ElementWay way = osm.ways.get(mem.getRef());
 						way.removeTag("maxele");
-						way.addTag("height", rounding(2, building.getTagValue("height")));
-						way.addTag("ele", rounding(1, building.getTagValue("ele")));
+						String num = checkNumberString(rounding(2, building.getTagValue("height")));
+						if (num != null) {
+							way.addTag("height", num);
+						}
+						num = checkNumberString(rounding(1, building.getTagValue("ele")));
+						if (num != null) {
+							way.addTag("ele", num);
+						}
 						way.addTag("addr:full", building.getTagValue("addr:full"));
 						if ((name != null) && !name.isEmpty()) {
 							way.addTag("name", name);
@@ -307,10 +313,22 @@ public class CityModelParser extends DefaultHandler {
 						ElementRelation relation = osm.relations.get(mem.getRef());
 						relation.removeTag("maxele");
 						// Issue #39 relation.addTag("start_date", building.getTagValue("start_date"));
-						relation.addTag("building:levels", building.getTagValue("building:levels"));
-						relation.addTag("building:levels:underground", building.getTagValue("building:levels:underground"));
-						relation.addTag("height", rounding(2, building.getTagValue("height")));
-						relation.addTag("ele", rounding(1, building.getTagValue("ele")));
+						String num = checkNumberString(building.getTagValue("building:levels"));
+						if (num != null) {
+							relation.addTag("building:levels", num);
+						}
+						num = checkNumberString(building.getTagValue("building:levels:underground"));
+						if (num != null) {
+							relation.addTag("building:levels:underground", num);
+						}
+						num = checkNumberString(rounding(2, building.getTagValue("height")));
+						if (num != null) {
+							relation.addTag("height", num);
+						}
+						num = checkNumberString(rounding(1, building.getTagValue("ele")));
+						if (num != null) {
+							relation.addTag("ele", num);
+						}
 						relation.addTag("addr:full", building.getTagValue("addr:full"));
 						if ((name != null) && !name.isEmpty()) {
 							relation.addTag("name", name);
@@ -363,7 +381,7 @@ public class CityModelParser extends DefaultHandler {
 		}
     	else if(qName.equals("bldg:measuredHeight")){
 			if ((measuredHeight != null) && (measuredHeight.isEmpty()) && (outSb != null)) {
-				measuredHeight = outSb.toString();
+				measuredHeight = checkNumberString(outSb.toString());
 				if (building != null) {
 					building.addTag("height", rounding(1, measuredHeight));
 				}
@@ -371,7 +389,7 @@ public class CityModelParser extends DefaultHandler {
 			outSb = null;
 		}
     	else if(qName.equals("bldg:storeysAboveGround")){
-			if ((storeysAboveGround == 0) && (outSb != null)) {
+			if ((storeysAboveGround == 0) && (outSb != null) && (checkNumberString(outSb.toString()) != null)) {
 				storeysAboveGround = Integer.parseInt(outSb.toString());
 				if (building != null) {
 					building.addTag("building:levels", Integer.toString(storeysAboveGround));
@@ -380,7 +398,7 @@ public class CityModelParser extends DefaultHandler {
 			outSb = null;
 		}
     	else if(qName.equals("bldg:storeysBelowGround")){
-			if ((storeysBelowGround == 0) && (outSb != null)) {
+			if ((storeysBelowGround == 0) && (outSb != null) && (checkNumberString(outSb.toString()) != null)) {
 				storeysBelowGround = Integer.parseInt(outSb.toString());
 				if (building != null) {
 					building.addTag("building:levels:underground", Integer.toString(storeysBelowGround));
@@ -423,8 +441,8 @@ public class CityModelParser extends DefaultHandler {
 				String maxheight = "-9999.9";
 				String minheight = "99999.9";
 				for (ElementWay way : solids) {
-					String elestr = way.getTagValue("ele");
-					String histr = way.getTagValue("maxele");
+					String elestr = checkNumberString(way.getTagValue("ele"));
+					String histr = checkNumberString(way.getTagValue("maxele"));
 					if (elestr != null) {
 						double ele = Double.parseDouble(elestr);
 						double min = Double.parseDouble(minheight);
@@ -544,8 +562,8 @@ public class CityModelParser extends DefaultHandler {
 				String maxele = "-9999.9";
 				String minele = "99999.9";
 				if (way != null) {
-					String ele = way.getTagValue("ele");
-					String hi = way.getTagValue("maxele");
+					String ele = checkNumberString(way.getTagValue("ele"));
+					String hi = checkNumberString(way.getTagValue("maxele"));
 					if (ele != null) {
 						minele = ele;
 					}
@@ -593,13 +611,19 @@ public class CityModelParser extends DefaultHandler {
 					}
 				}
 				if (way != null) {
-					double min = Double.parseDouble(minele);
-					double max = Double.parseDouble(maxele);
-					if (min < 90000.0d) {
-						way.addTag("ele", rounding(1, minele));
+					String minStr = checkNumberString(minele);
+					if (minStr != null) {
+						double min = Double.parseDouble(minele);
+						if (min < 90000.0d) {
+							way.addTag("ele", rounding(1, minele));
+						}
 					}
-					if (max > -1000.0d) {
-						way.addTag("maxele", Double.toString(max));
+					String maxeleStr = checkNumberString(maxele);
+					if (maxeleStr != null) {
+						double max = Double.parseDouble(maxele);
+						if (max > -1000.0d) {
+							way.addTag("maxele", Double.toString(max));
+						}
 					}
 				}
 			}
@@ -661,6 +685,22 @@ public class CityModelParser extends DefaultHandler {
 			}
 		}
     	return null;
+    }
+    
+    public static String checkNumberString(String numberStr) {
+    	try {
+    		BigDecimal bd = new BigDecimal(numberStr);
+    		if (bd.compareTo(new BigDecimal(9999.0)) >= 0) {
+    			return null;
+    		}
+    		else if (bd.compareTo(new BigDecimal(-9999.0)) <= 0) {
+    			return null;
+    		}
+    		return trim0(bd.toString());
+    	}
+    	catch(Exception e) {
+    		return null;
+    	}
     }
     
     /**
