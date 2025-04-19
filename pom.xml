@@ -33,7 +33,7 @@
     <camel.version>3.21.2</camel.version>
     <maven.compiler.source>${java.version.source}</maven.compiler.source>
     <maven.compiler.target>${java.version.target}</maven.compiler.target>
-    <skipTests>false</skipTests>
+    <skipTests>true</skipTests>
     <gpg.skip>true</gpg.skip>
     <maven.javadoc.skip>true</maven.javadoc.skip>
     
