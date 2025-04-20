@@ -156,7 +156,11 @@ public class CityModelParser extends DefaultHandler {
 		    	outSb = new StringBuffer();
 			}
 		}
-		
+    	else if(qName.equals("uro:buildingID")){
+    		//   [GMLv4] <uro:buildingID>11230-bldg-28587</uro:buildingID>
+    		buildingId = "";
+    		outSb = new StringBuffer();
+		}
 		else if(qName.equals("gml:name")){
 			name = "";
 	    	outSb = new StringBuffer();
@@ -220,8 +224,6 @@ public class CityModelParser extends DefaultHandler {
 			// <xAL:LocalityName Type="Town"></xAL:LocalityName>
 			//localityNameType = getAttributes("Type", atts);
 	    	outSb = new StringBuffer();
-		}
-		else {
 		}
 	}
 
@@ -303,6 +305,7 @@ public class CityModelParser extends DefaultHandler {
 						if ((name != null) && !name.isEmpty()) {
 							way.addTag("name", name);
 						}
+						way.addTag("survey:date", building.getTagValue("survey:date"));
 						way.addTag("start_date", building.getTagValue("start_date"));
 						way.addTag("building:part", usage.v);
 						way.addTag("building:levels", building.getTagValue("building:levels"));
@@ -352,10 +355,13 @@ public class CityModelParser extends DefaultHandler {
 				name = outSb.toString();
 			}
 			outSb = null;
-		}
+		}		
     	else if(qName.equals("uro:surveyYear")){
-			if ((surveyYear != null) && (surveyYear.isEmpty()) && (outSb != null)) {
-				surveyYear = outSb.toString();
+			if ((surveyYear != null) && (outSb != null)) {
+				surveyYear = checkNumberString(outSb.toString());
+				if ((building != null) && (surveyYear != null)) {
+					building.addTag("survey:date", surveyYear);
+				}
 			}
 			outSb = null;
 		}
@@ -413,7 +419,13 @@ public class CityModelParser extends DefaultHandler {
 			}
 			outSb = null;
 		}
-		
+    	else if(qName.equals("uro:buildingID")){
+    		//   [GMLv4] <uro:buildingID>11230-bldg-28587</uro:buildingID>
+    		if ((buildingId != null) && buildingId.isEmpty() && (outSb != null)) {
+    			buildingId = outSb.toString();
+			}
+    		outSb = null;
+		}		
     	else if(qName.equals("bldg:lod0RoofEdge")){
     		if (building != null) {
     			if (roof != null) {

@@ -295,6 +295,7 @@ public class OsmDom {
 			for (TagBean tag : tags) {
 				if (tag.k.equals("ref:MLIT_PLATEAU") && tag.v.equals(buildingid)) {
 					ret.add(way);
+					break;
 				}
 			}
 		}
