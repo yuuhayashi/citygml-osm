@@ -117,6 +117,10 @@ public class Test_haya4 extends OsmUpdaterTest {
 	        		assertEquals("11111-bldg-185615", way.getTag("ref:MLIT_PLATEAU").getValue());
 	        		assertNotNull(way.getTag("addr:housenumber"));
 	        		assertEquals("11-20", way.getTag("addr:housenumber").getValue());
+	        		assertEquals("-9998.9", way.getTag("ele").getValue());		// Issue#128 height=-9999
+	        		assertEquals("9998.9", way.getTag("height").getValue());		// Issue#128 height=-9999
+	        		assertEquals("9998", way.getTag("building:levels").getValue());		// Issue#128 building:levels=9999
+	        		assertEquals("-9998", way.getTag("building:levels:underground").getValue());		// Issue#128 building:levels:underground=9999
 	        		checkCnt++;
 				}
 				else if (way.getId() == 289897935) {
@@ -129,6 +133,10 @@ public class Test_haya4 extends OsmUpdaterTest {
 	        		assertEquals("11111-bldg-99999", way.getTag("ref:MLIT_PLATEAU").getValue());
 	        		assertNotNull(way.getTag("addr:housenumber"));
 	        		assertEquals("11-9", way.getTag("addr:housenumber").getValue());
+	        		assertNull(way.getTag("ele"));		// Issue#128 height=-9999.0
+	        		assertNull(way.getTag("height"));		// Issue#128 height=9999.0
+	        		assertNull(way.getTag("building:levels"));		// Issue#128 building:levels=9999
+	        		assertNull(way.getTag("building:levels:underground"));		// Issue#128 building:levels:underground=9999
 	        		checkCnt++;
 				}
 	        	else if (way.getId() == 289757583) {

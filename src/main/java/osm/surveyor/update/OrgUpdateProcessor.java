@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 
+import osm.surveyor.citygml.CityModelParser;
 import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.NdBean;
@@ -34,6 +35,9 @@ public class OrgUpdateProcessor implements Processor {
 		
 		// Issue #60 "end_date"と"demolished:building"
 		fixEndDate(org);
+		
+		// インポートデータの内で、v=[-9999 .. 9999]のタグを削除
+		fix128(osm);
 		
 		// インポートデータの内で、Fix=trueの既存データと重複するものを削除
 		// その後、既存データからFix=trueのPOIを削除する
@@ -521,6 +525,27 @@ public class OrgUpdateProcessor implements Processor {
 						member.setRelation((RelationBean)changeBuildingYes(outline, buildingTag.getValue()));
 					}
 				}
+			}
+		}
+	}
+
+	void fix128(OsmBean mrg) {
+		for (WayBean way : mrg.getWayList()) {
+			List<TagBean> tags = new ArrayList<>();
+			for (TagBean tag : way.getTagList()) {
+				String key = tag.getKey();
+				if (key.equals("ele")
+						|| key.equals("height")
+						|| key.equals("building:levels")
+						|| key.equals("building:levels:underground")) 
+				{
+					if (CityModelParser.checkNumberString(tag.getValue()) == null) {
+						tags.add(tag);
+					}
+				}
+			}
+			for (TagBean tag : tags) {
+				way.removeTag(tag.k);
 			}
 		}
 	}

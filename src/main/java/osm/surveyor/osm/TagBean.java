@@ -11,6 +11,8 @@ import javax.xml.bind.annotation.XmlTransient;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
+import osm.surveyor.citygml.CityModelParser;
+
 /**
  * CityGMLファイルをパースする
  * @param gmlFile
@@ -89,6 +91,11 @@ public class TagBean implements Cloneable,Serializable {
 				this.k = k;
 				if ((v != null) && !v.isEmpty()) {
 					this.v = v;
+					if (k.equals("height")) {
+						if (CityModelParser.checkNumberString(v) == null) {
+							return null;
+						}
+					}
 				}
 				else {
 					this.v = null;

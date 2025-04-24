@@ -11,6 +11,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
+import osm.surveyor.citygml.CityModelParser;
+
 /**
  * @code{
  * <osm>
@@ -66,7 +68,7 @@ public class NodeBean extends PoiBean implements Cloneable,Serializable {
 		return height;
 	}
 	public void setHeight(String height) {
-		this.height = height;
+		this.height = CityModelParser.checkNumberString(height);
 	}
 
 	/**
