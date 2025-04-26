@@ -1,5 +1,5 @@
 {
-	"version": "2.3.0",
+	"version": "2.3.1",
 	"usage" : [
 		{"code":"401","name":"業務施設",	"building":"commercial"},
 		{"code":"402","name":"商業施設",	"building":"retail"},
@@ -14,7 +14,7 @@
 		{"code":"422","name":"文教厚生施設",	"building":"public"},
 		{"code":"431","name":"運輸倉庫施設",	"building":"warehouse"},
 		{"code":"441","name":"工場",		"building":"industrial"},
-		{"code":"451","name":"農林漁施設", "building":"agricultural"},
+		{"code":"451","name":"農林漁施設", "building":"farm_auxiliary"},
 		{"code":"453","name":"防衛施設",	"building":"military"}
 	]
 }
