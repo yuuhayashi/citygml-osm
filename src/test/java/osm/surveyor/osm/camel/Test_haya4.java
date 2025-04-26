@@ -226,15 +226,15 @@ public class Test_haya4 extends OsmUpdaterTest {
 				}
 				else if (way.getId() == 289757568) {
 					// 7-6 modify PLATEAUでリレーションメンバーに変更される
+	        		assertEquals("11111-bldg-101979", way.getTag("ref:MLIT_PLATEAU").getValue());
 					assertEquals("modify", way.getAction());
 					assertEquals("PLATEAUデータで更新されています", way.getTag("MLIT_PLATEAU:fixme").getValue());
-					assertNull(way.getTag("building"));
-					assertNotNull(way.getTag("building:part"));
+	        		assertEquals("15", way.getTag("height").getValue());
 	        		assertEquals("house", way.getTag("building:part").getValue());
-	        		assertNotNull(way.getTag("addr:housenumber"));
 	        		assertEquals("7-6", way.getTag("addr:housenumber").getValue());
-	        		assertNotNull(way.getTag("building:levels"));
-	        		assertEquals("2", way.getTag("building:levels").getValue());
+	        		assertEquals("2", way.getTag("building:levels").getValue());	// .org
+	        		assertNull(way.getTag("building:levels:underground"));			// .osm
+	        		assertNull(way.getTag("building"));
 	        		checkCnt++;
 				}
 				else if (way.getId() == 289757576) {

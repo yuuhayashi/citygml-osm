@@ -41,7 +41,7 @@ public class CitygmlPackFileTest {
 	        String surveyYear = target.getGml().getSurveyYear();
 	        assertNotNull(surveyYear);
 	        assertFalse(surveyYear.isEmpty());
-			assertEquals("2016", surveyYear);
+			assertEquals("2024", surveyYear);
 		}
 		catch(Exception e) {
 			fail();

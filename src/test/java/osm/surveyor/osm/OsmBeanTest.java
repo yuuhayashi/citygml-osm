@@ -56,10 +56,12 @@ public class OsmBeanTest {
 
 	        WayBean way101821 = osm.getWay(-101821);
 	        assertNotNull(way101821);
+    		assertEquals("40205-bldg-91805", way101821.getTagValue("ref:MLIT_PLATEAU"));
     		assertEquals("yes", way101821.getTagValue("building:part"));
     		assertEquals("98.32", way101821.getTagValue("ele"));
     		assertEquals("9999", way101821.getTagValue("height"));			// <tag k='height' v='9999' />
-    		assertEquals("40205-bldg-91805", way101821.getTagValue("ref:MLIT_PLATEAU"));
+    		assertEquals("0", way101821.getTagValue("building:levels")); 	//  <tag k='building:levels' v='0' />
+    		assertEquals("0", way101821.getTagValue("building:levels:underground")); //  <tag k='building:levels:underground' v='0' />
 		}
 		catch(Exception e) {
 			fail();

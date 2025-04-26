@@ -14,8 +14,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import osm.surveyor.citygml.CityModelParser;
-
 /**
  * CityGMLファイルをパースする
  * @param gmlFile

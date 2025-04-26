@@ -101,7 +101,8 @@ public class CitygmlFileTest_E extends GmlLoadRouteTest {
 								assertEquals("1.6", way.getTagValue("ele"));
 								assertEquals(way.getTagValue("start_date"), ("1976"));
 								assertEquals(way.getTagValue("ref:MLIT_PLATEAU"), "13111-bldg-56522");
-								assertEquals(8, way.getTagList().size());
+								assertEquals("2016", way.getTagValue("survey:date"));
+								assertEquals(9, way.getTagList().size());
 							}
 							else if (way.getTagValue("ref:MLIT_PLATEAU").endsWith("13111-bldg-55333")) {
 								assertEquals(way.getTagValue("building:part"), ("yes"));
@@ -112,7 +113,8 @@ public class CitygmlFileTest_E extends GmlLoadRouteTest {
 								assertEquals("1.9", way.getTagValue("ele"));
 								assertEquals(way.getTagValue("start_date"), ("1977"));
 								assertEquals(way.getTagValue("ref:MLIT_PLATEAU"), "13111-bldg-55333");
-								assertEquals(6, way.getTagList().size());
+								assertEquals("2016", way.getTagValue("survey:date"));
+								assertEquals(7, way.getTagList().size());
 							}
 						}
 					}

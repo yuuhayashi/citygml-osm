@@ -531,20 +531,29 @@ public class OrgUpdateProcessor implements Processor {
 
 	void fix128(OsmBean mrg) {
 		for (WayBean way : mrg.getWayList()) {
-			List<TagBean> tags = new ArrayList<>();
+			List<TagBean> blacklist = new ArrayList<>();
 			for (TagBean tag : way.getTagList()) {
 				String key = tag.getKey();
-				if (key.equals("ele")
-						|| key.equals("height")
-						|| key.equals("building:levels")
-						|| key.equals("building:levels:underground")) 
-				{
-					if (CityModelParser.checkNumberString(tag.getValue()) == null) {
-						tags.add(tag);
+				try {
+					if (key.equals("ele") || key.equals("height")) {
+						if (CityModelParser.checkNumberString(tag.getValue()) == null) {
+							blacklist.add(tag);
+						}
+					}
+					else if (key.equals("building:levels") || key.equals("building:levels:underground")) {
+						if (CityModelParser.checkNumberString(tag.getValue()) == null) {
+							blacklist.add(tag);
+						}
+						else if (Integer.parseInt(tag.getValue()) == 0) {
+							blacklist.add(tag);
+						}
 					}
 				}
+				catch (Exception e) {
+					blacklist.add(tag);
+				}
 			}
-			for (TagBean tag : tags) {
+			for (TagBean tag : blacklist) {
 				way.removeTag(tag.k);
 			}
 		}

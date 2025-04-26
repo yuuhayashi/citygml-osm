@@ -397,16 +397,18 @@ public class CityModelParser extends DefaultHandler {
     	else if(qName.equals("bldg:storeysAboveGround")){
 			if ((storeysAboveGround == 0) && (outSb != null) && (checkNumberString(outSb.toString()) != null)) {
 				storeysAboveGround = Integer.parseInt(outSb.toString());
-				if (building != null) {
+				if ((building != null) && (storeysAboveGround != 0)) {
 					building.addTag("building:levels", Integer.toString(storeysAboveGround));
 				}
 			}
 			outSb = null;
 		}
     	else if(qName.equals("bldg:storeysBelowGround")){
+    		// GMLv4	<bldg:storeysBelowGround>0</bldg:storeysBelowGround>
+    		// 			<bldg:storeysBelowGround>9999</bldg:storeysBelowGround>
 			if ((storeysBelowGround == 0) && (outSb != null) && (checkNumberString(outSb.toString()) != null)) {
 				storeysBelowGround = Integer.parseInt(outSb.toString());
-				if (building != null) {
+				if ((building != null) && (storeysBelowGround != 0)) {
 					building.addTag("building:levels:underground", Integer.toString(storeysBelowGround));
 				}
 			}
