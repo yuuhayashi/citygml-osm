@@ -2,6 +2,7 @@ package osm.surveyor.osm;
 
 import java.io.File;
 import java.io.PrintStream;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class OsmDom {
         super();
         this.idno = 0;
         bounds = new BoundsBean();
+        indexMap = new IndexMap();
         nodes = new NodeBeans();	// k= node.id
         ways = new WayMap();		// k= way.id
         relations = new RelationMap();	// k= relation.id
@@ -36,8 +38,11 @@ public class OsmDom {
     @XmlTransient
     BoundsBean bounds = null;
     
+	public IndexMap indexMap = null;
+    
     public void setBounds(BoundsBean bounds) {
     	this.bounds = bounds;
+    	this.indexMap.setBounds(bounds);
     }
     
     @XmlElement(name="bounds")
@@ -119,6 +124,7 @@ public class OsmDom {
 			}
 		}
 		ddom.ways.put(way.clone());
+		ddom.indexMap.putElementWay(way);
 	}
 	
     public void export(PrintStream out) {
@@ -192,6 +198,7 @@ public class OsmDom {
 	}
 
 	public void toOutline() {
+		System.out.println(LocalTime.now() +"\tOsmDom.toOutline()");
 		for (String id : this.relations.keySet()) {
 			ElementRelation relation = this.relations.get(id);
 			if (relation.isBuilding()) {
@@ -241,6 +248,7 @@ public class OsmDom {
 	 * RELATIONに所属していないWAYを削除する
 	 */
 	public void gerbageWay() {
+		System.out.println(LocalTime.now() +"\tOsmDom.gerbageWay()");
 		WayMap map = new WayMap();
 		for (String id : this.ways.keySet()) {
 			ElementWay way = this.ways.get(id);

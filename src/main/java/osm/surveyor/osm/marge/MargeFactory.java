@@ -43,7 +43,7 @@ public class MargeFactory {
 
 				// listにbWayを統合する
 		    	for (TwoPoint bSegment : bList) {
-		    		list.add(bSegment);
+		    		this.list.add(bSegment);
 		    	}
 			}
 		}
@@ -56,7 +56,7 @@ public class MargeFactory {
      * @return	削除したらTrue
      */
     private boolean checkSegment(OsmLine bList) {
-    	for (TwoPoint aSegment : list) {
+    	for (TwoPoint aSegment : this.list) {
     		while (checkSegment(bList, aSegment)) {
     			return true;
     		}

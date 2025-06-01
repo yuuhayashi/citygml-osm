@@ -1,6 +1,7 @@
 package osm.surveyor.gml.camel;
 
 import java.io.File;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.stream.Stream;
@@ -43,10 +44,10 @@ public class GmlFileListProcessor implements Processor {
             	osmName += "osm";
             	
             	if (CitygmlLoad.isExit(directory, osmName)) {
-            		System.out.println("SKIP: '"+ osmName +"' already exists.");
+            		System.out.println(LocalTime.now() +"\tSKIP: '"+ osmName +"' already exists.");
             	}
             	else {
-            		System.out.println("INFO: Not exists  '"+ osmName +"'.");
+            		System.out.println(LocalTime.now() +"\tINFO: Not exists  '"+ osmName +"'.");
                     files.add(file);
             	}
             }

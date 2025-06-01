@@ -1,5 +1,7 @@
 package osm.surveyor.update;
 
+import java.time.LocalTime;
+
 import org.apache.camel.CamelContext;
 import org.apache.camel.impl.DefaultCamelContext;
 
@@ -19,7 +21,7 @@ public class OsmUpdater {
 		camel.addRoutes(new OrgLoadDirRoute());
 		camel.addRoutes(new OsmUpdaterRoute());
 		
-		System.out.println("osm-3rd.camel.start();");
+		System.out.println(LocalTime.now() +"\tosm-3rd.camel.start();");
 		
         camel.start();
         camel.createProducerTemplate().sendBody("direct:org-files", ".");
@@ -28,10 +30,10 @@ public class OsmUpdater {
             try {
                 camel.stop();
             } catch (Exception e) {}
-    		System.out.println("osm-3rd.camel.stop();");
+    		System.out.println(LocalTime.now() +"\tosm-3rd.camel.stop();");
         }));
         
-		System.out.println("osm-3rd.camel.end();");
+		System.out.println(LocalTime.now() +"\tosm-3rd.camel.end();");
 	}
 
 }

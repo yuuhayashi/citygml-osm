@@ -3,6 +3,7 @@ package osm.surveyor.citygml;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.nio.file.Paths;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.StringTokenizer;
@@ -236,6 +237,7 @@ public class CityModelParser extends DefaultHandler {
 				NodeBean node = nodes.get(key);
 				osm.nodes.put(node);
 			}
+			System.out.println(LocalTime.now() +"\tparse end ["+ qName +"]");
 		}
 		else if(qName.equals("gml:boundedBy")){
 			osm.setBounds(bounds);
@@ -566,7 +568,7 @@ public class CityModelParser extends DefaultHandler {
 			// <gml:LinearRing>
 			// AREAに変更する
 			if (way != null) {
-				way.toArea();
+				way.toArea(this.osm.indexMap);
 			}
 		}
 		else if(qName.equals("gml:posList")){
@@ -643,8 +645,6 @@ public class CityModelParser extends DefaultHandler {
 			}
 			outSb = null;
 		}
-		
-
 		else if(qName.equals("xAL:LocalityName")) {
 			// <xAL:LocalityName>東京都大田区南六郷三丁目</xAL:LocalityName>
 			if (outSb != null) {

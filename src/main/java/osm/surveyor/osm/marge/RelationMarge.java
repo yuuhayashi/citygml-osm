@@ -1,6 +1,8 @@
 package osm.surveyor.osm.marge;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.ElementRelation;
@@ -24,6 +26,7 @@ public class RelationMarge {
      * OsmDom osm
      */
 	public boolean relationMarge() {
+		System.out.println(LocalTime.now() +"\tRelationMarge.relationMarge()");
 		RelationMap checked = new RelationMap();
 		
 		// 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる
@@ -73,14 +76,20 @@ public class RelationMarge {
 	 * @return	接続するリレーションがない場合はNULL
 	 */
 	private RelationBuilding checkParts(RelationMap checked, RelationBuilding src) {
+		ElementWay srcWay =  src.getOutlineWay(osm);
+
 		for (String relationid : checked.keySet()) {
 			RelationBuilding relation = (RelationBuilding)checked.get(relationid);
-			WayMap ways = new WayMap();
-			ways.put(src.getOutlineWay(osm));
-			ways.put(relation.getOutlineWay(osm));
-			if ((new MargeFactory(osm, ways)).isDuplicateSegment()) {
-				src = matomeru(src, relation);
-				return relation;
+			ElementWay targetWay =  relation.getOutlineWay(osm);
+			List<Integer> list = srcWay.getIntersectBoxels(targetWay.getBoxels());
+			if (list.size() > 0) {
+				WayMap ways = new WayMap();
+				ways.put(srcWay);
+				ways.put(targetWay);
+				if ((new MargeFactory(osm, ways)).isDuplicateSegment()) {
+					src = matomeru(src, relation);
+					return relation;
+				}
 			}
 		}
 		return null;

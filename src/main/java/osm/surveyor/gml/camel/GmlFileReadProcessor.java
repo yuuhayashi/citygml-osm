@@ -1,6 +1,7 @@
 package osm.surveyor.gml.camel;
 
 import java.io.File;
+import java.time.LocalTime;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
@@ -17,7 +18,7 @@ public class GmlFileReadProcessor implements Processor {
 	public void process(Exchange exchange) throws Exception {
 		File file = exchange.getIn().getBody(File.class);
 		
-		System.out.println("GmlFileReadProcessor : \""+ file.getName() +"\"");
+		System.out.println(LocalTime.now() +"\tGmlFileReadProcessor : \""+ file.getName() +"\"");
 		
         // (1) GMLファイルをパースする
         OsmDom osm = new OsmDom();

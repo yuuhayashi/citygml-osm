@@ -1,6 +1,7 @@
 package osm.surveyor.download;
 
 import java.io.File;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.stream.Stream;
@@ -45,10 +46,10 @@ public class OrgFileListProcessor implements Processor {
             	osmName += OsmMrgFiles.SUFFIX;
             	
             	if (CitygmlLoad.isExit(directory, osmName)) {
-            		System.out.println("SKIP: '"+ osmName +"' already exists.");
+            		System.out.println(LocalTime.now() +"SKIP: '"+ osmName +"' already exists.");
             	}
             	else {
-            		System.out.println("INFO: Not exists '"+ osmName +"'.");
+            		System.out.println(LocalTime.now() +"INFO: Not exists '"+ osmName +"'.");
                     files.add(file);
             	}
             }

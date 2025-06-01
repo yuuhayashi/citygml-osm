@@ -88,6 +88,17 @@ public class WayBean extends PoiBean implements Cloneable, Serializable {
     	this.ndList = ndList;
     }
     
+	/**
+	 * WAY IndexCellメンバー
+	 */
+	private List<Integer> boxels = new ArrayList<>();
+	public List<Integer> getBoxels() {
+		return this.boxels;
+	}
+	public void addBoxel(Integer boxelId) {
+		this.boxels.add(boxelId);
+	}
+	
 	@Override
 	public WayBean clone() {
 		WayBean copy = null;
@@ -95,6 +106,9 @@ public class WayBean extends PoiBean implements Cloneable, Serializable {
 			copy = (WayBean) super.clone();
 			
 			copy.fix = this.fix;
+			for (Integer box : this.boxels) {
+				copy.addBoxel(Integer.valueOf(box.intValue()));
+			}
 			
 			ArrayList<NdBean> nds = new ArrayList<>();
 			for (NdBean nd : this.ndList) {
@@ -178,20 +192,23 @@ public class WayBean extends PoiBean implements Cloneable, Serializable {
 	 * @return
 	 */
 	public double getIntersectArea(WayBean way) {
-        Polygon polygon = this.getPolygon();
-        if (polygon == null) {
-        	return 0.0d;
-        }
-        Polygon polygon2 = way.getPolygon();
-        if (polygon2 == null) {
-        	return 0.0d;
-        }
-        Geometry intersect = polygon.intersection(polygon2);
-		if (intersect == null) {
-			return 0.0d;
-		}
-		if (intersect.isValid()) {
-			return intersect.getArea();
+		List<Integer> list = getIntersectBoxels(way.getBoxels());
+		if (list.size() > 0) {
+	        Polygon polygon = this.getPolygon();
+	        if (polygon == null) {
+	        	return 0.0d;
+	        }
+	        Polygon polygon2 = way.getPolygon();
+	        if (polygon2 == null) {
+	        	return 0.0d;
+	        }
+	        Geometry intersect = polygon.intersection(polygon2);
+			if (intersect == null) {
+				return 0.0d;
+			}
+			if (intersect.isValid()) {
+				return intersect.getArea();
+			}
 		}
 		return 0.0d;
 	}
@@ -211,6 +228,18 @@ public class WayBean extends PoiBean implements Cloneable, Serializable {
 			}
         }
         return false;
+	}
+	
+	private List<Integer> getIntersectBoxels(List<Integer> boxcels) {
+		List<Integer> list = new ArrayList<>();
+		for (Integer key1 : this.boxels) {
+			for (Integer key2 : boxcels) {
+				if (key1.intValue() == key2.intValue()) {
+					list.add(key1);
+				}
+			}
+		}
+		return list;
 	}
 	
 	/**

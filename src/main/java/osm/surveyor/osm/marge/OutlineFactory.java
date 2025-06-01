@@ -49,7 +49,7 @@ public class OutlineFactory {
 			// OUTLINEをWAYリストに登録
 			ElementWay aWay = new ElementWay(osm.getNewId());
 			aWay.replaceNds(outer);
-			aWay.toArea();
+			aWay.toArea(this.osm.indexMap);
 			aWay.member = true;
 			
 			ArrayList<MemberBean> delPolygonlist = new ArrayList<>();

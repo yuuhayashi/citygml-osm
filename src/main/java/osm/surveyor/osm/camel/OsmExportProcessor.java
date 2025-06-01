@@ -1,6 +1,7 @@
 package osm.surveyor.osm.camel;
 
 import java.io.File;
+import java.time.LocalTime;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
@@ -20,7 +21,7 @@ public class OsmExportProcessor implements Processor {
 	@Override
 	public void process(Exchange exchange) throws Exception {
 		String name = (String) exchange.getProperty(Exchange.FILE_NAME);
-		System.out.println("OsmExportProcessor : \""+ name +"\"");
+		System.out.println(LocalTime.now() +"\tOsmExportProcessor : \""+ name +"\"");
 		
 		OsmDom osm = exchange.getIn().getBody(OsmDom.class);
 		osm.export(new File(name));

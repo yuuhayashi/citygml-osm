@@ -1,5 +1,7 @@
 package osm.surveyor.osm.camel;
 
+import java.time.LocalTime;
+
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import osm.surveyor.osm.OsmDom;
@@ -13,6 +15,7 @@ public class BuildingGarbageProcessor implements Processor {
 	 */
 	@Override
 	public void process(Exchange exchange) throws Exception {
+		System.out.println(LocalTime.now() +"\tBuildingGarbageProcessor.garbage()");
 		OsmDom osm = exchange.getIn().getBody(OsmDom.class);
 		(new BuildingGarbage(osm)).garbage();
 		exchange.getIn().setBody(osm);

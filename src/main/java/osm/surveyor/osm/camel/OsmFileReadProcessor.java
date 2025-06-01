@@ -1,6 +1,7 @@
 package osm.surveyor.osm.camel;
 
 import java.io.File;
+import java.time.LocalTime;
 
 import javax.xml.bind.JAXB;
 
@@ -22,7 +23,7 @@ public class OsmFileReadProcessor implements Processor {
 	public void process(Exchange exchange) throws Exception {
 		File file = exchange.getIn().getBody(File.class);
 
-		System.out.println("OsmFileProcessor : \""+ file.getName() +"\"");
+		System.out.println(LocalTime.now() +"\tOsmFileProcessor : \""+ file.getName() +"\"");
 		
 		OsmBean osm = JAXB.unmarshal(file, OsmBean.class);
 		osm.build();

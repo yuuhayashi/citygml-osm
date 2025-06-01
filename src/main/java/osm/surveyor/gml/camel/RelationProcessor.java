@@ -1,5 +1,6 @@
 package osm.surveyor.gml.camel;
 
+import java.time.LocalTime;
 import java.util.List;
 
 import org.apache.camel.Exchange;
@@ -20,6 +21,8 @@ public class RelationProcessor implements Processor {
 	 */
 	@Override
 	public void process(Exchange exchange) throws Exception {
+		System.out.println(LocalTime.now() +"\tRelationProcessor.getRelations()");
+
 		OsmDom osm = exchange.getIn().getBody(OsmDom.class);
 		
 		List<ElementRelation> relations = osm.getRelations();
@@ -69,6 +72,7 @@ public class RelationProcessor implements Processor {
 			}
 		}
 		
+		System.out.println(LocalTime.now() +"\tRelationProcessor.gerbageMember()");
 		osm.gerbageMember();	// Issue #76 オブジェクトが存在しないメンバーをRELATIONから削除する
 		
 		exchange.getIn().setBody(osm);

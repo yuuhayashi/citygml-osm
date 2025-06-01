@@ -2,6 +2,7 @@ package osm.surveyor.osm.camel;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.LocalTime;
 
 import javax.xml.bind.JAXB;
 
@@ -26,12 +27,12 @@ public class OsmDownloadProcessor implements Processor {
 		BodyMap map = exchange.getIn().getBody(BodyMap.class);
 		OsmBean osm = (OsmBean) map.get("osm");
 		BoundsBean bound = osm.getBounds();
-		System.out.println("OsmDownloadProcessor : " + bound);
+		System.out.println(LocalTime.now() +"\tOsmDownloadProcessor : " + bound);
 		
 		// OSMから<bound>範囲内の現在のデータを取得する
 		HttpGet http = new HttpGet();
 		String urlstr = http.getHost() + "/api/0.6/map?"+ bound.getBbox();
-        System.out.println("URL: " + urlstr);
+        System.out.println(LocalTime.now() +"\tURL: " + urlstr);
         URL url = new URL(urlstr);
         
         HttpURLConnection urlconn = (HttpURLConnection)url.openConnection();

@@ -42,6 +42,7 @@ public class OsmBean implements Serializable {
     }
 
 	private BoundsBean bounds;
+	private IndexMap indexMap = new IndexMap();
 	
     @XmlElement(name="bounds")
     public BoundsBean getBounds() {
@@ -50,6 +51,7 @@ public class OsmBean implements Serializable {
 
     public void setBounds(BoundsBean bounds) {
     	this.bounds = bounds;
+    	this.indexMap.setBounds(bounds);
     }
 	
     private List<NodeBean> nodeList = new ArrayList<>();
@@ -176,6 +178,7 @@ public class OsmBean implements Serializable {
     		this.wayList.remove(this.wayList.indexOf(obj));
     	}
 		this.wayList.add(poi);
+		this.indexMap.putWayBean(poi);
 	}
 	
 	public void putRelation(RelationBean poi) {
@@ -214,6 +217,7 @@ public class OsmBean implements Serializable {
 	/**
 	 * WAYを削除する
 	 * WAYに紐づくNODEも削除する
+	 * IndexMapから削除する
 	 * @param poi
 	 */
 	public void removeWay(WayBean poi) {
@@ -221,6 +225,7 @@ public class OsmBean implements Serializable {
     	if (index >= 0) {
     		this.wayList.remove(index);
     	}
+    	this.indexMap.removeWayBean(poi);
 	}
 	
 	/**

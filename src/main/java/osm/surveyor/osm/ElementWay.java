@@ -1,6 +1,7 @@
 package osm.surveyor.osm;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -28,6 +29,11 @@ public class ElementWay extends PoiBean implements Cloneable {
 	@XmlElement(name="nd")
 	public ArrayList<OsmNd> nds;
 
+	/**
+	 * WAY IndexCellメンバー
+	 */
+	private List<Integer> boxels = new ArrayList<>();
+
 	boolean area = false;
 	
 	@XmlTransient
@@ -43,13 +49,16 @@ public class ElementWay extends PoiBean implements Cloneable {
 		ElementWay copy = null;
 		try {
 			copy = (ElementWay)super.clone();
-			copy.area = area;
-			copy.member = member;
+			copy.area = this.area;
+			copy.member = this.member;
 			copy.nds = new ArrayList<OsmNd>();
 			if (this.nds != null) {
 				for (OsmNd nd : this.nds) {
 					copy.nds.add(nd.clone());
 				}
+			}
+			for (Integer box : this.boxels) {
+				copy.addBoxel(Integer.valueOf(box.intValue()));
 			}
 		}
 		catch (Exception e) {
@@ -65,7 +74,14 @@ public class ElementWay extends PoiBean implements Cloneable {
 		copy.setId(newid);
 		return copy;
 	}
-
+	
+	public List<Integer> getBoxels() {
+		return this.boxels;
+	}
+	public void addBoxel(Integer boxelId) {
+		this.boxels.add(boxelId);
+	}
+	
 	public void addNode(OsmNd node) {
 		this.nds.add(node);
 	}
@@ -77,9 +93,9 @@ public class ElementWay extends PoiBean implements Cloneable {
 	/**
 	 * LINEをAREAに変更します
 	 * 最期のノードが最初のノードと同じなら、削除する
-	 * 最期のノードが最初のノードが異なるなら、つなげる
+	 * 最期のノードが最初のノードと異なるなら、つなげる
 	 */
-	public void toArea() {
+	public void toArea(IndexMap indexMap) {
 		int size = nds.size();
 		OsmNd frst = nds.get(0);
 		OsmNd last = nds.get(size - 1);
@@ -90,9 +106,11 @@ public class ElementWay extends PoiBean implements Cloneable {
 					nds.add(frst);
 				}
 			}
-			area = true;
+			
+			indexMap.putElementWay(this);
+			this.area = true;
 		}
-		if (size == 3) {
+		else if (size > 2) {
 			if ((frst.point.lat.equals(last.point.lat)) && (frst.point.lon.equals(last.point.lon))) {
 				nds.remove(size - 1);
 				area = false;
@@ -102,8 +120,12 @@ public class ElementWay extends PoiBean implements Cloneable {
 				if (frst.id != last.id) {
 					nds.add(frst);
 				}
+				indexMap.putElementWay(this);
 				area = true;
 			}
+		}
+		else {
+			area = false;
 		}
 	}
 	
@@ -268,20 +290,41 @@ public class ElementWay extends PoiBean implements Cloneable {
         }
 	}
 	
+	public List<Integer> getIntersectBoxels(List<Integer> boxcels) {
+		List<Integer> list = new ArrayList<>();
+		for (Integer key1 : this.boxels) {
+			for (Integer key2 : boxcels) {
+				if (key1.intValue() == key2.intValue()) {
+					list.add(key1);
+				}
+			}
+		}
+		return list;
+	}
+	
 	/**
 	 * 指定のAREAと重複する領域の面積を取得する
 	 * @param way
 	 * @return
 	 */
 	public double getIntersectArea(ElementWay way) {
-        Polygon polygon = getPolygon();
-        Polygon polygon2 = way.getPolygon();
-        Geometry intersect = polygon.intersection(polygon2);
-		if (intersect == null) {
-			return 0.0d;
-		}
-		if (intersect.isValid()) {
-			return intersect.getArea();
+		List<Integer> list = getIntersectBoxels(way.getBoxels());
+		if (list.size() > 0) {
+	        Polygon polygon = getPolygon();
+	        if (polygon == null) {
+	        	return 0.0d;
+	        }
+	        Polygon polygon2 = way.getPolygon();
+	        if (polygon2 == null) {
+	        	return 0.0d;
+	        }
+	        Geometry intersect = polygon.intersection(polygon2);
+			if (intersect == null) {
+				return 0.0d;
+			}
+			if (intersect.isValid()) {
+				return intersect.getArea();
+			}
 		}
 		return 0.0d;
 	}
@@ -334,6 +377,7 @@ public class ElementWay extends PoiBean implements Cloneable {
 		result = prime * result + (area ? 1231 : 1237);
 		result = prime * result + (member ? 1231 : 1237);
 		result = prime * result + ((nds == null) ? 0 : nds.hashCode());
+		result = prime * result + ((boxels == null) ? 0 : boxels.hashCode());
 		result = prime * result + ((getTagList() == null) ? 0 : getTagList().hashCode());
 		return result;
 	}
@@ -402,27 +446,45 @@ public class ElementWay extends PoiBean implements Cloneable {
 	
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (!super.equals(obj))
+		}
+		if (!super.equals(obj)) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		ElementWay other = (ElementWay) obj;
-		if (area != other.area)
+		if (area != other.area) {
 			return false;
-		if (member != other.member)
+		}
+		if (member != other.member) {
 			return false;
+		}
 		if (nds == null) {
-			if (other.nds != null)
+			if (other.nds != null) {
 				return false;
-		} else if (!nds.equals(other.nds))
+			}
+		}
+		else if (!nds.equals(other.nds)) {
 			return false;
+		}
+		if (boxels == null) {
+			if (other.boxels != null) {
+				return false;
+			}
+		}
+		else if (!boxels.equals(other.boxels)) {
+			return false;
+		}
 		if (this.getTagList() == null) {
-			if (other.getTagList() != null)
+			if (other.getTagList() != null) {
 				return false;
-		} else if (!getTagList().equals(other.getTagList()))
+			}
+		} else if (!getTagList().equals(other.getTagList())) {
 			return false;
+		}
 		return true;
 	}
 }

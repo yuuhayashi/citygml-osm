@@ -1,6 +1,7 @@
 package osm.surveyor.gml.camel;
 
 import java.io.File;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -47,19 +48,19 @@ public class CitygmlLoad {
 		camel.addRoutes(new GmlLoadDirRoute());
 		camel.addRoutes(new GmlLoadRoute());
 		
-		System.out.println("gml.camel.start();");
+		System.out.println(LocalTime.now() +"\tgml.camel.start();");
 		
         camel.start();
-        camel.createProducerTemplate().sendBody("direct:gml-files", ".");
+        camel.createProducerTemplate().sendBody(LocalTime.now() +"\tdirect:gml-files", ".");
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             try {
                 camel.stop();
             } catch (Exception e) {}
-    		System.out.println("gml.camel.stop();");
+    		System.out.println(LocalTime.now() +"\tgml.camel.stop();");
         }));
         
-		System.out.println("gml.camel.end();");
+		System.out.println(LocalTime.now() +"\tgml.camel.end();");
 	}
 	
 	/**

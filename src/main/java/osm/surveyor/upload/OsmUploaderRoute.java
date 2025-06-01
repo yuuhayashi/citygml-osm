@@ -1,5 +1,7 @@
 package osm.surveyor.upload;
 
+import java.time.LocalTime;
+
 import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.DefaultCamelContext;
@@ -18,7 +20,7 @@ public class OsmUploaderRoute extends RouteBuilder {
 		camel.getStreamCachingStrategy().setBufferSize(64 * 4096);
 		camel.addRoutes(new OsmUploaderRoute());
 		
-		System.out.println("osm-4th.camel.start();");
+		System.out.println(LocalTime.now() +"\tosm-4th.camel.start();");
 		
         camel.start();
         camel.createProducerTemplate().sendBody("direct:checked-file-read", "./checked.osm");
@@ -27,10 +29,10 @@ public class OsmUploaderRoute extends RouteBuilder {
             try {
                 camel.stop();
             } catch (Exception e) {}
-    		System.out.println("osm-4th.camel.stop();");
+    		System.out.println(LocalTime.now() +"\tosm-4th.camel.stop();");
         }));
         
-		System.out.println("osm-4th.camel.end();");
+		System.out.println(LocalTime.now() +"\tosm-4th.camel.end();");
 	}
 
 	@Override

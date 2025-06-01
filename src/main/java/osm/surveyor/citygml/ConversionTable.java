@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -19,7 +20,7 @@ public class ConversionTable {
 		
 		ConversionTable table = new ConversionTable(Paths.get(ConversionTable.fileName).toFile());
 		if (table.version != null) {
-			System.out.println("version: "+ table.version + ",\t");
+			System.out.println(LocalTime.now() +"version: "+ table.version + ",\t");
 		}
 		for (Usage usage : table.usageList) {
 			System.out.print(usage.code + ",\t");
