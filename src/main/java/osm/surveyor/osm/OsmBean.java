@@ -4,12 +4,16 @@ import java.io.File;
 import java.io.PrintStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.xml.bind.JAXB;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.locationtech.jts.geom.Polygon;
 
 /**
  * CityGMLファイルをパースする
@@ -54,6 +58,19 @@ public class OsmBean implements Serializable {
     	this.indexMap.setBounds(bounds);
     }
 	
+    public void reindex() {
+    	for (Map.Entry<Integer,BoundsCellBean> entry : this.indexMap.entrySet()) {
+    		BoundsCellBean cell = entry.getValue();
+    		cell.clearWaylist();
+    	}
+    	
+    	// indexMapに wayList のWayBeanを充填する
+    	for (WayBean way : this.wayList) {
+    		way.getBoxels().clear();
+    		this.indexMap.putWayBean(way);
+    	}
+    }
+    
     private List<NodeBean> nodeList = new ArrayList<>();
     
     @XmlElement(name="node")
@@ -70,6 +87,62 @@ public class OsmBean implements Serializable {
     @XmlElement(name="way")
     public List<WayBean> getWayList() {
     	return this.wayList;
+    }
+    
+    private WayBean getWayBean(long wayid) {
+    	for (WayBean way : this.wayList) {
+    		if (way.getId() == wayid) {
+    			return way;
+    		}
+    	}
+    	return null;
+    }
+
+    /**
+     * 指定のwayBeanと重複するwayListを取得する
+     * @param way
+     * @return
+     */
+    public List<WayBean> getWayList(WayBean wayBean) {
+    	Map<Long,WayBean> map = new HashMap<>();
+    	
+    	// 指定のwayBeanと同じボクセルに存在するwayListを取得する
+    	for (Integer boxcelId : wayBean.getBoxels()) {
+    		BoundsCellBean cell = this.indexMap.get(boxcelId);
+    		HashMap<Long, Polygon> wayMap = cell.getWayMap();
+        	for (Map.Entry<Long, Polygon> entry : wayMap.entrySet()) {
+        		Long wayid = entry.getKey();
+        		WayBean way = getWayBean(wayid);
+        		if (way != null) {
+        			map.put(wayid, way);
+        		}
+        	}
+    	}
+    	
+    	// 指定のwayBeanと重複するwayListを取得する
+    	List<Long> removeList = new ArrayList<>();
+    	for (Map.Entry<Long, WayBean> entry : map.entrySet()) {
+    		Long wayid = entry.getKey();
+    		WayBean way = entry.getValue();
+    		if (way != null) {
+    			double area = way.getIntersectArea(wayBean);
+    			if (area == 0.0) {
+    				removeList.add(wayid);
+    			}
+    			else {
+    				way.duplicateArea = area;
+    			}
+    		}
+    	}
+    	for (Long id : removeList) {
+    		map.remove(id);
+    	}
+    	
+    	List<WayBean> list = new ArrayList<>();
+    	for (Map.Entry<Long, WayBean> entry : map.entrySet()) {
+    		list.add(entry.getValue());
+    	}
+    	return list;
     }
 
     public void setWayList(List<WayBean> wayList) {
@@ -90,10 +163,16 @@ public class OsmBean implements Serializable {
 	//-------------------------------------
     
     /**
-     * Nodeインスタンスに POINT を充填する
+     * Fileに記載されていないインスタンスを充填する
+     * ※ Nodeインスタンスに POINT を充填する
+     * ・boundsからindexMapを構築する
+     * ※ indexMapに wayList のWayBeanを充填する
      * 
      */
     public void build() {
+    	// boundsからindexMapを構築する
+    	this.indexMap.setBounds(this.bounds);
+    	
     	for (NodeBean node : this.nodeList) {
     		OsmPoint point = new OsmPoint();
     		point.setLat(node.getLat());
@@ -107,6 +186,10 @@ public class OsmBean implements Serializable {
         			nd.setPoint(node.getPoint());
     			}
     		}
+    	}
+    	// indexMapに wayList のWayBeanを充填する
+    	for (WayBean way : this.wayList) {
+    		this.indexMap.putWayBean(way);
     	}
     }
 

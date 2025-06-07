@@ -114,11 +114,11 @@ public class Test_D extends OsmUpdaterTest {
 						}
 					 */
 					assertEquals("building", relation.getTagValue("type"));
-					assertEquals("都営大森西三丁目第2アパート", relation.getTagValue("name"));		// Issue #55
+					assertEquals("都営大森西三丁目第2アパート", relation.getTagValue("name"));
 					assertEquals("東京都大田区大森西三丁目", relation.getTagValue("addr:full"));
 					assertEquals("34.7", relation.getTagValue("height"));
 					assertEquals("2.68", relation.getTagValue("ele"));
-					assertEquals("apartments", relation.getTagValue("building"));		// 既存タグの値で書き換えられる
+					assertEquals("yes", relation.getTagValue("building"));		// Issue #119 建物リレーション(RELATION:type=building) の outline メンバーは、「building=yes」でなければならない
 					assertEquals("3", relation.getTagValue("building:levels"));
 					assertEquals("1", relation.getTagValue("building:levels:underground"));
 					assertNull(relation.getTagValue("source"));
@@ -145,7 +145,7 @@ public class Test_D extends OsmUpdaterTest {
 								}
 							*/
 							assertEquals("multipolygon", multiporygon.getTagValue("type"));
-							assertEquals("apartments", multiporygon.getTagValue("building"));		// PLATEAUの値
+							assertEquals("yes", multiporygon.getTagValue("building"));		// Issue #119 建物リレーション(RELATION:type=building) の outline メンバーは、「building=yes」でなければならない
 							assertEquals("3", multiporygon.getTagValue("building:levels"));
 							assertEquals("1", multiporygon.getTagValue("building:levels:underground"));
 							assertEquals("34.7", multiporygon.getTagValue("height"));

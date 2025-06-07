@@ -2,6 +2,7 @@ package osm.surveyor.update;
 
 import java.io.File;
 import java.nio.file.Paths;
+import java.time.LocalTime;
 
 import javax.xml.bind.JAXB;
 
@@ -27,16 +28,14 @@ public class OrgFileReadProcessor implements Processor {
 			String filename = name.substring(0, name.length() - OsmFiles.SUFFIX.length());
 			File orgf = (Paths.get(".", filename + OsmOrgFiles.SUFFIX).toFile());
 
+			System.out.println(LocalTime.now() +"\tOrgFileReadProcessor (\""+ orgf.getName() +"\")");
 			OsmBean org = JAXB.unmarshal(orgf, OsmBean.class);
 			org.build();
 			map.put("org", org);
-			
-			OsmBean mrg = new OsmBean();
-			mrg.setBounds(org.getBounds());
-			map.put("mrg", mrg);
+			exchange.getIn().setBody(map);
 		}
 		else {
-			throw new Exception("変換元のOSMファイルが設定されていません");
+			throw new Exception("変換元のOSMファイルが設定されていません : \""+ name +"\"");
 		}
 		
 		exchange.getIn().setBody(map);

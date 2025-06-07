@@ -106,9 +106,7 @@ public class WayBean extends PoiBean implements Cloneable, Serializable {
 			copy = (WayBean) super.clone();
 			
 			copy.fix = this.fix;
-			for (Integer box : this.boxels) {
-				copy.addBoxel(Integer.valueOf(box.intValue()));
-			}
+			copy.boxels = this.boxels;
 			
 			ArrayList<NdBean> nds = new ArrayList<>();
 			for (NdBean nd : this.ndList) {
@@ -249,39 +247,26 @@ public class WayBean extends PoiBean implements Cloneable, Serializable {
 	 * @return
 	 * @throws Exception
 	 */
-	public long getIntersect(List<WayBean> ways) throws Exception {
+	public long getIntersectMaxArea(OsmBean bean) throws Exception {
 		double max = 0.0d;
 		long maxid = 0;
-        for (WayBean way : getIntersects(ways)) {
+		
+        for (WayBean way : bean.getWayList(this)) {
         	if (!way.getFix()) {
-            	double area = getIntersectArea(way);
-    			if (area > max) {
-    				max = area;
-    				maxid = way.getId(); 
+    			if (way.duplicateArea > max) {
+    				max = way.duplicateArea;
+    				maxid = way.getId();
     			}
         	}
         }
         return maxid;
 	}
 
-	public List<WayBean> getIntersects(List<WayBean> ways) throws Exception {
-		List<WayBean> ret = new ArrayList<>();
-        for (WayBean way : ways) {
-        	if (!way.getFix()) {
-            	double area = getIntersectArea(way);
-    			if (area > 0) {
-    				ret.add(way);
-    			}
-        	}
-        }
-        return ret;
-	}
-
 	/**
 	 * AREAの面積を求める。ただし、面積の単位は直行座標（メートルではない）
-	 * @return	ラインが閉じたエリア出ない場合は0.0d
+	 * @return	ラインが閉じたエリアでない場合は0.0d
 	 */
-	public double getAreaValue() {
+	private double getAreaValue() {
         Polygon polygon = getPolygon();
         if (polygon != null) {
             return polygon.getArea();
@@ -291,4 +276,8 @@ public class WayBean extends PoiBean implements Cloneable, Serializable {
         }
 	}
 	
+	/**
+	 * あるエリアと承服している面積を一時的に記録する領域
+	 */
+	public double duplicateArea = 0.0;
 }

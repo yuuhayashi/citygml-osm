@@ -51,14 +51,12 @@ public class ElementWay extends PoiBean implements Cloneable {
 			copy = (ElementWay)super.clone();
 			copy.area = this.area;
 			copy.member = this.member;
+			copy.boxels = this.boxels;
 			copy.nds = new ArrayList<OsmNd>();
 			if (this.nds != null) {
 				for (OsmNd nd : this.nds) {
 					copy.nds.add(nd.clone());
 				}
-			}
-			for (Integer box : this.boxels) {
-				copy.addBoxel(Integer.valueOf(box.intValue()));
 			}
 		}
 		catch (Exception e) {

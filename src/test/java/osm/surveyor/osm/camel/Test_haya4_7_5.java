@@ -128,7 +128,7 @@ public class Test_haya4_7_5 extends OsmUpdaterTest {
 	        for (RelationBean relation : relations) {
 				assertNotNull(relation);
 				assertEquals("multipolygon", relation.getTagValue("type"));
-				assertEquals("house", relation.getTagValue("building"));
+				assertEquals("yes", relation.getTagValue("building"));
 				assertEquals("2", relation.getTagValue("building:levels"));
 				assertEquals("7-5", relation.getTagValue("addr:housenumber"));
 				assertEquals("cafe", relation.getTagValue("amenity"));

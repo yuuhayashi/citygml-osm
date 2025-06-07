@@ -13,7 +13,7 @@ import org.locationtech.jts.geom.Polygon;
 
 public class BoundsCellBean {
 	private List<Coordinate> ndList = new ArrayList<>();
-	private HashMap<Long, Polygon> wayList = new HashMap<>();
+	private HashMap<Long, Polygon> wayMap = new HashMap<>();
 	private Integer id;
 
 	public BoundsCellBean(Integer id, double maxlat, double maxlon, double minlat, double minlon) {
@@ -55,20 +55,28 @@ public class BoundsCellBean {
 		return this.id;
 	}
 	
+	public void clearWaylist() {
+		this.wayMap.clear();
+	}
+	
+	public HashMap<Long, Polygon> getWayMap() {
+		return this.wayMap;
+	}
+	
 	public void putWay(WayBean way) {
-		this.wayList.put(way.getId(), way.getPolygon());
+		this.wayMap.put(way.getId(), way.getPolygon());
 	}
 	
 	public void putWay(ElementWay way) {
-		this.wayList.put(Long.valueOf(way.getId()), way.getPolygon());
+		this.wayMap.put(Long.valueOf(way.getId()), way.getPolygon());
 	}
 	
 	public void removeWay(WayBean way) {
-		this.wayList.remove(way.getId());
+		this.wayMap.remove(way.getId());
 	}
 
 	public void removeWay(ElementWay way) {
-		this.wayList.remove(way.getId());
+		this.wayMap.remove(way.getId());
 	}
 	
 	/**

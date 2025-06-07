@@ -2,6 +2,7 @@ package osm.surveyor.update;
 
 import java.io.File;
 import java.nio.file.Paths;
+import java.time.LocalTime;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
@@ -29,6 +30,7 @@ public class MrgExportProcessor implements Processor {
 			String filename = name.substring(0, name.length() - OsmFiles.SUFFIX.length());
 			File mrgf = (Paths.get(".", filename + OsmMrgFiles.SUFFIX).toFile());
 
+			System.out.println(LocalTime.now() +"\tMrgExportProcessor (\""+ mrgf.getName() +"\")");
 			OsmBean mrg = (OsmBean) map.get("mrg");
 			mrg.export(mrgf);
 		}

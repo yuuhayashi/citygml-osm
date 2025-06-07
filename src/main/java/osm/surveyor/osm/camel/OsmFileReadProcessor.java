@@ -23,7 +23,7 @@ public class OsmFileReadProcessor implements Processor {
 	public void process(Exchange exchange) throws Exception {
 		File file = exchange.getIn().getBody(File.class);
 
-		System.out.println(LocalTime.now() +"\tOsmFileProcessor : \""+ file.getName() +"\"");
+		System.out.println(LocalTime.now() +"\tOsmFileProcessor (\""+ file.getName() +"\")");
 		
 		OsmBean osm = JAXB.unmarshal(file, OsmBean.class);
 		osm.build();

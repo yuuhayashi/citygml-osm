@@ -1,5 +1,6 @@
 package osm.surveyor.update;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -9,6 +10,7 @@ import org.apache.camel.Processor;
 
 import osm.surveyor.citygml.CityModelParser;
 import osm.surveyor.osm.BodyMap;
+import osm.surveyor.osm.BoundsBean;
 import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.NdBean;
 import osm.surveyor.osm.NodeBean;
@@ -26,6 +28,18 @@ public class OrgUpdateProcessor implements Processor {
 		OsmBean osm = (OsmBean) map.get("osm");		// dom
 		OsmBean org = (OsmBean) map.get("org");		// sdom
 		String filename = (String) exchange.getProperty(Exchange.FILE_NAME);
+		System.out.println(LocalTime.now() +"\tOrgUpdateProcessor (\""+ filename +"\")");
+		
+		BoundsBean bounds = osm.getBounds().expand(org.getBounds());
+		if (bounds != null) {
+			osm.setBounds(bounds);
+			osm.reindex();
+		}
+		bounds = org.getBounds().expand(osm.getBounds());
+		if (bounds != null) {
+			org.setBounds(bounds);
+			org.reindex();
+		}
 
 		// タグありのノードをメンバーに持つウェイは「非更新対象」(fix=true)にする
 		fixWayWithNode(org);
@@ -36,20 +50,20 @@ public class OrgUpdateProcessor implements Processor {
 		// Issue #60 "end_date"と"demolished:building"
 		fixEndDate(org);
 		
-		// インポートデータの内で、v=[-9999 .. 9999]のタグを削除
+		// Plateauデータの内で、v=[-9999 .. 9999]のタグを削除
 		fix128(osm);
 		
-		// インポートデータの内で、Fix=trueの既存データと重複するものを削除
+		// Plateauデータの内で、Fix=trueの既存データと重複するものを削除
 		// その後、既存データからFix=trueのPOIを削除する
 		removeFixed(osm, org);
 
-		// 既存データの内で、インポートデータと重複しないものを削除
+		// 既存データの内で、Plateauデータと重複しないものを削除
 		removeNotDuplicated(osm, org);
     		
 		// すべてのノードを'modify'に確定する
 		fixToModify(osm);
 
-		// インポートデータの内で、既存データと重複するWAYを'modify'に確定する
+		// Plateauデータの内で、既存データと重複するWAYを'modify'に確定する
 		duplicatedToModify(osm, org);
 
 		// WAYに所属していないNODEを削除する
@@ -221,34 +235,36 @@ public class OrgUpdateProcessor implements Processor {
 	}
 	
 	/**
-	 * インポートデータの内で、既存データと重複するWAYをインポートデータへマージする
+	 * ORGデータの内で、Plateauデータと重複するWAYをMRGへ登録
 	 * @throws Exception
 	 */
 	private void duplicatedToModify(OsmBean osm, OsmBean org) throws Exception {
-		List<WayBean> work = new ArrayList<>();
-		for (WayBean way : osm.getWayList()) {
-			way.setArea(way.getAreaValue());
-			work.add(way);
-		}
+		List<WayBean> work = osm.getWayList();
 		Comparator<WayBean> comparator = Comparator.comparing(WayBean::getArea).reversed();
 		work.stream().sorted(comparator)
-			.forEach(way -> duplicatedToModify(way, osm, org));
+			.forEach(osmway -> duplicatedToModify(osmway, osm, org));
 	}
 	
-	private void duplicatedToModify(WayBean way, OsmBean osm, OsmBean org) {
-		long oldid = way.getId();
-		if (!way.getFix()) {
-			// org.WAYと重複する面積が最大の osm.WAY.id を返す
+	/**
+	 * 
+	 * @param way	処理対象のPlateauのWay
+	 * @param osm	Plateauデータ
+	 * @param org	ORGデータ
+	 */
+	private void duplicatedToModify(WayBean osmway, OsmBean osm, OsmBean org) {
+		long oldid = osmway.getId();
+		if (!osmway.getFix()) {
+			// osm.WAYと重複する面積が最大の org.WAY.id を返す
 			long wayid;
 			try {
-				wayid = way.getIntersect(org.getWayList());
+				wayid = osmway.getIntersectMaxArea(org);
 			} catch (Exception e) {
 				wayid = 0;
 			}
 			if (wayid > 0) {
 				try {
 					List<NodeBean> nodes = org.getNodeList();
-					for (WayBean sWay : way.getIntersects(org.getWayList())) {
+					for (WayBean sWay : org.getWayList(osmway)) {
 						if (sWay.getId() == wayid) {
 							
 							// MLIT_PLATEAU:fixme="更新前です"
@@ -276,34 +292,34 @@ public class OrgUpdateProcessor implements Processor {
 									sWay.addTag("source", "survey");
 								}
 							}
-							if (way.getTag("building") != null) {
+							if (osmway.getTag("building") != null) {
 								// Issue #56
-								TagBean buildingTag = way.getTag("building");
+								TagBean buildingTag = osmway.getTag("building");
 								if (buildingTag.getValue().toLowerCase().equals("yes")) {
-									way.removeTag("building");
+									osmway.removeTag("building");
 								}
 							}
-							if (way.getTag("start_date") != null) {
+							if (osmway.getTag("start_date") != null) {
 								// Issue #61 「start_date」は既存データ優先とする
 								TagBean startTag = sWay.getTag("start_date");
 								if (startTag != null) {
-									way.removeTag("start_date");
+									osmway.removeTag("start_date");
 								}
 							}
-							if (way.getTag("name") != null) {
+							if (osmway.getTag("name") != null) {
 								// Issue #64 「name」は既存データ優先とする
-								TagBean startTag = sWay.getTag("name");
-								if (startTag != null) {
-									way.removeTag("name");
+								TagBean nameTag = sWay.getTag("name");
+								if (nameTag != null) {
+									osmway.removeTag("name");
 								}
 							}
-							sWay.copyTag(way);
-							way.copyTag(sWay);
+							sWay.copyTag(osmway);
+							osmway.copyTag(sWay);
 							sWay.addTag(new TagBean("MLIT_PLATEAU:fixme", "PLATEAUデータで更新されています"));
 							sWay.setAction("modify");
 							sWay.orignal = false;
-							sWay.setNdList(way.getNdList());
-							osm.removeWay(way);
+							sWay.setNdList(osmway.getNdList());
+							osm.removeWay(osmway);
 							osm.putWay(sWay);
 							
 							for (RelationBean relation : osm.getRelationList()) {
@@ -512,17 +528,12 @@ public class OrgUpdateProcessor implements Processor {
 	 */
 	private void fix119(OsmBean mrg) {
 		for (RelationBean relation : mrg.getRelationList()) {
+			changeBuildingYes(relation.getTagList());
 			for (MemberBean member : relation.getMemberList()) {
 				if (member.getRole().equals("outline")) {
-					TagBean buildingTag = relation.getTag("building");
 					if (member.isWay()) {
 						WayBean way = mrg.getWay(member.getRef());
-						member.setWay((WayBean)changeBuildingYes(way, buildingTag.getValue()));
-						
-					}
-					else if (member.isRelation()) {
-						RelationBean outline = mrg.getRelation(member.getRef());
-						member.setRelation((RelationBean)changeBuildingYes(outline, buildingTag.getValue()));
+						changeBuildingYes(way.getTagList());
 					}
 				}
 			}
@@ -559,9 +570,9 @@ public class OrgUpdateProcessor implements Processor {
 		}
 	}
 	
-	private PoiBean changeBuildingYes(PoiBean poi, String v) {
+	private void changeBuildingYes(List<TagBean> tags) {
 		List<TagBean> dels = new ArrayList<>();
-		for (TagBean tag : poi.getTagList()) {
+		for (TagBean tag : tags) {
 			if (tag.getKey().equals("building:part")) {
 				dels.add(tag);
 			}
@@ -571,11 +582,10 @@ public class OrgUpdateProcessor implements Processor {
 		}
 		if (dels.size() > 0) {
 			for (TagBean tag : dels) {
-				poi.removeTag(tag.k);
+				tags.remove(tag);
 			}
-			poi.addTag("building",v);
 		}
-		return poi;
+		tags.add(new TagBean("building","yes"));
 	}
 
 	/**

@@ -21,7 +21,7 @@ public class IndexMap extends HashMap<Integer, BoundsCellBean> implements Clonea
 	}
 	
 	public BoundsCellBean get(Integer id) {
-		return get(id);
+		return super.get(id);
 	}
 	
     public void remove(Integer id) {
@@ -61,16 +61,18 @@ public class IndexMap extends HashMap<Integer, BoundsCellBean> implements Clonea
     
     
     public void setBounds(BoundsBean bounds) {
+    	this.clear();
     	double maxlat = Double.parseDouble(bounds.maxlat);
     	double minlat = Double.parseDouble(bounds.minlat);
     	double maxlon = Double.parseDouble(bounds.maxlon);
     	double minlon = Double.parseDouble(bounds.minlon);
-    	int i = 0;
-    	double lon = minlon;
-    	double lat = minlat;
     	double dlat = (maxlat - minlat) / Y;
     	double dlon = (maxlon - minlon) / X;
+
+    	int i = 0;
+    	double lon = minlon;
     	for (int xx = 0; xx < X; xx++) {
+        	double lat = minlat;
     		for (int yy = 0; yy < Y; yy++) {
     			this.put(new BoundsCellBean(Integer.valueOf(i), (lat + dlat), (lon + dlon), lat, lon));
     			lat += dlat;

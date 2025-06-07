@@ -266,7 +266,7 @@ public class Test_haya4 extends OsmUpdaterTest {
 	        		assertTrue(relation.isBuilding());
 	        		assertNull(relation.getTag("building:part"));
 	        		assertNotNull(relation.getTag("building"));
-	        		assertEquals("house", relation.getTag("building").getValue());
+	        		assertEquals("yes", relation.getTag("building").getValue());
 					assertNotNull(relation.getTag("addr:housenumber"));
 	        		assertEquals("7-6", relation.getTag("addr:housenumber").getValue());
 	        		assertNull(relation.getTag("building:levels"));
@@ -312,7 +312,7 @@ public class Test_haya4 extends OsmUpdaterTest {
 	        		assertEquals(3, relation.getMemberList().size());
         			assertNull(relation.getTag("building:part"));
 					assertNotNull(relation.getTag("building"));
-	        		assertEquals("house", relation.getTag("building").getValue());
+	        		assertEquals("yes", relation.getTag("building").getValue());
 					assertNotNull(relation.getTag("addr:housenumber"));
 	        		assertEquals("7-5", relation.getTag("addr:housenumber").getValue());
 	        		assertNotNull(relation.getTag("building:levels"));

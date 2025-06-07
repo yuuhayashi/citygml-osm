@@ -51,7 +51,7 @@ public class CitygmlLoad {
 		System.out.println(LocalTime.now() +"\tgml.camel.start();");
 		
         camel.start();
-        camel.createProducerTemplate().sendBody(LocalTime.now() +"\tdirect:gml-files", ".");
+        camel.createProducerTemplate().sendBody("direct:gml-files", ".");
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             try {
