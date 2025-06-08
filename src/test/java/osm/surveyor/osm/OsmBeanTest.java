@@ -12,6 +12,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import osm.surveyor.osm.way.WayModel;
+
 public class OsmBeanTest {
 
 	@BeforeClass
@@ -42,26 +44,26 @@ public class OsmBeanTest {
 	        assertNotNull(osm);
 	        
 	        // GMLv2
-	        WayBean way = osm.getWay(-101805);
+	        WayModel way = osm.getWay(-101805);
 	        assertNotNull(way);
-    		assertEquals("yes", way.getTagValue("building"));
-    		assertEquals("125.37", way.getTagValue("ele"));
-    		assertEquals("10.6", way.getTagValue("height"));
-    		assertEquals("2024", way.getTagValue("survey:date"));
-    		assertEquals("1993", way.getTagValue("start_date"));
-    		assertEquals("40205-bldg-92587", way.getTagValue("ref:MLIT_PLATEAU"));
-    		assertEquals("2", way.getTagValue("building:levels")); // <bldg:storeysBelowGround>2</bldg:storeysBelowGround>
-    		assertEquals("9999", way.getTagValue("building:levels:underground")); //  <bldg:storeysAboveGround>-9999</bldg:storeysAboveGround>
+    		assertEquals("yes", way.getPoiBean().getTagValue("building"));
+    		assertEquals("125.37", way.getPoiBean().getTagValue("ele"));
+    		assertEquals("10.6", way.getPoiBean().getTagValue("height"));
+    		assertEquals("2024", way.getPoiBean().getTagValue("survey:date"));
+    		assertEquals("1993", way.getPoiBean().getTagValue("start_date"));
+    		assertEquals("40205-bldg-92587", way.getPoiBean().getTagValue("ref:MLIT_PLATEAU"));
+    		assertEquals("2", way.getPoiBean().getTagValue("building:levels")); // <bldg:storeysBelowGround>2</bldg:storeysBelowGround>
+    		assertEquals("9999", way.getPoiBean().getTagValue("building:levels:underground")); //  <bldg:storeysAboveGround>-9999</bldg:storeysAboveGround>
     		//assertNull(way.getTagValue("building:levels:underground")); //  <bldg:storeysAboveGround>-9999</bldg:storeysAboveGround>
 
-	        WayBean way101821 = osm.getWay(-101821);
+	        WayModel way101821 = osm.getWay(-101821);
 	        assertNotNull(way101821);
-    		assertEquals("40205-bldg-91805", way101821.getTagValue("ref:MLIT_PLATEAU"));
-    		assertEquals("yes", way101821.getTagValue("building:part"));
-    		assertEquals("98.32", way101821.getTagValue("ele"));
-    		assertEquals("9999", way101821.getTagValue("height"));			// <tag k='height' v='9999' />
-    		assertEquals("0", way101821.getTagValue("building:levels")); 	//  <tag k='building:levels' v='0' />
-    		assertEquals("0", way101821.getTagValue("building:levels:underground")); //  <tag k='building:levels:underground' v='0' />
+    		assertEquals("40205-bldg-91805", way101821.getPoiBean().getTagValue("ref:MLIT_PLATEAU"));
+    		assertEquals("yes", way101821.getPoiBean().getTagValue("building:part"));
+    		assertEquals("98.32", way101821.getPoiBean().getTagValue("ele"));
+    		assertEquals("9999", way101821.getPoiBean().getTagValue("height"));			// <tag k='height' v='9999' />
+    		assertEquals("0", way101821.getPoiBean().getTagValue("building:levels")); 	//  <tag k='building:levels' v='0' />
+    		assertEquals("0", way101821.getPoiBean().getTagValue("building:levels:underground")); //  <tag k='building:levels:underground' v='0' />
 		}
 		catch(Exception e) {
 			fail();

@@ -21,6 +21,7 @@ import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.BoundsBean;
 import osm.surveyor.osm.RelationBean;
 import osm.surveyor.osm.WayBean;
+import osm.surveyor.osm.way.WayModel;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Test_haya4_7_5 extends OsmUpdaterTest {
@@ -116,7 +117,7 @@ public class Test_haya4_7_5 extends OsmUpdaterTest {
 	        
 	        List<WayBean> ways = mrg.getWayList();
 	        assertNotNull(ways);
-	        for (WayBean way : ways) {
+	        for (WayModel way : ways) {
 	        	for (NdBean nd : way.getNdList()) {
 	        		assertNotNull(mrg.getNode(nd.getRef()));
 	        	}
@@ -141,13 +142,13 @@ public class Test_haya4_7_5 extends OsmUpdaterTest {
 					if (mem.getRole().equals("outer")) {
 						outerCnt++;
 						assertEquals("way", mem.getType());
-						WayBean way = mrg.getWay(mem.getRef());
+						WayModel way = mrg.getWay(mem.getRef());
 						assertNotNull(way);
 					}
 					if (mem.getRole().equals("inner")) {
 						innerCnt++;
 						assertEquals(mem.getType(), ("way"));
-						WayBean way = mrg.getWay(mem.getRef());
+						WayModel way = mrg.getWay(mem.getRef());
 						assertNotNull(way);
 					}
 				}

@@ -8,7 +8,7 @@ import org.junit.runners.MethodSorters;
 
 import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.OsmBean;
-import osm.surveyor.osm.WayBean;
+import osm.surveyor.osm.way.WayModel;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Test_B extends DownloadTest {
@@ -35,11 +35,11 @@ public class Test_B extends DownloadTest {
 			// 中空を持つビルディングリレーションが存在する
 			assertTrue(org.getRelationList().size() >= 1);
 			assertTrue(org.getWayList().size() > 100);
-			for (WayBean way : org.getWayList()) {
+			for (WayModel way : org.getWayList()) {
 				// "highway"WAYは存在しないこと
-				assertNull(way.getTagValue("highway"));
+				assertNull(way.getPoiBean().getTagValue("highway"));
 				// "landuse"WAYは存在しないこと
-				assertNull(way.getTagValue("landuse"));
+				assertNull(way.getPoiBean().getTagValue("landuse"));
 			}
 		} catch (Exception e) {
 			e.fillInStackTrace();

@@ -16,6 +16,7 @@ import osm.surveyor.osm.BoundsBean;
 import osm.surveyor.osm.NodeBean;
 import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.WayBean;
+import osm.surveyor.osm.way.WayModel;
 
 public class Test_Fujitv extends OsmUpdaterTest {
 
@@ -76,7 +77,7 @@ public class Test_Fujitv extends OsmUpdaterTest {
 	        
 	        List<WayBean> ways = mrg.getWayList();
 	        assertNotNull(ways);
-	        for (WayBean way : ways) {
+	        for (WayModel way : ways) {
 	        	assertFalse(way.getFix());
 	        }
 		}

@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import osm.surveyor.citygml.CityModelParser;
+import osm.surveyor.osm.boxcel.IndexMap;
 
 /**
  * Osmファイルをドムる

@@ -21,6 +21,7 @@ import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.RelationBean;
 import osm.surveyor.osm.TagBean;
 import osm.surveyor.osm.WayBean;
+import osm.surveyor.osm.way.WayModel;
 
 /**
  * `mvn test -Dtest=osm.surveyor.upload.Test_haya4`
@@ -75,7 +76,7 @@ public class Test_haya4 extends OsmUploadTest {
 	        int checkCnt = 0;
 	        List<WayBean> ways = release.getWayList();
 	        assertNotNull(ways);
-	        for (WayBean way : ways) {
+	        for (WayModel way : ways) {
 	        	for (NdBean nd : way.getNdList()) {
 	        		assertNotNull(release.getNode(nd.getRef()));
 	        	}
@@ -174,7 +175,7 @@ public class Test_haya4 extends OsmUploadTest {
 		        	for (MemberBean member : relation.getMemberList()) {
 		        		assertTrue(member.isWay());
 		        		if (member.getRole().equals("outer")) {
-		        			WayBean way = release.getWay(member.getRef());
+		        			WayModel way = release.getWay(member.getRef());
 		        			assertNotNull(way);
 		        			assertNull(way.getTag("building:part"));
 		        		}
@@ -194,7 +195,7 @@ public class Test_haya4 extends OsmUploadTest {
 		        		}
 		        		if (member.getRole().equals("part")) {
 			        		assertTrue(member.isWay());
-		        			WayBean way = release.getWay(member.getRef());
+			        		WayModel way = release.getWay(member.getRef());
 		        			assertNotNull(way);
 		        			assertNotNull(way.getTag("building:part"));
 		        			assertNull(way.getTag("building"));

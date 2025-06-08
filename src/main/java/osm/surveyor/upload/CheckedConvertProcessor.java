@@ -11,7 +11,7 @@ import osm.surveyor.osm.NdBean;
 import osm.surveyor.osm.NodeBean;
 import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.TagBean;
-import osm.surveyor.osm.WayBean;
+import osm.surveyor.osm.way.WayModel;
 
 public class CheckedConvertProcessor implements Processor {
 
@@ -45,14 +45,14 @@ public class CheckedConvertProcessor implements Processor {
 	 * @throws Exception
 	 */
 	private void removeActionDelete(OsmBean osm) throws Exception {
-		List<WayBean> work = new ArrayList<>();
-		for (WayBean way : osm.getWayList()) {
-			String action = way.getAction();
+		List<WayModel> work = new ArrayList<>();
+		for (WayModel way : osm.getWayList()) {
+			String action = way.getPoiBean().getAction();
 			if (action != null && action.equals("delete")) {
 				work.add(way);
 			}
 		}
-		for (WayBean way : work) {
+		for (WayModel way : work) {
 			osm.removeWay(way);
 		}
 		
@@ -74,8 +74,8 @@ public class CheckedConvertProcessor implements Processor {
 	 * @param poi
 	 */
 	private void convertNodeToActionDelete(OsmBean osm) {
-		List<WayBean> removeList = new ArrayList<>();
-		for (WayBean way : osm.getWayList()) {
+		List<WayModel> removeList = new ArrayList<>();
+		for (WayModel way : osm.getWayList()) {
 			TagBean fixme = way.getTag("MLIT_PLATEAU:fixme");
 			if (fixme != null) {
 				String v = fixme.getValue();
@@ -96,7 +96,7 @@ public class CheckedConvertProcessor implements Processor {
 		}
 		
 		// `MLIT_PLATEAU:fixme="更新前です"`がついたWAYを除去する。
-		for (WayBean way : removeList) {
+		for (WayModel way : removeList) {
 			osm.removeWay(way);
 		}
 	}
@@ -106,7 +106,7 @@ public class CheckedConvertProcessor implements Processor {
 	 * @param poi
 	 */
 	private void convertToActionDelete(OsmBean osm) {
-		for (WayBean way : osm.getWayList()) {
+		for (WayModel way : osm.getWayList()) {
 			TagBean fixme = way.getTag("MLIT_PLATEAU:fixme");
 			if (fixme != null) {
 				String v = fixme.getValue();
@@ -117,7 +117,7 @@ public class CheckedConvertProcessor implements Processor {
 							node.setAction("delete");
 						}
 					}
-					way.setAction("delete");
+					way.getPoiBean().setAction("delete");
 				}
 			}
 		}
@@ -128,10 +128,10 @@ public class CheckedConvertProcessor implements Processor {
 	 * @throws Exception
 	 */
 	private void removeFixmeTag(OsmBean osm) throws Exception {
-		for (WayBean way : osm.getWayList()) {
+		for (WayModel way : osm.getWayList()) {
 			TagBean fixme = way.getTag("MLIT_PLATEAU:fixme");
 			if (fixme != null) {
-				way.removeTag("MLIT_PLATEAU:fixme");
+				way.getPoiBean().removeTag("MLIT_PLATEAU:fixme");
 			}
 		}
 	}
@@ -142,11 +142,11 @@ public class CheckedConvertProcessor implements Processor {
 	 * @throws Exception
 	 */
 	private void moveRefTag(OsmBean osm) throws Exception {
-		for (WayBean way : osm.getWayList()) {
+		for (WayModel way : osm.getWayList()) {
 			TagBean refTag = way.getTag("ref:MLIT_PLATEAU");
 			if (refTag != null) {
 				String ref = refTag.getValue();
-				way.removeTag("ref:MLIT_PLATEAU");
+				way.getPoiBean().removeTag("ref:MLIT_PLATEAU");
 				TagBean sourceTag = way.getTag("source");
 				if (sourceTag != null) {
 					String source = sourceTag.getValue();
@@ -158,7 +158,7 @@ public class CheckedConvertProcessor implements Processor {
 					}
 				}
 				else {
-					way.addTag("source", String.format("MLIT_PLATEAU %s", ref));
+					way.getPoiBean().addTag("source", String.format("MLIT_PLATEAU %s", ref));
 				}
 			}
 		}

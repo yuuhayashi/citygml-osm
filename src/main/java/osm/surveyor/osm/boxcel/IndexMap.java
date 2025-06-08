@@ -1,8 +1,12 @@
-package osm.surveyor.osm;
+package osm.surveyor.osm.boxcel;
 
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+
+import osm.surveyor.osm.BoundsBean;
+import osm.surveyor.osm.ElementWay;
+import osm.surveyor.osm.way.WayModel;
 
 /**
  * hash key = cell.id
@@ -11,8 +15,8 @@ import java.util.Map;
 public class IndexMap extends HashMap<Integer, BoundsCellBean> implements Cloneable, Serializable {
 	
 	private static final long serialVersionUID = 3201342709343657144L;
-	static final int X = 3;
-	static final int Y = 2;
+	static final int X = 16;
+	static final int Y = 16;
 
 	public void put(BoundsCellBean cell) {
 		if (cell != null) {
@@ -32,14 +36,14 @@ public class IndexMap extends HashMap<Integer, BoundsCellBean> implements Clonea
     	remove(cell.getId());
     }
     
-    public void removeWayBean(WayBean way) {
+    public void removeWayBean(WayModel way) {
     	for (Map.Entry<Integer,BoundsCellBean> entry : this.entrySet()) {
     		BoundsCellBean cell = entry.getValue();
     		cell.removeWay(way);
     	}
     }
     
-    public void putWayBean(WayBean way) {
+    public void putWayType(WayModel way) {
     	for (Map.Entry<Integer,BoundsCellBean> entry : this.entrySet()) {
     		BoundsCellBean cell = entry.getValue();
     		if (cell.getIntersectArea(way.getPolygon()) > 0.0d) {

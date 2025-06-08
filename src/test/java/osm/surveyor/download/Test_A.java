@@ -10,7 +10,7 @@ import org.junit.runners.MethodSorters;
 import osm.surveyor.DetailTests;
 import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.OsmBean;
-import osm.surveyor.osm.WayBean;
+import osm.surveyor.osm.way.WayModel;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Test_A extends DownloadTest {
@@ -43,11 +43,11 @@ public class Test_A extends DownloadTest {
 			assertEquals(0, org.getRelationList().size());
 
 			assertTrue(org.getWayList().size() > 10);
-			for (WayBean way : org.getWayList()) {
+			for (WayModel way : org.getWayList()) {
 				// "highway"WAYは存在しないこと
-				assertNull(way.getTagValue("highway"));
+				assertNull(way.getPoiBean().getTagValue("highway"));
 				// "landuse"WAYは存在しないこと
-				assertNull(way.getTagValue("landuse"));
+				assertNull(way.getPoiBean().getTagValue("landuse"));
 			}
 		} catch (Exception e) {
 			e.fillInStackTrace();
@@ -76,9 +76,9 @@ public class Test_A extends DownloadTest {
     		assertNotNull(org.getBounds());
 			assertNotNull(org.getRelationList());
 			assertTrue(org.getWayList().size() > 10);
-			for (WayBean way : org.getWayList()) {
-				assertNull(way.getTagValue("highway"));
-				assertNull(way.getTagValue("landuse"));
+			for (WayModel way : org.getWayList()) {
+				assertNull(way.getPoiBean().getTagValue("highway"));
+				assertNull(way.getPoiBean().getTagValue("landuse"));
 			}
 		} catch (Exception e) {
 			e.fillInStackTrace();
