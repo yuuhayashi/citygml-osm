@@ -1,69 +1,19 @@
 package osm.surveyor.osm;
 
 import org.locationtech.jts.geom.Coordinate;
+import osm.surveyor.gis.point.PointModel;
 
-public class OsmPoint implements Cloneable {
-	public String lat = null;
-	public String lon = null;
+public class OsmPoint extends PointModel implements Cloneable {
 	
 	@Override
 	public OsmPoint clone() {
-		try {
-			OsmPoint obj = (OsmPoint)super.clone();
-			obj.lat = (this.lat == null ? null : new String(this.lat));
-			obj.lon = (this.lon == null ? null : new String(this.lon));
-			return obj;
-		} catch (CloneNotSupportedException e) {
-			e.printStackTrace();
-			return null;
-		}
+		OsmPoint obj = (OsmPoint)super.clone();
+		return obj;
 	}
 	
-	public void set(String lat, String lon) {
-		this.lat = lat;
-		this.lon = lon;
-	}
-	
-	public void setLat(String lat) {
-		this.lat = lat;
-	}
-    
-	public void setLon(String lon) {
-		this.lon = lon;
-	}
-	
-	public String getGeomText() {
-		String str = getGeom();
-		if (str != null) {
-			return new String("POINT("+ str +")");
-		}
-		return null;
-	}
-
-	public String getGeom() {
-		if ((lon != null) && (lat != null)) {
-			return new String(lon +" "+ lat);
-		}
-		return null;
-	}
-	
-	/**
-	 * GeoTools
-	 * @return
-	 */
-	public Coordinate getCoordinate() {
-		return new Coordinate(Double.parseDouble(lat), Double.parseDouble(lon));
-	}
-	
-    //--------------------------------------
-
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((lat == null) ? 0 : lat.hashCode());
-		result = prime * result + ((lon == null) ? 0 : lon.hashCode());
-		return result;
+		return super.hashCode();
 	}
 
 	@Override
@@ -72,19 +22,12 @@ public class OsmPoint implements Cloneable {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (!super.equals(obj)) {
 			return false;
-		OsmPoint other = (OsmPoint) obj;
-		if (lat == null) {
-			if (other.lat != null)
-				return false;
-		} else if (!lat.equals(other.lat))
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
-		if (lon == null) {
-			if (other.lon != null)
-				return false;
-		} else if (!lon.equals(other.lon))
-			return false;
+		}
 		return true;
 	}
 }
