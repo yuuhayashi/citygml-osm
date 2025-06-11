@@ -2,7 +2,7 @@ package osm.surveyor.gis.point;
 
 import org.locationtech.jts.geom.Coordinate;
 
-public class PointModel implements Cloneable {
+public abstract class PointModel implements Cloneable {
 	public String lat = null;
 	public String lon = null;
 	
