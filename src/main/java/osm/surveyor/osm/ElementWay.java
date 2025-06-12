@@ -17,7 +17,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import osm.surveyor.osm.boxcel.BoxcellMappable;
 import osm.surveyor.osm.boxcel.IndexMap;
+import osm.surveyor.osm.way.Wayable;
 
 /**
  * 
@@ -25,22 +27,113 @@ import osm.surveyor.osm.boxcel.IndexMap;
  * @author hayashi
  *
  */
-public class ElementWay extends PoiBean implements Cloneable {
+public class ElementWay extends PoiBean implements Cloneable, Wayable {
 	private static final long serialVersionUID = 1L;
+	
+
+	//--------------- member's --------------------
 	
 	@XmlElement(name="nd")
 	public ArrayList<OsmNd> nds;
-
-	/**
-	 * WAY IndexCellメンバー
-	 */
-	private List<Integer> boxels = new ArrayList<>();
 
 	boolean area = false;
 	
 	@XmlTransient
 	public boolean member = false;	// 単独のWAYか、RELATIONのメンバーかを示す。
+
+
+	//--------------- BoxcelMap --------------------
+
+	/**
+	 * WAY IndexCellメンバー
+	 */
+	private List<Integer> boxels = new ArrayList<>();
 	
+	public List<Integer> getBoxels() {
+		return this.boxels;
+	}
+	public void addBoxel(Integer boxelId) {
+		this.boxels.add(boxelId);
+	}
+	
+	//--------------- NODE --------------------
+	
+	/**
+	 * WAYノードメンバー
+	 */
+    private List<NdBean> ndList = new ArrayList<>();
+    
+	@Override
+	public List<NdBean> getNdList() {
+		return this.ndList;
+	}
+
+	@Override
+	public void setNdList(List<NdBean> ndList) {
+		this.ndList = ndList;
+	}
+
+	public void addNode(OsmNd node) {
+		this.nds.add(node);
+	}
+	
+	public void addNode(NodeBean node) {
+		this.nds.add((new OsmNd()).set(node.getId(), node.getPoint()));
+	}
+
+	/*
+	 * 
+	 * <way id='96350144' timestamp='2018-08-25T08:34:33Z' uid='7548722' user='Unnown' visible='true' version='17' changeset='61979354'>
+		<way id='-2' action='modify' visible='true'>
+			<nd ref='-3'/>
+			<nd ref='-4'/>
+			<nd ref='-5'/>
+			<tag k='height' v='14.072000000000001' />
+			<tag k='building:part' v='yes' />
+		</way>
+	 */
+    public Node toNode(Document doc) {
+    	Element element = super.toElement(doc, "way");
+		for (OsmNd nd : this.nds) {
+			element.appendChild(nd.toNodeNd(doc));
+		}
+		for (TagBean tag : this.getTagList()) {
+			if (tag != null) {
+				element.appendChild(tag.toNodeNd(doc));
+			}
+		}
+        return (Node)element;
+    }
+    
+    /**
+     * 線分(TwoPoint)リスト
+     */
+    public OsmLine getPointList() {
+    	OsmLine pointlist = new OsmLine();
+    	OsmNd a = null;
+    	OsmNd b = null;
+    	for (OsmNd node : this.nds) {
+    		if (a == null) {
+    			a = node;
+    		}
+    		else {
+    			if (b == null) {
+    				b = node;
+    			}
+    			else {
+    				a = b.clone();
+    				b = node;
+    			}
+    		}
+    		if ((a != null) && (b != null)) {
+        		pointlist.add(new TwoPoint().set(a, b));
+    		}
+    	}
+    	return pointlist;
+    }
+    
+	
+	//--------------- WAY --------------------
 	public ElementWay(long id) {
 		super(id);
 		nds = new ArrayList<OsmNd>();
@@ -74,23 +167,43 @@ public class ElementWay extends PoiBean implements Cloneable {
 		copy.setId(newid);
 		return copy;
 	}
-	
-	public List<Integer> getBoxels() {
-		return this.boxels;
-	}
-	public void addBoxel(Integer boxelId) {
-		this.boxels.add(boxelId);
-	}
-	
-	public void addNode(OsmNd node) {
-		this.nds.add(node);
-	}
-	
-	public void addNode(NodeBean node) {
-		this.nds.add((new OsmNd()).set(node.getId(), node.getPoint()));
-	}
 
-	/**
+    /**
+     * 	<way id='-2' action='modify' visible='true'>
+	 * 	  <nd ref='-3'/>
+	 * 	  <nd ref='-4'/>
+	 * 	  <nd ref='-5'/>
+	 * 	  <tag k='height' v='14.072000000000001' />
+	 * 	  <tag k='building:part' v='yes' />
+	 * 	</way>
+     * @param doc
+     * @param ways
+     */
+    ElementWay loadWay(Node nNode) {
+		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+			loadElement((Element) nNode);
+			
+			NodeList list2 = nNode.getChildNodes();
+		    for (int temp2 = 0; temp2 < list2.getLength(); temp2++) {
+				Node node2 = list2.item(temp2);
+				if (node2.getNodeType() == Node.ELEMENT_NODE) {
+					if (node2.getNodeName().equals("nd")) {
+						this.addNode((new OsmNd()).loadElement((Element) node2));
+					}
+					else if (node2.getNodeName().equals("tag")) {
+						Element e2 = (Element) node2;
+						String k = e2.getAttribute("k");
+						String v = e2.getAttribute("v");
+						this.addTag(k, v);
+					}
+				}
+		    }
+		    return this;
+		}
+		return null;
+    }
+
+    /**
 	 * LINEをAREAに変更します
 	 * 最期のノードが最初のノードと同じなら、削除する
 	 * 最期のノードが最初のノードと異なるなら、つなげる
@@ -129,92 +242,6 @@ public class ElementWay extends PoiBean implements Cloneable {
 		}
 	}
 	
-	/*
-	 * 
-	 * <way id='96350144' timestamp='2018-08-25T08:34:33Z' uid='7548722' user='Unnown' visible='true' version='17' changeset='61979354'>
-		<way id='-2' action='modify' visible='true'>
-			<nd ref='-3'/>
-			<nd ref='-4'/>
-			<nd ref='-5'/>
-			<tag k='height' v='14.072000000000001' />
-			<tag k='building:part' v='yes' />
-		</way>
-	 */
-    public Node toNode(Document doc) {
-    	Element element = super.toElement(doc, "way");
-		for (OsmNd nd : this.nds) {
-			element.appendChild(nd.toNodeNd(doc));
-		}
-		for (TagBean tag : this.getTagList()) {
-			if (tag != null) {
-				element.appendChild(tag.toNodeNd(doc));
-			}
-		}
-        return (Node)element;
-    }
-    
-    /**
-     * 	<way id='-2' action='modify' visible='true'>
-	 * 	  <nd ref='-3'/>
-	 * 	  <nd ref='-4'/>
-	 * 	  <nd ref='-5'/>
-	 * 	  <tag k='height' v='14.072000000000001' />
-	 * 	  <tag k='building:part' v='yes' />
-	 * 	</way>
-     * @param doc
-     * @param ways
-     */
-    ElementWay loadWay(Node nNode) {
-		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-			loadElement((Element) nNode);
-			
-			NodeList list2 = nNode.getChildNodes();
-		    for (int temp2 = 0; temp2 < list2.getLength(); temp2++) {
-				Node node2 = list2.item(temp2);
-				if (node2.getNodeType() == Node.ELEMENT_NODE) {
-					if (node2.getNodeName().equals("nd")) {
-						this.addNode((new OsmNd()).loadElement((Element) node2));
-					}
-					else if (node2.getNodeName().equals("tag")) {
-						Element e2 = (Element) node2;
-						String k = e2.getAttribute("k");
-						String v = e2.getAttribute("v");
-						this.addTag(k, v);
-					}
-				}
-		    }
-		    return this;
-		}
-		return null;
-    }
-    
-    /**
-     * 線分(TwoPoint)リスト
-     */
-    public OsmLine getPointList() {
-    	OsmLine pointlist = new OsmLine();
-    	OsmNd a = null;
-    	OsmNd b = null;
-    	for (OsmNd node : this.nds) {
-    		if (a == null) {
-    			a = node;
-    		}
-    		else {
-    			if (b == null) {
-    				b = node;
-    			}
-    			else {
-    				a = b.clone();
-    				b = node;
-    			}
-    		}
-    		if ((a != null) && (b != null)) {
-        		pointlist.add(new TwoPoint().set(a, b));
-    		}
-    	}
-    	return pointlist;
-    }
-    
     /**
      * wayのLINEを OsmLine に書き換える
      * @param newline
@@ -414,15 +441,6 @@ public class ElementWay extends PoiBean implements Cloneable {
 		return true;
 	}
 	
-	public boolean isBuilding() {
-		for (TagBean tag : this.getTagList()) {
-			if (tag.k.startsWith("building")) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
 	/**
 	 * このWAYがマルチポリゴンのINNERであるかどうか
 	 * @param relations
@@ -486,5 +504,120 @@ public class ElementWay extends PoiBean implements Cloneable {
 			return false;
 		}
 		return true;
+	}
+	
+	//-------------- TAGs -------------------------------------------
+	public boolean isBuilding() {
+		for (TagBean tag : this.getTagList()) {
+			if (tag.k.startsWith("building")) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	//--------------- FIX -------------------------------------------
+	/**
+	 * fix=true 更新しないもの、fix=false 更新対象を示す。
+	 */
+	private boolean fix = false;
+	
+	@Override
+	public boolean getFix() {
+		return this.fix;
+	}
+	@Override
+	public void setFix(boolean b) {
+		this.fix = b;
+	}
+
+	//--------------- 重複エリア -------------------------------------------
+	/**
+	 * あるエリアと重複している面積を一時的に記録する領域
+	 */
+	private double duplicateArea = 0.0;
+
+	@Override
+	public double getDuplicateArea() {
+		return this.duplicateArea;
+	}
+
+	@Override
+	public void setDuplicateArea(double area) {
+		this.duplicateArea = area;
+	}
+
+	/**
+	 * このWAYと重複する面積が最大の WAY.id を返す
+	 * @param db
+	 * @param where　例: "WHERE (tWay.orignal=true)"
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public long getIntersectMaxArea(BoxcellMappable bean) throws Exception {
+		double max = 0.0d;
+		long maxid = 0;
+		
+        for (Wayable way : bean.getWayList(this)) {
+        	if (!way.getFix()) {
+    			if (way.getDuplicateArea() > max) {
+    				max = way.getDuplicateArea();
+    				maxid = way.getId();
+    			}
+        	}
+        }
+        return maxid;
+	}
+
+	/**
+	 * 指定のAREAと重複する領域の面積を取得する
+	 * @param way
+	 * @return
+	 */
+	@Override
+	public double getIntersectArea(Wayable way) {
+		List<Integer> list = getIntersectBoxels(way.getBoxels());
+		if (list.size() > 0) {
+	        Polygon polygon = this.getPolygon();
+	        if (polygon == null) {
+	        	return 0.0d;
+	        }
+	        Polygon polygon2 = way.getPolygon();
+	        if (polygon2 == null) {
+	        	return 0.0d;
+	        }
+	        Geometry intersect = polygon.intersection(polygon2);
+			if (intersect == null) {
+				return 0.0d;
+			}
+			if (intersect.isValid()) {
+				return intersect.getArea();
+			}
+		}
+		return 0.0d;
+	}
+	
+	/**
+	 * このWAYと重複するWAYが存在するかどうか
+	 * @param db
+	 * @param where
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public boolean isIntersect(List<Wayable> ways) throws Exception {
+        for (Wayable way : ways) {
+        	double area = getIntersectArea(way);
+			if (area > 0.0d) {
+				return true;
+			}
+        }
+        return false;
+	}
+
+	@Override
+	public PoiBean getPoiBean() {
+		return (PoiBean)this;
 	}
 }

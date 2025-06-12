@@ -8,7 +8,7 @@ import org.junit.runners.MethodSorters;
 
 import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.OsmBean;
-import osm.surveyor.osm.way.WayModel;
+import osm.surveyor.osm.way.Wayable;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Test_haya4 extends DownloadTest {
@@ -36,7 +36,7 @@ public class Test_haya4 extends DownloadTest {
 			assertNotNull(org.getRelationList());
 
 			assertTrue(org.getWayList().size() > 10);
-			for (WayModel way : org.getWayList()) {
+			for (Wayable way : org.getWayList()) {
 				// "highway"WAYは存在しないこと
 				assertNull(way.getPoiBean().getTagValue("highway"));
 				// "landuse"WAYは存在しないこと

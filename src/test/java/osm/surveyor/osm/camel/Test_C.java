@@ -21,7 +21,7 @@ import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.BoundsBean;
 import osm.surveyor.osm.RelationBean;
 import osm.surveyor.osm.WayBean;
-import osm.surveyor.osm.way.WayModel;
+import osm.surveyor.osm.way.Wayable;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Test_C extends OsmUpdaterTest {
@@ -104,7 +104,7 @@ public class Test_C extends OsmUpdaterTest {
 	        
 	        List<WayBean> ways = mrg.getWayList();
 	        assertNotNull(ways);
-	        for (WayModel way : ways) {
+	        for (Wayable way : ways) {
 	        	for (NdBean nd : way.getNdList()) {
 	        		assertNotNull(mrg.getNode(nd.getRef()));
 	        	}
@@ -132,7 +132,7 @@ public class Test_C extends OsmUpdaterTest {
 						if (mem.getRole().equals("outline")) {
 							outlineCnt++;
 							assertEquals("way", mem.getType());
-							WayModel way = mrg.getWay(mem.getRef());
+							Wayable way = mrg.getWay(mem.getRef());
 							assertNotNull(way);
 							assertNull(way.getTagValue("ref:MLIT_PLATEAU"));
 							assertNull(way.getTagValue("addr:full"));
@@ -145,7 +145,7 @@ public class Test_C extends OsmUpdaterTest {
 						if (mem.getRole().equals("part")) {
 							partCnt++;
 							assertEquals(mem.getType(), ("way"));
-							WayModel way = mrg.getWay(mem.getRef());
+							Wayable way = mrg.getWay(mem.getRef());
 							assertNotNull(way);
 							if (way.getTagValue("ref:MLIT_PLATEAU") != null) {
 								assertNotNull(way.getTagValue("ref:MLIT_PLATEAU"));
@@ -192,7 +192,7 @@ public class Test_C extends OsmUpdaterTest {
 	        
 	        List<WayBean> ways = mrg.getWayList();
 	        assertNotNull(ways);
-	        for (WayModel way : ways) {
+	        for (Wayable way : ways) {
 	        	for (NdBean nd : way.getNdList()) {
 	        		assertNotNull(mrg.getNode(nd.getRef()));
 	        	}
@@ -218,7 +218,7 @@ public class Test_C extends OsmUpdaterTest {
 						if (mem.getRole().equals("outline")) {
 							outlineCnt++;
 							assertEquals(mem.getType(), ("way"));
-							WayModel way = mrg.getWay(mem.getRef());
+							Wayable way = mrg.getWay(mem.getRef());
 							assertNotNull(way);
 							assertNull(way.getTagValue("ref:MLIT_PLATEAU"));
 							assertNull(way.getTagValue("addr:full"));
@@ -231,7 +231,7 @@ public class Test_C extends OsmUpdaterTest {
 						if (mem.getRole().equals("part")) {
 							partCnt++;
 							assertEquals(mem.getType(), ("way"));
-							WayModel way = mrg.getWay(mem.getRef());
+							Wayable way = mrg.getWay(mem.getRef());
 							assertNotNull(way);
 							assertNotNull(way.getTagValue("ref:MLIT_PLATEAU"));
 							assertEquals(way.getTagValue("addr:full"), ("東京都大田区大森中一丁目"));

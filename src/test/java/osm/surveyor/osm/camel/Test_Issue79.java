@@ -21,7 +21,7 @@ import osm.surveyor.osm.NodeBean;
 import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.RelationBean;
 import osm.surveyor.osm.WayBean;
-import osm.surveyor.osm.way.WayModel;
+import osm.surveyor.osm.way.Wayable;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Test_Issue79 extends OsmUpdaterTest {
@@ -66,7 +66,7 @@ public class Test_Issue79 extends OsmUpdaterTest {
 	        
 	        List<WayBean> ways = mrg.getWayList();
 	        assertNotNull(ways);
-	        for (WayModel way : ways) {
+	        for (Wayable way : ways) {
 	        	for (NdBean nd : way.getNdList()) {
 	        		assertNotNull(mrg.getNode(nd.getRef()));
 	        	}
@@ -80,7 +80,7 @@ public class Test_Issue79 extends OsmUpdaterTest {
 	        	int partCnt = 0;
 	        	for (MemberBean member : relation.getMemberList()) {
 	        		if (member.isWay()) {
-	        			WayModel way = mrg.getWay(member.getRef());
+	        			Wayable way = mrg.getWay(member.getRef());
 		        		assertNotNull(way);
 	        			if (member.getRole().equals("outline")) {
 	        				outlineCnt++;

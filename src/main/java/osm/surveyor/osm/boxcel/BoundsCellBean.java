@@ -12,7 +12,7 @@ import org.locationtech.jts.geom.LinearRing;
 import org.locationtech.jts.geom.Polygon;
 
 import osm.surveyor.osm.ElementWay;
-import osm.surveyor.osm.way.WayModel;
+import osm.surveyor.osm.way.Wayable;
 
 public class BoundsCellBean {
 	private List<Coordinate> ndList = new ArrayList<>();
@@ -66,7 +66,7 @@ public class BoundsCellBean {
 		return this.wayMap;
 	}
 	
-	public void putWay(WayModel way) {
+	public void putWay(Wayable way) {
 		this.wayMap.put(way.getId(), way.getPolygon());
 	}
 	
@@ -74,7 +74,7 @@ public class BoundsCellBean {
 		this.wayMap.put(Long.valueOf(way.getId()), way.getPolygon());
 	}
 	
-	public void removeWay(WayModel way) {
+	public void removeWay(Wayable way) {
 		this.wayMap.remove(way.getId());
 	}
 

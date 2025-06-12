@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.PrintStream;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.xml.bind.JAXB;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -12,15 +14,20 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import org.locationtech.jts.geom.Polygon;
+
 import osm.surveyor.citygml.CityModelParser;
+import osm.surveyor.osm.boxcel.BoundsCellBean;
+import osm.surveyor.osm.boxcel.BoxcellMappable;
 import osm.surveyor.osm.boxcel.IndexMap;
+import osm.surveyor.osm.way.Wayable;
 
 /**
  * Osmファイルをドムる
  * 
  */
 @XmlRootElement(name="osm")
-public class OsmDom {
+public class OsmDom implements BoxcellMappable {
 	static final String outputEncoding = "UTF-8";
 	
     public OsmDom() {
@@ -33,14 +40,86 @@ public class OsmDom {
         relations = new RelationMap();	// k= relation.id
     }
 
+    /**
+     * Fileに記載されていないインスタンスを充填する
+     * ※ Nodeインスタンスに POINT を充填する
+     * ・boundsからindexMapを構築する
+     * ※ indexMapに wayList のWayBeanを充填する
+     * 
+     */
+	@Override
+    public void build() {
+    	// boundsからindexMapを構築する
+    	this.indexMap.setBounds(this.bounds);
+    	
+    	for (NodeBean node : this.nodes) {
+    		OsmPoint point = new OsmPoint();
+    		point.setLat(node.getLat());
+    		point.setLon(node.getLon());
+    		node.setPoint(point);
+    	}
+    	
+    	for (Map.Entry<String,ElementWay> entry : this.ways.entrySet()) {
+    		ElementWay way = entry.getValue();
+    		for (NdBean nd : way.getNdList()) {
+    			NodeBean node = getNode(nd.getRef());
+    			if (node != null) {
+        			nd.setPoint(node.getPoint());
+    			}
+    		}
+    	}
+    	
+    	// indexMapに wayList のWayBeanを充填する
+    	for (Map.Entry<String,ElementWay> entry : this.ways.entrySet()) {
+    		ElementWay way = entry.getValue();
+    		this.indexMap.putWayType(way);
+    	}
+    }
+
+
     @XmlTransient
 	public long idno;
+
+	/**
+      * シリアル番号を生成する
+     * @return
+     */
+    public long getNewId() {
+    	return --this.idno;
+    }
 	
+    //--------------- IndexMap indexMap --------------------
+	public IndexMap indexMap = null;
+	
+	@Override
+	public IndexMap getIndexMap() {
+		return this.indexMap;
+	}
+
+	@Override
+	public void setInxexMap(IndexMap indexMap) {
+		this.indexMap = indexMap;
+	}
+	
+	@Override
+	public void reindex() {
+    	for (Map.Entry<Integer,BoundsCellBean> entry : this.indexMap.entrySet()) {
+    		BoundsCellBean cell = entry.getValue();
+    		cell.clearWaylist();
+    	}
+    	
+    	// indexMapに wayList のWayBeanを充填する
+    	for (Map.Entry<String,ElementWay> entry : this.ways.entrySet()) {
+    		ElementWay way = entry.getValue();
+    		way.getBoxels().clear();
+    		this.indexMap.putWayType(way);
+    	}
+	}
+
+    //--------------- BoundsBean bounds --------------------
     @XmlTransient
     BoundsBean bounds = null;
-    
-	public IndexMap indexMap = null;
-    
+        
     public void setBounds(BoundsBean bounds) {
     	this.bounds = bounds;
     	this.indexMap.setBounds(bounds);
@@ -51,6 +130,7 @@ public class OsmDom {
 		return bounds;
 	}
 
+    //---------------  --------------------
     @XmlTransient
     public String srsName = null;
 
@@ -60,9 +140,25 @@ public class OsmDom {
 	@XmlAttribute(name="version")
 	public String version = "0.6";
 	
+    //--------------- NODE --------------------
     @XmlElement(name="node")
     public NodeBeans nodes;	// k= node.id
     
+	/**
+	 * 指定されたNODEを取得する
+	 * @param id	NODE ID
+	 * @return		null = 該当なし
+	 */
+    public NodeBean getNode(long id) {
+    	for (NodeBean obj : this.nodes) {
+    		if (obj.getId() == id) {
+    			return obj;
+    		}
+    	}
+    	return null;
+    }
+    
+    //--------------- WAY --------------------
     @XmlTransient
     public WayMap ways;		// k= way.id
 
@@ -71,6 +167,80 @@ public class OsmDom {
 		return new ArrayList<ElementWay>(ways.values());
 	}
 
+
+    /**
+     * 指定のwayBeanと重複するwayListを取得する
+     * @param wayBean
+     * @return	wayBeanと重複するwayListを返す
+     */
+	@Override
+	public List<ElementWay> getWayList(Wayable wayBean) {
+    	Map<Long,Wayable> map = new HashMap<>();
+    	
+    	// 指定のwayBeanと同じボクセルに存在するwayListを取得する
+    	for (Integer boxcelId : wayBean.getBoxels()) {
+    		BoundsCellBean cell = this.indexMap.get(boxcelId);
+    		HashMap<Long, Polygon> wayMap = cell.getWayMap();
+        	for (Map.Entry<Long, Polygon> entry : wayMap.entrySet()) {
+        		Long wayid = entry.getKey();
+        		Wayable way = getWayBean(wayid);
+        		if (way != null) {
+        			map.put(wayid, way);
+        		}
+        	}
+    	}
+    	
+    	// 指定のwayBeanと重複するwayListを取得する
+    	List<Long> removeList = new ArrayList<>();
+    	for (Map.Entry<Long, Wayable> entry : map.entrySet()) {
+    		Long wayid = entry.getKey();
+    		Wayable way = entry.getValue();
+    		if (way != null) {
+    			double area = way.getIntersectArea(wayBean);
+    			if (area == 0.0) {
+    				removeList.add(wayid);
+    			}
+    			else {
+    				way.setDuplicateArea(area);
+    			}
+    		}
+    	}
+    	for (Long id : removeList) {
+    		map.remove(id);
+    	}
+    	
+    	List<Wayable> list = new ArrayList<>();
+    	for (Map.Entry<Long, Wayable> entry : map.entrySet()) {
+    		list.add(entry.getValue());
+    	}
+    	return list;
+		// TODO Auto-generated method stub
+		return this.wayList;
+	}
+
+	@Override
+	public Wayable getWay(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void putWay(Wayable way) {
+		this.indexMap.putWayType(way);
+	}
+
+	void addWay(OsmDom ddom, ElementWay way) {
+		for (OsmNd nd : way.nds) {
+			NodeBean node = this.nodes.get(nd.id);
+			if (node != null) {
+				ddom.nodes.put(node.clone());
+			}
+		}
+		ddom.ways.put(way.clone());
+		ddom.indexMap.putElementWay(way);
+	}
+	
+    //--------------- RELATION --------------------
     @XmlTransient
     public RelationMap relations;	// k= relation.id
     
@@ -78,32 +248,6 @@ public class OsmDom {
 	public List<ElementRelation> getRelations() {
 		return new ArrayList<ElementRelation>(relations.values());
 	}
-
-	/**
-      * シリアル番号を生成する
-     * @return
-     */
-    public long getNewId() {
-    	return --this.idno;
-    }
-    
-    /**
-     * XML SAXパースを実行する
-     * 
-    public void parse(File file) throws ParserConfigurationException, SAXException, IOException, ParseException {
-    	parse(new FileInputStream(file));
-    }
-
-    public void parse(InputStream is) throws ParserConfigurationException, SAXException, IOException {
-        SAXParserFactory factory = SAXParserFactory.newInstance();
-        factory.setValidating(false);
-        
-        SAXParser parser = factory.newSAXParser();
-        try {
-			parser.parse(is, new OsmParser(this));
-		} catch (SAXParseException e) {}
-    }
-     */
     
 	void addRelation(OsmDom ddom, ElementRelation relation) {
 		for (MemberBean member : relation.members) {
@@ -117,17 +261,7 @@ public class OsmDom {
 		ddom.relations.put(relation.clone());
 	}
 	
-	void addWay(OsmDom ddom, ElementWay way) {
-		for (OsmNd nd : way.nds) {
-			NodeBean node = this.nodes.get(nd.id);
-			if (node != null) {
-				ddom.nodes.put(node.clone());
-			}
-		}
-		ddom.ways.put(way.clone());
-		ddom.indexMap.putElementWay(way);
-	}
-	
+    //--------------- RELATION --------------------
     public void export(PrintStream out) {
     	JAXB.marshal(this, out);
     }
@@ -143,6 +277,7 @@ public class OsmDom {
     	export(file.getAbsolutePath());
     }
     
+    //--------------- TAGs --------------------
 	public ArrayList<ElementRelation> getParents(PoiBean obj) {
     	ArrayList<ElementRelation> list = new ArrayList<>();
     	for (String id : relations.keySet()) {

@@ -12,14 +12,12 @@ import javax.xml.bind.JAXB;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 import org.locationtech.jts.geom.Polygon;
 
 import osm.surveyor.osm.boxcel.BoundsCellBean;
-import osm.surveyor.osm.boxcel.BoxcellMappable;
-import osm.surveyor.osm.boxcel.IndexMap;
-import osm.surveyor.osm.way.WayModel;
+import osm.surveyor.osm.boxcel.BoxcellMapper;
+import osm.surveyor.osm.way.Wayable;
 
 /**
  * CityGMLファイルをパースする
@@ -32,7 +30,7 @@ import osm.surveyor.osm.way.WayModel;
  * }
  */
 @XmlRootElement(name="osm")
-public class OsmBean implements Serializable,BoxcellMappable {
+public class OsmBean extends BoxcellMapper implements Serializable {
 	private static final long serialVersionUID = 1L;
 	public static String VERSION = "0.6";
 	public static String GENERATOR = "JOSM";
@@ -51,40 +49,10 @@ public class OsmBean implements Serializable,BoxcellMappable {
         return OsmBean.GENERATOR;
     }
 
-	private BoundsBean bounds;
-	private IndexMap indexMap = new IndexMap();
-	
     @XmlElement(name="bounds")
     public BoundsBean getBounds() {
-		return this.bounds;
+		return super.getBounds();
 	}
-    public void setBounds(BoundsBean bounds) {
-    	this.bounds = bounds;
-    	this.indexMap.setBounds(bounds);
-    }
-    
-	@Override
-	public IndexMap getIndexMap() {
-		return this.indexMap;
-	}
-
-	@Override
-	public void setInxevMap(IndexMap indexMap) {
-		this.indexMap = indexMap;
-	}	
-	
-    public void reindex() {
-    	for (Map.Entry<Integer,BoundsCellBean> entry : this.indexMap.entrySet()) {
-    		BoundsCellBean cell = entry.getValue();
-    		cell.clearWaylist();
-    	}
-    	
-    	// indexMapに wayList のWayBeanを充填する
-    	for (WayModel way : this.wayList) {
-    		way.getBoxels().clear();
-    		this.indexMap.putWayType(way);
-    	}
-    }
     
     private List<NodeBean> nodeList = new ArrayList<>();
     
@@ -97,80 +65,22 @@ public class OsmBean implements Serializable,BoxcellMappable {
     }
     
 	
-    private List<WayBean> wayList = new ArrayList<>();
-    
     @XmlElement(name="way")
     public List<WayBean> getWayList() {
-    	return this.wayList;
-    }
-    
-    /**
-     * 指定のwayBeanと重複するwayListを取得する
-     * @param wayBean
-     * @return	wayBeanと重複するwayListを返す
-     */
-	public List<WayModel> getWayList(WayModel wayBean) {
-    	Map<Long,WayModel> map = new HashMap<>();
-    	
-    	// 指定のwayBeanと同じボクセルに存在するwayListを取得する
-    	for (Integer boxcelId : wayBean.getBoxels()) {
-    		BoundsCellBean cell = this.indexMap.get(boxcelId);
-    		HashMap<Long, Polygon> wayMap = cell.getWayMap();
-        	for (Map.Entry<Long, Polygon> entry : wayMap.entrySet()) {
-        		Long wayid = entry.getKey();
-        		WayModel way = getWayBean(wayid);
-        		if (way != null) {
-        			map.put(wayid, way);
-        		}
-        	}
-    	}
-    	
-    	// 指定のwayBeanと重複するwayListを取得する
-    	List<Long> removeList = new ArrayList<>();
-    	for (Map.Entry<Long, WayModel> entry : map.entrySet()) {
-    		Long wayid = entry.getKey();
-    		WayModel way = entry.getValue();
-    		if (way != null) {
-    			double area = way.getIntersectArea(wayBean);
-    			if (area == 0.0) {
-    				removeList.add(wayid);
-    			}
-    			else {
-    				way.setDuplicateArea(area);
-    			}
-    		}
-    	}
-    	for (Long id : removeList) {
-    		map.remove(id);
-    	}
-    	
-    	List<WayModel> list = new ArrayList<>();
-    	for (Map.Entry<Long, WayModel> entry : map.entrySet()) {
-    		list.add(entry.getValue());
+    	List<WayBean> list = new ArrayList<>();
+    	for (Wayable model : super.getWayList()) {
+    		list.add((WayBean) model);
     	}
     	return list;
     }
 	
-    public void setWayList(List<WayBean> wayList) {
-    	this.wayList = wayList;
+    public void setWayList(List wayList) {
+    	super.setWayList(wayList);
     }
     
-    /**
-     * 指定されたWAYを取得する
-     * @param id	WAY ID
-     * @return		null = 該当なし
-     */
-    public WayBean getWay(long id) {
-    	for (WayBean obj : this.wayList) {
-    		if (obj.getId() == id) {
-    			return obj;
-    		}
-    	}
-    	return null;
-    }
 
-    private WayModel getWayBean(long wayid) {
-    	for (WayModel way : this.wayList) {
+    private Wayable getWayBean(long wayid) {
+    	for (Wayable way : this.wayList) {
     		if (way.getId() == wayid) {
     			return way;
     		}
@@ -199,7 +109,7 @@ public class OsmBean implements Serializable,BoxcellMappable {
      */
     public void build() {
     	// boundsからindexMapを構築する
-    	this.indexMap.setBounds(this.bounds);
+    	getIndexMap().setBounds(getBounds());
     	
     	for (NodeBean node : this.nodeList) {
     		OsmPoint point = new OsmPoint();
@@ -207,7 +117,7 @@ public class OsmBean implements Serializable,BoxcellMappable {
     		point.setLon(node.getLon());
     		node.setPoint(point);
     	}
-    	for (WayModel way : this.wayList) {
+    	for (Wayable way : this.wayList) {
     		for (NdBean nd : way.getNdList()) {
     			NodeBean node = getNode(nd.getRef());
     			if (node != null) {
@@ -216,8 +126,8 @@ public class OsmBean implements Serializable,BoxcellMappable {
     		}
     	}
     	// indexMapに wayList のWayBeanを充填する
-    	for (WayModel way : this.wayList) {
-    		this.indexMap.putWayType(way);
+    	for (Wayable way : this.wayList) {
+    		getIndexMap().putWayType(way);
     	}
     }
 
@@ -264,7 +174,7 @@ public class OsmBean implements Serializable,BoxcellMappable {
 		this.nodeList.add(poi);
 	}
 
-	public void putWay(WayModel way) {
+	public void putWay(Wayable way) {
 		List<WayBean> removeList = new ArrayList<>();
     	for (WayBean obj : this.wayList) {
     		if (obj.getId() == way.getId()) {
@@ -275,7 +185,7 @@ public class OsmBean implements Serializable,BoxcellMappable {
     		this.wayList.remove(this.wayList.indexOf(obj));
     	}
 		this.wayList.add((WayBean)way);
-		this.indexMap.putWayType(way);
+		getIndexMap().putWayType(way);
 	}
 	
 	public void putRelation(RelationBean poi) {
@@ -317,12 +227,12 @@ public class OsmBean implements Serializable,BoxcellMappable {
 	 * IndexMapから削除する
 	 * @param poi
 	 */
-	public void removeWay(WayModel poi) {
+	public void removeWay(Wayable poi) {
     	int index = this.wayList.indexOf(poi);
     	if (index >= 0) {
     		this.wayList.remove(index);
     	}
-    	this.indexMap.removeWayBean(poi);
+    	getIndexMap().removeWayBean(poi);
 	}
 	
 	/**
@@ -353,7 +263,7 @@ public class OsmBean implements Serializable,BoxcellMappable {
 	 */
 	public void gerbageNode() {
 		List<NodeBean> list = new ArrayList<>();
-		for (WayModel way : this.wayList) {
+		for (Wayable way : this.wayList) {
 			for (NdBean nd : way.getNdList()) {
 				list.add(this.getNode(nd.getRef()));
 			}
