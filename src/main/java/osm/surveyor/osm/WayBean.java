@@ -15,6 +15,9 @@ import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.LinearRing;
 import org.locationtech.jts.geom.Polygon;
 
+import osm.surveyor.osm.boxcel.BoxcellMappable;
+import osm.surveyor.osm.way.WayModel;
+
 /**
  * @code{
  * <osm>
@@ -34,7 +37,7 @@ import org.locationtech.jts.geom.Polygon;
  * 
  */
 @XmlRootElement(name="way")
-public class WayBean extends PoiBean implements Cloneable, Serializable {
+public class WayBean extends PoiBean implements Cloneable, Serializable, WayModel {
 	private static final long serialVersionUID = 5518601165141588723L;
 	
 	public WayBean() {
@@ -43,6 +46,10 @@ public class WayBean extends PoiBean implements Cloneable, Serializable {
 	
 	public WayBean(long id) {
 		super(id);
+	}
+	
+	public PoiBean getPoiBean() {
+		return (PoiBean)this;
 	}
 	
 	/**
@@ -189,7 +196,8 @@ public class WayBean extends PoiBean implements Cloneable, Serializable {
 	 * @param way
 	 * @return
 	 */
-	public double getIntersectArea(WayBean way) {
+	@Override
+	public double getIntersectArea(WayModel way) {
 		List<Integer> list = getIntersectBoxels(way.getBoxels());
 		if (list.size() > 0) {
 	        Polygon polygon = this.getPolygon();
@@ -218,14 +226,22 @@ public class WayBean extends PoiBean implements Cloneable, Serializable {
 	 * @return
 	 * @throws Exception
 	 */
-	public boolean isIntersect(List<WayBean> ways) throws Exception {
-        for (WayBean way : ways) {
+	public boolean isIntersect(List<WayModel> ways) throws Exception {
+        for (WayModel way : ways) {
         	double area = getIntersectArea(way);
 			if (area > 0.0d) {
 				return true;
 			}
         }
         return false;
+	}
+	
+	public static List<WayModel> toModelList(List<WayBean> beans) {
+		List<WayModel> models = new ArrayList<>();
+		for (WayBean bean : beans) {
+			models.add(bean);
+		}
+		return models;
 	}
 	
 	private List<Integer> getIntersectBoxels(List<Integer> boxcels) {
@@ -247,21 +263,21 @@ public class WayBean extends PoiBean implements Cloneable, Serializable {
 	 * @return
 	 * @throws Exception
 	 */
-	public long getIntersectMaxArea(OsmBean bean) throws Exception {
+	public long getIntersectMaxArea(BoxcellMappable bean) throws Exception {
 		double max = 0.0d;
 		long maxid = 0;
 		
-        for (WayBean way : bean.getWayList(this)) {
+        for (WayModel way : bean.getWayList(this)) {
         	if (!way.getFix()) {
-    			if (way.duplicateArea > max) {
-    				max = way.duplicateArea;
+    			if (way.getDuplicateArea() > max) {
+    				max = way.getDuplicateArea();
     				maxid = way.getId();
     			}
         	}
         }
         return maxid;
 	}
-
+	
 	/**
 	 * AREAの面積を求める。ただし、面積の単位は直行座標（メートルではない）
 	 * @return	ラインが閉じたエリアでない場合は0.0d
@@ -279,5 +295,12 @@ public class WayBean extends PoiBean implements Cloneable, Serializable {
 	/**
 	 * あるエリアと承服している面積を一時的に記録する領域
 	 */
-	public double duplicateArea = 0.0;
+	private double duplicateArea = 0.0;
+	public double getDuplicateArea() {
+		return this.duplicateArea;
+	}
+	public void setDuplicateArea(double area){
+		this.duplicateArea = area;
+	}
+
 }

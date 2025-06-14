@@ -15,6 +15,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.locationtech.jts.geom.Polygon;
 
+import osm.surveyor.osm.boxcel.BoundsCellBean;
+import osm.surveyor.osm.boxcel.BoxcellMappable;
+import osm.surveyor.osm.boxcel.IndexMap;
+import osm.surveyor.osm.way.WayModel;
+
 /**
  * CityGMLファイルをパースする
  * @param gmlFile
@@ -26,7 +31,7 @@ import org.locationtech.jts.geom.Polygon;
  * }
  */
 @XmlRootElement(name="osm")
-public class OsmBean implements Serializable {
+public class OsmBean implements Serializable,BoxcellMappable {
 	private static final long serialVersionUID = 1L;
 	public static String VERSION = "0.6";
 	public static String GENERATOR = "JOSM";
@@ -52,11 +57,20 @@ public class OsmBean implements Serializable {
     public BoundsBean getBounds() {
 		return this.bounds;
 	}
-
     public void setBounds(BoundsBean bounds) {
     	this.bounds = bounds;
     	this.indexMap.setBounds(bounds);
     }
+    
+	@Override
+	public IndexMap getIndexMap() {
+		return this.indexMap;
+	}
+
+	@Override
+	public void setInxevMap(IndexMap indexMap) {
+		this.indexMap = indexMap;
+	}	
 	
     public void reindex() {
     	for (Map.Entry<Integer,BoundsCellBean> entry : this.indexMap.entrySet()) {
@@ -65,9 +79,9 @@ public class OsmBean implements Serializable {
     	}
     	
     	// indexMapに wayList のWayBeanを充填する
-    	for (WayBean way : this.wayList) {
+    	for (WayModel way : this.wayList) {
     		way.getBoxels().clear();
-    		this.indexMap.putWayBean(way);
+    		this.indexMap.putWayType(way);
     	}
     }
     
@@ -77,11 +91,11 @@ public class OsmBean implements Serializable {
     public List<NodeBean> getNodeList() {
     	return this.nodeList;
     }
-
     public void setNodeList(List<NodeBean> nodeList) {
     	this.nodeList = nodeList;
     }
     
+	
     private List<WayBean> wayList = new ArrayList<>();
     
     @XmlElement(name="way")
@@ -89,22 +103,13 @@ public class OsmBean implements Serializable {
     	return this.wayList;
     }
     
-    private WayBean getWayBean(long wayid) {
-    	for (WayBean way : this.wayList) {
-    		if (way.getId() == wayid) {
-    			return way;
-    		}
-    	}
-    	return null;
-    }
-
     /**
      * 指定のwayBeanと重複するwayListを取得する
-     * @param way
-     * @return
+     * @param wayBean
+     * @return	wayBeanと重複するwayListを返す
      */
-    public List<WayBean> getWayList(WayBean wayBean) {
-    	Map<Long,WayBean> map = new HashMap<>();
+	public List<WayModel> getWayList(WayModel wayBean) {
+    	Map<Long,WayModel> map = new HashMap<>();
     	
     	// 指定のwayBeanと同じボクセルに存在するwayListを取得する
     	for (Integer boxcelId : wayBean.getBoxels()) {
@@ -112,7 +117,7 @@ public class OsmBean implements Serializable {
     		HashMap<Long, Polygon> wayMap = cell.getWayMap();
         	for (Map.Entry<Long, Polygon> entry : wayMap.entrySet()) {
         		Long wayid = entry.getKey();
-        		WayBean way = getWayBean(wayid);
+        		WayModel way = getWayBean(wayid);
         		if (way != null) {
         			map.put(wayid, way);
         		}
@@ -121,16 +126,16 @@ public class OsmBean implements Serializable {
     	
     	// 指定のwayBeanと重複するwayListを取得する
     	List<Long> removeList = new ArrayList<>();
-    	for (Map.Entry<Long, WayBean> entry : map.entrySet()) {
+    	for (Map.Entry<Long, WayModel> entry : map.entrySet()) {
     		Long wayid = entry.getKey();
-    		WayBean way = entry.getValue();
+    		WayModel way = entry.getValue();
     		if (way != null) {
     			double area = way.getIntersectArea(wayBean);
     			if (area == 0.0) {
     				removeList.add(wayid);
     			}
     			else {
-    				way.duplicateArea = area;
+    				way.setDuplicateArea(area);
     			}
     		}
     	}
@@ -138,24 +143,46 @@ public class OsmBean implements Serializable {
     		map.remove(id);
     	}
     	
-    	List<WayBean> list = new ArrayList<>();
-    	for (Map.Entry<Long, WayBean> entry : map.entrySet()) {
+    	List<WayModel> list = new ArrayList<>();
+    	for (Map.Entry<Long, WayModel> entry : map.entrySet()) {
     		list.add(entry.getValue());
     	}
     	return list;
     }
-
+	
     public void setWayList(List<WayBean> wayList) {
     	this.wayList = wayList;
     }
     
+    /**
+     * 指定されたWAYを取得する
+     * @param id	WAY ID
+     * @return		null = 該当なし
+     */
+    public WayBean getWay(long id) {
+    	for (WayBean obj : this.wayList) {
+    		if (obj.getId() == id) {
+    			return obj;
+    		}
+    	}
+    	return null;
+    }
+
+    private WayModel getWayBean(long wayid) {
+    	for (WayModel way : this.wayList) {
+    		if (way.getId() == wayid) {
+    			return way;
+    		}
+    	}
+    	return null;
+    }
+
     private List<RelationBean> relationList = new ArrayList<>();
     
     @XmlElement(name="relation")
     public List<RelationBean> getRelationList() {
     	return this.relationList;
     }
-
     public void setRelationList(List<RelationBean> relationList) {
     	this.relationList = relationList;
     }
@@ -179,7 +206,7 @@ public class OsmBean implements Serializable {
     		point.setLon(node.getLon());
     		node.setPoint(point);
     	}
-    	for (WayBean way : this.wayList) {
+    	for (WayModel way : this.wayList) {
     		for (NdBean nd : way.getNdList()) {
     			NodeBean node = getNode(nd.getRef());
     			if (node != null) {
@@ -188,8 +215,8 @@ public class OsmBean implements Serializable {
     		}
     	}
     	// indexMapに wayList のWayBeanを充填する
-    	for (WayBean way : this.wayList) {
-    		this.indexMap.putWayBean(way);
+    	for (WayModel way : this.wayList) {
+    		this.indexMap.putWayType(way);
     	}
     }
 
@@ -200,20 +227,6 @@ public class OsmBean implements Serializable {
 	 */
     public RelationBean getRelation(long id) {
     	for (RelationBean obj : this.relationList) {
-    		if (obj.getId() == id) {
-    			return obj;
-    		}
-    	}
-    	return null;
-    }
-	
-    /**
-     * 指定されたWAYを取得する
-     * @param id	WAY ID
-     * @return		null = 該当なし
-     */
-    public WayBean getWay(long id) {
-    	for (WayBean obj : this.wayList) {
     		if (obj.getId() == id) {
     			return obj;
     		}
@@ -250,18 +263,18 @@ public class OsmBean implements Serializable {
 		this.nodeList.add(poi);
 	}
 
-	public void putWay(WayBean poi) {
+	public void putWay(WayModel way) {
 		List<WayBean> removeList = new ArrayList<>();
     	for (WayBean obj : this.wayList) {
-    		if (obj.getId() == poi.getId()) {
+    		if (obj.getId() == way.getId()) {
     			removeList.add(obj);
     		}
     	}
     	for (WayBean obj : removeList) {
     		this.wayList.remove(this.wayList.indexOf(obj));
     	}
-		this.wayList.add(poi);
-		this.indexMap.putWayBean(poi);
+		this.wayList.add((WayBean)way);
+		this.indexMap.putWayType(way);
 	}
 	
 	public void putRelation(RelationBean poi) {
@@ -303,7 +316,7 @@ public class OsmBean implements Serializable {
 	 * IndexMapから削除する
 	 * @param poi
 	 */
-	public void removeWay(WayBean poi) {
+	public void removeWay(WayModel poi) {
     	int index = this.wayList.indexOf(poi);
     	if (index >= 0) {
     		this.wayList.remove(index);
@@ -339,7 +352,7 @@ public class OsmBean implements Serializable {
 	 */
 	public void gerbageNode() {
 		List<NodeBean> list = new ArrayList<>();
-		for (WayBean way : this.wayList) {
+		for (WayModel way : this.wayList) {
 			for (NdBean nd : way.getNdList()) {
 				list.add(this.getNode(nd.getRef()));
 			}
@@ -374,5 +387,4 @@ public class OsmBean implements Serializable {
     public void export(File file) {
     	export(file.getAbsolutePath());
     }
-	
 }

@@ -1,4 +1,4 @@
-package osm.surveyor.osm;
+package osm.surveyor.osm.boxcel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +10,9 @@ import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.LinearRing;
 import org.locationtech.jts.geom.Polygon;
+
+import osm.surveyor.osm.ElementWay;
+import osm.surveyor.osm.way.WayModel;
 
 public class BoundsCellBean {
 	private List<Coordinate> ndList = new ArrayList<>();
@@ -63,7 +66,7 @@ public class BoundsCellBean {
 		return this.wayMap;
 	}
 	
-	public void putWay(WayBean way) {
+	public void putWay(WayModel way) {
 		this.wayMap.put(way.getId(), way.getPolygon());
 	}
 	
@@ -71,7 +74,7 @@ public class BoundsCellBean {
 		this.wayMap.put(Long.valueOf(way.getId()), way.getPolygon());
 	}
 	
-	public void removeWay(WayBean way) {
+	public void removeWay(WayModel way) {
 		this.wayMap.remove(way.getId());
 	}
 

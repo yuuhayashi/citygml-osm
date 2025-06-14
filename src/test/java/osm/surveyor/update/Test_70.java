@@ -16,9 +16,10 @@ import org.junit.runners.MethodSorters;
 import osm.surveyor.osm.NdBean;
 import osm.surveyor.osm.NodeBean;
 import osm.surveyor.osm.OsmBean;
+import osm.surveyor.osm.WayBean;
 import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.BoundsBean;
-import osm.surveyor.osm.WayBean;
+import osm.surveyor.osm.way.WayModel;
 
 /**
  * `mvn test -Dtest=osm.surveyor.update.Test_Test_70`
@@ -87,7 +88,7 @@ public class Test_70 extends OsmUpdaterTest {
 	        
 	        List<WayBean> ways = mrg.getWayList();
 	        assertNotNull(ways);
-	        for (WayBean way : ways) {
+	        for (WayModel way : ways) {
 	        	for (NdBean nd : way.getNdList()) {
 	        		assertNotNull(mrg.getNode(nd.getRef()));
 	        	}

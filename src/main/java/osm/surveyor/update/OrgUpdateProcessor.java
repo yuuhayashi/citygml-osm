@@ -19,6 +19,7 @@ import osm.surveyor.osm.PoiBean;
 import osm.surveyor.osm.RelationBean;
 import osm.surveyor.osm.TagBean;
 import osm.surveyor.osm.WayBean;
+import osm.surveyor.osm.way.WayModel;
 
 public class OrgUpdateProcessor implements Processor {
 
@@ -101,7 +102,7 @@ public class OrgUpdateProcessor implements Processor {
 		relation.setFix(true);
 		for (MemberBean member : relation.getMemberList()) {
 			if (member.isWay()) {
-				WayBean way = org.getWay(member.getRef());
+				WayModel way = org.getWay(member.getRef());
 				if (way != null) {
 					way.setFix(true);
 				}
@@ -114,7 +115,7 @@ public class OrgUpdateProcessor implements Processor {
 	 * @param org
 	 */
 	private void fixWayWithNode(OsmBean org) {
-		for (WayBean way : org.getWayList()) {
+		for (WayModel way : org.getWayList()) {
 			for (NdBean nd : way.getNdList()) {
 				NodeBean node = org.getNode(nd.getRef());
 				if (node != null) {
@@ -133,7 +134,7 @@ public class OrgUpdateProcessor implements Processor {
 	 * @param org
 	 */
 	private void fixEndDate(OsmBean org) {
-		for (WayBean way : org.getWayList()) {
+		for (WayModel way : org.getWayList()) {
 			if (way.getTag("end_date") != null) {
 				fixWay(org, way);
 			}
@@ -148,9 +149,9 @@ public class OrgUpdateProcessor implements Processor {
 	 * @param org
 	 * @param way
 	 */
-	private void fixWay(OsmBean org, WayBean way) {
+	private void fixWay(OsmBean org, WayModel way) {
 		way.setFix(true);
-		for (RelationBean relation : org.getParents(way)) {
+		for (RelationBean relation : org.getParents(way.getPoiBean())) {
 			fixRelation(org, relation);
 		}
 	}
@@ -162,26 +163,25 @@ public class OrgUpdateProcessor implements Processor {
 	 */
 	private void removeFixed(OsmBean osm, OsmBean org) throws Exception {
 		List<RelationBean> fixedrelation = new ArrayList<>();
-		List<WayBean> fixedway = new ArrayList<>();
-		for (WayBean obj : osm.getWayList()) {
-			for (WayBean way2 : org.getWayList()) {
+		List<WayModel> fixedway = new ArrayList<>();
+		for (WayModel obj : osm.getWayList()) {
+			for (WayModel way2 : org.getWayList()) {
 				if (way2.getFix()) {
 					// `fix=true`
 					if (obj.getIntersectArea(way2) > 0.0d) {
 						fixedway.add(obj);
-						List<RelationBean> relations = osm.getParents(obj);
+						List<RelationBean> relations = osm.getParents(obj.getPoiBean());
 						for (RelationBean relation : relations) {
 							fixedrelation.add(relation);
 						}
 					}
 				}
-				
 			}
 		}
 		for (RelationBean obj : fixedrelation) {
 			osm.removeRelation(obj);
 		}
-		for (WayBean obj : fixedway) {
+		for (WayModel obj : fixedway) {
 			osm.removeWay(obj);
 		}
 	}
@@ -192,8 +192,9 @@ public class OrgUpdateProcessor implements Processor {
 	 */
 	private void removeNotDuplicated(OsmBean osm, OsmBean org) throws Exception {
 		List<WayBean> list = new ArrayList<>();
+		List<WayModel> orgList = WayBean.toModelList(org.getWayList());
 		for (WayBean way : org.getWayList()) {
-			if (!way.isIntersect(osm.getWayList())) {
+			if (!way.isIntersect(orgList)) {
 				list.add(way);
 			}
 		}
@@ -212,18 +213,18 @@ public class OrgUpdateProcessor implements Processor {
 			node.orignal = false;
 			//osm.putNode(node);
 		}
-		for (WayBean way : osm.getWayList()) {
+		for (WayModel way : osm.getWayList()) {
 			way.setFix(false);
 		}
 		for (RelationBean relation : osm.getRelationList()) {
 			for (MemberBean member : relation.getMemberList()) {
 				if (member.isWay()) {
 					if (member.getRole().equals("inner")) {
-						WayBean way = osm.getWay(member.getRef());
+						WayModel way = osm.getWay(member.getRef());
 						way.setFix(true);
 					}
 					else {
-						WayBean way = osm.getWay(member.getRef());
+						WayModel way = osm.getWay(member.getRef());
 						TagBean tag = way.getTag("ref:MLIT_PLATEAU");
 						if (tag == null) {
 							way.setFix(true);
@@ -240,7 +241,7 @@ public class OrgUpdateProcessor implements Processor {
 	 */
 	private void duplicatedToModify(OsmBean osm, OsmBean org) throws Exception {
 		List<WayBean> work = osm.getWayList();
-		Comparator<WayBean> comparator = Comparator.comparing(WayBean::getArea).reversed();
+		Comparator<WayModel> comparator = Comparator.comparing(WayModel::getArea).reversed();
 		work.stream().sorted(comparator)
 			.forEach(osmway -> duplicatedToModify(osmway, osm, org));
 	}
@@ -251,7 +252,7 @@ public class OrgUpdateProcessor implements Processor {
 	 * @param osm	Plateauデータ
 	 * @param org	ORGデータ
 	 */
-	private void duplicatedToModify(WayBean osmway, OsmBean osm, OsmBean org) {
+	private void duplicatedToModify(WayModel osmway, OsmBean osm, OsmBean org) {
 		long oldid = osmway.getId();
 		if (!osmway.getFix()) {
 			// osm.WAYと重複する面積が最大の org.WAY.id を返す
@@ -264,12 +265,12 @@ public class OrgUpdateProcessor implements Processor {
 			if (wayid > 0) {
 				try {
 					List<NodeBean> nodes = org.getNodeList();
-					for (WayBean sWay : org.getWayList(osmway)) {
+					for (WayModel sWay : org.getWayList(osmway)) {
 						if (sWay.getId() == wayid) {
 							
 							// MLIT_PLATEAU:fixme="更新前です"
 							// Issue #115
-							WayBean preObject = sWay.clone();
+							WayModel preObject = sWay.clone();
 							preObject.setId(preObject.getId() * -1);
 							preObject.addTag(new TagBean("MLIT_PLATEAU:fixme", "更新前です"));
 							List<NdBean> ndlist = preObject.getNdList();
@@ -287,37 +288,37 @@ public class OrgUpdateProcessor implements Processor {
 							if (sWay.getTag("source") != null) {
 								// Issue #56
 								TagBean sourceTag = sWay.getTag("source");
-								sWay.removeTag("source");
+								sWay.getPoiBean().removeTag("source");
 								if (sourceTag.getValue().toLowerCase().contains("survey")) {
-									sWay.addTag("source", "survey");
+									sWay.getPoiBean().addTag("source", "survey");
 								}
 							}
 							if (osmway.getTag("building") != null) {
 								// Issue #56
 								TagBean buildingTag = osmway.getTag("building");
 								if (buildingTag.getValue().toLowerCase().equals("yes")) {
-									osmway.removeTag("building");
+									osmway.getPoiBean().removeTag("building");
 								}
 							}
 							if (osmway.getTag("start_date") != null) {
 								// Issue #61 「start_date」は既存データ優先とする
 								TagBean startTag = sWay.getTag("start_date");
 								if (startTag != null) {
-									osmway.removeTag("start_date");
+									osmway.getPoiBean().removeTag("start_date");
 								}
 							}
 							if (osmway.getTag("name") != null) {
 								// Issue #64 「name」は既存データ優先とする
 								TagBean nameTag = sWay.getTag("name");
 								if (nameTag != null) {
-									osmway.removeTag("name");
+									osmway.getPoiBean().removeTag("name");
 								}
 							}
-							sWay.copyTag(osmway);
-							osmway.copyTag(sWay);
+							sWay.getPoiBean().copyTag(osmway.getPoiBean());
+							osmway.getPoiBean().copyTag(sWay.getPoiBean());
 							sWay.addTag(new TagBean("MLIT_PLATEAU:fixme", "PLATEAUデータで更新されています"));
-							sWay.setAction("modify");
-							sWay.orignal = false;
+							sWay.getPoiBean().setAction("modify");
+							sWay.getPoiBean().orignal = false;
 							sWay.setNdList(osmway.getNdList());
 							osm.removeWay(osmway);
 							osm.putWay(sWay);
@@ -329,7 +330,7 @@ public class OrgUpdateProcessor implements Processor {
 										member.setWay(sWay);
 									}
 								}
-								String buildingValue = sWay.getTagValue("building");
+								String buildingValue = sWay.getPoiBean().getTagValue("building");
 								if (buildingValue == null || buildingValue.isEmpty()) {
 									buildingValue = "yes";
 								}
@@ -344,8 +345,8 @@ public class OrgUpdateProcessor implements Processor {
 						else {
 							sWay.setFix(true);
 							sWay.addTag(new TagBean("MLIT_PLATEAU:fixme", "delete 削除されます"));
-							sWay.setAction("modify");
-							sWay.orignal = true;
+							sWay.getPoiBean().setAction("modify");
+							sWay.getPoiBean().orignal = true;
 							for (NdBean nd : sWay.getNdList()) {
 								NodeBean node = org.getNode(nd.getRef());
 								if (node != null) {
@@ -370,34 +371,34 @@ public class OrgUpdateProcessor implements Processor {
 		// Relation: type=Multipolygon
 		for (RelationBean relation : mrg.getRelationList()) {
 			if (relation.isMultipolygon() ) {
-				WayBean outer = null;
-				WayBean way = null;
+				WayModel outer = null;
+				WayModel way = null;
 				for (MemberBean member : relation.getMemberList()) {
 					if (member.getRole().equals("outer")) {
 						if (member.isWay()) {
 							outer = mrg.getWay(member.getRef());
 							way = outer.clone();
-							String building = outer.getTagValue("building");
+							String building = outer.getPoiBean().getTagValue("building");
 							if (building != null && building.equals("yes")) {
-								way.addTag(new TagBean("building", outer.getTagValue("building:part")));
+								way.addTag(new TagBean("building", outer.getPoiBean().getTagValue("building:part")));
 							}
-							way.removeTag("building:part");
-							way.removeTag("MLIT_PLATEAU:fixme");
-							way.removeTag("ref:MLIT_PLATEAU");
+							way.getPoiBean().removeTag("building:part");
+							way.getPoiBean().removeTag("MLIT_PLATEAU:fixme");
+							way.getPoiBean().removeTag("ref:MLIT_PLATEAU");
 						}
 					}
 				}
 				if (way != null) {
-					relation.copyTag(way);
+					relation.copyTag(way.getPoiBean());
 				}
 			}
 		}
 		
 		// Relation: type=building
 		for (RelationBean relation : mrg.getRelationList()) {
-			WayBean maxway = getMaxPart(relation, mrg);
+			WayModel maxway = getMaxPart(relation, mrg);
 			if (relation.isBuilding() ) {
-				WayBean outline = null;
+				WayModel outline = null;
 				RelationBean outer = null;
 				for (MemberBean member : relation.getMemberList()) {
 					if (member.getRole().equals("outline")) {
@@ -411,26 +412,27 @@ public class OrgUpdateProcessor implements Processor {
 				}
 				
 				if (maxway != null) {
-					WayBean way = maxway.clone();
-					String build = maxway.getTagValue("building");
+					WayModel way = maxway.clone();
+					String build = maxway.getPoiBean().getTagValue("building");
 					if (build == null || build.equals("yes")) {
-						way.addTag(new TagBean("building", maxway.getTagValue("building:part")));
+						way.addTag(new TagBean("building", maxway.getPoiBean().getTagValue("building:part")));
 					}
-					way.removeTag("building:part");
-					way.removeTag("building:levels");
-					way.removeTag("building:levels:underground");
-					way.removeTag("height");
-					way.removeTag("ele");
-					way.removeTag("MLIT_PLATEAU:fixme");
-					way.removeTag("ref:MLIT_PLATEAU");
-					way.removeTag("start_date");		// Issue #39 複合ビルでの”建築年”の扱い
+					PoiBean poi = way.getPoiBean();
+					poi.removeTag("building:part");
+					poi.removeTag("building:levels");
+					poi.removeTag("building:levels:underground");
+					poi.removeTag("height");
+					poi.removeTag("ele");
+					poi.removeTag("MLIT_PLATEAU:fixme");
+					poi.removeTag("ref:MLIT_PLATEAU");
+					poi.removeTag("start_date");		// Issue #39 複合ビルでの”建築年”の扱い
 					if (outline != null) {
-						outline.copyTag(way);
+						outline.getPoiBean().copyTag(poi);
 					}
 					if (outer != null) {
-						outer.copyTag(way);
+						outer.copyTag(poi);
 					}
-					relation.copyTag(way);
+					relation.copyTag(poi);
 				}
 			}
 		}
@@ -464,14 +466,14 @@ public class OrgUpdateProcessor implements Processor {
 			relation.setAction("modify");
 			for (MemberBean member : relation.getMemberList()) {
 				if (member.isWay()) {
-					WayBean way = mrg.getWay(member.getRef());
+					WayModel way = mrg.getWay(member.getRef());
 					if (way != null) {
 						if (member.getRole().equals("part")) {
-							toPart(way);
+							toPart(way.getPoiBean());
 						}
 						else if (member.getRole().equals("outline")) {
 							List<TagBean> tags = new ArrayList<>();
-							for (TagBean tag : way.getTagList()) {
+							for (TagBean tag : way.getPoiBean().getTagList()) {
 								if (tag.k.startsWith("MLIT_PLATEAU:fixme")) {
 									tags.add(tag);
 								}
@@ -490,12 +492,12 @@ public class OrgUpdateProcessor implements Processor {
 								}
 							}
 							for (TagBean tag : tags) {
-								way.removeTag(tag.k);
+								way.getPoiBean().removeTag(tag.k);
 							}
 						}
 						else if (member.getRole().equals("outer")) {
 							List<TagBean> tags = new ArrayList<>();
-							for (TagBean tag : way.getTagList()) {
+							for (TagBean tag : way.getPoiBean().getTagList()) {
 								if (tag.k.startsWith("MLIT_PLATEAU:fixme")) {
 									// Do nothing
 								}
@@ -505,7 +507,7 @@ public class OrgUpdateProcessor implements Processor {
 							}
 							// {Issue#40]
 							for (TagBean tag : tags) {
-								way.removeTag(tag.k);
+								way.getPoiBean().removeTag(tag.k);
 							}
 						}
 						member.setWay(way);
@@ -532,8 +534,8 @@ public class OrgUpdateProcessor implements Processor {
 			for (MemberBean member : relation.getMemberList()) {
 				if (member.getRole().equals("outline")) {
 					if (member.isWay()) {
-						WayBean way = mrg.getWay(member.getRef());
-						changeBuildingYes(way.getTagList());
+						WayModel way = mrg.getWay(member.getRef());
+						changeBuildingYes(way.getPoiBean().getTagList());
 					}
 				}
 			}
@@ -541,9 +543,9 @@ public class OrgUpdateProcessor implements Processor {
 	}
 
 	void fix128(OsmBean mrg) {
-		for (WayBean way : mrg.getWayList()) {
+		for (WayModel way : mrg.getWayList()) {
 			List<TagBean> blacklist = new ArrayList<>();
-			for (TagBean tag : way.getTagList()) {
+			for (TagBean tag : way.getPoiBean().getTagList()) {
 				String key = tag.getKey();
 				try {
 					if (key.equals("ele") || key.equals("height")) {
@@ -565,7 +567,7 @@ public class OrgUpdateProcessor implements Processor {
 				}
 			}
 			for (TagBean tag : blacklist) {
-				way.removeTag(tag.k);
+				way.getPoiBean().removeTag(tag.k);
 			}
 		}
 	}
@@ -594,13 +596,13 @@ public class OrgUpdateProcessor implements Processor {
 	 * @param mrg
 	 * @return
 	 */
-	private WayBean getMaxPart(RelationBean polygon, OsmBean mrg) {
+	private WayModel getMaxPart(RelationBean polygon, OsmBean mrg) {
 		double max = 0;
-		WayBean maxway = null;
+		WayModel maxway = null;
 		for (MemberBean member : polygon.getMemberList()) {
 			if (member.getRole().equals("part")) {
 				if (member.isWay()) {
-					WayBean way = mrg.getWay(member.getRef());
+					WayModel way = mrg.getWay(member.getRef());
 					if (way.getArea() > max) {
 						maxway = way.clone();
 					}
@@ -608,7 +610,7 @@ public class OrgUpdateProcessor implements Processor {
 			}
 			else if (member.getRole().equals("outer")) {
 				if (member.isWay()) {
-					WayBean way = mrg.getWay(member.getRef());
+					WayModel way = mrg.getWay(member.getRef());
 					if (way.getArea() > max) {
 						maxway = way.clone();
 					}

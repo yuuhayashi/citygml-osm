@@ -9,6 +9,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
+import osm.surveyor.osm.way.WayModel;
+
 /**
  * @code{
  *   <member type='way' ref='-102077' role='part' />
@@ -35,7 +37,7 @@ public class MemberBean implements Cloneable,Serializable {
 		return (this.type.equals("way"));
 	}
 	
-	public void setWay(WayBean way) {
+	public void setWay(WayModel way) {
 		this.ref = way.getId();
 		this.type = "way";
 	}

@@ -8,7 +8,7 @@ import org.junit.runners.MethodSorters;
 
 import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.OsmBean;
-import osm.surveyor.osm.WayBean;
+import osm.surveyor.osm.way.WayModel;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Test_Issue77 extends DownloadTest {
@@ -50,8 +50,8 @@ public class Test_Issue77 extends DownloadTest {
 		}
 	}
 	
-	static WayBean find(OsmBean org, long id) {
-		for (WayBean way : org.getWayList()) {
+	static WayModel find(OsmBean org, long id) {
+		for (WayModel way : org.getWayList()) {
 			if (way.getId() == id) {
 				return way;
 			}

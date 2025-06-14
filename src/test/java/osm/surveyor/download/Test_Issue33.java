@@ -8,7 +8,7 @@ import org.junit.runners.MethodSorters;
 
 import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.OsmBean;
-import osm.surveyor.osm.WayBean;
+import osm.surveyor.osm.way.WayModel;
 
 /**
  * Issue #33 第2段階のmrgファイルの作成処理の途中で、いくつかのファイルで下記のようなエラーが発生し、mrg.osmファイルが作成されません。
@@ -40,11 +40,11 @@ public class Test_Issue33 extends DownloadTest {
     		assertNotNull(org.getBounds());
 			assertNotNull(org.getRelationList());
 
-			for (WayBean way : org.getWayList()) {
+			for (WayModel way : org.getWayList()) {
 				// "highway"WAYは存在しないこと
-				assertNull(way.getTagValue("highway"));
+				assertNull(way.getPoiBean().getTagValue("highway"));
 				// "landuse"WAYは存在しないこと
-				assertNull(way.getTagValue("landuse"));
+				assertNull(way.getPoiBean().getTagValue("landuse"));
 			}
 		} catch (Exception e) {
 			e.fillInStackTrace();
@@ -65,11 +65,11 @@ public class Test_Issue33 extends DownloadTest {
     		assertNotNull(org.getBounds());
 			assertNotNull(org.getRelationList());
 
-			for (WayBean way : org.getWayList()) {
+			for (WayModel way : org.getWayList()) {
 				// "highway"WAYは存在しないこと
-				assertNull(way.getTagValue("highway"));
+				assertNull(way.getPoiBean().getTagValue("highway"));
 				// "landuse"WAYは存在しないこと
-				assertNull(way.getTagValue("landuse"));
+				assertNull(way.getPoiBean().getTagValue("landuse"));
 			}
 		} catch (Exception e) {
 			e.fillInStackTrace();

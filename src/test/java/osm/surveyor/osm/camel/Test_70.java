@@ -16,9 +16,10 @@ import org.junit.runners.MethodSorters;
 import osm.surveyor.osm.NdBean;
 import osm.surveyor.osm.NodeBean;
 import osm.surveyor.osm.OsmBean;
+import osm.surveyor.osm.WayBean;
 import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.BoundsBean;
-import osm.surveyor.osm.WayBean;
+import osm.surveyor.osm.way.WayModel;
 
 /**
  * `mvn test -Dtest=osm.surveyor.update.Test_Test_70`
@@ -87,28 +88,28 @@ public class Test_70 extends OsmUpdaterTest {
 	        
 	        List<WayBean> ways = mrg.getWayList();
 	        assertNotNull(ways);
-	        for (WayBean way : ways) {
+	        for (WayModel way : ways) {
 	        	for (NdBean nd : way.getNdList()) {
 	        		assertNotNull(mrg.getNode(nd.getRef()));
 	        	}
-	        	String ref = way.getTagValue("ref:MLIT_PLATEAU");
+	        	String ref = way.getPoiBean().getTagValue("ref:MLIT_PLATEAU");
 	        	if (ref != null) {
 		        	if (ref.equals("11230-bldg-1")) {
-		        		assertEquals("D’クラディアひばりケ丘ミッドレジデンス", way.getTagValue("name"));
-		    	        assertNotNull(way.getTagValue("MLIT_PLATEAU:fixme"));
+		        		assertEquals("D’クラディアひばりケ丘ミッドレジデンス", way.getPoiBean().getTagValue("name"));
+		    	        assertNotNull(way.getPoiBean().getTagValue("MLIT_PLATEAU:fixme"));
 		        	}
 		        	else if (ref.equals("11230-bldg-1165")) {
-		        		assertNull(way.getTagValue("name"));
-		    	        assertNull(way.getTagValue("MLIT_PLATEAU:fixme"));
+		        		assertNull(way.getPoiBean().getTagValue("name"));
+		    	        assertNull(way.getPoiBean().getTagValue("MLIT_PLATEAU:fixme"));
 		        	}
 		        	
 		        	if (ref.equals("11230-bldg-2")) {
-		        		assertEquals("東京ドーム後楽園スイミングスクールひばりが丘", way.getTagValue("name"));
-		    	        assertNotNull(way.getTagValue("MLIT_PLATEAU:fixme"));
+		        		assertEquals("東京ドーム後楽園スイミングスクールひばりが丘", way.getPoiBean().getTagValue("name"));
+		    	        assertNotNull(way.getPoiBean().getTagValue("MLIT_PLATEAU:fixme"));
 		        	}
 		        	else if (ref.equals("11230-bldg-1163")) {
-		        		assertNull(way.getTagValue("name"));
-		    	        assertNull(way.getTagValue("MLIT_PLATEAU:fixme"));
+		        		assertNull(way.getPoiBean().getTagValue("name"));
+		    	        assertNull(way.getPoiBean().getTagValue("MLIT_PLATEAU:fixme"));
 		        	}
 	        	}
 	        }
