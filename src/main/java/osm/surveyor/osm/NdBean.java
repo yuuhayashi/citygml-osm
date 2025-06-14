@@ -19,7 +19,7 @@ public class NdBean implements Serializable, Cloneable {
 	private static final long serialVersionUID = 4936895079170613027L;
 
 	private long ref = 0;
-
+	
 	@XmlAttribute(name="ref")
 	public long getRef() {
 		return ref;
@@ -27,7 +27,7 @@ public class NdBean implements Serializable, Cloneable {
 	public void setRef(long ref) {
 		this.ref = ref;
 	}
-
+	
 	@XmlTransient
 	public OsmPoint point = null;
 	public void setPoint(OsmPoint point) {

@@ -41,7 +41,7 @@ public class NodeBean extends PoiBean implements Cloneable,Serializable {
 
 	@XmlAttribute(name="lat")
 	public String getLat() {
-		return this.point.lat;
+		return this.point.getLat();
 	}
 	public void setLat(String lat) {
 		this.point.setLat(lat);
@@ -49,7 +49,7 @@ public class NodeBean extends PoiBean implements Cloneable,Serializable {
 
 	@XmlAttribute(name="lon")
 	public String getLon() {
-		return this.point.lon;
+		return this.point.getLon();
 	}
 	public void setLon(String lon) {
 		this.point.setLon(lon);
@@ -87,8 +87,8 @@ public class NodeBean extends PoiBean implements Cloneable,Serializable {
      */
     public Node toNode(Document doc) {
     	Element element = toElement(doc, "node");
-    	element.setAttribute("lat", point.lat);
-    	element.setAttribute("lon", point.lon);
+    	element.setAttribute("lat", point.getLat());
+    	element.setAttribute("lon", point.getLon());
         return (Node)element;
     }
 
@@ -102,9 +102,9 @@ public class NodeBean extends PoiBean implements Cloneable,Serializable {
 		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 			Element eElement = (Element) nNode;
 			loadElement(eElement);
-			this.point.lat = eElement.getAttribute("lat");
-			this.point.lon = eElement.getAttribute("lon");
-			this.height = eElement.getAttribute("height");
+			this.point.setLat(eElement.getAttribute("lat"));
+			this.point.setLon(eElement.getAttribute("lon"));
+			this.setHeight(eElement.getAttribute("height"));
 			return this;
 		}
 		return null;

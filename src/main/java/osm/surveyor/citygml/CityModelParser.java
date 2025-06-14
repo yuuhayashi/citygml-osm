@@ -603,7 +603,7 @@ public class CityModelParser extends DefaultHandler {
 					
 					// lon
 					if (st.hasMoreTokens()) {
-						node.getPoint().lon = st.nextToken();
+						node.getPoint().setLon(st.nextToken());
 					}
 					else {
 						break;

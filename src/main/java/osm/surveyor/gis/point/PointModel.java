@@ -3,8 +3,8 @@ package osm.surveyor.gis.point;
 import org.locationtech.jts.geom.Coordinate;
 
 public abstract class PointModel implements Cloneable {
-	public String lat = null;
-	public String lon = null;
+	private String lat = null;
+	private String lon = null;
 	
 	public void set(String lat, String lon) {
 		this.lat = lat;
@@ -14,9 +14,15 @@ public abstract class PointModel implements Cloneable {
 	public void setLat(String lat) {
 		this.lat = lat;
 	}
+	public String getLat() {
+		return this.lat;
+	}
     
 	public void setLon(String lon) {
 		this.lon = lon;
+	}
+	public String getLon() {
+		return this.lon;
 	}
 	
 	public String getGeomText() {

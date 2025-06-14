@@ -12,11 +12,11 @@ public class OsmLine extends ArrayList<TwoPoint> {
 	public double getMaxLat() {
 		double max = -90.0d;
 		for (TwoPoint segment : this) {
-			String lat = segment.a.point.lat;
+			String lat = segment.a.point.getLat();
 			if (max < Double.parseDouble(lat)) {
 				max = Double.parseDouble(lat);
 			}
-			lat = segment.b.point.lat;
+			lat = segment.b.point.getLat();
 			if (max < Double.parseDouble(lat)) {
 				max = Double.parseDouble(lat);
 			}

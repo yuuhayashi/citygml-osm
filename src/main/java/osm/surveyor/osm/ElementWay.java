@@ -18,6 +18,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import osm.surveyor.osm.boxcel.IndexMap;
+import osm.surveyor.osm.way.WayModel;
 
 /**
  * 
@@ -25,7 +26,7 @@ import osm.surveyor.osm.boxcel.IndexMap;
  * @author hayashi
  *
  */
-public class ElementWay extends PoiBean implements Cloneable {
+public class ElementWay extends WayModel implements Cloneable {
 	private static final long serialVersionUID = 1L;
 	
 	@XmlElement(name="nd")
@@ -36,7 +37,7 @@ public class ElementWay extends PoiBean implements Cloneable {
 	 */
 	private List<Integer> boxels = new ArrayList<>();
 
-	boolean area = false;
+	boolean ring = false;
 	
 	@XmlTransient
 	public boolean member = false;	// 単独のWAYか、RELATIONのメンバーかを示す。
@@ -51,9 +52,8 @@ public class ElementWay extends PoiBean implements Cloneable {
 		ElementWay copy = null;
 		try {
 			copy = (ElementWay)super.clone();
-			copy.area = this.area;
+			copy.ring = this.ring;
 			copy.member = this.member;
-			copy.boxels = this.boxels;
 			copy.nds = new ArrayList<OsmNd>();
 			if (this.nds != null) {
 				for (OsmNd nd : this.nds) {
@@ -101,19 +101,19 @@ public class ElementWay extends PoiBean implements Cloneable {
 		OsmNd last = nds.get(size - 1);
 		if (size > 3) {
 			if (frst.id != last.id) {
-				if ((frst.point.lat.equals(last.point.lat)) && (frst.point.lon.equals(last.point.lon))) {
+				if ((frst.point.getLat().equals(last.point.getLat())) && (frst.point.getLon().equals(last.point.getLon()))) {
 					nds.remove(size - 1);
 					nds.add(frst);
 				}
 			}
 			
 			indexMap.putElementWay(this);
-			this.area = true;
+			this.ring = true;
 		}
 		else if (size > 2) {
-			if ((frst.point.lat.equals(last.point.lat)) && (frst.point.lon.equals(last.point.lon))) {
+			if ((frst.point.getLat().equals(last.point.getLat())) && (frst.point.getLon().equals(last.point.getLon()))) {
 				nds.remove(size - 1);
-				area = false;
+				ring = false;
 				return;
 			}
 			else {
@@ -121,11 +121,11 @@ public class ElementWay extends PoiBean implements Cloneable {
 					nds.add(frst);
 				}
 				indexMap.putElementWay(this);
-				area = true;
+				ring = true;
 			}
 		}
 		else {
-			area = false;
+			ring = false;
 		}
 	}
 	
@@ -374,7 +374,7 @@ public class ElementWay extends PoiBean implements Cloneable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + (area ? 1231 : 1237);
+		result = prime * result + (ring ? 1231 : 1237);
 		result = prime * result + (member ? 1231 : 1237);
 		result = prime * result + ((nds == null) ? 0 : nds.hashCode());
 		result = prime * result + ((boxels == null) ? 0 : boxels.hashCode());
@@ -392,7 +392,7 @@ public class ElementWay extends PoiBean implements Cloneable {
 			return true;
 		if (other == null)
 			return false;
-		if (!this.area || !other.area) {
+		if (!this.ring || !other.ring) {
 			return false;
 		}
 		return isSame(other.getPointList());
@@ -456,7 +456,7 @@ public class ElementWay extends PoiBean implements Cloneable {
 			return false;
 		}
 		ElementWay other = (ElementWay) obj;
-		if (area != other.area) {
+		if (ring != other.ring) {
 			return false;
 		}
 		if (member != other.member) {
@@ -486,5 +486,17 @@ public class ElementWay extends PoiBean implements Cloneable {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public boolean getFix() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void setFix(boolean b) {
+		// TODO Auto-generated method stub
+		
 	}
 }

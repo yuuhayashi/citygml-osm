@@ -28,7 +28,7 @@ import osm.surveyor.osm.way.Wayable;
  * 
  */
 @XmlRootElement(name="way")
-public class WayBean extends WayModel implements Cloneable, Serializable, Wayable {
+public class WayBean extends WayModel implements Cloneable, Serializable {
 	private static final long serialVersionUID = 5518601165141588723L;
 	
 	public WayBean() {
