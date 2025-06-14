@@ -71,7 +71,7 @@ public class OsmBean implements Serializable,BoxcellMappable {
 	@Override
 	public void setInxevMap(IndexMap indexMap) {
 		this.indexMap = indexMap;
-	}	
+	}
 	
     public void reindex() {
     	for (Map.Entry<Integer,BoundsCellBean> entry : this.indexMap.entrySet()) {
@@ -188,37 +188,6 @@ public class OsmBean implements Serializable,BoxcellMappable {
     }
 
 	//-------------------------------------
-    
-    /**
-     * Fileに記載されていないインスタンスを充填する
-     * ※ Nodeインスタンスに POINT を充填する
-     * ・boundsからindexMapを構築する
-     * ※ indexMapに wayList のWayBeanを充填する
-     * 
-     */
-    public void build() {
-    	// boundsからindexMapを構築する
-    	this.indexMap.setBounds(this.bounds);
-    	
-    	for (NodeBean node : this.nodeList) {
-    		OsmPoint point = new OsmPoint();
-    		point.setLat(node.getLat());
-    		point.setLon(node.getLon());
-    		node.setPoint(point);
-    	}
-    	for (WayModel way : this.wayList) {
-    		for (NdBean nd : way.getNdList()) {
-    			NodeBean node = getNode(nd.getRef());
-    			if (node != null) {
-        			nd.setPoint(node.getPoint());
-    			}
-    		}
-    	}
-    	// indexMapに wayList のWayBeanを充填する
-    	for (WayModel way : this.wayList) {
-    		this.indexMap.putWayType(way);
-    	}
-    }
 
     /**
 	 * 指定されたリレーションを取得する
@@ -227,20 +196,6 @@ public class OsmBean implements Serializable,BoxcellMappable {
 	 */
     public RelationBean getRelation(long id) {
     	for (RelationBean obj : this.relationList) {
-    		if (obj.getId() == id) {
-    			return obj;
-    		}
-    	}
-    	return null;
-    }
-
-	/**
-	 * 指定されたNODEを取得する
-	 * @param id	NODE ID
-	 * @return		null = 該当なし
-	 */
-    public NodeBean getNode(long id) {
-    	for (NodeBean obj : this.nodeList) {
     		if (obj.getId() == id) {
     			return obj;
     		}
