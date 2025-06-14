@@ -131,8 +131,8 @@ public class MeshlistConverter {
         	double lng = 0.0;
         	double lat = 0.0;
         	for (Point p : total) {
-        		lng += new Double(p.getLng());
-        		lat += new Double(p.getLat());
+        		lng += Double.valueOf(p.getLng());
+        		lat += Double.valueOf(p.getLat());
         		count++;
         	}
         	Point center = new Point();

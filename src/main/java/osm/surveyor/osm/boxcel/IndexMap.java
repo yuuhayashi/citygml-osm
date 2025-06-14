@@ -15,8 +15,8 @@ import osm.surveyor.osm.way.WayModel;
 public class IndexMap extends HashMap<Integer, BoundsCellBean> implements Cloneable, Serializable {
 	
 	private static final long serialVersionUID = 3201342709343657144L;
-	static final int X = 16;
-	static final int Y = 16;
+	static final int X = 8;
+	static final int Y = 8;
 
 	public void put(BoundsCellBean cell) {
 		if (cell != null) {

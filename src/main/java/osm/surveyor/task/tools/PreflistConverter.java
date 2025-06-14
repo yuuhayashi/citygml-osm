@@ -31,8 +31,8 @@ public class PreflistConverter {
 			(new PreflistConverter()).proc(args[0], args[1]);
 		}
 		else {
-			System.out.println("> java -jar meshcode-jp.jar osm.surveyor.task.tools.MeshlistConverter <source> <destination>");
-			System.out.println("[exp] java -jar meshcode-jp.jar osm.surveyor.task.tools.MeshlistConverter meshlist_20.json meshlist_20.geojson");
+			System.out.println("> java -jar meshcode-jp.jar osm.surveyor.task.tools.PreflistConverter <source> <destination>");
+			System.out.println("[exp] java -jar meshcode-jp.jar osm.surveyor.task.tools.PreflistConverter meshlist_20.json meshlist_20.geojson");
 		}
 	}
 	
