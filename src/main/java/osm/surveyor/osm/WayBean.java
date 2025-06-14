@@ -16,7 +16,7 @@ import org.locationtech.jts.geom.LinearRing;
 import org.locationtech.jts.geom.Polygon;
 
 import osm.surveyor.osm.boxcel.BoxcellMappable;
-import osm.surveyor.osm.way.WayModel;
+import osm.surveyor.osm.way.Wayable;
 
 /**
  * @code{
@@ -37,7 +37,7 @@ import osm.surveyor.osm.way.WayModel;
  * 
  */
 @XmlRootElement(name="way")
-public class WayBean extends PoiBean implements Cloneable, Serializable, WayModel {
+public class WayBean extends PoiBean implements Cloneable, Serializable, Wayable {
 	private static final long serialVersionUID = 5518601165141588723L;
 	
 	public WayBean() {
@@ -197,7 +197,7 @@ public class WayBean extends PoiBean implements Cloneable, Serializable, WayMode
 	 * @return
 	 */
 	@Override
-	public double getIntersectArea(WayModel way) {
+	public double getIntersectArea(Wayable way) {
 		List<Integer> list = getIntersectBoxels(way.getBoxels());
 		if (list.size() > 0) {
 	        Polygon polygon = this.getPolygon();
@@ -226,8 +226,8 @@ public class WayBean extends PoiBean implements Cloneable, Serializable, WayMode
 	 * @return
 	 * @throws Exception
 	 */
-	public boolean isIntersect(List<WayModel> ways) throws Exception {
-        for (WayModel way : ways) {
+	public boolean isIntersect(List<Wayable> ways) throws Exception {
+        for (Wayable way : ways) {
         	double area = getIntersectArea(way);
 			if (area > 0.0d) {
 				return true;
@@ -236,8 +236,8 @@ public class WayBean extends PoiBean implements Cloneable, Serializable, WayMode
         return false;
 	}
 	
-	public static List<WayModel> toModelList(List<WayBean> beans) {
-		List<WayModel> models = new ArrayList<>();
+	public static List<Wayable> toModelList(List<WayBean> beans) {
+		List<Wayable> models = new ArrayList<>();
 		for (WayBean bean : beans) {
 			models.add(bean);
 		}
@@ -267,7 +267,7 @@ public class WayBean extends PoiBean implements Cloneable, Serializable, WayMode
 		double max = 0.0d;
 		long maxid = 0;
 		
-        for (WayModel way : bean.getWayList(this)) {
+        for (Wayable way : bean.getWayList(this)) {
         	if (!way.getFix()) {
     			if (way.getDuplicateArea() > max) {
     				max = way.getDuplicateArea();

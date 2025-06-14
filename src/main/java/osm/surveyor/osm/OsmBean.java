@@ -18,7 +18,7 @@ import org.locationtech.jts.geom.Polygon;
 import osm.surveyor.osm.boxcel.BoundsCellBean;
 import osm.surveyor.osm.boxcel.BoxcellMappable;
 import osm.surveyor.osm.boxcel.IndexMap;
-import osm.surveyor.osm.way.WayModel;
+import osm.surveyor.osm.way.Wayable;
 
 /**
  * CityGMLファイルをパースする
@@ -79,7 +79,7 @@ public class OsmBean implements Serializable,BoxcellMappable {
     	}
     	
     	// indexMapに wayList のWayBeanを充填する
-    	for (WayModel way : this.wayList) {
+    	for (Wayable way : this.wayList) {
     		way.getBoxels().clear();
     		this.indexMap.putWayType(way);
     	}
@@ -108,8 +108,8 @@ public class OsmBean implements Serializable,BoxcellMappable {
      * @param wayBean
      * @return	wayBeanと重複するwayListを返す
      */
-	public List<WayModel> getWayList(WayModel wayBean) {
-    	Map<Long,WayModel> map = new HashMap<>();
+	public List<Wayable> getWayList(Wayable wayBean) {
+    	Map<Long,Wayable> map = new HashMap<>();
     	
     	// 指定のwayBeanと同じボクセルに存在するwayListを取得する
     	for (Integer boxcelId : wayBean.getBoxels()) {
@@ -117,7 +117,7 @@ public class OsmBean implements Serializable,BoxcellMappable {
     		HashMap<Long, Polygon> wayMap = cell.getWayMap();
         	for (Map.Entry<Long, Polygon> entry : wayMap.entrySet()) {
         		Long wayid = entry.getKey();
-        		WayModel way = getWayBean(wayid);
+        		Wayable way = getWayBean(wayid);
         		if (way != null) {
         			map.put(wayid, way);
         		}
@@ -126,9 +126,9 @@ public class OsmBean implements Serializable,BoxcellMappable {
     	
     	// 指定のwayBeanと重複するwayListを取得する
     	List<Long> removeList = new ArrayList<>();
-    	for (Map.Entry<Long, WayModel> entry : map.entrySet()) {
+    	for (Map.Entry<Long, Wayable> entry : map.entrySet()) {
     		Long wayid = entry.getKey();
-    		WayModel way = entry.getValue();
+    		Wayable way = entry.getValue();
     		if (way != null) {
     			double area = way.getIntersectArea(wayBean);
     			if (area == 0.0) {
@@ -143,8 +143,8 @@ public class OsmBean implements Serializable,BoxcellMappable {
     		map.remove(id);
     	}
     	
-    	List<WayModel> list = new ArrayList<>();
-    	for (Map.Entry<Long, WayModel> entry : map.entrySet()) {
+    	List<Wayable> list = new ArrayList<>();
+    	for (Map.Entry<Long, Wayable> entry : map.entrySet()) {
     		list.add(entry.getValue());
     	}
     	return list;
@@ -168,8 +168,8 @@ public class OsmBean implements Serializable,BoxcellMappable {
     	return null;
     }
 
-    private WayModel getWayBean(long wayid) {
-    	for (WayModel way : this.wayList) {
+    private Wayable getWayBean(long wayid) {
+    	for (Wayable way : this.wayList) {
     		if (way.getId() == wayid) {
     			return way;
     		}
@@ -206,7 +206,7 @@ public class OsmBean implements Serializable,BoxcellMappable {
     		point.setLon(node.getLon());
     		node.setPoint(point);
     	}
-    	for (WayModel way : this.wayList) {
+    	for (Wayable way : this.wayList) {
     		for (NdBean nd : way.getNdList()) {
     			NodeBean node = getNode(nd.getRef());
     			if (node != null) {
@@ -215,7 +215,7 @@ public class OsmBean implements Serializable,BoxcellMappable {
     		}
     	}
     	// indexMapに wayList のWayBeanを充填する
-    	for (WayModel way : this.wayList) {
+    	for (Wayable way : this.wayList) {
     		this.indexMap.putWayType(way);
     	}
     }
@@ -263,7 +263,7 @@ public class OsmBean implements Serializable,BoxcellMappable {
 		this.nodeList.add(poi);
 	}
 
-	public void putWay(WayModel way) {
+	public void putWay(Wayable way) {
 		List<WayBean> removeList = new ArrayList<>();
     	for (WayBean obj : this.wayList) {
     		if (obj.getId() == way.getId()) {
@@ -316,7 +316,7 @@ public class OsmBean implements Serializable,BoxcellMappable {
 	 * IndexMapから削除する
 	 * @param poi
 	 */
-	public void removeWay(WayModel poi) {
+	public void removeWay(Wayable poi) {
     	int index = this.wayList.indexOf(poi);
     	if (index >= 0) {
     		this.wayList.remove(index);
@@ -352,7 +352,7 @@ public class OsmBean implements Serializable,BoxcellMappable {
 	 */
 	public void gerbageNode() {
 		List<NodeBean> list = new ArrayList<>();
-		for (WayModel way : this.wayList) {
+		for (Wayable way : this.wayList) {
 			for (NdBean nd : way.getNdList()) {
 				list.add(this.getNode(nd.getRef()));
 			}

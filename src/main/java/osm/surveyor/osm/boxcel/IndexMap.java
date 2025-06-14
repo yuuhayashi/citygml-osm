@@ -6,7 +6,7 @@ import java.util.Map;
 
 import osm.surveyor.osm.BoundsBean;
 import osm.surveyor.osm.ElementWay;
-import osm.surveyor.osm.way.WayModel;
+import osm.surveyor.osm.way.Wayable;
 
 /**
  * hash key = cell.id
@@ -36,14 +36,14 @@ public class IndexMap extends HashMap<Integer, BoundsCellBean> implements Clonea
     	remove(cell.getId());
     }
     
-    public void removeWayBean(WayModel way) {
+    public void removeWayBean(Wayable way) {
     	for (Map.Entry<Integer,BoundsCellBean> entry : this.entrySet()) {
     		BoundsCellBean cell = entry.getValue();
     		cell.removeWay(way);
     	}
     }
     
-    public void putWayType(WayModel way) {
+    public void putWayType(Wayable way) {
     	for (Map.Entry<Integer,BoundsCellBean> entry : this.entrySet()) {
     		BoundsCellBean cell = entry.getValue();
     		if (cell.getIntersectArea(way.getPolygon()) > 0.0d) {

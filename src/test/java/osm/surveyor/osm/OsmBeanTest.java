@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import osm.surveyor.osm.way.WayModel;
+import osm.surveyor.osm.way.Wayable;
 
 public class OsmBeanTest {
 
@@ -44,7 +44,7 @@ public class OsmBeanTest {
 	        assertNotNull(osm);
 	        
 	        // GMLv2
-	        WayModel way = osm.getWay(-101805);
+	        Wayable way = osm.getWay(-101805);
 	        assertNotNull(way);
     		assertEquals("yes", way.getPoiBean().getTagValue("building"));
     		assertEquals("125.37", way.getPoiBean().getTagValue("ele"));
@@ -56,7 +56,7 @@ public class OsmBeanTest {
     		assertEquals("9999", way.getPoiBean().getTagValue("building:levels:underground")); //  <bldg:storeysAboveGround>-9999</bldg:storeysAboveGround>
     		//assertNull(way.getTagValue("building:levels:underground")); //  <bldg:storeysAboveGround>-9999</bldg:storeysAboveGround>
 
-	        WayModel way101821 = osm.getWay(-101821);
+	        Wayable way101821 = osm.getWay(-101821);
 	        assertNotNull(way101821);
     		assertEquals("40205-bldg-91805", way101821.getPoiBean().getTagValue("ref:MLIT_PLATEAU"));
     		assertEquals("yes", way101821.getPoiBean().getTagValue("building:part"));

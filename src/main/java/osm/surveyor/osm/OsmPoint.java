@@ -1,6 +1,5 @@
 package osm.surveyor.osm;
 
-import org.locationtech.jts.geom.Coordinate;
 import osm.surveyor.gis.point.PointModel;
 
 public class OsmPoint extends PointModel implements Cloneable {

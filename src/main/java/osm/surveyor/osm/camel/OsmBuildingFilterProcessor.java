@@ -15,7 +15,7 @@ import osm.surveyor.osm.NodeBean;
 import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.RelationBean;
 import osm.surveyor.osm.WayBean;
-import osm.surveyor.osm.way.WayModel;
+import osm.surveyor.osm.way.Wayable;
 
 public class OsmBuildingFilterProcessor implements Processor {
 
@@ -89,7 +89,7 @@ public class OsmBuildingFilterProcessor implements Processor {
 		
 		// ウェイのメンバーノードを抽出
 		for(HashMap.Entry<Long, WayBean> entry : waymap.entrySet()) {
-			WayModel way = entry.getValue();
+			Wayable way = entry.getValue();
 			List<NdBean> nds = Lists.newArrayList();
 			nds.addAll(way.getNdList());
 			for (NdBean nd : nds) {

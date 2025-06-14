@@ -9,7 +9,7 @@ import osm.surveyor.osm.PoiBean;
 import osm.surveyor.osm.TagBean;
 import osm.surveyor.osm.boxcel.BoxcellMappable;
 
-public interface WayModel {
+public interface Wayable {
 	public List<Integer> getBoxels();
 	public void addBoxel(Integer boxelId);
 	
@@ -47,7 +47,7 @@ public interface WayModel {
 	 * @param way
 	 * @return
 	 */
-	public double getIntersectArea(WayModel way);
+	public double getIntersectArea(Wayable way);
 	
 	/**
 	 * このWAYと重複するWAYが存在するかどうか
@@ -56,7 +56,7 @@ public interface WayModel {
 	 * @return
 	 * @throws Exception
 	 */
-	public boolean isIntersect(List<WayModel> ways) throws Exception;
+	public boolean isIntersect(List<Wayable> ways) throws Exception;
 	
 	public double getArea();
 	
@@ -70,7 +70,7 @@ public interface WayModel {
 	
 
 	//---------------- Cloneable ------------------
-	public WayModel clone();
+	public Wayable clone();
 	
 	//---------------- PoiBean ------------------
 	public PoiBean getPoiBean();
