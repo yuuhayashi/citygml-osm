@@ -1,5 +1,6 @@
 package osm.surveyor.osm.camel;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ import osm.surveyor.osm.NodeBean;
 import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.RelationBean;
 import osm.surveyor.osm.WayBean;
+import osm.surveyor.osm.way.WayModel;
 import osm.surveyor.osm.way.Wayable;
 
 public class OsmBuildingFilterProcessor implements Processor {
@@ -29,7 +31,7 @@ public class OsmBuildingFilterProcessor implements Processor {
 		OsmBean org = (OsmBean) map.get("org");
 		
 		Map<Long,RelationBean> relationmap = new HashMap<>();
-		Map<Long,WayBean> waymap = new HashMap<>();
+		Map<Long,Wayable> waymap = new HashMap<>();
 		Map<Long,NodeBean> nodemap = new HashMap<>();
 
 		// "building"リレーションのみ抽出する
@@ -65,9 +67,9 @@ public class OsmBuildingFilterProcessor implements Processor {
 		}
 		
 		// "building"WAYを抽出
-		for (WayBean way : org.getWayList()) {
+		for (WayModel way : org.getWays()) {
 			if (way.isBuilding()) {
-				waymap.putIfAbsent(way.getId(), way);
+				waymap.putIfAbsent(way.getId(), (WayBean) way);
 			}
 		}
 		
@@ -88,7 +90,7 @@ public class OsmBuildingFilterProcessor implements Processor {
         }
 		
 		// ウェイのメンバーノードを抽出
-		for(HashMap.Entry<Long, WayBean> entry : waymap.entrySet()) {
+		for(HashMap.Entry<Long, Wayable> entry : waymap.entrySet()) {
 			Wayable way = entry.getValue();
 			List<NdBean> nds = Lists.newArrayList();
 			nds.addAll(way.getNdList());
@@ -109,11 +111,11 @@ public class OsmBuildingFilterProcessor implements Processor {
 		org.setRelationList(newRelations);
 		
 		// ウェイをMapからListに変換して格納
-		List<WayBean> newWays = Lists.newArrayList();
-		for(HashMap.Entry<Long, WayBean> entry : waymap.entrySet()) {
-			newWays.add(entry.getValue());
+		List<WayBean> newWays = new ArrayList<>();
+		for(HashMap.Entry<Long, Wayable> entry : waymap.entrySet()) {
+			newWays.add((WayBean)entry.getValue());
         }
-		org.setWayList(newWays);
+		org.setWays(newWays);
 
 		// ノードをMapからListに変換して格納
 		List<NodeBean> newNodes = Lists.newArrayList();

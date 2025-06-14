@@ -14,6 +14,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import osm.surveyor.osm.tag.Tagable;
+
 /**
  * CityGMLファイルをパースする
  * @param gmlFile
@@ -23,7 +25,7 @@ import org.w3c.dom.NodeList;
  * }
  * 
  */
-public class PoiBean implements Cloneable,Serializable {
+public class PoiBean implements Cloneable,Serializable, Tagable {
 	private static final long serialVersionUID = 1L;
 
 	private long id;
@@ -119,7 +121,7 @@ public class PoiBean implements Cloneable,Serializable {
 
     @XmlElement(name="tag")
     public List<TagBean> getTagList() {
-    	return tags;
+    	return this.tags;
     }
 
     public void setTagList(List<TagBean> tagList) {
@@ -169,55 +171,6 @@ public class PoiBean implements Cloneable,Serializable {
     
 	//---------------------
 	
-	public void addTag(String k, String v) {
-		addTag(new TagBean(k, v));
-	}
-
-	public void addTag(TagBean tag) {
-		if (tag != null) {
-			if (getTag(tag.k) != null) {
-				removeTag(tag.k);
-			}
-			if ((tag.v != null) && !tag.v.isEmpty()) {
-				this.tags.add(tag);
-			}
-		}
-	}
-	
-	public TagBean getTag(String key) {
-		for (TagBean tag : tags) {
-			if ((tag.k != null) && tag.k.equals(key)) {
-				return tag;
-			}
-		}
-		return null;
-	}
-	
-	public void removeTag(String key) {
-		TagBean tag = getTag(key);
-		if (tag != null) {
-			tags.remove(tag);
-		}
-	}
-	
-    public void removeTagAll() {
-    	this.tags.clear();
-    }
-
-    public String getTagValue(String key) {
-		TagBean tag = getTag(key);
-		if (tag == null) {
-			return null;
-		}
-		if (tag.v == null) {
-			return null;
-		}
-		if (tag.v.isEmpty()) {
-			return null;
-		}
-		return tag.v;
-	}
-
 	/**
 	 * タグを取り込む
 	 * @param tags

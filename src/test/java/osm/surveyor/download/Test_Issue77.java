@@ -51,7 +51,7 @@ public class Test_Issue77 extends DownloadTest {
 	}
 	
 	static Wayable find(OsmBean org, long id) {
-		for (Wayable way : org.getWayList()) {
+		for (Wayable way : org.getWays()) {
 			if (way.getId() == id) {
 				return way;
 			}

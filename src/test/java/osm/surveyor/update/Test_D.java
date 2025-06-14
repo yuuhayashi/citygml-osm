@@ -21,7 +21,7 @@ import osm.surveyor.osm.NodeBean;
 import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.RelationBean;
 import osm.surveyor.osm.WayBean;
-import osm.surveyor.osm.way.Wayable;
+import osm.surveyor.osm.way.WayModel;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Test_D extends OsmUpdaterTest {
@@ -95,9 +95,9 @@ public class Test_D extends OsmUpdaterTest {
 	        	assertNotEquals(0, node.getId());
 	        }
 	        
-	        List<WayBean> ways = mrg.getWayList();
+	        List<WayBean> ways = mrg.getWays();
 	        assertNotNull(ways);
-	        for (Wayable way : ways) {
+	        for (WayModel way : ways) {
 	        	for (NdBean nd : way.getNdList()) {
 	        		assertNotNull(mrg.getNode(nd.getRef()));
 	        	}
@@ -163,7 +163,7 @@ public class Test_D extends OsmUpdaterTest {
 								if (member.getRole().equals("outer")) {
 									outerCnt++;
 									assertEquals("way", member.getType());
-									Wayable way = mrg.getWay(member.getRef());
+									WayModel way = mrg.getWay(member.getRef());
 									assertNotNull(way);
 									assertNull(way.getTagValue("ref:MLIT_PLATEAU"));
 									assertEquals(0, way.getTagList().size());
@@ -171,7 +171,7 @@ public class Test_D extends OsmUpdaterTest {
 								if (member.getRole().equals("inner")) {
 									innerCnt++;
 									assertEquals("way", member.getType());
-									Wayable way = mrg.getWay(member.getRef());
+									WayModel way = mrg.getWay(member.getRef());
 									assertNotNull(way);
 									assertEquals("13111-bldg-72601", way.getTagValue("ref:MLIT_PLATEAU"));
 									assertEquals(1, way.getTagList().size());
@@ -184,7 +184,7 @@ public class Test_D extends OsmUpdaterTest {
 						if (mem.getRole().equals("part")) {
 							partCnt++;
 							assertEquals("way", mem.getType());
-							Wayable way = mrg.getWay(mem.getRef());
+							WayModel way = mrg.getWay(mem.getRef());
 							assertNotNull(way);
 							if (way.getTagValue("ref:MLIT_PLATEAU").endsWith("13111-bldg-72601")) {
 								assertEquals("13111-bldg-72601", way.getTagValue("ref:MLIT_PLATEAU"));

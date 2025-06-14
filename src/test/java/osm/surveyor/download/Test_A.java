@@ -42,8 +42,8 @@ public class Test_A extends DownloadTest {
 			// ビルディングリレーションは存在しない
 			assertEquals(0, org.getRelationList().size());
 
-			assertTrue(org.getWayList().size() > 10);
-			for (Wayable way : org.getWayList()) {
+			assertTrue(org.getWays().size() > 10);
+			for (Wayable way : org.getWays()) {
 				// "highway"WAYは存在しないこと
 				assertNull(way.getPoiBean().getTagValue("highway"));
 				// "landuse"WAYは存在しないこと
@@ -75,8 +75,8 @@ public class Test_A extends DownloadTest {
 
     		assertNotNull(org.getBounds());
 			assertNotNull(org.getRelationList());
-			assertTrue(org.getWayList().size() > 10);
-			for (Wayable way : org.getWayList()) {
+			assertTrue(org.getWays().size() > 10);
+			for (Wayable way : org.getWays()) {
 				assertNull(way.getPoiBean().getTagValue("highway"));
 				assertNull(way.getPoiBean().getTagValue("landuse"));
 			}

@@ -34,8 +34,8 @@ public class Test_TokyoSt extends DownloadTest {
 			assertNotNull(org.getRelationList());
 			assertTrue(org.getRelationList().size() >= 2);
 			
-			assertTrue(org.getWayList().size() > 10);
-			for (Wayable way : org.getWayList()) {
+			assertTrue(org.getWays().size() > 10);
+			for (Wayable way : org.getWays()) {
 				// "highway"WAYは存在しないこと
 				assertNull(way.getPoiBean().getTagValue("highway"));
 				// "landuse"WAYは存在しないこと

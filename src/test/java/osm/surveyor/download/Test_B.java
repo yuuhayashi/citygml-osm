@@ -34,8 +34,8 @@ public class Test_B extends DownloadTest {
 			
 			// 中空を持つビルディングリレーションが存在する
 			assertTrue(org.getRelationList().size() >= 1);
-			assertTrue(org.getWayList().size() > 100);
-			for (Wayable way : org.getWayList()) {
+			assertTrue(org.getWays().size() > 100);
+			for (Wayable way : org.getWays()) {
 				// "highway"WAYは存在しないこと
 				assertNull(way.getPoiBean().getTagValue("highway"));
 				// "landuse"WAYは存在しないこと

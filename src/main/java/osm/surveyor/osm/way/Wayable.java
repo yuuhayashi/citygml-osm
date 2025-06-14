@@ -6,7 +6,6 @@ import org.locationtech.jts.geom.Polygon;
 
 import osm.surveyor.osm.NdBean;
 import osm.surveyor.osm.PoiBean;
-import osm.surveyor.osm.TagBean;
 import osm.surveyor.osm.boxcel.BoxcellMappable;
 
 public interface Wayable {
@@ -56,8 +55,16 @@ public interface Wayable {
 	 * @return
 	 * @throws Exception
 	 */
-	public boolean isIntersect(List<Wayable> ways) throws Exception;
-	
+	default boolean isIntersect(List<Wayable> list) throws Exception {
+        for (Wayable way : list) {
+        	double area = getIntersectArea(way);
+			if (area > 0.0d) {
+				return true;
+			}
+        }
+        return false;
+	}
+
 	public double getArea();
 	
 	public boolean isBuilding();
@@ -66,22 +73,9 @@ public interface Wayable {
 	public List<NdBean> getNdList();
 	public void setNdList(List<NdBean> ndList);
 	
-	//---------------- List<WayType> wayList ------------------
-	
-
 	//---------------- Cloneable ------------------
 	public Wayable clone();
 	
 	//---------------- PoiBean ------------------
 	public PoiBean getPoiBean();
-	
-	public TagBean getTag(String key);
-	
-	public void addTag(TagBean tag);
-	
-	public String getTagValue(String key);
-	
-	public List<TagBean> getTagList();
-	
-	public String getAction();
 }

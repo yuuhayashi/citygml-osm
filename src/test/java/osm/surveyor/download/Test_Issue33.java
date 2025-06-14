@@ -40,7 +40,7 @@ public class Test_Issue33 extends DownloadTest {
     		assertNotNull(org.getBounds());
 			assertNotNull(org.getRelationList());
 
-			for (Wayable way : org.getWayList()) {
+			for (Wayable way : org.getWays()) {
 				// "highway"WAYは存在しないこと
 				assertNull(way.getPoiBean().getTagValue("highway"));
 				// "landuse"WAYは存在しないこと
@@ -65,7 +65,7 @@ public class Test_Issue33 extends DownloadTest {
     		assertNotNull(org.getBounds());
 			assertNotNull(org.getRelationList());
 
-			for (Wayable way : org.getWayList()) {
+			for (Wayable way : org.getWays()) {
 				// "highway"WAYは存在しないこと
 				assertNull(way.getPoiBean().getTagValue("highway"));
 				// "landuse"WAYは存在しないこと

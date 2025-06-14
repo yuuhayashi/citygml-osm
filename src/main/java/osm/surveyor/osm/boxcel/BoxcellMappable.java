@@ -3,7 +3,7 @@ package osm.surveyor.osm.boxcel;
 import java.util.List;
 
 import osm.surveyor.osm.BoundsBean;
-import osm.surveyor.osm.way.Wayable;
+import osm.surveyor.osm.way.WayModel;
 
 public interface BoxcellMappable {
 	
@@ -13,7 +13,7 @@ public interface BoxcellMappable {
     public IndexMap getIndexMap();
     public void setInxevMap(IndexMap indexMap);
     
-    public void putWay(Wayable way);
+    public void putWay(WayModel way);
     
     /**
      * indexMapに wayList のWayBeanを充填する
@@ -32,12 +32,12 @@ public interface BoxcellMappable {
      * @param wayBean
      * @return	wayBeanと重複するwayListを返す
      */
-    public List<Wayable> getWayList(Wayable wayBean);
+    public List<WayModel> getWayList(WayModel wayBean);
     
     /**
      * 指定されたWAYを取得する
      * @param id	WAY ID
      * @return		null = 該当なし
      */
-	public Wayable getWay(long id);
+	public WayModel getWay(long id);
 }

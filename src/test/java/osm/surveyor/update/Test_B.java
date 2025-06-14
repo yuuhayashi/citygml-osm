@@ -21,6 +21,7 @@ import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.BoundsBean;
 import osm.surveyor.osm.RelationBean;
 import osm.surveyor.osm.WayBean;
+import osm.surveyor.osm.way.WayModel;
 import osm.surveyor.osm.way.Wayable;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -131,9 +132,9 @@ public class Test_B extends OsmUpdaterTest {
 	        	assertNotEquals(0, node.getId());
 	        }
 	        
-	        List<WayBean> ways = mrg.getWayList();
+	        List<WayBean> ways = mrg.getWays();
 	        assertNotNull(ways);
-	        for (Wayable way : ways) {
+	        for (WayModel way : ways) {
 	        	for (NdBean nd : way.getNdList()) {
 	        		assertNotNull(mrg.getNode(nd.getRef()));
 	        	}

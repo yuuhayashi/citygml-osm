@@ -115,7 +115,7 @@ public class Test_haya4_7_5 extends OsmUpdaterTest {
 	        	assertNotEquals(0, node.getId());
 	        }
 	        
-	        List<WayBean> ways = mrg.getWayList();
+	        List<WayBean> ways = mrg.getWays();
 	        assertNotNull(ways);
 	        for (Wayable way : ways) {
 	        	for (NdBean nd : way.getNdList()) {
