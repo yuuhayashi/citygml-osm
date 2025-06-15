@@ -32,11 +32,6 @@ public class ElementWay extends WayModel implements Cloneable {
 	@XmlElement(name="nd")
 	public ArrayList<OsmNd> nds;
 
-	/**
-	 * WAY IndexCellメンバー
-	 */
-	private List<Integer> boxels = new ArrayList<>();
-
 	boolean ring = false;
 	
 	@XmlTransient
@@ -57,7 +52,7 @@ public class ElementWay extends WayModel implements Cloneable {
 			copy.nds = new ArrayList<OsmNd>();
 			if (this.nds != null) {
 				for (OsmNd nd : this.nds) {
-					copy.nds.add(nd.clone());
+					copy.nds.add((OsmNd) nd.clone());
 				}
 			}
 		}
@@ -75,19 +70,12 @@ public class ElementWay extends WayModel implements Cloneable {
 		return copy;
 	}
 	
-	public List<Integer> getBoxels() {
-		return this.boxels;
-	}
-	public void addBoxel(Integer boxelId) {
-		this.boxels.add(boxelId);
-	}
-	
 	public void addNode(OsmNd node) {
 		this.nds.add(node);
 	}
 	
 	public void addNode(NodeBean node) {
-		this.nds.add((new OsmNd()).set(node.getId(), node.getPoint()));
+		this.nds.add((new OsmNd()).set(node.getId(), (OsmPoint) node.getPoint()));
 	}
 
 	/**
@@ -100,7 +88,7 @@ public class ElementWay extends WayModel implements Cloneable {
 		OsmNd frst = nds.get(0);
 		OsmNd last = nds.get(size - 1);
 		if (size > 3) {
-			if (frst.id != last.id) {
+			if (frst.getRef() != last.getRef()) {
 				if ((frst.point.getLat().equals(last.point.getLat())) && (frst.point.getLon().equals(last.point.getLon()))) {
 					nds.remove(size - 1);
 					nds.add(frst);
@@ -117,7 +105,7 @@ public class ElementWay extends WayModel implements Cloneable {
 				return;
 			}
 			else {
-				if (frst.id != last.id) {
+				if (frst.getRef() != last.getRef()) {
 					nds.add(frst);
 				}
 				indexMap.putElementWay(this);
@@ -204,7 +192,7 @@ public class ElementWay extends WayModel implements Cloneable {
     				b = node;
     			}
     			else {
-    				a = b.clone();
+    				a = (OsmNd) b.clone();
     				b = node;
     			}
     		}
@@ -292,7 +280,7 @@ public class ElementWay extends WayModel implements Cloneable {
 	
 	public List<Integer> getIntersectBoxels(List<Integer> boxcels) {
 		List<Integer> list = new ArrayList<>();
-		for (Integer key1 : this.boxels) {
+		for (Integer key1 : this.getBoxels()) {
 			for (Integer key2 : boxcels) {
 				if (key1.intValue() == key2.intValue()) {
 					list.add(key1);
@@ -377,7 +365,6 @@ public class ElementWay extends WayModel implements Cloneable {
 		result = prime * result + (ring ? 1231 : 1237);
 		result = prime * result + (member ? 1231 : 1237);
 		result = prime * result + ((nds == null) ? 0 : nds.hashCode());
-		result = prime * result + ((boxels == null) ? 0 : boxels.hashCode());
 		result = prime * result + ((getTagList() == null) ? 0 : getTagList().hashCode());
 		return result;
 	}
@@ -468,14 +455,6 @@ public class ElementWay extends WayModel implements Cloneable {
 			}
 		}
 		else if (!nds.equals(other.nds)) {
-			return false;
-		}
-		if (boxels == null) {
-			if (other.boxels != null) {
-				return false;
-			}
-		}
-		else if (!boxels.equals(other.boxels)) {
 			return false;
 		}
 		if (this.getTagList() == null) {

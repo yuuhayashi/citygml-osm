@@ -119,7 +119,7 @@ public class OsmDom {
 	
 	void addWay(OsmDom ddom, ElementWay way) {
 		for (OsmNd nd : way.nds) {
-			NodeBean node = this.nodes.get(nd.id);
+			NodeBean node = this.nodes.get(nd.getRef());
 			if (node != null) {
 				ddom.nodes.put(node.clone());
 			}
@@ -280,7 +280,7 @@ public class OsmDom {
 		for (String wayid : this.ways.keySet()) {
 			ElementWay way = this.ways.get(wayid);
 			for (OsmNd nd : way.nds) {
-				NodeBean node = this.nodes.get(nd.id);
+				NodeBean node = this.nodes.get(nd.getRef());
 				list.put(node);
 			}
 		}

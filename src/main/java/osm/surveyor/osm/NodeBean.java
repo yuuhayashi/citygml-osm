@@ -4,14 +4,13 @@ import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
-import org.locationtech.jts.geom.Coordinate;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import osm.surveyor.citygml.CityModelParser;
+import osm.surveyor.gis.node.NodeModel;
 
 /**
  * @code{
@@ -24,15 +23,14 @@ import osm.surveyor.citygml.CityModelParser;
  * 
  */
 @XmlRootElement(name="node")
-public class NodeBean extends PoiBean implements Cloneable,Serializable {
+public class NodeBean extends NodeModel implements Cloneable,Serializable {
 	private static final long serialVersionUID = -6012637985828366692L;
 
-	private OsmPoint point;
-	private String height = null;
+	//private OsmPoint point;
 	
 	public NodeBean(long id) {
 		super(id);
-		this.point = new OsmPoint();
+		this.setPoint(new OsmPoint());
 	}
 	
 	public NodeBean() {
@@ -40,35 +38,32 @@ public class NodeBean extends PoiBean implements Cloneable,Serializable {
 	}
 
 	@XmlAttribute(name="lat")
-	public String getLat() {
-		return this.point.getLat();
-	}
+	@Override
 	public void setLat(String lat) {
-		this.point.setLat(lat);
+		super.setLat(lat);
+	}
+	@Override
+	public String getLat() {
+		return super.getLat();
 	}
 
 	@XmlAttribute(name="lon")
-	public String getLon() {
-		return this.point.getLon();
-	}
+	@Override
 	public void setLon(String lon) {
-		this.point.setLon(lon);
+		super.setLon(lon);
+	}
+	@Override
+	public String getLon() {
+		return super.getLon();
 	}
 
-	@XmlTransient
-	public OsmPoint getPoint() {
-		return point;
-	}
-	public void setPoint(OsmPoint point) {
-		this.point = point;
-	}
-	
+	private String height = null;
 	@XmlAttribute(name="height")
-	public String getHeight() {
-		return height;
-	}
 	public void setHeight(String height) {
 		this.height = CityModelParser.checkNumberString(height);
+	}
+	public String getHeight() {
+		return height;
 	}
 
 	/**
@@ -87,8 +82,8 @@ public class NodeBean extends PoiBean implements Cloneable,Serializable {
      */
     public Node toNode(Document doc) {
     	Element element = toElement(doc, "node");
-    	element.setAttribute("lat", point.getLat());
-    	element.setAttribute("lon", point.getLon());
+    	element.setAttribute("lat", getLat());
+    	element.setAttribute("lon", getLon());
         return (Node)element;
     }
 
@@ -102,18 +97,14 @@ public class NodeBean extends PoiBean implements Cloneable,Serializable {
 		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 			Element eElement = (Element) nNode;
 			loadElement(eElement);
-			this.point.setLat(eElement.getAttribute("lat"));
-			this.point.setLon(eElement.getAttribute("lon"));
+			setLat(eElement.getAttribute("lat"));
+			setLon(eElement.getAttribute("lon"));
 			this.setHeight(eElement.getAttribute("height"));
 			return this;
 		}
 		return null;
     }
 
-	public Coordinate getCoordinate() {
-		return this.point.getCoordinate();
-	}
-    
     //--------------------------------------
 
 	@Override
@@ -121,36 +112,35 @@ public class NodeBean extends PoiBean implements Cloneable,Serializable {
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ((height == null) ? 0 : height.hashCode());
-		result = prime * result + ((point == null) ? 0 : point.hashCode());
 		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (!super.equals(obj))
+		}
+		if (!super.equals(obj)) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		NodeBean other = (NodeBean) obj;
 		if (height == null) {
-			if (other.height != null)
+			if (other.getHeight() != null) {
 				return false;
-		} else if (!height.equals(other.height))
+			}
+		}
+		else if (!height.equals(other.getHeight())) {
 			return false;
-		if (point == null) {
-			if (other.point != null)
-				return false;
-		} else if (!point.equals(other.point))
-			return false;
+		}
 		return true;
 	}
 
 	@Override
 	public NodeBean clone() {
 		NodeBean b = (NodeBean) super.clone();
-		b.point = this.point.clone();
 		b.setHeight(this.getHeight());
 		return b;
 	}

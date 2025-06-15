@@ -3,7 +3,6 @@ package osm.surveyor.osm;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import osm.surveyor.osm.way.WayModel;
@@ -43,25 +42,11 @@ public class WayBean extends WayModel implements Cloneable, Serializable {
 		return (PoiBean)this;
 	}
 	
-	/**
-	 * fix=true 更新しないもの、fix=false 更新対象を示す。
-	 */
-	private boolean fix = false;
-	
-	@XmlAttribute(name="fix")
-	public boolean getFix() {
-		return this.fix;
-	}
-	public void setFix(boolean b) {
-		this.fix = b;
-	}
-
 	@Override
 	public WayBean clone() {
 		WayBean copy = null;
 		try {
 			copy = (WayBean) super.clone();
-			copy.fix = this.fix;
 		}
 		catch (Exception e) {
 			e.printStackTrace();

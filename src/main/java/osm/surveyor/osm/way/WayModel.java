@@ -32,17 +32,28 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
 	}
 	
 	/**
+	 * fix=true 更新しないもの、fix=false 更新対象を示す。
+	 */
+	private boolean fix = false;
+	public boolean getFix() {
+		return this.fix;
+	}
+	@XmlAttribute(name="fix")
+	public void setFix(boolean b) {
+		this.fix = b;
+	}
+
+	/**
 	 * area=# 面積
 	 */
-	private double area = 0d;
-	
-	@XmlAttribute(name="area")
+	private double area = 0d;	
 	public double getArea() {
 		if (this.area == 0d) {
 			this.area = getAreaValue();
 		}
 		return this.area;
 	}
+	@XmlAttribute(name="area")
 	public void setArea(double d) {
 		this.area = d;
 	}
@@ -82,7 +93,7 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
 			
 			ArrayList<NdBean> nds = new ArrayList<>();
 			for (NdBean nd : this.ndList) {
-				nds.add(nd.clone());
+				nds.add((NdBean) nd.clone());
 			}
 		}
 		catch (Exception e) {
