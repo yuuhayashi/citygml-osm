@@ -1,17 +1,10 @@
 package osm.surveyor.osm;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-import org.geotools.geometry.jts.JTSFactoryFinder;
-import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.Geometry;
-import org.locationtech.jts.geom.GeometryFactory;
-import org.locationtech.jts.geom.LinearRing;
-import org.locationtech.jts.geom.Polygon;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -32,6 +25,7 @@ public class ElementWay extends WayModel implements Cloneable {
 	@XmlElement(name="nd")
 	public ArrayList<OsmNd> nds;
 
+	@XmlTransient
 	boolean ring = false;
 	
 	@XmlTransient
@@ -40,34 +34,6 @@ public class ElementWay extends WayModel implements Cloneable {
 	public ElementWay(long id) {
 		super(id);
 		nds = new ArrayList<OsmNd>();
-	}
-	
-	@Override
-	public ElementWay clone() {
-		ElementWay copy = null;
-		try {
-			copy = (ElementWay)super.clone();
-			copy.ring = this.ring;
-			copy.member = this.member;
-			copy.nds = new ArrayList<OsmNd>();
-			if (this.nds != null) {
-				for (OsmNd nd : this.nds) {
-					copy.nds.add((OsmNd) nd.clone());
-				}
-			}
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			copy = null;
-		}
-		return copy;
-	}
-	
-	@Override
-	public ElementWay copy(long newid) {
-		ElementWay copy = this.clone();
-		copy.setId(newid);
-		return copy;
 	}
 	
 	public void addNode(OsmNd node) {
@@ -240,101 +206,6 @@ public class ElementWay extends WayModel implements Cloneable {
 		return geom;
 	}
 	
-	public Coordinate[] getCoordinates() {
-		ArrayList<Coordinate> list = new ArrayList<>();
-    	for (OsmNd node : this.nds) {
-    		list.add(node.getCoordinate());
-    	}
-		return list.toArray(new Coordinate[list.size()]);
-	}
-	
-	/**
-	 * AREAの面積を求める。ただし、面積の単位は直行座標（メートルではない）
-	 * @return	ラインが閉じたエリア出ない場合は0.0d
-	 */
-	public Polygon getPolygon() {
-        GeometryFactory geometryFactory = JTSFactoryFinder.getGeometryFactory();
-        LinearRing ring = geometryFactory.createLinearRing(getCoordinates());
-        Polygon polygon = geometryFactory.createPolygon(ring, null);
-        if (polygon.isValid()) {
-            return polygon;
-        }
-        else {
-        	return null;
-        }
-	}
-
-	/**
-	 * AREAの面積を求める。ただし、面積の単位は直行座標（メートルではない）
-	 * @return	ラインが閉じたエリア出ない場合は0.0d
-	 */
-	public double getArea() {
-        Polygon polygon = getPolygon();
-        if (polygon != null) {
-            return polygon.getArea();
-        }
-        else {
-        	return 0.0d;
-        }
-	}
-	
-	public List<Integer> getIntersectBoxels(List<Integer> boxcels) {
-		List<Integer> list = new ArrayList<>();
-		for (Integer key1 : this.getBoxels()) {
-			for (Integer key2 : boxcels) {
-				if (key1.intValue() == key2.intValue()) {
-					list.add(key1);
-				}
-			}
-		}
-		return list;
-	}
-	
-	/**
-	 * 指定のAREAと重複する領域の面積を取得する
-	 * @param way
-	 * @return
-	 */
-	public double getIntersectArea(ElementWay way) {
-		List<Integer> list = getIntersectBoxels(way.getBoxels());
-		if (list.size() > 0) {
-	        Polygon polygon = getPolygon();
-	        if (polygon == null) {
-	        	return 0.0d;
-	        }
-	        Polygon polygon2 = way.getPolygon();
-	        if (polygon2 == null) {
-	        	return 0.0d;
-	        }
-	        Geometry intersect = polygon.intersection(polygon2);
-			if (intersect == null) {
-				return 0.0d;
-			}
-			if (intersect.isValid()) {
-				return intersect.getArea();
-			}
-		}
-		return 0.0d;
-	}
-	
-	/**
-	 * このWAYと重複するWAYが存在するかどうか
-	 * @param db
-	 * @param where
-	 * @return
-	 * @throws Exception
-	 */
-	public boolean isIntersect(WayMap ways) throws Exception {
-        for (String k : ways.keySet()) {
-        	ElementWay way = ways.get(k);
-        	double area = getIntersectArea(way);
-			if (area > 0.0d) {
-				return true;
-			}
-        }
-        return false;
-	}
-	
 	/**
 	 * このWAYと重複する面積が最大の WAY.id を返す
 	 * @param db
@@ -342,7 +213,7 @@ public class ElementWay extends WayModel implements Cloneable {
 	 * @return
 	 * @throws Exception
 	 */
-	public long getIntersect(WayMap ways) throws Exception {
+	public long getIntersectMaxArea(WayMap ways) throws Exception {
 		double max = 0.0d;
 		long maxid = 0;
         for (String k : ways.keySet()) {
@@ -354,19 +225,6 @@ public class ElementWay extends WayModel implements Cloneable {
 			}
         }
         return maxid;
-	}
-
-	//---------------------------------------------------------
-    
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + (ring ? 1231 : 1237);
-		result = prime * result + (member ? 1231 : 1237);
-		result = prime * result + ((nds == null) ? 0 : nds.hashCode());
-		result = prime * result + ((getTagList() == null) ? 0 : getTagList().hashCode());
-		return result;
 	}
 
 	/**
@@ -431,6 +289,47 @@ public class ElementWay extends WayModel implements Cloneable {
 		return false;
 	}
 	
+	//---------------------------------------------------------
+    
+	@Override
+	public ElementWay copy(long newid) {
+		ElementWay copy = this.clone();
+		copy.setId(newid);
+		return copy;
+	}
+	
+	@Override
+	public ElementWay clone() {
+		ElementWay copy = null;
+		try {
+			copy = (ElementWay)super.clone();
+			copy.ring = this.ring;
+			copy.member = this.member;
+			copy.nds = new ArrayList<OsmNd>();
+			if (this.nds != null) {
+				for (OsmNd nd : this.nds) {
+					copy.nds.add((OsmNd) nd.clone());
+				}
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			copy = null;
+		}
+		return copy;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + (ring ? 1231 : 1237);
+		result = prime * result + (member ? 1231 : 1237);
+		result = prime * result + ((nds == null) ? 0 : nds.hashCode());
+		result = prime * result + ((getTagList() == null) ? 0 : getTagList().hashCode());
+		return result;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -465,17 +364,5 @@ public class ElementWay extends WayModel implements Cloneable {
 			return false;
 		}
 		return true;
-	}
-
-	@Override
-	public boolean getFix() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void setFix(boolean b) {
-		// TODO Auto-generated method stub
-		
 	}
 }

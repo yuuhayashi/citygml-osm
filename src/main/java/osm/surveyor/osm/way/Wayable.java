@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.locationtech.jts.geom.Polygon;
 
+import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.NdBean;
 import osm.surveyor.osm.PoiBean;
+import osm.surveyor.osm.WayMap;
 import osm.surveyor.osm.boxcel.BoxcellMappable;
 
 public interface Wayable {
@@ -64,7 +66,25 @@ public interface Wayable {
         }
         return false;
 	}
-
+	
+	/**
+	 * このWAYと重複するWAYが存在するかどうか
+	 * @param db
+	 * @param where
+	 * @return
+	 * @throws Exception
+	 */
+	default boolean isIntersect(WayMap ways) throws Exception {
+        for (String k : ways.keySet()) {
+        	ElementWay way = ways.get(k);
+        	double area = getIntersectArea(way);
+			if (area > 0.0d) {
+				return true;
+			}
+        }
+        return false;
+	}
+	
 	public double getArea();
 	
 	public boolean isBuilding();

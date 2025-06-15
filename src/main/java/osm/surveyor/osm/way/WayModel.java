@@ -46,16 +46,21 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
 	/**
 	 * area=# 面積
 	 */
-	private double area = 0d;	
+	private double area = 0d;
+	@XmlAttribute(name="area")
+	public void setArea(double d) {
+		this.area = d;
+	}
+
+	/**
+	 * AREAの面積を求める。ただし、面積の単位は直行座標（メートルではない）
+	 * @return	ラインが閉じたエリア出ない場合は0.0d
+	 */
 	public double getArea() {
 		if (this.area == 0d) {
 			this.area = getAreaValue();
 		}
 		return this.area;
-	}
-	@XmlAttribute(name="area")
-	public void setArea(double d) {
-		this.area = d;
 	}
 
 	/**
@@ -184,15 +189,7 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
 		return 0.0d;
 	}
 	
-	public static List<WayModel> toModelList(List<WayModel> beans) {
-		List<WayModel> models = new ArrayList<>();
-		for (WayModel bean : beans) {
-			models.add(bean);
-		}
-		return models;
-	}
-	
-	private List<Integer> getIntersectBoxels(List<Integer> boxcels) {
+	public List<Integer> getIntersectBoxels(List<Integer> boxcels) {
 		List<Integer> list = new ArrayList<>();
 		for (Integer key1 : this.boxels) {
 			for (Integer key2 : boxcels) {
@@ -202,6 +199,14 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
 			}
 		}
 		return list;
+	}
+		
+	public static List<WayModel> toModelList(List<WayModel> beans) {
+		List<WayModel> models = new ArrayList<>();
+		for (WayModel bean : beans) {
+			models.add(bean);
+		}
+		return models;
 	}
 	
 	/**
@@ -225,7 +230,7 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
         }
         return maxid;
 	}
-	
+
 	/**
 	 * AREAの面積を求める。ただし、面積の単位は直行座標（メートルではない）
 	 * @return	ラインが閉じたエリアでない場合は0.0d
