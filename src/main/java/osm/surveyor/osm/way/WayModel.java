@@ -5,10 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
 
 import org.geotools.geometry.jts.JTSFactoryFinder;
-import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.LinearRing;
@@ -25,12 +23,25 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
 	
 	public WayModel(long id) {
 		super(id);
+		ndList = new ArrayList<>();
 	}
 
 	public PoiBean getPoiBean() {
 		return (PoiBean)this;
 	}
 	
+	/**
+	 * WAYノードメンバー
+	 */
+    private List<NdBean> ndList = new ArrayList<>();
+	
+    public void setNdList(List<NdBean> ndList) {
+		this.ndList = ndList;
+    }
+    public List<NdBean> getNdList() {
+    	return this.ndList;
+    }
+    
 	/**
 	 * fix=true 更新しないもの、fix=false 更新対象を示す。
 	 */
@@ -62,20 +73,6 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
 		}
 		return this.area;
 	}
-
-	/**
-	 * WAYノードメンバー
-	 */
-    private List<NdBean> ndList = new ArrayList<>();
-    
-    @XmlElement(name="nd")
-    public List<NdBean> getNdList() {
-    	return this.ndList;
-    }
-
-    public void setNdList(List<NdBean> ndList) {
-    	this.ndList = ndList;
-    }
     
 	/**
 	 * WAY IndexCellメンバー
@@ -93,13 +90,7 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
 		WayModel copy = null;
 		try {
 			copy = (WayModel) super.clone();
-			
 			copy.boxels = this.boxels;
-			
-			ArrayList<NdBean> nds = new ArrayList<>();
-			for (NdBean nd : this.ndList) {
-				nds.add((NdBean) nd.clone());
-			}
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -110,13 +101,6 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
 	
 	//--------------------------------------
 	
-	public Coordinate[] getCoordinates() {
-		ArrayList<Coordinate> list = new ArrayList<>();
-    	for (NdBean nd : this.getNdList()) {
-    		list.add(nd.getCoordinate());
-    	}
-		return list.toArray(new Coordinate[list.size()]);
-	}
 	
 	/**
 	 * このWAYがマルチポリゴンのINNERであるかどうか

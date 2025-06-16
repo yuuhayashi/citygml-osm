@@ -1,15 +1,18 @@
 package osm.surveyor.osm;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import org.locationtech.jts.geom.Coordinate;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import osm.surveyor.gis.point.NdModel;
 import osm.surveyor.osm.boxcel.IndexMap;
 import osm.surveyor.osm.way.WayModel;
 
@@ -22,9 +25,6 @@ import osm.surveyor.osm.way.WayModel;
 public class ElementWay extends WayModel implements Cloneable {
 	private static final long serialVersionUID = 1L;
 	
-	@XmlElement(name="nd")
-	public ArrayList<OsmNd> nds;
-
 	@XmlTransient
 	boolean ring = false;
 	
@@ -33,15 +33,19 @@ public class ElementWay extends WayModel implements Cloneable {
 	
 	public ElementWay(long id) {
 		super(id);
-		nds = new ArrayList<OsmNd>();
 	}
 	
-	public void addNode(OsmNd node) {
-		this.nds.add(node);
+	@XmlElement(name="nd")
+    public void setNdList(List<NdBean> ndList) {
+		super.setNdList(ndList);
+    }
+	
+	public void addNode(NdBean node) {
+		getNdList().add(node);
 	}
 	
 	public void addNode(NodeBean node) {
-		this.nds.add((new OsmNd()).set(node.getId(), (OsmPoint) node.getPoint()));
+		getNdList().add((NdBean) (new NdBean()).set(node.getId(), (OsmPoint) node.getPoint()));
 	}
 
 	/**
@@ -50,14 +54,14 @@ public class ElementWay extends WayModel implements Cloneable {
 	 * 最期のノードが最初のノードと異なるなら、つなげる
 	 */
 	public void toArea(IndexMap indexMap) {
-		int size = nds.size();
-		OsmNd frst = nds.get(0);
-		OsmNd last = nds.get(size - 1);
+		int size = getNdList().size();
+		NdBean frst = getNdList().get(0);
+		NdBean last = getNdList().get(size - 1);
 		if (size > 3) {
 			if (frst.getRef() != last.getRef()) {
 				if ((frst.point.getLat().equals(last.point.getLat())) && (frst.point.getLon().equals(last.point.getLon()))) {
-					nds.remove(size - 1);
-					nds.add(frst);
+					getNdList().remove(size - 1);
+					getNdList().add(frst);
 				}
 			}
 			
@@ -66,13 +70,13 @@ public class ElementWay extends WayModel implements Cloneable {
 		}
 		else if (size > 2) {
 			if ((frst.point.getLat().equals(last.point.getLat())) && (frst.point.getLon().equals(last.point.getLon()))) {
-				nds.remove(size - 1);
+				getNdList().remove(size - 1);
 				ring = false;
 				return;
 			}
 			else {
 				if (frst.getRef() != last.getRef()) {
-					nds.add(frst);
+					getNdList().add(frst);
 				}
 				indexMap.putElementWay(this);
 				ring = true;
@@ -96,7 +100,7 @@ public class ElementWay extends WayModel implements Cloneable {
 	 */
     public Node toNode(Document doc) {
     	Element element = super.toElement(doc, "way");
-		for (OsmNd nd : this.nds) {
+		for (NdBean nd : getNdList()) {
 			element.appendChild(nd.toNodeNd(doc));
 		}
 		for (TagBean tag : this.getTagList()) {
@@ -127,7 +131,7 @@ public class ElementWay extends WayModel implements Cloneable {
 				Node node2 = list2.item(temp2);
 				if (node2.getNodeType() == Node.ELEMENT_NODE) {
 					if (node2.getNodeName().equals("nd")) {
-						this.addNode((new OsmNd()).loadElement((Element) node2));
+						getNdList().add((NdBean) (new NdBean()).loadElement((Element) node2));
 					}
 					else if (node2.getNodeName().equals("tag")) {
 						Element e2 = (Element) node2;
@@ -147,9 +151,9 @@ public class ElementWay extends WayModel implements Cloneable {
      */
     public OsmLine getPointList() {
     	OsmLine pointlist = new OsmLine();
-    	OsmNd a = null;
-    	OsmNd b = null;
-    	for (OsmNd node : this.nds) {
+    	NdBean a = null;
+    	NdBean b = null;
+    	for (NdBean node : getNdList()) {
     		if (a == null) {
     			a = node;
     		}
@@ -158,7 +162,7 @@ public class ElementWay extends WayModel implements Cloneable {
     				b = node;
     			}
     			else {
-    				a = (OsmNd) b.clone();
+    				a = (NdBean) b.clone();
     				b = node;
     			}
     		}
@@ -174,18 +178,18 @@ public class ElementWay extends WayModel implements Cloneable {
      * @param newline
      */
     public void replaceNds(OsmLine newline) {
-    	this.nds = new ArrayList<>();
+    	setNdList(new ArrayList<>());
     	for (TwoPoint segment : newline) {
-    		if (this.nds.isEmpty()) {
-    			this.nds.add(segment.a);
+    		if (getNdList().isEmpty()) {
+    			getNdList().add(segment.a);
     		}
-			this.nds.add(segment.b);
+    		getNdList().add(segment.b);
     	}
     }
     
 	public String getGeomText() {
 		String geom = null;
-		for (OsmNd node : this.nds) {
+		for (NdModel node : getNdList()) {
 			if (node.point == null) {
 				return null;
 			}
@@ -268,6 +272,16 @@ public class ElementWay extends WayModel implements Cloneable {
 		return false;
 	}
 	
+
+	@Override
+	public Coordinate[] getCoordinates() {
+		ArrayList<Coordinate> list = new ArrayList<>();
+		for (NdBean nd : getNdList()) {
+			list.add(nd.getCoordinate());
+		}
+		return list.toArray(new Coordinate[list.size()]);
+	}
+	
 	/**
 	 * このWAYがマルチポリゴンのINNERであるかどうか
 	 * @param relations
@@ -305,10 +319,10 @@ public class ElementWay extends WayModel implements Cloneable {
 			copy = (ElementWay)super.clone();
 			copy.ring = this.ring;
 			copy.member = this.member;
-			copy.nds = new ArrayList<OsmNd>();
-			if (this.nds != null) {
-				for (OsmNd nd : this.nds) {
-					copy.nds.add((OsmNd) nd.clone());
+			copy.setNdList(new ArrayList<NdBean>());
+			if (getNdList() != null) {
+				for (NdModel nd : getNdList()) {
+					copy.getNdList().add((NdBean) nd.clone());
 				}
 			}
 		}
@@ -325,7 +339,7 @@ public class ElementWay extends WayModel implements Cloneable {
 		int result = super.hashCode();
 		result = prime * result + (ring ? 1231 : 1237);
 		result = prime * result + (member ? 1231 : 1237);
-		result = prime * result + ((nds == null) ? 0 : nds.hashCode());
+		result = prime * result + ((getNdList() == null) ? 0 : getNdList().hashCode());
 		result = prime * result + ((getTagList() == null) ? 0 : getTagList().hashCode());
 		return result;
 	}
@@ -348,12 +362,12 @@ public class ElementWay extends WayModel implements Cloneable {
 		if (member != other.member) {
 			return false;
 		}
-		if (nds == null) {
-			if (other.nds != null) {
+		if (getNdList() == null) {
+			if (other.getNdList() != null) {
 				return false;
 			}
 		}
-		else if (!nds.equals(other.nds)) {
+		else if (!getNdList().equals(other.getNdList())) {
 			return false;
 		}
 		if (this.getTagList() == null) {

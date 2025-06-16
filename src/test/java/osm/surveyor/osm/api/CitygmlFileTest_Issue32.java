@@ -25,7 +25,7 @@ public class CitygmlFileTest_Issue32 extends GmlLoadRouteTest {
 			assertSame(1, osm.ways.size());
 			for (String wayid : osm.ways.keySet()) {
 				ElementWay way = osm.ways.get(wayid);
-				assertSame(16, way.nds.size());
+				assertSame(16, way.getNdList().size());
 			}
 			assertNotNull(osm.nodes);
 			assertSame(15, osm.nodes.size());

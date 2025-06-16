@@ -16,9 +16,9 @@ import org.junit.runners.MethodSorters;
 import osm.surveyor.osm.NodeBean;
 import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.WayBean;
+import osm.surveyor.gis.point.NdModel;
 import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.BoundsBean;
-import osm.surveyor.osm.NdBean;
 import osm.surveyor.osm.way.Wayable;
 
 /**
@@ -89,7 +89,7 @@ public class Test_70 extends OsmUpdaterTest {
 	        List<WayBean> ways = mrg.getWays();
 	        assertNotNull(ways);
 	        for (Wayable way : ways) {
-	        	for (NdBean nd : way.getNdList()) {
+	        	for (NdModel nd : way.getNdList()) {
 	        		assertNotNull(mrg.getNode(nd.getRef()));
 	        	}
 	        	String ref = way.getPoiBean().getTagValue("ref:MLIT_PLATEAU");

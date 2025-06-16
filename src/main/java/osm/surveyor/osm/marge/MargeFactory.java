@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import osm.surveyor.osm.MemberBean;
+import osm.surveyor.gis.point.NdModel;
 import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 import osm.surveyor.osm.OsmLine;
-import osm.surveyor.osm.OsmNd;
 import osm.surveyor.osm.TwoPoint;
 import osm.surveyor.osm.WayMap;
 
@@ -249,7 +249,7 @@ public class MargeFactory {
      * @param segment
      * @return 接続可能なsegment, 存在しなければnull
      */
-    private TwoPoint getAndRemoveConnectableSegments(OsmLine list, OsmNd point) {
+    private TwoPoint getAndRemoveConnectableSegments(OsmLine list, NdModel point) {
     	for (TwoPoint p : list) {
     		if (p.a.equals(point) || p.b.equals(point)) {
     			list.remove(list.indexOf(p));

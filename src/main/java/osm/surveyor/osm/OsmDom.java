@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import osm.surveyor.citygml.CityModelParser;
+import osm.surveyor.gis.point.NdModel;
 import osm.surveyor.osm.boxcel.IndexMap;
 
 /**
@@ -118,7 +119,7 @@ public class OsmDom {
 	}
 	
 	void addWay(OsmDom ddom, ElementWay way) {
-		for (OsmNd nd : way.nds) {
+		for (NdModel nd : way.getNdList()) {
 			NodeBean node = this.nodes.get(nd.getRef());
 			if (node != null) {
 				ddom.nodes.put(node.clone());
@@ -279,7 +280,7 @@ public class OsmDom {
 		NodeBeans list = new NodeBeans();
 		for (String wayid : this.ways.keySet()) {
 			ElementWay way = this.ways.get(wayid);
-			for (OsmNd nd : way.nds) {
+			for (NdModel nd : way.getNdList()) {
 				NodeBean node = this.nodes.get(nd.getRef());
 				list.put(node);
 			}

@@ -1,8 +1,10 @@
 package osm.surveyor.osm;
 
+import osm.surveyor.gis.point.NdModel;
+
 public class TwoPoint implements Cloneable {
-	public OsmNd a;
-	public OsmNd b;
+	public NdBean a;
+	public NdBean b;
 	
 	public TwoPoint() {
 		this.a = null;
@@ -18,13 +20,13 @@ public class TwoPoint implements Cloneable {
 				copy.a = null;
 			}
 			else {
-				copy.a = this.a.clone();
+				copy.a = (NdBean) this.a.clone();
 			}
 			if (this.b == null) {
 				copy.b = null;
 			}
 			else {
-				copy.b = this.b.clone();
+				copy.b = (NdBean) this.b.clone();
 			}
 		}
 		catch (Exception e) {
@@ -34,15 +36,15 @@ public class TwoPoint implements Cloneable {
 		return copy;
 	}
 	
-	public TwoPoint set(OsmNd a, OsmNd b) {
+	public TwoPoint set(NdBean a, NdBean b) {
 		this.a = a;
 		this.b = b;
 		return this;
 	}
 	
 	public TwoPoint reverse() {
-		OsmNd t = this.a.clone();
-		this.a = this.b.clone();
+		NdBean t = (NdBean) this.a.clone();
+		this.a = (NdBean) this.b.clone();
 		this.b = t;
 		return this;
 	}
@@ -53,7 +55,7 @@ public class TwoPoint implements Cloneable {
 	 * @param node
 	 * @return
 	 */
-	public boolean isConnectable(OsmNd node) {
+	public boolean isConnectable(NdModel node) {
 		if (node == null) {
 			return false;
 		}

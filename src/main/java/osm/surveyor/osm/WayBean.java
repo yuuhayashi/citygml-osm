@@ -1,9 +1,13 @@
 package osm.surveyor.osm;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.locationtech.jts.geom.Coordinate;
 
 import osm.surveyor.osm.way.WayModel;
 import osm.surveyor.osm.way.Wayable;
@@ -41,22 +45,29 @@ public class WayBean extends WayModel implements Cloneable, Serializable {
 	public PoiBean getPoiBean() {
 		return (PoiBean)this;
 	}
+
+	/**
+	 * WAYノードメンバー
+	 */
+	@XmlElement(name="nd")
+    public void setNdList(List<NdBean> ndList) {
+		super.setNdList(ndList);
+    }
+    public List<NdBean> getNdList() {
+    	return super.getNdList();
+    }
+    
+    //--------------------------------------
 	
 	@Override
-	public WayBean clone() {
-		WayBean copy = null;
-		try {
-			copy = (WayBean) super.clone();
+	public Coordinate[] getCoordinates() {
+		ArrayList<Coordinate> list = new ArrayList<>();
+		for (NdBean nd : this.getNdList()) {
+			list.add(nd.getCoordinate());
 		}
-		catch (Exception e) {
-			e.printStackTrace();
-			copy = null;
-		}
-		return copy;
+		return list.toArray(new Coordinate[list.size()]);
 	}
-	
-	//--------------------------------------
-	
+
 	public boolean isBuilding() {
 		for (TagBean tag : this.getTagList()) {
 			if (tag.k.startsWith("building")) {
@@ -83,5 +94,24 @@ public class WayBean extends WayModel implements Cloneable, Serializable {
 			}
         }
         return false;
+	}
+	
+	//--------------------------------------
+
+	@Override
+	public WayBean clone() {
+		WayBean copy = null;
+		try {
+			copy = (WayBean) super.clone();
+			ArrayList<NdBean> nds = new ArrayList<>();
+			for (NdBean nd : getNdList()) {
+				nds.add((NdBean) nd.clone());
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			copy = null;
+		}
+		return copy;
 	}
 }

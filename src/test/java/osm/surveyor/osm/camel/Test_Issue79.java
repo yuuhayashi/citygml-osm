@@ -13,10 +13,10 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import osm.surveyor.gis.point.NdModel;
 import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.BoundsBean;
 import osm.surveyor.osm.MemberBean;
-import osm.surveyor.osm.NdBean;
 import osm.surveyor.osm.NodeBean;
 import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.RelationBean;
@@ -67,7 +67,7 @@ public class Test_Issue79 extends OsmUpdaterTest {
 	        List<WayBean> ways = mrg.getWays();
 	        assertNotNull(ways);
 	        for (WayModel way : ways) {
-	        	for (NdBean nd : way.getNdList()) {
+	        	for (NdModel nd : way.getNdList()) {
 	        		assertNotNull(mrg.getNode(nd.getRef()));
 	        	}
 	        }

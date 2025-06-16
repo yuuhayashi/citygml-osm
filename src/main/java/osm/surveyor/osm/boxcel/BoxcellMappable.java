@@ -3,8 +3,8 @@ package osm.surveyor.osm.boxcel;
 import java.util.List;
 import java.util.Map;
 
+import osm.surveyor.gis.point.NdModel;
 import osm.surveyor.osm.BoundsBean;
-import osm.surveyor.osm.NdBean;
 import osm.surveyor.osm.NodeBean;
 import osm.surveyor.osm.OsmPoint;
 import osm.surveyor.osm.WayBean;
@@ -66,8 +66,8 @@ public interface BoxcellMappable {
     		point.setLon(node.getLon());
     		node.setPoint(point);
     	}
-    	for (WayModel way : getWays()) {
-    		for (NdBean nd : way.getNdList()) {
+    	for (WayBean way : getWays()) {
+    		for (NdModel nd : way.getNdList()) {
     			NodeBean node = getNode(nd.getRef());
     			if (node != null) {
         			nd.setPoint(node.getPoint());
@@ -75,7 +75,7 @@ public interface BoxcellMappable {
     		}
     	}
     	// indexMapに wayList のWayBeanを充填する
-    	for (WayModel way : getWays()) {
+    	for (WayBean way : getWays()) {
     		getIndexMap().putWayType(way);
     	}
     }

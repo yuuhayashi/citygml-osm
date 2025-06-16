@@ -9,6 +9,7 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 
 import osm.surveyor.citygml.CityModelParser;
+import osm.surveyor.gis.point.NdModel;
 import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.BoundsBean;
 import osm.surveyor.osm.MemberBean;
@@ -116,7 +117,7 @@ public class OrgUpdateProcessor implements Processor {
 	 * @param org
 	 */
 	private void fixWayWithNode(OsmBean org) {
-		for (WayModel way : org.getWays()) {
+		for (WayBean way : org.getWays()) {
 			for (NdBean nd : way.getNdList()) {
 				NodeBean node = org.getNode(nd.getRef());
 				if (node != null) {
@@ -278,7 +279,7 @@ public class OrgUpdateProcessor implements Processor {
 							preObject.setId(preObject.getId() * -1);
 							preObject.addTag(new TagBean("MLIT_PLATEAU:fixme", "更新前です"));
 							List<NdBean> ndlist = preObject.getNdList();
-							for (NdBean nd : ndlist) {
+							for (NdModel nd : ndlist) {
 								for (NodeBean node : nodes) {
 									if (nd.getRef() == node.getId()) {
 										osm.putNode(node);
@@ -351,7 +352,7 @@ public class OrgUpdateProcessor implements Processor {
 							sWay.addTag(new TagBean("MLIT_PLATEAU:fixme", "delete 削除されます"));
 							sWay.getPoiBean().setAction("modify");
 							sWay.getPoiBean().orignal = true;
-							for (NdBean nd : sWay.getNdList()) {
+							for (NdModel nd : sWay.getNdList()) {
 								NodeBean node = org.getNode(nd.getRef());
 								if (node != null) {
 									osm.putNode(node);

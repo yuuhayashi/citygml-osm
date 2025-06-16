@@ -1,12 +1,30 @@
 package osm.surveyor.gis.point;
 
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import org.locationtech.jts.geom.Coordinate;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
-public abstract class NdModel implements Cloneable {
+import osm.surveyor.osm.NodeBean;
+import osm.surveyor.osm.OsmPoint;
 
+@XmlRootElement(name="nd")
+public class NdModel implements Cloneable {
+
+	public NdModel set(long id, OsmPoint point) {
+		setRef(id);
+		setPoint(point);
+		return this;
+	}
+
+	public void setIdstr(String id) {
+		setRef(Long.parseLong(id));
+	}
+	
 	private long ref = 0;
 	public long getRef() {
 		return ref;
@@ -29,6 +47,33 @@ public abstract class NdModel implements Cloneable {
 		return this.point.getCoordinate();
 	}
 
+    /**
+     * <nd ref='-4'/>
+     */
+    public Node toNodeNd(Document doc) {
+		Element node = (Element) doc.createElement("nd");
+        node.setAttribute("ref", Long.toString(getRef()));
+        return (Node)node;
+    }
+    
+    public NodeBean toElementNode() {
+    	NodeBean node = new NodeBean(0);
+		node.setId(getRef());
+		node.setPoint((getPoint() == null) ? null : getPoint().clone());
+        return node;
+    }
+
+    public NdModel loadElement(Element eElement) {
+    	String attrKey = "ref";
+		String str = eElement.getAttribute(attrKey);
+		if ((str == null) || str.isEmpty()) {
+			return null;
+		}
+		setRef(Long.parseLong(str));
+		this.point = null;
+		return this;
+    }
+	
 	//--------------------------------------
 
 	@Override

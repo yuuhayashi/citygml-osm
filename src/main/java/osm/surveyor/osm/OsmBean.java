@@ -307,7 +307,7 @@ public class OsmBean implements Serializable,BoxcellMappable {
 	 */
 	public void gerbageNode() {
 		List<NodeBean> list = new ArrayList<>();
-		for (Wayable way : this.wayList) {
+		for (WayBean way : this.wayList) {
 			for (NdBean nd : way.getNdList()) {
 				list.add(this.getNode(nd.getRef()));
 			}

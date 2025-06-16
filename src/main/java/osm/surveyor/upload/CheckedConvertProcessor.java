@@ -6,8 +6,8 @@ import java.util.List;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 
+import osm.surveyor.gis.point.NdModel;
 import osm.surveyor.osm.BodyMap;
-import osm.surveyor.osm.NdBean;
 import osm.surveyor.osm.NodeBean;
 import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.TagBean;
@@ -80,7 +80,7 @@ public class CheckedConvertProcessor implements Processor {
 			if (fixme != null) {
 				String v = fixme.getValue();
 				if (v != null && v.startsWith("更新前です")) {
-					for (NdBean nd : way.getNdList()) {
+					for (NdModel nd : way.getNdList()) {
 						
 						// `MLIT_PLATEAU:fixme="更新前です"`に紐づくNODEをaction="delete" に変換する
 						NodeBean node = osm.getNode(nd.getRef());
@@ -111,7 +111,7 @@ public class CheckedConvertProcessor implements Processor {
 			if (fixme != null) {
 				String v = fixme.getValue();
 				if (v != null && v.startsWith("delete")) {
-					for (NdBean nd : way.getNdList()) {
+					for (NdModel nd : way.getNdList()) {
 						NodeBean node = osm.getNode(nd.getRef());
 						if (node != null) {
 							node.setAction("delete");

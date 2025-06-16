@@ -9,15 +9,14 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import com.google.common.collect.Lists;
 
+import osm.surveyor.gis.point.NdModel;
 import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.MemberBean;
-import osm.surveyor.osm.NdBean;
 import osm.surveyor.osm.NodeBean;
 import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.RelationBean;
 import osm.surveyor.osm.WayBean;
 import osm.surveyor.osm.way.WayModel;
-import osm.surveyor.osm.way.Wayable;
 
 public class OsmBuildingFilterProcessor implements Processor {
 
@@ -31,7 +30,7 @@ public class OsmBuildingFilterProcessor implements Processor {
 		OsmBean org = (OsmBean) map.get("org");
 		
 		Map<Long,RelationBean> relationmap = new HashMap<>();
-		Map<Long,Wayable> waymap = new HashMap<>();
+		Map<Long,WayBean> waymap = new HashMap<>();
 		Map<Long,NodeBean> nodemap = new HashMap<>();
 
 		// "building"リレーションのみ抽出する
@@ -90,11 +89,11 @@ public class OsmBuildingFilterProcessor implements Processor {
         }
 		
 		// ウェイのメンバーノードを抽出
-		for(HashMap.Entry<Long, Wayable> entry : waymap.entrySet()) {
-			Wayable way = entry.getValue();
-			List<NdBean> nds = Lists.newArrayList();
+		for(HashMap.Entry<Long, WayBean> entry : waymap.entrySet()) {
+			WayBean way = entry.getValue();
+			List<NdModel> nds = Lists.newArrayList();
 			nds.addAll(way.getNdList());
-			for (NdBean nd : nds) {
+			for (NdModel nd : nds) {
 				long ref = nd.getRef();
 				NodeBean v = org.getNode(ref);
 				if (v != null) {
@@ -112,7 +111,7 @@ public class OsmBuildingFilterProcessor implements Processor {
 		
 		// ウェイをMapからListに変換して格納
 		List<WayBean> newWays = new ArrayList<>();
-		for(HashMap.Entry<Long, Wayable> entry : waymap.entrySet()) {
+		for(HashMap.Entry<Long, WayBean> entry : waymap.entrySet()) {
 			newWays.add((WayBean)entry.getValue());
         }
 		org.setWays(newWays);

@@ -2,6 +2,8 @@ package osm.surveyor.osm;
 
 import java.util.ArrayList;
 
+import osm.surveyor.gis.point.NdModel;
+
 @SuppressWarnings("serial")
 public class OsmLine extends ArrayList<TwoPoint> {
 	
@@ -68,11 +70,11 @@ public class OsmLine extends ArrayList<TwoPoint> {
 	}
 	
 	/**
-	 * 指定のOsmNdを持っているかどうかを調べる
+	 * 指定のNdModelを持っているかどうかを調べる
 	 * @param nd
 	 * @return
 	 */
-	boolean hasNd(OsmNd nd) {
+	boolean hasNd(NdModel nd) {
 		for (TwoPoint seg : this) {
 			if (seg.isConnectable(nd)) {
 				return true;
