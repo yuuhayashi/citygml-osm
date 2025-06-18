@@ -39,6 +39,9 @@ public class ElementWay extends WayModel implements Cloneable {
     public void setNdList(List<NdBean> ndList) {
 		super.setNdList(ndList);
     }
+    public List<NdBean> getNdList() {
+    	return super.getNdList();
+    }
 	
 	public void addNode(NdBean node) {
 		getNdList().add(node);
