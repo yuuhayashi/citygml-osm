@@ -7,6 +7,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAttribute;
 
 import org.geotools.geometry.jts.JTSFactoryFinder;
+import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.LinearRing;
@@ -16,6 +17,7 @@ import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.NdBean;
 import osm.surveyor.osm.PoiBean;
 import osm.surveyor.osm.RelationBean;
+import osm.surveyor.osm.TagBean;
 import osm.surveyor.osm.boxcel.BoxcellMappable;
 
 public abstract class WayModel extends PoiBean implements Cloneable, Serializable, Wayable {
@@ -41,6 +43,13 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
     public List<NdBean> getNdList() {
     	return this.ndList;
     }
+	public Coordinate[] getCoordinates() {
+		ArrayList<Coordinate> list = new ArrayList<>();
+		for (NdBean nd : getNdList()) {
+			list.add(nd.getCoordinate());
+		}
+		return list.toArray(new Coordinate[list.size()]);
+	}    
     
 	/**
 	 * fix=true 更新しないもの、fix=false 更新対象を示す。
@@ -83,20 +92,6 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
 	}
 	public void addBoxel(Integer boxelId) {
 		this.boxels.add(boxelId);
-	}
-	
-	@Override
-	public WayModel clone() {
-		WayModel copy = null;
-		try {
-			copy = (WayModel) super.clone();
-			copy.boxels = this.boxels;
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			copy = null;
-		}
-		return copy;
 	}
 	
 	//--------------------------------------
@@ -239,5 +234,32 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
 	public void setDuplicateArea(double area){
 		this.duplicateArea = area;
 	}
-
+	
+    //---------- PoiBean ----------------------------
+	
+	public boolean isBuilding() {
+		for (TagBean tag : this.getTagList()) {
+			if (tag.k.startsWith("building")) {
+				if (!tag.v.equals("no")) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	//--------- Cloneable -------------------------------------------
+    
+	@Override
+	public WayModel clone() {
+		WayModel copy = null;
+		try {
+			copy = (WayModel) super.clone();
+			copy.boxels = this.boxels;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			copy = null;
+		}
+		return copy;
+	}
 }

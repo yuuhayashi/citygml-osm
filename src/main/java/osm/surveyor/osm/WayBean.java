@@ -7,8 +7,6 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.locationtech.jts.geom.Coordinate;
-
 import osm.surveyor.osm.way.WayModel;
 import osm.surveyor.osm.way.Wayable;
 
@@ -56,29 +54,9 @@ public class WayBean extends WayModel implements Cloneable, Serializable {
     public List<NdBean> getNdList() {
     	return super.getNdList();
     }
+    	
+    //------ WayBean original methods -------------------
     
-    //--------------------------------------
-	
-	@Override
-	public Coordinate[] getCoordinates() {
-		ArrayList<Coordinate> list = new ArrayList<>();
-		for (NdBean nd : this.getNdList()) {
-			list.add(nd.getCoordinate());
-		}
-		return list.toArray(new Coordinate[list.size()]);
-	}
-
-	public boolean isBuilding() {
-		for (TagBean tag : this.getTagList()) {
-			if (tag.k.startsWith("building")) {
-				if (!tag.v.equals("no")) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-	
 	/**
 	 * このWAYと重複するWAYが存在するかどうか
 	 * @param db
@@ -96,7 +74,7 @@ public class WayBean extends WayModel implements Cloneable, Serializable {
         return false;
 	}
 	
-	//--------------------------------------
+	//--------Cloneable methods -----------------------------
 
 	@Override
 	public WayBean clone() {

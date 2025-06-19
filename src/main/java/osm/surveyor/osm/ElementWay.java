@@ -6,7 +6,6 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-import org.locationtech.jts.geom.Coordinate;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -43,6 +42,8 @@ public class ElementWay extends WayModel implements Cloneable {
     	return super.getNdList();
     }
 	
+    //------ ElementWay original methods -------------------
+    
 	public void addNode(NdBean node) {
 		getNdList().add(node);
 	}
@@ -266,25 +267,6 @@ public class ElementWay extends WayModel implements Cloneable {
 		return true;
 	}
 	
-	public boolean isBuilding() {
-		for (TagBean tag : this.getTagList()) {
-			if (tag.k.startsWith("building")) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-
-	@Override
-	public Coordinate[] getCoordinates() {
-		ArrayList<Coordinate> list = new ArrayList<>();
-		for (NdBean nd : getNdList()) {
-			list.add(nd.getCoordinate());
-		}
-		return list.toArray(new Coordinate[list.size()]);
-	}
-	
 	/**
 	 * このWAYがマルチポリゴンのINNERであるかどうか
 	 * @param relations
@@ -306,7 +288,7 @@ public class ElementWay extends WayModel implements Cloneable {
 		return false;
 	}
 	
-	//---------------------------------------------------------
+	//--------- Cloneable -------------------------------------------
     
 	@Override
 	public ElementWay copy(long newid) {
