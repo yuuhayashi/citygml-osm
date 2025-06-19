@@ -13,7 +13,7 @@ import osm.surveyor.osm.NodeBean;
 import osm.surveyor.osm.OsmPoint;
 
 @XmlRootElement(name="nd")
-public class NdModel implements Cloneable {
+public abstract class NdModel implements Cloneable {
 
 	public NdModel set(long id, OsmPoint point) {
 		setRef(id);
