@@ -6,11 +6,8 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlAttribute;
 
-import org.geotools.geometry.jts.JTSFactoryFinder;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
-import org.locationtech.jts.geom.GeometryFactory;
-import org.locationtech.jts.geom.LinearRing;
 import org.locationtech.jts.geom.Polygon;
 
 import osm.surveyor.osm.MemberBean;
@@ -119,27 +116,6 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
 		return false;
 	}
 	
-	/**
-	 * AREAの面積を求める。ただし、面積の単位は直行座標（メートルではない）
-	 * @return	ラインが閉じたエリア出ない場合は0.0d
-	 */
-	public Polygon getPolygon() {
-		try {
-	        GeometryFactory geometryFactory = JTSFactoryFinder.getGeometryFactory();
-	        LinearRing ring = geometryFactory.createLinearRing(getCoordinates());
-	        Polygon polygon = geometryFactory.createPolygon(ring, null);
-	        if (polygon.isValid()) {
-	            return polygon;
-	        }
-	        else {
-	        	return null;
-	        }
-		}
-		catch (Exception e) {
-			return null;
-		}
-	}
-
 	/**
 	 * 指定のAREAと重複する領域の面積を取得する
 	 * @param way
