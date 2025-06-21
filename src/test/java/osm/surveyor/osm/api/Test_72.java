@@ -43,7 +43,7 @@ public class Test_72 extends GmlLoadRouteTest {
 						if (mem.getRole().equals("outline")) {
 							outlineCnt++;
 							if (mem.getType().equals("way")) {
-								ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
+								ElementWay way = (ElementWay)osm.ways.get(Long.toString(mem.getRef()));
 								assertNotNull(way);
 								assertEquals(relationEle, way.getTagValue("ele"));
 								assertEquals(relationHeight, way.getTagValue("height"));

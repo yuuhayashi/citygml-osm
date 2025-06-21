@@ -16,7 +16,7 @@ public class CitygmlFileTest_A extends GmlLoadRouteTest {
 			assertNotNull(osm.relations);
 			assertEquals(0, osm.relations.size());
 			for (String id : osm.ways.keySet()) {
-				ElementWay way = osm.ways.get(id);
+				ElementWay way = (ElementWay)osm.ways.get(id);
 				assertNotNull(way);
 				
 				if (way.getTagValue("ref:MLIT_PLATEAU") != null) {

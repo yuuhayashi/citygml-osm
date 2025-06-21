@@ -85,7 +85,7 @@ public class CitygmlFileTest_Issue28 extends GmlLoadRouteTest {
 				for (MemberBean mem : relation.members) {
 					if (mem.getRole().equals("part")) {
 						assertEquals("way", mem.getType());
-						ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
+						ElementWay way = (ElementWay)osm.ways.get(Long.toString(mem.getRef()));
 						assertNotNull(way.getTagValue("ref:MLIT_PLATEAU"));
 						
 						// (1) "40205-bldg-80498"をメンバに持つリレーションは building=industrial であるべき、
@@ -132,7 +132,7 @@ public class CitygmlFileTest_Issue28 extends GmlLoadRouteTest {
 			for (MemberBean mem : relation.members) {
 				if (mem.getRole().equals("part")) {
 					assertEquals("way", mem.getType());
-					ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
+					ElementWay way = (ElementWay)osm.ways.get(Long.toString(mem.getRef()));
 					
 					// "40205-bldg-81197"をメンバに持つリレーションは 20個以上の建物パーツを持つべき
 					if (way.getTagValue("ref:MLIT_PLATEAU") != null) {
@@ -159,7 +159,7 @@ public class CitygmlFileTest_Issue28 extends GmlLoadRouteTest {
 		for (MemberBean mem : relation.members) {
 			if (mem.getRole().equals("part")) {
 				assertEquals("way", mem.getType());
-				ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
+				ElementWay way = (ElementWay)osm.ways.get(Long.toString(mem.getRef()));
 				check(way.getTagValue("ele"));
 			}
 		}

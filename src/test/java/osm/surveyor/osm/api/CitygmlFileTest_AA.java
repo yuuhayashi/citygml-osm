@@ -21,7 +21,7 @@ public class CitygmlFileTest_AA extends GmlLoadRouteTest {
 			assertNotNull(osm.relations);
 			assertEquals(0, osm.relations.size());
 			for (String id : osm.ways.keySet()) {
-				ElementWay way = osm.ways.get(id);
+				ElementWay way = (ElementWay)osm.ways.get(id);
 				assertNotNull(way);
 				if (way.getTagValue("ref:MLIT_PLATEAU").endsWith("13111-bldg-141846")) {
 					assertEquals(way.getTagValue("ref:MLIT_PLATEAU"), ("13111-bldg-141846"));
@@ -51,7 +51,7 @@ public class CitygmlFileTest_AA extends GmlLoadRouteTest {
         try {
 			assertNotNull(osm.relations);
 			for (String id : osm.ways.keySet()) {
-				ElementWay way = osm.ways.get(id);
+				ElementWay way = (ElementWay)osm.ways.get(id);
 				assertNotNull(way);
 				assertTrue(way.getTagValue("ref:MLIT_PLATEAU").startsWith("13111-bldg-"));
 				assertNull(way.getTagValue("addr:full"));

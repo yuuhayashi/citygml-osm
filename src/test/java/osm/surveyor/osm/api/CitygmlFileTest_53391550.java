@@ -5,9 +5,9 @@ import java.util.List;
 
 import org.junit.Test;
 import osm.surveyor.osm.ElementRelation;
-import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 import osm.surveyor.osm.TagBean;
+import osm.surveyor.osm.way.WayModel;
 
 /**
  * 横浜市 "53391550_bldg_6697_op.gml"
@@ -34,7 +34,7 @@ public class CitygmlFileTest_53391550 extends GmlLoadRouteTest {
 					}
 				}
 			}
-			for (ElementWay way : osm.getWays()) {
+			for (WayModel way : osm.getWays()) {
 				List<TagBean> tags = way.getTagList();
 				for (TagBean tag : tags) {
 					if (tag.k.equals("height")) {

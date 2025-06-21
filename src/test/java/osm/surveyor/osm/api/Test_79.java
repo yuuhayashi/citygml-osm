@@ -36,7 +36,7 @@ public class Test_79 extends GmlLoadRouteTest {
 				if (type.equals("building")) {
 		        	for (MemberBean member : relation.members) {
 		        		if (member.isWay()) {
-		        			ElementWay way = osm.ways.get(member.getRef());
+		        			ElementWay way = (ElementWay)osm.ways.get(member.getRef());
 			        		assertNotNull(way);
 		        			if (member.getRole().equals("outline")) {
 		                		assertEquals("retail", way.getTagValue("building"));

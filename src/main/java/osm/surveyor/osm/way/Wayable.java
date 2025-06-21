@@ -8,7 +8,6 @@ import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.LinearRing;
 import org.locationtech.jts.geom.Polygon;
 
-import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.NdBean;
 import osm.surveyor.osm.PoiBean;
 import osm.surveyor.osm.WayMap;
@@ -96,7 +95,7 @@ public interface Wayable {
 	 */
 	default boolean isIntersect(WayMap ways) throws Exception {
         for (String k : ways.keySet()) {
-        	ElementWay way = ways.get(k);
+        	WayModel way = ways.get(k);
         	double area = getIntersectArea(way);
 			if (area > 0.0d) {
 				return true;

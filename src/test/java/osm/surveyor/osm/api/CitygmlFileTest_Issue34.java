@@ -48,7 +48,7 @@ public class CitygmlFileTest_Issue34 extends GmlLoadRouteTest {
 			for (MemberBean mem : relation.members) {
 				if (mem.getRole().equals("inner")) {
 					assertEquals("way", mem.getType());
-					ElementWay inner = osm.ways.get(mem.getRef());
+					ElementWay inner = (ElementWay)osm.ways.get(mem.getRef());
 					assertNotNull(inner);
 				}
 			}

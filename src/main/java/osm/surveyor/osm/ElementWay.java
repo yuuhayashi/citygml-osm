@@ -225,7 +225,7 @@ public class ElementWay extends WayModel implements Cloneable {
 		double max = 0.0d;
 		long maxid = 0;
         for (String k : ways.keySet()) {
-        	ElementWay way = ways.get(k);
+        	WayModel way = ways.get(k);
         	double area = getIntersectArea(way);
 			if (area > max) {
 				max = area;

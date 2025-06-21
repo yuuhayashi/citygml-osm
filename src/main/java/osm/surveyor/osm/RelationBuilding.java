@@ -3,6 +3,7 @@ package osm.surveyor.osm;
 import java.math.BigDecimal;
 
 import osm.surveyor.citygml.CityModelParser;
+import osm.surveyor.osm.way.WayModel;
 
 /**
  * https://wiki.openstreetmap.org/wiki/JA:Relations/Proposed/Buildings
@@ -39,14 +40,14 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 		}
 		else {
 			if (outlineMember.getType().equals("way")) {
-				return osm.ways.get(outlineMember.getRef());
+				return (ElementWay)osm.ways.get(outlineMember.getRef());
 			}
 			else if (outlineMember.getType().equals("relation")) {
 				ElementRelation polygon = osm.relations.get(outlineMember.getRef());
 				if (polygon != null) {
 					for (MemberBean outlinemember : polygon.members) {
 						if (outlinemember.getRole().equals("outer")) {
-							return osm.ways.get(outlinemember.getRef());
+							return (ElementWay)osm.ways.get(outlinemember.getRef());
 						}
 					}
 				}
@@ -64,7 +65,7 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 		WayMap parts = new WayMap();
 		for (MemberBean member : this.members) {
 			if (member.getRole().equals("part") && member.getType().equals("way")) {
-				ElementWay way = osm.ways.get(member.getRef());
+				ElementWay way = (ElementWay)osm.ways.get(member.getRef());
 				parts.put(way);
 			}
 		}
@@ -101,7 +102,7 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 		}
 		
 		// 用途
-		ElementWay maxway = this.getMaxArea(parts);
+		WayModel maxway = this.getMaxArea(parts);
 		if (maxway != null) {
 			this.addTag("building", maxway.getTagValue("building:part"));
 			if (multi != null) {
@@ -159,7 +160,7 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 		String maxele = null;
 		for (MemberBean member : this.members) {
 			if (member.getType().equals("way")) {
-				ElementWay way = ways.get(member.getRef());
+				ElementWay way = (ElementWay)ways.get(member.getRef());
 				String height = calcHeight(minele, way.getTagValue("ele"), way.getTagValue("height"));
 				if (height != null) {
 					if (maxele == null) {
@@ -198,7 +199,7 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 		String maxname = "";
 		for (MemberBean member : this.members) {
 			if (member.getType().equals("way")) {
-				ElementWay way = ways.get(member.getRef());
+				ElementWay way = (ElementWay)ways.get(member.getRef());
 				String name = way.getTagValue(tagkey);
 				if ((name != null) && (name.length() > maxname.length())) {
 					maxname = name;
@@ -220,7 +221,7 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 		String min = null;
 		for (MemberBean member : this.members) {
 			if (member.getRole().equals("part") && member.getType().equals("way")) {
-				ElementWay way = ways.get(member.getRef());
+				ElementWay way = (ElementWay)ways.get(member.getRef());
 				String v = way.getTagValue(k);
 				if (v != null) {
 					if (min == null) {
@@ -248,7 +249,7 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 		String max = null;
 		for (MemberBean member : this.members) {
 			if (member.getRole().equals("part") && member.getType().equals("way")) {
-				ElementWay way = ways.get(member.getRef());
+				WayModel way = ways.get(member.getRef());
 				String v = way.getTagValue(k);
 				if (v != null) {
 					if (max == null) {
@@ -270,12 +271,12 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 	 * @param ways	メンバーの実態
 	 * @return	指定したタグが存在しない場合はNULL
 	 */
-	public ElementWay getMaxArea(WayMap ways) {
-		ElementWay max = null;
+	public WayModel getMaxArea(WayMap ways) {
+		WayModel max = null;
 		double maxarea = 0.0d;
 		for (MemberBean member : this.members) {
 			if (member.getType().equals("way")) {
-				ElementWay way = ways.get(member.getRef());
+				WayModel way = ways.get(member.getRef());
 				double area = way.getArea();
 				if (max == null) {
 					max = way;

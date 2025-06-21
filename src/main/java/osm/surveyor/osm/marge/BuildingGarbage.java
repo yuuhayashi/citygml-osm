@@ -39,7 +39,7 @@ public class BuildingGarbage {
 			else if (memberCnt == 1) {
 				if (relation.isMultipolygon()) {
 					for (MemberBean member : relation.members) {
-						ElementWay way = osm.ways.get(member.getRef());
+						ElementWay way = (ElementWay)osm.ways.get(member.getRef());
 						if (way != null) {
 							way.member = true;
 							relation.removeMember(way.getId());
@@ -50,7 +50,7 @@ public class BuildingGarbage {
 				}
 				if (relation.isBuilding()) {
 					for (MemberBean member : relation.members) {
-						ElementWay way = osm.ways.get(member.getRef());
+						ElementWay way = (ElementWay)osm.ways.get(member.getRef());
 						if (way != null) {
 							way.member = false;
 							copyTag(relation.getTagList(), way);

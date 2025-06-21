@@ -6,28 +6,33 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import osm.surveyor.osm.way.WayModel;
+
 /**
  * hash key = way.id
  * 
  */
 @SuppressWarnings("serial")
-public class WayMap extends HashMap<String, ElementWay> {
+public class WayMap extends HashMap<String, WayModel> {
 	
-	public void put(ElementWay way) {
+	public void put(WayModel way) {
 		if (way != null) {
 			put(Long.toString(way.getId()), way);
 		}
 	}
 	
-	public ElementWay get(long id) {
+	public WayModel get(long id) {
 		return get(Long.toString(id));
 	}
 	
-	public ElementWay get(OsmLine line) {
+	public WayModel get(OsmLine line) {
 		for (String id : this.keySet()) {
-			ElementWay way = this.get(id);
-			if (way.isSame(line)) {
-				return way;
+			WayModel model = this.get(id);
+			if (model.getClass() == ElementWay.class) {
+				ElementWay way = (ElementWay)model;
+				if (way.isSame(line)) {
+					return way;
+				}
 			}
 		}
 		return null;

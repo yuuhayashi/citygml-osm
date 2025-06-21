@@ -201,7 +201,7 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
 	}
 	
 	/**
-	 * あるエリアと承服している面積を一時的に記録する領域
+	 * あるエリアと重複している面積を一時的に記録する領域
 	 */
 	private double duplicateArea = 0.0;
 	public double getDuplicateArea() {

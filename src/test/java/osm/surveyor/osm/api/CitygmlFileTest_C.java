@@ -42,7 +42,7 @@ public class CitygmlFileTest_C extends GmlLoadRouteTest {
 						if (mem.getRole().equals("outline")) {
 							outlineCnt++;
 							assertEquals(mem.getType(), ("way"));
-							ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
+							ElementWay way = (ElementWay)osm.ways.get(Long.toString(mem.getRef()));
 							assertNotNull(way);
 							assertNull(way.getTagValue("ref:MLIT_PLATEAU"));
 							assertNull(way.getTagValue("addr:full"));
@@ -56,7 +56,7 @@ public class CitygmlFileTest_C extends GmlLoadRouteTest {
 						if (mem.getRole().equals("part")) {
 							partCnt++;
 							assertEquals(mem.getType(), ("way"));
-							ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
+							ElementWay way = (ElementWay)osm.ways.get(Long.toString(mem.getRef()));
 							assertNotNull(way);
 							if (way.getTagValue("ref:MLIT_PLATEAU") != null) {
 								assertNotNull(way.getTagValue("ref:MLIT_PLATEAU"));
@@ -97,7 +97,7 @@ public class CitygmlFileTest_C extends GmlLoadRouteTest {
 						if (mem.getRole().equals("outer")) {
 							outerCnt++;
 							assertEquals(mem.getType(), ("way"));
-							ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
+							ElementWay way = (ElementWay)osm.ways.get(Long.toString(mem.getRef()));
 							assertNotNull(way);
 							assertEquals(1, way.getTagList().size());
 							assertNull(way.getTagValue("ref:MLIT_PLATEAU"));
@@ -105,7 +105,7 @@ public class CitygmlFileTest_C extends GmlLoadRouteTest {
 						if (mem.getRole().equals("inner")) {
 							innerCnt++;
 							assertEquals(mem.getType(), ("way"));
-							ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
+							ElementWay way = (ElementWay)osm.ways.get(Long.toString(mem.getRef()));
 							assertNotNull(way);
 							assertEquals(1, way.getTagList().size());
 						}
@@ -148,7 +148,7 @@ public class CitygmlFileTest_C extends GmlLoadRouteTest {
 						if (mem.getRole().equals("outline")) {
 							outlineCnt++;
 							assertEquals(mem.getType(), ("way"));
-							ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
+							ElementWay way = (ElementWay)osm.ways.get(Long.toString(mem.getRef()));
 							assertNotNull(way);
 							assertNull(way.getTagValue("ref:MLIT_PLATEAU"));
 							assertNull(way.getTagValue("addr:full"));
@@ -163,7 +163,7 @@ public class CitygmlFileTest_C extends GmlLoadRouteTest {
 						if (mem.getRole().equals("part")) {
 							partCnt++;
 							assertEquals(mem.getType(), ("way"));
-							ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
+							ElementWay way = (ElementWay)osm.ways.get(Long.toString(mem.getRef()));
 							assertNotNull(way);
 							assertNotNull(way.getTagValue("ref:MLIT_PLATEAU"));
 							assertNull(way.getTagValue("addr:full"));

@@ -34,7 +34,7 @@ public class MargeFactory {
 	 */
 	public boolean isDuplicateSegment() {
 		for (String wayid : wayMap.keySet()) {
-			ElementWay way = wayMap.get(wayid);
+			ElementWay way = (ElementWay)wayMap.get(wayid);
 			if (way != null) {
 		    	OsmLine bList = way.getPointList();
 		    	if (checkSegment(bList)) {
@@ -107,7 +107,7 @@ public class MargeFactory {
      */
 	public void marge() {
 		for (String wayid : wayMap.keySet()) {
-			ElementWay way = wayMap.get(wayid);
+			ElementWay way = (ElementWay)wayMap.get(wayid);
 			if (way != null) {
 				// ２つのWAYから共通する線分を削除して統合する
 				removeDuplicatedSegment(way.copy(osm.getNewId()));

@@ -293,7 +293,7 @@ public class CityModelParser extends DefaultHandler {
 				}
 				for (MemberBean mem : building.members) {
 					if (mem.getType().equals("way")) {
-						ElementWay way = osm.ways.get(mem.getRef());
+						ElementWay way = (ElementWay)osm.ways.get(mem.getRef());
 						way.removeTag("maxele");
 						String num = checkNumberString(rounding(2, building.getTagValue("height")));
 						if (num != null) {

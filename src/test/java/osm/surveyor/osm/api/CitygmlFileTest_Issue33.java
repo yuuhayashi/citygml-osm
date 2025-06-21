@@ -26,7 +26,7 @@ public class CitygmlFileTest_Issue33 extends GmlLoadRouteTest {
 	        
 			assertNotNull(osm.ways);
 			for (String id : osm.ways.keySet()) {
-				ElementWay way = osm.ways.get(id);
+				ElementWay way = (ElementWay)osm.ways.get(id);
 				assertNotNull(way);
 			}
 		} catch (Exception e) {
@@ -45,7 +45,7 @@ public class CitygmlFileTest_Issue33 extends GmlLoadRouteTest {
 	        
 			assertNotNull(osm.ways);
 			for (String id : osm.ways.keySet()) {
-				ElementWay way = osm.ways.get(id);
+				ElementWay way = (ElementWay)osm.ways.get(id);
 				assertNotNull(way);
 			}
 		} catch (Exception e) {

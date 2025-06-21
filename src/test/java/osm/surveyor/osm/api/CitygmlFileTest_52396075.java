@@ -30,7 +30,7 @@ public class CitygmlFileTest_52396075 extends GmlLoadRouteTest {
 	        
 			assertNotNull(osm.ways);
 			for (String id : osm.ways.keySet()) {
-				ElementWay way = osm.ways.get(id);
+				ElementWay way = (ElementWay)osm.ways.get(id);
 				assertNotNull(way);
 				assertEquals(way.getTagValue("building"), ("yes"));
 				assertEquals(way.getTagValue("height"), ("13.3"));

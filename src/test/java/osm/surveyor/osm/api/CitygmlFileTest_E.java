@@ -69,7 +69,7 @@ public class CitygmlFileTest_E extends GmlLoadRouteTest {
 								if (member.getRole().equals("outer")) {
 									outerCnt++;
 									assertEquals("way", member.getType());
-									ElementWay way = osm.ways.get(Long.toString(member.getRef()));
+									ElementWay way = (ElementWay)osm.ways.get(Long.toString(member.getRef()));
 									assertNotNull(way);
 									assertNull(way.getTagValue("ref:MLIT_PLATEAU"));
 									assertEquals(0, way.getTagList().size());
@@ -77,7 +77,7 @@ public class CitygmlFileTest_E extends GmlLoadRouteTest {
 								if (member.getRole().equals("inner")) {
 									innerCnt++;
 									assertEquals("way", member.getType());
-									ElementWay way = osm.ways.get(Long.toString(member.getRef()));
+									ElementWay way = (ElementWay)osm.ways.get(Long.toString(member.getRef()));
 									assertNotNull(way);
 									assertNull(way.getTagValue("ref:MLIT_PLATEAU"));
 									assertEquals(0, way.getTagList().size());
@@ -88,7 +88,7 @@ public class CitygmlFileTest_E extends GmlLoadRouteTest {
 						if (mem.getRole().equals("part")) {
 							partCnt++;
 							assertEquals(mem.getType(), ("way"));
-							ElementWay way = osm.ways.get(Long.toString(mem.getRef()));
+							ElementWay way = (ElementWay)osm.ways.get(Long.toString(mem.getRef()));
 							assertNotNull(way);
 							if (way.getTagValue("ref:MLIT_PLATEAU").endsWith("13111-bldg-56522")) {
 								assertEquals(way.getTagValue("building:part"), ("yes"));

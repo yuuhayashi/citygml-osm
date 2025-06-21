@@ -64,12 +64,12 @@ public class OsmMargeWay {
 		}
 		
 		for (String wayid : parts.keySet()) {
-			ElementWay partWay = parts.get(wayid);
+			ElementWay partWay = (ElementWay)parts.get(wayid);
 			for (String outerid : polygons.keySet()) {
 				RelationMultipolygon polygon = (RelationMultipolygon)polygons.get(outerid);
 				for (MemberBean plgMem : polygon.members) {
 					if (plgMem.getRole().equals("outer") && plgMem.getType().equals("way")) {
-						ElementWay outer = osm.ways.get(Long.toString(plgMem.getRef()));
+						ElementWay outer = (ElementWay)osm.ways.get(Long.toString(plgMem.getRef()));
 						if (partWay.isSame(outer)) {
 							TagBean ele = partWay.getTag("height");
 							if (ele != null) {
@@ -103,7 +103,7 @@ public class OsmMargeWay {
 						polygon = (RelationMultipolygon)osm.relations.get(Long.toString(member.getRef()));
 						for (MemberBean plgMem : polygon.members) {
 							if (plgMem.getRole().equals("outer") && plgMem.getType().equals("way")) {
-								outline = osm.ways.get(Long.toString(plgMem.getRef()));
+								outline = (ElementWay)osm.ways.get(Long.toString(plgMem.getRef()));
 								break;
 							}
 						}

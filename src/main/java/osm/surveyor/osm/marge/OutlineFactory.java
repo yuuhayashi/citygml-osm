@@ -79,7 +79,7 @@ public class OutlineFactory {
 								}
 							}
 							for (MemberBean addMem : addlist) {
-								multi.addMember(osm.ways.get(addMem.getRef()), "inner");
+								multi.addMember((ElementWay)osm.ways.get(addMem.getRef()), "inner");
 							}
 							delPolygonlist.add(mem);
 						}
@@ -111,7 +111,7 @@ public class OutlineFactory {
 		// マルチポリゴンにINNERを追加する
 		ArrayList<OsmLine> inners = factory.getInners();
 		for (OsmLine inner : inners) {
-			ElementWay iWay = osm.ways.get(inner);
+			ElementWay iWay = (ElementWay)osm.ways.get(inner);
 			if (iWay == null) {
 				iWay = new ElementWay(osm.getNewId());
 				iWay.replaceNds(inner);
@@ -138,7 +138,7 @@ public class OutlineFactory {
 				// "outer"に、"bulding:Relation"の"outline"WAYをMEMBERとして追加する
 				for (MemberBean mem : building.members) {
 					if (mem.getRole().equals("outline") && mem.getType().equals("way")) {
-						ElementWay outlineWay = osm.ways.get(mem.getRef());
+						ElementWay outlineWay = (ElementWay)osm.ways.get(mem.getRef());
 						multi.addMember(outlineWay, "outer");
 						building.removeMember(mem.getRef());
 						break;

@@ -103,7 +103,7 @@ public class RelationMarge {
 		for (MemberBean mem : b.members) {
 			if (mem.getRole().equals("part")) {
 				if (mem.getType().equals("way")) {
-					ElementWay memway = osm.ways.get(Long.toString(mem.getRef()));
+					ElementWay memway = (ElementWay)osm.ways.get(Long.toString(mem.getRef()));
 					relation.addMember(memway, mem.getRole());
 				}
 			}
@@ -114,7 +114,7 @@ public class RelationMarge {
 						for (MemberBean polymem : polygon.members) {
 							if (polymem.getType().equals("way") && polymem.getRole().equals("inner")) {
 								if (multi != null) {
-									multi.addMember(osm.ways.get(Long.toString(polymem.getRef())), "inner");
+									multi.addMember((ElementWay)osm.ways.get(Long.toString(polymem.getRef())), "inner");
 								}
 							}
 						}

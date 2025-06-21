@@ -15,6 +15,7 @@ import javax.xml.bind.annotation.XmlTransient;
 import osm.surveyor.citygml.CityModelParser;
 import osm.surveyor.gis.point.NdModel;
 import osm.surveyor.osm.boxcel.IndexMap;
+import osm.surveyor.osm.way.WayModel;
 
 /**
  * Osmファイルをドムる
@@ -68,8 +69,8 @@ public class OsmDom {
     public WayMap ways;		// k= way.id
 
 	@XmlElement(name="way")
-	public List<ElementWay> getWays() {
-		return new ArrayList<ElementWay>(ways.values());
+	public List<WayModel> getWays() {
+		return new ArrayList<WayModel>(ways.values());
 	}
 
     @XmlTransient
@@ -109,7 +110,7 @@ public class OsmDom {
 	void addRelation(OsmDom ddom, ElementRelation relation) {
 		for (MemberBean member : relation.members) {
 			if (member.getType().equals("way")) {
-				ElementWay way = this.ways.get(member.getRef());
+				ElementWay way = (ElementWay)this.ways.get(member.getRef());
 				if (way != null) {
 					addWay(ddom, way);
 				}
@@ -161,7 +162,7 @@ public class OsmDom {
 		String minele = "10000";
 		for (MemberBean member : relation.members) {
 			if (member.getRole().equals("part")) {
-				ElementWay way = ways.get(member.getRef());
+				ElementWay way = (ElementWay)ways.get(member.getRef());
 				String ele = way.getTagValue("ele");
 				if (ele != null) {
 					if (Double.parseDouble(minele) > Double.parseDouble(ele)) {
@@ -178,7 +179,7 @@ public class OsmDom {
 		String maxheight = "0";
 		for (MemberBean member : relation.members) {
 			if (member.getRole().equals("part")) {
-				ElementWay way = ways.get(member.getRef());
+				ElementWay way = (ElementWay)ways.get(member.getRef());
 				String ele = way.getTagValue("ele");
 				String height = way.getTagValue("height");
 				if (height != null) {
@@ -228,7 +229,7 @@ public class OsmDom {
 			ArrayList<MemberBean> mems = new ArrayList<>();
 			for (MemberBean member : relation.members) {
 				if (member.isWay()) {
-					ElementWay way = this.ways.get(member.getRef());
+					ElementWay way = (ElementWay)this.ways.get(member.getRef());
 					if (way == null) {
 						mems.add(member);
 					}
@@ -253,7 +254,7 @@ public class OsmDom {
 		System.out.println(LocalTime.now() +"\tOsmDom.gerbageWay()");
 		WayMap map = new WayMap();
 		for (String id : this.ways.keySet()) {
-			ElementWay way = this.ways.get(id);
+			ElementWay way = (ElementWay)this.ways.get(id);
 			if (!way.member) {
 				map.put(way);	// 単独WAYは、RELATIONに所属していなくても削除しない
 			}
@@ -261,7 +262,7 @@ public class OsmDom {
 		for (String id : this.relations.keySet()) {
 			ElementRelation relation = this.relations.get(id);
 			for (MemberBean member : relation.members) {
-				ElementWay way = this.ways.get(member.getRef());
+				ElementWay way = (ElementWay)this.ways.get(member.getRef());
 				if (way != null) {
 					map.put(way);
 				}
@@ -279,7 +280,7 @@ public class OsmDom {
 	public void gerbageNode() {
 		NodeBeans list = new NodeBeans();
 		for (String wayid : this.ways.keySet()) {
-			ElementWay way = this.ways.get(wayid);
+			ElementWay way = (ElementWay)this.ways.get(wayid);
 			for (NdModel nd : way.getNdList()) {
 				NodeBean node = this.nodes.get(nd.getRef());
 				list.put(node);
@@ -300,7 +301,7 @@ public class OsmDom {
     public List<ElementWay> getWay(String buildingid) {
     	List<ElementWay> ret = new ArrayList<>();
     	for (String wayid : this.ways.keySet()) {
-			ElementWay way = this.ways.get(wayid);
+			ElementWay way = (ElementWay)this.ways.get(wayid);
 			List<TagBean> tags = way.getTagList();
 			for (TagBean tag : tags) {
 				if (tag.k.equals("ref:MLIT_PLATEAU") && tag.v.equals(buildingid)) {

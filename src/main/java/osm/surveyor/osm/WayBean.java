@@ -8,7 +8,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import osm.surveyor.osm.way.WayModel;
-import osm.surveyor.osm.way.Wayable;
 
 /**
  * @code{
@@ -57,23 +56,6 @@ public class WayBean extends WayModel implements Cloneable, Serializable {
     	
     //------ WayBean original methods -------------------
     
-	/**
-	 * このWAYと重複するWAYが存在するかどうか
-	 * @param db
-	 * @param where
-	 * @return
-	 * @throws Exception
-	 */
-	public boolean isIntersect(List<Wayable> list) throws Exception {
-        for (Wayable way : list) {
-        	double area = getIntersectArea(way);
-			if (area > 0.0d) {
-				return true;
-			}
-        }
-        return false;
-	}
-	
 	//--------Cloneable methods -----------------------------
 
 	@Override

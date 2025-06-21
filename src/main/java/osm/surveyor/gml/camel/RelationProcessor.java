@@ -34,7 +34,7 @@ public class RelationProcessor implements Processor {
 					if (member.getRole().equals("part")) {
 						if (member.isWay()) {
 							long id = member.getRef();
-							ElementWay way = osm.ways.get(id);
+							ElementWay way = (ElementWay)osm.ways.get(id);
 							if (way.getArea() > max) {
 								max = way.getArea();
 								maxid = id;
@@ -45,12 +45,12 @@ public class RelationProcessor implements Processor {
 				
 				if (maxid != 0) {
 					ElementWay outline = null;
-					ElementWay maxway = osm.ways.get(maxid);
+					ElementWay maxway = (ElementWay)osm.ways.get(maxid);
 					for (MemberBean member : relation.members) {
 						if (member.getRole().equals("outline")) {
 							if (member.isWay()) {
 								long id = member.getRef();
-								outline = osm.ways.get(id);
+								outline = (ElementWay)osm.ways.get(id);
 							}
 						}
 					}
