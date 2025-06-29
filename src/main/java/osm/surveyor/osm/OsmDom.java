@@ -14,6 +14,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 import osm.surveyor.citygml.CityModelParser;
 import osm.surveyor.gis.point.NdModel;
+import osm.surveyor.osm.boxcel.BoxcellMappable;
 import osm.surveyor.osm.boxcel.IndexMap;
 import osm.surveyor.osm.way.WayModel;
 
@@ -22,7 +23,7 @@ import osm.surveyor.osm.way.WayModel;
  * 
  */
 @XmlRootElement(name="osm")
-public class OsmDom {
+public class OsmDom  implements BoxcellMappable {
 	static final String outputEncoding = "UTF-8";
 	
     public OsmDom() {
@@ -69,9 +70,15 @@ public class OsmDom {
     public WayMap ways;		// k= way.id
 
 	@XmlElement(name="way")
-	public List<WayModel> getWays() {
+	public List<WayModel> getWayList() {
 		return new ArrayList<WayModel>(ways.values());
 	}
+    public void setWayList(List<WayModel> ways) {
+    	this.ways.clear();
+    	for (WayModel way : this.ways.values()) {
+    		putWay(way);
+    	}
+    }
 
     @XmlTransient
     public RelationMap relations;	// k= relation.id
@@ -336,4 +343,58 @@ public class OsmDom {
 		}
     	return ret;
     }
+
+	@Override
+	public IndexMap getIndexMap() {
+		// TODO Auto-generated method stub
+		System.out.println("// TODO Auto-generated method stub");
+		return null;
+	}
+
+	@Override
+	public void setInxevMap(IndexMap indexMap) {
+		// TODO Auto-generated method stub
+		System.out.println("// TODO Auto-generated method stub");
+		
+	}
+
+	@Override
+	public List<NodeBean> getNodeList() {
+		// TODO Auto-generated method stub
+		System.out.println("// TODO Auto-generated method stub");
+		return null;
+	}
+
+	@Override
+	public void setNodeList(List<NodeBean> nodeList) {
+		// TODO Auto-generated method stub
+		System.out.println("// TODO Auto-generated method stub");
+		
+	}
+
+	@Override
+	public List<WayModel> getWayList(WayModel wayBean) {
+		// TODO Auto-generated method stub
+		System.out.println("// TODO Auto-generated method stub");
+		return null;
+	}
+
+	@Override
+	public WayModel getWay(long id) {
+		// TODO Auto-generated method stub
+		System.out.println("// TODO Auto-generated method stub");
+		return null;
+	}
+
+	@Override
+	public void putWay(WayModel way) {
+		this.ways.put(way.getIdstr(), way);
+	}
+
+	@Override
+	public List<WayBean> getWays() {
+		// TODO Auto-generated method stub
+		System.out.println("// TODO Auto-generated method stub");
+		return null;
+	}
 }

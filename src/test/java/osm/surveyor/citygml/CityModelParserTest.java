@@ -39,18 +39,18 @@ public class CityModelParserTest {
 				
         // GMLファイルをパースする
 		try {
-	        OsmDom osm = new OsmDom();
-	        CitygmlFile target = new CitygmlFile(gmlfile, osm);
+	        OsmDom dom = new OsmDom();
+	        CitygmlFile target = new CitygmlFile(gmlfile, dom);
 	        target.parse();
 	        
 	        
 	        assertNotNull(target.getGml());
 	        
-	        assertNotNull(osm);
-	        assertNotNull(osm.getWays());
+	        assertNotNull(dom);
+	        assertNotNull(dom.getWayList());
 	        
 	        // GMLv2
-	        List<ElementWay> ways = osm.getWay("40205-bldg-91547");
+	        List<ElementWay> ways = dom.getWay("40205-bldg-91547");
 	        assertEquals(2, ways.size());
 	        for (ElementWay way : ways) {
 	        	if (way.getTagValue("building:part") != null) {
@@ -65,7 +65,7 @@ public class CityModelParserTest {
 	        }
 
 	        // GMLv4 埼玉県新座市 bldg_c040f49a-2685-43be-989c-446bfd863039
-	        ways = osm.getWay("11230-bldg-28587");
+	        ways = dom.getWay("11230-bldg-28587");
 	        //ways = osm.getWay("bldg_c040f49a-2685-43be-989c-446bfd863039");
 	        assertEquals(1, ways.size());
 	        for (ElementWay way : ways) {

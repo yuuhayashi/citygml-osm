@@ -28,9 +28,9 @@ public class CitygmlFileTest_53395404 extends GmlLoadRouteTest {
 	 */
 	@Test
 	public void issue49() {
-		OsmDom osm = testdo("./src/test/resources/53395404_bldg_6697_op.gml");
+		OsmDom dom = testdo("./src/test/resources/53395404_bldg_6697_op.gml");
 		try {
-			for (ElementRelation relation : osm.getRelations()) {
+			for (ElementRelation relation : dom.getRelations()) {
 				List<TagBean> tags = relation.getTagList();
 				for (TagBean tag : tags) {
 					if (tag.k.equals("height")) {
@@ -41,7 +41,7 @@ public class CitygmlFileTest_53395404 extends GmlLoadRouteTest {
 					}
 				}
 			}
-			for (WayModel way : osm.getWays()) {
+			for (WayModel way : dom.getWayList()) {
 				List<TagBean> tags = way.getTagList();
 				for (TagBean tag : tags) {
 					if (tag.k.equals("height")) {
