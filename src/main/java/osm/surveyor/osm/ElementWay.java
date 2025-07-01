@@ -69,7 +69,7 @@ public class ElementWay extends WayModel implements Cloneable {
 				}
 			}
 			
-			indexMap.putElementWay(this);
+			indexMap.putWayType(this);
 			this.ring = true;
 		}
 		else if (size > 2) {
@@ -82,7 +82,7 @@ public class ElementWay extends WayModel implements Cloneable {
 				if (frst.getRef() != last.getRef()) {
 					getNdList().add(frst);
 				}
-				indexMap.putElementWay(this);
+				indexMap.putWayType(this);
 				ring = true;
 			}
 		}

@@ -134,7 +134,7 @@ public class OsmDom  implements BoxcellMappable {
 			}
 		}
 		ddom.ways.put(way.clone());
-		ddom.indexMap.putElementWay(way);
+		ddom.indexMap.putWayType(way);
 	}
 	
     public void export(PrintStream out) {
