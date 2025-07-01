@@ -5,14 +5,14 @@ import org.junit.experimental.categories.Categories.ExcludeCategory;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
-import osm.surveyor.DetailTests;
+import osm.surveyor.OnlineTests;
 
 /**
  * `mvn test -Dtest=osm.surveyor.download.AllTests`
  * 
  */
 @RunWith(Categories.class)
-@ExcludeCategory(DetailTests.class)
+@ExcludeCategory(OnlineTests.class)
 @SuiteClasses({
 	Test_Fujitv.class,
 	Test_A.class,

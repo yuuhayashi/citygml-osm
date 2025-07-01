@@ -4,8 +4,10 @@ import java.nio.file.Paths;
 
 import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runners.MethodSorters;
 
+import osm.surveyor.OnlineTests;
 import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.way.Wayable;
@@ -22,6 +24,7 @@ public class Test_haya4 extends DownloadTest {
 	 * WAY:241755306 = 林宅
 	 */
 	@Test
+	@Category(OnlineTests.class)
 	public void test_way241755306() {
         try {
         	// (1)指定されたOSMファイルをLOADする

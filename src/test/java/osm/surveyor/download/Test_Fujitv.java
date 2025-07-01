@@ -4,7 +4,9 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
+import osm.surveyor.OnlineTests;
 import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.BoundsBean;
 import osm.surveyor.osm.NodeBean;
@@ -19,6 +21,7 @@ public class Test_Fujitv extends DownloadTest {
 	 * 
 	 */
 	@Test
+	@Category(OnlineTests.class)
 	public void test_download() {
 		BodyMap map = testdo(Paths.get("./src/test/resources/fujitv_bldg_6697_op2.osm"));
 		OsmBean org = (OsmBean) map.get("org");

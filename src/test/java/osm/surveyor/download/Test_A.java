@@ -5,9 +5,11 @@ import java.nio.file.Paths;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
+import org.junit.experimental.categories.Categories.ExcludeCategory;
 import org.junit.runners.MethodSorters;
 
 import osm.surveyor.DetailTests;
+import osm.surveyor.OnlineTests;
 import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.way.Wayable;
@@ -26,6 +28,7 @@ public class Test_A extends DownloadTest {
 	 * - "landuse"WAYは存在しないこと
 	 */
 	@Test
+	@Category(OnlineTests.class)
 	public void test_a() {
         try {
     		// (1)指定されたOSMファイルをLOADする

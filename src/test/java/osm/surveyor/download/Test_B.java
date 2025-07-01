@@ -4,8 +4,10 @@ import java.nio.file.Paths;
 
 import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runners.MethodSorters;
 
+import osm.surveyor.OnlineTests;
 import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.way.Wayable;
@@ -24,6 +26,7 @@ public class Test_B extends DownloadTest {
 	 * - "landuse"WAYは存在しないこと
 	 */
 	@Test
+	@Category(OnlineTests.class)
 	public void testSample_b() {
         try {
         	BodyMap map = testdo(Paths.get("src/test/resources/", SOURCE +".osm"));

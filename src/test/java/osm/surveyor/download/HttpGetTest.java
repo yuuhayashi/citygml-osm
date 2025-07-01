@@ -3,7 +3,9 @@ package osm.surveyor.download;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
+import osm.surveyor.OnlineTests;
 import osm.surveyor.osm.api.GetResponse;
 import osm.surveyor.osm.api.HttpGet;
 
@@ -11,6 +13,7 @@ public class HttpGetTest {
 	public String host = "https://www.openstreetmap.org";
 
 	@Test
+	@Category(OnlineTests.class)
 	public void testVersions() {
 		try {
 			HttpGet obj = new HttpGet();
@@ -23,6 +26,7 @@ public class HttpGetTest {
 	}
 
 	@Test
+	@Category(OnlineTests.class)
 	public void testCapabilities() {
 		try {
 			HttpGet obj = new HttpGet();
@@ -51,6 +55,7 @@ public class HttpGetTest {
 		HttpGET.getMap(minlon, minlat, maxlon, maxlat);
 	 */
 	@Test
+	@Category(OnlineTests.class)
 	public void testMap() {
 		try {
 	        double minlon = 139.4197591d;

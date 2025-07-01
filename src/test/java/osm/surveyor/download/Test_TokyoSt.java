@@ -3,7 +3,9 @@ package osm.surveyor.download;
 import java.nio.file.Paths;
 
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
+import osm.surveyor.OnlineTests;
 import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.way.Wayable;
@@ -20,6 +22,7 @@ public class Test_TokyoSt extends DownloadTest {
 	 * 
 	 */
 	@Test
+	@Category(OnlineTests.class)
 	public void test_download() {
 		try {
         	// (1)指定されたOSMファイルをLOADする
