@@ -12,16 +12,26 @@ import org.locationtech.jts.geom.LinearRing;
 import org.locationtech.jts.geom.Polygon;
 
 import osm.surveyor.osm.ElementWay;
+import osm.surveyor.osm.NdBean;
+import osm.surveyor.osm.way.WayModel;
 import osm.surveyor.osm.way.Wayable;
 
 public class BoundsCellBean {
 	private List<Coordinate> ndList = new ArrayList<>();
 	private HashMap<Long, Polygon> wayMap = new HashMap<>();
 	private Integer id;
+	private double maxlat;
+	private double maxlon;
+	private double minlat;
+	private double minlon;
 
 	public BoundsCellBean(Integer id, double maxlat, double maxlon, double minlat, double minlon) {
 		super();
 		this.id = id;
+		this.maxlat = maxlat;
+		this.maxlon = maxlon;
+		this.minlat = minlat;
+		this.minlon = minlon;
 		Coordinate nw = new Coordinate(maxlat, minlon);
 		Coordinate ne = new Coordinate(maxlat, maxlon);
 		Coordinate se = new Coordinate(minlat, maxlon);
@@ -103,5 +113,33 @@ public class BoundsCellBean {
 			return intersect.getArea();
 		}
 		return 0.0d;
+	}
+	
+	public boolean isDuplicateBoxcel(Wayable way) {
+		double wayMaxlat = -90.0d;
+		double wayMaxlon = -180.0d;
+		double wayMinlat = 90.0d;
+		double wayMinlon = 180.0d;
+		
+		for (NdBean nd : way.getNdList()) {
+			double lon = Double.valueOf(nd.getPoint().getLon());
+			if (lon > wayMaxlon) {
+				wayMaxlon = lon;
+			}
+			if (lon < wayMinlon) {
+				wayMinlon = lon;
+			}
+			double lat = Double.valueOf(nd.getPoint().getLat());
+			if (lat > wayMaxlat) {
+				wayMaxlat = lat;
+			}
+			if (lat < wayMinlat) {
+				wayMinlat = lat;
+			}
+		}
+		if ((wayMaxlon > minlon) && (wayMinlon < maxlon) && (wayMaxlat > minlat) && (wayMinlat < maxlat)) {
+			return true;
+		}
+		return false;
 	}
 }

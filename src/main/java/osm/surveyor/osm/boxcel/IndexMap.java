@@ -46,7 +46,7 @@ public class IndexMap extends HashMap<Integer, BoundsCellBean> implements Clonea
     public void putWayType(Wayable way) {
     	for (Map.Entry<Integer,BoundsCellBean> entry : this.entrySet()) {
     		BoundsCellBean cell = entry.getValue();
-    		if (cell.getIntersectArea(way.getPolygon()) > 0.0d) {
+    		if (cell.isDuplicateBoxcel(way)) {
     			way.addBoxel(cell.getId());
     			cell.putWay(way);
     		}

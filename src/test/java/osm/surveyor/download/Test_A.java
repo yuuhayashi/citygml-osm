@@ -5,10 +5,8 @@ import java.nio.file.Paths;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
-import org.junit.experimental.categories.Categories.ExcludeCategory;
 import org.junit.runners.MethodSorters;
 
-import osm.surveyor.DetailTests;
 import osm.surveyor.OnlineTests;
 import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.OsmBean;
@@ -16,6 +14,16 @@ import osm.surveyor.osm.way.Wayable;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Test_A extends DownloadTest {
+
+	@Test
+	public void test_0() {
+        try {
+        	;	// All OK
+		} catch (Exception e) {
+			e.fillInStackTrace();
+			fail(e.toString());
+		}
+	}
 
 	/**
 	 * 東京都大田区南六郷三丁目 "53392547_bldg_6697_op2"
@@ -65,7 +73,7 @@ public class Test_A extends DownloadTest {
 	 * INPUT: "sample_a3_bldg_6697_op2.org.osm"
 	 */
 	@Test
-	@Category(DetailTests.class)
+	@Category(OnlineTests.class)
 	public void test_a3() {
         try {
         	// (1)指定されたOSMファイルをLOADする
