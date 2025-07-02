@@ -37,8 +37,8 @@ public interface Areable {
 	public void setDuplicateArea(double area);
 	
 	/**
-	 * AREAの面積を求める。ただし、面積の単位は直行座標（メートルではない）
-	 * @return	ラインが閉じたエリア出ない場合は0.0d
+	 * このAREAのジオポリゴンを取得する
+	 * @return	ラインが閉じたエリアでない場合はnull
 	 */
 	default Polygon getPolygon() {
 		try {
@@ -56,32 +56,25 @@ public interface Areable {
 			return null;
 		}
 	}
+	
+	/**
+	 * このAREAのGeojson形式を取得する
+	 * @return	Geojson coordinates[]
+	 */
 	public Coordinate[] getCoordinates();
 
 	/**
-	 * このWAYと重複する面積が最大の WAY.id を返す
-	 * @param bean
-	 * @return
-	 * @throws Exception
+	 * このAREAの面積を内部変数に保持する
+	 * @param d
 	 */
-	public long getIntersectMaxArea(BoxcellMappable bean) throws Exception;
+	public void setArea(double d);
 	
 	/**
-	 * 指定のAREAと重複する部分の面積を取得する
-	 * @param way
-	 * @return
+	 * AREAの面積を求め、内部変数に保持する。
+	 * ただし、面積の単位は直行座標（メートルではない）
+	 * @return	ラインが閉じたエリアでない場合は 0.0
 	 */
-	public default double getIntersectArea(Areable way) {
-		List<Integer> list = getIntersectBoxels(way.getBoxels());
-		if (list.size() > 0) {
-	        Polygon polygon = this.getPolygon();
-	        if (polygon == null) {
-	        	return 0.0d;
-	        }
-	        return getIntersectArea(way.getPolygon());
-		}
-		return 0.0d;
-	}
+	public double getArea();
 	
 	/**
 	 * 指定の領域と重複する部分の面積を取得する
@@ -106,6 +99,11 @@ public interface Areable {
 		return 0.0d;
 	}
 	
+	/**
+	 * 指定されたBOXCELリストの内、このAREAのBOXCELと共通するBOXCEL-IDのリストを取得する
+	 * @param boxcels
+	 * @return
+	 */
 	public default List<Integer> getIntersectBoxels(List<Integer> boxcels) {
 		List<Integer> list = new ArrayList<>();
 		for (Integer key1 : getBoxels()) {
@@ -118,6 +116,23 @@ public interface Areable {
 		return list;
 	}
 		
+	/**
+	 * 指定のAREAと重複する部分の面積を取得する
+	 * @param way
+	 * @return
+	 */
+	public default double getIntersectArea(Areable way) {
+		List<Integer> list = getIntersectBoxels(way.getBoxels());
+		if (list.size() > 0) {
+	        Polygon polygon = this.getPolygon();
+	        if (polygon == null) {
+	        	return 0.0d;
+	        }
+	        return getIntersectArea(way.getPolygon());
+		}
+		return 0.0d;
+	}
+	
 	/**
 	 * このWAYと重複するWAYが存在するかどうか
 	 * @param db
@@ -147,10 +162,12 @@ public interface Areable {
 	}
 	
 	/**
-	 * AREAの面積を求める。ただし、面積の単位は直行座標（メートルではない）
-	 * @return	ラインが閉じたエリアでない場合は 0.0
+	 * このWAYと重複する面積が最大の WAY.id を返す
+	 * @param bean
+	 * @return
+	 * @throws Exception
 	 */
-	public double getArea();
+	public long getIntersectMaxArea(BoxcellMappable bean) throws Exception;
 	
 	public boolean isBuilding();
 	

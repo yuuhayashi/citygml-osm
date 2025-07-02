@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.geotools.geometry.jts.JTSFactoryFinder;
 import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.LinearRing;
 import org.locationtech.jts.geom.Polygon;
@@ -89,29 +88,6 @@ public class BoundsCellBean {
 
 	public void removeWay(ElementWay way) {
 		this.wayMap.remove(way.getId());
-	}
-	
-	/**
-	 * 指定のAREAと重複する領域の面積を取得する
-	 * @param way
-	 * @return
-	 */
-	public double getIntersectArea(Polygon way) {
-        Polygon polygon = this.getPolygon();
-        if (polygon == null) {
-        	return 0.0d;
-        }
-        if (way == null) {
-        	return 0.0d;
-        }
-        Geometry intersect = polygon.intersection(way);
-		if (intersect == null) {
-			return 0.0d;
-		}
-		if (intersect.isValid()) {
-			return intersect.getArea();
-		}
-		return 0.0d;
 	}
 	
 	public boolean isDuplicateBoxcel(Areable way) {

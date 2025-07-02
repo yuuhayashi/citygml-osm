@@ -64,12 +64,14 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
 	 */
 	private double area = 0d;
 	@XmlAttribute(name="area")
+	@Override
 	public void setArea(double d) {
 		this.area = d;
 	}
 
 	/**
-	 * AREAの面積を求める。ただし、面積の単位は直行座標（メートルではない）
+	 * AREAの面積を求め、内部変数に保持する。
+	 * ただし、面積の単位は直行座標（メートルではない）
 	 * @return	ラインが閉じたエリアでない場合は 0.0
 	 */
 	@Override
