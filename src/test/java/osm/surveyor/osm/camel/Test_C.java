@@ -22,7 +22,7 @@ import osm.surveyor.osm.BoundsBean;
 import osm.surveyor.osm.RelationBean;
 import osm.surveyor.osm.WayBean;
 import osm.surveyor.osm.way.WayModel;
-import osm.surveyor.osm.way.Wayable;
+import osm.surveyor.osm.way.Areable;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Test_C extends OsmUpdaterTest {
@@ -105,7 +105,7 @@ public class Test_C extends OsmUpdaterTest {
 	        
 	        List<WayBean> ways = mrg.getWays();
 	        assertNotNull(ways);
-	        for (Wayable way : ways) {
+	        for (Areable way : ways) {
 	        	for (NdModel nd : way.getNdList()) {
 	        		assertNotNull(mrg.getNode(nd.getRef()));
 	        	}
@@ -193,7 +193,7 @@ public class Test_C extends OsmUpdaterTest {
 	        
 	        List<WayBean> ways = mrg.getWays();
 	        assertNotNull(ways);
-	        for (Wayable way : ways) {
+	        for (Areable way : ways) {
 	        	for (NdModel nd : way.getNdList()) {
 	        		assertNotNull(mrg.getNode(nd.getRef()));
 	        	}

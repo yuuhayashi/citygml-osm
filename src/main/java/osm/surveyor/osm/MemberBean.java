@@ -9,7 +9,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-import osm.surveyor.osm.way.Wayable;
+import osm.surveyor.osm.way.Areable;
 
 /**
  * @code{
@@ -37,7 +37,7 @@ public class MemberBean implements Cloneable,Serializable {
 		return (this.type.equals("way"));
 	}
 	
-	public void setWay(Wayable way) {
+	public void setWay(Areable way) {
 		this.ref = way.getId();
 		this.type = "way";
 	}

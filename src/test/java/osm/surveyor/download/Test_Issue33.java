@@ -8,7 +8,7 @@ import org.junit.runners.MethodSorters;
 
 import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.OsmBean;
-import osm.surveyor.osm.way.Wayable;
+import osm.surveyor.osm.way.Areable;
 
 /**
  * Issue #33 第2段階のmrgファイルの作成処理の途中で、いくつかのファイルで下記のようなエラーが発生し、mrg.osmファイルが作成されません。
@@ -40,7 +40,7 @@ public class Test_Issue33 extends DownloadTest {
     		assertNotNull(org.getBounds());
 			assertNotNull(org.getRelationList());
 
-			for (Wayable way : org.getWays()) {
+			for (Areable way : org.getWays()) {
 				// "highway"WAYは存在しないこと
 				assertNull(way.getPoiBean().getTagValue("highway"));
 				// "landuse"WAYは存在しないこと
@@ -65,7 +65,7 @@ public class Test_Issue33 extends DownloadTest {
     		assertNotNull(org.getBounds());
 			assertNotNull(org.getRelationList());
 
-			for (Wayable way : org.getWays()) {
+			for (Areable way : org.getWays()) {
 				// "highway"WAYは存在しないこと
 				assertNull(way.getPoiBean().getTagValue("highway"));
 				// "landuse"WAYは存在しないこと

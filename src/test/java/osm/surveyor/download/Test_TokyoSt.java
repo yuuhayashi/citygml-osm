@@ -8,7 +8,7 @@ import org.junit.experimental.categories.Category;
 import osm.surveyor.OnlineTests;
 import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.OsmBean;
-import osm.surveyor.osm.way.Wayable;
+import osm.surveyor.osm.way.Areable;
 
 public class Test_TokyoSt extends DownloadTest {
 
@@ -38,7 +38,7 @@ public class Test_TokyoSt extends DownloadTest {
 			assertTrue(org.getRelationList().size() >= 2);
 			
 			assertTrue(org.getWays().size() > 10);
-			for (Wayable way : org.getWays()) {
+			for (Areable way : org.getWays()) {
 				// "highway"WAYは存在しないこと
 				assertNull(way.getPoiBean().getTagValue("highway"));
 				// "landuse"WAYは存在しないこと

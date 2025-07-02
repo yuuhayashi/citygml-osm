@@ -22,7 +22,7 @@ import osm.surveyor.osm.BoundsBean;
 import osm.surveyor.osm.RelationBean;
 import osm.surveyor.osm.WayBean;
 import osm.surveyor.osm.way.WayModel;
-import osm.surveyor.osm.way.Wayable;
+import osm.surveyor.osm.way.Areable;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Test_B extends OsmUpdaterTest {
@@ -158,13 +158,13 @@ public class Test_B extends OsmUpdaterTest {
 					if (mem.getRole().equals("outer")) {
 						outerCnt++;
 						assertEquals("way", mem.getType());
-						Wayable way = mrg.getWay(mem.getRef());
+						Areable way = mrg.getWay(mem.getRef());
 						assertNotNull(way);
 					}
 					if (mem.getRole().equals("inner")) {
 						innerCnt++;
 						assertEquals(mem.getType(), ("way"));
-						Wayable way = mrg.getWay(mem.getRef());
+						Areable way = mrg.getWay(mem.getRef());
 						assertNotNull(way);
 					}
 				}

@@ -17,7 +17,7 @@ import osm.surveyor.osm.boxcel.BoundsCellBean;
 import osm.surveyor.osm.boxcel.BoxcellMappable;
 import osm.surveyor.osm.boxcel.IndexMap;
 
-public interface Wayable {
+public interface Areable {
 	public List<Integer> getBoxels();
 	public void addBoxel(Integer boxelId);
 	
@@ -31,7 +31,7 @@ public interface Wayable {
 	public void setFix(boolean b);
 	
 	/**
-	 * あるエリアと承服している面積を一時的に記録する領域
+	 * あるエリアと重複している面積を一時的に記録する領域
 	 */
 	public double getDuplicateArea();
 	public void setDuplicateArea(double area);
@@ -67,28 +67,41 @@ public interface Wayable {
 	public long getIntersectMaxArea(BoxcellMappable bean) throws Exception;
 	
 	/**
-	 * 指定のAREAと重複する領域の面積を取得する
+	 * 指定のAREAと重複する部分の面積を取得する
 	 * @param way
 	 * @return
 	 */
-	public default double getIntersectArea(Wayable way) {
+	public default double getIntersectArea(Areable way) {
 		List<Integer> list = getIntersectBoxels(way.getBoxels());
 		if (list.size() > 0) {
 	        Polygon polygon = this.getPolygon();
 	        if (polygon == null) {
 	        	return 0.0d;
 	        }
-	        Polygon polygon2 = way.getPolygon();
-	        if (polygon2 == null) {
-	        	return 0.0d;
-	        }
-	        Geometry intersect = polygon.intersection(polygon2);
-			if (intersect == null) {
-				return 0.0d;
-			}
-			if (intersect.isValid()) {
-				return intersect.getArea();
-			}
+	        return getIntersectArea(way.getPolygon());
+		}
+		return 0.0d;
+	}
+	
+	/**
+	 * 指定の領域と重複する部分の面積を取得する
+	 * @param way
+	 * @return
+	 */
+	public default double getIntersectArea(Polygon polygon2) {
+        if (polygon2 == null) {
+        	return 0.0d;
+        }
+        Polygon polygon = this.getPolygon();
+        if (polygon == null) {
+        	return 0.0d;
+        }
+        Geometry intersect = polygon.intersection(polygon2);
+		if (intersect == null) {
+			return 0.0d;
+		}
+		if (intersect.isValid()) {
+			return intersect.getArea();
 		}
 		return 0.0d;
 	}
@@ -134,28 +147,9 @@ public interface Wayable {
 	}
 	
 	/**
-	 * 指定のAREAと重複する領域の面積を取得する
-	 * @param way
-	 * @return
+	 * AREAの面積を求める。ただし、面積の単位は直行座標（メートルではない）
+	 * @return	ラインが閉じたエリアでない場合は 0.0
 	 */
-	public default double getIntersectArea(Polygon way) {
-        Polygon polygon = this.getPolygon();
-        if (polygon == null) {
-        	return 0.0d;
-        }
-        if (way == null) {
-        	return 0.0d;
-        }
-        Geometry intersect = polygon.intersection(way);
-		if (intersect == null) {
-			return 0.0d;
-		}
-		if (intersect.isValid()) {
-			return intersect.getArea();
-		}
-		return 0.0d;
-	}
-	
 	public double getArea();
 	
 	public boolean isBuilding();
@@ -165,7 +159,7 @@ public interface Wayable {
 	public void setNdList(List<NdBean> ndList);
 	
 	//---------------- Cloneable ------------------
-	public Wayable clone();
+	public Areable clone();
 	
 	//---------------- PoiBean ------------------
 	public PoiBean getPoiBean();

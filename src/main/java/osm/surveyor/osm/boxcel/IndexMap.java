@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import osm.surveyor.osm.BoundsBean;
-import osm.surveyor.osm.way.Wayable;
+import osm.surveyor.osm.way.Areable;
 
 /**
  * hash key = cell.id
@@ -35,14 +35,14 @@ public class IndexMap extends HashMap<Integer, BoundsCellBean> implements Clonea
     	remove(cell.getId());
     }
     
-    public void removeWayBean(Wayable way) {
+    public void removeWayBean(Areable way) {
     	for (Map.Entry<Integer,BoundsCellBean> entry : this.entrySet()) {
     		BoundsCellBean cell = entry.getValue();
     		cell.removeWay(way);
     	}
     }
     
-    public void putWayType(Wayable way) {
+    public void putWayType(Areable way) {
     	for (Map.Entry<Integer,BoundsCellBean> entry : this.entrySet()) {
     		BoundsCellBean cell = entry.getValue();
     		if (cell.isDuplicateBoxcel(way)) {

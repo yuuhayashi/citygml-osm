@@ -16,7 +16,7 @@ import osm.surveyor.osm.RelationBean;
 import osm.surveyor.osm.TagBean;
 import osm.surveyor.osm.boxcel.BoxcellMappable;
 
-public abstract class WayModel extends PoiBean implements Cloneable, Serializable, Wayable {
+public abstract class WayModel extends PoiBean implements Cloneable, Serializable, Areable {
 	private static final long serialVersionUID = -7346140905805747739L;
 	
 	public WayModel(long id) {
@@ -70,8 +70,9 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
 
 	/**
 	 * AREAの面積を求める。ただし、面積の単位は直行座標（メートルではない）
-	 * @return	ラインが閉じたエリア出ない場合は0.0d
+	 * @return	ラインが閉じたエリアでない場合は 0.0
 	 */
+	@Override
 	public double getArea() {
 		if (this.area == 0d) {
 			this.area = getAreaValue();
@@ -135,7 +136,7 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
 		double max = 0.0d;
 		long maxid = 0;
 		
-        for (Wayable way : bean.getWayList(this)) {
+        for (Areable way : bean.getWayList(this)) {
         	if (!way.getFix()) {
     			if (way.getDuplicateArea() > max) {
     				max = way.getDuplicateArea();

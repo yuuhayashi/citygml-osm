@@ -19,7 +19,7 @@ import osm.surveyor.osm.boxcel.BoundsCellBean;
 import osm.surveyor.osm.boxcel.BoxcellMappable;
 import osm.surveyor.osm.boxcel.IndexMap;
 import osm.surveyor.osm.way.WayModel;
-import osm.surveyor.osm.way.Wayable;
+import osm.surveyor.osm.way.Areable;
 
 /**
  * CityGMLファイルをパースする
@@ -272,7 +272,7 @@ public class OsmBean implements Serializable,BoxcellMappable {
 	 * IndexMapから削除する
 	 * @param poi
 	 */
-	public void removeWay(Wayable poi) {
+	public void removeWay(Areable poi) {
     	int index = this.wayList.indexOf(poi);
     	if (index >= 0) {
     		this.wayList.remove(index);

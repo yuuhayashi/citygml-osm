@@ -13,7 +13,7 @@ import org.locationtech.jts.geom.Polygon;
 
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.NdBean;
-import osm.surveyor.osm.way.Wayable;
+import osm.surveyor.osm.way.Areable;
 
 public class BoundsCellBean {
 	private List<Coordinate> ndList = new ArrayList<>();
@@ -75,7 +75,7 @@ public class BoundsCellBean {
 		return this.wayMap;
 	}
 	
-	public void putWay(Wayable way) {
+	public void putWay(Areable way) {
 		this.wayMap.put(way.getId(), way.getPolygon());
 	}
 	
@@ -83,7 +83,7 @@ public class BoundsCellBean {
 		this.wayMap.put(Long.valueOf(way.getId()), way.getPolygon());
 	}
 	
-	public void removeWay(Wayable way) {
+	public void removeWay(Areable way) {
 		this.wayMap.remove(way.getId());
 	}
 
@@ -114,7 +114,7 @@ public class BoundsCellBean {
 		return 0.0d;
 	}
 	
-	public boolean isDuplicateBoxcel(Wayable way) {
+	public boolean isDuplicateBoxcel(Areable way) {
 		double wayMaxlat = -90.0d;
 		double wayMaxlon = -180.0d;
 		double wayMinlat = 90.0d;

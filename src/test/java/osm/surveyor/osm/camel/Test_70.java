@@ -19,7 +19,7 @@ import osm.surveyor.osm.WayBean;
 import osm.surveyor.gis.point.NdModel;
 import osm.surveyor.osm.BodyMap;
 import osm.surveyor.osm.BoundsBean;
-import osm.surveyor.osm.way.Wayable;
+import osm.surveyor.osm.way.Areable;
 
 /**
  * `mvn test -Dtest=osm.surveyor.update.Test_Test_70`
@@ -88,7 +88,7 @@ public class Test_70 extends OsmUpdaterTest {
 	        
 	        List<WayBean> ways = mrg.getWays();
 	        assertNotNull(ways);
-	        for (Wayable way : ways) {
+	        for (Areable way : ways) {
 	        	for (NdModel nd : way.getNdList()) {
 	        		assertNotNull(mrg.getNode(nd.getRef()));
 	        	}
