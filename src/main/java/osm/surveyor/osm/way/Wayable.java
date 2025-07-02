@@ -1,6 +1,7 @@
 package osm.surveyor.osm.way;
 
 import java.util.List;
+import java.util.Map;
 
 import org.geotools.geometry.jts.JTSFactoryFinder;
 import org.locationtech.jts.geom.Coordinate;
@@ -83,34 +84,21 @@ public interface Wayable {
 		for (Integer boxcelid : this.getBoxels()) {
 			BoundsCellBean cell = mapindex.get(boxcelid);
 			if (cell != null) {
-				Polygon poly = cell.getWayMap().get(Long.valueOf(this.getId()));
-				if (poly != null) {
-					if (getIntersectArea(poly) > 0.0d) {
-						return true;
+				Map<Long, Polygon> boxcelWeys =cell.getWayMap();
+				for (Long id : boxcelWeys.keySet()) {
+					if (id.longValue() != this.getId()) {
+						Polygon poly = boxcelWeys.get(id);
+						if (poly != null) {
+							if (getIntersectArea(poly) > 0.0d) {
+								return true;
+							}
+						}
 					}
 				}
 			}
 		}
         return false;
 	}
-	
-	/**
-	 * このWAYと重複するWAYが存在するかどうか
-	 * @param db
-	 * @param where
-	 * @return
-	 * @throws Exception
-	default boolean isIntersect(WayMap ways) throws Exception {
-        for (String k : ways.keySet()) {
-        	WayModel way = ways.get(k);
-        	double area = getIntersectArea(way);
-			if (area > 0.0d) {
-				return true;
-			}
-        }
-        return false;
-	}
-	 */
 	
 	/**
 	 * 指定のAREAと重複する領域の面積を取得する
