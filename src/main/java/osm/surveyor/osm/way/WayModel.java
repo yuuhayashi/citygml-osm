@@ -7,7 +7,6 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAttribute;
 
 import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.Polygon;
 
 import osm.surveyor.osm.MemberBean;
@@ -117,46 +116,6 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
 		return false;
 	}
 	
-	/**
-	 * 指定のAREAと重複する領域の面積を取得する
-	 * @param way
-	 * @return
-	 */
-	@Override
-	public double getIntersectArea(Wayable way) {
-		List<Integer> list = getIntersectBoxels(way.getBoxels());
-		if (list.size() > 0) {
-	        Polygon polygon = this.getPolygon();
-	        if (polygon == null) {
-	        	return 0.0d;
-	        }
-	        Polygon polygon2 = way.getPolygon();
-	        if (polygon2 == null) {
-	        	return 0.0d;
-	        }
-	        Geometry intersect = polygon.intersection(polygon2);
-			if (intersect == null) {
-				return 0.0d;
-			}
-			if (intersect.isValid()) {
-				return intersect.getArea();
-			}
-		}
-		return 0.0d;
-	}
-	
-	public List<Integer> getIntersectBoxels(List<Integer> boxcels) {
-		List<Integer> list = new ArrayList<>();
-		for (Integer key1 : this.boxels) {
-			for (Integer key2 : boxcels) {
-				if (key1.intValue() == key2.intValue()) {
-					list.add(key1);
-				}
-			}
-		}
-		return list;
-	}
-		
 	public static List<WayModel> toModelList(List<WayModel> beans) {
 		List<WayModel> models = new ArrayList<>();
 		for (WayModel bean : beans) {

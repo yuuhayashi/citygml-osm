@@ -1,5 +1,6 @@
 package osm.surveyor.osm.way;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -70,8 +71,40 @@ public interface Wayable {
 	 * @param way
 	 * @return
 	 */
-	public double getIntersectArea(Wayable way);
+	public default double getIntersectArea(Wayable way) {
+		List<Integer> list = getIntersectBoxels(way.getBoxels());
+		if (list.size() > 0) {
+	        Polygon polygon = this.getPolygon();
+	        if (polygon == null) {
+	        	return 0.0d;
+	        }
+	        Polygon polygon2 = way.getPolygon();
+	        if (polygon2 == null) {
+	        	return 0.0d;
+	        }
+	        Geometry intersect = polygon.intersection(polygon2);
+			if (intersect == null) {
+				return 0.0d;
+			}
+			if (intersect.isValid()) {
+				return intersect.getArea();
+			}
+		}
+		return 0.0d;
+	}
 	
+	public default List<Integer> getIntersectBoxels(List<Integer> boxcels) {
+		List<Integer> list = new ArrayList<>();
+		for (Integer key1 : getBoxels()) {
+			for (Integer key2 : boxcels) {
+				if (key1.intValue() == key2.intValue()) {
+					list.add(key1);
+				}
+			}
+		}
+		return list;
+	}
+		
 	/**
 	 * このWAYと重複するWAYが存在するかどうか
 	 * @param db
