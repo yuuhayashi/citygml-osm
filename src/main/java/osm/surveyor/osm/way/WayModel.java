@@ -84,6 +84,7 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
 	 * WAY IndexCellメンバー
 	 */
 	private List<Integer> boxels = new ArrayList<>();
+	@Override
 	public List<Integer> getBoxels() {
 		return this.boxels;
 	}

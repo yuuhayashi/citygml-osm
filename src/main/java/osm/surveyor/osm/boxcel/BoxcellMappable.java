@@ -87,6 +87,8 @@ public interface BoxcellMappable {
      */
     public List<WayModel> getWayList(WayModel wayBean);
     
+	public List<WayBean> getWays();
+	    
     /**
      * 指定されたWAYを取得する
      * @param id	WAY ID
@@ -95,6 +97,4 @@ public interface BoxcellMappable {
 	public WayModel getWay(long id);
 
 	public void putWay(WayModel way);
-    
-	public List<WayBean> getWays();
 }

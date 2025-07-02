@@ -96,24 +96,6 @@ public class OsmDom  implements BoxcellMappable {
     	return --this.idno;
     }
     
-    /**
-     * XML SAXパースを実行する
-     * 
-    public void parse(File file) throws ParserConfigurationException, SAXException, IOException, ParseException {
-    	parse(new FileInputStream(file));
-    }
-
-    public void parse(InputStream is) throws ParserConfigurationException, SAXException, IOException {
-        SAXParserFactory factory = SAXParserFactory.newInstance();
-        factory.setValidating(false);
-        
-        SAXParser parser = factory.newSAXParser();
-        try {
-			parser.parse(is, new OsmParser(this));
-		} catch (SAXParseException e) {}
-    }
-     */
-    
 	void addRelation(OsmDom ddom, ElementRelation relation) {
 		for (MemberBean member : relation.members) {
 			if (member.getType().equals("way")) {
@@ -346,9 +328,7 @@ public class OsmDom  implements BoxcellMappable {
 
 	@Override
 	public IndexMap getIndexMap() {
-		// TODO Auto-generated method stub
-		System.out.println("// TODO Auto-generated method stub");
-		return null;
+		return this.indexMap;
 	}
 
 	@Override

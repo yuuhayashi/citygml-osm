@@ -112,6 +112,7 @@ public class OsmBean implements Serializable,BoxcellMappable {
      * @param wayBean
      * @return	wayBeanと重複するwayListを返す
      */
+    @Override
 	public List<WayModel> getWayList(WayModel wayBean) {
     	Map<Long,WayModel> map = new HashMap<>();
     	
@@ -153,7 +154,7 @@ public class OsmBean implements Serializable,BoxcellMappable {
     	}
     	return list;
     }
-	
+
     /**
      * 指定されたWAYを取得する
      * @param id	WAY ID

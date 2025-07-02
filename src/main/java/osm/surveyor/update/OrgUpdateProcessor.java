@@ -199,7 +199,7 @@ public class OrgUpdateProcessor implements Processor {
 		}
 		List<Wayable> list = new ArrayList<>();
 		for (Wayable way : ways) {
-			if (!way.isIntersect(ways)) {
+			if (!way.isIntersect(org)) {
 				list.add(way);
 			}
 		}

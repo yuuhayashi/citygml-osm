@@ -13,7 +13,6 @@ import org.locationtech.jts.geom.Polygon;
 
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.NdBean;
-import osm.surveyor.osm.way.WayModel;
 import osm.surveyor.osm.way.Wayable;
 
 public class BoundsCellBean {
