@@ -1,5 +1,7 @@
 package osm.surveyor.osm.camel;
 
+import java.time.LocalTime;
+
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import osm.surveyor.osm.OsmDom;
@@ -14,9 +16,14 @@ public class RelationMargeProcessor implements Processor {
 	 */
 	@Override
 	public void process(Exchange exchange) throws Exception {
+		System.out.println(LocalTime.now() +"\tRelationMargeProcessor.relationMarge()");
 		String name = (String) exchange.getProperty(Exchange.FILE_NAME);
 		OsmDom osm = exchange.getIn().getBody(OsmDom.class);
+		System.out.print(LocalTime.now() +"\t");
+		
 		while((new RelationMarge(osm)).relationMarge());
+		
+		System.out.println();
 		exchange.getIn().setBody(osm);
 		exchange.setProperty(Exchange.FILE_NAME, name);
 	}
