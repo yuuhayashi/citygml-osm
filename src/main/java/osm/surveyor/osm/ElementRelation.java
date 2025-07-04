@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -14,6 +15,18 @@ public class ElementRelation extends PoiBean implements Cloneable,Serializable {
 	private static final long serialVersionUID = 1L;
 	public static final String RELATION = "relation";
 	public static final String MULTIPOLYGON = "multipolygon";
+	
+	/*
+	 * complete : このリレーションが他のリレーションと重複していない(独立)状態になっていることを示す
+	 */
+	@XmlTransient
+	private boolean complete = false;
+	public boolean isComplete() {
+		return this.complete;
+	}
+	public void setComplete(boolean f) {
+		this.complete = f;
+	}
 	
 	@XmlElement(name="member")
 	public ArrayList<MemberBean> members;
