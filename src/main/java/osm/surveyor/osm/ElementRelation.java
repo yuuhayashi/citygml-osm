@@ -28,6 +28,18 @@ public class ElementRelation extends PoiBean implements Cloneable,Serializable {
 		this.complete = f;
 	}
 	
+	/*
+	 * このリレーションが他のリレーションに取り込まれた状態であることを示す（無効なリレーション）
+	 */
+	@XmlTransient
+	private boolean marged = false;
+	public boolean isMarged() {
+		return this.marged;
+	}
+	public void setMarged(boolean b) {
+		this.marged = b;
+	}
+	
 	@XmlElement(name="member")
 	public ArrayList<MemberBean> members;
 	
