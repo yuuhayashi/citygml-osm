@@ -37,11 +37,13 @@ public class RelationMarge {
 				marged = relationMarge1((RelationBuilding)relation, checked);
 				for (String key : marged.keySet()) {
 					RelationBuilding del = (RelationBuilding)osm.relations.get(key);
+					del.setMarged(true);
 					osm.ways.remove(del.getOutlineWay(osm));
 					osm.relations.remove(del.getMultiPolygon(osm));
 					osm.relations.remove(del);
 					return true;
 				}
+				relation.setComplete(true);
 				checked.put(relation);
 			}
 		}
@@ -87,15 +89,15 @@ public class RelationMarge {
 				ways.put(srcWay);
 				ways.put(targetWay);
 				if ((new MargeFactory(osm, ways)).isDuplicateSegment()) {
-					src = matomeru(src, relation);
+					matomeru(src, relation);
 					return relation;
 				}
 			}
 		}
 		return null;
 	}
-		
-	RelationBuilding matomeru(RelationBuilding relation, RelationBuilding b) {
+	
+	void matomeru(RelationBuilding relation, RelationBuilding b) {
 		// 接続するリレーションのメンバーを取り込む
 		// Wayメンバーは全て取り込む
 		// RelationメンバーはInnerのみ取り込む。Outerは除外する
@@ -135,6 +137,5 @@ public class RelationMarge {
 		}
 		relation = (new OutlineFactory(osm)).createOutline(relation);
 		relation.margeTagValue(osm);
-		return relation;
 	}
 }
