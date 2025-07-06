@@ -119,6 +119,13 @@ public class OsmDom  implements BoxcellMappable {
 		ddom.indexMap.putWayType(way);
 	}
 	
+	public void removeWay(ElementWay elementWay) {
+		if (elementWay != null) {
+			this.indexMap.removeWayBean(elementWay);
+			this.ways.remove(elementWay);
+		}
+	}
+	
     public void export(PrintStream out) {
     	JAXB.marshal(this, out);
     }

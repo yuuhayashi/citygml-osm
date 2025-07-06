@@ -37,7 +37,8 @@ public class RelationMarge {
 				for (String key : marged.keySet()) {
 					RelationBuilding del = (RelationBuilding)osm.relations.get(key);
 					del.setMarged(true);
-					osm.ways.remove(del.getOutlineWay(osm));
+					osm.removeWay(del.getOutlineWay(osm));
+					
 					osm.relations.remove(del.getMultiPolygon(osm));
 					osm.relations.remove(del);
 					return true;
