@@ -1,6 +1,5 @@
 package osm.surveyor.osm.marge;
 
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +25,7 @@ public class RelationMarge {
      * OsmDom osm
      */
 	public boolean relationMarge() {
-		System.out.println(LocalTime.now() +"\tRelationMarge.relationMarge()");
+		System.out.print(".");
 		RelationMap checked = new RelationMap();
 		
 		// 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる
