@@ -32,19 +32,22 @@ public class RelationMarge {
 		for (String rKey : osm.relations.keySet()) {
 			ElementRelation relation = osm.relations.get(rKey);
 			if (relation.isBuilding()) {
-				RelationMap marged = new RelationMap();
-				marged = relationMarge1((RelationBuilding)relation, checked);
-				for (String key : marged.keySet()) {
-					RelationBuilding del = (RelationBuilding)osm.relations.get(key);
-					del.setMarged(true);
-					osm.removeWay(del.getOutlineWay(osm));
+				RelationMap marged = relationMarge1((RelationBuilding)relation, checked);
+				if (marged.size() > 0) {
+					for (String key : marged.keySet()) {
+						RelationBuilding del = (RelationBuilding)osm.relations.get(key);
+						del.setMarged(true);
+						osm.removeWay(del.getOutlineWay(osm));
 					
-					osm.relations.remove(del.getMultiPolygon(osm));
-					osm.relations.remove(del);
-					return true;
+						osm.relations.remove(del.getMultiPolygon(osm));
+						osm.relations.remove(del);
+						return true;
+					}
 				}
-				relation.setComplete(true);
-				checked.put(relation);
+				else {
+					relation.setComplete(true);
+					checked.put(relation);
+				}
 			}
 		}
 		return false;
