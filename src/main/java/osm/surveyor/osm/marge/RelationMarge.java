@@ -58,24 +58,22 @@ public class RelationMarge {
 	 */
 	RelationMap relationMarge1(RelationBuilding relation, RelationMap checked) {
 		RelationMap marged = new RelationMap();
-		if (checked.get(relation.getId()) != null) {
-			return marged;	// リレーションが処理済みなら何もしない
-		}
-		
-		// outline:WAYに接触するbuildingを抽出
-		RelationBuilding margedBuilding = null;
-		while ((margedBuilding = checkParts(checked, relation)) != null) {
-			checked.remove(margedBuilding);
-			marged.put(margedBuilding);
+		if (checked.get(relation.getId()) == null) {
+			// outline:WAYに接触するbuildingを抽出
+			RelationBuilding margedBuilding = null;
+			while ((margedBuilding = checkParts(checked, relation)) != null) {
+				checked.remove(margedBuilding);
+				marged.put(margedBuilding);
+			}
 		}
 		return marged;
 	}
 	
 	/**
-	 * リレーションMAPの中から指定したBuildingに接続するリレーションを取得する
+	 * `src`に接続するリレーションを`src`にマージする
 	 * @param checked	調査対象のリレーションリスト
-	 * @param src	指定のBuilding
-	 * @return	接続するリレーションがない場合はNULL
+	 * @param src	マージ先のBuilding
+	 * @return	マージされたリレーション
 	 */
 	private RelationBuilding checkParts(RelationMap checked, RelationBuilding src) {
 		ElementWay srcWay =  src.getOutlineWay(osm);
