@@ -360,7 +360,7 @@ public class CityModelParser extends DefaultHandler {
 		}		
     	else if(qName.equals("uro:surveyYear")){
 			if ((surveyYear != null) && (outSb != null)) {
-				surveyYear = checkNumberString(outSb.toString());
+				surveyYear = checkYearString(outSb.toString());
 				if ((building != null) && (surveyYear != null)) {
 					building.addTag("survey:date", surveyYear);
 				}
@@ -379,7 +379,7 @@ public class CityModelParser extends DefaultHandler {
 		}
     	else if(qName.equals("bldg:yearOfConstruction")){
 			if ((yearOfConstruction != null) && (outSb != null)) {
-				yearOfConstruction = outSb.toString();
+				yearOfConstruction = checkYearString(outSb.toString());
 				if (building != null) {
 					building.addTag("start_date", yearOfConstruction);
 				}
@@ -699,6 +699,22 @@ public class CityModelParser extends DefaultHandler {
 			}
 		}
     	return null;
+    }
+    
+    public static String checkYearString(String numberStr) {
+    	try {
+    		Integer i = Integer.valueOf(numberStr);
+    		if (i.intValue() >= 2100) {
+    			return null;
+    		}
+    		else if (i.intValue() <= 1800) {
+    			return null;
+    		}
+    		return trim0(i.toString());
+    	}
+    	catch(Exception e) {
+    		return null;
+    	}
     }
     
     public static String checkNumberString(String numberStr) {

@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import osm.surveyor.osm.BoundsBean;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 
@@ -45,6 +46,8 @@ public class CityModelParserTest {
 	        
 	        
 	        assertNotNull(target.getGml());
+	        BoundsBean bounds = target.getGml().getBounds();
+	        assertNotNull(bounds);
 	        
 	        assertNotNull(dom);
 	        assertNotNull(dom.getWayList());
@@ -85,6 +88,44 @@ public class CityModelParserTest {
 	        assertNotNull(surveyYear);
 	        assertFalse(surveyYear.isEmpty());
 			assertEquals("2024", surveyYear);
+		}
+		catch(Exception e) {
+			fail();
+		}
+	}
+
+	/**
+	 * Isssue#137 : 山口県周南市のgmlデータを変換できません。 
+	 * 	Issue#137 `<uro:surveyYear>0001</uro:surveyYear>`
+	 * 	Issue#137 `<bldg:yearOfConstruction>0001</bldg:yearOfConstruction>`
+	 */
+	@Test
+	public void test137() {
+		File gmlfile = new File("src/test/resources/51311568_bldg_6697_op.gml");
+				
+        // GMLファイルをパースする
+		try {
+	        OsmDom dom = new OsmDom();
+	        CitygmlFile target = new CitygmlFile(gmlfile, dom);
+	        target.parse();
+	        
+	        CityModelParser gml = target.getGml();
+	        assertNotNull(gml);
+	        BoundsBean bounds = target.getGml().getBounds();
+	        assertNotNull(bounds);
+	        assertEquals("34.13499400739385", bounds.minlat);
+	        
+	        assertNotNull(dom);
+	        assertNotNull(dom.getWayList());
+	        assertTrue(225 < dom.getWayList().size());
+	        
+	        // Issue#137 `<uro:surveyYear>0001</uro:surveyYear>`
+	        String surveyYear = gml.getSurveyYear();
+	        assertNull(surveyYear);
+	        
+	        // Issue#137 `<bldg:yearOfConstruction>0001</bldg:yearOfConstruction>`
+	        String constructionYear = gml.getYearOfConstruction();
+	        assertNull(constructionYear);
 		}
 		catch(Exception e) {
 			fail();
