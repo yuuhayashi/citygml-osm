@@ -80,6 +80,9 @@ public class RelationMarge {
 	 */
 	private RelationBuilding checkParts(RelationMap checked, RelationBuilding src) {
 		ElementWay srcWay =  src.getOutlineWay(osm);
+		if (srcWay == null) {
+			return null;
+		}
 
 		for (String relationid : checked.keySet()) {
 			RelationBuilding relation = (RelationBuilding)checked.get(relationid);

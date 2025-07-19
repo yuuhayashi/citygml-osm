@@ -69,7 +69,7 @@ public class OsmBean implements Serializable,BoxcellMappable {
 	}
 
 	@Override
-	public void setInxevMap(IndexMap indexMap) {
+	public void setIndexMap(IndexMap indexMap) {
 		this.indexMap = indexMap;
 	}
 	
