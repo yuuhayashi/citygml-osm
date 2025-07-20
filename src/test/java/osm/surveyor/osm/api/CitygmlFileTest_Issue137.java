@@ -36,7 +36,8 @@ public class CitygmlFileTest_Issue137 extends GmlLoadRouteTest {
 	        List<WayModel> wayList = dom.getWayList();
 			assertNotNull(wayList);
 			assertNotEquals(0, wayList.size());
-	        assertTrue(225 <= wayList.size());
+	        assertEquals(227, wayList.size());
+	        assertEquals(2, dom.getRelations().size());
 	        
 			for (ElementRelation relation : dom.getRelations()) {
 				List<TagBean> tags = relation.getTagList();
@@ -65,7 +66,7 @@ public class CitygmlFileTest_Issue137 extends GmlLoadRouteTest {
 	        // OSMファイルに書き出す
 			File domfile = new File("OsmDom.osm");
 	        dom.export(domfile);
-	        assertTrue(domfile.exists());	        
+	        assertTrue(domfile.exists());
 	        
 	        // TODO OSMファイルをパースする
 		} catch (Exception e) {

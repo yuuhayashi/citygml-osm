@@ -249,6 +249,18 @@ public class OsmDom  implements BoxcellMappable {
 	 */
 	public void gerbageWay() {
 		System.out.println(LocalTime.now() +"\tOsmDom.gerbageWay()");
+		WayMap filter = new WayMap();
+		for (String id : this.wayMap.keySet()) {
+			ElementWay way = (ElementWay)this.wayMap.get(id);
+			if (way.getNdList().size() <= 2) {
+				filter.put(way);
+			}
+		}
+		for (String id : filter.keySet()) {
+			ElementWay way = (ElementWay) filter.get(id);
+			this.getIndexMap().remove(Integer.parseInt(way.getIdstr()));
+			this.getWayMap().remove(way.getId());
+		}
 		WayMap map = new WayMap();
 		for (String id : this.wayMap.keySet()) {
 			ElementWay way = (ElementWay)this.wayMap.get(id);

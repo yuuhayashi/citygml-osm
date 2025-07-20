@@ -71,6 +71,16 @@ public abstract class NdModel implements Cloneable {
 		this.point = null;
 		return this;
     }
+    
+    /**
+     * ２つの ND が同一位置にあるかどうか(高さは考慮しない）
+     * @param a
+     * @param b
+     * @return	同一位置ならば True
+     */
+    public boolean isSamePosition(NdModel b) {
+    	return this.getPoint().equals(b.getPoint());
+    }
 	
 	//--------------------------------------
 

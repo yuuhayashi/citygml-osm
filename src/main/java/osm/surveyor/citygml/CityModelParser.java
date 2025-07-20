@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.StringTokenizer;
 
 import org.xml.sax.Attributes;
@@ -15,6 +16,7 @@ import org.xml.sax.helpers.DefaultHandler;
 import lombok.Getter;
 import osm.surveyor.osm.BoundsBean;
 import osm.surveyor.osm.MemberBean;
+import osm.surveyor.osm.NdBean;
 import osm.surveyor.osm.NodeBean;
 import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.TagBean;
@@ -97,6 +99,7 @@ public class CityModelParser extends DefaultHandler {
 	RelationBuilding nonLod0 = null; 				// <bldg:lod0RoofEdge/>
 	RelationBuilding roof = null;					// <bldg:lod0RoofEdge/>
 	RelationBuilding footPrint = null;				// <bldg:lod0FootPrint/>
+	boolean solidWay = false;						// 
 	ArrayList<ElementWay> solids = null;			// <bldg:lod1Solid/>
 	RelationMultipolygon multipolygon = null;		// <gml:Polygon/>
 	MemberBean member = null;					// <gml:exterior/>,<gml:interior/>
@@ -197,6 +200,7 @@ public class CityModelParser extends DefaultHandler {
 			edgeFull = false;
 		}
 		else if(qName.equals("bldg:lod1Solid")){
+			solidWay = false;
 			solids = new ArrayList<>();
 		}
 		else if(qName.equals("gml:Polygon")){
@@ -549,20 +553,26 @@ public class CityModelParser extends DefaultHandler {
 							edgeFull = true;
 						}
 						else {
-							if ((name != null) && !name.isEmpty()) {
-								way.addTag("name", name);
+							// Issue #137
+							if (!existSamePositionWay(solids, way)) {
+								if ((name != null) && !name.isEmpty()) {
+									way.addTag("name", name);
+								}
+								ElementWay part = way.copy(osm.getNewId());
+								osm.getWayMap().put(part);
+								
+								if (nonLod0 == null) {
+									nonLod0 = new RelationBuilding(osm.getNewId());
+								}
+								nonLod0.copyTag(part);
+								nonLod0.addMember(part, "part");
 							}
-							ElementWay part = way.copy(osm.getNewId());
-							osm.getWayMap().put(part);
-							
-							if (nonLod0 == null) {
-								nonLod0 = new RelationBuilding(osm.getNewId());
+							else {
+								way = null;
 							}
-							nonLod0.copyTag(part);
-							nonLod0.addMember(part, "part");
 						}
 					}
-					if (multipolygon != null) {
+					if ((multipolygon != null) && (way != null)) {
 						ElementWay outer = way.copy(osm.getNewId());
 						multipolygon.copyTag(outer);
 						multipolygon.removeTag("ref:MLIT_PLATEAU");
@@ -575,7 +585,7 @@ public class CityModelParser extends DefaultHandler {
 					}
 					member = null;
 				}
-				if (solids != null) {
+				if ((solids != null) && (way != null)) {
 					solids.add(way.clone());
 				}
 				way = null;
@@ -603,7 +613,12 @@ public class CityModelParser extends DefaultHandler {
 			// <gml:LinearRing>
 			// AREAに変更する
 			if (way != null) {
-				way.toArea(this.osm.getIndexMap());
+				if (isOverlapped(way.getNdList())) {
+					way = null;
+				}
+				else {
+					way.toArea(this.osm.getIndexMap());
+				}
 			}
 		}
 		else if(qName.equals("gml:posList")){
@@ -707,6 +722,57 @@ public class CityModelParser extends DefaultHandler {
     	if (outSb != null) {
     		outSb.append(new String(ch, offset, length));
     	}
+    }
+    
+    private boolean existSamePositionWay(ArrayList<ElementWay> solids, ElementWay way) {
+    	for (ElementWay solid : solids) {
+    		if (isSamePositionWay(way, solid)) {
+    			return true;
+    		}
+    	}
+    	return false;
+    }
+    
+    private boolean isSamePositionWay(ElementWay a, ElementWay b) {
+    	List<NdBean> aNds = a.getNdList();
+    	List<NdBean> bNds = b.getNdList();
+		if (aNds.size() == bNds.size()) {
+			NdBean[] aNd = aNds.toArray(new NdBean[aNds.size()]);
+			NdBean[] bNd = aNds.toArray(new NdBean[aNds.size()]);
+	    	for (int i = 0; i < aNds.size(); i++) {
+				if (!aNd[i].equals(bNd[i])) {
+					return false;
+				}	    		
+	    	}
+			return true;
+		}
+		else {
+			return false;
+		}
+    }
+    
+    /**
+     * 「ウェイが同じ区間を二度含んでいる」に該当するかどうかをチェックする
+     * 「自身で交差するウェイ」
+     * 「ウェイが閉じていない」
+     * @return  重なっていればTrue
+     */
+    boolean isOverlapped(List<NdBean> nds) {
+    	if (nds.size() <= 2) {
+    		return true;
+    	}
+    	NdBean[] array = nds.toArray(new NdBean[nds.size()]);
+    	if (!array[0].isSamePosition(array[nds.size()-1])) {
+    		return true;	// 「ウェイが閉じていない」
+    	}
+    	for (int i = 1; i < nds.size(); i++) {
+        	for (int j = (i+1); j < nds.size(); j++) {
+        		if (array[i].isSamePosition(array[j])) {
+        			return true;	// 「自身で交差するウェイ」「ウェイが同じ区間を二度含んでいる(1514)」
+        		}
+        	}
+    	}
+    	return false;
     }
     
     /**
