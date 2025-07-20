@@ -14,9 +14,9 @@ public class CitygmlFileTest_C extends GmlLoadRouteTest {
 	public void testSample_c() {
         OsmDom osm = testdo("./src/test/resources/sample_c_bldg_6697_op2.gml");
         try {
-			assertEquals(1, osm.relations.size());
-			for (String id : osm.relations.keySet()) {
-				ElementRelation relation = osm.relations.get(id);
+			assertEquals(1, osm.relationMap.size());
+			for (String id : osm.relationMap.keySet()) {
+				ElementRelation relation = osm.relationMap.get(id);
 				assertNotNull(relation);
 				String type = relation.getTagValue("type");
 				if (type.equals("building")) {
@@ -42,7 +42,7 @@ public class CitygmlFileTest_C extends GmlLoadRouteTest {
 						if (mem.getRole().equals("outline")) {
 							outlineCnt++;
 							assertEquals(mem.getType(), ("way"));
-							ElementWay way = (ElementWay)osm.ways.get(Long.toString(mem.getRef()));
+							ElementWay way = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef()));
 							assertNotNull(way);
 							assertNull(way.getTagValue("ref:MLIT_PLATEAU"));
 							assertNull(way.getTagValue("addr:full"));
@@ -56,7 +56,7 @@ public class CitygmlFileTest_C extends GmlLoadRouteTest {
 						if (mem.getRole().equals("part")) {
 							partCnt++;
 							assertEquals(mem.getType(), ("way"));
-							ElementWay way = (ElementWay)osm.ways.get(Long.toString(mem.getRef()));
+							ElementWay way = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef()));
 							assertNotNull(way);
 							if (way.getTagValue("ref:MLIT_PLATEAU") != null) {
 								assertNotNull(way.getTagValue("ref:MLIT_PLATEAU"));
@@ -97,7 +97,7 @@ public class CitygmlFileTest_C extends GmlLoadRouteTest {
 						if (mem.getRole().equals("outer")) {
 							outerCnt++;
 							assertEquals(mem.getType(), ("way"));
-							ElementWay way = (ElementWay)osm.ways.get(Long.toString(mem.getRef()));
+							ElementWay way = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef()));
 							assertNotNull(way);
 							assertEquals(1, way.getTagList().size());
 							assertNull(way.getTagValue("ref:MLIT_PLATEAU"));
@@ -105,7 +105,7 @@ public class CitygmlFileTest_C extends GmlLoadRouteTest {
 						if (mem.getRole().equals("inner")) {
 							innerCnt++;
 							assertEquals(mem.getType(), ("way"));
-							ElementWay way = (ElementWay)osm.ways.get(Long.toString(mem.getRef()));
+							ElementWay way = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef()));
 							assertNotNull(way);
 							assertEquals(1, way.getTagList().size());
 						}
@@ -127,8 +127,8 @@ public class CitygmlFileTest_C extends GmlLoadRouteTest {
 	public void testSample_cc() {
 	    OsmDom osm = testdo("./src/test/resources/sample_cc_bldg_6697_op2.gml");
 	    try {
-			for (String id : osm.relations.keySet()) {
-				ElementRelation relation = osm.relations.get(id);
+			for (String id : osm.relationMap.keySet()) {
+				ElementRelation relation = osm.relationMap.get(id);
 				assertNotNull(relation);
 				String type = relation.getTagValue("type");
 				if (type.equals("building")) {
@@ -148,7 +148,7 @@ public class CitygmlFileTest_C extends GmlLoadRouteTest {
 						if (mem.getRole().equals("outline")) {
 							outlineCnt++;
 							assertEquals(mem.getType(), ("way"));
-							ElementWay way = (ElementWay)osm.ways.get(Long.toString(mem.getRef()));
+							ElementWay way = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef()));
 							assertNotNull(way);
 							assertNull(way.getTagValue("ref:MLIT_PLATEAU"));
 							assertNull(way.getTagValue("addr:full"));
@@ -163,7 +163,7 @@ public class CitygmlFileTest_C extends GmlLoadRouteTest {
 						if (mem.getRole().equals("part")) {
 							partCnt++;
 							assertEquals(mem.getType(), ("way"));
-							ElementWay way = (ElementWay)osm.ways.get(Long.toString(mem.getRef()));
+							ElementWay way = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef()));
 							assertNotNull(way);
 							assertNotNull(way.getTagValue("ref:MLIT_PLATEAU"));
 							assertNull(way.getTagValue("addr:full"));
@@ -178,7 +178,7 @@ public class CitygmlFileTest_C extends GmlLoadRouteTest {
 					assertEquals(4, relation.members.size());
 				}
 			}
-			assertEquals(1, osm.relations.size());
+			assertEquals(1, osm.relationMap.size());
 		} catch (Exception e) {
 			e.fillInStackTrace();
 			fail(e.toString());

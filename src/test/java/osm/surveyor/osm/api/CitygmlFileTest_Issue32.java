@@ -21,10 +21,10 @@ public class CitygmlFileTest_Issue32 extends GmlLoadRouteTest {
 	public void test53394610() {
 		OsmDom osm = testdo("./src/test/resources/Issue32_13101-bldg-365.gml");
 		try {
-			assertNotNull(osm.ways);
-			assertSame(1, osm.ways.size());
-			for (String wayid : osm.ways.keySet()) {
-				ElementWay way = (ElementWay)osm.ways.get(wayid);
+			assertNotNull(osm.getWayMap());
+			assertSame(1, osm.getWayMap().size());
+			for (String wayid : osm.getWayMap().keySet()) {
+				ElementWay way = (ElementWay)osm.getWayMap().get(wayid);
 				assertSame(16, way.getNdList().size());
 			}
 			assertNotNull(osm.nodes);
@@ -39,7 +39,7 @@ public class CitygmlFileTest_Issue32 extends GmlLoadRouteTest {
 	public void test50303564() {
 		OsmDom osm = testdo("./src/test/resources/Issue32_40205-bldg-95937.gml");
 		try {
-			assertNotNull(osm.ways);
+			assertNotNull(osm.getWayMap());
 			assertNotNull(osm.nodes);
 			System.out.println("osm.nodes.size() = "+ osm.nodes.size());
 			assertSame(66, osm.nodes.size());

@@ -18,10 +18,10 @@ public class CitygmlFileTest_AA extends GmlLoadRouteTest {
 	public void testSample_aa() {
         OsmDom osm = testdo("./src/test/resources/sample_aa_bldg_6697_op2.gml");
         try {
-			assertNotNull(osm.relations);
-			assertEquals(0, osm.relations.size());
-			for (String id : osm.ways.keySet()) {
-				ElementWay way = (ElementWay)osm.ways.get(id);
+			assertNotNull(osm.relationMap);
+			assertEquals(0, osm.relationMap.size());
+			for (String id : osm.getWayMap().keySet()) {
+				ElementWay way = (ElementWay)osm.getWayMap().get(id);
 				assertNotNull(way);
 				if (way.getTagValue("ref:MLIT_PLATEAU").endsWith("13111-bldg-141846")) {
 					assertEquals(way.getTagValue("ref:MLIT_PLATEAU"), ("13111-bldg-141846"));
@@ -32,8 +32,8 @@ public class CitygmlFileTest_AA extends GmlLoadRouteTest {
 					//assertEquals(5, way.getTagList().size());
 				}
 			}
-			assertEquals(1, osm.ways.size());
-			assertEquals(0, osm.relations.size());
+			assertEquals(1, osm.getWayMap().size());
+			assertEquals(0, osm.relationMap.size());
 		} catch (Exception e) {
 			e.fillInStackTrace();
 			fail(e.toString());
@@ -49,9 +49,9 @@ public class CitygmlFileTest_AA extends GmlLoadRouteTest {
 	public void testSample_ab() {
         OsmDom osm = testdo("./src/test/resources/sample_ab_bldg_6697_op2.gml");
         try {
-			assertNotNull(osm.relations);
-			for (String id : osm.ways.keySet()) {
-				ElementWay way = (ElementWay)osm.ways.get(id);
+			assertNotNull(osm.relationMap);
+			for (String id : osm.getWayMap().keySet()) {
+				ElementWay way = (ElementWay)osm.getWayMap().get(id);
 				assertNotNull(way);
 				assertTrue(way.getTagValue("ref:MLIT_PLATEAU").startsWith("13111-bldg-"));
 				assertNull(way.getTagValue("addr:full"));
@@ -61,8 +61,8 @@ public class CitygmlFileTest_AA extends GmlLoadRouteTest {
 				assertEquals(way.getTagValue("building"), ("yes"));
 				//assertTrue(way.getTagList().size() >= 6);
 			}
-			assertEquals(2, osm.ways.size());
-			assertEquals(0, osm.relations.size());
+			assertEquals(2, osm.getWayMap().size());
+			assertEquals(0, osm.relationMap.size());
 		} catch (Exception e) {
 			e.fillInStackTrace();
 			fail(e.toString());

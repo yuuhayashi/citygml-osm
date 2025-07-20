@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Polygon;
@@ -16,11 +19,17 @@ import osm.surveyor.osm.RelationBean;
 import osm.surveyor.osm.TagBean;
 import osm.surveyor.osm.boxcel.BoxcellMappable;
 
+@XmlRootElement(name="way")
 public abstract class WayModel extends PoiBean implements Cloneable, Serializable, Areable {
 	private static final long serialVersionUID = -7346140905805747739L;
 	
 	public WayModel(long id) {
 		super(id);
+		ndList = new ArrayList<>();
+	}
+
+	public WayModel() {
+		this(0);
 		ndList = new ArrayList<>();
 	}
 
@@ -36,9 +45,12 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
     public void setNdList(List<NdBean> ndList) {
 		this.ndList = ndList;
     }
+    
+	@XmlElement(name="nd")
     public List<NdBean> getNdList() {
     	return this.ndList;
     }
+	
 	public Coordinate[] getCoordinates() {
 		ArrayList<Coordinate> list = new ArrayList<>();
 		for (NdBean nd : getNdList()) {
@@ -167,6 +179,8 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
 	 * あるエリアと重複している面積を一時的に記録する領域
 	 */
 	private double duplicateArea = 0.0;
+	
+	@XmlTransient
 	public double getDuplicateArea() {
 		return this.duplicateArea;
 	}

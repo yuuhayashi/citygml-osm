@@ -1,7 +1,5 @@
 package osm.surveyor.gis.point;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import org.locationtech.jts.geom.Coordinate;
@@ -12,7 +10,6 @@ import org.w3c.dom.Node;
 import osm.surveyor.osm.NodeBean;
 import osm.surveyor.osm.OsmPoint;
 
-@XmlRootElement(name="nd")
 public abstract class NdModel implements Cloneable {
 
 	public NdModel set(long id, OsmPoint point) {
@@ -26,10 +23,10 @@ public abstract class NdModel implements Cloneable {
 	}
 	
 	private long ref = 0;
+	
 	public long getRef() {
 		return ref;
 	}
-	@XmlAttribute(name="ref")
 	public void setRef(long ref) {
 		this.ref = ref;
 	}
@@ -39,6 +36,7 @@ public abstract class NdModel implements Cloneable {
 	public void setPoint(PointModel point) {
 		this.point = point;
 	}
+    @XmlTransient
 	public PointModel getPoint() {
 		return this.point;
 	}

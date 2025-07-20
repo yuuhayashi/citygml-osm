@@ -14,7 +14,7 @@ public class CitygmlFileTest_53392547 extends GmlLoadRouteTest {
 		try {
 			OsmDom osm = testdo("./src/test/resources/53392547_bldg_6697_op2.gml");
 			assertNotNull(osm);
-			assertNotNull(osm.ways);
+			assertNotNull(osm.getWayMap());
 		} catch (Exception e) {
 			e.fillInStackTrace();
 			fail(e.toString());

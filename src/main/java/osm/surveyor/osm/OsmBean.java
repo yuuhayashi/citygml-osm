@@ -12,6 +12,7 @@ import javax.xml.bind.JAXB;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.locationtech.jts.geom.Polygon;
 
@@ -52,8 +53,7 @@ public class OsmBean implements Serializable,BoxcellMappable {
     }
 
 	private BoundsBean bounds;
-	private IndexMap indexMap = new IndexMap();
-	
+
     @XmlElement(name="bounds")
     public BoundsBean getBounds() {
 		return this.bounds;
@@ -63,13 +63,15 @@ public class OsmBean implements Serializable,BoxcellMappable {
     	this.indexMap.setBounds(bounds);
     }
     
-	@Override
+    @XmlTransient
+	private IndexMap indexMap = new IndexMap();
+	
+    @XmlTransient
 	public IndexMap getIndexMap() {
 		return this.indexMap;
 	}
 
-	@Override
-	public void setIndexMap(IndexMap indexMap) {
+    public void setIndexMap(IndexMap indexMap) {
 		this.indexMap = indexMap;
 	}
 	

@@ -18,8 +18,8 @@ public class BuildingGarbage {
 
 	/**
 	 * メンバーが一つしかないRelation:building を削除する
-	 * @param relations
-	 * @param ways
+	 * @param relationMap
+	 * @param wayMap
 	 */
 	public void garbage() {
 		while (relationRemove());
@@ -28,29 +28,29 @@ public class BuildingGarbage {
     // メンバーが一つしかないRelation:building を削除する
 	// メンバーが一つしかないRelation:multipolygon と polygon:member を削除する
 	boolean relationRemove() {
-		for (String rKey : osm.relations.keySet()) {
-			ElementRelation relation = osm.relations.get(rKey);
+		for (String rKey : osm.relationMap.keySet()) {
+			ElementRelation relation = osm.relationMap.get(rKey);
 			int memberCnt = relation.members.size();
 			if (memberCnt == 0) {
 				preDeleteMembers(Long.parseLong(rKey));
-				osm.relations.remove(rKey);
+				osm.relationMap.remove(rKey);
 				return true;
 			}
 			else if (memberCnt == 1) {
 				if (relation.isMultipolygon()) {
 					for (MemberBean member : relation.members) {
-						ElementWay way = (ElementWay)osm.ways.get(member.getRef());
+						ElementWay way = (ElementWay)osm.getWayMap().get(member.getRef());
 						if (way != null) {
 							way.member = true;
 							relation.removeMember(way.getId());
-							osm.ways.remove(way);
+							osm.getWayMap().remove(way);
 							return true;
 						}
 					}
 				}
 				if (relation.isBuilding()) {
 					for (MemberBean member : relation.members) {
-						ElementWay way = (ElementWay)osm.ways.get(member.getRef());
+						ElementWay way = (ElementWay)osm.getWayMap().get(member.getRef());
 						if (way != null) {
 							way.member = false;
 							copyTag(relation.getTagList(), way);
@@ -73,8 +73,8 @@ public class BuildingGarbage {
 		while(preDeleteMember(id));
 	}
 	private boolean preDeleteMember(long id) {
-		for (String relationid : osm.relations.keySet()) {
-			ElementRelation relation = osm.relations.get(relationid);
+		for (String relationid : osm.relationMap.keySet()) {
+			ElementRelation relation = osm.relationMap.get(relationid);
 			for (MemberBean member : relation.members) {
 				if (member.getRef() == id) {
 					relation.removeMember(id);

@@ -23,13 +23,13 @@ public class OutlineFactory {
 	 * - Relation->member:role=port のoutlineを作成する
 	 * - 
 	 * 
-	 * @param relations
+	 * @param relationMap
 	 */
 	public void relationOutline() {
 		RelationMap map = new RelationMap();
 				
-		for (String rKey : osm.relations.keySet()) {
-			ElementRelation relation = osm.relations.get(rKey);
+		for (String rKey : osm.relationMap.keySet()) {
+			ElementRelation relation = osm.relationMap.get(rKey);
 			if (relation.isBuilding()) {
 				map.put(createOutline((RelationBuilding)relation));
 			}
@@ -43,20 +43,20 @@ public class OutlineFactory {
 		String minele = osm.getMinEle(building);
 		String maxheight = osm.getMaxHeight(building);
 		RelationMultipolygon multi = null;
-		MargeFactory factory = (new MargeFactory(osm, osm.ways)).createOutline(building);
+		MargeFactory factory = (new MargeFactory(osm, osm.getWayMap())).createOutline(building);
 		OsmLine outer = factory.getOuter();
 		if (outer != null) {
 			// OUTLINEをWAYリストに登録
 			ElementWay aWay = new ElementWay(osm.getNewId());
 			aWay.replaceNds(outer);
-			aWay.toArea(this.osm.indexMap);
+			aWay.toArea(this.osm.getIndexMap());
 			aWay.member = true;
 			
 			ArrayList<MemberBean> delPolygonlist = new ArrayList<>();
 			for (MemberBean mem : building.members) {
 				if (mem.getType().equals(ElementRelation.RELATION)) {
 					if (multi == null) {
-						multi = (RelationMultipolygon)osm.relations.get(mem.getRef());
+						multi = (RelationMultipolygon)osm.relationMap.get(mem.getRef());
 						if (multi != null) {
 							ArrayList<MemberBean> dellist = new ArrayList<>();
 							for (MemberBean outerMem : multi.members) {
@@ -71,7 +71,7 @@ public class OutlineFactory {
 					}
 					else {
 						if (mem.getRef() != multi.getId()) {
-							RelationMultipolygon addMulti = (RelationMultipolygon)osm.relations.get(mem.getRef());
+							RelationMultipolygon addMulti = (RelationMultipolygon)osm.relationMap.get(mem.getRef());
 							ArrayList<MemberBean> addlist = new ArrayList<>();
 							for (MemberBean addMem : addMulti.members) {
 								if (addMem.getRole().equals("inner")) {
@@ -79,7 +79,7 @@ public class OutlineFactory {
 								}
 							}
 							for (MemberBean addMem : addlist) {
-								multi.addMember((ElementWay)osm.ways.get(addMem.getRef()), "inner");
+								multi.addMember((ElementWay)osm.getWayMap().get(addMem.getRef()), "inner");
 							}
 							delPolygonlist.add(mem);
 						}
@@ -92,7 +92,7 @@ public class OutlineFactory {
 
 			if (multi != null) {
 				// マルチポリゴンが存在する場合は、マルチポリゴンにaWayを追加する
-				osm.ways.put(aWay);
+				osm.getWayMap().put(aWay);
 				multi.addMember(aWay, "outer");
 			}
 			else {
@@ -102,7 +102,7 @@ public class OutlineFactory {
 				aWay.removeTag("building:part");
 				aWay.addTag("height", maxheight);
 				aWay.addTag("ele", minele);
-				osm.ways.put(aWay);
+				osm.getWayMap().put(aWay);
 				
 				building.addMember(aWay, "outline");
 			}
@@ -111,12 +111,12 @@ public class OutlineFactory {
 		// マルチポリゴンにINNERを追加する
 		ArrayList<OsmLine> inners = factory.getInners();
 		for (OsmLine inner : inners) {
-			ElementWay iWay = (ElementWay)osm.ways.get(inner);
+			ElementWay iWay = (ElementWay)osm.getWayMap().get(inner);
 			if (iWay == null) {
 				iWay = new ElementWay(osm.getNewId());
 				iWay.replaceNds(inner);
 				iWay.member = true;
-				osm.ways.put(iWay);
+				osm.getWayMap().put(iWay);
 			}
 			if (multi != null) {
 				// マルチポリゴンが存在する場合は、マルチポリゴンにiWayを追加する
@@ -138,7 +138,7 @@ public class OutlineFactory {
 				// "outer"に、"bulding:Relation"の"outline"WAYをMEMBERとして追加する
 				for (MemberBean mem : building.members) {
 					if (mem.getRole().equals("outline") && mem.getType().equals("way")) {
-						ElementWay outlineWay = (ElementWay)osm.ways.get(mem.getRef());
+						ElementWay outlineWay = (ElementWay)osm.getWayMap().get(mem.getRef());
 						multi.addMember(outlineWay, "outer");
 						building.removeMember(mem.getRef());
 						break;
@@ -155,7 +155,7 @@ public class OutlineFactory {
 	private boolean outlineRelation(RelationMap map) {
 		for (String rKey : map.keySet()) {
 			ElementRelation relation = map.get(rKey);
-			osm.relations.put(relation);
+			osm.relationMap.put(relation);
 			map.remove(rKey);
 			return true;
 		}

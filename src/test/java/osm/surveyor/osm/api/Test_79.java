@@ -28,15 +28,15 @@ public class Test_79 extends GmlLoadRouteTest {
 	public static void checkSample_79(OsmDom osm) {
         try {
 			assertNotNull(osm);
-			assertNotNull(osm.relations);
-			for (String id : osm.relations.keySet()) {
-				ElementRelation relation = osm.relations.get(id);
+			assertNotNull(osm.relationMap);
+			for (String id : osm.relationMap.keySet()) {
+				ElementRelation relation = osm.relationMap.get(id);
 				assertNotNull(relation);
 				String type = relation.getTagValue("type");
 				if (type.equals("building")) {
 		        	for (MemberBean member : relation.members) {
 		        		if (member.isWay()) {
-		        			ElementWay way = (ElementWay)osm.ways.get(member.getRef());
+		        			ElementWay way = (ElementWay)osm.getWayMap().get(member.getRef());
 			        		assertNotNull(way);
 		        			if (member.getRole().equals("outline")) {
 		                		assertEquals("retail", way.getTagValue("building"));

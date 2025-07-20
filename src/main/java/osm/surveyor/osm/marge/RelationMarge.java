@@ -29,18 +29,18 @@ public class RelationMarge {
 		RelationMap checked = new RelationMap();
 		
 		// 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる
-		for (String rKey : osm.relations.keySet()) {
-			ElementRelation relation = osm.relations.get(rKey);
+		for (String rKey : osm.relationMap.keySet()) {
+			ElementRelation relation = osm.relationMap.get(rKey);
 			if (relation.isBuilding()) {
 				RelationMap marged = relationMarge1((RelationBuilding)relation, checked);
 				if (marged.size() > 0) {
 					for (String key : marged.keySet()) {
-						RelationBuilding del = (RelationBuilding)osm.relations.get(key);
+						RelationBuilding del = (RelationBuilding)osm.relationMap.get(key);
 						del.setMarged(true);
 						osm.removeWay(del.getOutlineWay(osm));
 					
-						osm.relations.remove(del.getMultiPolygon(osm));
-						osm.relations.remove(del);
+						osm.relationMap.remove(del.getMultiPolygon(osm));
+						osm.relationMap.remove(del);
 						return true;
 					}
 				}
@@ -109,18 +109,18 @@ public class RelationMarge {
 		for (MemberBean mem : b.members) {
 			if (mem.getRole().equals("part")) {
 				if (mem.getType().equals("way")) {
-					ElementWay memway = (ElementWay)osm.ways.get(Long.toString(mem.getRef()));
+					ElementWay memway = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef()));
 					relation.addMember(memway, mem.getRole());
 				}
 			}
 			else if (mem.getRole().equals("outline")) {
 				if (mem.getType().equals(ElementRelation.RELATION)) {
-					ElementRelation polygon = osm.relations.get(Long.toString(mem.getRef()));
+					ElementRelation polygon = osm.relationMap.get(Long.toString(mem.getRef()));
 					if (polygon != null) {
 						for (MemberBean polymem : polygon.members) {
 							if (polymem.getType().equals("way") && polymem.getRole().equals("inner")) {
 								if (multi != null) {
-									multi.addMember((ElementWay)osm.ways.get(Long.toString(polymem.getRef())), "inner");
+									multi.addMember((ElementWay)osm.getWayMap().get(Long.toString(polymem.getRef())), "inner");
 								}
 							}
 						}

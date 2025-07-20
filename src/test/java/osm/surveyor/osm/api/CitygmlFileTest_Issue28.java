@@ -66,17 +66,17 @@ public class CitygmlFileTest_Issue28 extends GmlLoadRouteTest {
 	public void test50303525() {
 		OsmDom osm = testdo("./src/test/resources/Issue28_50303525_op.gml");
 		try {
-			assertNotNull(osm.relations);
+			assertNotNull(osm.relationMap);
 			
 			// Issue #34
 			CitygmlFileTest_Issue34.checkIssue34_1(osm);
 			CitygmlFileTest_Issue34.checkIssue34_2(osm);
 			
 			// Issue #37
-			testIssue37(osm, osm.relations);
+			testIssue37(osm, osm.relationMap);
 			
-			for (String id : osm.relations.keySet()) {
-				ElementRelation relation = osm.relations.get(id);
+			for (String id : osm.relationMap.keySet()) {
+				ElementRelation relation = osm.relationMap.get(id);
 				assertNotNull(relation);
 				
 				// Issue #36
@@ -85,7 +85,7 @@ public class CitygmlFileTest_Issue28 extends GmlLoadRouteTest {
 				for (MemberBean mem : relation.members) {
 					if (mem.getRole().equals("part")) {
 						assertEquals("way", mem.getType());
-						ElementWay way = (ElementWay)osm.ways.get(Long.toString(mem.getRef()));
+						ElementWay way = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef()));
 						assertNotNull(way.getTagValue("ref:MLIT_PLATEAU"));
 						
 						// (1) "40205-bldg-80498"をメンバに持つリレーションは building=industrial であるべき、
@@ -110,8 +110,8 @@ public class CitygmlFileTest_Issue28 extends GmlLoadRouteTest {
 					}
 				}
 			}
-			System.out.println("relations.size(): "+ osm.relations.size());
-			assertTrue(osm.relations.size() > 5);
+			System.out.println("relations.size(): "+ osm.relationMap.size());
+			assertTrue(osm.relationMap.size() > 5);
 		} catch (Exception e) {
 			e.fillInStackTrace();
 			fail(e.toString());
@@ -132,7 +132,7 @@ public class CitygmlFileTest_Issue28 extends GmlLoadRouteTest {
 			for (MemberBean mem : relation.members) {
 				if (mem.getRole().equals("part")) {
 					assertEquals("way", mem.getType());
-					ElementWay way = (ElementWay)osm.ways.get(Long.toString(mem.getRef()));
+					ElementWay way = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef()));
 					
 					// "40205-bldg-81197"をメンバに持つリレーションは 20個以上の建物パーツを持つべき
 					if (way.getTagValue("ref:MLIT_PLATEAU") != null) {
@@ -159,7 +159,7 @@ public class CitygmlFileTest_Issue28 extends GmlLoadRouteTest {
 		for (MemberBean mem : relation.members) {
 			if (mem.getRole().equals("part")) {
 				assertEquals("way", mem.getType());
-				ElementWay way = (ElementWay)osm.ways.get(Long.toString(mem.getRef()));
+				ElementWay way = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef()));
 				check(way.getTagValue("ele"));
 			}
 		}

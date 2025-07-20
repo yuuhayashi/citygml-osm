@@ -21,6 +21,7 @@ public class NdBean extends NdModel implements Serializable, Cloneable {
 	public long getRef() {
 		return super.getRef();
 	}
+	
 	public void setRef(long ref) {
 		super.setRef(ref);
 	}

@@ -12,7 +12,7 @@ public class OsmMargeWay {
 	static RelationMultipolygon getOutline(ElementRelation relation, OsmDom osm) {
 		for (MemberBean member : relation.members) {
 			if (member.getRole().equals("outline") && member.getType().equals("relation")) {
-				return (RelationMultipolygon)osm.relations.get(Long.toString(member.getRef()));
+				return (RelationMultipolygon)osm.relationMap.get(Long.toString(member.getRef()));
 			}
 		}
 		return null;
@@ -29,8 +29,8 @@ public class OsmMargeWay {
 	
 	/**
 	 * "outline"と"part"が重複している`part` を削除する
-	 * @param relations
-	 * @param ways
+	 * @param relationMap
+	 * @param wayMap
 	 */
 	public static OsmDom partGabegi(OsmDom osm) {
 		while (partRemove(osm));
@@ -39,8 +39,8 @@ public class OsmMargeWay {
 	}
 	
 	static boolean partRemove(OsmDom osm) {
-		for (String rKey : osm.relations.keySet()) {
-			ElementRelation relation = osm.relations.get(rKey);
+		for (String rKey : osm.relationMap.keySet()) {
+			ElementRelation relation = osm.relationMap.get(rKey);
 			if (partRemove(osm, relation)) {
 				return true;
 			}
@@ -56,10 +56,10 @@ public class OsmMargeWay {
 		RelationMap polygons = new RelationMap();
 		for (MemberBean plgMem : relation.members) {
 			if (plgMem.getRole().equals("part") && plgMem.getType().equals("way")) {
-				parts.put(osm.ways.get(Long.toString(plgMem.getRef())));
+				parts.put(osm.getWayMap().get(Long.toString(plgMem.getRef())));
 			}
 			else if (plgMem.getRole().equals("outline") && plgMem.getType().equals("relation")) {
-				polygons.put(osm.relations.get(Long.toString(plgMem.getRef())));
+				polygons.put(osm.relationMap.get(Long.toString(plgMem.getRef())));
 			}
 		}
 		
@@ -69,14 +69,14 @@ public class OsmMargeWay {
 				RelationMultipolygon polygon = (RelationMultipolygon)polygons.get(outerid);
 				for (MemberBean plgMem : polygon.members) {
 					if (plgMem.getRole().equals("outer") && plgMem.getType().equals("way")) {
-						ElementWay outer = (ElementWay)osm.ways.get(Long.toString(plgMem.getRef()));
+						ElementWay outer = (ElementWay)osm.getWayMap().get(Long.toString(plgMem.getRef()));
 						if (partWay.isSame(outer)) {
 							TagBean ele = partWay.getTag("height");
 							if (ele != null) {
 								polygon.addTag("height", CityModelParser.rounding(2, String.valueOf(ele.v)));
 							}
 							relation.removeMember(partWay.getId());
-							osm.ways.remove(partWay);
+							osm.getWayMap().remove(partWay);
 							return true;
 						}
 					}
@@ -88,22 +88,22 @@ public class OsmMargeWay {
 	
 	/**
 	 * "outline"しかない"building:part"を削除する
-	 * @param relations
-	 * @param ways
+	 * @param relationMap
+	 * @param wayMap
 	 * @return
 	 */
 	static boolean outlineRemove(OsmDom osm) {
-		for (String rKey : osm.relations.keySet()) {
-			ElementRelation relation = osm.relations.get(rKey);
+		for (String rKey : osm.relationMap.keySet()) {
+			ElementRelation relation = osm.relationMap.get(rKey);
 			RelationMultipolygon polygon = null;
 			ElementWay outline = null;
 			if (relation.members.size() == 1) {
 				for (MemberBean member : relation.members) {
 					if (member.getRole().equals("outline") && member.getType().equals("relation")) {
-						polygon = (RelationMultipolygon)osm.relations.get(Long.toString(member.getRef()));
+						polygon = (RelationMultipolygon)osm.relationMap.get(Long.toString(member.getRef()));
 						for (MemberBean plgMem : polygon.members) {
 							if (plgMem.getRole().equals("outer") && plgMem.getType().equals("way")) {
-								outline = (ElementWay)osm.ways.get(Long.toString(plgMem.getRef()));
+								outline = (ElementWay)osm.getWayMap().get(Long.toString(plgMem.getRef()));
 								break;
 							}
 						}
@@ -111,7 +111,7 @@ public class OsmMargeWay {
 				}
 				if (outline != null) {
 					copyTag(relation.getTagList(), polygon);
-					osm.relations.remove(relation.getIdstr());
+					osm.relationMap.remove(relation.getIdstr());
 					return true;
 				}
 			}

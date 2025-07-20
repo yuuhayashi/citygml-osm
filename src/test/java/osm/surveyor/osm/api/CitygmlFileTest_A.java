@@ -13,10 +13,10 @@ public class CitygmlFileTest_A extends GmlLoadRouteTest {
 	public void testSample_a() {
         OsmDom osm = testdo("./src/test/resources/sample_a_bldg_6697_op2.gml");
         try {
-			assertNotNull(osm.relations);
-			assertEquals(0, osm.relations.size());
-			for (String id : osm.ways.keySet()) {
-				ElementWay way = (ElementWay)osm.ways.get(id);
+			assertNotNull(osm.relationMap);
+			assertEquals(0, osm.relationMap.size());
+			for (String id : osm.getWayMap().keySet()) {
+				ElementWay way = (ElementWay)osm.getWayMap().get(id);
 				assertNotNull(way);
 				
 				if (way.getTagValue("ref:MLIT_PLATEAU") != null) {
@@ -43,8 +43,8 @@ public class CitygmlFileTest_A extends GmlLoadRouteTest {
 					}
 				}
 			}
-			assertEquals(2, osm.ways.size());
-			assertEquals(0, osm.relations.size());
+			assertEquals(2, osm.getWayMap().size());
+			assertEquals(0, osm.relationMap.size());
 		} catch (Exception e) {
 			e.fillInStackTrace();
 			fail(e.toString());

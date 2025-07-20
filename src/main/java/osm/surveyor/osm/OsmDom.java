@@ -30,23 +30,20 @@ public class OsmDom  implements BoxcellMappable {
         super();
         this.idno = 0;
         bounds = new BoundsBean();
-        indexMap = new IndexMap();
+        idxmap = new IndexMap();
         nodes = new NodeBeans();	// k= node.id
-        ways = new WayMap();		// k= way.id
-        relations = new RelationMap();	// k= relation.id
+        wayMap = new WayMap();		// k= way.id
+        relationMap = new RelationMap();	// k= relation.id
     }
 
     @XmlTransient
 	public long idno;
 	
-    @XmlTransient
     BoundsBean bounds = null;
-    
-	public IndexMap indexMap = null;
     
     public void setBounds(BoundsBean bounds) {
     	this.bounds = bounds;
-    	this.indexMap.setBounds(bounds);
+    	this.idxmap.setBounds(bounds);
     }
     
     @XmlElement(name="bounds")
@@ -67,25 +64,29 @@ public class OsmDom  implements BoxcellMappable {
     public NodeBeans nodes;	// k= node.id
     
     @XmlTransient
-    public WayMap ways;		// k= way.id
+    private WayMap wayMap;		// k= way.id
+    
+    public WayMap getWayMap() {
+    	return this.wayMap;
+    }
 
 	@XmlElement(name="way")
 	public List<WayModel> getWayList() {
-		return new ArrayList<WayModel>(ways.values());
+		return new ArrayList<WayModel>(wayMap.values());
 	}
     public void setWayList(List<WayModel> ways) {
-    	this.ways.clear();
-    	for (WayModel way : this.ways.values()) {
+    	this.wayMap.clear();
+    	for (WayModel way : this.wayMap.values()) {
     		putWay(way);
     	}
     }
 
     @XmlTransient
-    public RelationMap relations;	// k= relation.id
+    public RelationMap relationMap;	// k= relation.id
     
 	@XmlElement(name="relation")
 	public List<ElementRelation> getRelations() {
-		return new ArrayList<ElementRelation>(relations.values());
+		return new ArrayList<ElementRelation>(relationMap.values());
 	}
 
 	/**
@@ -99,13 +100,13 @@ public class OsmDom  implements BoxcellMappable {
 	void addRelation(OsmDom ddom, ElementRelation relation) {
 		for (MemberBean member : relation.members) {
 			if (member.getType().equals("way")) {
-				ElementWay way = (ElementWay)this.ways.get(member.getRef());
+				ElementWay way = (ElementWay)this.wayMap.get(member.getRef());
 				if (way != null) {
 					addWay(ddom, way);
 				}
 			}
 		}
-		ddom.relations.put(relation.clone());
+		ddom.relationMap.put(relation.clone());
 	}
 	
 	void addWay(OsmDom ddom, ElementWay way) {
@@ -115,14 +116,14 @@ public class OsmDom  implements BoxcellMappable {
 				ddom.nodes.put(node.clone());
 			}
 		}
-		ddom.ways.put(way.clone());
-		ddom.indexMap.putWayType(way);
+		ddom.wayMap.put(way.clone());
+		ddom.idxmap.putWayType(way);
 	}
 	
 	public void removeWay(ElementWay elementWay) {
 		if (elementWay != null) {
-			this.indexMap.removeWayBean(elementWay);
-			this.ways.remove(elementWay);
+			this.idxmap.removeWayBean(elementWay);
+			this.wayMap.remove(elementWay);
 		}
 	}
 	
@@ -143,8 +144,8 @@ public class OsmDom  implements BoxcellMappable {
     
 	public ArrayList<ElementRelation> getParents(PoiBean obj) {
     	ArrayList<ElementRelation> list = new ArrayList<>();
-    	for (String id : relations.keySet()) {
-    		ElementRelation relation = relations.get(id);
+    	for (String id : relationMap.keySet()) {
+    		ElementRelation relation = relationMap.get(id);
     		for (MemberBean mem : relation.members) {
     			if (mem.getRef() == obj.getId()) {
     				list.add(relation);
@@ -158,7 +159,7 @@ public class OsmDom  implements BoxcellMappable {
 		String minele = "10000";
 		for (MemberBean member : relation.members) {
 			if (member.getRole().equals("part")) {
-				ElementWay way = (ElementWay)ways.get(member.getRef());
+				ElementWay way = (ElementWay)wayMap.get(member.getRef());
 				String ele = way.getTagValue("ele");
 				if (ele != null) {
 					if (Double.parseDouble(minele) > Double.parseDouble(ele)) {
@@ -175,7 +176,7 @@ public class OsmDom  implements BoxcellMappable {
 		String maxheight = "0";
 		for (MemberBean member : relation.members) {
 			if (member.getRole().equals("part")) {
-				ElementWay way = (ElementWay)ways.get(member.getRef());
+				ElementWay way = (ElementWay)wayMap.get(member.getRef());
 				String ele = way.getTagValue("ele");
 				String height = way.getTagValue("height");
 				if (height != null) {
@@ -198,12 +199,12 @@ public class OsmDom  implements BoxcellMappable {
 
 	public void toOutline() {
 		System.out.println(LocalTime.now() +"\tOsmDom.toOutline()");
-		for (String id : this.relations.keySet()) {
-			ElementRelation relation = this.relations.get(id);
+		for (String id : this.relationMap.keySet()) {
+			ElementRelation relation = this.relationMap.get(id);
 			if (relation.isBuilding()) {
 				for (MemberBean member : relation.members) {
 					if (member.getRole().equals("outline") && member.getType().equals("relation")) {
-						ElementRelation multi = this.relations.get(member.getRef());
+						ElementRelation multi = this.relationMap.get(member.getRef());
 						if (multi !=null && multi.isMultipolygon()) {
 							TagBean buil = multi.getTag("building");
 							if (buil != null) {
@@ -220,18 +221,18 @@ public class OsmDom  implements BoxcellMappable {
 	 * オブジェクトが存在しないメンバーをRELATIONから削除する
 	 */
 	public void gerbageMember() {
-		for (String id : this.relations.keySet()) {
-			ElementRelation relation = this.relations.get(id);
+		for (String id : this.relationMap.keySet()) {
+			ElementRelation relation = this.relationMap.get(id);
 			ArrayList<MemberBean> mems = new ArrayList<>();
 			for (MemberBean member : relation.members) {
 				if (member.isWay()) {
-					ElementWay way = (ElementWay)this.ways.get(member.getRef());
+					ElementWay way = (ElementWay)this.wayMap.get(member.getRef());
 					if (way == null) {
 						mems.add(member);
 					}
 				}
 				else if (member.isRelation()) {
-					ElementRelation r = this.relations.get(member.getRef());
+					ElementRelation r = this.relationMap.get(member.getRef());
 					if (r == null) {
 						mems.add(member);
 					}
@@ -249,24 +250,24 @@ public class OsmDom  implements BoxcellMappable {
 	public void gerbageWay() {
 		System.out.println(LocalTime.now() +"\tOsmDom.gerbageWay()");
 		WayMap map = new WayMap();
-		for (String id : this.ways.keySet()) {
-			ElementWay way = (ElementWay)this.ways.get(id);
+		for (String id : this.wayMap.keySet()) {
+			ElementWay way = (ElementWay)this.wayMap.get(id);
 			if (!way.member) {
 				map.put(way);	// 単独WAYは、RELATIONに所属していなくても削除しない
 			}
 		}
-		for (String id : this.relations.keySet()) {
-			ElementRelation relation = this.relations.get(id);
+		for (String id : this.relationMap.keySet()) {
+			ElementRelation relation = this.relationMap.get(id);
 			for (MemberBean member : relation.members) {
-				ElementWay way = (ElementWay)this.ways.get(member.getRef());
+				ElementWay way = (ElementWay)this.wayMap.get(member.getRef());
 				if (way != null) {
 					map.put(way);
 				}
 			}
 		}
-		this.ways.clear();
+		this.wayMap.clear();
 		for (String key : map.keySet()) {
-			this.ways.put(map.get(key));
+			this.wayMap.put(map.get(key));
 		}
 	}
 	
@@ -275,8 +276,8 @@ public class OsmDom  implements BoxcellMappable {
 	 */
 	public void gerbageNode() {
 		NodeBeans list = new NodeBeans();
-		for (String wayid : this.ways.keySet()) {
-			ElementWay way = (ElementWay)this.ways.get(wayid);
+		for (String wayid : this.wayMap.keySet()) {
+			ElementWay way = (ElementWay)this.wayMap.get(wayid);
 			for (NdModel nd : way.getNdList()) {
 				NodeBean node = this.nodes.get(nd.getRef());
 				list.put(node);
@@ -296,8 +297,8 @@ public class OsmDom  implements BoxcellMappable {
 	 */
     public List<ElementWay> getWay(String buildingid) {
     	List<ElementWay> ret = new ArrayList<>();
-    	for (String wayid : this.ways.keySet()) {
-			ElementWay way = (ElementWay)this.ways.get(wayid);
+    	for (String wayid : this.wayMap.keySet()) {
+			ElementWay way = (ElementWay)this.wayMap.get(wayid);
 			List<TagBean> tags = way.getTagList();
 			for (TagBean tag : tags) {
 				if (tag.k.equals("ref:MLIT_PLATEAU") && tag.v.equals(buildingid)) {
@@ -315,7 +316,7 @@ public class OsmDom  implements BoxcellMappable {
 	 * @param buildingid
 	 * @return
 	 */
-    public List<ElementRelation> getRelation(String buildingid) {
+    public List<ElementRelation> getRelations(String buildingid) {
     	List<ElementRelation> ret = new ArrayList<>();
     	List<ElementWay> ways = getWay(buildingid);
     	for (ElementWay way : ways) {
@@ -333,55 +334,59 @@ public class OsmDom  implements BoxcellMappable {
     	return ret;
     }
 
-	@Override
+	private IndexMap idxmap = null;
+    
+    @XmlTransient
+    @Override
 	public IndexMap getIndexMap() {
-		return this.indexMap;
+		return this.idxmap;
 	}
 
 	@Override
-	public void setInxevMap(IndexMap indexMap) {
+	public void setIndexMap(IndexMap indexMap) {
 		// TODO Auto-generated method stub
-		System.out.println("// TODO Auto-generated method stub");
-		
+		System.out.println("// TODO OsmDom.setIndexMap() method stub");
 	}
 
+    @XmlTransient
 	@Override
 	public List<NodeBean> getNodeList() {
 		// TODO Auto-generated method stub
-		System.out.println("// TODO Auto-generated method stub");
+		System.out.println("// TODO OsmDom.getNodeList() method stub");
 		return null;
 	}
 
 	@Override
 	public void setNodeList(List<NodeBean> nodeList) {
 		// TODO Auto-generated method stub
-		System.out.println("// TODO Auto-generated method stub");
+		System.out.println("// TODO OsmDom.setNodeList() method stub");
 		
 	}
 
 	@Override
 	public List<WayModel> getWayList(WayModel wayBean) {
 		// TODO Auto-generated method stub
-		System.out.println("// TODO Auto-generated method stub");
+		System.out.println("// TODO OsmDom.getWayList() method stub");
 		return null;
 	}
 
 	@Override
 	public WayModel getWay(long id) {
 		// TODO Auto-generated method stub
-		System.out.println("// TODO Auto-generated method stub");
+		System.out.println("// TODO OsmDom.getWay() method stub");
 		return null;
 	}
 
 	@Override
 	public void putWay(WayModel way) {
-		this.ways.put(way.getIdstr(), way);
+		this.wayMap.put(way.getIdstr(), way);
 	}
 
+    @XmlTransient
 	@Override
 	public List<WayBean> getWays() {
 		// TODO Auto-generated method stub
-		System.out.println("// TODO Auto-generated method stub");
+		System.out.println("// TODO OsmDom.Auto-generated method stub");
 		return null;
 	}
 }

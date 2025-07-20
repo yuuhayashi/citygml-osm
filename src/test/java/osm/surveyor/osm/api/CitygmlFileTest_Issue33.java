@@ -24,9 +24,9 @@ public class CitygmlFileTest_Issue33 extends GmlLoadRouteTest {
 	        BoundsBean bound = osm.getBounds();
 			assertNotNull(bound);
 	        
-			assertNotNull(osm.ways);
-			for (String id : osm.ways.keySet()) {
-				ElementWay way = (ElementWay)osm.ways.get(id);
+			assertNotNull(osm.getWayMap());
+			for (String id : osm.getWayMap().keySet()) {
+				ElementWay way = (ElementWay)osm.getWayMap().get(id);
 				assertNotNull(way);
 			}
 		} catch (Exception e) {
@@ -43,9 +43,9 @@ public class CitygmlFileTest_Issue33 extends GmlLoadRouteTest {
 	        BoundsBean bound = osm.getBounds();
 			assertNotNull(bound);
 	        
-			assertNotNull(osm.ways);
-			for (String id : osm.ways.keySet()) {
-				ElementWay way = (ElementWay)osm.ways.get(id);
+			assertNotNull(osm.getWayMap());
+			for (String id : osm.getWayMap().keySet()) {
+				ElementWay way = (ElementWay)osm.getWayMap().get(id);
 				assertNotNull(way);
 			}
 		} catch (Exception e) {

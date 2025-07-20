@@ -3,7 +3,6 @@ package osm.surveyor.osm;
 import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -22,7 +21,6 @@ import osm.surveyor.gis.node.NodeModel;
  * }
  * 
  */
-@XmlRootElement(name="node")
 public class NodeBean extends NodeModel implements Cloneable,Serializable {
 	private static final long serialVersionUID = -6012637985828366692L;
 
@@ -37,7 +35,6 @@ public class NodeBean extends NodeModel implements Cloneable,Serializable {
 		this(0l);
 	}
 
-	@XmlAttribute(name="lat")
 	@Override
 	public void setLat(String lat) {
 		super.setLat(lat);
@@ -47,7 +44,6 @@ public class NodeBean extends NodeModel implements Cloneable,Serializable {
 		return super.getLat();
 	}
 
-	@XmlAttribute(name="lon")
 	@Override
 	public void setLon(String lon) {
 		super.setLon(lon);

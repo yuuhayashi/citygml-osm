@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import org.w3c.dom.Document;
@@ -21,6 +22,7 @@ import osm.surveyor.osm.way.WayModel;
  * @author hayashi
  *
  */
+@XmlRootElement(name="way")
 public class ElementWay extends WayModel implements Cloneable {
 	private static final long serialVersionUID = 1L;
 	
@@ -34,10 +36,11 @@ public class ElementWay extends WayModel implements Cloneable {
 		super(id);
 	}
 	
-	@XmlElement(name="nd")
     public void setNdList(List<NdBean> ndList) {
 		super.setNdList(ndList);
     }
+    
+    @XmlElement(name = "nd")
     public List<NdBean> getNdList() {
     	return super.getNdList();
     }
@@ -124,7 +127,7 @@ public class ElementWay extends WayModel implements Cloneable {
 	 * 	  <tag k='building:part' v='yes' />
 	 * 	</way>
      * @param doc
-     * @param ways
+     * @param wayMap
      */
     ElementWay loadWay(Node nNode) {
 		if (nNode.getNodeType() == Node.ELEMENT_NODE) {

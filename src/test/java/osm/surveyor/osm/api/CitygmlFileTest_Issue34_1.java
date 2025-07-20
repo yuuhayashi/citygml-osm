@@ -41,13 +41,13 @@ public class CitygmlFileTest_Issue34_1 extends GmlLoadRouteTest {
 	 * @param osm
 	 */
 	static public void checkIssue34_1(OsmDom osm) {
-		assertNotNull(osm.relations);
-		for (String relationid : osm.relations.keySet()) {
-			ElementRelation relation = osm.relations.get(relationid);
+		assertNotNull(osm.relationMap);
+		for (String relationid : osm.relationMap.keySet()) {
+			ElementRelation relation = osm.relationMap.get(relationid);
 			for (MemberBean mem : relation.members) {
 				if (mem.getRole().equals("inner")) {
 					assertEquals("way", mem.getType());
-					ElementWay inner = (ElementWay)osm.ways.get(mem.getRef());
+					ElementWay inner = (ElementWay)osm.getWayMap().get(mem.getRef());
 					assertNotNull(inner);
 				}
 			}

@@ -29,9 +29,9 @@ public class Test_72 extends GmlLoadRouteTest {
 	public static void checkSample_72(OsmDom osm) {
         try {
 			assertNotNull(osm);
-			assertNotNull(osm.relations);
-			for (String id : osm.relations.keySet()) {
-				ElementRelation relation = osm.relations.get(id);
+			assertNotNull(osm.relationMap);
+			for (String id : osm.relationMap.keySet()) {
+				ElementRelation relation = osm.relationMap.get(id);
 				assertNotNull(relation);
 				String type = relation.getTagValue("type");
 				if (type.equals("building")) {
@@ -43,7 +43,7 @@ public class Test_72 extends GmlLoadRouteTest {
 						if (mem.getRole().equals("outline")) {
 							outlineCnt++;
 							if (mem.getType().equals("way")) {
-								ElementWay way = (ElementWay)osm.ways.get(Long.toString(mem.getRef()));
+								ElementWay way = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef()));
 								assertNotNull(way);
 								assertEquals(relationEle, way.getTagValue("ele"));
 								assertEquals(relationHeight, way.getTagValue("height"));

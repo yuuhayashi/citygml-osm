@@ -29,8 +29,8 @@ public class CitygmlFileTest_D extends GmlLoadRouteTest {
 	public void testSample_d() {
         OsmDom osm = testdo("./src/test/resources/sample_d_bldg_6697_op2.gml");
         try {
-			for (String id : osm.relations.keySet()) {
-				ElementRelation relation = osm.relations.get(id);
+			for (String id : osm.relationMap.keySet()) {
+				ElementRelation relation = osm.relationMap.get(id);
 				assertNotNull(relation);
 				if (relation.isBuilding()) {
 					/*
@@ -58,7 +58,7 @@ public class CitygmlFileTest_D extends GmlLoadRouteTest {
 						if (mem.getRole().equals("outline")) {
 							outlineCnt++;
 							assertEquals("relation", mem.getType());
-							ElementRelation multiporygon = osm.relations.get(Long.toString(mem.getRef()));
+							ElementRelation multiporygon = osm.relationMap.get(Long.toString(mem.getRef()));
 							assertNotNull(multiporygon);
 							assertTrue(multiporygon.isMultipolygon());
 							assertNull(multiporygon.getTag("building"));	// Issue #40 [バリデーション警告「重なった建物」が発生する]
@@ -66,7 +66,7 @@ public class CitygmlFileTest_D extends GmlLoadRouteTest {
 						if (mem.getRole().equals("part")) {
 							partCnt++;
 							assertEquals("way", mem.getType());
-							ElementWay way = (ElementWay)osm.ways.get(Long.toString(mem.getRef()));
+							ElementWay way = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef()));
 							assertNotNull(way);
 							if (way.getTagValue("ref:MLIT_PLATEAU").endsWith("13111-bldg-72601")) {
 								assertEquals("13111-bldg-72601", way.getTagValue("ref:MLIT_PLATEAU"));
@@ -124,7 +124,7 @@ public class CitygmlFileTest_D extends GmlLoadRouteTest {
 						if (mem.getRole().equals("outer")) {
 							outerCnt++;
 							assertEquals("way", mem.getType());
-							ElementWay way = (ElementWay)osm.ways.get(Long.toString(mem.getRef()));
+							ElementWay way = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef()));
 							assertNotNull(way);
 							assertNull(way.getTagValue("ref:MLIT_PLATEAU"));
 							assertEquals(0, way.getTagList().size());
@@ -132,7 +132,7 @@ public class CitygmlFileTest_D extends GmlLoadRouteTest {
 						if (mem.getRole().equals("inner")) {
 							innerCnt++;
 							assertEquals("way", mem.getType());
-							ElementWay way = (ElementWay)osm.ways.get(Long.toString(mem.getRef()));
+							ElementWay way = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef()));
 							assertNotNull(way);
 							assertEquals("13111-bldg-72601", way.getTagValue("ref:MLIT_PLATEAU"));
 							assertEquals(1, way.getTagList().size());
@@ -143,8 +143,8 @@ public class CitygmlFileTest_D extends GmlLoadRouteTest {
 					assertEquals(3, relation.members.size());
 				}
 			}
-			assertEquals(2, osm.relations.size());
-			assertEquals(5, osm.ways.size());
+			assertEquals(2, osm.relationMap.size());
+			assertEquals(5, osm.getWayMap().size());
 		} catch (Exception e) {
 			e.fillInStackTrace();
 			fail(e.toString());

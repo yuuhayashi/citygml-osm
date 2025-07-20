@@ -27,9 +27,9 @@ public class CitygmlFileTest_Issue34 extends GmlLoadRouteTest {
 		try {
 			checkIssue34_1(osm);
 			checkIssue34_2(osm);
-			assertEquals(1, osm.relations.size());
-			for (String key : osm.relations.keySet()) {
-				ElementRelation building = osm.relations.get(key);
+			assertEquals(1, osm.relationMap.size());
+			for (String key : osm.relationMap.keySet()) {
+				ElementRelation building = osm.relationMap.get(key);
 				assertEquals("industrial", building.getTagValue("building"));
 			}
 		} catch (Exception e) {
@@ -42,13 +42,13 @@ public class CitygmlFileTest_Issue34 extends GmlLoadRouteTest {
 	 * @param osm
 	 */
 	static public void checkIssue34_1(OsmDom osm) {
-		assertNotNull(osm.relations);
-		for (String relationid : osm.relations.keySet()) {
-			ElementRelation relation = osm.relations.get(relationid);
+		assertNotNull(osm.relationMap);
+		for (String relationid : osm.relationMap.keySet()) {
+			ElementRelation relation = osm.relationMap.get(relationid);
 			for (MemberBean mem : relation.members) {
 				if (mem.getRole().equals("inner")) {
 					assertEquals("way", mem.getType());
-					ElementWay inner = (ElementWay)osm.ways.get(mem.getRef());
+					ElementWay inner = (ElementWay)osm.getWayMap().get(mem.getRef());
 					assertNotNull(inner);
 				}
 			}
@@ -60,9 +60,9 @@ public class CitygmlFileTest_Issue34 extends GmlLoadRouteTest {
 	 * @param osm
 	 */
 	static public void checkIssue34_2(OsmDom osm) {
-		assertNotNull(osm.relations);
-		for (String relationid : osm.relations.keySet()) {
-			ElementRelation relation = osm.relations.get(relationid);
+		assertNotNull(osm.relationMap);
+		for (String relationid : osm.relationMap.keySet()) {
+			ElementRelation relation = osm.relationMap.get(relationid);
 			if (relation.isBuilding()) {
 				int outlineCnt = 0;
 				for (MemberBean mem : relation.members) {

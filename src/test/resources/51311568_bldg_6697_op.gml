@@ -2026,6 +2026,7 @@
       </uro:buildingIDAttribute>
     </bldg:Building>
   </core:cityObjectMember>
+  
   <core:cityObjectMember>
     <bldg:Building gml:id="bldg_4386f43a-3ca8-4ffb-9199-6f38ad6c4cb9">
       <core:creationDate>2025-03-21</core:creationDate>

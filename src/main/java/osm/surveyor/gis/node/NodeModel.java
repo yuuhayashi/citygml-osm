@@ -3,6 +3,7 @@ package osm.surveyor.gis.node;
 import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import org.locationtech.jts.geom.Coordinate;
@@ -20,6 +21,7 @@ import osm.surveyor.osm.PoiBean;
  * }
  * 
  */
+@XmlRootElement(name="node")
 public abstract class NodeModel extends PoiBean implements Cloneable,Serializable {
 	private static final long serialVersionUID = -6012637985828366692L;
 	
@@ -31,8 +33,9 @@ public abstract class NodeModel extends PoiBean implements Cloneable,Serializabl
 		this(0l);
 	}
 
-	@XmlTransient
 	private PointModel point = null;
+
+	@XmlTransient
 	public PointModel getPoint() {
 		return point;
 	}

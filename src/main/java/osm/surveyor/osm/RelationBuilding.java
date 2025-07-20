@@ -22,7 +22,7 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 	public ElementRelation getMultiPolygon(OsmDom osm) {
 		MemberBean outlineMember = getOutlineMember();
 		if (outlineMember != null) {
-			return osm.relations.get(outlineMember.getRef());
+			return osm.relationMap.get(outlineMember.getRef());
 		}
 		return null;
 	}
@@ -40,14 +40,14 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 		}
 		else {
 			if (outlineMember.getType().equals("way")) {
-				return (ElementWay)osm.ways.get(outlineMember.getRef());
+				return (ElementWay)osm.getWayMap().get(outlineMember.getRef());
 			}
 			else if (outlineMember.getType().equals("relation")) {
-				ElementRelation polygon = osm.relations.get(outlineMember.getRef());
+				ElementRelation polygon = osm.relationMap.get(outlineMember.getRef());
 				if (polygon != null) {
 					for (MemberBean outlinemember : polygon.members) {
 						if (outlinemember.getRole().equals("outer")) {
-							return (ElementWay)osm.ways.get(outlinemember.getRef());
+							return (ElementWay)osm.getWayMap().get(outlinemember.getRef());
 						}
 					}
 				}
@@ -59,13 +59,13 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 	/**
 	 * "ele"と"height"を統合してリレーションに設定する
 	 * "building:levels"と"building:levels:underground"を統合してリレーションに設定する
-	 * @param relations
+	 * @param relationMap
 	 */
 	public void margeTagValue(OsmDom osm) {
 		WayMap parts = new WayMap();
 		for (MemberBean member : this.members) {
 			if (member.getRole().equals("part") && member.getType().equals("way")) {
-				ElementWay way = (ElementWay)osm.ways.get(member.getRef());
+				ElementWay way = (ElementWay)osm.getWayMap().get(member.getRef());
 				parts.put(way);
 			}
 		}

@@ -93,6 +93,8 @@ public class CityModelParser extends DefaultHandler {
 	int storeysAboveGround = 0;						// <bldg:storeysAboveGround/>
 	int storeysBelowGround = 0;						// <bldg:storeysBelowGround/>
 	boolean edgeFull = false;						// 建物形状がセットされたら true
+	boolean lod0 = false;							// lod0RoofEdge or lod0FootPrint があれば True
+	RelationBuilding nonLod0 = null; 				// <bldg:lod0RoofEdge/>
 	RelationBuilding roof = null;					// <bldg:lod0RoofEdge/>
 	RelationBuilding footPrint = null;				// <bldg:lod0FootPrint/>
 	ArrayList<ElementWay> solids = null;			// <bldg:lod1Solid/>
@@ -293,7 +295,7 @@ public class CityModelParser extends DefaultHandler {
 				}
 				for (MemberBean mem : building.members) {
 					if (mem.getType().equals("way")) {
-						ElementWay way = (ElementWay)osm.ways.get(mem.getRef());
+						ElementWay way = (ElementWay)osm.getWayMap().get(mem.getRef());
 						way.removeTag("maxele");
 						String num = checkNumberString(rounding(2, building.getTagValue("height")));
 						if (num != null) {
@@ -315,7 +317,7 @@ public class CityModelParser extends DefaultHandler {
 						way.addTag("ref:MLIT_PLATEAU", buildingId);
 					}
 					else if (mem.getType().equals("relation")) {
-						ElementRelation relation = osm.relations.get(mem.getRef());
+						ElementRelation relation = osm.relationMap.get(mem.getRef());
 						relation.removeTag("maxele");
 						// Issue #39 relation.addTag("start_date", building.getTagValue("start_date"));
 						String num = checkNumberString(building.getTagValue("building:levels"));
@@ -343,7 +345,7 @@ public class CityModelParser extends DefaultHandler {
 				}
 				building.removeTag("ref:MLIT_PLATEAU");
 				building.addTag(usage);
-				osm.relations.put(building);
+				osm.relationMap.put(building);
 			}
 			building = null;
 			usage = null;
@@ -429,8 +431,9 @@ public class CityModelParser extends DefaultHandler {
     			buildingId = outSb.toString();
 			}
     		outSb = null;
-		}		
+		}
     	else if(qName.equals("bldg:lod0RoofEdge")){
+    		lod0 = true;
     		if (building != null) {
     			if (roof != null) {
     				for (MemberBean mem : roof.members) {
@@ -442,6 +445,7 @@ public class CityModelParser extends DefaultHandler {
     		}
 		}
     	else if(qName.equals("bldg:lod0FootPrint")){
+    		lod0 = true;
     		if (building != null) {
     			if (footPrint != null) {
     				for (MemberBean mem : footPrint.members) {
@@ -486,17 +490,35 @@ public class CityModelParser extends DefaultHandler {
 					}
 				}
 				solids = null;
+				
+				if (!lod0) {
+		    		if (building != null) {
+						for (MemberBean mem : nonLod0.members) {
+							building.members.add(mem);
+						}
+						building.copyTag(nonLod0);
+			    		nonLod0 = null;
+		    		}
+					lod0 = false;
+				}
     		}
 		}
 		else if(qName.equals("gml:Polygon")){
 			if ((multipolygon != null) && !multipolygon.members.isEmpty()) {
 				if (roof != null) {
-					osm.relations.put(multipolygon);
+					osm.relationMap.put(multipolygon);
 					roof.addMember(multipolygon, "outline");
 				}
 				else if (footPrint != null) {
-					osm.relations.put(multipolygon);
+					osm.relationMap.put(multipolygon);
 					footPrint.addMember(multipolygon, "outline");
+				}
+				else {
+					osm.relationMap.put(multipolygon);
+					if (nonLod0 == null) {
+						nonLod0 = new RelationBuilding(osm.getNewId());
+					}
+					nonLod0.addMember(multipolygon, "outline");
 				}
 				multipolygon = null;
 			}
@@ -511,7 +533,7 @@ public class CityModelParser extends DefaultHandler {
 								way.addTag("name", name);
 							}
 							ElementWay part = way.copy(osm.getNewId());
-							osm.ways.put(part);
+							osm.getWayMap().put(part);
 							roof.copyTag(part);
 							roof.addMember(part, "part");
 							edgeFull = true;
@@ -521,10 +543,23 @@ public class CityModelParser extends DefaultHandler {
 								way.addTag("name", name);
 							}
 							ElementWay part = way.copy(osm.getNewId());
-							osm.ways.put(part);
+							osm.getWayMap().put(part);
 							footPrint.copyTag(part);
 							footPrint.addMember(part, "part");
 							edgeFull = true;
+						}
+						else {
+							if ((name != null) && !name.isEmpty()) {
+								way.addTag("name", name);
+							}
+							ElementWay part = way.copy(osm.getNewId());
+							osm.getWayMap().put(part);
+							
+							if (nonLod0 == null) {
+								nonLod0 = new RelationBuilding(osm.getNewId());
+							}
+							nonLod0.copyTag(part);
+							nonLod0.addMember(part, "part");
 						}
 					}
 					if (multipolygon != null) {
@@ -535,7 +570,7 @@ public class CityModelParser extends DefaultHandler {
 						outer.removeTag("height");
 						outer.removeTag("maxele");
 						outer.removeTag("ele");
-						osm.ways.put(outer);
+						osm.getWayMap().put(outer);
 						multipolygon.addMember(outer, "outer");
 					}
 					member = null;
@@ -554,7 +589,7 @@ public class CityModelParser extends DefaultHandler {
 						way.removeTag("maxele");
 						way.removeTag("ele");
 						way.addTag("ref:MLIT_PLATEAU", buildingId);
-						osm.ways.put(way);
+						osm.getWayMap().put(way);
 						multipolygon.addMember(way, "inner");
 					}
 					member = null;
@@ -568,7 +603,7 @@ public class CityModelParser extends DefaultHandler {
 			// <gml:LinearRing>
 			// AREAに変更する
 			if (way != null) {
-				way.toArea(this.osm.indexMap);
+				way.toArea(this.osm.getIndexMap());
 			}
 		}
 		else if(qName.equals("gml:posList")){

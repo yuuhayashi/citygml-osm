@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.xml.bind.annotation.XmlTransient;
+
 import osm.surveyor.osm.BoundsBean;
 import osm.surveyor.osm.way.Areable;
 
@@ -11,6 +13,7 @@ import osm.surveyor.osm.way.Areable;
  * hash key = cell.id
  * 
  */
+@XmlTransient
 public class IndexMap extends HashMap<Integer, BoundsCellBean> implements Cloneable, Serializable {
 	
 	private static final long serialVersionUID = 3201342709343657144L;

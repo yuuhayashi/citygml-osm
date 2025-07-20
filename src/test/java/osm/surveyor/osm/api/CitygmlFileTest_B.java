@@ -12,8 +12,8 @@ public class CitygmlFileTest_B extends GmlLoadRouteTest {
 	public void testSample_b() {
         OsmDom osm = testdo("./src/test/resources/sample_b_bldg_6697_op2.gml");
         try {
-			for (String id : osm.relations.keySet()) {
-				ElementRelation relation = osm.relations.get(id);
+			for (String id : osm.relationMap.keySet()) {
+				ElementRelation relation = osm.relationMap.get(id);
 				assertNotNull(relation);
 				String type = relation.getTagValue("type");
 				if (type.equals("multipolygon")) {
@@ -38,7 +38,7 @@ public class CitygmlFileTest_B extends GmlLoadRouteTest {
 						if (mem.getRole().equals("outer")) {
 							outerCnt++;
 							assertEquals("way", mem.getType());
-							ElementWay way = (ElementWay)osm.ways.get(Long.toString(mem.getRef()));
+							ElementWay way = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef()));
 							assertNull(way.getTagValue("ref:MLIT_PLATEAU"));
 							assertNull(way.getTagValue("source"));
 							assertEquals(0, way.getTagList().size());
@@ -46,7 +46,7 @@ public class CitygmlFileTest_B extends GmlLoadRouteTest {
 						if (mem.getRole().equals("inner")) {
 							innerCnt++;
 							assertEquals("way", mem.getType());
-							ElementWay way = (ElementWay)osm.ways.get(Long.toString(mem.getRef()));
+							ElementWay way = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef()));
 							assertEquals("13111-bldg-61384", way.getTagValue("ref:MLIT_PLATEAU"));
 							assertEquals(1, way.getTagList().size());
 						}
@@ -56,8 +56,8 @@ public class CitygmlFileTest_B extends GmlLoadRouteTest {
 					assertEquals(2, relation.members.size());
 				}
 			}
-			assertEquals(1, osm.relations.size());
-			assertEquals(2, osm.ways.size());
+			assertEquals(1, osm.relationMap.size());
+			assertEquals(2, osm.getWayMap().size());
 		} catch (Exception e) {
 			e.fillInStackTrace();
 			fail(e.toString());

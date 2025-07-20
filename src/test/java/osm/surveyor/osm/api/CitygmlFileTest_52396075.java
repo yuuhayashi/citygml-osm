@@ -28,9 +28,9 @@ public class CitygmlFileTest_52396075 extends GmlLoadRouteTest {
 	        assertEquals("139.06619815002912", bound.minlon);
 	        assertEquals("35.23151859137091", bound.minlat);
 	        
-			assertNotNull(osm.ways);
-			for (String id : osm.ways.keySet()) {
-				ElementWay way = (ElementWay)osm.ways.get(id);
+			assertNotNull(osm.getWayMap());
+			for (String id : osm.getWayMap().keySet()) {
+				ElementWay way = (ElementWay)osm.getWayMap().get(id);
 				assertNotNull(way);
 				assertEquals(way.getTagValue("building"), ("yes"));
 				assertEquals(way.getTagValue("height"), ("13.3"));
@@ -38,7 +38,7 @@ public class CitygmlFileTest_52396075 extends GmlLoadRouteTest {
 				assertEquals(way.getTagValue("ref:MLIT_PLATEAU"), ("14382-bldg-10718"));
 				assertTrue(way.getTagList().size() >= 4);
 			}
-			assertEquals(1, osm.ways.size());
+			assertEquals(1, osm.getWayMap().size());
 		} catch (Exception e) {
 			e.fillInStackTrace();
 			fail(e.toString());

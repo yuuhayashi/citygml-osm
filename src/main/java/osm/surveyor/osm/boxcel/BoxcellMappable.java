@@ -16,7 +16,7 @@ public interface BoxcellMappable {
     public void setBounds(BoundsBean bounds);
     
     public IndexMap getIndexMap();
-    public void setInxevMap(IndexMap indexMap);
+	public void setIndexMap(IndexMap indexMap);
     
     public List<NodeBean> getNodeList();
     public void setNodeList(List<NodeBean> nodeList);
