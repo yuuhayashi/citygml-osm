@@ -35,7 +35,7 @@ public class RelationProcessor implements Processor {
 						if (member.isWay()) {
 							long id = member.getRef();
 							ElementWay way = (ElementWay)osm.getWayMap().get(id);
-							if (way.getArea() > max) {
+							if ((way != null) && (way.getArea() > max)) {
 								max = way.getArea();
 								maxid = id;
 							}
@@ -56,7 +56,10 @@ public class RelationProcessor implements Processor {
 					}
 					if (maxway != null) {
 						ElementWay way = maxway.clone();
-						way.addTag(new TagBean("building", maxway.getTag("building:part").getValue()));
+						TagBean tag = maxway.getTag("building:part");
+						if (tag != null) {
+							way.addTag(new TagBean("building", tag.getValue()));
+						}
 						way.removeTag("building:levels");
 						way.removeTag("building:part");
 						way.removeTag("height");

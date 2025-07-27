@@ -49,6 +49,9 @@ public class ElementRelation extends PoiBean implements Cloneable,Serializable {
 	}
 	
 	public void addMember(ElementWay way, String role) {
+		if (way == null) {
+			return;
+		}
 		MemberBean member = new MemberBean();
 		way.member = true;
 		member.setWay(way);

@@ -725,10 +725,12 @@ public class CityModelParser extends DefaultHandler {
     }
     
     private boolean existSamePositionWay(ArrayList<ElementWay> solids, ElementWay way) {
-    	for (ElementWay solid : solids) {
-    		if (isSamePositionWay(way, solid)) {
-    			return true;
-    		}
+    	if (solids != null) {
+        	for (ElementWay solid : solids) {
+        		if (isSamePositionWay(way, solid)) {
+        			return true;
+        		}
+        	}
     	}
     	return false;
     }
