@@ -1,6 +1,5 @@
 package osm.surveyor.osm.camel;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,7 +65,7 @@ public class OsmBuildingFilterProcessor implements Processor {
 		}
 		
 		// "building"WAYを抽出
-		for (WayModel way : org.getWays()) {
+		for (WayModel way : org.getWayMap().values()) {
 			if (way.isBuilding()) {
 				waymap.putIfAbsent(way.getId(), (WayBean) way);
 			}
@@ -109,12 +108,11 @@ public class OsmBuildingFilterProcessor implements Processor {
         }
 		org.setRelationList(newRelations);
 		
-		// ウェイをMapからListに変換して格納
-		List<WayBean> newWays = new ArrayList<>();
+		// ウェイをMapに変換して格納
+		org.getWayMap().clear();
 		for(HashMap.Entry<Long, WayBean> entry : waymap.entrySet()) {
-			newWays.add((WayBean)entry.getValue());
+			org.getWayMap().put((WayBean)entry.getValue());
         }
-		org.setWays(newWays);
 
 		// ノードをMapからListに変換して格納
 		List<NodeBean> newNodes = Lists.newArrayList();

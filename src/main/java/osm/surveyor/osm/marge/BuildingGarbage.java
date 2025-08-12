@@ -43,7 +43,7 @@ public class BuildingGarbage {
 						if (way != null) {
 							way.member = true;
 							relation.removeMember(way.getId());
-							osm.getWayMap().remove(way);
+							osm.removeWay(way);
 							return true;
 						}
 					}

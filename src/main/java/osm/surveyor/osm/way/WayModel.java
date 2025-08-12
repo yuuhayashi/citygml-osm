@@ -2,7 +2,9 @@ package osm.surveyor.osm.way;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
@@ -150,7 +152,7 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
 		double max = 0.0d;
 		long maxid = 0;
 		
-        for (Areable way : bean.getWayList(this)) {
+        for (Areable way : bean.getDuplicateWayList(this)) {
         	if (!way.getFix()) {
     			if (way.getDuplicateArea() > max) {
     				max = way.getDuplicateArea();
@@ -188,6 +190,35 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
 		this.duplicateArea = area;
 	}
 	
+    public boolean existSamePosition(List<WayModel> solids) {
+    	if (solids != null) {
+        	for (WayModel solid : solids) {
+        		if (this.isSamePositionWay(solid)) {
+        			return true;
+        		}
+        	}
+    	}
+    	return false;
+    }
+
+    public boolean isSamePositionWay(WayModel b) {
+    	List<NdBean> aNds = this.getNdList();
+    	List<NdBean> bNds = b.getNdList();
+		if (aNds.size() == bNds.size()) {
+	    	Set<Long> set = new HashSet<>();
+	    	for (NdBean nd : bNds) {
+	    		set.add(nd.getRef());
+	    	}
+	    	for (NdBean nd : aNds) {
+	    		set.remove(nd.getRef());
+	    	}
+	    	if (set.isEmpty()) {
+				return true;
+	    	}
+		}
+		return false;
+    }
+    
     //---------- PoiBean ----------------------------
 	
 	public boolean isBuilding() {

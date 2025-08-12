@@ -291,6 +291,17 @@ public class ElementWay extends WayModel implements Cloneable {
 		return false;
 	}
 	
+	public boolean existSamePositionWay(List<ElementWay> solids) {
+    	if (solids != null) {
+        	for (ElementWay solid : solids) {
+        		if (this.isSamePositionWay((WayModel)solid)) {
+        			return true;
+        		}
+        	}
+    	}
+    	return false;
+    }
+	
 	//--------- Cloneable -------------------------------------------
     
 	@Override

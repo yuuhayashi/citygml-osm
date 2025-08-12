@@ -2,6 +2,7 @@ package osm.surveyor.update;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 
@@ -19,7 +20,6 @@ import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.PoiBean;
 import osm.surveyor.osm.RelationBean;
 import osm.surveyor.osm.TagBean;
-import osm.surveyor.osm.WayBean;
 import osm.surveyor.osm.way.WayModel;
 import osm.surveyor.osm.way.Areable;
 
@@ -117,7 +117,7 @@ public class OrgUpdateProcessor implements Processor {
 	 * @param org
 	 */
 	private void fixWayWithNode(OsmBean org) {
-		for (WayBean way : org.getWays()) {
+		for (WayModel way : org.getWayMap().values()) {
 			for (NdBean nd : way.getNdList()) {
 				NodeBean node = org.getNode(nd.getRef());
 				if (node != null) {
@@ -136,7 +136,7 @@ public class OrgUpdateProcessor implements Processor {
 	 * @param org
 	 */
 	private void fixEndDate(OsmBean org) {
-		for (WayModel way : org.getWays()) {
+		for (WayModel way : org.getWayMap().values()) {
 			if (way.getTag("end_date") != null) {
 				fixWay(org, way);
 			}
@@ -166,8 +166,8 @@ public class OrgUpdateProcessor implements Processor {
 	private void removeFixed(OsmBean osm, OsmBean org) throws Exception {
 		List<RelationBean> fixedrelation = new ArrayList<>();
 		List<Areable> fixedway = new ArrayList<>();
-		for (Areable obj : osm.getWays()) {
-			for (Areable way2 : org.getWays()) {
+		for (Areable obj : osm.getWayMap().values()) {
+			for (Areable way2 : org.getWayMap().values()) {
 				if (way2.getFix()) {
 					// `fix=true`
 					if (obj.getIntersectArea(way2) > 0.0d) {
@@ -194,7 +194,7 @@ public class OrgUpdateProcessor implements Processor {
 	 */
 	private void removeNotDuplicated(OsmBean osm, OsmBean org) throws Exception {
 		List<Areable> ways = new ArrayList<>();
-		for (WayBean bean : org.getWays()) {
+		for (WayModel bean : org.getWayMap().values()) {
 			ways.add(bean);
 		}
 		List<Areable> list = new ArrayList<>();
@@ -218,7 +218,7 @@ public class OrgUpdateProcessor implements Processor {
 			node.orignal = false;
 			//osm.putNode(node);
 		}
-		for (Areable way : osm.getWays()) {
+		for (Areable way : osm.getWayMap().values()) {
 			way.setFix(false);
 		}
 		for (RelationBean relation : osm.getRelationList()) {
@@ -245,7 +245,7 @@ public class OrgUpdateProcessor implements Processor {
 	 * @throws Exception
 	 */
 	private void duplicatedToModify(OsmBean osm, OsmBean org) throws Exception {
-		List<WayBean> work = osm.getWays();
+		Collection<WayModel> work = osm.getWayMap().values();
 		Comparator<Areable> comparator = Comparator.comparing(Areable::getArea).reversed();
 		work.stream().sorted(comparator)
 			.forEach(osmway -> duplicatedToModify(osmway, osm, org));
@@ -270,7 +270,7 @@ public class OrgUpdateProcessor implements Processor {
 			if (wayid > 0) {
 				try {
 					List<NodeBean> nodes = org.getNodeList();
-					for (WayModel sWay : org.getWayList(osmway)) {
+					for (WayModel sWay : org.getDuplicateWayList(osmway)) {
 						if (sWay.getId() == wayid) {
 							
 							// MLIT_PLATEAU:fixme="更新前です"
@@ -548,7 +548,7 @@ public class OrgUpdateProcessor implements Processor {
 	}
 
 	void fix128(OsmBean mrg) {
-		for (Areable way : mrg.getWays()) {
+		for (Areable way : mrg.getWayMap().values()) {
 			List<TagBean> blacklist = new ArrayList<>();
 			for (TagBean tag : way.getPoiBean().getTagList()) {
 				String key = tag.getKey();

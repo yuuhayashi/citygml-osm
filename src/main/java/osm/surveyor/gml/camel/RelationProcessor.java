@@ -1,6 +1,7 @@
 package osm.surveyor.gml.camel;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.camel.Exchange;
@@ -14,6 +15,7 @@ import osm.surveyor.osm.TagBean;
 public class RelationProcessor implements Processor {
 
 	/**
+	 * buildingとINNERが重なっているINNERを削除する。
 	 * リレーションの"name"を決定する
 	 * 
 	 * from : "direct:inOsmMargeWay",GerbageWayProcessor()
@@ -26,6 +28,35 @@ public class RelationProcessor implements Processor {
 		OsmDom osm = exchange.getIn().getBody(OsmDom.class);
 		
 		List<ElementRelation> relations = osm.getRelations();
+		for (ElementRelation relation : relations) {
+			if (relation.getTagValue("type").equals("multipolygon")) {
+				List<MemberBean> removeMember = new ArrayList<>();
+				for (MemberBean member : relation.members) {
+					if (member.getRole().equals("inner")) {
+						if (member.isWay()) {
+							long id = member.getRef();
+							ElementWay way = (ElementWay)osm.getWayMap().get(id);
+							if (way != null) {
+
+								// Issue #138
+								if (way.existSamePosition(osm.getDuplicateWayList(way))) {
+									removeMember.add(member);
+								}
+							}
+						}
+					}
+				}
+				
+				for (MemberBean member : removeMember) {
+					if (member.isWay()) {
+						ElementWay way = (ElementWay)osm.getWayMap().get(member.getRef());
+						osm.removeWay(way);
+						relation.removeMember(member.getRef());
+					}
+				}
+			}
+		}
+		
 		for (ElementRelation relation : relations) {
 			if (relation.getTagValue("type").equals("building")) {
 				double max = 0;

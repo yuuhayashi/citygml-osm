@@ -554,11 +554,11 @@ public class CityModelParser extends DefaultHandler {
 						}
 						else {
 							// Issue #137
-							if (!existSamePositionWay(solids, way)) {
+							if (!way.existSamePositionWay(solids)) {
 								if ((name != null) && !name.isEmpty()) {
 									way.addTag("name", name);
 								}
-								ElementWay part = way.copy(osm.getNewId());
+								ElementWay part = way.copy(way.getId());
 								osm.getWayMap().put(part);
 								
 								if (nonLod0 == null) {
@@ -568,6 +568,7 @@ public class CityModelParser extends DefaultHandler {
 								nonLod0.addMember(part, "part");
 							}
 							else {
+								osm.removeWay(way);
 								way = null;
 							}
 						}
@@ -722,35 +723,6 @@ public class CityModelParser extends DefaultHandler {
     	if (outSb != null) {
     		outSb.append(new String(ch, offset, length));
     	}
-    }
-    
-    private boolean existSamePositionWay(ArrayList<ElementWay> solids, ElementWay way) {
-    	if (solids != null) {
-        	for (ElementWay solid : solids) {
-        		if (isSamePositionWay(way, solid)) {
-        			return true;
-        		}
-        	}
-    	}
-    	return false;
-    }
-    
-    private boolean isSamePositionWay(ElementWay a, ElementWay b) {
-    	List<NdBean> aNds = a.getNdList();
-    	List<NdBean> bNds = b.getNdList();
-		if (aNds.size() == bNds.size()) {
-			NdBean[] aNd = aNds.toArray(new NdBean[aNds.size()]);
-			NdBean[] bNd = aNds.toArray(new NdBean[aNds.size()]);
-	    	for (int i = 0; i < aNds.size(); i++) {
-				if (!aNd[i].equals(bNd[i])) {
-					return false;
-				}	    		
-	    	}
-			return true;
-		}
-		else {
-			return false;
-		}
     }
     
     /**

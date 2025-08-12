@@ -64,7 +64,7 @@ public class OsmDom  implements BoxcellMappable {
     public NodeBeans nodes;	// k= node.id
     
     @XmlTransient
-    private WayMap wayMap;		// k= way.id
+    private WayMap wayMap = new WayMap();		// k= way.id
     
     public WayMap getWayMap() {
     	return this.wayMap;
@@ -79,6 +79,12 @@ public class OsmDom  implements BoxcellMappable {
     	for (WayModel way : this.wayMap.values()) {
     		putWay(way);
     	}
+    }
+    public void setWayList(WayMap map) {
+    	this.wayMap.clear();
+		for (String key : map.keySet()) {
+			this.wayMap.put(map.get(key));
+		}
     }
 
     @XmlTransient
@@ -118,13 +124,6 @@ public class OsmDom  implements BoxcellMappable {
 		}
 		ddom.wayMap.put(way.clone());
 		ddom.idxmap.putWayType(way);
-	}
-	
-	public void removeWay(ElementWay elementWay) {
-		if (elementWay != null) {
-			this.idxmap.removeWayBean(elementWay);
-			this.wayMap.remove(elementWay);
-		}
 	}
 	
     public void export(PrintStream out) {
@@ -258,8 +257,7 @@ public class OsmDom  implements BoxcellMappable {
 		}
 		for (String id : filter.keySet()) {
 			ElementWay way = (ElementWay) filter.get(id);
-			this.getIndexMap().remove(Integer.parseInt(way.getIdstr()));
-			this.getWayMap().remove(way.getId());
+			this.removeWay(way);
 		}
 		WayMap map = new WayMap();
 		for (String id : this.wayMap.keySet()) {
@@ -277,10 +275,8 @@ public class OsmDom  implements BoxcellMappable {
 				}
 			}
 		}
-		this.wayMap.clear();
-		for (String key : map.keySet()) {
-			this.wayMap.put(map.get(key));
-		}
+		this.setWayList(map);
+    	reindex();
 	}
 	
 	/**
@@ -376,29 +372,7 @@ public class OsmDom  implements BoxcellMappable {
 	}
 
 	@Override
-	public List<WayModel> getWayList(WayModel wayBean) {
-		// TODO Auto-generated method stub
-		System.out.println("// TODO OsmDom.getWayList() method stub");
-		return null;
-	}
-
-	@Override
 	public WayModel getWay(long id) {
-		// TODO Auto-generated method stub
-		System.out.println("// TODO OsmDom.getWay() method stub");
-		return null;
-	}
-
-	@Override
-	public void putWay(WayModel way) {
-		this.wayMap.put(way.getIdstr(), way);
-	}
-
-    @XmlTransient
-	@Override
-	public List<WayBean> getWays() {
-		// TODO Auto-generated method stub
-		System.out.println("// TODO OsmDom.Auto-generated method stub");
-		return null;
+		return getWayMap().get(id);
 	}
 }

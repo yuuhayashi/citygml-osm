@@ -46,7 +46,7 @@ public class CheckedConvertProcessor implements Processor {
 	 */
 	private void removeActionDelete(OsmBean osm) throws Exception {
 		List<WayModel> work = new ArrayList<>();
-		for (WayModel way : osm.getWays()) {
+		for (WayModel way : osm.getWayMap().values()) {
 			String action = way.getPoiBean().getAction();
 			if (action != null && action.equals("delete")) {
 				work.add(way);
@@ -75,7 +75,7 @@ public class CheckedConvertProcessor implements Processor {
 	 */
 	private void convertNodeToActionDelete(OsmBean osm) {
 		List<WayModel> removeList = new ArrayList<>();
-		for (WayModel way : osm.getWays()) {
+		for (WayModel way : osm.getWayMap().values()) {
 			TagBean fixme = way.getTag("MLIT_PLATEAU:fixme");
 			if (fixme != null) {
 				String v = fixme.getValue();
@@ -106,7 +106,7 @@ public class CheckedConvertProcessor implements Processor {
 	 * @param poi
 	 */
 	private void convertToActionDelete(OsmBean osm) {
-		for (WayModel way : osm.getWays()) {
+		for (WayModel way : osm.getWayMap().values()) {
 			TagBean fixme = way.getTag("MLIT_PLATEAU:fixme");
 			if (fixme != null) {
 				String v = fixme.getValue();
@@ -128,7 +128,7 @@ public class CheckedConvertProcessor implements Processor {
 	 * @throws Exception
 	 */
 	private void removeFixmeTag(OsmBean osm) throws Exception {
-		for (WayModel way : osm.getWays()) {
+		for (WayModel way : osm.getWayMap().values()) {
 			TagBean fixme = way.getTag("MLIT_PLATEAU:fixme");
 			if (fixme != null) {
 				way.getPoiBean().removeTag("MLIT_PLATEAU:fixme");
@@ -142,7 +142,7 @@ public class CheckedConvertProcessor implements Processor {
 	 * @throws Exception
 	 */
 	private void moveRefTag(OsmBean osm) throws Exception {
-		for (WayModel way : osm.getWays()) {
+		for (WayModel way : osm.getWayMap().values()) {
 			TagBean refTag = way.getTag("ref:MLIT_PLATEAU");
 			if (refTag != null) {
 				String ref = refTag.getValue();
