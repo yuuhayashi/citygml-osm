@@ -58,7 +58,7 @@ public class GmlLoadRoute extends RouteBuilder {
         // (5) "outline"と"part"が重複しているPART を削除する
 		from("direct:inOsmMargeWay")
 		.streamCaching()
-		.process(new OsmMargeWayProcessor())
+		.process(new OsmMargeWayProcessor())	// "outline"と"part"が重複しているPART を削除する
 		.process(new GerbageWayProcessor())		// RELATIONに所属していないWAYを削除する
 		.process(new RelationProcessor())		// RELATIONの"name"を決定する。#76:オブジェクトが存在しないメンバーをRELATIONから削除する
         .to("direct:osm-export")
