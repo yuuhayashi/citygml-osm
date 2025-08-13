@@ -41,7 +41,8 @@ import osm.surveyor.DetailTests;
 	CitygmlFileTest_Issue28.class,		// 福岡県飯塚市 #28,#34,#36,#37
 	CitygmlFileTest_Issue32.class,		// #32
 	CitygmlFileTest_Issue34.class,		// 福岡県飯塚市 #34
-	CitygmlFileTest_Issue137.class		// 山口県周南市 Issue#137
+	CitygmlFileTest_Issue137.class,		// 山口県周南市 Issue#137
+	CitygmlFileTest_Issue138.class		// 山口県周南市 Issue#138
 })
 public class AllTests {
 

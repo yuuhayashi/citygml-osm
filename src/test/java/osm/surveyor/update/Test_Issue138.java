@@ -20,6 +20,7 @@ import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.NodeBean;
 import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.RelationBean;
+import osm.surveyor.osm.WayBean;
 import osm.surveyor.osm.way.WayModel;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -63,8 +64,9 @@ public class Test_Issue138 extends OsmUpdaterTest {
 	        	assertNotEquals(0, node.getId());
 	        }
 	        
-	        assertNotNull(mrg.getWayMap());
-	        for (WayModel way : mrg.getWayMap().values()) {
+	        List<WayBean> ways = mrg.getWays();
+	        assertNotNull(ways);
+	        for (WayModel way : ways) {
 	        	for (NdModel nd : way.getNdList()) {
 	        		assertNotNull(mrg.getNode(nd.getRef()));
 	        	}

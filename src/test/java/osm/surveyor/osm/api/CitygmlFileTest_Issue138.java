@@ -7,6 +7,10 @@ import osm.surveyor.osm.OsmDom;
 
 public class CitygmlFileTest_Issue138 extends GmlLoadRouteTest {
 
+	/**
+	 * Issue138 「同じ位置を持つウェイ」マルチポリゴンのINNER
+	 * https://github.com/yuuhayashi/citygml-osm/issues/138
+	 */
 	@Test
 	public void test51357441() {
 		OsmDom osm = testdo("./src/test/resources/51357441_bldg_Issue138.gml");
