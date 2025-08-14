@@ -98,7 +98,14 @@ public class OsmBean implements Serializable,BoxcellMappable {
     	this.nodeList = nodeList;
     }
     
-	
+    @XmlTransient
+    private WayMap wayMap = new WayMap();		// k= way.id
+    
+	@Override
+    public WayMap getWayMap() {
+    	return this.wayMap;
+    }
+
     private List<WayBean> wayList = new ArrayList<>();
     
     @XmlElement(name="way")
@@ -109,12 +116,17 @@ public class OsmBean implements Serializable,BoxcellMappable {
     	this.wayList = ways;
     }
     
+    public void convertToWeyMap() {
+    	for (WayBean way : this.wayList) {
+    		this.wayMap.put(way);
+    	}
+    }
+    
     /**
      * 指定のwayBeanと重複するwayListを取得する
      * @param wayBean
      * @return	wayBeanと重複するwayListを返す
      */
-    @Override
 	public List<WayModel> getWayList(WayModel wayBean) {
     	Map<Long,WayModel> map = new HashMap<>();
     	
@@ -310,7 +322,7 @@ public class OsmBean implements Serializable,BoxcellMappable {
 	 */
 	public void gerbageNode() {
 		List<NodeBean> list = new ArrayList<>();
-		for (WayBean way : this.wayList) {
+		for (WayModel way : this.wayList) {
 			for (NdBean nd : way.getNdList()) {
 				list.add(this.getNode(nd.getRef()));
 			}

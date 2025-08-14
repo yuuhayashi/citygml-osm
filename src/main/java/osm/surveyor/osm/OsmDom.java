@@ -66,6 +66,7 @@ public class OsmDom  implements BoxcellMappable {
     @XmlTransient
     private WayMap wayMap = new WayMap();		// k= way.id
     
+    @Override
     public WayMap getWayMap() {
     	return this.wayMap;
     }
@@ -374,5 +375,12 @@ public class OsmDom  implements BoxcellMappable {
 	@Override
 	public WayModel getWay(long id) {
 		return getWayMap().get(id);
+	}
+
+	@Override
+	public List<WayBean> getWays() {
+		// TODO Auto-generated method stub
+		System.out.println("// TODO getWays() method stub");
+		return null;
 	}
 }

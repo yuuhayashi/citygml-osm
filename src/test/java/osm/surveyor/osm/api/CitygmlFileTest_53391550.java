@@ -34,7 +34,7 @@ public class CitygmlFileTest_53391550 extends GmlLoadRouteTest {
 					}
 				}
 			}
-			for (WayModel way : osm.getWays()) {
+			for (WayModel way : osm.getWayMap().values()) {
 				List<TagBean> tags = way.getTagList();
 				for (TagBean tag : tags) {
 					if (tag.k.equals("height")) {

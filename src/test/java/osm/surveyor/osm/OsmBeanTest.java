@@ -39,6 +39,7 @@ public class OsmBeanTest {
         // OSMファイルをパースする
 		try {
 			OsmBean osm = JAXB.unmarshal(osmfile, OsmBean.class);
+			osm.convertToWeyMap();
 			osm.build();
 	        
 	        assertNotNull(osm);

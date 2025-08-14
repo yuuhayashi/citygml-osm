@@ -30,6 +30,7 @@ public class OrgFileReadProcessor implements Processor {
 
 			System.out.println(LocalTime.now() +"\tOrgFileReadProcessor (\""+ orgf.getName() +"\")");
 			OsmBean org = JAXB.unmarshal(orgf, OsmBean.class);
+			org.convertToWeyMap();
 			org.build();
 			map.put("org", org);
 			exchange.getIn().setBody(map);

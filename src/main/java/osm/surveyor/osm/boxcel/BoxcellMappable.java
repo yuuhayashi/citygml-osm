@@ -13,6 +13,7 @@ import osm.surveyor.gis.point.NdModel;
 import osm.surveyor.osm.BoundsBean;
 import osm.surveyor.osm.NodeBean;
 import osm.surveyor.osm.OsmPoint;
+import osm.surveyor.osm.WayBean;
 import osm.surveyor.osm.WayMap;
 import osm.surveyor.osm.way.Areable;
 import osm.surveyor.osm.way.WayModel;
@@ -28,6 +29,7 @@ public interface BoxcellMappable {
     public List<NodeBean> getNodeList();
     public void setNodeList(List<NodeBean> nodeList);
     
+	public List<WayBean> getWays();
 	public WayMap getWayMap();
     
 	/**
@@ -75,7 +77,7 @@ public interface BoxcellMappable {
     		point.setLon(node.getLon());
     		node.setPoint(point);
     	}
-    	for (WayModel way : getWayMap().values()) {
+    	for (WayBean way : getWays()) {
     		for (NdModel nd : way.getNdList()) {
     			NodeBean node = getNode(nd.getRef());
     			if (node != null) {
@@ -89,7 +91,7 @@ public interface BoxcellMappable {
     	}
     }
     
-    /**
+	/**
      * 指定のwayBeanと同じBOXCELの wayidListを取得する
      * @param wayBean
      * @return	指定のwayBeanと同じBOXCELの wayidListを

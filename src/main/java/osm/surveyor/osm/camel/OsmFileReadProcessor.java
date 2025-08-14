@@ -26,6 +26,7 @@ public class OsmFileReadProcessor implements Processor {
 		System.out.println(LocalTime.now() +"\tOsmFileProcessor (\""+ file.getName() +"\")");
 		
 		OsmBean osm = JAXB.unmarshal(file, OsmBean.class);
+		osm.convertToWeyMap();
 		osm.build();
 		
 		BodyMap map = new BodyMap();
