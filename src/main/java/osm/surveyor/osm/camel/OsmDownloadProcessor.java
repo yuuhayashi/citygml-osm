@@ -48,6 +48,8 @@ public class OsmDownloadProcessor implements Processor {
     		
             // Parse from XML
     		OsmBean org = JAXB.unmarshal(urlconn.getInputStream(), OsmBean.class);
+    		org.convertToWeyMap();
+    		org.build();
             map.put("org", org);
         }
         finally {

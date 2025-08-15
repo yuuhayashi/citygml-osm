@@ -376,11 +376,4 @@ public class OsmDom  implements BoxcellMappable {
 	public WayModel getWay(long id) {
 		return getWayMap().get(id);
 	}
-
-	@Override
-	public List<WayBean> getWays() {
-		// TODO Auto-generated method stub
-		System.out.println("// TODO getWays() method stub");
-		return null;
-	}
 }

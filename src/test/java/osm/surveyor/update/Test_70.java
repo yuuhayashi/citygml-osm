@@ -96,7 +96,13 @@ public class Test_70 extends OsmUpdaterTest {
 	        	if (ref != null) {
 		        	if (ref.equals("11230-bldg-1")) {
 		        		assertEquals("D’クラディアひばりケ丘ミッドレジデンス", way.getTagValue("name"));
-		    	        assertNotNull(way.getTagValue("MLIT_PLATEAU:fixme"));
+		        		if (way.getId() < 0) {
+			    	        assertNull(way.getPoiBean().getTagValue("MLIT_PLATEAU:fixme"));
+		        		}
+		        		else {
+			    	        assertNotNull(way.getTagValue("MLIT_PLATEAU:fixme"));
+			        		assertEquals("PLATEAUデータで更新されています", way.getPoiBean().getTagValue("MLIT_PLATEAU:fixme"));
+		        		}
 		        	}
 		        	else if (ref.equals("11230-bldg-1165")) {
 		        		assertNull(way.getTagValue("name"));
@@ -105,7 +111,13 @@ public class Test_70 extends OsmUpdaterTest {
 		        	
 		        	if (ref.equals("11230-bldg-2")) {
 		        		assertEquals("東京ドーム後楽園スイミングスクールひばりが丘", way.getTagValue("name"));
-		    	        assertNotNull(way.getTagValue("MLIT_PLATEAU:fixme"));
+		        		if (way.getId() < 0) {
+			    	        assertNull(way.getPoiBean().getTagValue("MLIT_PLATEAU:fixme"));
+		        		}
+		        		else {
+			    	        assertNotNull(way.getTagValue("MLIT_PLATEAU:fixme"));
+			        		assertEquals("PLATEAUデータで更新されています", way.getPoiBean().getTagValue("MLIT_PLATEAU:fixme"));
+		        		}
 		        	}
 		        	else if (ref.equals("11230-bldg-1163")) {
 		        		assertNull(way.getTagValue("name"));
