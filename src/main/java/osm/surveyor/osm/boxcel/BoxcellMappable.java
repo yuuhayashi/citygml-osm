@@ -139,11 +139,10 @@ public interface BoxcellMappable {
 	 * IndexMapから削除する
 	 * @param poi
 	 */
-	@SuppressWarnings("unlikely-arg-type")
 	default public void removeWay(Areable way) {
 		if (way != null) {
 			getIndexMap().removeWayBean(way);
-			getWayMap().remove(way);
+			getWayMap().remove(way.getId());
 		}
 	}
 

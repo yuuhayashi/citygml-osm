@@ -11,6 +11,7 @@ import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.OsmDom;
 import osm.surveyor.osm.TagBean;
+import osm.surveyor.osm.way.WayModel;
 
 public class RelationProcessor implements Processor {
 
@@ -31,6 +32,7 @@ public class RelationProcessor implements Processor {
 		for (ElementRelation relation : relations) {
 			if (relation.getTagValue("type").equals("multipolygon")) {
 				List<MemberBean> removeMember = new ArrayList<>();
+				List<ElementWay> partMembers = new ArrayList<>();
 				for (MemberBean member : relation.members) {
 					if (member.getRole().equals("inner")) {
 						if (member.isWay()) {
@@ -39,8 +41,15 @@ public class RelationProcessor implements Processor {
 							if (way != null) {
 
 								// Issue #138
-								if (way.existSamePosition(osm.getDuplicateWayList(way))) {
+								WayModel part = way.getSamePositionWay(osm.getDuplicateWayList(way));
+								if (part != null) {
+									String str = part.getTagValue("building");
+									if (str != null) {
+										part.removeTag("building");
+										part.addTag("building:part", str);
+									}
 									removeMember.add(member);
+									partMembers.add(way);
 								}
 							}
 						}
@@ -53,6 +62,38 @@ public class RelationProcessor implements Processor {
 						osm.removeWay(way);
 						relation.removeMember(member.getRef());
 					}
+				}
+				
+				for (ElementWay member : partMembers) {
+					relation.addMember(member, "part");
+				}
+			}
+		}
+		
+		// "outer"だけのマルチポリゴンは "type=building"に置き換える
+		for (ElementRelation relation : relations) {
+			if (relation.getTagValue("type").equals("multipolygon")) {
+				boolean exitInner = false;
+				for (MemberBean member : relation.members) {
+					if (member.getRole().equals("inner")) {
+						exitInner = true;
+					}
+				}
+
+				if (!exitInner) {
+					for (MemberBean member : relation.members) {
+						if (member.isWay()) {
+							if (member.getRole().equals("outer")) {
+								ElementWay way = (ElementWay)osm.getWayMap().get(member.getRef());
+								way.copyTag(relation);
+								way.removeTag("type");
+								way.removeTag("building:part");
+								way.addTag("building", "yes");
+							}
+							member.setRole("outline");
+						}
+					}
+					relation.addTag("type", "building");
 				}
 			}
 		}

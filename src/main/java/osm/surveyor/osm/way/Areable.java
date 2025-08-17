@@ -78,7 +78,7 @@ public interface Areable {
 	
 	/**
 	 * 指定の領域と重複する部分の面積を取得する
-	 * @param way
+	 * @param elementWay
 	 * @return
 	 */
 	public default double getIntersectArea(Polygon polygon2) {

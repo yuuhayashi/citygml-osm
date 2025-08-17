@@ -253,7 +253,7 @@ public class OrgUpdateProcessor implements Processor {
 	
 	/**
 	 * 
-	 * @param way	処理対象のPlateauのWay
+	 * @param elementWay	処理対象のPlateauのWay
 	 * @param osm	Plateauデータ
 	 * @param org	ORGデータ
 	 */

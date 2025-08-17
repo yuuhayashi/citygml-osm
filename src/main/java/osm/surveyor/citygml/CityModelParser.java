@@ -103,7 +103,7 @@ public class CityModelParser extends DefaultHandler {
 	ArrayList<ElementWay> solids = null;			// <bldg:lod1Solid/>
 	RelationMultipolygon multipolygon = null;		// <gml:Polygon/>
 	MemberBean member = null;					// <gml:exterior/>,<gml:interior/>
-    ElementWay way = null;							// <gml:LinearRing/>
+    ElementWay elementWay = null;							// <gml:LinearRing/>
 	
     /*
      * 全国地方公共団体コード
@@ -221,7 +221,7 @@ public class CityModelParser extends DefaultHandler {
 			}
 		}
 		else if(qName.equals("gml:LinearRing")){
-			way = new ElementWay(osm.getNewId());
+			elementWay = new ElementWay(osm.getNewId());
 		}
 		else if(qName.equals("gml:posList")){
 			outSb = new StringBuffer();
@@ -528,15 +528,15 @@ public class CityModelParser extends DefaultHandler {
 			}
 		}
 		else if (qName.equals("gml:exterior")){
-			if (way != null) {
+			if (elementWay != null) {
 				if (member != null) {
-					way.addTag("ref:MLIT_PLATEAU", buildingId);
+					elementWay.addTag("ref:MLIT_PLATEAU", buildingId);
 					if (!edgeFull) {
 						if (roof != null) {
 							if ((name != null) && !name.isEmpty()) {
-								way.addTag("name", name);
+								elementWay.addTag("name", name);
 							}
-							ElementWay part = way.copy(osm.getNewId());
+							ElementWay part = elementWay.copy(osm.getNewId());
 							osm.getWayMap().put(part);
 							roof.copyTag(part);
 							roof.addMember(part, "part");
@@ -544,9 +544,9 @@ public class CityModelParser extends DefaultHandler {
 						}
 						else if (footPrint != null) {
 							if ((name != null) && !name.isEmpty()) {
-								way.addTag("name", name);
+								elementWay.addTag("name", name);
 							}
-							ElementWay part = way.copy(osm.getNewId());
+							ElementWay part = elementWay.copy(osm.getNewId());
 							osm.getWayMap().put(part);
 							footPrint.copyTag(part);
 							footPrint.addMember(part, "part");
@@ -554,11 +554,11 @@ public class CityModelParser extends DefaultHandler {
 						}
 						else {
 							// Issue #137
-							if (!way.existSamePositionWay(solids)) {
+							if (!elementWay.existSamePositionWay(solids)) {
 								if ((name != null) && !name.isEmpty()) {
-									way.addTag("name", name);
+									elementWay.addTag("name", name);
 								}
-								ElementWay part = way.copy(way.getId());
+								ElementWay part = elementWay.copy(elementWay.getId());
 								osm.getWayMap().put(part);
 								
 								if (nonLod0 == null) {
@@ -568,13 +568,13 @@ public class CityModelParser extends DefaultHandler {
 								nonLod0.addMember(part, "part");
 							}
 							else {
-								osm.removeWay(way);
-								way = null;
+								osm.removeWay(elementWay);
+								elementWay = null;
 							}
 						}
 					}
-					if ((multipolygon != null) && (way != null)) {
-						ElementWay outer = way.copy(osm.getNewId());
+					if ((multipolygon != null) && (elementWay != null)) {
+						ElementWay outer = elementWay.copy(osm.getNewId());
 						multipolygon.copyTag(outer);
 						multipolygon.removeTag("ref:MLIT_PLATEAU");
 						outer.removeTag("name");
@@ -586,26 +586,26 @@ public class CityModelParser extends DefaultHandler {
 					}
 					member = null;
 				}
-				if ((solids != null) && (way != null)) {
-					solids.add(way.clone());
+				if ((solids != null) && (elementWay != null)) {
+					solids.add(elementWay.clone());
 				}
-				way = null;
+				elementWay = null;
 			}
 		}
 		else if (qName.equals("gml:interior")){
-			if (way != null) {
+			if (elementWay != null) {
 				if (member != null) {
 					if (multipolygon != null) {
-						way.removeTag("height");
-						way.removeTag("maxele");
-						way.removeTag("ele");
-						way.addTag("ref:MLIT_PLATEAU", buildingId);
-						osm.getWayMap().put(way);
-						multipolygon.addMember(way, "inner");
+						elementWay.removeTag("height");
+						elementWay.removeTag("maxele");
+						elementWay.removeTag("ele");
+						elementWay.addTag("ref:MLIT_PLATEAU", buildingId);
+						osm.getWayMap().put(elementWay);
+						multipolygon.addMember(elementWay, "inner");
 					}
 					member = null;
 				}
-				way = null;
+				elementWay = null;
 			}
 		}
 		else if(qName.equals("gml:LinearRing")){
@@ -613,12 +613,12 @@ public class CityModelParser extends DefaultHandler {
 			// <gml:posList>35.541657275471835 139.7156383865409 14.072000000000001 35.542252321638614 139.71535363948732 14.072000000000001 35.54210367440277 139.7148860223014 14.072000000000001 35.54206164434519 139.71490626649856 14.072000000000001 35.5420440155531 139.7148536858433 14.072000000000001 35.541981356256336 139.7146575788015 14.072000000000001 35.54142914946131 139.71491844541285 14.072000000000001 35.54153100551663 139.71523889596378 14.072000000000001 35.541657275471835 139.7156383865409 14.072000000000001</gml:posList>
 			// <gml:LinearRing>
 			// AREAに変更する
-			if (way != null) {
-				if (isOverlapped(way.getNdList())) {
-					way = null;
+			if (elementWay != null) {
+				if (isOverlapped(elementWay.getNdList())) {
+					elementWay = null;
 				}
 				else {
-					way.toArea(this.osm.getIndexMap());
+					elementWay.toArea(this.osm.getIndexMap());
 				}
 			}
 		}
@@ -628,9 +628,9 @@ public class CityModelParser extends DefaultHandler {
 				String height = null;
 				String maxele = "-9999.9";
 				String minele = "99999.9";
-				if (way != null) {
-					String ele = checkNumberString(way.getTagValue("ele"));
-					String hi = checkNumberString(way.getTagValue("maxele"));
+				if (elementWay != null) {
+					String ele = checkNumberString(elementWay.getTagValue("ele"));
+					String hi = checkNumberString(elementWay.getTagValue("maxele"));
 					if (ele != null) {
 						minele = ele;
 					}
@@ -669,27 +669,27 @@ public class CityModelParser extends DefaultHandler {
 						if (Double.parseDouble(height) < Double.parseDouble(minele)) {
 							minele = CityModelParser.rounding(2, height);
 						}
-						if (way != null) {
-							way.addNode(putNode(node.clone()));
+						if (elementWay != null) {
+							elementWay.addNode(putNode(node.clone()));
 						}
 					}
 					else {
 						break;
 					}
 				}
-				if (way != null) {
+				if (elementWay != null) {
 					String minStr = checkNumberString(minele);
 					if (minStr != null) {
 						double min = Double.parseDouble(minele);
 						if (min < 90000.0d) {
-							way.addTag("ele", rounding(1, minele));
+							elementWay.addTag("ele", rounding(1, minele));
 						}
 					}
 					String maxeleStr = checkNumberString(maxele);
 					if (maxeleStr != null) {
 						double max = Double.parseDouble(maxele);
 						if (max > -1000.0d) {
-							way.addTag("maxele", Double.toString(max));
+							elementWay.addTag("maxele", Double.toString(max));
 						}
 					}
 				}

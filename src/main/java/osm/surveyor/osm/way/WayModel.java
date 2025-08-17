@@ -201,6 +201,17 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
     	return false;
     }
 
+    public WayModel getSamePositionWay(List<WayModel> solids) {
+    	if (solids != null) {
+        	for (WayModel solid : solids) {
+        		if (this.isSamePositionWay(solid)) {
+        			return solid;
+        		}
+        	}
+    	}
+    	return null;
+    }
+
     public boolean isSamePositionWay(WayModel b) {
     	List<NdBean> aNds = this.getNdList();
     	List<NdBean> bNds = b.getNdList();
