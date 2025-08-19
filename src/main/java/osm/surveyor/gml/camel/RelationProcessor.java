@@ -83,14 +83,14 @@ public class RelationProcessor implements Processor {
 				if (!exitInner) {
 					for (MemberBean member : relation.members) {
 						if (member.isWay()) {
+							ElementWay way = (ElementWay)osm.getWayMap().get(member.getRef());
 							if (member.getRole().equals("outer")) {
-								ElementWay way = (ElementWay)osm.getWayMap().get(member.getRef());
 								way.copyTag(relation);
 								way.removeTag("type");
 								way.removeTag("building:part");
 								way.addTag("building", "yes");
+								member.setRole("outline");
 							}
-							member.setRole("outline");
 						}
 					}
 					relation.addTag("type", "building");
