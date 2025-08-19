@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<osm generator="JOSM" version="0.6">
+    <node lat="34.62252674297724" lon="135.51596178703176" id="-53" visible="true"/>
+    <node lat="34.62252975808406" lon="135.51592872605792" id="-54" visible="true"/>
+    <node lat="34.622520765178635" lon="135.51592752415365" id="-55" visible="true"/>
+    <node lat="34.62252893732908" lon="135.51583776859547" id="-56" visible="true"/>
+    <node lat="34.62254539870203" lon="135.51583995222472" id="-57" visible="true"/>
+    <node lat="34.6225485777016" lon="135.51580503636305" id="-58" visible="true"/>
+    <node lat="34.62240488081206" lon="135.51578588137124" id="-59" visible="true"/>
+    <node lat="34.62239051466228" lon="135.51594363532652" id="-52" visible="true"/>
+    <node lat="34.62241959605465" lon="135.51587054191634" id="-65" visible="true"/>
+    <node lat="34.62243400240284" lon="135.51587283563285" id="-66" visible="true"/>
+    <node lat="34.622430531585266" lon="135.51590464509346" id="-67" visible="true"/>
+    <node lat="34.62241613420931" lon="135.51590234041402" id="-64" visible="true"/>
+    <node lat="34.62243631108486" lon="135.5158525926668" id="-6" visible="true"/>
+    <node lat="34.62243933572409" lon="135.51583102598522" id="-7" visible="true"/>
+    <node lat="34.62242558539064" lon="135.51582820500545" id="-8" visible="true"/>
+    <node lat="34.62242256981012" lon="135.51584978253635" id="-5" visible="true"/>
+    <bounds minlat="34.616555554793614" minlon="135.51216873982492" maxlat="34.62507442485661" maxlon="135.52509604728158" origin="CGImap 0.8.3 (2061540 spike-08.openstreetmap.org)"/>
+    <relation id="-50" visible="true">
+        <tag k="type" v="multipolygon"/>
+        <tag k="ele" v="7.6"/>
+        <tag k="height" v="4.2"/>
+        <tag k="survey:date" v="2017"/>
+        <tag k="building" v="yes"/>
+        <member ref="-63" role="inner" type="way"/>
+        <member ref="-216" role="outer" type="way"/>
+        <complete>false</complete>
+        <marged>false</marged>
+    </relation>
+    <way area="4.660063032666549E-10" fix="false" id="-63" visible="true">
+        <tag k="ref:MLIT_PLATEAU" v="bldg_af5a6580-1385-461d-bc39-c45107fb2469"/>
+        <nd ref="-64"/>
+        <nd ref="-65"/>
+        <nd ref="-66"/>
+        <nd ref="-67"/>
+        <nd ref="-64"/>
+    </way>
+    <way area="3.050292320288659E-10" fix="false" id="-10" visible="true">
+        <tag k="height" v="2.99"/>
+        <tag k="ele" v="7.6"/>
+        <tag k="ref:MLIT_PLATEAU" v="27100-bldg-80281"/>
+        <tag k="survey:date" v="2017"/>
+        <tag k="building:part" v="yes"/>
+        <nd ref="-5"/>
+        <nd ref="-6"/>
+        <nd ref="-7"/>
+        <nd ref="-8"/>
+        <nd ref="-5"/>
+    </way>
+    <way area="2.11981558372214E-8" fix="false" id="-216" visible="true">
+        <nd ref="-52"/>
+        <nd ref="-53"/>
+        <nd ref="-54"/>
+        <nd ref="-55"/>
+        <nd ref="-56"/>
+        <nd ref="-57"/>
+        <nd ref="-58"/>
+        <nd ref="-59"/>
+        <nd ref="-52"/>
+    </way>
+</osm>
