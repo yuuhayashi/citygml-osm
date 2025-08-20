@@ -29,9 +29,6 @@ public class ElementWay extends WayModel implements Cloneable {
 	@XmlTransient
 	boolean ring = false;
 	
-	@XmlTransient
-	public boolean member = false;	// 単独のWAYか、RELATIONのメンバーかを示す。
-	
 	public ElementWay(long id) {
 		super(id);
 	}
@@ -317,13 +314,6 @@ public class ElementWay extends WayModel implements Cloneable {
 		try {
 			copy = (ElementWay)super.clone();
 			copy.ring = this.ring;
-			copy.member = this.member;
-			copy.setNdList(new ArrayList<NdBean>());
-			if (getNdList() != null) {
-				for (NdModel nd : getNdList()) {
-					copy.getNdList().add((NdBean) nd.clone());
-				}
-			}
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -337,8 +327,6 @@ public class ElementWay extends WayModel implements Cloneable {
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + (ring ? 1231 : 1237);
-		result = prime * result + (member ? 1231 : 1237);
-		result = prime * result + ((getNdList() == null) ? 0 : getNdList().hashCode());
 		result = prime * result + ((getTagList() == null) ? 0 : getTagList().hashCode());
 		return result;
 	}
@@ -356,17 +344,6 @@ public class ElementWay extends WayModel implements Cloneable {
 		}
 		ElementWay other = (ElementWay) obj;
 		if (ring != other.ring) {
-			return false;
-		}
-		if (member != other.member) {
-			return false;
-		}
-		if (getNdList() == null) {
-			if (other.getNdList() != null) {
-				return false;
-			}
-		}
-		else if (!getNdList().equals(other.getNdList())) {
 			return false;
 		}
 		if (this.getTagList() == null) {

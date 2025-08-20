@@ -1,5 +1,6 @@
 package osm.surveyor.osm;
 
+import osm.surveyor.osm.way.WayModel;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -48,7 +49,7 @@ public class ElementRelation extends PoiBean implements Cloneable,Serializable {
 		members = new ArrayList<MemberBean>();
 	}
 	
-	public void addMember(ElementWay way, String role) {
+	public void addMember(WayModel way, String role) {
 		if (way == null) {
 			return;
 		}

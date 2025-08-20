@@ -20,6 +20,7 @@ import osm.surveyor.osm.PoiBean;
 import osm.surveyor.osm.RelationBean;
 import osm.surveyor.osm.TagBean;
 import osm.surveyor.osm.boxcel.BoxcellMappable;
+import osm.surveyor.gis.point.NdModel;
 
 @XmlRootElement(name="way")
 public abstract class WayModel extends PoiBean implements Cloneable, Serializable, Areable {
@@ -38,6 +39,9 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
 	public PoiBean getPoiBean() {
 		return (PoiBean)this;
 	}
+
+	@XmlTransient
+	public boolean member = false;  // 単独のWAYか、RELATIONのメンバーかを示す。
 	
 	/**
 	 * WAYノードメンバー
@@ -249,7 +253,19 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
 		WayModel copy = null;
 		try {
 			copy = (WayModel) super.clone();
-			copy.boxels = this.boxels;
+			copy.member = this.member;
+			copy.boxels = new ArrayList<Integer>();
+			if (this.boxels != null) {
+				for (Integer boxelid : this.boxels) {
+					copy.addBoxel(new Integer(boxelid.intValue()));
+				}
+			}
+			copy.setNdList(new ArrayList<NdBean>());
+			if (getNdList() != null) {
+				for (NdModel nd : getNdList()) {
+					copy.getNdList().add((NdBean) nd.clone());
+				}
+			}
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -257,4 +273,44 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
 		}
 		return copy;
 	}
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = super.hashCode();
+        result = prime * result + (member ? 1231 : 1237);
+        result = prime * result + ((getNdList() == null) ? 0 : getNdList().hashCode());
+        result = prime * result + ((getBoxels() == null) ? 0 : getBoxels().hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!super.equals(obj)) {
+            return false;
+        }
+        WayModel other = (WayModel) obj;
+        if (member != other.member) {
+            return false;
+        }
+        if (getNdList() == null) {
+            if (other.getNdList() != null) {
+                return false;
+            }
+        }
+        else if (!getNdList().equals(other.getNdList())) {
+            return false;
+        }
+        if (this.getBoxels() == null) {
+            if (other.getBoxels() != null) {
+                return false;
+            }
+        } else if (!getBoxels().equals(other.getBoxels())) {
+            return false;
+        }
+        return true;
+    }
 }
