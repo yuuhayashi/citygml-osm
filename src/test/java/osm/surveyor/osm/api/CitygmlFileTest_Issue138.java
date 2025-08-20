@@ -54,7 +54,7 @@ public class CitygmlFileTest_Issue138 extends GmlLoadRouteTest {
 				assertEquals("4.2", relation.getTagValue("height"));
 				int outline = 0;
 				int parts = 0;
-				assertEquals(1, relation.members.size());
+				assertEquals("Relation.member.size()", 3, relation.members.size());
 				for (MemberBean member : relation.members) {
 					String role = member.getRole();
 					if (role.equals("outline")) {
@@ -64,8 +64,8 @@ public class CitygmlFileTest_Issue138 extends GmlLoadRouteTest {
 						parts++;
 					}
 				}
-				assertEquals(1, outline);
-				assertEquals(2, parts);
+				assertEquals("ROLE:outline count", 1, outline);
+				assertEquals("count of ROLE:part", 2, parts );
 			}
 		} catch (Exception e) {
 			e.fillInStackTrace();
@@ -82,7 +82,7 @@ public class CitygmlFileTest_Issue138 extends GmlLoadRouteTest {
 			assertNotNull(bound);
 	        
 			assertNotNull(osm.getWayMap());
-			assertEquals(3, osm.getWayMap().size());
+			assertEquals("osm.getWayMap().size()", 3, osm.getWayMap().size());
 			
 			// Issue138 innerと重なっていたbuildingは"building:part=yes"にする
 			int part = 0;
@@ -97,16 +97,16 @@ public class CitygmlFileTest_Issue138 extends GmlLoadRouteTest {
 					assertEquals("4.2", way.getTagValue("height"));
 					assertEquals("2017", way.getTagValue("survey:date"));
 				}
-				String partv = way.getTagValue("building:yes");
+				String partv = way.getTagValue("building:part");
 				if (partv != null) {
 					part ++;
 				}
 			}
-			assertEquals(1, building);
-			assertEquals(2, part);
+			assertEquals("count of WAY:building", 1, building);
+			assertEquals("count of WAY:part", 2, part);
 			
 			assertNotNull(osm.getRelations());
-			assertEquals(2, osm.getRelations().size());
+			assertEquals("osm.getRelations().size()", 2, osm.getRelations().size());
 			for (ElementRelation relation : osm.getRelations()) {
 				String type = relation.getTagValue("type");
 				if (type.equals("multipolygon")) {
@@ -114,7 +114,7 @@ public class CitygmlFileTest_Issue138 extends GmlLoadRouteTest {
 					assertEquals("4.2", relation.getTagValue("height"));
 					int outer = 0;
 					int inner = 0;
-					assertEquals(3, relation.members.size());
+					assertEquals("relation.members.size()", 3, relation.members.size());
 					for (MemberBean member : relation.members) {
 						String role = member.getRole();
 						if (role.equals("outer")) {
@@ -124,8 +124,8 @@ public class CitygmlFileTest_Issue138 extends GmlLoadRouteTest {
 							inner++;
 						}
 					}
-					assertEquals(1, outer);
-					assertEquals(1, inner);					
+					assertEquals("count of Multipolygon:MEMBER:outer", 1, outer);
+					assertEquals("count of Multipolygon:MEMBER:inner", 1, inner);					
 				}
 				else if (type.equals("building")) {
 					assertEquals("7.6", relation.getTagValue("ele"));
@@ -142,8 +142,8 @@ public class CitygmlFileTest_Issue138 extends GmlLoadRouteTest {
 							parts++;
 						}
 					}
-					assertEquals(1, outline);
-					assertEquals(2, parts);
+					assertEquals("count of building:MEMBER:outline", 1, outline);
+					assertEquals("count of building:MEMBER:part", 2, parts);
 				}
 			}
 		} catch (Exception e) {
@@ -176,13 +176,13 @@ public class CitygmlFileTest_Issue138 extends GmlLoadRouteTest {
 					assertEquals("4.2", way.getTagValue("height"));
 					assertEquals("2017", way.getTagValue("survey:date"));
 				}
-				String partv = way.getTagValue("building:yes");
+				String partv = way.getTagValue("building:part");
 				if (partv != null) {
 					part ++;
 				}
 			}
-			assertEquals(1, building);
-			assertEquals(2, part);
+			assertEquals("count of WAY:building", 1, building);
+			assertEquals("count of WAY:building:part", 2, part);
 			
 			assertNotNull(osm.getRelations());
 			assertEquals(2, osm.getRelations().size());
@@ -203,8 +203,8 @@ public class CitygmlFileTest_Issue138 extends GmlLoadRouteTest {
 							inner++;
 						}
 					}
-					assertEquals(1, outer);
-					assertEquals(1, inner);					
+					assertEquals("count of Multipolygon:MEMBER:outer", 1, outer);
+					assertEquals("count of Multipolygon:MEMBER:inner", 1, inner);	
 				}
 				else if (type.equals("building")) {
 					assertEquals("7.6", relation.getTagValue("ele"));
@@ -221,8 +221,8 @@ public class CitygmlFileTest_Issue138 extends GmlLoadRouteTest {
 							parts++;
 						}
 					}
-					assertEquals(1, outline);
-					assertEquals(2, parts);
+					assertEquals("count of Building:MEMBER:outline", 1, outline);
+					assertEquals("count of Building:MEMBER:part", 2, parts);
 				}
 			}
 		} catch (Exception e) {
