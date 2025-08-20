@@ -36,6 +36,7 @@ public class GmlLoadRoute extends RouteBuilder {
 		from("direct:inRelationMarge")
 		.streamCaching()
 		.process(new RelationMargeProcessor())
+		.process(new DuplicateInnerProcessor())	// buildingとINNERが重なっているINNERを削除する。
         .to("direct:inBuildingGarbage")
         ;
 		
