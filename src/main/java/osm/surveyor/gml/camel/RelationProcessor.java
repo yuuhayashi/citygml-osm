@@ -32,12 +32,11 @@ public class RelationProcessor implements Processor {
 		for (ElementRelation relation : relations) {
 			if (relation.getTagValue("type").equals("multipolygon")) {
 				List<MemberBean> removeMember = new ArrayList<>();
-				List<ElementWay> partMembers = new ArrayList<>();
+				List<WayModel> partMembers = new ArrayList<>();
 				for (MemberBean member : relation.members) {
 					if (member.getRole().equals("inner")) {
 						if (member.isWay()) {
-							long id = member.getRef();
-							ElementWay way = (ElementWay)osm.getWayMap().get(id);
+							ElementWay way = (ElementWay)osm.getWayMap().get(member.getRef());
 							if (way != null) {
 
 								// Issue #138
@@ -49,7 +48,7 @@ public class RelationProcessor implements Processor {
 										part.addTag("building:part", str);
 									}
 									removeMember.add(member);
-									partMembers.add(way);
+									partMembers.add(part);
 								}
 							}
 						}
@@ -59,12 +58,12 @@ public class RelationProcessor implements Processor {
 				for (MemberBean member : removeMember) {
 					if (member.isWay()) {
 						ElementWay way = (ElementWay)osm.getWayMap().get(member.getRef());
-						osm.removeWay(way);
 						relation.removeMember(member.getRef());
+						osm.removeWay(way);
 					}
 				}
 				
-				for (ElementWay member : partMembers) {
+				for (WayModel member : partMembers) {
 					relation.addMember(member, "part");
 				}
 			}
@@ -84,13 +83,8 @@ public class RelationProcessor implements Processor {
 					for (MemberBean member : relation.members) {
 						if (member.isWay()) {
 							if (member.getRole().equals("outer")) {
-								ElementWay way = (ElementWay)osm.getWayMap().get(member.getRef());
-								way.copyTag(relation);
-								way.removeTag("type");
-								way.removeTag("building:part");
-								way.addTag("building", "yes");
+								member.setRole("outline");
 							}
-							member.setRole("outline");
 						}
 					}
 					relation.addTag("type", "building");

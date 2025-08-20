@@ -29,9 +29,6 @@ public class ElementWay extends WayModel implements Cloneable {
 	@XmlTransient
 	boolean ring = false;
 	
-	@XmlTransient
-	public boolean member = false;	// 単独のWAYか、RELATIONのメンバーかを示す。
-	
 	public ElementWay(long id) {
 		super(id);
 	}

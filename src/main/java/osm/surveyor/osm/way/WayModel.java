@@ -35,6 +35,10 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
 		ndList = new ArrayList<>();
 	}
 
+	@XmlTransient
+	public boolean member = false;	// 単独のWAYか、RELATIONのメンバーかを示す。
+	
+	
 	public PoiBean getPoiBean() {
 		return (PoiBean)this;
 	}
