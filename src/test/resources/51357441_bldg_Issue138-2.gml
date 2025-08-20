@@ -12,8 +12,6 @@
 			<core:creationDate>2023-03-22</core:creationDate>
 			<bldg:class codeSpace="../../codelists/Building_class.xml">3001</bldg:class>
 			<bldg:usage codeSpace="../../codelists/Building_usage.xml">461</bldg:usage>
-			<bldg:measuredHeight uom="m">-9999</bldg:measuredHeight>
-			<bldg:storeysAboveGround>9999</bldg:storeysAboveGround>
 			<bldg:lod0FootPrint>
 				<gml:MultiSurface>
 					<gml:surfaceMember>
@@ -27,79 +25,11 @@
 					</gml:surfaceMember>
 				</gml:MultiSurface>
 			</bldg:lod0FootPrint>
-			<bldg:lod1Solid>
-				<gml:Solid>
-					<gml:exterior>
-						<gml:CompositeSurface>
-							<gml:surfaceMember>
-								<gml:Polygon>
-									<gml:exterior>
-										<gml:LinearRing>
-											<gml:posList>34.62241613420931 135.51590234041402 7.61930000001 34.62241959605465 135.51587054191634 7.61930000001 34.62243400240284 135.51587283563285 7.61930000001 34.622430531585266 135.51590464509346 7.61930000001 34.62241613420931 135.51590234041402 7.61930000001</gml:posList>
-										</gml:LinearRing>
-									</gml:exterior>
-								</gml:Polygon>
-							</gml:surfaceMember>
-							<gml:surfaceMember>
-								<gml:Polygon>
-									<gml:exterior>
-										<gml:LinearRing>
-											<gml:posList>34.62241613420931 135.51590234041402 7.61930000001 34.622430531585266 135.51590464509346 7.61930000001 34.622430531585266 135.51590464509346 10.61930000001 34.62241613420931 135.51590234041402 10.61930000001 34.62241613420931 135.51590234041402 7.61930000001</gml:posList>
-										</gml:LinearRing>
-									</gml:exterior>
-								</gml:Polygon>
-							</gml:surfaceMember>
-							<gml:surfaceMember>
-								<gml:Polygon>
-									<gml:exterior>
-										<gml:LinearRing>
-											<gml:posList>34.622430531585266 135.51590464509346 7.61930000001 34.62243400240284 135.51587283563285 7.61930000001 34.62243400240284 135.51587283563285 10.61930000001 34.622430531585266 135.51590464509346 10.61930000001 34.622430531585266 135.51590464509346 7.61930000001</gml:posList>
-										</gml:LinearRing>
-									</gml:exterior>
-								</gml:Polygon>
-							</gml:surfaceMember>
-							<gml:surfaceMember>
-								<gml:Polygon>
-									<gml:exterior>
-										<gml:LinearRing>
-											<gml:posList>34.62243400240284 135.51587283563285 7.61930000001 34.62241959605465 135.51587054191634 7.61930000001 34.62241959605465 135.51587054191634 10.61930000001 34.62243400240284 135.51587283563285 10.61930000001 34.62243400240284 135.51587283563285 7.61930000001</gml:posList>
-										</gml:LinearRing>
-									</gml:exterior>
-								</gml:Polygon>
-							</gml:surfaceMember>
-							<gml:surfaceMember>
-								<gml:Polygon>
-									<gml:exterior>
-										<gml:LinearRing>
-											<gml:posList>34.62241959605465 135.51587054191634 7.61930000001 34.62241613420931 135.51590234041402 7.61930000001 34.62241613420931 135.51590234041402 10.61930000001 34.62241959605465 135.51587054191634 10.61930000001 34.62241959605465 135.51587054191634 7.61930000001</gml:posList>
-										</gml:LinearRing>
-									</gml:exterior>
-								</gml:Polygon>
-							</gml:surfaceMember>
-							<gml:surfaceMember>
-								<gml:Polygon>
-									<gml:exterior>
-										<gml:LinearRing>
-											<gml:posList>34.62241613420931 135.51590234041402 10.61930000001 34.622430531585266 135.51590464509346 10.61930000001 34.62243400240284 135.51587283563285 10.61930000001 34.62241959605465 135.51587054191634 10.61930000001 34.62241613420931 135.51590234041402 10.61930000001</gml:posList>
-										</gml:LinearRing>
-									</gml:exterior>
-								</gml:Polygon>
-							</gml:surfaceMember>
-						</gml:CompositeSurface>
-					</gml:exterior>
-				</gml:Solid>
-			</bldg:lod1Solid>
 			<uro:buildingDetailAttribute>
 				<uro:BuildingDetailAttribute>
-					<uro:buildingRoofEdgeArea uom="m2">-9999</uro:buildingRoofEdgeArea>
 					<uro:buildingStructureType codeSpace="../../codelists/BuildingDetailAttribute_buildingStructureType.xml">611</uro:buildingStructureType>
 					<uro:buildingStructureOrgType codeSpace="../../codelists/BuildingDetailAttribute_buildingStructureOrgType.xml">9</uro:buildingStructureOrgType>
 					<uro:detailedUsage codeSpace="../../codelists/BuildingDetailAttribute_detailedUsage.xml">461</uro:detailedUsage>
-					<uro:groundFloorUsage codeSpace="../../codelists/BuildingDetailAttribute_groundFloorUsage.xml">9999</uro:groundFloorUsage>
-					<uro:secondFloorUsage codeSpace="../../codelists/BuildingDetailAttribute_secondFloorUsage.xml">9999</uro:secondFloorUsage>
-					<uro:thirdFloorUsage codeSpace="../../codelists/BuildingDetailAttribute_thirdFloorUsage.xml">9999</uro:thirdFloorUsage>
-					<uro:basementFirstUsage codeSpace="../../codelists/BuildingDetailAttribute_basementFirstUsage.xml">9999</uro:basementFirstUsage>
-					<uro:basementSecondUsage codeSpace="../../codelists/BuildingDetailAttribute_basementSecondUsage.xml">9999</uro:basementSecondUsage>
 					<uro:specifiedBuildingCoverageRate>80</uro:specifiedBuildingCoverageRate>
 					<uro:surveyYear>2017</uro:surveyYear>
 				</uro:BuildingDetailAttribute>
@@ -115,9 +45,6 @@
 			<uro:bldgDataQualityAttribute>
 				<uro:DataQualityAttribute>
 					<uro:geometrySrcDescLod0 codeSpace="../../codelists/DataQualityAttribute_geometrySrcDesc.xml">000</uro:geometrySrcDescLod0>
-					<uro:geometrySrcDescLod1 codeSpace="../../codelists/DataQualityAttribute_geometrySrcDesc.xml">000</uro:geometrySrcDescLod1>
-					<uro:geometrySrcDescLod2 codeSpace="../../codelists/DataQualityAttribute_geometrySrcDesc.xml">999</uro:geometrySrcDescLod2>
-					<uro:geometrySrcDescLod3 codeSpace="../../codelists/DataQualityAttribute_geometrySrcDesc.xml">999</uro:geometrySrcDescLod3>
 					<uro:thematicSrcDesc codeSpace="../../codelists/DataQualityAttribute_thematicSrcDesc.xml">000</uro:thematicSrcDesc>
 					<uro:thematicSrcDesc codeSpace="../../codelists/DataQualityAttribute_thematicSrcDesc.xml">100</uro:thematicSrcDesc>
 					<uro:thematicSrcDesc codeSpace="../../codelists/DataQualityAttribute_thematicSrcDesc.xml">201</uro:thematicSrcDesc>
@@ -135,48 +62,6 @@
 					</uro:publicSurveyDataQualityAttribute>
 				</uro:DataQualityAttribute>
 			</uro:bldgDataQualityAttribute>
-			<uro:bldgKeyValuePairAttribute>
-				<uro:KeyValuePairAttribute>
-					<uro:key codeSpace="../../codelists/KeyValuePairAttribute_key.xml">100</uro:key>
-					<uro:codeValue codeSpace="../../codelists/KeyValuePairAttribute_key100.xml">99999</uro:codeValue>
-				</uro:KeyValuePairAttribute>
-			</uro:bldgKeyValuePairAttribute>
-			<uro:bldgKeyValuePairAttribute>
-				<uro:KeyValuePairAttribute>
-					<uro:key codeSpace="../../codelists/KeyValuePairAttribute_key.xml">101</uro:key>
-					<uro:codeValue codeSpace="../../codelists/KeyValuePairAttribute_key101.xml">99999999</uro:codeValue>
-				</uro:KeyValuePairAttribute>
-			</uro:bldgKeyValuePairAttribute>
-			<uro:bldgKeyValuePairAttribute>
-				<uro:KeyValuePairAttribute>
-					<uro:key codeSpace="../../codelists/KeyValuePairAttribute_key.xml">102</uro:key>
-					<uro:codeValue codeSpace="../../codelists/KeyValuePairAttribute_key102.xml">9999</uro:codeValue>
-				</uro:KeyValuePairAttribute>
-			</uro:bldgKeyValuePairAttribute>
-			<uro:bldgKeyValuePairAttribute>
-				<uro:KeyValuePairAttribute>
-					<uro:key codeSpace="../../codelists/KeyValuePairAttribute_key.xml">103</uro:key>
-					<uro:codeValue codeSpace="../../codelists/KeyValuePairAttribute_key103.xml">9999</uro:codeValue>
-				</uro:KeyValuePairAttribute>
-			</uro:bldgKeyValuePairAttribute>
-			<uro:bldgKeyValuePairAttribute>
-				<uro:KeyValuePairAttribute>
-					<uro:key codeSpace="../../codelists/KeyValuePairAttribute_key.xml">104</uro:key>
-					<uro:codeValue codeSpace="../../codelists/KeyValuePairAttribute_key104.xml">9999</uro:codeValue>
-				</uro:KeyValuePairAttribute>
-			</uro:bldgKeyValuePairAttribute>
-			<uro:bldgKeyValuePairAttribute>
-				<uro:KeyValuePairAttribute>
-					<uro:key codeSpace="../../codelists/KeyValuePairAttribute_key.xml">105</uro:key>
-					<uro:codeValue codeSpace="../../codelists/KeyValuePairAttribute_key105.xml">9999</uro:codeValue>
-				</uro:KeyValuePairAttribute>
-			</uro:bldgKeyValuePairAttribute>
-			<uro:bldgKeyValuePairAttribute>
-				<uro:KeyValuePairAttribute>
-					<uro:key codeSpace="../../codelists/KeyValuePairAttribute_key.xml">106</uro:key>
-					<uro:codeValue codeSpace="../../codelists/KeyValuePairAttribute_key106.xml">9999</uro:codeValue>
-				</uro:KeyValuePairAttribute>
-			</uro:bldgKeyValuePairAttribute>
 		</bldg:Building>
 	</core:cityObjectMember>
 	<core:cityObjectMember>
@@ -184,8 +69,6 @@
 			<core:creationDate>2023-03-22</core:creationDate>
 			<bldg:class codeSpace="../../codelists/Building_class.xml">3001</bldg:class>
 			<bldg:usage codeSpace="../../codelists/Building_usage.xml">461</bldg:usage>
-			<bldg:measuredHeight uom="m">-9999</bldg:measuredHeight>
-			<bldg:storeysAboveGround>9999</bldg:storeysAboveGround>
 			<bldg:lod0FootPrint>
 				<gml:MultiSurface>
 					<gml:surfaceMember>
@@ -199,79 +82,11 @@
 					</gml:surfaceMember>
 				</gml:MultiSurface>
 			</bldg:lod0FootPrint>
-			<bldg:lod1Solid>
-				<gml:Solid>
-					<gml:exterior>
-						<gml:CompositeSurface>
-							<gml:surfaceMember>
-								<gml:Polygon>
-									<gml:exterior>
-										<gml:LinearRing>
-											<gml:posList>34.62242256981012 135.51584978253635 7.5871 34.62242558539064 135.51582820500545 7.5871 34.62243933572409 135.51583102598522 7.5871 34.62243631108486 135.5158525926668 7.5871 34.62242256981012 135.51584978253635 7.5871</gml:posList>
-										</gml:LinearRing>
-									</gml:exterior>
-								</gml:Polygon>
-							</gml:surfaceMember>
-							<gml:surfaceMember>
-								<gml:Polygon>
-									<gml:exterior>
-										<gml:LinearRing>
-											<gml:posList>34.62242256981012 135.51584978253635 7.5871 34.62243631108486 135.5158525926668 7.5871 34.62243631108486 135.5158525926668 10.5871 34.62242256981012 135.51584978253635 10.5871 34.62242256981012 135.51584978253635 7.5871</gml:posList>
-										</gml:LinearRing>
-									</gml:exterior>
-								</gml:Polygon>
-							</gml:surfaceMember>
-							<gml:surfaceMember>
-								<gml:Polygon>
-									<gml:exterior>
-										<gml:LinearRing>
-											<gml:posList>34.62243631108486 135.5158525926668 7.5871 34.62243933572409 135.51583102598522 7.5871 34.62243933572409 135.51583102598522 10.5871 34.62243631108486 135.5158525926668 10.5871 34.62243631108486 135.5158525926668 7.5871</gml:posList>
-										</gml:LinearRing>
-									</gml:exterior>
-								</gml:Polygon>
-							</gml:surfaceMember>
-							<gml:surfaceMember>
-								<gml:Polygon>
-									<gml:exterior>
-										<gml:LinearRing>
-											<gml:posList>34.62243933572409 135.51583102598522 7.5871 34.62242558539064 135.51582820500545 7.5871 34.62242558539064 135.51582820500545 10.5871 34.62243933572409 135.51583102598522 10.5871 34.62243933572409 135.51583102598522 7.5871</gml:posList>
-										</gml:LinearRing>
-									</gml:exterior>
-								</gml:Polygon>
-							</gml:surfaceMember>
-							<gml:surfaceMember>
-								<gml:Polygon>
-									<gml:exterior>
-										<gml:LinearRing>
-											<gml:posList>34.62242558539064 135.51582820500545 7.5871 34.62242256981012 135.51584978253635 7.5871 34.62242256981012 135.51584978253635 10.5871 34.62242558539064 135.51582820500545 10.5871 34.62242558539064 135.51582820500545 7.5871</gml:posList>
-										</gml:LinearRing>
-									</gml:exterior>
-								</gml:Polygon>
-							</gml:surfaceMember>
-							<gml:surfaceMember>
-								<gml:Polygon>
-									<gml:exterior>
-										<gml:LinearRing>
-											<gml:posList>34.62242256981012 135.51584978253635 10.5871 34.62243631108486 135.5158525926668 10.5871 34.62243933572409 135.51583102598522 10.5871 34.62242558539064 135.51582820500545 10.5871 34.62242256981012 135.51584978253635 10.5871</gml:posList>
-										</gml:LinearRing>
-									</gml:exterior>
-								</gml:Polygon>
-							</gml:surfaceMember>
-						</gml:CompositeSurface>
-					</gml:exterior>
-				</gml:Solid>
-			</bldg:lod1Solid>
 			<uro:buildingDetailAttribute>
 				<uro:BuildingDetailAttribute>
-					<uro:buildingRoofEdgeArea uom="m2">-9999</uro:buildingRoofEdgeArea>
 					<uro:buildingStructureType codeSpace="../../codelists/BuildingDetailAttribute_buildingStructureType.xml">611</uro:buildingStructureType>
 					<uro:buildingStructureOrgType codeSpace="../../codelists/BuildingDetailAttribute_buildingStructureOrgType.xml">9</uro:buildingStructureOrgType>
 					<uro:detailedUsage codeSpace="../../codelists/BuildingDetailAttribute_detailedUsage.xml">461</uro:detailedUsage>
-					<uro:groundFloorUsage codeSpace="../../codelists/BuildingDetailAttribute_groundFloorUsage.xml">9999</uro:groundFloorUsage>
-					<uro:secondFloorUsage codeSpace="../../codelists/BuildingDetailAttribute_secondFloorUsage.xml">9999</uro:secondFloorUsage>
-					<uro:thirdFloorUsage codeSpace="../../codelists/BuildingDetailAttribute_thirdFloorUsage.xml">9999</uro:thirdFloorUsage>
-					<uro:basementFirstUsage codeSpace="../../codelists/BuildingDetailAttribute_basementFirstUsage.xml">9999</uro:basementFirstUsage>
-					<uro:basementSecondUsage codeSpace="../../codelists/BuildingDetailAttribute_basementSecondUsage.xml">9999</uro:basementSecondUsage>
 					<uro:specifiedBuildingCoverageRate>80</uro:specifiedBuildingCoverageRate>
 					<uro:surveyYear>2017</uro:surveyYear>
 				</uro:BuildingDetailAttribute>
@@ -287,15 +102,10 @@
 			<uro:bldgDataQualityAttribute>
 				<uro:DataQualityAttribute>
 					<uro:geometrySrcDescLod0 codeSpace="../../codelists/DataQualityAttribute_geometrySrcDesc.xml">000</uro:geometrySrcDescLod0>
-					<uro:geometrySrcDescLod1 codeSpace="../../codelists/DataQualityAttribute_geometrySrcDesc.xml">000</uro:geometrySrcDescLod1>
-					<uro:geometrySrcDescLod2 codeSpace="../../codelists/DataQualityAttribute_geometrySrcDesc.xml">999</uro:geometrySrcDescLod2>
-					<uro:geometrySrcDescLod3 codeSpace="../../codelists/DataQualityAttribute_geometrySrcDesc.xml">999</uro:geometrySrcDescLod3>
 					<uro:thematicSrcDesc codeSpace="../../codelists/DataQualityAttribute_thematicSrcDesc.xml">000</uro:thematicSrcDesc>
 					<uro:thematicSrcDesc codeSpace="../../codelists/DataQualityAttribute_thematicSrcDesc.xml">100</uro:thematicSrcDesc>
 					<uro:thematicSrcDesc codeSpace="../../codelists/DataQualityAttribute_thematicSrcDesc.xml">201</uro:thematicSrcDesc>
 					<uro:thematicSrcDesc codeSpace="../../codelists/DataQualityAttribute_thematicSrcDesc.xml">400</uro:thematicSrcDesc>
-					<uro:appearanceSrcDescLod2 codeSpace="../../codelists/DataQualityAttribute_appearanceSrcDesc.xml">99</uro:appearanceSrcDescLod2>
-					<uro:appearanceSrcDescLod3 codeSpace="../../codelists/DataQualityAttribute_appearanceSrcDesc.xml">99</uro:appearanceSrcDescLod3>
 					<uro:lod1HeightType codeSpace="../../codelists/DataQualityAttribute_lod1HeightType.xml">2</uro:lod1HeightType>
 					<uro:publicSurveyDataQualityAttribute>
 						<uro:PublicSurveyDataQualityAttribute>
@@ -307,48 +117,6 @@
 					</uro:publicSurveyDataQualityAttribute>
 				</uro:DataQualityAttribute>
 			</uro:bldgDataQualityAttribute>
-			<uro:bldgKeyValuePairAttribute>
-				<uro:KeyValuePairAttribute>
-					<uro:key codeSpace="../../codelists/KeyValuePairAttribute_key.xml">100</uro:key>
-					<uro:codeValue codeSpace="../../codelists/KeyValuePairAttribute_key100.xml">99999</uro:codeValue>
-				</uro:KeyValuePairAttribute>
-			</uro:bldgKeyValuePairAttribute>
-			<uro:bldgKeyValuePairAttribute>
-				<uro:KeyValuePairAttribute>
-					<uro:key codeSpace="../../codelists/KeyValuePairAttribute_key.xml">101</uro:key>
-					<uro:codeValue codeSpace="../../codelists/KeyValuePairAttribute_key101.xml">99999999</uro:codeValue>
-				</uro:KeyValuePairAttribute>
-			</uro:bldgKeyValuePairAttribute>
-			<uro:bldgKeyValuePairAttribute>
-				<uro:KeyValuePairAttribute>
-					<uro:key codeSpace="../../codelists/KeyValuePairAttribute_key.xml">102</uro:key>
-					<uro:codeValue codeSpace="../../codelists/KeyValuePairAttribute_key102.xml">9999</uro:codeValue>
-				</uro:KeyValuePairAttribute>
-			</uro:bldgKeyValuePairAttribute>
-			<uro:bldgKeyValuePairAttribute>
-				<uro:KeyValuePairAttribute>
-					<uro:key codeSpace="../../codelists/KeyValuePairAttribute_key.xml">103</uro:key>
-					<uro:codeValue codeSpace="../../codelists/KeyValuePairAttribute_key103.xml">9999</uro:codeValue>
-				</uro:KeyValuePairAttribute>
-			</uro:bldgKeyValuePairAttribute>
-			<uro:bldgKeyValuePairAttribute>
-				<uro:KeyValuePairAttribute>
-					<uro:key codeSpace="../../codelists/KeyValuePairAttribute_key.xml">104</uro:key>
-					<uro:codeValue codeSpace="../../codelists/KeyValuePairAttribute_key104.xml">9999</uro:codeValue>
-				</uro:KeyValuePairAttribute>
-			</uro:bldgKeyValuePairAttribute>
-			<uro:bldgKeyValuePairAttribute>
-				<uro:KeyValuePairAttribute>
-					<uro:key codeSpace="../../codelists/KeyValuePairAttribute_key.xml">105</uro:key>
-					<uro:codeValue codeSpace="../../codelists/KeyValuePairAttribute_key105.xml">9999</uro:codeValue>
-				</uro:KeyValuePairAttribute>
-			</uro:bldgKeyValuePairAttribute>
-			<uro:bldgKeyValuePairAttribute>
-				<uro:KeyValuePairAttribute>
-					<uro:key codeSpace="../../codelists/KeyValuePairAttribute_key.xml">106</uro:key>
-					<uro:codeValue codeSpace="../../codelists/KeyValuePairAttribute_key106.xml">9999</uro:codeValue>
-				</uro:KeyValuePairAttribute>
-			</uro:bldgKeyValuePairAttribute>
 		</bldg:Building>
 	</core:cityObjectMember>
 	<core:cityObjectMember>
@@ -360,7 +128,6 @@
 			<bldg:class codeSpace="../../codelists/Building_class.xml">3001</bldg:class>
 			<bldg:usage codeSpace="../../codelists/Building_usage.xml">461</bldg:usage>
 			<bldg:measuredHeight uom="m">4.2</bldg:measuredHeight>
-			<bldg:storeysAboveGround>9999</bldg:storeysAboveGround>
 			<bldg:lod0FootPrint>
 				<gml:MultiSurface>
 					<gml:surfaceMember>
@@ -384,207 +151,11 @@
 					</gml:surfaceMember>
 				</gml:MultiSurface>
 			</bldg:lod0FootPrint>
-			<bldg:lod1Solid>
-				<gml:Solid>
-					<gml:exterior>
-						<gml:CompositeSurface>
-							<gml:surfaceMember>
-								<gml:Polygon>
-									<gml:exterior>
-										<gml:LinearRing>
-											<gml:posList>34.62239051466228 135.51594363532652 7.5526 34.62240488081206 135.51578588137124 7.5526 34.6225485777016 135.51580503636305 7.5526 34.62254539870203 135.51583995222472 7.5526 34.62252893732908 135.51583776859547 7.5526 34.622520765178635 135.51592752415365 7.5526 34.62252975808406 135.51592872605792 7.5526 34.62252674297724 135.51596178703176 7.5526 34.62239051466228 135.51594363532652 7.5526</gml:posList>
-										</gml:LinearRing>
-									</gml:exterior>
-									<gml:interior>
-										<gml:LinearRing>
-											<gml:posList>34.62241613420931 135.51590234041402 7.5526 34.622430531585266 135.51590464509346 7.5526 34.62243400240284 135.51587283563285 7.5526 34.62241959605465 135.51587054191634 7.5526 34.62241613420931 135.51590234041402 7.5526</gml:posList>
-										</gml:LinearRing>
-									</gml:interior>
-									<gml:interior>
-										<gml:LinearRing>
-											<gml:posList>34.62242256981012 135.51584978253635 7.5526 34.62243631108486 135.5158525926668 7.5526 34.62243933572409 135.51583102598522 7.5526 34.62242558539064 135.51582820500545 7.5526 34.62242256981012 135.51584978253635 7.5526</gml:posList>
-										</gml:LinearRing>
-									</gml:interior>
-								</gml:Polygon>
-							</gml:surfaceMember>
-							<gml:surfaceMember>
-								<gml:Polygon>
-									<gml:exterior>
-										<gml:LinearRing>
-											<gml:posList>34.62239051466228 135.51594363532652 7.5526 34.62252674297724 135.51596178703176 7.5526 34.62252674297724 135.51596178703176 11.75 34.62239051466228 135.51594363532652 11.75 34.62239051466228 135.51594363532652 7.5526</gml:posList>
-										</gml:LinearRing>
-									</gml:exterior>
-								</gml:Polygon>
-							</gml:surfaceMember>
-							<gml:surfaceMember>
-								<gml:Polygon>
-									<gml:exterior>
-										<gml:LinearRing>
-											<gml:posList>34.62252674297724 135.51596178703176 7.5526 34.62252975808406 135.51592872605792 7.5526 34.62252975808406 135.51592872605792 11.75 34.62252674297724 135.51596178703176 11.75 34.62252674297724 135.51596178703176 7.5526</gml:posList>
-										</gml:LinearRing>
-									</gml:exterior>
-								</gml:Polygon>
-							</gml:surfaceMember>
-							<gml:surfaceMember>
-								<gml:Polygon>
-									<gml:exterior>
-										<gml:LinearRing>
-											<gml:posList>34.62252975808406 135.51592872605792 7.5526 34.622520765178635 135.51592752415365 7.5526 34.622520765178635 135.51592752415365 11.75 34.62252975808406 135.51592872605792 11.75 34.62252975808406 135.51592872605792 7.5526</gml:posList>
-										</gml:LinearRing>
-									</gml:exterior>
-								</gml:Polygon>
-							</gml:surfaceMember>
-							<gml:surfaceMember>
-								<gml:Polygon>
-									<gml:exterior>
-										<gml:LinearRing>
-											<gml:posList>34.622520765178635 135.51592752415365 7.5526 34.62252893732908 135.51583776859547 7.5526 34.62252893732908 135.51583776859547 11.75 34.622520765178635 135.51592752415365 11.75 34.622520765178635 135.51592752415365 7.5526</gml:posList>
-										</gml:LinearRing>
-									</gml:exterior>
-								</gml:Polygon>
-							</gml:surfaceMember>
-							<gml:surfaceMember>
-								<gml:Polygon>
-									<gml:exterior>
-										<gml:LinearRing>
-											<gml:posList>34.62252893732908 135.51583776859547 7.5526 34.62254539870203 135.51583995222472 7.5526 34.62254539870203 135.51583995222472 11.75 34.62252893732908 135.51583776859547 11.75 34.62252893732908 135.51583776859547 7.5526</gml:posList>
-										</gml:LinearRing>
-									</gml:exterior>
-								</gml:Polygon>
-							</gml:surfaceMember>
-							<gml:surfaceMember>
-								<gml:Polygon>
-									<gml:exterior>
-										<gml:LinearRing>
-											<gml:posList>34.62254539870203 135.51583995222472 7.5526 34.6225485777016 135.51580503636305 7.5526 34.6225485777016 135.51580503636305 11.75 34.62254539870203 135.51583995222472 11.75 34.62254539870203 135.51583995222472 7.5526</gml:posList>
-										</gml:LinearRing>
-									</gml:exterior>
-								</gml:Polygon>
-							</gml:surfaceMember>
-							<gml:surfaceMember>
-								<gml:Polygon>
-									<gml:exterior>
-										<gml:LinearRing>
-											<gml:posList>34.6225485777016 135.51580503636305 7.5526 34.62240488081206 135.51578588137124 7.5526 34.62240488081206 135.51578588137124 11.75 34.6225485777016 135.51580503636305 11.75 34.6225485777016 135.51580503636305 7.5526</gml:posList>
-										</gml:LinearRing>
-									</gml:exterior>
-								</gml:Polygon>
-							</gml:surfaceMember>
-							<gml:surfaceMember>
-								<gml:Polygon>
-									<gml:exterior>
-										<gml:LinearRing>
-											<gml:posList>34.62240488081206 135.51578588137124 7.5526 34.62239051466228 135.51594363532652 7.5526 34.62239051466228 135.51594363532652 11.75 34.62240488081206 135.51578588137124 11.75 34.62240488081206 135.51578588137124 7.5526</gml:posList>
-										</gml:LinearRing>
-									</gml:exterior>
-								</gml:Polygon>
-							</gml:surfaceMember>
-							<gml:surfaceMember>
-								<gml:Polygon>
-									<gml:exterior>
-										<gml:LinearRing>
-											<gml:posList>34.62241613420931 135.51590234041402 7.5526 34.62241959605465 135.51587054191634 7.5526 34.62241959605465 135.51587054191634 11.75 34.62241613420931 135.51590234041402 11.75 34.62241613420931 135.51590234041402 7.5526</gml:posList>
-										</gml:LinearRing>
-									</gml:exterior>
-								</gml:Polygon>
-							</gml:surfaceMember>
-							<gml:surfaceMember>
-								<gml:Polygon>
-									<gml:exterior>
-										<gml:LinearRing>
-											<gml:posList>34.62241959605465 135.51587054191634 7.5526 34.62243400240284 135.51587283563285 7.5526 34.62243400240284 135.51587283563285 11.75 34.62241959605465 135.51587054191634 11.75 34.62241959605465 135.51587054191634 7.5526</gml:posList>
-										</gml:LinearRing>
-									</gml:exterior>
-								</gml:Polygon>
-							</gml:surfaceMember>
-							<gml:surfaceMember>
-								<gml:Polygon>
-									<gml:exterior>
-										<gml:LinearRing>
-											<gml:posList>34.62243400240284 135.51587283563285 7.5526 34.622430531585266 135.51590464509346 7.5526 34.622430531585266 135.51590464509346 11.75 34.62243400240284 135.51587283563285 11.75 34.62243400240284 135.51587283563285 7.5526</gml:posList>
-										</gml:LinearRing>
-									</gml:exterior>
-								</gml:Polygon>
-							</gml:surfaceMember>
-							<gml:surfaceMember>
-								<gml:Polygon>
-									<gml:exterior>
-										<gml:LinearRing>
-											<gml:posList>34.622430531585266 135.51590464509346 7.5526 34.62241613420931 135.51590234041402 7.5526 34.62241613420931 135.51590234041402 11.75 34.622430531585266 135.51590464509346 11.75 34.622430531585266 135.51590464509346 7.5526</gml:posList>
-										</gml:LinearRing>
-									</gml:exterior>
-								</gml:Polygon>
-							</gml:surfaceMember>
-							<gml:surfaceMember>
-								<gml:Polygon>
-									<gml:exterior>
-										<gml:LinearRing>
-											<gml:posList>34.62242256981012 135.51584978253635 7.5526 34.62242558539064 135.51582820500545 7.5526 34.62242558539064 135.51582820500545 11.75 34.62242256981012 135.51584978253635 11.75 34.62242256981012 135.51584978253635 7.5526</gml:posList>
-										</gml:LinearRing>
-									</gml:exterior>
-								</gml:Polygon>
-							</gml:surfaceMember>
-							<gml:surfaceMember>
-								<gml:Polygon>
-									<gml:exterior>
-										<gml:LinearRing>
-											<gml:posList>34.62242558539064 135.51582820500545 7.5526 34.62243933572409 135.51583102598522 7.5526 34.62243933572409 135.51583102598522 11.75 34.62242558539064 135.51582820500545 11.75 34.62242558539064 135.51582820500545 7.5526</gml:posList>
-										</gml:LinearRing>
-									</gml:exterior>
-								</gml:Polygon>
-							</gml:surfaceMember>
-							<gml:surfaceMember>
-								<gml:Polygon>
-									<gml:exterior>
-										<gml:LinearRing>
-											<gml:posList>34.62243933572409 135.51583102598522 7.5526 34.62243631108486 135.5158525926668 7.5526 34.62243631108486 135.5158525926668 11.75 34.62243933572409 135.51583102598522 11.75 34.62243933572409 135.51583102598522 7.5526</gml:posList>
-										</gml:LinearRing>
-									</gml:exterior>
-								</gml:Polygon>
-							</gml:surfaceMember>
-							<gml:surfaceMember>
-								<gml:Polygon>
-									<gml:exterior>
-										<gml:LinearRing>
-											<gml:posList>34.62243631108486 135.5158525926668 7.5526 34.62242256981012 135.51584978253635 7.5526 34.62242256981012 135.51584978253635 11.75 34.62243631108486 135.5158525926668 11.75 34.62243631108486 135.5158525926668 7.5526</gml:posList>
-										</gml:LinearRing>
-									</gml:exterior>
-								</gml:Polygon>
-							</gml:surfaceMember>
-							<gml:surfaceMember>
-								<gml:Polygon>
-									<gml:exterior>
-										<gml:LinearRing>
-											<gml:posList>34.62239051466228 135.51594363532652 11.75 34.62252674297724 135.51596178703176 11.75 34.62252975808406 135.51592872605792 11.75 34.622520765178635 135.51592752415365 11.75 34.62252893732908 135.51583776859547 11.75 34.62254539870203 135.51583995222472 11.75 34.6225485777016 135.51580503636305 11.75 34.62240488081206 135.51578588137124 11.75 34.62239051466228 135.51594363532652 11.75</gml:posList>
-										</gml:LinearRing>
-									</gml:exterior>
-									<gml:interior>
-										<gml:LinearRing>
-											<gml:posList>34.62241613420931 135.51590234041402 11.75 34.62241959605465 135.51587054191634 11.75 34.62243400240284 135.51587283563285 11.75 34.622430531585266 135.51590464509346 11.75 34.62241613420931 135.51590234041402 11.75</gml:posList>
-										</gml:LinearRing>
-									</gml:interior>
-									<gml:interior>
-										<gml:LinearRing>
-											<gml:posList>34.62242256981012 135.51584978253635 11.75 34.62242558539064 135.51582820500545 11.75 34.62243933572409 135.51583102598522 11.75 34.62243631108486 135.5158525926668 11.75 34.62242256981012 135.51584978253635 11.75</gml:posList>
-										</gml:LinearRing>
-									</gml:interior>
-								</gml:Polygon>
-							</gml:surfaceMember>
-						</gml:CompositeSurface>
-					</gml:exterior>
-				</gml:Solid>
-			</bldg:lod1Solid>
 			<uro:buildingDetailAttribute>
 				<uro:BuildingDetailAttribute>
-					<uro:buildingRoofEdgeArea uom="m2">-9999</uro:buildingRoofEdgeArea>
 					<uro:buildingStructureType codeSpace="../../codelists/BuildingDetailAttribute_buildingStructureType.xml">611</uro:buildingStructureType>
 					<uro:buildingStructureOrgType codeSpace="../../codelists/BuildingDetailAttribute_buildingStructureOrgType.xml">9</uro:buildingStructureOrgType>
 					<uro:detailedUsage codeSpace="../../codelists/BuildingDetailAttribute_detailedUsage.xml">461</uro:detailedUsage>
-					<uro:groundFloorUsage codeSpace="../../codelists/BuildingDetailAttribute_groundFloorUsage.xml">9999</uro:groundFloorUsage>
-					<uro:secondFloorUsage codeSpace="../../codelists/BuildingDetailAttribute_secondFloorUsage.xml">9999</uro:secondFloorUsage>
-					<uro:thirdFloorUsage codeSpace="../../codelists/BuildingDetailAttribute_thirdFloorUsage.xml">9999</uro:thirdFloorUsage>
-					<uro:basementFirstUsage codeSpace="../../codelists/BuildingDetailAttribute_basementFirstUsage.xml">9999</uro:basementFirstUsage>
-					<uro:basementSecondUsage codeSpace="../../codelists/BuildingDetailAttribute_basementSecondUsage.xml">9999</uro:basementSecondUsage>
 					<uro:specifiedBuildingCoverageRate>80</uro:specifiedBuildingCoverageRate>
 					<uro:surveyYear>2017</uro:surveyYear>
 				</uro:BuildingDetailAttribute>
@@ -599,16 +170,10 @@
 			</uro:buildingIDAttribute>
 			<uro:bldgDataQualityAttribute>
 				<uro:DataQualityAttribute>
-					<uro:geometrySrcDescLod0 codeSpace="../../codelists/DataQualityAttribute_geometrySrcDesc.xml">000</uro:geometrySrcDescLod0>
-					<uro:geometrySrcDescLod1 codeSpace="../../codelists/DataQualityAttribute_geometrySrcDesc.xml">000</uro:geometrySrcDescLod1>
-					<uro:geometrySrcDescLod2 codeSpace="../../codelists/DataQualityAttribute_geometrySrcDesc.xml">999</uro:geometrySrcDescLod2>
-					<uro:geometrySrcDescLod3 codeSpace="../../codelists/DataQualityAttribute_geometrySrcDesc.xml">999</uro:geometrySrcDescLod3>
 					<uro:thematicSrcDesc codeSpace="../../codelists/DataQualityAttribute_thematicSrcDesc.xml">000</uro:thematicSrcDesc>
 					<uro:thematicSrcDesc codeSpace="../../codelists/DataQualityAttribute_thematicSrcDesc.xml">100</uro:thematicSrcDesc>
 					<uro:thematicSrcDesc codeSpace="../../codelists/DataQualityAttribute_thematicSrcDesc.xml">201</uro:thematicSrcDesc>
 					<uro:thematicSrcDesc codeSpace="../../codelists/DataQualityAttribute_thematicSrcDesc.xml">400</uro:thematicSrcDesc>
-					<uro:appearanceSrcDescLod2 codeSpace="../../codelists/DataQualityAttribute_appearanceSrcDesc.xml">99</uro:appearanceSrcDescLod2>
-					<uro:appearanceSrcDescLod3 codeSpace="../../codelists/DataQualityAttribute_appearanceSrcDesc.xml">99</uro:appearanceSrcDescLod3>
 					<uro:lod1HeightType codeSpace="../../codelists/DataQualityAttribute_lod1HeightType.xml">2</uro:lod1HeightType>
 					<uro:publicSurveyDataQualityAttribute>
 						<uro:PublicSurveyDataQualityAttribute>
@@ -642,7 +207,6 @@
 			</bldg:lod0FootPrint>
 			<uro:buildingDetailAttribute>
 				<uro:BuildingDetailAttribute>
-					<uro:buildingRoofEdgeArea uom="m2">-9999</uro:buildingRoofEdgeArea>
 					<uro:buildingStructureType codeSpace="../../codelists/BuildingDetailAttribute_buildingStructureType.xml">611</uro:buildingStructureType>
 					<uro:buildingStructureOrgType codeSpace="../../codelists/BuildingDetailAttribute_buildingStructureOrgType.xml">9</uro:buildingStructureOrgType>
 					<uro:detailedUsage codeSpace="../../codelists/BuildingDetailAttribute_detailedUsage.xml">461</uro:detailedUsage>
@@ -660,16 +224,9 @@
 			</uro:buildingIDAttribute>
 			<uro:bldgDataQualityAttribute>
 				<uro:DataQualityAttribute>
-					<uro:geometrySrcDescLod0 codeSpace="../../codelists/DataQualityAttribute_geometrySrcDesc.xml">000</uro:geometrySrcDescLod0>
-					<uro:geometrySrcDescLod1 codeSpace="../../codelists/DataQualityAttribute_geometrySrcDesc.xml">000</uro:geometrySrcDescLod1>
-					<uro:geometrySrcDescLod2 codeSpace="../../codelists/DataQualityAttribute_geometrySrcDesc.xml">999</uro:geometrySrcDescLod2>
-					<uro:geometrySrcDescLod3 codeSpace="../../codelists/DataQualityAttribute_geometrySrcDesc.xml">999</uro:geometrySrcDescLod3>
-					<uro:thematicSrcDesc codeSpace="../../codelists/DataQualityAttribute_thematicSrcDesc.xml">000</uro:thematicSrcDesc>
 					<uro:thematicSrcDesc codeSpace="../../codelists/DataQualityAttribute_thematicSrcDesc.xml">100</uro:thematicSrcDesc>
 					<uro:thematicSrcDesc codeSpace="../../codelists/DataQualityAttribute_thematicSrcDesc.xml">201</uro:thematicSrcDesc>
 					<uro:thematicSrcDesc codeSpace="../../codelists/DataQualityAttribute_thematicSrcDesc.xml">400</uro:thematicSrcDesc>
-					<uro:appearanceSrcDescLod2 codeSpace="../../codelists/DataQualityAttribute_appearanceSrcDesc.xml">99</uro:appearanceSrcDescLod2>
-					<uro:appearanceSrcDescLod3 codeSpace="../../codelists/DataQualityAttribute_appearanceSrcDesc.xml">99</uro:appearanceSrcDescLod3>
 					<uro:lod1HeightType codeSpace="../../codelists/DataQualityAttribute_lod1HeightType.xml">0</uro:lod1HeightType>
 					<uro:publicSurveyDataQualityAttribute>
 						<uro:PublicSurveyDataQualityAttribute>

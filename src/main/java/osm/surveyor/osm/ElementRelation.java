@@ -1,5 +1,6 @@
 package osm.surveyor.osm;
 
+import osm.surveyor.osm.way.WayModel;
 import java.io.Serializable;
 import java.util.ArrayList;
 
