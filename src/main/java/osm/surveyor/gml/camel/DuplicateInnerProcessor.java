@@ -66,8 +66,7 @@ public class DuplicateInnerProcessor implements Processor {
 		}
 		
 		// "outer"だけのマルチポリゴンは "type=building"に置き換える
-		/*
-		for (ElementRelation relation : relations) {
+		for (ElementRelation relation : osm.relationMap.values()) {
 			if (relation.getTagValue("type").equals("multipolygon")) {
 				boolean exitInner = false;
 				for (MemberBean member : relation.members) {
@@ -78,18 +77,14 @@ public class DuplicateInnerProcessor implements Processor {
 
 				if (!exitInner) {
 					for (MemberBean member : relation.members) {
-						if (member.isWay()) {
-							if (member.getRole().equals("outer")) {
-								member.setRole("outline");
-							}
+						if (member.getRole().equals("outer")) {
+							member.setRole("outline");
 						}
 					}
 					relation.addTag("type", "building");
 				}
 			}
 		}
-		*/
 		exchange.getIn().setBody(osm);
 	}
-
 }
