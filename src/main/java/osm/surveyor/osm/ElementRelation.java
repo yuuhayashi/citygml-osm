@@ -12,8 +12,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import osm.surveyor.osm.way.WayModel;
-
 public class ElementRelation extends PoiBean implements Cloneable,Serializable {
 	private static final long serialVersionUID = 1L;
 	public static final String RELATION = "relation";
@@ -51,12 +49,26 @@ public class ElementRelation extends PoiBean implements Cloneable,Serializable {
 		members = new ArrayList<MemberBean>();
 	}
 	
+	public void addMember(MemberBean member) {
+		long memberRef = member.getRef();
+		boolean is = false;
+		for (MemberBean bean : members) {
+			if (bean.getRef() == memberRef) {
+				bean = member;
+				is = true;
+			}
+		}
+		if (!is) {
+			members.add(member);
+		}
+	}
+	
 	public void addMember(WayModel way, String role) {
 		if (way == null) {
 			return;
 		}
 		MemberBean member = new MemberBean();
-		way.member = true;
+		way.setMemberWay(true);
 		member.setWay(way);
 		member.setRole(role);
 		for (MemberBean mem : this.members) {

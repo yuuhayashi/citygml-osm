@@ -17,9 +17,8 @@ public class BuildingGarbage {
 	}
 
 	/**
-	 * メンバーが一つしかないRelation:building を削除する
-	 * @param relationMap
-	 * @param wayMap
+	 * メンバーが一つもないRelation を削除する
+	 * メンバーが一つしかないRelation:multipolygon と polygon:member を削除する
 	 */
 	public void garbage() {
 		while (relationRemove());
@@ -28,12 +27,11 @@ public class BuildingGarbage {
     // メンバーが一つしかないRelation:building を削除する
 	// メンバーが一つしかないRelation:multipolygon と polygon:member を削除する
 	boolean relationRemove() {
-		for (String rKey : osm.relationMap.keySet()) {
-			ElementRelation relation = osm.relationMap.get(rKey);
+		for (ElementRelation relation : osm.relationMap.values()) {
 			int memberCnt = relation.members.size();
 			if (memberCnt == 0) {
-				preDeleteMembers(Long.parseLong(rKey));
-				osm.relationMap.remove(rKey);
+				preDeleteMembers(relation.getId());
+				osm.relationMap.remove(relation.getIdstr());
 				return true;
 			}
 			else if (memberCnt == 1) {
@@ -41,19 +39,19 @@ public class BuildingGarbage {
 					for (MemberBean member : relation.members) {
 						ElementWay way = (ElementWay)osm.getWayMap().get(member.getRef());
 						if (way != null) {
-							way.member = true;
+							way.setMemberWay(true);
 							relation.removeMember(way.getId());
-							osm.removeWay(way);
+							//osm.removeWay(way);
 							return true;
 						}
 					}
 				}
-				if (relation.isBuilding()) {
+				else if (relation.isBuilding()) {
 					for (MemberBean member : relation.members) {
 						ElementWay way = (ElementWay)osm.getWayMap().get(member.getRef());
 						if (way != null) {
-							way.member = false;
-							copyTag(relation.getTagList(), way);
+							way.setMemberWay(false);
+							//copyTag(relation.getTagList(), way);
 							relation.removeMember(way.getId());
 							return true;
 						}

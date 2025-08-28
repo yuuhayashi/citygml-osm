@@ -41,7 +41,15 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
 	}
 
 	@XmlTransient
-	public boolean member = false;  // 単独のWAYか、RELATIONのメンバーかを示す。
+	private boolean member = false;  // 単独のWAYか、RELATIONのメンバーかを示す。
+
+	public boolean isMemberWay() {
+		return this.member;
+	}
+	
+	public void setMemberWay(boolean b) {
+		this.member = b;
+	}
 	
 	/**
 	 * WAYノードメンバー

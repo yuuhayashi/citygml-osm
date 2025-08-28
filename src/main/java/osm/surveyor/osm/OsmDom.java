@@ -263,7 +263,7 @@ public class OsmDom  implements BoxcellMappable {
 		WayMap map = new WayMap();
 		for (String id : this.wayMap.keySet()) {
 			ElementWay way = (ElementWay)this.wayMap.get(id);
-			if (!way.member) {
+			if (!way.isMemberWay()) {
 				map.put(way);	// 単独WAYは、RELATIONに所属していなくても削除しない
 			}
 		}

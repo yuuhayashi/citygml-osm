@@ -50,7 +50,7 @@ public class OutlineFactory {
 			ElementWay aWay = new ElementWay(osm.getNewId());
 			aWay.replaceNds(outer);
 			aWay.toArea(this.osm.getIndexMap());
-			aWay.member = true;
+			aWay.setMemberWay(true);
 			
 			ArrayList<MemberBean> delPolygonlist = new ArrayList<>();
 			for (MemberBean mem : building.members) {
@@ -115,7 +115,7 @@ public class OutlineFactory {
 			if (iWay == null) {
 				iWay = new ElementWay(osm.getNewId());
 				iWay.replaceNds(inner);
-				iWay.member = true;
+				iWay.setMemberWay(true);
 				osm.getWayMap().put(iWay);
 			}
 			if (multi != null) {

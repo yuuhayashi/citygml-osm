@@ -269,17 +269,19 @@ public class ElementWay extends WayModel implements Cloneable {
 	
 	/**
 	 * このWAYがマルチポリゴンのINNERであるかどうか
-	 * @param relations
+	 * @param relationMap
 	 * @return
 	 */
-	public boolean isInnerWay(RelationMap relations) {
-		ElementRelation relation = relations.hasMembersWay(Long.toString(this.getId()));
-		if (relation != null) {
-			if (relation.isMultipolygon()) {
-				for (MemberBean member : relation.members) {
-					if (member.getRole().equals("inner")) {
-						if (member.getRef() == this.getId()) {
-							return true;
+	public boolean isInnerWay(RelationMap relationMap) {
+		List<ElementRelation> relations = relationMap.hasMembersRelation(Long.toString(this.getId()));
+		for (ElementRelation relation : relations) {
+			if (relation != null) {
+				if (relation.isMultipolygon()) {
+					for (MemberBean member : relation.members) {
+						if (member.getRole().equals("inner")) {
+							if (member.getRef() == this.getId()) {
+								return true;
+							}
 						}
 					}
 				}

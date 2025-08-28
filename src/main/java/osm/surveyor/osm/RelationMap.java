@@ -1,6 +1,8 @@
 package osm.surveyor.osm;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -51,25 +53,24 @@ public class RelationMap extends HashMap<String, ElementRelation> {
     }
     
     /**
-     * 指定されたWAYをメンバーに持つリレーションを取得する
-     * @param wKey	WAYのID
-     * @return	目的のリレーションが見つからなかったらNULL
+     * 指定されたWAYをメンバーに持つリレーションLISTを取得する
+     * @param wKey	MEMBERのID
+     * @return	目的のリレーションLIST
      */
-    public ElementRelation hasMembersWay(String wKey) {
-    	ElementRelation relation = null;
-    	for (String rKey : this.keySet()) {
-    		relation = this.get(rKey);
+    public List<ElementRelation> hasMembersRelation(String wKey) {
+    	List<ElementRelation> relations = new ArrayList<>();
+		for (ElementRelation relation : this.values()) {
     		if (relation != null) {
     			for (MemberBean member : relation.members) {
     				if (member.getRef() == Long.parseLong(wKey)) {
-    					return relation;
+    					relations.add(relation);
     				}
     			}
     		}
     	}
-		return null;
+		return relations;
     }
-
+    
     /**
      * 指定されたWAYをOUTLINEメンバーに持つMultipolygonリレーションを取得する
      * @param wKey	WAYのID
