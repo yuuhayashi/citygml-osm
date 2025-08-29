@@ -101,10 +101,12 @@ public class OsmMargeWay {
 				for (MemberBean member : relation.members) {
 					if (member.getRole().equals("outline") && member.getType().equals("relation")) {
 						polygon = (RelationMultipolygon)osm.relationMap.get(Long.toString(member.getRef()));
-						for (MemberBean plgMem : polygon.members) {
-							if (plgMem.getRole().equals("outer") && plgMem.getType().equals("way")) {
-								outline = (ElementWay)osm.getWayMap().get(Long.toString(plgMem.getRef()));
-								break;
+						if (polygon != null) {
+							for (MemberBean plgMem : polygon.members) {
+								if (plgMem.getRole().equals("outer") && plgMem.getType().equals("way")) {
+									outline = (ElementWay)osm.getWayMap().get(Long.toString(plgMem.getRef()));
+									break;
+								}
 							}
 						}
 					}

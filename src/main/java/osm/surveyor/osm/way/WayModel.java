@@ -254,6 +254,64 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
 		}
 		return false;
 	}
+
+    /**
+     * 必要なタグを上書きする
+     *  - "type"はコピーしない
+     *  - コピー先に"building:part=*"が存在すれば"building=*"とする
+     *  - コピー先とコピー元に"bilding"が存在しなければ"building=yes"を補完する
+     *  - "addr"と"addr:*"はコピーしない
+     *  - "height"はコピーしない
+     *  - "ele"はコピーしない
+     *  - "source"と"source:*"はコピーしない
+     *  - "ref"と"ref:*"はコピーしない
+     * @param tags
+     */
+    public void copyTag(List<TagBean> tags) {
+        if (tags == null) {
+            return;
+        }
+        String building = "yes";
+        TagBean buildingPartTag = this.getTag("building:part");
+        if (buildingPartTag != null) {
+            building = buildingPartTag.v;
+            this.removeTag("building:part");
+        }
+        for (TagBean tag : tags) {
+            if (tag.k.equals("type")) {
+            }
+            else if (tag.k.equals("building:part")) {
+                building = tag.v;
+            }
+            else if (tag.k.equals("building")) {
+                building = tag.v;
+            }
+            else if (tag.k.equals("addr")) {
+            }
+            else if (tag.k.startsWith("addr:*")) {
+            }
+            else if (tag.k.equals("source")) {
+            }
+            else if (tag.k.startsWith("source:")) {
+            }
+            else if (tag.k.equals("ref")) {
+            }
+            else if (tag.k.startsWith("ref:*")) {
+            }
+            else if (tag.k.equals("height")) {
+            }
+            else if (tag.k.equals("ele")) {
+            }
+            else {
+                this.addTag(tag.k, tag.v);
+            }
+        }
+        String buildingTag = this.getTagValue("building");
+        if (buildingTag == null) {
+            this.addTag("building", building);
+        }
+    }
+                                                                                                                   
 	//--------- Cloneable -------------------------------------------
     
 	@SuppressWarnings("removal")

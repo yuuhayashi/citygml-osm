@@ -41,7 +41,7 @@ public class BuildingGarbage {
 						if (way != null) {
 							way.setMemberWay(true);
 							relation.removeMember(way.getId());
-							//osm.removeWay(way);
+							osm.removeWay(way);
 							return true;
 						}
 					}
@@ -51,7 +51,7 @@ public class BuildingGarbage {
 						ElementWay way = (ElementWay)osm.getWayMap().get(member.getRef());
 						if (way != null) {
 							way.setMemberWay(false);
-							//copyTag(relation.getTagList(), way);
+							way.copyTag(relation.getTagList());
 							relation.removeMember(way.getId());
 							return true;
 						}
@@ -81,63 +81,5 @@ public class BuildingGarbage {
 			}
 		}
 		return false;
-	}
-	
-	/**
-	 * タグをdestへ移す
-	 * 	- "type"はコピーしない
-	 *  - コピー先に"building:part=*"が存在すれば"building=*"とする
-	 * 	- コピー先とコピー元に"bilding"が存在しなければ"building=yes"を補完する
-	 * 	- "addr"と"addr:*"はコピーしない
-	 * 	- "height"はコピーしない
-	 * 	- "ele"はコピーしない
-	 * 	- "source"と"source:*"はコピーしない
-	 * 	- "ref"と"ref:*"はコピーしない
-	 * @param tags
-	 * @param dest
-	 */
-	void copyTag(List<TagBean> tags, PoiBean dest) {
-		if (tags == null) {
-			return;
-		}
-		String building = "yes";
-		TagBean buildingPartTag = dest.getTag("building:part");
-		if (buildingPartTag != null) {
-			building = buildingPartTag.v;
-			dest.removeTag("building:part");
-		}
-		for (TagBean tag : tags) {
-			if (tag.k.equals("type")) {
-			}
-			else if (tag.k.equals("building:part")) {
-				building = tag.v;
-			}
-			else if (tag.k.equals("building")) {
-				building = tag.v;
-			}
-			else if (tag.k.equals("addr")) {
-			}
-			else if (tag.k.startsWith("addr:*")) {
-			}
-			else if (tag.k.equals("source")) {
-			}
-			else if (tag.k.startsWith("source:")) {
-			}
-			else if (tag.k.equals("ref")) {
-			}
-			else if (tag.k.startsWith("ref:*")) {
-			}
-			else if (tag.k.equals("height")) {
-			}
-			else if (tag.k.equals("ele")) {
-			}
-			else {
-				dest.addTag(tag.k, tag.v);
-			}
-		}
-		String buildingTag = dest.getTagValue("building");
-		if (buildingTag == null) {
-			dest.addTag("building", building);
-		}
 	}
 }
