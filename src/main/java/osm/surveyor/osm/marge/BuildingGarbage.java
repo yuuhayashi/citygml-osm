@@ -1,11 +1,7 @@
 package osm.surveyor.osm.marge;
 
-import java.util.List;
-
 import osm.surveyor.osm.MemberBean;
-import osm.surveyor.osm.PoiBean;
 import osm.surveyor.osm.ElementRelation;
-import osm.surveyor.osm.TagBean;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.OsmDom;
 

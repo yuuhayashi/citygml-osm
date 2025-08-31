@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.PrintStream;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.xml.bind.JAXB;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -158,12 +160,14 @@ public class OsmDom  implements BoxcellMappable {
 	public String getMinEle(ElementRelation relation) {
 		String minele = "10000";
 		for (MemberBean member : relation.members) {
-			if (member.getRole().equals("part")) {
+			if (member.isWay()) {
 				ElementWay way = (ElementWay)wayMap.get(member.getRef());
-				String ele = way.getTagValue("ele");
-				if (ele != null) {
-					if (Double.parseDouble(minele) > Double.parseDouble(ele)) {
-						minele = ele;
+				if (member.getRole().equals("part") || member.getRole().equals("outline")) {
+					String ele = way.getTagValue("ele");
+					if (ele != null) {
+						if (Double.parseDouble(minele) > Double.parseDouble(ele)) {
+							minele = ele;
+						}
 					}
 				}
 			}
@@ -172,29 +176,40 @@ public class OsmDom  implements BoxcellMappable {
 	}
 	
 	public String getMaxHeight(ElementRelation relation) {
-		String minele = getMinEle(relation);
-		String maxheight = "0";
+		maxmin.clear();
+		maxmin.put("minele", getMinEle(relation));
+		maxmin.put("maxheight", "0");
+		
 		for (MemberBean member : relation.members) {
-			if (member.getRole().equals("part")) {
+			if (member.isWay()) {
 				ElementWay way = (ElementWay)wayMap.get(member.getRef());
-				String ele = way.getTagValue("ele");
-				String height = way.getTagValue("height");
-				if (height != null) {
-					if (ele != null) {
-						double height1 = (Double.parseDouble(ele) - Double.parseDouble(minele) + Double.parseDouble(height));
-						if (Double.parseDouble(maxheight) < height1) {
-							maxheight = CityModelParser.rounding(2, String.valueOf(height1));
-						}
-					}
-					else {
-						if (Double.parseDouble(maxheight) < Double.parseDouble(height)) {
-							maxheight = height;
-						}
-					}
+				if (member.getRole().equals("part") || member.getRole().equals("outline")) {
+					updateMaxmin(maxmin, way);
 				}
 			}
 		}
-		return CityModelParser.rounding(2, maxheight);
+		return CityModelParser.rounding(2, maxmin.get("maxheight"));
+	}
+	
+	Map<String,String> maxmin = new HashMap<>();
+	
+	private void updateMaxmin(Map<String,String> maxmin, WayModel way) {
+		String ele = way.getTagValue("ele");
+		String height = way.getTagValue("height");
+		if (height != null) {
+			if (ele != null) {
+				double height1 = (Double.parseDouble(ele) - Double.parseDouble(maxmin.get("minele")) + Double.parseDouble(height));
+				if (Double.parseDouble(maxmin.get("maxheight")) < height1) {
+					maxmin.put("maxheight", CityModelParser.rounding(2, String.valueOf(height1)));
+				}
+			}
+			else {
+				if (Double.parseDouble("maxheight") < Double.parseDouble(height)) {
+					maxmin.put("maxheight", height);
+				}
+			}
+		}
+		
 	}
 
 	public void toOutline() {

@@ -70,12 +70,48 @@ public class DuplicateInnerProcessor implements Processor {
 					}
 				}
 				
-				// Issue #138 マルチポリゴンの親リレーション(type=building)に"part"メンバーを追加する
-				List<ElementRelation> parentBuildingRelations = osm.relationMap.hasMembersRelation(relation.getIdstr());
-				for (ElementRelation parentBuildingRelation : parentBuildingRelations) {
-					if (parentBuildingRelation.isBuilding()) {
-						for (WayModel member : partWays) {
-							parentBuildingRelation.addMember(member, "part");
+				if ((partWays.size() > 0) && (partWays.size() == innerMembers.size())) {
+					// Issue #138 マルチポリゴンの親リレーション(type=building)に"part"メンバーを追加する
+					List<ElementRelation> parentBuildingRelations = osm.relationMap.hasMembersRelation(relation.getIdstr());
+					for (ElementRelation parentBuildingRelation : parentBuildingRelations) {
+						if (parentBuildingRelation.isBuilding()) {
+							boolean hasOutlineWay = false;
+							MemberBean partMember = null;
+							MemberBean outlineMember = null;
+							
+							for (MemberBean parentMember : parentBuildingRelation.members) {
+								if (parentMember.isWay()) {
+									if (parentMember.getRole().equals("outline")) {
+										hasOutlineWay = true;
+									}
+									else if (parentMember.getRole().equals("part")) {
+										partMember = parentMember;
+									}
+								}
+								else if (parentMember.isRelation()) {
+									outlineMember = parentMember;
+								}
+							}
+							if (!hasOutlineWay) {
+								if (outlineMember != null) {
+									parentBuildingRelation.removeMember(outlineMember.getRef());
+								}
+								if (partMember != null) {
+									partMember.setRole("outline");
+									WayModel way = osm.getWay(partMember.getRef());
+									String v = way.getTagValue("building:part");
+									way.removeTag("building:part");
+									if (v == null) {
+										way.addTag("building", "yes");
+									}
+									else {
+										way.addTag("building", v);
+									}
+								}
+							}
+							for (WayModel member : partWays) {
+								parentBuildingRelation.addMember(member, "part");
+							}
 						}
 					}
 				}

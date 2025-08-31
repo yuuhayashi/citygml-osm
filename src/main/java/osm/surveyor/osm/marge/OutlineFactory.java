@@ -31,7 +31,21 @@ public class OutlineFactory {
 		for (String rKey : osm.relationMap.keySet()) {
 			ElementRelation relation = osm.relationMap.get(rKey);
 			if (relation.isBuilding()) {
-				map.put(createOutline((RelationBuilding)relation));
+				boolean hasOutline = false;
+				for (MemberBean member : relation.members) {
+					if (member.getRole().equals("outline")) {
+						hasOutline = true;
+					}
+				}
+				if (hasOutline) {
+					// Relationのメンバーから"height"の最大値を取得
+					relation.addTag("height", osm.getMaxHeight(relation));
+					relation.addTag("ele", osm.getMinEle(relation));
+					relation.removeTag("ref:MLIT_PLATEAU");
+				}
+				else {
+					map.put(createOutline((RelationBuilding)relation));
+				}
 			}
 		}
 		

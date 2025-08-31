@@ -22,7 +22,7 @@ public class CitygmlFileTest_B extends GmlLoadRouteTest {
 						 type => multipolygon
 						 building => yes
 						 height => 17.582
-						 ref:MLIT_PLATEAU => null
+						 ref:MLIT_PLATEAU => "13111-bldg-61384"
 						}
 					 */
 					assertEquals("multipolygon", relation.getTagValue("type"));
@@ -39,9 +39,9 @@ public class CitygmlFileTest_B extends GmlLoadRouteTest {
 							outerCnt++;
 							assertEquals("way", mem.getType());
 							ElementWay way = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef()));
-							assertNull(way.getTagValue("ref:MLIT_PLATEAU"));
+							assertEquals("13111-bldg-61384", way.getTagValue("ref:MLIT_PLATEAU"));
 							assertNull(way.getTagValue("source"));
-							assertEquals(0, way.getTagList().size());
+							assertEquals(1, way.getTagList().size());
 						}
 						if (mem.getRole().equals("inner")) {
 							innerCnt++;
