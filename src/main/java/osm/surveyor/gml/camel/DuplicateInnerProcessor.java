@@ -24,7 +24,6 @@ public class DuplicateInnerProcessor implements Processor {
 		System.out.println(LocalTime.now() +"\tDuplicateInnerProcessor.process()");
 
 		OsmDom osm = exchange.getIn().getBody(OsmDom.class);
-		
 		for (ElementRelation relation : osm.relationMap.values()) {
 			if (relation.getTagValue("type").equals("multipolygon")) {
 				List<MemberBean> innerMembers = new ArrayList<>();
@@ -47,14 +46,14 @@ public class DuplicateInnerProcessor implements Processor {
 							// Issue #138 マルチポリゴン内の"building:part"の親リレーション(type=building)は削除する
 							List<ElementRelation> parentBuildingRelations = osm.relationMap.hasMembersRelation(partWay.getIdstr());
 							for (ElementRelation parentBuildingRelation : parentBuildingRelations) {
-								if (parentBuildingRelation.members.size() == 1) {
-									for (MemberBean outline : parentBuildingRelation.members) {
-										if (outline.getRole().equals("part") && outline.isWay()) {
-											outline.setRole("outline");
+								if (parentBuildingRelation.isBuilding()) {
+									if (parentBuildingRelation.members.size() == 1) {
+										for (MemberBean outline : parentBuildingRelation.members) {
+											if (outline.getRole().equals("part") && outline.isWay()) {
+												outline.setRole("outline");
+											}
 										}
 									}
-								}
-								if (parentBuildingRelation.isBuilding()) {
 									parentBuildingRelation.removeMember(partWay.getId());
 								}
 							}
@@ -89,7 +88,9 @@ public class DuplicateInnerProcessor implements Processor {
 									}
 								}
 								else if (parentMember.isRelation()) {
-									outlineMember = parentMember;
+									if (parentMember.getRole().equals("outline")) {
+										outlineMember = parentMember;
+									}
 								}
 							}
 							if (!hasOutlineWay) {
