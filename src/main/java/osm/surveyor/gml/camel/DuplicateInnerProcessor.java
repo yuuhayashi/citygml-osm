@@ -29,9 +29,11 @@ public class DuplicateInnerProcessor implements Processor {
 			if (relation.getTagValue("type").equals("multipolygon")) {
 				List<MemberBean> innerMembers = new ArrayList<>();
 				List<WayModel> partWays = new ArrayList<>();
+				int innerCnt = 0;
 				for (MemberBean member : relation.members) {
 					ElementWay memberWay = (ElementWay)osm.getWayMap().get(member.getRef());
 					if (member.getRole().equals("inner") && member.isWay() && (memberWay != null)) {
+						innerCnt ++;
 
 						// Issue #138
 						WayModel partWay = memberWay.getSamePositionWay(osm.getDuplicateWayList(memberWay));
@@ -94,7 +96,7 @@ public class DuplicateInnerProcessor implements Processor {
 									}
 								}
 							}
-							if (!hasOutlineWay) {
+							if ((!hasOutlineWay) && (innerCnt == innerMembers.size())) {
 								if (outlineMember != null) {
 									parentBuildingRelation.removeMember(outlineMember.getRef());
 								}
