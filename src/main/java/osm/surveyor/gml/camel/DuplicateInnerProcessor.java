@@ -24,7 +24,6 @@ public class DuplicateInnerProcessor implements Processor {
 		System.out.println(LocalTime.now() +"\tDuplicateInnerProcessor.process()");
 
 		OsmDom osm = exchange.getIn().getBody(OsmDom.class);
-		
 		for (ElementRelation relation : osm.relationMap.values()) {
 			if (relation.getTagValue("type").equals("multipolygon")) {
 				List<MemberBean> innerMembers = new ArrayList<>();
