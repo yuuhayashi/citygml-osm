@@ -127,7 +127,7 @@ public class OsmMargeWay {
 	 *  - コピー先に"building:part=*"が存在すれば"building=*"とする
 	 * 	- コピー先とコピー元に"bilding"が存在しなければ"building=yes"を補完する
 	 * 	- "addr:ref"はコピーしない
-	 * 	- "addr:full"はコピーしない
+	 * 	- "addr:full"はコピーしない	Issue #93
 	 * 	- "height"はコピーしない
 	 * 	- "ele"はコピーしない
 	 * 	- "source"はコピーしない
@@ -148,7 +148,7 @@ public class OsmMargeWay {
 			}
 			else if (tag.k.equals("building:part")) {
 			}
-			else if (tag.k.equals("addr:full")) {
+			else if (tag.k.equals("addr:full")) {		// Issue #93
 			}
 			else if (tag.k.equals("addr:ref")) {
 			}

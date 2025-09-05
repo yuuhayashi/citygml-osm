@@ -226,12 +226,6 @@ public class CityModelParser extends DefaultHandler {
 		else if(qName.equals("gml:posList")){
 			outSb = new StringBuffer();
 		}
-
-		else if(qName.equals("xAL:LocalityName")){
-			// <xAL:LocalityName Type="Town"></xAL:LocalityName>
-			//localityNameType = getAttributes("Type", atts);
-	    	outSb = new StringBuffer();
-		}
 	}
 
     /**
@@ -309,7 +303,6 @@ public class CityModelParser extends DefaultHandler {
 						if (num != null) {
 							way.addTag("ele", num);
 						}
-						way.addTag("addr:full", building.getTagValue("addr:full"));
 						if ((name != null) && !name.isEmpty()) {
 							way.addTag("name", name);
 						}
@@ -340,7 +333,6 @@ public class CityModelParser extends DefaultHandler {
 						if (num != null) {
 							relation.addTag("ele", num);
 						}
-						relation.addTag("addr:full", building.getTagValue("addr:full"));
 						if ((name != null) && !name.isEmpty()) {
 							relation.addTag("name", name);
 						}
@@ -692,15 +684,6 @@ public class CityModelParser extends DefaultHandler {
 							elementWay.addTag("maxele", Double.toString(max));
 						}
 					}
-				}
-			}
-			outSb = null;
-		}
-		else if(qName.equals("xAL:LocalityName")) {
-			// <xAL:LocalityName>東京都大田区南六郷三丁目</xAL:LocalityName>
-			if (outSb != null) {
-				if (building != null) {
-					// building.addTag("addr:full", outSb.toString());
 				}
 			}
 			outSb = null;

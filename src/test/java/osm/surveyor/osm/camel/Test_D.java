@@ -117,16 +117,16 @@ public class Test_D extends OsmUpdaterTest {
 					 */
 					assertEquals("building", relation.getTagValue("type"));
 					assertEquals("都営大森西三丁目第2アパート", relation.getTagValue("name"));		// Issue #55
-					assertEquals("東京都大田区大森西三丁目", relation.getTagValue("addr:full"));
 					assertEquals("34.7", relation.getTagValue("height"));
 					assertEquals("2.68", relation.getTagValue("ele"));
 					assertEquals("yes", relation.getTagValue("building"));		// Issue #119
 					assertEquals("3", relation.getTagValue("building:levels"));
 					assertEquals("1", relation.getTagValue("building:levels:underground"));
+					assertNull(relation.getTagValue("addr:full"));		// Issue #93
 					assertNull(relation.getTagValue("source"));
 					assertNull(relation.getTagValue("ref:MLIT_PLATEAU"));
 					assertNull(relation.getTagValue("start_date"));		// Issue #39
-					assertEquals(8, relation.getTagList().size());
+					assertEquals(7, relation.getTagList().size());
 
 					int outlineCnt = 0;
 					int partCnt = 0;
@@ -152,12 +152,12 @@ public class Test_D extends OsmUpdaterTest {
 							assertEquals("1", multiporygon.getTagValue("building:levels:underground"));
 							assertEquals("34.7", multiporygon.getTagValue("height"));
 							assertEquals("2.68", multiporygon.getTagValue("ele"));
-							assertEquals("東京都大田区大森西三丁目", multiporygon.getTagValue("addr:full"));
 							assertEquals("都営大森西三丁目第2アパート", multiporygon.getTagValue("name"));		// Issue #55
 							assertNotNull(multiporygon.getTag("start_date"));			// Issue #39 複合ビルでの”建築年”の扱い
+							assertNull(multiporygon.getTagValue("addr:full"));		// Issue #93
 							assertNull(multiporygon.getTagValue("ref:MLIT_PLATEAU"));
 							assertNull(multiporygon.getTagValue("addr:ref"));
-							assertEquals(9, multiporygon.getTagList().size());
+							assertEquals(8, multiporygon.getTagList().size());
 							int outerCnt = 0;
 							int innerCnt = 0;
 							for (MemberBean member : multiporygon.getMemberList()) {
@@ -190,7 +190,6 @@ public class Test_D extends OsmUpdaterTest {
 							if (way.getTagValue("ref:MLIT_PLATEAU").endsWith("13111-bldg-72601")) {
 								assertEquals("13111-bldg-72601", way.getTagValue("ref:MLIT_PLATEAU"));
 								assertEquals("PLATEAUデータで更新されています", way.getTagValue("MLIT_PLATEAU:fixme"));
-								assertEquals("東京都大田区大森西三丁目", way.getTagValue("addr:full"));
 								assertEquals("34.7", way.getTagValue("height"));
 								assertEquals("2.68", way.getTagValue("ele"));
 								assertEquals("1976", way.getTagValue("start_date"));
@@ -198,20 +197,21 @@ public class Test_D extends OsmUpdaterTest {
 								assertEquals("2", way.getTagValue("building:levels"));
 								assertEquals("1", way.getTagValue("building:levels:underground"));
 								assertEquals("都営大森西三丁目第2アパート", way.getTagValue("name"));		// Issue #55
+								assertNull(way.getTagValue("addr:full"));		// Issue #93
 								assertNull(way.getTag("source"));
-								assertEquals(10, way.getTagList().size());
+								assertEquals(9, way.getTagList().size());
 							}
 							else if (way.getTagValue("ref:MLIT_PLATEAU").endsWith("13111-bldg-71799")) {
 								assertEquals("13111-bldg-71799", way.getTagValue("ref:MLIT_PLATEAU"));
 								assertEquals("PLATEAUデータで更新されています", way.getTagValue("MLIT_PLATEAU:fixme"));
-								assertEquals("東京都大田区大森西三丁目", way.getTagValue("addr:full"));
 								assertEquals("3", way.getTagValue("building:levels"));
 								assertEquals("30.2", way.getTagValue("height"));
 								assertEquals("3.13", way.getTagValue("ele"));
 								assertEquals("1977", way.getTagValue("start_date"));
 								assertEquals("yes", way.getTagValue("building:part"));
+								assertNull(way.getTagValue("addr:full"));		// Issue #93
 								assertNull(way.getTag("source"));
-								assertEquals(8, way.getTagList().size());
+								assertEquals(7, way.getTagList().size());
 							}
 						}
 					}

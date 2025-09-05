@@ -124,7 +124,7 @@ public class Test_C extends OsmUpdaterTest {
 					assertEquals("1", relation.getTagValue("building:levels:underground"));
 					assertEquals("42.7", relation.getTagValue("height"));
 					assertEquals("2.81", relation.getTagValue("ele"));
-					assertEquals("東京都大田区南六郷三丁目", relation.getTagValue("addr:full"));
+					assertNull(relation.getTagValue("addr:full"));		// Issue #93
 					assertNull(relation.getTagValue("ref:MLIT_PLATEAU"));
 
 					int outlineCnt = 0;
@@ -150,11 +150,11 @@ public class Test_C extends OsmUpdaterTest {
 							assertNotNull(way);
 							if (way.getTagValue("ref:MLIT_PLATEAU") != null) {
 								assertNotNull(way.getTagValue("ref:MLIT_PLATEAU"));
-								assertEquals("東京都大田区南六郷三丁目", way.getTagValue("addr:full"));
 								assertNotNull(way.getTagValue("height"));
 								assertNotNull(way.getTagValue("ele"));
 								assertNotNull(way.getTagValue("start_date"));
 								assertEquals("yes", way.getTagValue("building:part"));
+								assertNull(relation.getTagValue("addr:full"));		// Issue #93
 							}
 						}
 					}
@@ -209,9 +209,9 @@ public class Test_C extends OsmUpdaterTest {
 					assertEquals("2", relation.getTagValue("building:levels:underground"));
 					assertEquals("7.1", relation.getTagValue("height"));
 					assertEquals("2.48", relation.getTagValue("ele"));
-					assertEquals("東京都大田区大森中一丁目", relation.getTagValue("addr:full"));
+					assertNull(relation.getTagValue("addr:full"));		// Issue #93
 					assertNull(relation.getTagValue("ref:MLIT_PLATEAU"));
-					assertEquals(7, relation.getTagList().size());
+					assertEquals(6, relation.getTagList().size());
 					
 					int outlineCnt = 0;
 					int partCnt = 0;
@@ -235,11 +235,11 @@ public class Test_C extends OsmUpdaterTest {
 							WayModel way = mrg.getWay(mem.getRef());
 							assertNotNull(way);
 							assertNotNull(way.getTagValue("ref:MLIT_PLATEAU"));
-							assertEquals(way.getTagValue("addr:full"), ("東京都大田区大森中一丁目"));
 							assertNotNull(way.getTagValue("height"));
 							assertNotNull(way.getTagValue("ele"));
 							assertEquals(way.getTagValue("building:part"), ("yes"));
-							assertTrue(way.getTagList().size() >= 5);
+							assertNull(relation.getTagValue("addr:full"));		// Issue #93
+							assertTrue(way.getTagList().size() >= 4);
 						}
 					}
 					assertEquals(1, outlineCnt);

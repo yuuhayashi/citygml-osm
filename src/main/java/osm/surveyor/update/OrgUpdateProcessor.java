@@ -54,6 +54,7 @@ public class OrgUpdateProcessor implements Processor {
 		fixEndDate(org);
 		
 		// Plateauデータの内で、v=[-9999 .. 9999]のタグを削除
+		// #93 "addr:ref" を削除
 		fix128(osm);
 		
 		// Plateauデータの内で、Fix=trueの既存データと重複するものを削除
@@ -482,8 +483,7 @@ public class OrgUpdateProcessor implements Processor {
 								if (tag.k.startsWith("MLIT_PLATEAU:fixme")) {
 									tags.add(tag);
 								}
-								else if (tag.k.equals("addr:full")) {
-									tags.add(tag);
+								else if (tag.k.equals("addr:full")) {	// Issue #93
 								}
 								else if (tag.k.equals("building:part")) {
 									tags.add(tag);
@@ -547,6 +547,11 @@ public class OrgUpdateProcessor implements Processor {
 		}
 	}
 
+	/**
+	 * {@link #fix128(OsmBean)}
+	 * #93 タグ"addr:full"を削除する
+	 * @param mrg
+	 */
 	void fix128(OsmBean mrg) {
 		for (Areable way : mrg.getWayMap().values()) {
 			List<TagBean> blacklist = new ArrayList<>();
@@ -566,6 +571,9 @@ public class OrgUpdateProcessor implements Processor {
 							blacklist.add(tag);
 						}
 					}
+					else if (key.equals("addr:full")) {
+						blacklist.add(tag);
+					}
 				}
 				catch (Exception e) {
 					blacklist.add(tag);
@@ -573,6 +581,23 @@ public class OrgUpdateProcessor implements Processor {
 			}
 			for (TagBean tag : blacklist) {
 				way.getPoiBean().removeTag(tag.k);
+			}
+		}
+		for (RelationBean relation : mrg.getRelationList()) {
+			List<TagBean> blacklist = new ArrayList<>();
+			for (TagBean tag : relation.getTagList()) {
+				String key = tag.getKey();
+				try {
+					if (key.equals("addr:full")) {
+						blacklist.add(tag);
+					}
+				}
+				catch (Exception e) {
+					blacklist.add(tag);
+				}
+			}
+			for (TagBean tag : blacklist) {
+				relation.removeTag(tag.k);
 			}
 		}
 	}

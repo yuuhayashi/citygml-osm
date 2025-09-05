@@ -150,7 +150,7 @@ public class Test_B extends OsmUpdaterTest {
 				assertEquals("16.9", relation.getTagValue("height"));
 				assertEquals("2.51", relation.getTagValue("ele"));
 				assertEquals("1976", relation.getTagValue("start_date"));
-				assertEquals("東京都大田区大森西五丁目", relation.getTagValue("addr:full"));
+				assertNull(relation.getTagValue("addr:full"));		// Issue #93
 
 				int outerCnt = 0;
 				int innerCnt = 0;
