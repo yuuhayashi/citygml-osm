@@ -45,9 +45,9 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 			else if (outlineMember.getType().equals("relation")) {
 				ElementRelation polygon = osm.relationMap.get(outlineMember.getRef());
 				if (polygon != null) {
-					for (MemberBean outlinemember : polygon.members) {
-						if (outlinemember.getRole().equals("outer")) {
-							return (ElementWay)osm.getWayMap().get(outlinemember.getRef());
+					for (MemberBean outermember : polygon.members) {
+						if (outermember.getRole().equals("outer")) {
+							return (ElementWay)osm.getWayMap().get(outermember.getRef());
 						}
 					}
 				}
