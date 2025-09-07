@@ -13,6 +13,43 @@ public class BuildingGarbage {
 	}
 
 	/**
+	 * メンバーが一つしかないRelation:multipolygon とその polygon:member を削除する
+	 */
+	public void garbageMultipolygon() {
+		while (multipolygonRemove());
+	}
+
+	/**
+	 *  メンバーが一つしかないRelation:multipolygon と polygon:member を削除する
+	 * @return
+	 */
+	boolean multipolygonRemove() {
+		for (ElementRelation relation : osm.relationMap.values()) {
+			if (relation.isMultipolygon()) {
+				int memberCnt = relation.members.size();
+				if (memberCnt == 0) {
+					preDeleteMembers(relation.getId());
+					osm.relationMap.remove(relation.getIdstr());
+					return true;
+				}
+				else if (memberCnt == 1) {
+					for (MemberBean member : relation.members) {
+						ElementWay way = (ElementWay)osm.getWayMap().get(member.getRef());
+						if (way != null) {
+							way.setMemberWay(true);
+							relation.removeMember(way.getId());
+							osm.removeWay(way);
+							return true;
+						}
+					}
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * メンバーが一つもないRelation を削除する
 	 * メンバーが一つしかないRelation:multipolygon と polygon:member を削除する
 	 */

@@ -5,6 +5,7 @@ import org.apache.camel.builder.RouteBuilder;
 import osm.surveyor.osm.camel.BuildingGarbageProcessor;
 import osm.surveyor.osm.camel.GerbageNodeProcessor;
 import osm.surveyor.osm.camel.GerbageWayProcessor;
+import osm.surveyor.osm.camel.MultipolygonGarbageProcessor;
 import osm.surveyor.osm.camel.OsmExportProcessor;
 import osm.surveyor.osm.camel.OsmMargeWayProcessor;
 import osm.surveyor.osm.camel.OutlineFactoryProcessor;
@@ -27,6 +28,7 @@ public class GmlLoadRoute extends RouteBuilder {
 		.process(new GmlFileReadProcessor())	// GMLファイルをパース
 		.process(new GerbageWayProcessor())		// RELATIONに所属していないWAYを削除する
 		.process(new GerbageNodeProcessor())	// WAYに所属しないNODEを削除する
+		.process(new MultipolygonGarbageProcessor())	// メンバーが一つしかないRelation:multipolygon と polygon:member を削除する
 		.to("direct:inRelationMarge")
         ;
 		
