@@ -1,6 +1,5 @@
 package osm.surveyor.osm.marge;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import osm.surveyor.osm.MemberBean;
@@ -26,7 +25,7 @@ public class RelationMarge {
      */
 	public boolean relationMarge() {
 		System.out.print(".");
-		RelationMap checked = new RelationMap();
+		RelationMap checked = new RelationMap();	// 調査済みのリレーション一覧
 		
 		// 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる
 		for (String rKey : osm.relationMap.keySet()) {
@@ -56,7 +55,7 @@ public class RelationMarge {
 	/**
 	 * 接触しているBUILDINGのWAYをくっつけて"Relation:building"をつくる
 	 * @param relation
-	 * @param checked
+	 * @param checked	調査済みのリレーション一覧
 	 * @return	マージされて取り込まれたリレーションのリストを返す（呼び出し側で削除する必要がある）
 	 */
 	RelationMap relationMarge1(RelationBuilding relation, RelationMap checked) {
@@ -101,45 +100,44 @@ public class RelationMarge {
 		return null;
 	}
 	
-	void matomeru(RelationBuilding relation, RelationBuilding b) {
-		// 接続するリレーションのメンバーを取り込む
-		// Wayメンバーは全て取り込む
-		// RelationメンバーはInnerのみ取り込む。Outerは除外する
-		ElementRelation multi = relation.getMultiPolygon(osm);
-		for (MemberBean mem : b.members) {
+	/**
+	 * 接続するリレーションのメンバーを取り込む
+	 * - role=part メンバーは全て取り込む
+	 * - role=outline メンバーは除外する
+	 * 
+	 * @param aBuilding	取り込みの元
+	 * @param bBuilding		取り込まれるリレーション
+	 */
+	void matomeru(RelationBuilding aBuilding, RelationBuilding bBuilding) {
+		WayMap memberways = new WayMap();
+		
+		for (MemberBean mem : bBuilding.members) {
 			if (mem.getRole().equals("part")) {
+				// role=part メンバーは全て取り込む, role=outline は取り込まない
 				if (mem.getType().equals("way")) {
 					ElementWay memway = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef()));
-					relation.addMember(memway, mem.getRole());
+					aBuilding.addMember(memway, "part");
 				}
 			}
 			else if (mem.getRole().equals("outline")) {
-				if (mem.getType().equals(ElementRelation.RELATION)) {
-					ElementRelation polygon = osm.relationMap.get(Long.toString(mem.getRef()));
+				if (mem.isWay()) {
+					ElementWay memway = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef()));
+					memberways.put(memway.clone());
+					aBuilding.addMember(memway, "part");
+				}
+				else if (mem.isRelation()) {
+					ElementRelation polygon = osm.relationMap.get(mem.getRef());
 					if (polygon != null) {
-						for (MemberBean polymem : polygon.members) {
-							if (polymem.getType().equals("way") && polymem.getRole().equals("inner")) {
-								if (multi != null) {
-									multi.addMember((ElementWay)osm.getWayMap().get(Long.toString(polymem.getRef())), "inner");
-								}
+						for (MemberBean polygonMember : polygon.members) {
+							if (polygonMember.getRole().equals("outer")) {
+								memberways.put(osm.getWayMap().get(polygonMember.getRef()).clone());
 							}
 						}
 					}
 				}
 			}
 		}
-		ArrayList<MemberBean> deloutline = new ArrayList<>();
-		for (MemberBean mem : relation.members) {
-			if (mem.getType().equals(ElementRelation.RELATION)) {
-				if (mem.getRef() != multi.getId()) {
-					deloutline.add(mem);
-				}
-			}
-		}
-		for (MemberBean mem : deloutline) {
-			relation.removeMember(mem.getRef());
-		}
-		relation = (new OutlineFactory(osm)).createOutline(relation);
-		relation.margeTagValue(osm);
+		aBuilding = (new OutlineFactory(osm)).createOutline(aBuilding, memberways);
+		aBuilding.margeTagValue(osm);
 	}
 }

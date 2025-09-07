@@ -1,0 +1,82 @@
+@startuml
+object "-69 : Way" as Way_69 {
+  id = -69
+  nd = [5,8,7,6]
+}
+object "bldg-80114 : Way" as Way_61 {
+  id = -61
+  building:part => yes
+  height = 4.2
+  ele = 7.6
+  survey:date = 2017
+  ref:MLIT_PLATEAU = 27100-bldg-80114
+  nd = [52,53,54,55,56,57,58,59]
+}
+object "-62 : Way" as Way_62 {
+  id = -62
+  nd = [52,53,54,55,56,57,58,59]
+}
+object "-63 : Way" as Way_63 {
+  id = -63
+  nd = [64,65,66,67]
+}
+object "bldg-80281 : Way" as Way_10 {
+  id = -10
+  building:part => yes
+  height = 2.99
+  ele = 7.6
+  survey:date = 2017
+  ref:MLIT_PLATEAU = 27100-bldg-80281
+  nd = [5,6,7,8]
+}
+object "-11 : Way" as Way_11 {
+  id = -11
+  nd = [5,6,7,8]
+}
+Way_10 .. Way_11
+Way_10 .. Way_69
+Way_61 . Way_62
+
+package Part1 {
+  map "-3 : Multipolygon" as Relation_3 {
+    id => -3
+    type => multipolygon
+    building:part => yes
+    height => 2.99
+    ele => 7.6
+    member.outer *--> Way_11
+  }
+  map "-1 : Building" as Relation_1 {
+    id => -1
+    type => building
+    building => yes
+    ele => 7.6
+    height => 2.99
+    survey:date => 2017
+    member.outline *--> Relation_3
+    member.part *--> Way_10
+  }
+}
+package Main {
+  map "-50 : Multipolygon" as Relation_50 {
+    id => -50
+    type => multipolygon
+    building:part => yes
+    ele => 7.6
+    height => 4.2
+    member.outer *--> Way_62
+    member.inner1 *--> Way_63
+    member.inner2 *--> Way_69
+  }
+  map "-48 : Building" as Relation_48 {
+    id => -48
+    type => building
+    building => yes
+    ele => 7.6
+    height => 4.2
+    survey:date => 2017
+    member.outline *--> Relation_50
+    member.part *--> Way_61
+  }
+}
+@enduml

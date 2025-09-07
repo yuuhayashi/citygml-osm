@@ -27,7 +27,7 @@ public class GmlLoadRoute extends RouteBuilder {
 		.process(new GmlFileReadProcessor())	// GMLファイルをパース
 		.process(new GerbageWayProcessor())		// RELATIONに所属していないWAYを削除する
 		.process(new GerbageNodeProcessor())	// WAYに所属しないNODEを削除する
-        .to("direct:inRelationMarge")
+		.to("direct:inRelationMarge")
         ;
 		
         // (2) 各WAYのノードで、他のWAYと共有されたノードを探す
@@ -35,7 +35,7 @@ public class GmlLoadRoute extends RouteBuilder {
     	// Relation:multipolygon の MaxHeightを outline->Multipolygonへ設定する
 		from("direct:inRelationMarge")
 		.streamCaching()
-		.process(new RelationMargeProcessor())
+		.process(new RelationMargeProcessor())	// 接触しているBUILDINGのWAYをくっつける
 		.process(new DuplicateInnerProcessor())	// buildingとINNERが重なっているINNERを削除する。
         .to("direct:inBuildingGarbage")
         ;
@@ -48,7 +48,7 @@ public class GmlLoadRoute extends RouteBuilder {
         .to("direct:inOutlineFactory")
         ;
 		
-        // (4) Relation:building->member:role=port のWay:outlineを作成する
+        // (4) Relation:building->member:role=part のWay:outlineを作成する
         // (4) Relation:multipolygon->outerにWay:outline
 		from("direct:inOutlineFactory")
 		.streamCaching()
@@ -72,5 +72,4 @@ public class GmlLoadRoute extends RouteBuilder {
 		.process(new OsmExportProcessor())
         ;
 	}
-
 }

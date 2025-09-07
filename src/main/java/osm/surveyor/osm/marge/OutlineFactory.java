@@ -10,6 +10,7 @@ import osm.surveyor.osm.RelationBuilding;
 import osm.surveyor.osm.RelationMap;
 import osm.surveyor.osm.RelationMultipolygon;
 import osm.surveyor.osm.TagBean;
+import osm.surveyor.osm.WayMap;
 
 public class OutlineFactory {
 	
@@ -28,8 +29,7 @@ public class OutlineFactory {
 	public void relationOutline() {
 		RelationMap map = new RelationMap();
 				
-		for (String rKey : osm.relationMap.keySet()) {
-			ElementRelation relation = osm.relationMap.get(rKey);
+		for (ElementRelation relation : osm.relationMap.values()) {
 			if (relation.isBuilding()) {
 				boolean hasOutline = false;
 				for (MemberBean member : relation.members) {
@@ -44,7 +44,25 @@ public class OutlineFactory {
 					relation.removeTag("ref:MLIT_PLATEAU");
 				}
 				else {
-					map.put(createOutline((RelationBuilding)relation));
+					WayMap memberways = new WayMap();
+					for (MemberBean member : relation.members) {
+						if (member.getRole().equals("part")) {
+							if (member.isWay()) {
+								memberways.put(osm.getWayMap().get(member.getRef()).clone());
+							}
+							else if (member.isRelation()) {
+								ElementRelation polygon = osm.relationMap.get(member.getRef());
+								if (polygon != null) {
+									for (MemberBean polygonMember : polygon.members) {
+										if (polygonMember.getRole().equals("outer")) {
+											memberways.put(osm.getWayMap().get(polygonMember.getRef()).clone());
+										}
+									}
+								}
+							}
+						}
+					}
+					map.put(createOutline((RelationBuilding)relation, memberways));
 				}
 			}
 		}
@@ -52,12 +70,21 @@ public class OutlineFactory {
 		while (outlineRelation(map));
 	}
 	
-	public RelationBuilding createOutline(RelationBuilding building) {
+	/**
+	 * 
+	 * @param building	合成の元
+	 * @param outlineways	取り込むアウトラインWAY
+	 * @return	合成済みのBUILDINGリレーション(合成の元)
+	 */
+	public RelationBuilding createOutline(RelationBuilding building, WayMap outlineways) {
 		// Relationのメンバーから"height"の最大値を取得
 		String minele = osm.getMinEle(building);
 		String maxheight = osm.getMaxHeight(building);
 		RelationMultipolygon multi = null;
-		MargeFactory factory = (new MargeFactory(osm, osm.getWayMap())).createOutline(building);
+		
+		MargeFactory factory = (new MargeFactory(osm, outlineways));
+		factory.addSourceRelation(building);
+		factory.marge();
 		OsmLine outer = factory.getOuter();
 		if (outer != null) {
 			// OUTLINEをWAYリストに登録
@@ -67,36 +94,41 @@ public class OutlineFactory {
 			aWay.setMemberWay(true);
 			
 			ArrayList<MemberBean> delPolygonlist = new ArrayList<>();
-			for (MemberBean mem : building.members) {
-				if (mem.getType().equals(ElementRelation.RELATION)) {
-					if (multi == null) {
-						multi = (RelationMultipolygon)osm.relationMap.get(mem.getRef());
-						if (multi != null) {
-							ArrayList<MemberBean> dellist = new ArrayList<>();
-							for (MemberBean outerMem : multi.members) {
-								if (outerMem.getRole().equals("outer")) {
-									dellist.add(outerMem);
+			for (MemberBean aMember : building.members) {
+				if (aMember.getRole().equals("outline")) {
+					if (aMember.isRelation()) {
+						if (multi == null) {
+							multi = (RelationMultipolygon)osm.relationMap.get(aMember.getRef());
+							if (multi != null) {
+								ArrayList<MemberBean> dellist = new ArrayList<>();
+								for (MemberBean outerMem : multi.members) {
+									if (outerMem.getRole().equals("outer")) {
+										dellist.add(outerMem);
+									}
+								}
+								for (MemberBean delMem : dellist) {
+									multi.removeMember(delMem.getRef());
 								}
 							}
-							for (MemberBean delMem : dellist) {
-								multi.removeMember(delMem.getRef());
+						}
+						else {
+							if (aMember.getRef() != multi.getId()) {
+								RelationMultipolygon addMulti = (RelationMultipolygon)osm.relationMap.get(aMember.getRef());
+								ArrayList<MemberBean> addlist = new ArrayList<>();
+								for (MemberBean addMem : addMulti.members) {
+									if (addMem.getRole().equals("inner")) {
+										addlist.add(addMem);
+									}
+								}
+								for (MemberBean addMem : addlist) {
+									multi.addMember((ElementWay)osm.getWayMap().get(addMem.getRef()), "inner");
+								}
+								delPolygonlist.add(aMember);
 							}
 						}
 					}
-					else {
-						if (mem.getRef() != multi.getId()) {
-							RelationMultipolygon addMulti = (RelationMultipolygon)osm.relationMap.get(mem.getRef());
-							ArrayList<MemberBean> addlist = new ArrayList<>();
-							for (MemberBean addMem : addMulti.members) {
-								if (addMem.getRole().equals("inner")) {
-									addlist.add(addMem);
-								}
-							}
-							for (MemberBean addMem : addlist) {
-								multi.addMember((ElementWay)osm.getWayMap().get(addMem.getRef()), "inner");
-							}
-							delPolygonlist.add(mem);
-						}
+					else if (aMember.isWay()) {
+						delPolygonlist.add(aMember);
 					}
 				}
 			}
@@ -105,7 +137,7 @@ public class OutlineFactory {
 			}
 
 			if (multi != null) {
-				// マルチポリゴンが存在する場合は、マルチポリゴンにaWayを追加する
+				// マルチポリゴンが'outline'の場合は、マルチポリゴンにaWayを追加する
 				osm.getWayMap().put(aWay);
 				multi.addMember(aWay, "outer");
 			}

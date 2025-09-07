@@ -64,9 +64,19 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 	public void margeTagValue(OsmDom osm) {
 		WayMap parts = new WayMap();
 		for (MemberBean member : this.members) {
-			if (member.getRole().equals("part") && member.getType().equals("way")) {
-				ElementWay way = (ElementWay)osm.getWayMap().get(member.getRef());
-				parts.put(way);
+			if (member.getRole().equals("outline")) {
+				if (member.isWay()) {
+					ElementWay way = (ElementWay)osm.getWayMap().get(member.getRef());
+					parts.put(way);
+				}
+				else if (member.isRelation()) {
+					for (MemberBean multiMember : osm.relationMap.get(member.getRef()).members) {
+						if (multiMember.getRole().equals("outer")) {
+							ElementWay way = (ElementWay)osm.getWayMap().get(multiMember.getRef());
+							parts.put(way);
+						}
+					}
+				}
 			}
 		}
 		
@@ -74,9 +84,6 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 		
 		// 'name='
 		this.margeName(parts);
-		if (multi != null) {
-			multi.replaceTag("name", new TagBean("name", this.getTagValue("name")));
-		}
 
 		// 'height' and 'ele'
 		margeEleHeight(parts);
@@ -197,13 +204,10 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 	
 	String getLongerValue(WayMap ways, String tagkey) {
 		String maxname = "";
-		for (MemberBean member : this.members) {
-			if (member.getType().equals("way")) {
-				ElementWay way = (ElementWay)ways.get(member.getRef());
-				String name = way.getTagValue(tagkey);
-				if ((name != null) && (name.length() > maxname.length())) {
-					maxname = name;
-				}
+		for (WayModel way : ways.values()) {
+			String name = way.getTagValue(tagkey);
+			if ((name != null) && (name.length() > maxname.length())) {
+				maxname = name;
 			}
 		}
 		return maxname;

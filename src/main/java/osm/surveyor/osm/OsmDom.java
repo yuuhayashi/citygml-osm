@@ -118,6 +118,21 @@ public class OsmDom  implements BoxcellMappable {
 		ddom.relationMap.put(relation.clone());
 	}
 	
+	public void removeRelation(ElementRelation relation) {
+		for (MemberBean member : relation.members) {
+			if (member.isWay()) {
+				ElementWay way = (ElementWay)this.wayMap.get(member.getRef());
+				if (way != null) {
+					removeWay(way);
+				}
+			}
+			else if (member.isRelation()) {
+				removeRelation(this.relationMap.get(member.getRef()));
+			}
+		}
+		this.relationMap.remove(relation);
+	}
+	
 	void addWay(OsmDom ddom, ElementWay way) {
 		for (NdModel nd : way.getNdList()) {
 			NodeBean node = this.nodes.get(nd.getRef());

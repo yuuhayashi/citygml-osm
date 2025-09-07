@@ -1,0 +1,116 @@
+@startuml
+object "[-36] bldg-80114 : Way" as Way_36 {
+  id = -36
+  building:part => yes
+  height = 4.2
+  ele = 0
+  survey:date = 2017
+  ref:MLIT_PLATEAU = 27100-bldg-80114
+  nd = [27,28,29,30,31,32,33,34]
+}
+object "[-37] : Way" as Way_37 {
+  id = -37
+  ref:MLIT_PLATEAU = bldg_af5a6580
+  nd = [27,28,29,30,31,32,33,34]
+}
+Way_36 .[#orange]. Way_37 : same position
+
+object "[-10] bldg-80286 : Way" as Way_10 {
+  id = -10
+  building:part => yes
+  height = 3.02
+  ele = 0
+  survey:date = 2017
+  ref:MLIT_PLATEAU = 27100-bldg-80286
+  nd = [5,6,7,8]
+}
+object "[-11] : Way" as Way_11 {
+  id = -11
+  nd = [5,6,7,8]
+}
+Way_10 .[#orange]. Way_11 : same position
+
+object "[-21] bldg-80281 : Way" as Way_21 {
+  id = -21
+  building:part => yes
+  height = 0
+  ele = 0
+  survey:date = 2017
+  ref:MLIT_PLATEAU = 27100-bldg-80281
+  nd = [16,17,18,19]
+}
+object "[-22] : Way" as Way_22 {
+  id = -22
+  nd = [16,17,18,19]
+}
+Way_21 .[#orange]. Way_22 : same position
+
+package Part1 {
+  map "[-3] : Multipolygon" as Relation_3 {
+    id => -3
+    type => **multipolygon**
+    building:part => yes
+    height => 0
+    ele => 0
+    member => [-11]
+  }
+  Relation_3::member --> Way_11 : role=outer
+  
+  map "[-1] : Building" as Relation_1 {
+    id => -1
+    type => **building**
+    building => yes
+    ele => 0
+    height => 0
+    survey:date => 2017
+    member => [-3]
+  }
+  Relation_1::member --> Relation_3 : role=outline
+}
+package Main {
+  map "[-25] : Multipolygon" as Relation_25 {
+    id => -25
+    type => **multipolygon**
+    height => 4.2
+    ele => 0
+    building:part => yes
+    member => [-37]
+  }
+  Relation_25::member --> Way_37 : role=outer
+  
+  map "[-23] : Building" as Relation_23 {
+    id => -23
+    type => building
+    building => yes
+    ele => 0
+    height => 4.2
+    survey:date => 2017
+    member => [-36,-10,-21]
+  }
+  Relation_23::member --> Way_36 : role=outline
+  Relation_23::member --> Way_10 : role=part
+  Relation_23::member --> Way_21 : role=part
+}
+package Part2 {
+  map "[-14] : Multipolygon" as Relation_14 {
+    id => -14
+    type => **multipolygon**
+    building:part => yes
+    ele => 0
+    height => 0
+    member => [-22]
+  }
+  Relation_14::member --> Way_22 : role=outer
+  
+  map "[-12] : Building" as Relation_12 {
+    id => -12
+    type => **building**
+    building => yes
+    ele => 0
+    height => 0
+    survey:date => 2017
+    member => [-14]
+  }
+  Relation_12::member --> Relation_14 : role=outline
+}
+@enduml

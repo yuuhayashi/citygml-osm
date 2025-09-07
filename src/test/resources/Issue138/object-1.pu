@@ -1,0 +1,118 @@
+@startuml
+object "bldg-80286 : Way" as Way_10 {
+  id = -10
+  building:part => yes
+  height = 3.02
+  ele = 7.6
+  survey:date = 2017
+  ref:MLIT_PLATEAU = 27100-bldg-80286
+  nd = [5,6,7,8]
+}
+object "-11 : Way" as Way_11 {
+  id = -11
+  nd = [5,6,7,8]
+}
+object "-110 : Way" as Way_110 {
+  id = -110
+  nd = [5,8,7,6]
+}
+object "bldg-80114 : Way" as Way_108 {
+  id = -108
+  building:part => yes
+  height = 4.2
+  ele = 7.6
+  survey:date = 2017
+  ref:MLIT_PLATEAU = 27100-bldg-80114
+  nd = [99,100,101,102,103,104,105,106]
+}
+object "-109 : Way" as Way_109 {
+  id = -109
+  nd = [99,100,101,102,103,104,105,106]
+}
+
+object "-116 : Way" as Way_116 {
+  id = -116
+  nd = [52,55,54,53]
+}
+object "bldg-80281 : Way" as Way_57 {
+  id = -57
+  building:part => yes
+  height = 2.99
+  ele = 7.6
+  survey:date = 2017
+  ref:MLIT_PLATEAU = 27100-bldg-80281
+  nd = [52,53,54,55]
+}
+object "-58 : Way" as Way_58 {
+  id = -58
+  nd = [52,53,54,55]
+}
+Way_57 .. Way_58
+Way_57 .. Way_116
+Way_10 .. Way_11
+Way_10 .. Way_110
+Way_108 .. Way_109
+
+package Main {
+  map "[-97] : Multipolygon" as Relation_97 {
+    id => -97
+    type => multipolygon
+    height => 4.2
+    ele => 7.6
+    building:part => yes
+    member.outer *--> Way_109
+    member.inner_1 *--> Way_110
+    member.inner_2 *--> Way_116
+  }
+  map "[-95] : Building" as Relation_95 {
+    id => -95
+    type => building
+    building => yes
+    ele => 7.6
+    height => 4.2
+    survey:date => 2017
+    member.outline *--> Relation_97
+    member.part *--> Way_108
+  }
+}
+package Part1 {
+  map "[-3] : Multipolygon" as Relation_3 {
+    id => -3
+    type => multipolygon
+    building:part => yes
+    height => 3.02
+    ele => 7.6
+    member.outer *--> Way_11
+  }
+  map "[-1] : Building" as Relation_1 {
+    id => -1
+    type => building
+    building => yes
+    ele => 7.6
+    height => 3.02
+    survey:date => 2017
+    member.outline *--> Relation_3
+    member.part *--> Way_10
+  }
+}
+package Part2 {
+  map "[-50] : Multipolygon" as Relation_50 {
+    id => -50
+    type => multipolygon
+    building:part => yes
+    ele => 7.6
+    height => 2.99
+    member.outer *--> Way_58
+  }
+  map "[-48] : Building" as Relation_48 {
+    id => -48
+    type => building
+    building => yes
+    ele => 7.6
+    height => 2.99
+    survey:date => 2017
+    member.outline *--> Relation_50
+    member.part *--> Way_57
+  }
+}
+@enduml

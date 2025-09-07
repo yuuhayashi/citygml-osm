@@ -316,7 +316,8 @@ public class CityModelParser extends DefaultHandler {
 					else if (mem.getType().equals("relation")) {
 						ElementRelation relation = osm.relationMap.get(mem.getRef());
 						relation.removeTag("maxele");
-						// Issue #39 relation.addTag("start_date", building.getTagValue("start_date"));
+						relation.addTag("start_date", building.getTagValue("start_date"));
+						relation.addTag("survey:date", building.getTagValue("survey:date"));
 						String num = checkNumberString(building.getTagValue("building:levels"));
 						if (num != null) {
 							relation.addTag("building:levels", num);
@@ -503,18 +504,18 @@ public class CityModelParser extends DefaultHandler {
 			if ((multipolygon != null) && !multipolygon.members.isEmpty()) {
 				if (roof != null) {
 					osm.relationMap.put(multipolygon);
-					roof.addMember(multipolygon, "outline");
+					roof.addMember(multipolygon, "part");
 				}
 				else if (footPrint != null) {
 					osm.relationMap.put(multipolygon);
-					footPrint.addMember(multipolygon, "outline");
+					footPrint.addMember(multipolygon, "part");
 				}
 				else {
 					osm.relationMap.put(multipolygon);
 					if (nonLod0 == null) {
 						nonLod0 = new RelationBuilding(osm.getNewId());
 					}
-					nonLod0.addMember(multipolygon, "outline");
+					nonLod0.addMember(multipolygon, "part");
 				}
 				multipolygon = null;
 			}
@@ -531,7 +532,7 @@ public class CityModelParser extends DefaultHandler {
 							ElementWay part = elementWay.copy(osm.getNewId());
 							osm.getWayMap().put(part);
 							roof.copyTag(part);
-							roof.addMember(part, "part");
+							roof.addMember(part, "outline");
 							edgeFull = true;
 						}
 						else if (footPrint != null) {
@@ -541,7 +542,7 @@ public class CityModelParser extends DefaultHandler {
 							ElementWay part = elementWay.copy(osm.getNewId());
 							osm.getWayMap().put(part);
 							footPrint.copyTag(part);
-							footPrint.addMember(part, "part");
+							footPrint.addMember(part, "outline");
 							edgeFull = true;
 						}
 						else {
@@ -557,7 +558,7 @@ public class CityModelParser extends DefaultHandler {
 									nonLod0 = new RelationBuilding(osm.getNewId());
 								}
 								nonLod0.copyTag(part);
-								nonLod0.addMember(part, "part");
+								nonLod0.addMember(part, "outline");
 							}
 							else {
 								osm.removeWay(elementWay);

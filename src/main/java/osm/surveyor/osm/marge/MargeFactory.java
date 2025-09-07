@@ -3,12 +3,13 @@ package osm.surveyor.osm.marge;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import osm.surveyor.osm.MemberBean;
 import osm.surveyor.gis.point.NdModel;
 import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementWay;
+import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.OsmDom;
 import osm.surveyor.osm.OsmLine;
+import osm.surveyor.osm.RelationBuilding;
 import osm.surveyor.osm.TwoPoint;
 import osm.surveyor.osm.WayMap;
 
@@ -26,6 +27,26 @@ public class MargeFactory {
 		this.list = new OsmLine();
 		this.outer = null;
 		this.inners = new ArrayList<>();
+	}
+	
+	public void addSourceRelation(RelationBuilding src) {
+		for (MemberBean mem : src.members) {
+			if (mem.getRole().equals("outline")) {
+				if (mem.isWay()) {
+					this.wayMap.put(osm.getWayMap().get(mem.getRef()).clone());
+				}
+				else if (mem.isRelation()) {
+					ElementRelation polygon = osm.relationMap.get(mem.getRef());
+					if (polygon != null) {
+						for (MemberBean polygonMember : polygon.members) {
+							if (polygonMember.getRole().equals("outer")) {
+								this.wayMap.put(osm.getWayMap().get(polygonMember.getRef()).clone());
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 	
 	/**
@@ -81,28 +102,9 @@ public class MargeFactory {
     	}
     	return false;
     }
-    
-	/**
-	 * Relation->member:role=port のoutlineを作成する
-	 * @param building
-	 * @param ways
-	 */
-	public MargeFactory createOutline(ElementRelation relation) {
-		WayMap memberways = new WayMap();
-		for (MemberBean member : relation.members) {
-			if (member.getRole().equals("part")) {
-				memberways.put(wayMap.get(member.getRef()).clone());
-			}
-		}
-		
-		// WAYを他のWAYと合成する;
-		MargeFactory factory = new MargeFactory(this.osm, memberways);
-		factory.marge();
-		return factory;
-	}
 	
     /**
-     * wayMapのWAYを合成して、OUTERとINNERを作成する;
+     * this.wayMapのWAYを合成して、OUTERとINNERを作成する;
      * WayMap wayMap --> 
      */
 	public void marge() {

@@ -1,0 +1,89 @@
+@startuml
+object "-59 : Way" as Way_59 {
+  id = -59
+  building:part = yes
+  building:levels = 2
+  building:levels:underground = 1
+  height = 34.7
+  ele = 2.7
+  survey:date = 2016
+  start_date = 1976
+  ref:MLIT_PLATEAU = 13111-bldg-72601
+  nd = [7,53,54,55,56,8]
+}
+note right : A
+
+object "-199 : Way" as Way_199 {
+  id = -199
+  nd = [7,53,54,55,56,8,5,6]
+}
+note bottom : (A+B) outline
+
+object "-61 : Way" as Way_61 {
+  id = -61
+  ref:MLIT_PLATEAU = 13111-bldg-72601
+  nd = [62,63,64,65]
+}
+note bottom : a1 inner
+
+object "-10 : Way" as Way_10 {
+  id = -10
+  building:part => yes
+  building:levels => 3
+  height = 30.2
+  ele = 3.1
+  survey:date = 2016
+  start_date => 1977
+  ref:MLIT_PLATEAU = 13111-bldg-71799
+  nd = [5,6,7,8]
+}
+note right : B
+
+object "-11 : Way" as Way_11 {
+  id = -11
+  ref:MLIT_PLATEAU = 13111-bldg-71799
+  nd = [5,6,7,8]
+}
+note bottom : B outer
+
+object "-67 : Way" as Way_67 {
+  id = -67
+  ref:MLIT_PLATEAU = 13111-bldg-72601
+  nd = [68,69,70,71]
+}
+note bottom : a2 inner
+
+Way_10 .[#orange]. Way_11 : same position
+
+package Main {
+  map "-3 : Relation" as Relation_3 {
+    id => -3
+    type => **multipolygon**
+    **building:part** => **yes**
+    building:levels => 3
+    building:levels:underground => 1
+    ele => 2.7
+    height => 34.7
+    member => [-61,-67,-199]
+  }
+  Relation_3::member --> Way_199	: role=outer
+  Relation_3::member --> Way_61	: role=inner
+  Relation_3::member --> Way_67	: role=inner
+
+  map "-1 : Relation" as Relation_1 {
+    id => -1
+    type => **building**
+    building => yes
+    building:levels => 3
+    building:levels:underground => 1
+    ele => 2.7
+    height => 34.7
+    survey:date => 2016
+    member => [-10,-3,-59]
+  }
+  Relation_1::member --> Relation_3	: role=outline
+  Relation_1::member --> Way_10	: role=part
+  Relation_1::member --> Way_59	: role=part
+}
+@enduml
+
