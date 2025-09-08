@@ -80,14 +80,48 @@ public class ElementRelation extends PoiBean implements Cloneable,Serializable {
 	}
 
 	public void addMember(ElementRelation relation, String role) {
-		MemberBean member = new MemberBean();
-		member.setRelation(relation);
-		member.setRole(role);
+		if (role.equals("outline")) {
+			String vBuildingPart = relation.getTagValue("building:part");
+			if (vBuildingPart != null) {
+				relation.removeTag("building:part");
+				relation.addTag("building", vBuildingPart);
+			}
+			else {
+				String vBuilding = relation.getTagValue("building");
+				if (vBuilding != null) {
+					relation.addTag("building", vBuilding);
+				}
+				else {
+					relation.addTag("building", "yes");
+				}
+			}
+		}
+		else if (role.equals("part")) {
+			String vBuilding = relation.getTagValue("building");
+			if (vBuilding != null) {
+				relation.removeTag("building");
+				relation.addTag("building:part", vBuilding);
+			}
+			else {
+				String vBuildingPart = relation.getTagValue("building:part");
+				if (vBuildingPart != null) {
+					relation.addTag("building:part", vBuildingPart);
+				}
+				else {
+					relation.addTag("building:part", "yes");
+				}
+			}
+		}
 		for (MemberBean mem : this.members) {
-			if (mem.equals(member)) {
+			if (mem.getRef() == relation.getId()) {
+				mem.setRelation(relation);
+				mem.setRole(role);
 				return;
 			}
 		}
+		MemberBean member = new MemberBean();
+		member.setRelation(relation);
+		member.setRole(role);
 		this.members.add(member);
 	}
 

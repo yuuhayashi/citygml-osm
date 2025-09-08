@@ -308,7 +308,12 @@ public class CityModelParser extends DefaultHandler {
 						}
 						way.addTag("survey:date", building.getTagValue("survey:date"));
 						way.addTag("start_date", building.getTagValue("start_date"));
-						way.addTag("building:part", usage.v);
+						if (mem.getRole().equals("part")) {
+							way.addTag("building:part", usage.v);
+						}
+						else {
+							way.addTag("building", usage.v);							
+						}
 						way.addTag("building:levels", building.getTagValue("building:levels"));
 						way.addTag("building:levels:underground", building.getTagValue("building:levels:underground"));
 						way.addTag("ref:MLIT_PLATEAU", buildingId);
