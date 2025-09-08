@@ -207,6 +207,34 @@ public class PoiBean implements Cloneable,Serializable, Tagable {
 		}
     }
     
+	public void toBuilding() {
+		String part = getTagValue("building:part");
+		if (part != null) {
+			TagBean building = new TagBean("building", part);
+			replaceTag("building:part", building);
+		}
+		else {
+			String buildingValue = getTagValue("building");
+			if (buildingValue == null) {
+				addTag("building", "yes");
+			}
+		}
+	}
+
+	public void toPart() {
+		String buildingValue = getTagValue("building");
+		if (buildingValue != null) {
+			TagBean part = new TagBean("building:part", buildingValue);
+			replaceTag("building", part);
+		}
+		else {
+			String partValue = getTagValue("building:part");
+			if (partValue == null) {
+				addTag("building:part", "yes");
+			}
+		}
+	}
+
     /**
      * マルチポリゴンメンバー用のタグに変更する
      * OUTER and INNER

@@ -59,7 +59,7 @@ public class ElementRelation extends PoiBean implements Cloneable,Serializable {
 			}
 		}
 		if (!is) {
-			members.add(member);
+			this.members.add(member);
 		}
 	}
 	
@@ -69,26 +69,28 @@ public class ElementRelation extends PoiBean implements Cloneable,Serializable {
 		}
 		MemberBean member = new MemberBean();
 		way.setMemberWay(true);
+		if (role.equals("outline")) {
+			way.toBuilding();
+		}
+		else if (role.equals("part")) {
+			way.toPart();
+		}
 		member.setWay(way);
 		member.setRole(role);
-		for (MemberBean mem : this.members) {
-			if (mem.equals(member)) {
-				return;
-			}
-		}
-		this.members.add(member);
+		addMember(member);
 	}
 
 	public void addMember(ElementRelation relation, String role) {
 		MemberBean member = new MemberBean();
+		if (role.equals("outline")) {
+			relation.toBuilding();
+		}
+		else if (role.equals("part")) {
+			relation.toPart();
+		}
 		member.setRelation(relation);
 		member.setRole(role);
-		for (MemberBean mem : this.members) {
-			if (mem.equals(member)) {
-				return;
-			}
-		}
-		this.members.add(member);
+		addMember(member);
 	}
 
 	/*
