@@ -38,8 +38,9 @@ public class GmlLoadRoute extends RouteBuilder {
 		from("direct:inRelationMarge")
 		.streamCaching()
 		.process(new RelationMargeProcessor())	// 接触しているBUILDINGのWAYをくっつける
-		.process(new DuplicateInnerProcessor())	// buildingとINNERが重なっているINNERを削除する。
-        .to("direct:inBuildingGarbage")
+		//.process(new DuplicateInnerProcessor())	// buildingとINNERが重なっているINNERを削除する。
+        //.to("direct:inBuildingGarbage")
+        .to("direct:osm-export")
         ;
 		
 		// (3) メンバーが一つしかないRelation:building を削除する

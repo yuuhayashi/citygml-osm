@@ -39,10 +39,10 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 			return null;
 		}
 		else {
-			if (outlineMember.getType().equals("way")) {
+			if (outlineMember.isWay()) {
 				return (ElementWay)osm.getWayMap().get(outlineMember.getRef());
 			}
-			else if (outlineMember.getType().equals("relation")) {
+			else if (outlineMember.isRelation()) {
 				ElementRelation polygon = osm.relationMap.get(outlineMember.getRef());
 				if (polygon != null) {
 					for (MemberBean outermember : polygon.members) {
@@ -86,13 +86,13 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 		this.margeName(parts);
 
 		// 'height' and 'ele'
-		margeEleHeight(parts);
+		margeEleHeight(osm, parts);
 		if (multi != null) {
 			multi.addTag("height", CityModelParser.rounding(1, this.getTagValue("height")));
 			multi.addTag("ele", this.getTagValue("ele"));
 		}
 		
-		String maxLevels = this.getMaxValue(parts, "building:levels");
+		String maxLevels = this.getMaxValue(osm, "building:levels");
 		if ((maxLevels != null) && !maxLevels.equals("0")) {
 			this.addTag("building:levels", maxLevels);
 			if (multi != null) {
@@ -100,7 +100,7 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 			}
 		}
 		
-		String maxLevelsUnderground = this.getMaxValue(parts, "building:levels:underground");	// Issue #38
+		String maxLevelsUnderground = this.getMaxValue(osm, "building:levels:underground");	// Issue #38
 		if ((maxLevelsUnderground != null) && !maxLevelsUnderground.equals("0")) {
 			this.addTag("building:levels:underground", maxLevelsUnderground);
 			if (multi != null) {
@@ -109,7 +109,7 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 		}
 		
 		// 用途
-		WayModel maxway = this.getMaxArea(parts);
+		WayModel maxway = this.getMaxArea(osm);
 		if (maxway != null) {
 			this.addTag("building", maxway.getTagValue("building:part"));
 			if (multi != null) {
@@ -124,7 +124,7 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 		this.removeTag("start_date");
 
 		// 地上階
-		String maxup = this.getMaxValue(parts, "building:levels");
+		String maxup = this.getMaxValue(osm, "building:levels");
 		if (maxup != null) {
 			this.addTag("building:levels", maxup);
 			if (multi != null) {
@@ -133,7 +133,7 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 		}
 
 		// 地下階
-		String maxdown = this.getMaxValue(parts, "building:levels:underground");
+		String maxdown = this.getMaxValue(osm, "building:levels:underground");
 		if (maxup != null) {
 			this.addTag("building:levels:underground", maxdown);
 			if (multi != null) {
@@ -155,19 +155,24 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 					return hi;
 				}
 				else {
-					return CityModelParser.rounding(2, (new BigDecimal(ele)).subtract(new BigDecimal(minele)).add(new BigDecimal(hi)).toString());
+					try {
+						return CityModelParser.rounding(2, (new BigDecimal(ele)).subtract(new BigDecimal(minele)).add(new BigDecimal(hi)).toString());
+					}
+					catch(Exception e) {
+						return null;
+					}
 				}
 			}
 		}
 	}
 	
-	void margeEleHeight(WayMap ways) {
+	void margeEleHeight(OsmDom dom, WayMap ways) {
 		// 'height' and 'ele'
-		String minele = this.getMinValue(ways, "ele");
+		String minele = this.getMinValue(dom, ways, "ele");
 		String maxele = null;
 		for (MemberBean member : this.members) {
 			if (member.getType().equals("way")) {
-				ElementWay way = (ElementWay)ways.get(member.getRef());
+				WayModel way = dom.getWayMap().get(member.getRef());
 				String height = calcHeight(minele, way.getTagValue("ele"), way.getTagValue("height"));
 				if (height != null) {
 					if (maxele == null) {
@@ -221,20 +226,30 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 	 * @param k		指定するタグのk
 	 * @return	指定したタグが存在しない場合はNULL
 	 */
-	public String getMinValue(WayMap ways, String k) {
+	public String getMinValue(OsmDom dom, WayMap wayMap, String k) {
 		String min = null;
 		for (MemberBean member : this.members) {
-			if (member.getRole().equals("part") && member.getType().equals("way")) {
-				ElementWay way = (ElementWay)ways.get(member.getRef());
+			if (member.isWay()) {
+				WayModel way = dom.getWayMap().get(member.getRef());
 				String v = way.getTagValue(k);
 				if (v != null) {
 					if (min == null) {
 						min = v;
 					}
-					else {
-						if (Double.parseDouble(min) > Double.parseDouble(v)) {
-							min = v;
-						}
+					else if (Double.parseDouble(min) > Double.parseDouble(v)) {
+						min = v;
+					}
+				}
+			}
+			else if (member.isRelation()) {
+				ElementRelation relation = dom.relationMap.get(member.getRef());
+				String v = relation.getTagValue(k);
+				if (v != null) {
+					if (min == null) {
+						min = v;
+					}
+					else if (Double.parseDouble(min) > Double.parseDouble(v)) {
+						min = v;
 					}
 				}
 			}
@@ -249,20 +264,30 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 	 * @param k		指定するタグのk
 	 * @return	指定したタグが存在しない場合はNULL
 	 */
-	public String getMaxValue(WayMap ways, String k) {
+	public String getMaxValue(OsmDom dom, String k) {
 		String max = null;
 		for (MemberBean member : this.members) {
-			if (member.getRole().equals("part") && member.getType().equals("way")) {
-				WayModel way = ways.get(member.getRef());
+			if (member.isWay()) {
+				WayModel way = dom.getWayMap().get(member.getRef());
 				String v = way.getTagValue(k);
 				if (v != null) {
 					if (max == null) {
 						max = v;
 					}
-					else {
-						if (Double.parseDouble(max) < Double.parseDouble(v)) {
-							max = v;
-						}
+					else if (Double.parseDouble(max) < Double.parseDouble(v)) {
+						max = v;
+					}
+				}
+			}
+			else if (member.isRelation()) {
+				ElementRelation relation = dom.relationMap.get(member.getRef());
+				String v = relation.getTagValue(k);
+				if (v != null) {
+					if (max == null) {
+						max = v;
+					}
+					else if (Double.parseDouble(max) < Double.parseDouble(v)) {
+						max = v;
 					}
 				}
 			}
@@ -275,22 +300,16 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 	 * @param ways	メンバーの実態
 	 * @return	指定したタグが存在しない場合はNULL
 	 */
-	public WayModel getMaxArea(WayMap ways) {
+	public WayModel getMaxArea(OsmDom dom) {
 		WayModel max = null;
 		double maxarea = 0.0d;
 		for (MemberBean member : this.members) {
 			if (member.getType().equals("way")) {
-				WayModel way = ways.get(member.getRef());
+				WayModel way = dom.getWayMap().get(member.getRef());
 				double area = way.getArea();
-				if (max == null) {
+				if ((max == null) || (maxarea < area)) {
 					max = way;
 					maxarea = area;
-				}
-				else {
-					if (maxarea < area) {
-						max = way;
-						maxarea = area;
-					}
 				}
 			}
 		}
