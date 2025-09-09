@@ -1,7 +1,7 @@
 @startuml
 object "-59 : Way" as Way_59 {
   id = -59
-  building:part = yes
+  building = yes
   building:levels = 2
   building:levels:underground = 1
   height = 34.7
@@ -29,7 +29,7 @@ note bottom : a1 inner
 
 object "-10 : Way" as Way_10 {
   id = -10
-  building:part => yes
+  building => yes
   building:levels => 3
   height = 30.2
   ele = 3.1
@@ -59,8 +59,9 @@ Way_59 .[#orange] Way_60 : same position
 package Part1 {
   map "-50 : Relation" as Relation_50 {
     id => -50
-    type => **multipolygon**
-    **building:part** => **yes**
+    type => multipolygon
+    **building** => yes
+    building:part => yes
     building:levels => 2
     building:levels:underground => 1
     ele => 2.7
@@ -75,8 +76,8 @@ package Part1 {
 
   map "-48 : Relation" as Relation_48 {
     id => -48
-    type => **building**
-    **building** => **yes**
+    type => building
+    building => yes
     building:levels => 2
     building:levels:underground => 1
     ele => 2.7
@@ -92,8 +93,9 @@ package Part1 {
 package Main {
   map "-3 : Relation" as Relation_3 {
     id => -3
-    type => **multipolygon**
-    **building:part** => **yes**
+    type => multipolygon
+    **building** => yes
+    building:part => yes
     building:levels => 3
     building:levels:underground => 1
     ele => 3.1

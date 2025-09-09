@@ -81,13 +81,13 @@ public class ElementRelation extends PoiBean implements Cloneable,Serializable {
 	}
 
 	public void addMember(ElementRelation relation, String role) {
-		MemberBean member = new MemberBean();
 		if (role.equals("outline")) {
 			relation.toBuilding();
 		}
 		else if (role.equals("part")) {
 			relation.toPart();
 		}
+		MemberBean member = new MemberBean();
 		member.setRelation(relation);
 		member.setRole(role);
 		addMember(member);
