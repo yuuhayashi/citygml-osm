@@ -342,7 +342,12 @@ public class CityModelParser extends DefaultHandler {
 						if ((name != null) && !name.isEmpty()) {
 							relation.addTag("name", name);
 						}
-						relation.addTag(usage);
+						if (mem.getRole().equals("part")) {
+							relation.addTag("building:part", usage.v);
+						}
+						else {
+							relation.addTag("building", usage.v);							
+						}
 					}
 				}
 				building.removeTag("ref:MLIT_PLATEAU");
