@@ -10,19 +10,6 @@ object "-199 : Way" as Way_199 {
 }
 note bottom : (A+B) outline
 
-object "<del>-59 : Way</del>" as Way_59 {
-  building:part = yes
-  building:levels = 2
-  building:levels:underground = 1
-  height = 34.7
-  ele = 2.7
-  survey:date = 2016
-  start_date = 1976
-  ref:MLIT_PLATEAU = 13111-bldg-72601
-  nd = [7,53,54,55,56,8]
-}
-note right : A
-
 object "-60 : Way" as Way_60 {
   ref:MLIT_PLATEAU = 13111-bldg-72601
   nd = [7,53,54,55,56,8]
@@ -53,8 +40,6 @@ object "-67 : Way" as Way_67 {
 }
 note bottom : a2 inner
 
-Way_59 .[#orange]. Way_60 : same position
-
 package Main {
   map "-50 : Relation" as Relation_50 {
     type => multipolygon
@@ -65,7 +50,7 @@ package Main {
     height => 34.7
     start_date => 1976
     survey:date => 2016
-    ref:MLIT_PLATEAU => 13111-bldg-72601
+    <del>**ref:MLIT_PLATEAU** => <del>**13111-bldg-72601**
     member => [-60,-61,-67]
   }
   note right : A
@@ -81,13 +66,10 @@ package Main {
     ele => 2.7
     height => 34.7
     survey:date => 2016
-    member => [-59,-199]
+    member => [-50,-199]
   }
   Relation_1::member --> Way_199	: role=outline
-  Relation_1::member -[#red]-> Way_10	: role=part
-  Relation_1::member .[#red].> Way_59	: <del>role=part</del>
-
-  Relation_1 .[#red]. Relation_50 : role=part
+  Relation_1::member --> Relation_50	: role=part
 }
 @enduml
 

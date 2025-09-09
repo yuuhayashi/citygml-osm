@@ -118,12 +118,18 @@ public class RelationMarge {
 					ElementWay memway = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef()));
 					aBuilding.addMember(memway, "part");
 				}
+				else if (mem.isRelation()) {
+					ElementRelation polygon = osm.relationMap.get(mem.getRef());
+					if (polygon != null) {
+						aBuilding.addMember(polygon, "part");
+					}
+				}
 			}
 			else if (mem.getRole().equals("outline")) {
+				// role=outline は取り込まずに'outline:WAY'だけ取り出す
 				if (mem.isWay()) {
 					ElementWay memway = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef()));
 					memberways.put(memway.clone());
-					aBuilding.addMember(memway, "part");
 				}
 				else if (mem.isRelation()) {
 					ElementRelation polygon = osm.relationMap.get(mem.getRef());
