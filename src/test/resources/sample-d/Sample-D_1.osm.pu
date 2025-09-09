@@ -30,6 +30,7 @@ note bottom : a1 inner
 object "-10 : Way" as Way_10 {
   id = -10
   building => yes
+  **building:part** => yes
   building:levels => 3
   height = 30.2
   ele = 3.1
@@ -87,8 +88,9 @@ package Main {
     type => building
     building => yes
     building:levels => 3
-    ele => 3.1
-    height => 30.2
+    building:levels:underground => 1
+    ele => 2.7
+    height => 34.7
     survey:date => 2016
     member => [-10]
   }

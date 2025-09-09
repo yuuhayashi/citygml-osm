@@ -1,4 +1,4 @@
-@startuml
+﻿@startuml
 object "-59 : Way" as Way_59 {
   id = -59
   building = yes
@@ -40,12 +40,6 @@ object "-10 : Way" as Way_10 {
 }
 note right : B
 
-object "-11 : Way" as Way_11 {
-  id = -11
-  ref:MLIT_PLATEAU = 13111-bldg-71799
-  nd = [5,6,7,8]
-}
-
 object "-67 : Way" as Way_67 {
   id = -67
   ref:MLIT_PLATEAU = 13111-bldg-72601
@@ -53,7 +47,6 @@ object "-67 : Way" as Way_67 {
 }
 note bottom : a2 inner
 
-Way_10 .[#orange] Way_11 : same position
 Way_59 .[#orange] Way_60 : same position
 
 package Part1 {
@@ -108,7 +101,7 @@ package Main {
 
   map "-1 : Relation" as Relation_1 {
     id => -1
-    type => **building**
+    type => building
     building => yes
     building:levels => 3
     ele => 3.1
@@ -117,7 +110,6 @@ package Main {
     survey:date => 2016
     member => [-10,-3]
   }
-  Relation_1::member --> Relation_3	: role=part
   Relation_1::member --> Way_10	: role=outline
 }
 @enduml
