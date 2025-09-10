@@ -94,6 +94,24 @@ public class OutlineFactory {
 			aWay.setMemberWay(true);
 			
 			ArrayList<MemberBean> delPolygonlist = new ArrayList<>();
+			boolean hasPart = false;		// 有効な part メンバーの有無
+			for (MemberBean aMember : building.members) {
+				if (aMember.getRole().equals("part")) {
+					if (aMember.isRelation()) {
+						RelationMultipolygon polygon = (RelationMultipolygon)osm.relationMap.get(aMember.getRef());
+						for (MemberBean polygonMember : polygon.members) {
+							if (polygonMember.getRole().equals("inner")) {
+								hasPart = true;
+								break;
+							}
+						}
+					}
+					else if (aMember.isWay()) {
+						hasPart = true;
+						break;
+					}
+				}
+			}
 			for (MemberBean aMember : building.members) {
 				if (aMember.getRole().equals("outline")) {
 					if (aMember.isRelation()) {
@@ -128,7 +146,12 @@ public class OutlineFactory {
 						}
 					}
 					else if (aMember.isWay()) {
-						delPolygonlist.add(aMember);
+						if (hasPart) {
+							delPolygonlist.add(aMember);
+						}
+						else {
+							aMember.setRole("part");
+						}
 					}
 				}
 			}
@@ -145,9 +168,9 @@ public class OutlineFactory {
 				// マルチポリゴンが存在しない場合は、"bulding:Relation"に"outline"WAYをMEMBERとして追加する
 				aWay.copyTag(building);
 				aWay.removeTag("type");
-				aWay.removeTag("building:part");
 				aWay.addTag("height", maxheight);
 				aWay.addTag("ele", minele);
+				aWay.toPart();
 				osm.getWayMap().put(aWay);
 				
 				building.addMember(aWay, "outline");
