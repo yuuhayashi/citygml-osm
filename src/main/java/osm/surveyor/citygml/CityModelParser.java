@@ -346,7 +346,7 @@ public class CityModelParser extends DefaultHandler {
 							relation.addTag("building:part", usage.v);
 						}
 						else {
-							relation.addTag("building", usage.v);							
+							relation.addTag("building", usage.v);
 						}
 					}
 				}
@@ -579,7 +579,6 @@ public class CityModelParser extends DefaultHandler {
 					if ((multipolygon != null) && (elementWay != null)) {
 						ElementWay outer = elementWay.copy(osm.getNewId());
 						multipolygon.copyTag(outer);
-						multipolygon.removeTag("ref:MLIT_PLATEAU");
 						outer.removeTag("name");
 						outer.removeTag("height");
 						outer.removeTag("maxele");

@@ -40,6 +40,7 @@ object "-11 : Way" as Way_11 {
   ref:MLIT_PLATEAU = 13111-bldg-71799
   nd = [5,6,7,8]
 }
+note bottom : B outer
 
 object "-67 : Way" as Way_67 {
   id = -67
@@ -51,17 +52,17 @@ note bottom : a2 inner
 Way_10 .[#orange]. Way_11 : same position
 Way_59 .[#orange]. Way_60 : same position
 
-package Part1 {
+package Building-A {
   map "-50 : Relation" as Relation_50 {
-    id => -50
     type => multipolygon
-    building:part => yes
-    building:levels => 2
-    building:levels:underground => 1
-    ele => 2.7
-    height => 34.7
+    ref:MLIT_PLATEAU => 13111-bldg-72601
     start_date => 1976
     survey:date => 2016
+    building:levels => 2
+    building:levels:underground => 1
+    height => 34.7
+    ele => 2.7
+    building:part => yes
     member => [-60,-61,-67]
   }
   Relation_50::member --> Way_60 : role=outer
@@ -84,16 +85,16 @@ package Part1 {
   Relation_48::member --> Relation_50 : role=part
 }
 
-package Main {
+package Building-B {
   map "-3 : Relation" as Relation_3 {
-    id => -3
     type => multipolygon
-    building:part => yes
-    building:levels => 3
-    ele => 3.1
-    height => 30.2
+    ref:MLIT_PLATEAU => 13111-bldg-71799
     start_date => 1977
     survey:date => 2016
+    building:levels => 3
+    height => 30.2
+    ele => 3.1
+    building:part => yes
     member => [-11]
   }
   Relation_3::member --> Way_11	: role=outer
