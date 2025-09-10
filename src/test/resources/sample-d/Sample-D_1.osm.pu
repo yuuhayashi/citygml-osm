@@ -4,9 +4,9 @@ object "-199 : Way" as Way_199 {
   building:levels = 3
   <del>**building:levels:underground = 1
   survey:date = 2016
-  building = yes
   height = 30.2
   ele = 3.1
+  building = yes
   nd = [7,53,54,55,56,8,5,6]
 }
 note right : (A+B) outline
@@ -71,6 +71,6 @@ package Building-B {
   }
   Relation_1::member --> Way_199	: role=outline
   Relation_1::member --> Relation_50	: role=part
-  Relation_1::member .[#red]. Way_10	: <del>**role=part
+  Relation_1::member --> Way_10	: role=part
 }
 @enduml

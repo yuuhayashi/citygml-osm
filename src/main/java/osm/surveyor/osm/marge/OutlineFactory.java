@@ -146,7 +146,7 @@ public class OutlineFactory {
 						}
 					}
 					else if (aMember.isWay()) {
-						if (hasPart) {
+						if (!hasPart) {
 							delPolygonlist.add(aMember);
 						}
 						else {
