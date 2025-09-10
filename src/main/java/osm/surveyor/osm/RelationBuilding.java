@@ -1,6 +1,8 @@
 package osm.surveyor.osm;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
 
 import osm.surveyor.citygml.CityModelParser;
 import osm.surveyor.osm.way.WayModel;
@@ -62,20 +64,22 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 	 * @param relationMap
 	 */
 	public void margeTagValue(OsmDom osm) {
-		WayMap parts = new WayMap();
+		Map<String, PoiBean> parts = new HashMap<>();
+		ElementWay outline = null; 
 		for (MemberBean member : this.members) {
 			if (member.getRole().equals("outline")) {
 				if (member.isWay()) {
+					outline = (ElementWay)osm.getWayMap().get(member.getRef());
+				}
+			}
+			else if (member.getRole().equals("part")) {
+				if (member.isWay()) {
 					ElementWay way = (ElementWay)osm.getWayMap().get(member.getRef());
-					parts.put(way);
+					parts.put(way.getIdstr(), way);
 				}
 				else if (member.isRelation()) {
-					for (MemberBean multiMember : osm.relationMap.get(member.getRef()).members) {
-						if (multiMember.getRole().equals("outer")) {
-							ElementWay way = (ElementWay)osm.getWayMap().get(multiMember.getRef());
-							parts.put(way);
-						}
-					}
+					ElementRelation relation = osm.relationMap.get(member.getRef());
+					parts.put(relation.getIdstr(), relation);
 				}
 			}
 		}
@@ -166,7 +170,7 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 		}
 	}
 	
-	void margeEleHeight(OsmDom dom, WayMap ways) {
+	void margeEleHeight(OsmDom dom, Map<String, PoiBean> ways) {
 		// 'height' and 'ele'
 		String minele = this.getMinValue(dom, ways, "ele");
 		String maxele = null;
@@ -199,7 +203,7 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 	 * @param building
 	 * @param ways
 	 */
-	public void margeName(WayMap ways) {
+	public void margeName(Map<String, PoiBean> ways) {
 		String tagkey = "name";
 		String maxname = this.getLongerValue(ways, tagkey);
 		if (!maxname.isEmpty()) {
@@ -207,9 +211,9 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 		}
 	}
 	
-	String getLongerValue(WayMap ways, String tagkey) {
+	String getLongerValue(Map<String, PoiBean> ways, String tagkey) {
 		String maxname = "";
-		for (WayModel way : ways.values()) {
+		for (PoiBean way : ways.values()) {
 			String name = way.getTagValue(tagkey);
 			if ((name != null) && (name.length() > maxname.length())) {
 				maxname = name;
@@ -226,7 +230,7 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 	 * @param k		指定するタグのk
 	 * @return	指定したタグが存在しない場合はNULL
 	 */
-	public String getMinValue(OsmDom dom, WayMap wayMap, String k) {
+	public String getMinValue(OsmDom dom, Map<String, PoiBean> poiMap, String k) {
 		String min = null;
 		for (MemberBean member : this.members) {
 			if (member.isWay()) {
