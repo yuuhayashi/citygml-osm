@@ -1,0 +1,42 @@
+﻿@startuml
+object "-36 : Way" as Way_36 {
+  height = 4.2
+  **ele = 0**
+  survey:date = 2017
+  building => yes
+  ref:MLIT_PLATEAU = 27100-bldg-80114
+  nd = [27,28,29,30,31,32,33,34]
+}
+
+object "-10 : Way" as Way_10 {
+  **height = 0**
+  **ele = 0**
+  survey:date = 2017
+  ref:MLIT_PLATEAU = 27100-bldg-80286
+  building:part => yes
+  nd = [5,6,7,8]
+}
+
+object "-21 : Way" as Way_21 {
+  **height = 0**
+  **ele = 0**
+  survey:date = 2017
+  ref:MLIT_PLATEAU = 27100-bldg-80281
+  building:part => yes
+  nd = [16,17,18,19]
+}
+
+package Main {
+  map "[-23] : Building" as Relation_23 {
+    type => building
+    survey:date => 2017
+    building => yes
+    height => 4.2
+    **ele** => **0**
+    member => [-36,-10,-21]
+  }
+  Relation_23::member --> Way_36 : role=outline
+  Relation_23::member --> Way_10 : role=part
+  Relation_23::member --> Way_21 : role=part
+}
+@enduml
