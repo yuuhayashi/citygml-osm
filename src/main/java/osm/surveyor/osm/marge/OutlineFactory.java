@@ -150,6 +150,8 @@ public class OutlineFactory {
 							delPolygonlist.add(aMember);
 						}
 						else {
+							ElementWay aMemberWay = (ElementWay)osm.getWayMap().get(aMember.getRef());
+							aMemberWay.toPart();
 							aMember.setRole("part");
 						}
 					}

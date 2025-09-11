@@ -3,8 +3,8 @@ package osm.surveyor.osm;
 import org.w3c.dom.Element;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.math.BigDecimal;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
@@ -15,6 +15,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import osm.surveyor.osm.tag.Tagable;
+import osm.surveyor.citygml.CityModelParser;
 
 /**
  * CityGMLファイルをパースする
@@ -207,6 +208,145 @@ public class PoiBean implements Cloneable,Serializable, Tagable {
 		}
     }
     
+	/**
+	 * オブジェクトマップの中から、指定したタグの最大値を取得する
+	 * タグの形式は数値型のみ
+	 * @param poiMap	対象範囲
+	 * @param k		指定するタグのk
+	 * @return	指定したタグが存在しない場合はNULL
+	 */
+	public String getMaxValue(Map<String,PoiBean> poiMap, String k) {
+		String max = null;
+		for (PoiBean poi : poiMap.values()) {
+			String v = poi.getTagValue(k);
+			if (v != null) {
+				if (max == null) {
+					max = v;
+				}
+				else if (Double.parseDouble(max) < Double.parseDouble(v)) {
+					max = v;
+				}
+			}
+		}
+		return max;
+	}
+	
+	/**
+	 * オブジェクトマップの中から、指定したタグの最小値を取得する
+	 * タグの形式は数値型のみ
+	 * @param poiMap	対象メンバー
+	 * @param k		指定するタグのk
+	 * @return	指定したタグが存在しない場合はNULL
+	 */
+	public static String getMinValue(Map<String,PoiBean> poiMap, String k) {
+		String min = null;
+		for (PoiBean poi : poiMap.values()) {
+			String v = poi.getTagValue(k);
+			if (v != null) {
+				if (min == null) {
+					min = v;
+				}
+				else if (Double.parseDouble(min) > Double.parseDouble(v)) {
+					min = v;
+				}
+			}
+		}
+		return min;
+	}
+	
+	public void margeTagset(Map<String,PoiBean> poiMap) {
+		// 'name='
+		this.margeName(poiMap);
+
+		// 'height' and 'ele'
+		this.margeEleHeight(poiMap);
+		
+		// 地上階 & 地下階
+		String maxLevels = this.getMaxValue(poiMap, "building:levels");
+		String maxup = this.getMaxValue(poiMap, "building:levels");
+		if ((maxLevels != null) && !maxLevels.equals("0")) {
+			this.addTag("building:levels", maxLevels);
+
+			String maxLevelsUnderground = this.getMaxValue(poiMap, "building:levels:underground");	// Issue #38
+			if ((maxLevelsUnderground != null) && !maxLevelsUnderground.equals("0")) {
+				this.addTag("building:levels:underground", maxLevelsUnderground);
+			}
+		}
+	}
+	
+	static String calcHeight(String minele, String ele, String hi) {
+		if (hi == null) {
+			return null;
+		}
+		else {
+			if (minele == null) {
+				return hi;
+			}
+			else {
+				if (ele == null) {
+					return hi;
+				}
+				else {
+					try {
+						return CityModelParser.rounding(2, (new BigDecimal(ele)).subtract(new BigDecimal(minele)).add(new BigDecimal(hi)).toString());
+					}
+					catch(Exception e) {
+						return null;
+					}
+				}
+			}
+		}
+	}
+	
+	void margeEleHeight(Map<String,PoiBean> poiMap) {
+		// 'height' and 'ele'
+		String minele = this.getMinValue(poiMap, "ele");
+		String maxele = null;
+		for (PoiBean poi : poiMap.values()) {
+			String height = calcHeight(minele, poi.getTagValue("ele"), poi.getTagValue("height"));
+			if (height != null) {
+				if (maxele == null) {
+					maxele = height;
+				}
+				else {
+					if (Double.parseDouble(maxele) < Double.parseDouble(height)) {
+						maxele = height;
+					}
+				}
+			}
+		}
+		if (maxele != null) {
+			this.addTag("height", maxele);
+		}
+		if (minele != null) {
+			this.addTag("ele", minele);
+		}
+	}
+
+	/**
+	 * 
+	 * @param building
+	 * @param ways
+	 */
+	public void margeName(Map<String, PoiBean> poiMap) {
+		String tagkey = "name";
+		String maxname = this.getLongerValue(poiMap, tagkey);
+		if (!maxname.isEmpty()) {
+			this.addTag(tagkey, maxname);
+		}
+	}
+	
+	String getLongerValue(Map<String, PoiBean> poiMap, String tagkey) {
+		String maxname = "";
+		for (PoiBean poi : poiMap.values()) {
+			String name = poi.getTagValue(tagkey);
+			if ((name != null) && (name.length() > maxname.length())) {
+				maxname = name;
+			}
+		}
+		return maxname;
+	}
+
 	public void toBuilding() {
 		String part = getTagValue("building:part");
 		if (part != null) {

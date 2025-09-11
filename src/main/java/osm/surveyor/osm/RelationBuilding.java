@@ -1,10 +1,8 @@
 package osm.surveyor.osm;
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
-import osm.surveyor.citygml.CityModelParser;
 import osm.surveyor.osm.way.WayModel;
 
 /**
@@ -83,222 +81,21 @@ public class RelationBuilding extends ElementRelation implements Cloneable {
 				}
 			}
 		}
-		
-		RelationMultipolygon multi = (RelationMultipolygon)this.getMultiPolygon(osm);
-		
-		// 'name='
-		this.margeName(parts);
 
-		// 'height' and 'ele'
-		margeEleHeight(osm, parts);
-		if (multi != null) {
-			multi.addTag("height", CityModelParser.rounding(1, this.getTagValue("height")));
-			multi.addTag("ele", this.getTagValue("ele"));
+		if (outline != null) {
+			outline.margeTagset(parts);
+			outline.toBuilding();
+			outline.removeTag("start_date");	// issue #39
 		}
 		
-		String maxLevels = this.getMaxValue(osm, "building:levels");
-		if ((maxLevels != null) && !maxLevels.equals("0")) {
-			this.addTag("building:levels", maxLevels);
-			if (multi != null) {
-				multi.addTag("building:levels", maxLevels);
-			}
-		}
-		
-		String maxLevelsUnderground = this.getMaxValue(osm, "building:levels:underground");	// Issue #38
-		if ((maxLevelsUnderground != null) && !maxLevelsUnderground.equals("0")) {
-			this.addTag("building:levels:underground", maxLevelsUnderground);
-			if (multi != null) {
-				multi.addTag("building:levels:underground", maxLevelsUnderground);
-			}
-		}
-		
-		// 用途
-		WayModel maxway = this.getMaxArea(osm);
-		if (maxway != null) {
-			this.addTag("building", maxway.getTagValue("building:part"));
-			if (multi != null) {
-				multi.addTag("building", maxway.getTagValue("building:part"));
-				multi.removeTag("building:part");
-			}
-		}
-		this.removeTag("building:part");
-		
+		this.margeTagset(parts);
+		this.toBuilding();
+
 		// 建築年はリレーションに反映させない
 		// [Issue39](https://github.com/yuuhayashi/citygml-osm/issues/39)
 		this.removeTag("start_date");
+	}
 
-		// 地上階
-		String maxup = this.getMaxValue(osm, "building:levels");
-		if (maxup != null) {
-			this.addTag("building:levels", maxup);
-			if (multi != null) {
-				multi.addTag("building:levels", maxup);
-			}
-		}
-
-		// 地下階
-		String maxdown = this.getMaxValue(osm, "building:levels:underground");
-		if (maxup != null) {
-			this.addTag("building:levels:underground", maxdown);
-			if (multi != null) {
-				multi.addTag("building:levels:underground", maxdown);
-			}
-		}
-	}
-	
-	String calcHeight(String minele, String ele, String hi) {
-		if (hi == null) {
-			return null;
-		}
-		else {
-			if (minele == null) {
-				return hi;
-			}
-			else {
-				if (ele == null) {
-					return hi;
-				}
-				else {
-					try {
-						return CityModelParser.rounding(2, (new BigDecimal(ele)).subtract(new BigDecimal(minele)).add(new BigDecimal(hi)).toString());
-					}
-					catch(Exception e) {
-						return null;
-					}
-				}
-			}
-		}
-	}
-	
-	void margeEleHeight(OsmDom dom, Map<String, PoiBean> ways) {
-		// 'height' and 'ele'
-		String minele = this.getMinValue(dom, ways, "ele");
-		String maxele = null;
-		for (MemberBean member : this.members) {
-			if (member.getType().equals("way")) {
-				WayModel way = dom.getWayMap().get(member.getRef());
-				String height = calcHeight(minele, way.getTagValue("ele"), way.getTagValue("height"));
-				if (height != null) {
-					if (maxele == null) {
-						maxele = height;
-					}
-					else {
-						if (Double.parseDouble(maxele) < Double.parseDouble(height)) {
-							maxele = height;
-						}
-					}
-				}
-			}
-		}
-		if (maxele != null) {
-			this.addTag("height", maxele);
-		}
-		if (minele != null) {
-			this.addTag("ele", minele);
-		}
-	}
-	
-	/**
-	 * 
-	 * @param building
-	 * @param ways
-	 */
-	public void margeName(Map<String, PoiBean> ways) {
-		String tagkey = "name";
-		String maxname = this.getLongerValue(ways, tagkey);
-		if (!maxname.isEmpty()) {
-			this.addTag(tagkey, maxname);
-		}
-	}
-	
-	String getLongerValue(Map<String, PoiBean> ways, String tagkey) {
-		String maxname = "";
-		for (PoiBean way : ways.values()) {
-			String name = way.getTagValue(tagkey);
-			if ((name != null) && (name.length() > maxname.length())) {
-				maxname = name;
-			}
-		}
-		return maxname;
-	}
-	
-	
-	/**
-	 * 所属メンバーの中から、指定したタグの最小値を取得する
-	 * タグの形式は数値型のみ
-	 * @param ways	メンバーの実態
-	 * @param k		指定するタグのk
-	 * @return	指定したタグが存在しない場合はNULL
-	 */
-	public String getMinValue(OsmDom dom, Map<String, PoiBean> poiMap, String k) {
-		String min = null;
-		for (MemberBean member : this.members) {
-			if (member.isWay()) {
-				WayModel way = dom.getWayMap().get(member.getRef());
-				String v = way.getTagValue(k);
-				if (v != null) {
-					if (min == null) {
-						min = v;
-					}
-					else if (Double.parseDouble(min) > Double.parseDouble(v)) {
-						min = v;
-					}
-				}
-			}
-			else if (member.isRelation()) {
-				ElementRelation relation = dom.relationMap.get(member.getRef());
-				String v = relation.getTagValue(k);
-				if (v != null) {
-					if (min == null) {
-						min = v;
-					}
-					else if (Double.parseDouble(min) > Double.parseDouble(v)) {
-						min = v;
-					}
-				}
-			}
-		}
-		return min;
-	}
-	
-	/**
-	 * 所属メンバーの中から、指定したタグの最大値を取得する
-	 * タグの形式は数値型のみ
-	 * @param ways	メンバーの実態
-	 * @param k		指定するタグのk
-	 * @return	指定したタグが存在しない場合はNULL
-	 */
-	public String getMaxValue(OsmDom dom, String k) {
-		String max = null;
-		for (MemberBean member : this.members) {
-			if (member.isWay()) {
-				WayModel way = dom.getWayMap().get(member.getRef());
-				String v = way.getTagValue(k);
-				if (v != null) {
-					if (max == null) {
-						max = v;
-					}
-					else if (Double.parseDouble(max) < Double.parseDouble(v)) {
-						max = v;
-					}
-				}
-			}
-			else if (member.isRelation()) {
-				ElementRelation relation = dom.relationMap.get(member.getRef());
-				String v = relation.getTagValue(k);
-				if (v != null) {
-					if (max == null) {
-						max = v;
-					}
-					else if (Double.parseDouble(max) < Double.parseDouble(v)) {
-						max = v;
-					}
-				}
-			}
-		}
-		return max;
-	}
-	
 	/**
 	 * 所属メンバーの中から、最大面積のAREAを取得する
 	 * @param ways	メンバーの実態

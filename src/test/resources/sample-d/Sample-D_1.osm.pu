@@ -1,12 +1,11 @@
 ﻿@startuml
 object "-199 : Way" as Way_199 {
-  start_date = 1976
-  building:levels = 3
-  <del>**building:levels:underground = 1
   survey:date = 2016
-  height = 30.2
-  ele = 3.1
   building = yes
+  building:levels = 3
+  building:levels:underground = 1
+  height = 34.7
+  ele = 2.7
   nd = [7,53,54,55,56,8,5,6]
 }
 note right : (A+B) outline
@@ -24,12 +23,12 @@ object "-61 : Way" as Way_61 {
 note bottom : a1 inner
 
 object "-10 : Way" as Way_10 {
-  building => yes
-  building:levels => 3
   height = 30.2
   ele = 3.1
   survey:date = 2016
   start_date => 1977
+  building:part => yes
+  building:levels => 3
   ref:MLIT_PLATEAU = 13111-bldg-71799
   nd = [5,6,7,8]
 }
@@ -54,6 +53,7 @@ package Building-B {
     building:part => yes
     member => [-60,-61,-67]
   }
+  note right : A
   Relation_50::member --> Way_60 : role=outer
   Relation_50::member --> Way_61 : role=inner
   Relation_50::member --> Way_67 : role=inner
@@ -61,14 +61,14 @@ package Building-B {
   map "-1 : Relation" as Relation_1 {
     type => building
     survey:date => 2016
-    <del>start_date => <del>1977
-    height => 30.6
+    building => yes
+    height => 34.7
     ele => 2.7
     building:levels => 3
     building:levels:underground => 1
-    <del>**building** => <del>**yes**
-    member => [-50,-199]
+    member => [-10,-50,-199]
   }
+  note right : (A+B)
   Relation_1::member --> Way_199	: role=outline
   Relation_1::member --> Relation_50	: role=part
   Relation_1::member --> Way_10	: role=part
