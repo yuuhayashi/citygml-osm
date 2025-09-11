@@ -30,33 +30,31 @@ public class DuplicateInnerProcessor implements Processor {
 				List<WayModel> partWays = new ArrayList<>();
 				int innerCnt = 0;
 				for (MemberBean member : relation.members) {
-					ElementWay memberWay = (ElementWay)osm.getWayMap().get(member.getRef());
-					if (member.getRole().equals("inner") && member.isWay() && (memberWay != null)) {
-						innerCnt ++;
-
-						// Issue #138
-						WayModel partWay = memberWay.getSamePositionWay(osm.getDuplicateWayList(memberWay));
-						if (partWay != null) {
-							String str = partWay.getTagValue("building");
-							if (str != null) {
-								partWay.removeTag("building");
-								partWay.addTag("building:part", str);
-							}
-							innerMembers.add(member);
-							partWays.add(partWay);
-							
-							// Issue #138 マルチポリゴン内の"building:part"の親リレーション(type=building)は削除する
-							List<ElementRelation> parentBuildingRelations = osm.relationMap.hasMembersRelation(partWay.getIdstr());
-							for (ElementRelation parentBuildingRelation : parentBuildingRelations) {
-								if (parentBuildingRelation.isBuilding()) {
-									if (parentBuildingRelation.members.size() == 1) {
-										for (MemberBean outline : parentBuildingRelation.members) {
-											if (outline.getRole().equals("part") && outline.isWay()) {
-												outline.setRole("outline");
+					if (member.isWay()) {
+						ElementWay memberWay = (ElementWay)osm.getWayMap().get(member.getRef());
+						if (member.getRole().equals("inner") && (memberWay != null)) {
+							innerCnt ++;
+	
+							// Issue #138
+							WayModel partWay = memberWay.getSamePositionWay(osm.getDuplicateWayList(memberWay));
+							if (partWay != null) {
+								partWay.toPart();
+								innerMembers.add(member);
+								partWays.add(partWay);
+								
+								// Issue #138 マルチポリゴン内の"building:part"の親リレーション(type=building)は削除する
+								List<ElementRelation> parentBuildingRelations = osm.relationMap.hasMembersRelation(partWay.getIdstr());
+								for (ElementRelation parentBuildingRelation : parentBuildingRelations) {
+									if (parentBuildingRelation.isBuilding()) {
+										if (parentBuildingRelation.members.size() == 1) {
+											for (MemberBean outline : parentBuildingRelation.members) {
+												if (outline.getRole().equals("part") && outline.isWay()) {
+													outline.setRole("outline");
+												}
 											}
 										}
+										parentBuildingRelation.removeMember(partWay.getId());
 									}
-									parentBuildingRelation.removeMember(partWay.getId());
 								}
 							}
 						}
@@ -102,14 +100,7 @@ public class DuplicateInnerProcessor implements Processor {
 								if (partMember != null) {
 									partMember.setRole("outline");
 									WayModel way = osm.getWay(partMember.getRef());
-									String v = way.getTagValue("building:part");
-									way.removeTag("building:part");
-									if (v == null) {
-										way.addTag("building", "yes");
-									}
-									else {
-										way.addTag("building", v);
-									}
+									way.toBuilding();
 								}
 							}
 							for (WayModel member : partWays) {

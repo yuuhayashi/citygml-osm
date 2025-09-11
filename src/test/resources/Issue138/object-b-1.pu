@@ -1,54 +1,51 @@
-@startuml
-object "bldg-80114 : Way" as Way_36 {
-  id = -36
-  building:part => yes
+﻿@startuml
+object "-36 : Way" as Way_36 {
   height = 4.2
-  ele = 0
+  **ele** = **0**
   survey:date = 2017
+  building => yes
   ref:MLIT_PLATEAU = 27100-bldg-80114
   nd = [27,28,29,30,31,32,33,34]
 }
 object "-37 : Way" as Way_37 {
-  id = -37
+  ref:MLIT_PLATEAU => bldg_af5a6580_XXXX
   nd = [27,28,29,30,31,32,33,34]
 }
 Way_36 .[#orange] Way_37 : same position
 
 object "-38 : Way" as Way_38 {
-  id = -38
+  ref:MLIT_PLATEAU => bldg_af5a6580_XXXX
   nd = [5,8,7,6]
 }
-object "bldg-80286 : Way" as Way_10 {
-  id = -10
-  building:part => yes
-  height = 3.02
-  ele = 0
+object "-10 : Way" as Way_10 {
+  **height = 0**
+  **ele = 0**
   survey:date = 2017
+  building => yes
   ref:MLIT_PLATEAU = 27100-bldg-80286
   nd = [5,6,7,8]
 }
+object "-21 : Way" as Way_21 {
+  **height = 0**
+  **ele = 0**
+  survey:date = 2017
+  building => yes
+  ref:MLIT_PLATEAU = 27100-bldg-80281
+  nd = [16,17,18,19]
+}
 object "-11 : Way" as Way_11 {
-  id = -11
+  ref:MLIT_PLATEAU => bldg_a0e57a54_XXXX
   nd = [5,6,7,8]
 }
 Way_10 .[#orange]. Way_38 : same position
 Way_10 .[#orange] Way_11 : same position
 
-object "bldg-80281 : Way" as Way_21 {
-  id = -21
-  building:part => yes
-  height = 0
-  ele = 0
-  survey:date = 2017
-  ref:MLIT_PLATEAU = 27100-bldg-80281
-  nd = [16,17,18,19]
-}
 object "-22 : Way" as Way_22 {
-  id = -22
+  ref:MLIT_PLATEAU => bldg_65e93d25_XXXX
   nd = [16,17,18,19]
 }
 object "-44 : Way" as Way_44 {
-  id = -44
+  ref:MLIT_PLATEAU => bldg_af5a6580_XXXX
   nd = [16,19,18,17]
 }
 Way_21 .[#orange]. Way_44 : same position
@@ -56,33 +53,34 @@ Way_21 .[#orange] Way_22 : same position
 
 package Part1 {
   map "[-3] : Multipolygon" as Relation_3 {
-    id => -3
-    type => **multipolygon**
+    type => multipolygon
+    ref:MLIT_PLATEAU => bldg_a0e57a54_XXXX
+    survey:date => 2017
+    **height** => **0**
+    **ele** => **0**
     building:part => yes
-    height => 0
-    ele => 0
     member => [-11]
   }
   Relation_3::member --> Way_11 : role=outer
   
   map "[-1] : Building" as Relation_1 {
-    id => -1
-    type => **building**
-    building => yes
-    ele => 0
-    height => 0
+    type => building
+    **ele** => **0**
     survey:date => 2017
+    **height** => **0**
+    building => yes
     member => [-3,-10]
   }
-  Relation_1::member --> Relation_3 : role=outline
-  Relation_1::member --> Way_10 : role=part
+  Relation_1::member --> Relation_3 : role=part
+  Relation_1::member --> Way_10 : role=outline
 }
 package Main {
   map "[-25] : Multipolygon" as Relation_25 {
-    id => -25
-    type => **multipolygon**
+    type => multipolygon
+    ref:MLIT_PLATEAU => bldg_af5a6580_XXXX
+    survey:date => 2017
     height => 4.2
-    ele => 0
+    **ele** => **0**
     building:part => yes
     member => [-37,-38,-44]
   }
@@ -91,38 +89,37 @@ package Main {
   Relation_25::member --> Way_44 : role=inner
   
   map "-23 : Building" as Relation_23 {
-    id => -23
-    type => building
-    building => yes
-    ele => 0
     height => 4.2
+    type => building
+    **ele** => **0**
     survey:date => 2017
+    building => yes
     member => [-25,-36]
   }
-  Relation_23::member --> Relation_25 : role=outline
-  Relation_23::member --> Way_36 : role=part
+  Relation_23::member --> Relation_25 : role=part
+  Relation_23::member --> Way_36 : role=outline
 }
 package Part2 {
   map "[-14] : Multipolygon" as Relation_14 {
-    id => -14
-    type => **multipolygon**
+    type => multipolygon
+    ref:MLIT_PLATEAU => bldg_65e93d25_XXXX
+    survey:date => 2017
+    **height** => **0**
+    **ele** => **0**
     building:part => yes
-    ele => 0
-    height => 0
     member => [-22]
   }
   Relation_14::member --> Way_22 : role=outer
   
-  map "[-12 : Building" as Relation_12 {
-    id => -12
-    type => **building**
-    building => yes
-    ele => 0
-    height => 0
+  map "-12 : Building" as Relation_12 {
+    type => building
+    **ele** => **0**
     survey:date => 2017
+    **height** => **0**
+    building => yes
     member => [-14,-21]
   }
-  Relation_12::member --> Relation_14 : role=outline
-  Relation_12::member --> Way_21 : role=part
+  Relation_12::member --> Relation_14 : role=part
+  Relation_12::member --> Way_21 : role=outline
 }
 @enduml
