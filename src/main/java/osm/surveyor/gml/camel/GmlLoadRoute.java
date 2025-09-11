@@ -38,9 +38,8 @@ public class GmlLoadRoute extends RouteBuilder {
 		from("direct:inRelationMarge")
 		.streamCaching()
 		.process(new RelationMargeProcessor())	// 接触しているBUILDINGのWAYをくっつける
-		//.process(new DuplicateInnerProcessor())	// buildingとINNERが重なっているINNERを削除する。
-        //.to("direct:inBuildingGarbage")
-        .to("direct:osm-export")
+		.process(new DuplicateInnerProcessor())	// buildingとINNERが重なっているINNERを削除する。
+       .to("direct:inBuildingGarbage")
         ;
 		
 		// (3) メンバーが一つしかないRelation:building を削除する
@@ -48,7 +47,7 @@ public class GmlLoadRoute extends RouteBuilder {
 		from("direct:inBuildingGarbage")
 		.streamCaching()
 		.process(new BuildingGarbageProcessor())
-        .to("direct:inOutlineFactory")
+       .to("direct:inOutlineFactory")
         ;
 		
         // (4) Relation:building->member:role=part のWay:outlineを作成する
@@ -56,16 +55,16 @@ public class GmlLoadRoute extends RouteBuilder {
 		from("direct:inOutlineFactory")
 		.streamCaching()
 		.process(new OutlineFactoryProcessor())
-        .to("direct:inOsmMargeWay")
+       .to("direct:inOsmMargeWay")
         ;
 		
         // (5) "outline"と"part"が重複しているPART を削除する
 		from("direct:inOsmMargeWay")
 		.streamCaching()
 		.process(new OsmMargeWayProcessor())	// "outline"と"part"が重複しているPART を削除する
-		.process(new GerbageWayProcessor())		// RELATIONに所属していないWAYを削除する
+		.process(new GerbageWayProcessor())	// RELATIONに所属していないWAYを削除する
 		.process(new RelationProcessor())		// RELATIONの"name"を決定する。#76:オブジェクトが存在しないメンバーをRELATIONから削除する
-        .to("direct:osm-export")
+       .to("direct:osm-export")
         ;
 		
 		// (6) OSMファイルに出力する

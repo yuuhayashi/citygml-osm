@@ -62,10 +62,10 @@ package Main {
     type => building
     survey:date => 2016
     building => yes
-    height => 34.7
-    ele => 2.7
     building:levels => 3
     building:levels:underground => 1
+    height => 34.7
+    ele => 2.7
     member => [-10,-50,-199]
   }
   note right : (A+B)
