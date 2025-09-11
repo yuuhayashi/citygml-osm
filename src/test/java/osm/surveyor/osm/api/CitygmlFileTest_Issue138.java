@@ -82,7 +82,7 @@ public class CitygmlFileTest_Issue138 extends GmlLoadRouteTest {
 			assertNotNull(bound);
 	        
 			assertNotNull(osm.getWayMap());
-			assertEquals("osm.getWayMap().size()", 3, osm.getWayMap().size());
+			assertEquals("osm.getWayMap().size()", 4, osm.getWayMap().size());
 			
 			// Issue138 innerと重なっていたbuildingは"building:part=yes"にする
 			int part = 0;
@@ -92,17 +92,17 @@ public class CitygmlFileTest_Issue138 extends GmlLoadRouteTest {
 				assertNotNull(way);
 				String v = way.getTagValue("building:part");
 				if (v != null) {
-					building ++;
+					part ++;
 					assertEquals("7.6", way.getTagValue("ele"));
 					assertEquals("2.99", way.getTagValue("height"));
 					assertEquals("2017", way.getTagValue("survey:date"));
 				}
-				else {
-					part ++;
+				else if (way.getTagValue("building") != null) {
+					building ++;
 				}
 			}
 			assertEquals("count of WAY:building", 1, building);
-			assertEquals("count of WAY:part", 2, part);
+			assertEquals("count of WAY:part", 1, part);
 			
 			assertNotNull(osm.getRelations());
 			assertEquals("osm.getRelations().size()", 2, osm.getRelations().size());
@@ -131,7 +131,7 @@ public class CitygmlFileTest_Issue138 extends GmlLoadRouteTest {
 					assertEquals("4.2", relation.getTagValue("height"));
 					int outline = 0;
 					int parts = 0;
-					assertEquals(2, relation.members.size());
+					assertEquals(3, relation.members.size());
 					for (MemberBean member : relation.members) {
 						String role = member.getRole();
 						if (role.equals("outline")) {
@@ -142,7 +142,7 @@ public class CitygmlFileTest_Issue138 extends GmlLoadRouteTest {
 						}
 					}
 					assertEquals("count of building:MEMBER:outline", 1, outline);
-					assertEquals("count of building:MEMBER:part", 1, parts);
+					assertEquals("count of building:MEMBER:part", 2, parts);
 				}
 			}
 		} catch (Exception e) {
