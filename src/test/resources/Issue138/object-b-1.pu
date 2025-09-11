@@ -1,7 +1,7 @@
 ﻿@startuml
 object "-36 : Way" as Way_36 {
   height = 4.2
-  **ele** = **0**
+  ele = 0
   survey:date = 2017
   building => yes
   ref:MLIT_PLATEAU = 27100-bldg-80114
@@ -18,16 +18,16 @@ object "-38 : Way" as Way_38 {
   nd = [5,8,7,6]
 }
 object "-10 : Way" as Way_10 {
-  **height = 0**
-  **ele = 0**
+  height = 0
+  ele = 0
   survey:date = 2017
   building => yes
   ref:MLIT_PLATEAU = 27100-bldg-80286
   nd = [5,6,7,8]
 }
 object "-21 : Way" as Way_21 {
-  **height = 0**
-  **ele = 0**
+  height = 0
+  ele = 0
   survey:date = 2017
   building => yes
   ref:MLIT_PLATEAU = 27100-bldg-80281
@@ -56,8 +56,8 @@ package Part1 {
     type => multipolygon
     ref:MLIT_PLATEAU => bldg_a0e57a54_XXXX
     survey:date => 2017
-    **height** => **0**
-    **ele** => **0**
+    height => 0
+    ele => 0
     building:part => yes
     member => [-11]
   }
@@ -65,7 +65,7 @@ package Part1 {
   
   map "[-1] : Building" as Relation_1 {
     type => building
-    **ele** => **0**
+    ele => 0
     survey:date => 2017
     **height** => **0**
     building => yes
@@ -80,7 +80,7 @@ package Main {
     ref:MLIT_PLATEAU => bldg_af5a6580_XXXX
     survey:date => 2017
     height => 4.2
-    **ele** => **0**
+    ele => 0
     building:part => yes
     member => [-37,-38,-44]
   }
@@ -91,7 +91,7 @@ package Main {
   map "-23 : Building" as Relation_23 {
     height => 4.2
     type => building
-    **ele** => **0**
+    ele => 0
     survey:date => 2017
     building => yes
     member => [-25,-36]
@@ -104,8 +104,8 @@ package Part2 {
     type => multipolygon
     ref:MLIT_PLATEAU => bldg_65e93d25_XXXX
     survey:date => 2017
-    **height** => **0**
-    **ele** => **0**
+    height => 0
+    ele => 0
     building:part => yes
     member => [-22]
   }
@@ -113,9 +113,9 @@ package Part2 {
   
   map "-12 : Building" as Relation_12 {
     type => building
-    **ele** => **0**
+    ele => 0
     survey:date => 2017
-    **height** => **0**
+    height => 0
     building => yes
     member => [-14,-21]
   }
