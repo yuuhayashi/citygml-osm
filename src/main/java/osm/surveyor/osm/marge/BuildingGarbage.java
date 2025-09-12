@@ -127,7 +127,6 @@ public class BuildingGarbage {
 									ElementWay way = (ElementWay)osm.getWayMap().get(member.getRef());
 									if (way != null) {
 										way.setMemberWay(false);
-										osm.getWayMap().remove(way.getId());
 										removeMembers.add(member);
 									}
 								}

@@ -1,4 +1,6 @@
 @startuml
+title d. 中空部分がある連接ビルディング
+
 object "-579 : Way" as Way_579 {
   id = -579
   nd = [64,55,56,57,58,65]

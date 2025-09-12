@@ -1,4 +1,6 @@
 ﻿@startuml
+title d. 中空部分がある連接ビルディング
+
 object "-199 : Way" as Way_199 {
   survey:date = 2016
   building = yes

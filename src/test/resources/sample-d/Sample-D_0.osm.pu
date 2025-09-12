@@ -1,4 +1,6 @@
 ﻿@startuml
+title d. 中空部分がある連接ビルディング
+
 object "-59 : Way" as Way_59 {
   building = yes
   building:levels = 2

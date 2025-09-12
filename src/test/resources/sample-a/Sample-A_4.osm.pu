@@ -1,0 +1,28 @@
+﻿@startuml
+
+title A 単純ビルディング / 最終段階
+
+object "-10 : Way" as Way_10 {
+  height = 4.6
+  ele = 2.7
+  building = house
+  ref:MLIT_PLATEAU = 13111-bldg-466
+  start_date = 1976
+  building:levels = 2
+  building:levels:underground = 1
+  survey:date = 2016
+  nd = [5,6,7,8]
+}
+note right : bldg-466
+
+object "-57 : Way" as Way_57 {
+  height = 2.4
+  ele = 2.8
+  building => yes
+  ref:MLIT_PLATEAU = 13111-bldg-365
+  survey:date = 2016
+  nd = [52,53,54,55]
+}
+note right : bldg-365
+
+@enduml

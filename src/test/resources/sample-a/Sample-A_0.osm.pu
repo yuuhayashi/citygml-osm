@@ -1,0 +1,93 @@
+﻿@startuml
+title A 単純ビルディング
+
+object "-58 : Way" as Way_58 {
+  ref:MLIT_PLATEAU = 13111-bldg-365
+  nd = [52,53,54,55]
+}
+
+object "-10 : Way" as Way_10 {
+  height = 4.6
+  ele = 2.7
+  survey:date = 2016
+  start_date = 1976
+  building = house
+  building:levels = 2
+  building:levels:underground = 1
+  ref:MLIT_PLATEAU = 13111-bldg-466
+  nd = [5,6,7,8]
+}
+note right : bldg-466
+
+object "-11 : Way" as Way_11 {
+  ref:MLIT_PLATEAU = 13111-bldg-466
+  nd = [5,6,7,8]
+}
+Way_10 .[#orange] Way_11 : same position
+
+object "-57 : Way" as Way_57 {
+  height = 2.4
+  ele = 2.8
+  survey:date = 2016
+  building => yes
+  ref:MLIT_PLATEAU = 13111-bldg-365
+  nd = [52,53,54,55]
+}
+note right : bldg-365
+Way_57 .[#orange] Way_58 : same position
+
+
+package Building-A {
+  map "-50 : Relation" as Relation_50 {
+    type => multipolygon
+    ref:MLIT_PLATEAU => 13111-bldg-365
+    survey:date => 2016
+    height => 2.4
+    ele => 2.8
+    building:part => yes
+    member => [-58]
+  }
+  Relation_50::member --> Way_58 : role=outer
+
+  map "-48 : Relation" as Relation_48 {
+    height => 2.4
+    type => building
+    ele => 2.8
+    survey:date => 2016
+    building => yes
+    member => [-57,-50]
+  }
+  Relation_48::member --> Way_57 : role=outline
+  Relation_48::member --> Relation_50 : role=part
+}
+
+package Building-B {
+  map "-3 : Relation" as Relation_3 {
+    type => multipolygon
+    ref:MLIT_PLATEAU => 13111-bldg-466
+    start_date => 1976
+    survey:date => 2016
+    building:levels => 2
+    building:levels:underground => 1
+    height => 4.6
+    ele => 2.7
+    building:part => house
+    member => [-11]
+  }
+  Relation_3::member --> Way_11	: role=outer
+
+  map "-1 : Relation" as Relation_1 {
+    start_date => 1976
+    height => 4.6
+    building:levels => 2
+    building:levels:underground => 1
+    type => building
+    ele => 2.7
+    survey:date => 2016
+    building => house
+    member => [-10,-3]
+  }
+  Relation_1::member --> Way_10	: role=outline
+  Relation_1::member --> Relation_3	: role=part
+}
+@enduml
