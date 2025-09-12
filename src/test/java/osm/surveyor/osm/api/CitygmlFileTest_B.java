@@ -31,7 +31,7 @@ public class CitygmlFileTest_B extends GmlLoadRouteTest {
 					assertEquals("16.9", relation.getTagValue("height"));
 					assertEquals("2.5", relation.getTagValue("ele"));
 					assertEquals("1976", relation.getTagValue("start_date"));
-					assertNull(relation.getTagValue("ref:MLIT_PLATEAU"));
+					assertNotNull(relation.getTagValue("ref:MLIT_PLATEAU"));
 					int outerCnt = 0;
 					int innerCnt = 0;
 					for (MemberBean mem : relation.members) {
@@ -63,5 +63,4 @@ public class CitygmlFileTest_B extends GmlLoadRouteTest {
 			fail(e.toString());
 		}
 	}
-
 }

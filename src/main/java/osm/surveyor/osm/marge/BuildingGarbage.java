@@ -1,5 +1,6 @@
 package osm.surveyor.osm.marge;
 
+import java.util.*;
 import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementWay;
@@ -88,6 +89,54 @@ public class BuildingGarbage {
 							relation.removeMember(way.getId());
 							return true;
 						}
+					}
+				}
+			}
+			else if (memberCnt == 2) {
+				if (relation.isBuilding()) {
+					int partCnt = 0;
+					for (MemberBean member : relation.members) {
+						if (member.getRole().equals("part")) {
+							partCnt++;
+						}
+					}
+					if (partCnt <= 1) {
+						List<MemberBean> removeMembers = new ArrayList<>();
+						for (MemberBean member : relation.members) {
+							if (member.getRole().equals("part")) {
+								if (member.isRelation()) {
+									ElementRelation childRelation = osm.relationMap.get(member.getRef());
+									if (childRelation != null) {
+										childRelation.toBuilding();
+										removeMembers.add(member);
+									}
+								}
+								else if (member.isWay()) {
+									ElementWay way = (ElementWay)osm.getWayMap().get(member.getRef());
+									if (way != null) {
+										way.toBuilding();
+										removeMembers.add(member);
+									}
+								}
+							}
+							else if (member.getRole().equals("outline")) {
+								if (member.isRelation()) {
+									// "outline"がリレーションになることはない
+								}
+								else if (member.isWay()) {
+									ElementWay way = (ElementWay)osm.getWayMap().get(member.getRef());
+									if (way != null) {
+										way.setMemberWay(false);
+										osm.getWayMap().remove(way.getId());
+										removeMembers.add(member);
+									}
+								}
+							}
+						}
+						for (MemberBean mem : removeMembers) {
+							relation.removeMember(mem.getRef());
+						}
+						return true;
 					}
 				}
 			}
