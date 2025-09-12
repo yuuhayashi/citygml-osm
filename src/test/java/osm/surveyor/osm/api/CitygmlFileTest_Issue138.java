@@ -6,6 +6,7 @@ import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.OsmDom;
+import osm.surveyor.osm.way.WayModel;
 
 public class CitygmlFileTest_Issue138 extends GmlLoadRouteTest {
 
@@ -75,7 +76,7 @@ public class CitygmlFileTest_Issue138 extends GmlLoadRouteTest {
 
 	@Test
 	public void test51357441a() {
-		OsmDom osm = testdo("./src/test/resources/51357441_bldg_Issue138-1.gml");
+		OsmDom osm = testdo("./src/test/resources/51357441_bldg_Issue138-A.gml");
 		try {
 	        assertNotNull(osm);
 	        BoundsBean bound = osm.getBounds();
@@ -153,7 +154,7 @@ public class CitygmlFileTest_Issue138 extends GmlLoadRouteTest {
 
 	@Test
 	public void test51357441b() {
-		OsmDom osm = testdo("./src/test/resources/51357441_bldg_Issue138-2.gml");
+		OsmDom osm = testdo("./src/test/resources/51357441_bldg_Issue138-B.gml");
 		try {
 	        assertNotNull(osm);
 	        BoundsBean bound = osm.getBounds();
@@ -171,7 +172,7 @@ public class CitygmlFileTest_Issue138 extends GmlLoadRouteTest {
 				String v = way.getTagValue("building");
 				if (v != null) {
 					building ++;
-					assertEquals("7.6", way.getTagValue("ele"));
+					assertEquals("0", way.getTagValue("ele"));
 					assertEquals("4.2", way.getTagValue("height"));
 					assertEquals("2017", way.getTagValue("survey:date"));
 				}
@@ -184,29 +185,14 @@ public class CitygmlFileTest_Issue138 extends GmlLoadRouteTest {
 			assertEquals("count of WAY:building:part", 2, part);
 			
 			assertNotNull(osm.getRelations());
-			assertEquals(2, osm.getRelations().size());
+			assertEquals("RELATIONの数は一つであること", 1, osm.getRelations().size());
 			for (ElementRelation relation : osm.getRelations()) {
 				String type = relation.getTagValue("type");
 				if (type.equals("multipolygon")) {
-					assertEquals("7.6", relation.getTagValue("ele"));
-					assertEquals("4.2", relation.getTagValue("height"));
-					int outer = 0;
-					int inner = 0;
-					assertEquals(3, relation.members.size());
-					for (MemberBean member : relation.members) {
-						String role = member.getRole();
-						if (role.equals("outer")) {
-							outer++;
-						}
-						else if (role.equals("inner")) {
-							inner++;
-						}
-					}
-					assertEquals("count of Multipolygon:MEMBER:outer", 1, outer);
-					assertEquals("count of Multipolygon:MEMBER:inner", 1, inner);	
+					fail("Multipolygonリレーションは存在しないこと");
 				}
 				else if (type.equals("building")) {
-					assertEquals("7.6", relation.getTagValue("ele"));
+					assertEquals("0", relation.getTagValue("ele"));
 					assertEquals("4.2", relation.getTagValue("height"));
 					int outline = 0;
 					int parts = 0;
@@ -215,9 +201,17 @@ public class CitygmlFileTest_Issue138 extends GmlLoadRouteTest {
 						String role = member.getRole();
 						if (role.equals("outline")) {
 							outline++;
+							assertTrue("outlineのメンバーはWAYであること", member.isWay());
+							WayModel way = osm.getWayMap().get(member.getRef());
+							assertEquals("outlineのメンバーは'building=yes'であること", "yes", way.getTagValue("building"));
+							assertNull("outlineのメンバーは'building:part=*'でないこと", way.getTagValue("building:part"));
 						}
 						else if (role.equals("part")) {
 							parts++;
+							assertTrue("partのメンバーはWAYであること", member.isWay());
+							WayModel way = osm.getWayMap().get(member.getRef());
+							assertEquals("outlineのメンバーは'building:part=yes'であること", "yes", way.getTagValue("building:part"));
+							assertNull("outlineのメンバーは'building=*'でないこと", way.getTagValue("building"));
 						}
 					}
 					assertEquals("count of Building:MEMBER:outline", 1, outline);
