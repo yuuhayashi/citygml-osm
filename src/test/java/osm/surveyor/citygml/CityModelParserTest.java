@@ -50,20 +50,23 @@ public class CityModelParserTest {
 	        assertNotNull(bounds);
 	        
 	        assertNotNull(dom);
+			dom.export(new File("50302469_bldg_6697_op.osm"));
+
 	        assertNotNull(dom.getWayList());
 	        
 	        // GMLv2
 	        List<ElementWay> ways = dom.getWay("40205-bldg-91547");
 	        assertEquals(2, ways.size());
 	        for (ElementWay way : ways) {
-	        	if (way.getTagValue("building:part") != null) {
+	        	if (way.getTagValue("building") != null) {
 	        		assertEquals("2016", way.getTagValue("survey:date"));
 	        		assertEquals("4.2", way.getTagValue("height"));
 	        		assertNull(way.getTagValue("building:levels")); //  <bldg:storeysAboveGround>-9999</bldg:storeysAboveGround>
 	        		assertEquals("2", way.getTagValue("building:levels:underground")); // <bldg:storeysBelowGround>2</bldg:storeysBelowGround>
 	        	}
 	        	else {
-	        		assertNull(way.getTagValue("survey:date"));
+	        		assertNull(way.getTagValue("building"));	// マルチポリゴンのINNERとOUTERウェイには "building" が存在しないこと
+	        		assertNull(way.getTagValue("building:part"));	// マルチポリゴンのINNERとOUTERウェイには "building:part" が存在しないこと
 	        	}
 	        }
 
@@ -72,7 +75,7 @@ public class CityModelParserTest {
 	        //ways = osm.getWay("bldg_c040f49a-2685-43be-989c-446bfd863039");
 	        assertEquals(1, ways.size());
 	        for (ElementWay way : ways) {
-	        	if (way.getTagValue("building:part") != null) {
+	        	if (way.getTagValue("building") != null) {
 	        		assertEquals("2024", way.getTagValue("survey:date"));
 	        		assertEquals("1993", way.getTagValue("start_date"));
 	        		assertEquals("7.5", way.getTagValue("height"));
@@ -80,6 +83,8 @@ public class CityModelParserTest {
 	        		assertNull(way.getTagValue("building:levels:underground")); // <bldg:storeysBelowGround>9999</bldg:storeysBelowGround>
 	        	}
 	        	else {
+	        		assertNull(way.getTagValue("building"));	// マルチポリゴンのINNERとOUTERウェイには "building" が存在しないこと
+	        		assertNull(way.getTagValue("building:part"));	// マルチポリゴンのINNERとOUTERウェイには "building:part" が存在しないこと
 	        		assertNull(way.getTagValue("survey:date"));
 	        	}
 	        }
