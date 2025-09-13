@@ -1,16 +1,17 @@
 ﻿@startuml
-title d. 中空部分がある連接ビルディング
+title d. 中空部分がある連接ビルディング / MultipolygonGarbageProcessor()直後
 
-object "-199 : Way" as Way_199 {
-  survey:date = 2016
-  building = yes
-  building:levels = 3
-  building:levels:underground = 1
+object "-59 : Way" as Way_59 {
   height = 34.7
   ele = 2.7
-  nd = [7,53,54,55,56,8,5,6]
+  survey:date = 2016
+  start_date = 1976
+  building:part = yes
+  building:levels = 2
+  building:levels:underground = 1
+  ref:MLIT_PLATEAU = 13111-bldg-72601
+  nd = [7,53,54,55,56,8]
 }
-note right : (A+B) outline
 
 object "-60 : Way" as Way_60 {
   ref:MLIT_PLATEAU = 13111-bldg-72601
@@ -42,7 +43,22 @@ object "-67 : Way" as Way_67 {
 }
 note bottom : a2 inner
 
+Way_59 .[#orange]. Way_60 : same position
+
 package Building-B {
+  map "-1 : Relation" as Relation_1 {
+    type => building
+    survey:date => 2016
+    building => yes
+    height => 34.7
+    ele => 2.7
+    building:levels => 3
+    building:levels:underground => 1
+    member => [-10]
+  }
+  Relation_1::member --> Way_10	: role=outline
+}
+package Building-A {
   map "-50 : Relation" as Relation_50 {
     type => multipolygon
     ref:MLIT_PLATEAU => 13111-bldg-72601
@@ -60,19 +76,18 @@ package Building-B {
   Relation_50::member --> Way_61 : role=inner
   Relation_50::member --> Way_67 : role=inner
 
-  map "-1 : Relation" as Relation_1 {
+  map "-48 : Relation" as Relation_48 {
+    start_date => 1976
+    height => 34.7
+    building:levels => 2
+    building:levels:underground => 1
     type => building
+    ele => 2.7
     survey:date => 2016
     building => yes
-    height => 34.7
-    ele => 2.7
-    building:levels => 3
-    building:levels:underground => 1
-    member => [-10,-50,-199]
+    member => [-59,-50]
   }
-  note right : (A+B)
-  Relation_1::member --> Way_199	: role=outline
-  Relation_1::member --> Relation_50	: role=part
-  Relation_1::member --> Way_10	: role=part
+  Relation_48::member --> Way_59 : role=outline
+  Relation_48::member --> Relation_50 : role=part
 }
 @enduml

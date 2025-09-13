@@ -10,7 +10,7 @@ object "-199 : Way" as Way_199 {
   building:levels:underground = 1
   nd = [7,53,54,55,56,8,5,6]
 }
-note bottom : (A+B) outline
+note right : (A+B)
 
 object "-60 : Way" as Way_60 {
   ref:MLIT_PLATEAU = 13111-bldg-72601
@@ -42,7 +42,7 @@ object "-67 : Way" as Way_67 {
 }
 note bottom : a2 inner
 
-package Main {
+package "Building A+B" {
   map "-50 : Relation" as Relation_50 {
     type => multipolygon
     ref:MLIT_PLATEAU => 13111-bldg-72601
@@ -70,7 +70,6 @@ package Main {
     ele => 2.7
     member => [-10,-50,-199]
   }
-  note right : (A+B)
   Relation_1::member --> Way_199	: role=outline
   Relation_1::member --> Relation_50	: role=part
   Relation_1::member --> Way_10	: role=part

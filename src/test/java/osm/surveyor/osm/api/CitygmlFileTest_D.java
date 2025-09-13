@@ -76,18 +76,25 @@ public class CitygmlFileTest_D extends GmlLoadRouteTest {
 								ElementWay way = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef()));
 								assertNotNull(way);
 								if (way.getTagValue("ref:MLIT_PLATEAU").endsWith("13111-bldg-72601")) {
+									assertNull(way.getTagValue("addr:full"));
+									assertEquals("30.2", way.getTagValue("height"));
+									assertEquals("3.1", way.getTagValue("ele"));
+									assertEquals("1977", way.getTagValue("start_date"));
+									assertEquals("yes", way.getTagValue("building:part"));
+									assertEquals("3", way.getTagValue("building:levels"));
+									assertEquals("2016", way.getTagValue("survey:date"));
+									assertEquals(7, way.getTagList().size());
 								}
-								else if (way.getTagValue("ref:MLIT_PLATEAU").endsWith("13111-bldg-71799")) {
+								if (way.getTagValue("ref:MLIT_PLATEAU").endsWith("13111-bldg-71799")) {
+									assertNull(way.getTagValue("addr:full"));
+									assertEquals("30.2", way.getTagValue("height"));
+									assertEquals("3.1", way.getTagValue("ele"));
+									assertEquals("1977", way.getTagValue("start_date"));
+									assertEquals("yes", way.getTagValue("building:part"));
+									assertEquals("3", way.getTagValue("building:levels"));
+									assertEquals("2016", way.getTagValue("survey:date"));
+									assertEquals(7, way.getTagList().size());
 								}
-								assertEquals("13111-bldg-71799", way.getTagValue("ref:MLIT_PLATEAU"));
-								assertNull(way.getTagValue("addr:full"));
-								assertEquals("30.2", way.getTagValue("height"));
-								assertEquals("3.1", way.getTagValue("ele"));
-								assertEquals("1977", way.getTagValue("start_date"));
-								assertEquals("yes", way.getTagValue("building:part"));
-								assertEquals("3", way.getTagValue("building:levels"));
-								assertEquals("2016", way.getTagValue("survey:date"));
-								assertEquals(7, way.getTagList().size());
 							}
 							else if (mem.isRelation()) {
 								assertEquals("relation", mem.getType());

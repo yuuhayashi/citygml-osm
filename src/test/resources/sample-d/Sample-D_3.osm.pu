@@ -12,6 +12,18 @@ object "-199 : Way" as Way_199 {
 }
 note bottom : (A+B) outline
 
+object "-59 : Way" as Way_59 {
+  height = 34.7
+  ele = 2.7
+  survey:date = 2016
+  start_date = 1976
+  building:part = yes
+  building:levels = 2
+  building:levels:underground = 1
+  ref:MLIT_PLATEAU = 13111-bldg-72601
+  nd = [7,53,54,55,56,8]
+}
+
 object "-60 : Way" as Way_60 {
   ref:MLIT_PLATEAU = 13111-bldg-72601
   nd = [7,53,54,55,56,8]
@@ -68,10 +80,11 @@ package Main {
     ele => 2.7
     building:levels => 3
     building:levels:underground => 1
-    member => [-10,-50,-199]
+    member => [-10,-59,-50,-199]
   }
   note right : (A+B)
   Relation_1::member --> Way_199	: role=outline
+  Relation_1::member --> Relation_59	: role=part
   Relation_1::member --> Relation_50	: role=part
   Relation_1::member --> Way_10	: role=part
 }

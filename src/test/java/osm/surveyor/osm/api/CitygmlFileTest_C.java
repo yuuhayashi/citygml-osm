@@ -173,8 +173,8 @@ public class CitygmlFileTest_C extends GmlLoadRouteTest {
 						}
 					}
 					assertEquals(1, outlineCnt);
-					assertEquals(4, partCnt);
-					assertEquals(5, relation.members.size());
+					assertEquals(3, partCnt);
+					assertEquals(4, relation.members.size());
 				}
 			}
 			assertEquals(1, osm.relationMap.size());

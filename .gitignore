@@ -7,6 +7,7 @@
 *.zip
 *.jar
 *.tar.gz
+*.png
 /target/
 /src/test/data/*~
 /src/test/data/*.log

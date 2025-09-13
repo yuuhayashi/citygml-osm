@@ -111,13 +111,14 @@ public class RelationMarge {
 	void matomeru(RelationBuilding aBuilding, RelationBuilding bBuilding) {
 		WayMap memberways = new WayMap();
 		
-		if (aBuilding.members.size() == 1) {
+		if (bBuilding.members.size() == 1) {
 			for (MemberBean mem : bBuilding.members) {
 				if (mem.getRole().equals("outline")) {
 					if (mem.isWay()) {
 						ElementWay memway = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef()));
 						memway.toBuilding();
 						mem.setRole("part");
+						aBuilding.addMember(memway, "part");
 						memberways.put(memway.clone());
 					}
 					else if (mem.isRelation()) {
