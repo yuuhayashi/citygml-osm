@@ -165,7 +165,6 @@ public class CitygmlFileTest_C extends GmlLoadRouteTest {
 							assertEquals(mem.getType(), ("way"));
 							ElementWay way = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef()));
 							assertNotNull(way);
-							assertNotNull(way.getTagValue("ref:MLIT_PLATEAU"));
 							assertNull(way.getTagValue("addr:full"));
 							assertNotNull(way.getTagValue("height"));
 							assertNotNull(way.getTagValue("ele"));
@@ -174,8 +173,8 @@ public class CitygmlFileTest_C extends GmlLoadRouteTest {
 						}
 					}
 					assertEquals(1, outlineCnt);
-					assertEquals(3, partCnt);
-					assertEquals(4, relation.members.size());
+					assertEquals(4, partCnt);
+					assertEquals(5, relation.members.size());
 				}
 			}
 			assertEquals(1, osm.relationMap.size());

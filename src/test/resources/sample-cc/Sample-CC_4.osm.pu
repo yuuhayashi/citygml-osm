@@ -1,0 +1,68 @@
+﻿@startuml
+title cc. 複数のビルディングが接触しているもの（連接ビルディング）/最終型
+
+object "-243 : Way" as Way_243 {
+  survey:date = 2016
+  height = 6.8
+  ele = 2.5
+  building:levels = 3
+  building:levels:underground => 1
+  building:part = yes
+  nd = [171,106,107,108,13,12,111,174,175,176,177]
+}
+object "-16 : Way" as Way_16 {
+  height = 7.1
+  ele = 2.5
+  survey:date = 2016
+  building:levels = 2
+  building:levels:underground = 2
+  ref:MLIT_PLATEAU = 13111-bldg-59928
+  building:part = yes
+  nd = [5 .. 14]
+}
+object "-246 : Way" as Way_246 {
+  survey:date = 2016
+  building => yes
+  height = 7.1
+  ele = 2.5
+  building:levels => 3
+  building:levels:underground = 2
+  nd = [171,106,107,108,13,14,5 .. 12,111,174 .. 177]
+}
+object "-113 : Way" as Way_113 {
+  height = 5.5
+  ele = 2.5
+  survey:date = 2016
+  building:levels => 3
+  building:levels:underground = 1
+  ref:MLIT_PLATEAU = 13111-bldg-59955
+  building:part => yes
+  nd = [106,107,108,13,12,111,106]
+}
+object "-179 : Way" as Way_179 {
+  height = 6.8
+  ele = 2.5
+  survey:date = 2016
+  ref:MLIT_PLATEAU = 13111-bldg-59680
+  building:part => yes
+  nd = [171,106,111,174 .. 177]
+}
+
+package Building-B {
+  map "-1 : Relation" as Relation_1 {
+    type => building
+    survey:date => 2016
+    building => yes
+    building:levels => 3
+    building:levels:underground => 2
+    height => 7.1
+    ele => 2.5
+    member => [-16,-113,-179,246]
+  }
+  Relation_1::member --> Way_16	: role=part
+  Relation_1::member --> Way_113	: role=part
+  Relation_1::member --> Way_179	: role=part
+  Relation_1::member --> Way_243	: role=part
+  Relation_1::member -> Way_246	: role=outline
+}
+@enduml
