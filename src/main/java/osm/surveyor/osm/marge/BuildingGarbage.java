@@ -82,12 +82,22 @@ public class BuildingGarbage {
 				}
 				else if (relation.isBuilding()) {
 					for (MemberBean member : relation.members) {
-						ElementWay way = (ElementWay)osm.getWayMap().get(member.getRef());
-						if (way != null) {
-							way.setMemberWay(false);
-							way.copyTag(relation.getTagList());
-							relation.removeMember(way.getId());
-							return true;
+						if (member.isRelation()) {
+							ElementRelation childRelation = osm.relationMap.get(member.getRef());
+							if (childRelation != null) {
+								childRelation.toBuilding();
+								relation.removeMember(childRelation.getId());
+								return true;
+							}
+						}
+						else if (member.isWay()) {
+							ElementWay way = (ElementWay)osm.getWayMap().get(member.getRef());
+							if (way != null) {
+								way.setMemberWay(false);
+								way.copyTag(relation.getTagList());
+								relation.removeMember(way.getId());
+								return true;
+							}
 						}
 					}
 				}
@@ -95,47 +105,74 @@ public class BuildingGarbage {
 			else if (memberCnt == 2) {
 				if (relation.isBuilding()) {
 					int partCnt = 0;
+					MemberBean outlineMember = null;
+					MemberBean partMember = null;
 					for (MemberBean member : relation.members) {
 						if (member.getRole().equals("part")) {
 							partCnt++;
+							partMember = member;
+						}
+						else if (member.getRole().equals("outline")) {
+							outlineMember = member;
 						}
 					}
 					if (partCnt <= 1) {
-						List<MemberBean> removeMembers = new ArrayList<>();
-						for (MemberBean member : relation.members) {
-							if (member.getRole().equals("part")) {
-								if (member.isRelation()) {
-									ElementRelation childRelation = osm.relationMap.get(member.getRef());
-									if (childRelation != null) {
-										childRelation.toBuilding();
-										removeMembers.add(member);
-									}
-								}
-								else if (member.isWay()) {
-									ElementWay way = (ElementWay)osm.getWayMap().get(member.getRef());
-									if (way != null) {
-										way.toBuilding();
-										removeMembers.add(member);
-									}
+						MemberBean removeMember = null;
+						if (partMember != null) {
+							if (partMember.isRelation()) {
+								ElementRelation childRelation = osm.relationMap.get(partMember.getRef());
+								if ((childRelation != null) && (childRelation.members.size() > 1)) {
+									childRelation.toBuilding();
+									removeMember = outlineMember;
+									outlineMember = null;
 								}
 							}
-							else if (member.getRole().equals("outline")) {
-								if (member.isRelation()) {
-									// "outline"がリレーションになることはない
+							else if (partMember.isWay()) {
+								ElementWay way = (ElementWay)osm.getWayMap().get(partMember.getRef());
+								if (way != null) {
+									way.toBuilding();
+									removeMember = partMember;
 								}
-								else if (member.isWay()) {
-									ElementWay way = (ElementWay)osm.getWayMap().get(member.getRef());
+							}
+						}
+						if (outlineMember != null) {
+							if (outlineMember.isRelation()) {
+								// "outline"がリレーションになることはない
+							}
+							else if (outlineMember.isWay()) {
+								ElementWay way = (ElementWay)osm.getWayMap().get(outlineMember.getRef());
+								if (way != null) {
+									removeMember = outlineMember;
+								}
+							}
+						}
+						if (removeMember != null) {
+							if (removeMember.isRelation()) {
+								ElementRelation childRelation = osm.relationMap.get(removeMember.getRef());
+								List<MemberBean> removeMembers = new ArrayList<>();
+								for (MemberBean childMember : childRelation.members) {
+									ElementWay way = (ElementWay)osm.getWayMap().get(childMember.getRef());
 									if (way != null) {
 										way.setMemberWay(false);
-										removeMembers.add(member);
+										osm.getWayMap().remove(way.getId());
 									}
+									removeMembers.add(childMember);
+								}
+								for (MemberBean childMember : childRelation.members) {
+									relation.removeMember(childMember.getRef());
+								}
+								return true;
+							}
+							else if (removeMember.isWay()) {
+								ElementWay way = (ElementWay)osm.getWayMap().get(removeMember.getRef());
+								if (way != null) {
+									way.setMemberWay(false);
+									osm.getWayMap().remove(way.getId());
+									relation.removeMember(removeMember.getRef());
+									return true;
 								}
 							}
 						}
-						for (MemberBean mem : removeMembers) {
-							relation.removeMember(mem.getRef());
-						}
-						return true;
 					}
 				}
 			}
