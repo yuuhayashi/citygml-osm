@@ -1,0 +1,53 @@
+﻿@startuml
+title c. 複数のビルディングが接触しているもの（連接ビルディング）/最終型
+
+object "-227 : Way" as Way_227 {
+  survey:date = 2016
+  building = yes
+  height = 42.7
+  ele = 2.8
+  building:levels = 2
+  building:levels:underground => 1
+  nd = [5..10,215,216,217,218,11..26]
+}
+object "-221 : Way" as Way_221 {
+  height = 7.3
+  ele = 2.8
+  survey:date = 2016
+  start_date = 2003
+  <del>**building:levels** = 
+  building:levels:underground = 1
+  building:part = yes
+  ref:MLIT_PLATEAU = 13111-bldg-386
+  nd = [10,215,216,217,218,11]
+}
+object "-28 : Way" as Way_28 {
+  height = 42.7
+  ele = 2.8
+  survey:date = 2016
+  start_date => 1976
+  building:levels => 2
+  ref:MLIT_PLATEAU = 13111-bldg-473
+  building:part => yes
+  nd = [5 .. 26]
+}
+
+Way_227 .[#blue]. Way_28 : share node[10,11]
+Way_227 .[#blue]. Way_221 : share node[10,215,216,217,218,11]
+
+package Building-B {
+  map "-1 : Relation" as Relation_1 {
+    type => building
+    survey:date => 2016
+    building => yes
+    height => 42.7
+    ele => 2.8
+    building:levels => 2
+    building:levels:underground => 1
+    member => [-28,-221,-227]
+  }
+  Relation_1::member --> Way_28	: role=part
+  Relation_1::member --> Way_221	: role=part
+  Relation_1::member -> Way_227	: role=outline
+}
+@enduml

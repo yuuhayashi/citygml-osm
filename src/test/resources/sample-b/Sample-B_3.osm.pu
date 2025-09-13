@@ -1,0 +1,55 @@
+﻿@startuml
+title b. 中空部を持つ単一ビルディング / DuplicateInnerProcessor()直後
+
+object "-55 : Way" as Way_55 {
+  height = 16.9
+  ele = 2.5
+  survey:date = 2016
+  start_date = 1976
+  building = yes
+  ref:MLIT_PLATEAU = 13111-bldg-61384
+  nd = [5 .. 53]
+}
+note right : bldg-61384
+
+object "-56 : Way" as Way_56 {
+  ref:MLIT_PLATEAU = 13111-bldg-61384
+  nd = [5 .. 53]
+}
+note bottom : outer
+
+Way_55 .[#orange]. Way_56 : same position
+
+object "-57 : Way" as Way_57 {
+  ref:MLIT_PLATEAU = 13111-bldg-61384
+  nd = [58 .. 81]
+}
+note bottom : inner
+
+package Building-61384 {
+  map "-3 : Relation" as Relation_3 {
+    type => multipolygon
+    ref:MLIT_PLATEAU => 13111-bldg-61384
+    start_date => 1976
+    survey:date => 2016
+    height => 16.9
+    ele => 2.5
+    building:part => yes
+    member => [-56,-57]
+  }
+  Relation_3::member --> Way_56	: role=outer
+  Relation_3::member --> Way_57	: role=inner
+
+  map "-1 : Relation" as Relation_1 {
+    start_date => 1977
+    height => 16.9
+    type => building
+    ele => 2.5
+    survey:date => 2016
+    building => yes
+    member => [-55,-3]
+  }
+  Relation_1::member --> Way_55	: role=outline
+  Relation_1::member --> Relation_3	: role=part
+}
+@enduml

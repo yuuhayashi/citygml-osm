@@ -1,0 +1,38 @@
+﻿@startuml
+title b. 中空部を持つ単一ビルディング / 最終型
+
+object "-56 : Way" as Way_56 {
+  ref:MLIT_PLATEAU = 13111-bldg-61384
+  nd = [5 .. 53]
+}
+note bottom
+マルチポリゴンの外側のウェイにリレーションのタグが重複しています
+"ref:MLIT_PLATEAU=13111-bldg-61384" は同じタグです (1)
+end note
+
+object "-57 : Way" as Way_57 {
+  ref:MLIT_PLATEAU = 13111-bldg-61384
+  nd = [58 .. 81]
+}
+note bottom
+マルチポリゴンの外側のウェイにリレーションのタグが重複しています
+"ref:MLIT_PLATEAU=13111-bldg-61384" は同じタグです (1)
+end note
+
+package Building-61384 {
+  map "-3 : Relation" as Relation_3 {
+    type => multipolygon
+    ref:MLIT_PLATEAU => 13111-bldg-61384
+    start_date => 1976
+    survey:date => 2016
+    height => 16.9
+    ele => 2.5
+    building => yes
+    member => [-56,-57]
+  }
+  Relation_3::member --> Way_56	: role=outer
+  Relation_3::member --> Way_57	: role=inner
+}
+
+
+@enduml

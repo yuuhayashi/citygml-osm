@@ -1,0 +1,4 @@
+﻿@startuml
+title b. 中空部を持つ単一ビルディング / GmlFileReadProcessor() の直後
+
+@enduml

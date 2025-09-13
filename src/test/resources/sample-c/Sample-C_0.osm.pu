@@ -1,5 +1,5 @@
 ﻿@startuml
-title c. 複数のビルディングが接触しているもの（連接ビルディング）
+title c. 複数のビルディングが接触しているもの（連接ビルディング）/GmlFileReadProcessor() の直後
 
 object "-222 : Way" as Way_222 {
   ref:MLIT_PLATEAU = 13111-bldg-386

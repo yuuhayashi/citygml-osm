@@ -111,6 +111,31 @@ public class RelationMarge {
 	void matomeru(RelationBuilding aBuilding, RelationBuilding bBuilding) {
 		WayMap memberways = new WayMap();
 		
+		if (aBuilding.members.size() == 1) {
+			for (MemberBean mem : bBuilding.members) {
+				if (mem.getRole().equals("outline")) {
+					if (mem.isWay()) {
+						ElementWay memway = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef()));
+						memway.toBuilding();
+						mem.setRole("part");
+						memberways.put(memway.clone());
+					}
+					else if (mem.isRelation()) {
+						ElementRelation polygon = osm.relationMap.get(mem.getRef());
+						if (polygon != null) {
+							polygon.toBuilding();
+							aBuilding.addMember(polygon, "part");
+							for (MemberBean polygonMember : polygon.members) {
+								if (polygonMember.getRole().equals("outer")) {
+									memberways.put(osm.getWayMap().get(polygonMember.getRef()).clone());
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
 		for (MemberBean mem : bBuilding.members) {
 			if (mem.getRole().equals("part")) {
 				// role=part メンバーは全て取り込む, role=outline は取り込まない
@@ -126,17 +151,40 @@ public class RelationMarge {
 				}
 			}
 			else if (mem.getRole().equals("outline")) {
-				// role=outline は取り込まずに'outline:WAY'だけ取り出す
-				if (mem.isWay()) {
-					ElementWay memway = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef()));
-					memberways.put(memway.clone());
+				if (bBuilding.members.size() == 1) {
+					// role=outline をpartとして取り込む
+					if (mem.isWay()) {
+						ElementWay memway = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef())).clone();
+						memway.toBuilding();
+						aBuilding.addMember(memway, "part");
+						memberways.put(memway.clone());
+					}
+					else if (mem.isRelation()) {
+						ElementRelation polygon = osm.relationMap.get(mem.getRef());
+						if (polygon != null) {
+							polygon.toBuilding();
+							aBuilding.addMember(polygon, "part");
+							for (MemberBean polygonMember : polygon.members) {
+								if (polygonMember.getRole().equals("outer")) {
+									memberways.put(osm.getWayMap().get(polygonMember.getRef()).clone());
+								}
+							}
+						}
+					}
 				}
-				else if (mem.isRelation()) {
-					ElementRelation polygon = osm.relationMap.get(mem.getRef());
-					if (polygon != null) {
-						for (MemberBean polygonMember : polygon.members) {
-							if (polygonMember.getRole().equals("outer")) {
-								memberways.put(osm.getWayMap().get(polygonMember.getRef()).clone());
+				else {
+					// role=outline は取り込まずに'outline:WAY'だけ取り出す
+					if (mem.isWay()) {
+						ElementWay memway = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef()));
+						memberways.put(memway.clone());
+					}
+					else if (mem.isRelation()) {
+						ElementRelation polygon = osm.relationMap.get(mem.getRef());
+						if (polygon != null) {
+							for (MemberBean polygonMember : polygon.members) {
+								if (polygonMember.getRole().equals("outer")) {
+									memberways.put(osm.getWayMap().get(polygonMember.getRef()).clone());
+								}
 							}
 						}
 					}

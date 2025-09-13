@@ -1,0 +1,55 @@
+﻿@startuml
+title c. 複数のビルディングが接触しているもの（連接ビルディング）/MultipolygonGarbageProcessor() の直後
+
+object "-221 : Way" as Way_221 {
+  height = 7.3
+  ele = 2.8
+  survey:date = 2016
+  start_date = 2003
+  building = yes
+  <del>**building:levels** = 
+  building:levels:underground = 1
+  ref:MLIT_PLATEAU = 13111-bldg-386
+  nd = [10,215,216,217,218,11]
+}
+
+object "-28 : Way" as Way_28 {
+  height = 42.7
+  ele = 2.8
+  survey:date = 2016
+  start_date => 1976
+  building => yes
+  building:levels => 2
+  ref:MLIT_PLATEAU = 13111-bldg-473
+  nd = [5 .. 26]
+}
+
+Way_221 .[#blue] Way_28 : share node[10,11]
+
+
+  map "-210 : Relation" as Relation_210 {
+    start_date => 2003
+    height => 7.3
+    <del>**building:levels** => 2
+    building:levels:underground => 1
+    type => building
+    ele => 2.8
+    survey:date => 2016
+    building => yes
+    member => [-221]
+  }
+  Relation_210::member --> Way_221 : role=outline
+
+  map "-1 : Relation" as Relation_1 {
+    start_date => 1976
+    height => 42.7
+    building:levels => 2
+    type => building
+    ele => 2.8
+    survey:date => 2016
+    building => yes
+    member => [-28]
+  }
+  Relation_1::member --> Way_28	: role=outline
+
+@enduml
