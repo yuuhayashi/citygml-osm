@@ -53,7 +53,7 @@ public class CitygmlFileTest_E extends GmlLoadRouteTest {
 							ElementRelation polygon = osm.relationMap.get(Long.toString(mem.getRef()));
 							assertNotNull(polygon);
 							assertEquals("multipolygon", polygon.getTagValue("type"));
-							assertEquals("yes", polygon.getTagValue("building:part"));
+							assertEquals("yes", polygon.getTagValue("building"));
 							assertEquals("大田病院", polygon.getTagValue("name"));
 							assertEquals("3", polygon.getTagValue("building:levels"));
 							assertEquals("1", polygon.getTagValue("building:levels:underground"));

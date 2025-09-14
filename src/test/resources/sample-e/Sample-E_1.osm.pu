@@ -1,0 +1,61 @@
+﻿@startuml
+title e. 空白部分がある連接ビルディング / MultipolygonGarbageProcessor()直後
+
+object "-18 : Way" as Way_18 {
+  height = 3.7
+  ele = 1.9
+  survey:date = 2016
+  start_date = 1977
+  building = yes
+  building:levels = 3
+  ref:MLIT_PLATEAU = 13111-bldg-55333
+  nd = [5 .. 16]
+}
+note bottom : A
+
+object "-175 : Way" as Way_175 {
+  height = 21.6
+  ele = 1.6
+  survey:date = 2016
+  start_date => 1976
+  building => yes
+  building:levels => 2
+  building:levels:underground => 1
+  ref:MLIT_PLATEAU = 13111-bldg-56522
+  nd = [124..141,7,6,144..148,16..11,155..173]
+}
+note bottom : B
+
+Way_175 .[#blue] Way_18 : share nd[6,7,11..16]
+
+package Building-A {
+  map "-1 : Relation" as Relation_1 {
+    start_date => 1977
+    height => 3.7
+    building:levels => 3
+    type => building
+    ele => 1.9
+    survey:date => 2016
+    building => yes
+    member => [-18]
+  }
+  note right : A
+  Relation_1::member --> Way_18 : role=outline
+}
+package Building-B {
+  map "-120 : Relation" as Relation_120 {
+    start_date => 1976
+    height => 21.6
+    building:levels => 2
+    building:levels:underground => 1
+    type => building
+    name => "大田病院"
+    ele => 1.6
+    survey:date => 2016
+    building => yes
+    member => [-175]
+  }
+  note right : B
+  Relation_120::member --> Way_175 : role=outline
+}
+@enduml

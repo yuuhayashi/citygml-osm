@@ -31,7 +31,7 @@ public class RelationMarge {
 		for (String rKey : osm.relationMap.keySet()) {
 			ElementRelation relation = osm.relationMap.get(rKey);
 			if (relation.isBuilding()) {
-				RelationMap marged = relationMarge1((RelationBuilding)relation, checked);
+				RelationMap marged = relationMarge1(relation, checked);
 				if (marged.size() > 0) {
 					for (String key : marged.keySet()) {
 						RelationBuilding del = (RelationBuilding)osm.relationMap.get(key);
@@ -58,11 +58,11 @@ public class RelationMarge {
 	 * @param checked	調査済みのリレーション一覧
 	 * @return	マージされて取り込まれたリレーションのリストを返す（呼び出し側で削除する必要がある）
 	 */
-	RelationMap relationMarge1(RelationBuilding relation, RelationMap checked) {
+	RelationMap relationMarge1(ElementRelation relation, RelationMap checked) {
 		RelationMap marged = new RelationMap();
 		if (checked.get(relation.getId()) == null) {
 			// outline:WAYに接触するbuildingを抽出
-			RelationBuilding margedBuilding = null;
+			ElementRelation margedBuilding = null;
 			while ((margedBuilding = checkParts(checked, relation)) != null) {
 				checked.remove(margedBuilding);
 				marged.put(margedBuilding);
@@ -77,23 +77,25 @@ public class RelationMarge {
 	 * @param src	マージ先のBuilding
 	 * @return	マージされたリレーション
 	 */
-	private RelationBuilding checkParts(RelationMap checked, RelationBuilding src) {
+	private ElementRelation checkParts(RelationMap checked, ElementRelation src) {
 		ElementWay srcWay =  src.getOutlineWay(osm);
 		if (srcWay == null) {
 			return null;
 		}
 
 		for (String relationid : checked.keySet()) {
-			RelationBuilding relation = (RelationBuilding)checked.get(relationid);
-			ElementWay targetWay =  relation.getOutlineWay(osm);
-			List<Integer> list = srcWay.getIntersectBoxels(targetWay.getBoxels());
-			if (list.size() > 0) {
-				WayMap ways = new WayMap();
-				ways.put(srcWay);
-				ways.put(targetWay);
-				if ((new MargeFactory(osm, ways)).isDuplicateSegment()) {
-					matomeru(src, relation);
-					return relation;
+			ElementRelation relation = checked.get(relationid);
+			if (relation.isBuilding()) {
+				ElementWay targetWay =  relation.getOutlineWay(osm);
+				List<Integer> list = srcWay.getIntersectBoxels(targetWay.getBoxels());
+				if (list.size() > 0) {
+					WayMap ways = new WayMap();
+					ways.put(srcWay);
+					ways.put(targetWay);
+					if ((new MargeFactory(osm, ways)).isDuplicateSegment()) {
+						matomeru(src, relation);
+						return relation;
+					}
 				}
 			}
 		}
@@ -108,7 +110,10 @@ public class RelationMarge {
 	 * @param aBuilding	取り込みの元
 	 * @param bBuilding		取り込まれるリレーション
 	 */
-	void matomeru(RelationBuilding aBuilding, RelationBuilding bBuilding) {
+	void matomeru(ElementRelation aBuilding, ElementRelation bBuilding) {
+		if (!aBuilding.isBuilding()) {
+			return;
+		}
 		WayMap memberways = new WayMap();
 		
 		if (bBuilding.members.size() == 1) {

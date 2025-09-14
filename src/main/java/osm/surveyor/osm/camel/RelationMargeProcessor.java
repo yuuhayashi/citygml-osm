@@ -21,7 +21,8 @@ public class RelationMargeProcessor implements Processor {
 		OsmDom osm = exchange.getIn().getBody(OsmDom.class);
 		System.out.print(LocalTime.now() +"\t");
 		
-		while((new RelationMarge(osm)).relationMarge());
+		RelationMarge marge = new RelationMarge(osm);
+		while(marge.relationMarge());
 		
 		System.out.println();
 		exchange.getIn().setBody(osm);

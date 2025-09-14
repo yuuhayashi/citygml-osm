@@ -9,7 +9,6 @@ import osm.surveyor.osm.ElementWay;
 import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.OsmDom;
 import osm.surveyor.osm.OsmLine;
-import osm.surveyor.osm.RelationBuilding;
 import osm.surveyor.osm.TwoPoint;
 import osm.surveyor.osm.WayMap;
 
@@ -29,7 +28,7 @@ public class MargeFactory {
 		this.inners = new ArrayList<>();
 	}
 	
-	public void addSourceRelation(RelationBuilding src) {
+	public void addSourceRelation(ElementRelation src) {
 		for (MemberBean mem : src.members) {
 			if (mem.getRole().equals("outline")) {
 				if (mem.isWay()) {

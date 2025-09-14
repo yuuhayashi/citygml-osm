@@ -76,7 +76,7 @@ public class OutlineFactory {
 	 * @param outlineways	取り込むアウトラインWAY
 	 * @return	合成済みのBUILDINGリレーション(合成の元)
 	 */
-	public RelationBuilding createOutline(RelationBuilding building, WayMap outlineways) {
+	public ElementRelation createOutline(ElementRelation building, WayMap outlineways) {
 		// Relationのメンバーから"height"の最大値を取得
 		String minele = osm.getMinEle(building);
 		String maxheight = osm.getMaxHeight(building);
@@ -201,22 +201,22 @@ public class OutlineFactory {
 			else {
 				// マルチポリゴンが存在しない場合は、マルチポリゴンを作成する
 				multi = new RelationMultipolygon(osm.getNewId());
-				TagBean buil = multi.getTag("building");
-				if (buil != null) {
-					multi.replaceTag("building", new TagBean("building:part", buil.v));
-				}
-				
-				// "outer"に、"bulding:Relation"の"outline"WAYをMEMBERとして追加する
+				multi.copyTag(building);
+				multi.toBuilding();
+				multi.replaceTag("type", new TagBean("type", "multipolygon"));
 				for (MemberBean mem : building.members) {
+					// マルチポリゴンの"outer"に、"bulding:Relation"の"outline"WAYをMEMBERとして追加する
 					if (mem.getRole().equals("outline") && mem.getType().equals("way")) {
 						ElementWay outlineWay = (ElementWay)osm.getWayMap().get(mem.getRef());
+						outlineWay.getTagList().clear();
 						multi.addMember(outlineWay, "outer");
 						building.removeMember(mem.getRef());
 						break;
 					}
 				}
-				multi.addMember(iWay, "inner");
 				building.addMember(multi, "outline");
+				multi.addMember(iWay, "inner");
+				osm.relationMap.put(multi);
 			}
 		}
 		

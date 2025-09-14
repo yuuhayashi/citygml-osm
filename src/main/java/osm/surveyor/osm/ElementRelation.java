@@ -3,6 +3,8 @@ package osm.surveyor.osm;
 import osm.surveyor.osm.way.WayModel;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -231,6 +233,88 @@ public class ElementRelation extends PoiBean implements Cloneable,Serializable {
 			}
 		}
 		return false;
+	}
+	
+	/**
+	 * "outline"WAYを取得する
+	 * 前提： "outline"メンバーは一つのWAYにまとめられていること
+	 * @param osm
+	 * @return	"outline"がないときはNULL
+	 */
+	public ElementWay getOutlineWay(OsmDom osm) {
+		if (this.isBuilding()) {
+			MemberBean outlineMember = getOutlineMember();
+			if (outlineMember == null) {
+				return null;
+			}
+			else {
+				if (outlineMember.isWay()) {
+					return (ElementWay)osm.getWayMap().get(outlineMember.getRef());
+				}
+				else if (outlineMember.isRelation()) {
+					ElementRelation polygon = osm.relationMap.get(outlineMember.getRef());
+					if (polygon != null) {
+						for (MemberBean outermember : polygon.members) {
+							if (outermember.getRole().equals("outer")) {
+								return (ElementWay)osm.getWayMap().get(outermember.getRef());
+							}
+						}
+					}
+				}
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * "ele"と"height"を統合してリレーションに設定する
+	 * "building:levels"と"building:levels:underground"を統合してリレーションに設定する
+	 * @param relationMap
+	 */
+	public void margeTagValue(OsmDom osm) {
+		Map<String, PoiBean> parts = new HashMap<>();
+		PoiBean outline = null;
+		for (MemberBean member : this.members) {
+			if (member.getRole().equals("outline")) {
+				if (member.isWay()) {
+					ElementWay outlineWay = (ElementWay)osm.getWayMap().get(member.getRef());;
+					outline = (PoiBean)outlineWay;
+				}
+				else if (member.isRelation()) {
+					ElementRelation memberRelation = osm.relationMap.get(member.getRef());
+					if (memberRelation != null) {
+						if (memberRelation.isMultipolygon()) {
+							outline = (PoiBean)memberRelation;
+						}
+					}
+				}
+			}
+			else if (member.getRole().equals("part")) {
+				if (member.isWay()) {
+					ElementWay way = (ElementWay)osm.getWayMap().get(member.getRef());
+					parts.put(way.getIdstr(), way);
+				}
+				else if (member.isRelation()) {
+					ElementRelation relation = osm.relationMap.get(member.getRef());
+					parts.put(relation.getIdstr(), relation);
+				}
+			}
+		}
+
+		if (outline != null) {
+			outline.margeTagset(parts);
+			outline.toBuilding();
+			outline.removeTag("start_date");	// issue #39
+			outline.removeTag("survey:date");	// issue #39
+		}
+		
+		this.margeTagset(parts);
+		this.toBuilding();
+
+		// 建築年はリレーションに反映させない
+		// [Issue39](https://github.com/yuuhayashi/citygml-osm/issues/39)
+		this.removeTag("start_date");
+		this.removeTag("survey:date");
 	}
 
 	//------------------------------------

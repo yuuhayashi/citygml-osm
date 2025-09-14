@@ -236,9 +236,9 @@ public class OsmDom  implements BoxcellMappable {
 					if (member.getRole().equals("outline") && member.getType().equals("relation")) {
 						ElementRelation multi = this.relationMap.get(member.getRef());
 						if (multi !=null && multi.isMultipolygon()) {
-							TagBean buil = multi.getTag("building");
+							TagBean buil = multi.getTag("building:part");
 							if (buil != null) {
-								multi.replaceTag("building", new TagBean("building:part", buil.v));
+								multi.replaceTag("building:part", new TagBean("building", buil.v));
 							}
 						}
 					}
