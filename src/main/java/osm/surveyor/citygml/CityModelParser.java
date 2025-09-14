@@ -350,7 +350,6 @@ public class CityModelParser extends DefaultHandler {
 						}
 					}
 				}
-				building.removeTag("ref:MLIT_PLATEAU");
 				building.addTag(usage);
 				osm.relationMap.put(building);
 			}
@@ -583,6 +582,7 @@ public class CityModelParser extends DefaultHandler {
 						outer.removeTag("height");
 						outer.removeTag("maxele");
 						outer.removeTag("ele");
+						outer.removeTag("ref:MLIT_PLATEAU");
 						osm.getWayMap().put(outer);
 						multipolygon.addMember(outer, "outer");
 					}
@@ -601,7 +601,7 @@ public class CityModelParser extends DefaultHandler {
 						elementWay.removeTag("height");
 						elementWay.removeTag("maxele");
 						elementWay.removeTag("ele");
-						elementWay.addTag("ref:MLIT_PLATEAU", buildingId);
+						elementWay.removeTag("ref:MLIT_PLATEAU");
 						osm.getWayMap().put(elementWay);
 						multipolygon.addMember(elementWay, "inner");
 					}

@@ -146,7 +146,7 @@ public class CitygmlFileTest_Issue28 extends GmlLoadRouteTest {
 			}
 		}
 
-		assertEquals(1, i);
+		assertEquals(3, i);
 	}
 	
 	/**

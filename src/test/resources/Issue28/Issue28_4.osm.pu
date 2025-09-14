@@ -1,0 +1,97 @@
+﻿@startuml
+title Issue28.  / 最終型
+
+package 40205-bldg-81197 {
+    object "-37295 : Way" as Way_37295 {
+      height = 9.7
+      ele = 46.3
+      survey:date = 2016
+      building = industrial
+      building:part = yes
+      ref:MLIT_PLATEAU = 40205-bldg-81197
+      nd = [,,,]
+    }
+    object "-49466 : Way" as Way_49466 {
+      height = 18.3
+      ele = 46.3
+      building:part = yes
+      ref:MLIT_PLATEAU = 40205-bldg-81197
+      nd = [,,,]
+    }
+    object "-49463 : Way" as Way_49463 {
+      height = 9.7
+      ele = 46.3
+      building:part = yes
+      ref:MLIT_PLATEAU = 40205-bldg-81197
+      nd = [,,,]
+    }
+    object "-49724 : Way" as Way_49724 {
+      height = 18.4
+      ele = 46.2
+      building = industrial
+      building:levels = 1
+      ref:MLIT_PLATEAU = 40205-bldg-81150
+      nd = [,,,]
+    }
+
+  map "-35564 : Relation" as Relation_35564 {
+    height => 18.4
+    building:levels => 1
+    type => building
+    ele => 46.2
+    survey:date => 2016
+    building => industrial
+    member => [,,,]
+  }
+  Relation_35564::member --> Way_49724 : role=outline
+  Relation_35564::member --> Way_37295 : role=part
+  Relation_35564::member --> Way_49466 : role=part
+  Relation_35564::member --> Way_49463 : role=part
+  Relation_35564::member --> Way_その他 : role=part
+}
+
+package 40205-bldg-80498 {
+    object "-49637 : Way" as Way_49637 {
+      building = yes
+      height = 6.9
+      ele = 46.8
+      building:levels = 1
+      ref:MLIT_PLATEAU = 40205-bldg-81341
+      nd = [,,,]
+    }
+    object "-11908 : Way" as Way_11908 {
+      area="6.589145017492004E-8"
+      height = 6.9
+      ele = 46.8
+      survey:date = 2016
+      building:part = industrial
+      building:levels = 1
+      ref:MLIT_PLATEAU = 40205-bldg-80498
+      nd = [11903 .. 11906]
+    }
+    object "-43835 : Way" as Way_43835 {
+      area="1.4414746298677377E-8"
+      height = 5.2
+      ele = 47
+      survey:date = 2016
+      building:part = yes
+      building:levels = 1
+      ref:MLIT_PLATEAU = 40205-bldg-81341
+      nd = [,,,]
+    }
+
+  map "-43826 : Relation" as Relation_43826 {
+    height => 6.9
+    building:levels => 1
+    type => building
+    ele => 46.8
+    survey:date => 2016
+    building => industrial
+    member => [-11908,-43835,-49637]
+  }
+  Relation_43826::member --> Way_11908 : role=part
+  Relation_43826::member --> Way_43835 : role=part
+  Relation_43826::member --> Way_49637 : role=outline
+}
+
+@enduml

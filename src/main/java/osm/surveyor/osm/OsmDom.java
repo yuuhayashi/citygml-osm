@@ -372,6 +372,62 @@ public class OsmDom  implements BoxcellMappable {
 		}
     	return ret;
     }
+    
+    /**
+     * "name"を解決する
+     */
+	public void fixTagset() {
+		List<ElementRelation> relations = this.getRelations();
+		for (ElementRelation relation : relations) {
+			if (relation.getTagValue("type").equals("building")) {
+				double max = 0;
+				long maxid = 0;
+				for (MemberBean member : relation.members) {
+					if (member.getRole().equals("part")) {
+						if (member.isWay()) {
+							long id = member.getRef();
+							ElementWay way = (ElementWay)this.getWayMap().get(id);
+							if ((way != null) && (way.getArea() > max)) {
+								max = way.getArea();
+								maxid = id;
+							}
+						}
+					}
+				}
+				
+				if (maxid != 0) {
+					ElementWay outline = null;
+					ElementWay maxway = (ElementWay)this.getWayMap().get(maxid);
+					for (MemberBean member : relation.members) {
+						if (member.getRole().equals("outline")) {
+							if (member.isWay()) {
+								long id = member.getRef();
+								outline = (ElementWay)this.getWayMap().get(id);
+							}
+						}
+					}
+					if (maxway != null) {
+						ElementWay way = maxway.clone();
+						TagBean tag = maxway.getTag("building:part");
+						if (tag != null) {
+							way.removeTag("building:part");
+							way.addTag(new TagBean("building", tag.getValue()));
+						}
+						way.removeTag("building:levels");
+						way.removeTag("height");
+						way.removeTag("MLIT_PLATEAU:fixme");
+						way.removeTag("ref:MLIT_PLATEAU");
+						way.removeTag("start_date");		// Issue #39 複合ビルでの”建築年”の扱い
+						if (outline != null) {
+							outline.copyTag(way);
+						}
+						relation.copyTag(way);
+					}
+				}
+			}
+		}
+	}
+
 
 	private IndexMap idxmap = null;
     

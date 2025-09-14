@@ -274,21 +274,33 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
         String building = "yes";
         TagBean buildingPartTag = this.getTag("building:part");
         if (buildingPartTag != null) {
-            building = buildingPartTag.v;
+        	if (building.equals("yes")) {
+                building = buildingPartTag.v;
+        	}
             this.removeTag("building:part");
+        }
+        String buildingTag = this.getTagValue("building");
+        if (buildingTag != null) {
+        	if (building.equals("yes")) {
+                building = buildingTag;
+        	}
         }
         for (TagBean tag : tags) {
             if (tag.k.equals("type")) {
             }
             else if (tag.k.equals("building:part")) {
-                building = tag.v;
+            	if (building.equals("yes")) {
+                    building = tag.v;
+            	}
             }
             else if (tag.k.equals("building")) {
-                building = tag.v;
+            	if (building.equals("yes")) {
+                    building = tag.v;
+            	}
             }
             else if (tag.k.equals("addr")) {
             }
-            else if (tag.k.startsWith("addr:*")) {
+            else if (tag.k.startsWith("addr:")) {
             }
             else if (tag.k.equals("source")) {
             }
@@ -296,7 +308,7 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
             }
             else if (tag.k.equals("ref")) {
             }
-            else if (tag.k.startsWith("ref:*")) {
+            else if (tag.k.startsWith("ref:")) {
             }
             else if (tag.k.equals("height")) {
             }
@@ -306,10 +318,7 @@ public abstract class WayModel extends PoiBean implements Cloneable, Serializabl
                 this.addTag(tag.k, tag.v);
             }
         }
-        String buildingTag = this.getTagValue("building");
-        if (buildingTag == null) {
-            this.addTag("building", building);
-        }
+        this.addTag("building", building);
     }
                                                                                                                    
 	//--------- Cloneable -------------------------------------------
