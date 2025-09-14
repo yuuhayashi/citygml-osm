@@ -134,7 +134,7 @@ public class Test_D extends OsmUpdaterTest {
 					for (MemberBean mem : relation.getMemberList()) {
 						if (mem.getRole().equals("outline")) {
 							outlineCnt++;
-							assertEquals("way", mem.getType());	// Issue #40 Sample_Dで、バリデーション警告「重なった建物」が発生する
+							assertEquals("relation", mem.getType());	// Issue #40 Sample_Dで、バリデーション警告「重なった建物」が発生する
 						}
 						if (mem.getRole().equals("part")) {
 							partCnt++;
