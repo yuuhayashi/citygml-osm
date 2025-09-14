@@ -87,14 +87,16 @@ public class RelationMarge {
 			ElementRelation relation = checked.get(relationid);
 			if (relation.isBuilding()) {
 				ElementWay targetWay =  relation.getOutlineWay(osm);
-				List<Integer> list = srcWay.getIntersectBoxels(targetWay.getBoxels());
-				if (list.size() > 0) {
-					WayMap ways = new WayMap();
-					ways.put(srcWay);
-					ways.put(targetWay);
-					if ((new MargeFactory(osm, ways)).isDuplicateSegment()) {
-						matomeru(src, relation);
-						return relation;
+				if (targetWay != null) {
+					List<Integer> list = srcWay.getIntersectBoxels(targetWay.getBoxels());
+					if (list.size() > 0) {
+						WayMap ways = new WayMap();
+						ways.put(srcWay);
+						ways.put(targetWay);
+						if ((new MargeFactory(osm, ways)).isDuplicateSegment()) {
+							matomeru(src, relation);
+							return relation;
+						}
 					}
 				}
 			}

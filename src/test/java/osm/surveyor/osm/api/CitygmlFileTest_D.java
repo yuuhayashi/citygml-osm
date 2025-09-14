@@ -66,8 +66,8 @@ public class CitygmlFileTest_D extends GmlLoadRouteTest {
 							assertEquals("yes", way.getTagValue("building"));	// Issue #40 [バリデーション警告「重なった建物」が発生する]
 							assertEquals("3", way.getTagValue("building:levels"));
 							assertEquals("1", way.getTagValue("building:levels:underground"));
-							assertEquals("2016", way.getTagValue("survey:date"));
-							assertEquals(6, way.getTagList().size());
+							assertNull(way.getTagValue("survey:date"));
+							assertEquals(5, way.getTagList().size());
 						}
 						else if (mem.getRole().equals("part")) {
 							partCnt++;

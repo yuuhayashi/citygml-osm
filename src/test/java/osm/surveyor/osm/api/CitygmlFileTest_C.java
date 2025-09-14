@@ -157,8 +157,8 @@ public class CitygmlFileTest_C extends GmlLoadRouteTest {
 							assertEquals(way.getTagValue("building"), ("yes"));
 							assertEquals(way.getTagValue("building:levels"), ("3"));
 							assertEquals(way.getTagValue("building:levels:underground"), ("2"));
-							assertEquals("2016", way.getTagValue("survey:date"));
-							assertEquals(6, way.getTagList().size());
+							assertNull(way.getTagValue("survey:date"));
+							assertEquals(5, way.getTagList().size());
 						}
 						if (mem.getRole().equals("part")) {
 							partCnt++;
