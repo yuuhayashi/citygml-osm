@@ -202,37 +202,43 @@ public class OsmBean implements Serializable,BoxcellMappable {
 	//-------------------------------------
 	
 	public void putNode(NodeBean poi) {
-		List<NodeBean> removeList = new ArrayList<>();
-    	for (NodeBean obj : this.nodeList) {
-    		if (obj.getId() == poi.getId()) {
-    			removeList.add(obj);
-    		}
-    	}
-    	for (NodeBean obj : removeList) {
-    		this.nodeList.remove(this.nodeList.indexOf(obj));
-    	}
-		this.nodeList.add(poi);
+		if (poi != null) {
+			List<NodeBean> removeList = new ArrayList<>();
+	    	for (NodeBean obj : this.nodeList) {
+	    		if (obj.getId() == poi.getId()) {
+	    			removeList.add(obj);
+	    		}
+	    	}
+	    	for (NodeBean obj : removeList) {
+	    		this.nodeList.remove(this.nodeList.indexOf(obj));
+	    	}
+			this.nodeList.add(poi);
+		}
 	}
 
 	public void putWay(WayModel way) {
-		getWayMap().put(way);
-		this.indexMap.putWayType(way);
+		if (way != null) {
+			getWayMap().put(way);
+			this.indexMap.putWayType(way);
+		}
 	}
 	
 	public void putRelation(RelationBean poi) {
-		List<RelationBean> removeList = new ArrayList<>();
-		for (RelationBean obj : this.relationList) {
-			if (obj.getId() == poi.getId()) {
-    			removeList.add(obj);
+		if (poi != null) {
+			List<RelationBean> removeList = new ArrayList<>();
+			for (RelationBean obj : this.relationList) {
+				if (obj.getId() == poi.getId()) {
+	    			removeList.add(obj);
+				}
 			}
+	    	for (RelationBean obj : removeList) {
+	    		int index = this.relationList.indexOf(obj);
+	    		if (index >= 0) {
+	        		this.relationList.remove(index);
+	    		}
+	    	}
+			getRelationList().add(poi);
 		}
-    	for (RelationBean obj : removeList) {
-    		int index = this.relationList.indexOf(obj);
-    		if (index >= 0) {
-        		this.relationList.remove(index);
-    		}
-    	}
-		getRelationList().add(poi);
 	}
     
 	/**
@@ -259,8 +265,10 @@ public class OsmBean implements Serializable,BoxcellMappable {
 	 * @param poi
 	 */
 	public void removeWay(Areable poi) {
-    	this.indexMap.removeWayBean(poi);
-    	getWayMap().remove(poi.getId());
+		if (poi != null) {
+	    	this.indexMap.removeWayBean(poi);
+	    	getWayMap().remove(poi.getId());
+		}
 	}
 	
 	/**
