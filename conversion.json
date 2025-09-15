@@ -1,5 +1,5 @@
 {
-	"version": "2.3.6",
+	"version": "3.0.0",
 	"usage" : [
 		{"code":"401","name":"業務施設",	"building":"commercial"},
 		{"code":"402","name":"商業施設",	"building":"retail"},
