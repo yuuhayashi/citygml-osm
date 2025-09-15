@@ -306,6 +306,7 @@ public class ElementRelation extends PoiBean implements Cloneable,Serializable {
 			outline.toBuilding();
 			outline.removeTag("start_date");	// issue #39
 			outline.removeTag("survey:date");	// issue #39
+			outline.removeTag("ref:MLIT_PLATEAU");
 		}
 		
 		this.margeTagset(parts);

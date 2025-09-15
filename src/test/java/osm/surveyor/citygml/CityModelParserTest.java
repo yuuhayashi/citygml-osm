@@ -56,7 +56,7 @@ public class CityModelParserTest {
 	        
 	        // GMLv2
 	        List<ElementWay> ways = dom.getWay("40205-bldg-91547");
-	        assertEquals(2, ways.size());
+	        assertEquals(1, ways.size());
 	        for (ElementWay way : ways) {
 	        	if (way.getTagValue("building") != null) {
 	        		assertEquals("2016", way.getTagValue("survey:date"));

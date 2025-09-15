@@ -6,7 +6,6 @@ package 40205-bldg-81197 {
       height = 9.7
       ele = 46.3
       survey:date = 2016
-      building = industrial
       building:part = yes
       ref:MLIT_PLATEAU = 40205-bldg-81197
       nd = [,,,]
@@ -15,22 +14,19 @@ package 40205-bldg-81197 {
       height = 18.3
       ele = 46.3
       building:part = yes
-      ref:MLIT_PLATEAU = 40205-bldg-81197
       nd = [,,,]
     }
     object "-49463 : Way" as Way_49463 {
       height = 9.7
       ele = 46.3
       building:part = yes
-      ref:MLIT_PLATEAU = 40205-bldg-81197
       nd = [,,,]
     }
     object "-49724 : Way" as Way_49724 {
       height = 18.4
       ele = 46.2
-      building = industrial
+      building = yes
       building:levels = 1
-      ref:MLIT_PLATEAU = 40205-bldg-81150
       nd = [,,,]
     }
 
@@ -40,7 +36,7 @@ package 40205-bldg-81197 {
     type => building
     ele => 46.2
     survey:date => 2016
-    building => industrial
+    building => yes
     member => [,,,]
   }
   Relation_35564::member --> Way_49724 : role=outline

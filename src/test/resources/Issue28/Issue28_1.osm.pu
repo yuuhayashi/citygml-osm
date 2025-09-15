@@ -1,6 +1,27 @@
 ﻿@startuml
 title Issue28.  / MultipolygonGarbageProcessor()直後
 
+object "-37295 : Way" as Way_37295 {
+  height = 9.7
+  ele = 46.3
+  survey:date = 2016
+  building = yes
+  ref:MLIT_PLATEAU = 40205-bldg-81197
+  nd = [,,,]
+}
+package bldg-81197 {
+  map "-37247 : Relation" as Relation_37247 {
+    height => 9.7
+    type => building
+    ele => 46.3
+    survey:date => 2016
+    building => yes
+    ref:MLIT_PLATEAU => 40205-bldg-81197
+    member => [-37295]
+  }
+  Relation_37247::member --> Way_37295 : role=outline
+}
+
 object "-11908 : Way" as Way_11908 {
   height = 6.9
   ele = 46.8
@@ -12,7 +33,7 @@ object "-11908 : Way" as Way_11908 {
 }
 note bottom : A
 
-package Building-A {
+package bldg-80498 {
   map "-11899 : Relation" as Relation_11899 {
     height => 6.9
     building:levels => 1

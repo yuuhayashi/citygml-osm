@@ -65,29 +65,27 @@ public class CitygmlFileTest_Issue28 extends GmlLoadRouteTest {
 	@Test
 	public void test50303525() {
 		OsmDom osm = testdo("./src/test/resources/Issue28_50303525_op.gml");
-		try {
-			assertNotNull(osm.relationMap);
+		assertNotNull(osm.relationMap);
+		
+		// Issue #34
+		CitygmlFileTest_Issue34.checkIssue34_1(osm);
+		CitygmlFileTest_Issue34.checkIssue34_2(osm);
+		
+		// Issue #37
+		testIssue37(osm, osm.relationMap);
+		
+		for (String id : osm.relationMap.keySet()) {
+			ElementRelation relation = osm.relationMap.get(id);
+			assertNotNull(relation);
 			
-			// Issue #34
-			CitygmlFileTest_Issue34.checkIssue34_1(osm);
-			CitygmlFileTest_Issue34.checkIssue34_2(osm);
+			// Issue #36
+			testIssue36(osm, relation);
 			
-			// Issue #37
-			testIssue37(osm, osm.relationMap);
-			
-			for (String id : osm.relationMap.keySet()) {
-				ElementRelation relation = osm.relationMap.get(id);
-				assertNotNull(relation);
-				
-				// Issue #36
-				testIssue36(osm, relation);
-				
-				for (MemberBean mem : relation.members) {
-					if (mem.getRole().equals("part")) {
-						assertEquals("way", mem.getType());
-						ElementWay way = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef()));
-						assertNotNull(way.getTagValue("ref:MLIT_PLATEAU"));
-						
+			for (MemberBean mem : relation.members) {
+				if (mem.getRole().equals("part")) {
+					assertEquals("way", mem.getType());
+					ElementWay way = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef()));
+					if (way.getTagValue("ref:MLIT_PLATEAU") != null) {
 						// (1) "40205-bldg-80498"をメンバに持つリレーションは building=industrial であるべき、
 						if (way.getTagValue("ref:MLIT_PLATEAU").endsWith("40205-bldg-80498")) {
 							assertEquals("industrial", relation.getTagValue("building"));
@@ -110,12 +108,9 @@ public class CitygmlFileTest_Issue28 extends GmlLoadRouteTest {
 					}
 				}
 			}
-			System.out.println("relations.size(): "+ osm.relationMap.size());
-			assertTrue(osm.relationMap.size() > 5);
-		} catch (Exception e) {
-			e.fillInStackTrace();
-			fail(e.toString());
 		}
+		System.out.println("relations.size(): "+ osm.relationMap.size());
+		assertTrue(osm.relationMap.size() > 5);
 	}
 	
 	/**
@@ -146,7 +141,7 @@ public class CitygmlFileTest_Issue28 extends GmlLoadRouteTest {
 			}
 		}
 
-		assertEquals(3, i);
+		assertEquals(1, i);
 	}
 	
 	/**

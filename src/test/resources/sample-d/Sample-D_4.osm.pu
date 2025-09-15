@@ -13,13 +13,11 @@ object "-199 : Way" as Way_199 {
 note right : (A+B)
 
 object "-60 : Way" as Way_60 {
-  ref:MLIT_PLATEAU = 13111-bldg-72601
   nd = [7,53,54,55,56,8]
 }
 note bottom : A outer
 
 object "-61 : Way" as Way_61 {
-  ref:MLIT_PLATEAU = 13111-bldg-72601
   nd = [62,63,64,65]
 }
 note bottom : a1 inner
@@ -37,7 +35,6 @@ object "-10 : Way" as Way_10 {
 note right : B
 
 object "-67 : Way" as Way_67 {
-  ref:MLIT_PLATEAU = 13111-bldg-72601
   nd = [68,69,70,71]
 }
 note bottom : a2 inner
@@ -62,7 +59,6 @@ package "Building A+B" {
 
   map "-1 : Relation" as Relation_1 {
     type => building
-    survey:date => 2016
     building => yes
     building:levels => 3
     building:levels:underground => 1

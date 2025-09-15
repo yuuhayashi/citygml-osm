@@ -39,16 +39,16 @@ public class CitygmlFileTest_B extends GmlLoadRouteTest {
 							outerCnt++;
 							assertEquals("way", mem.getType());
 							ElementWay way = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef()));
-							assertEquals("13111-bldg-61384", way.getTagValue("ref:MLIT_PLATEAU"));
+							assertNull(way.getTagValue("ref:MLIT_PLATEAU"));
 							assertNull(way.getTagValue("source"));
-							assertEquals(1, way.getTagList().size());
+							assertEquals(0, way.getTagList().size());
 						}
 						if (mem.getRole().equals("inner")) {
 							innerCnt++;
 							assertEquals("way", mem.getType());
 							ElementWay way = (ElementWay)osm.getWayMap().get(Long.toString(mem.getRef()));
-							assertEquals("13111-bldg-61384", way.getTagValue("ref:MLIT_PLATEAU"));
-							assertEquals(1, way.getTagList().size());
+							assertNull(way.getTagValue("ref:MLIT_PLATEAU"));
+							assertEquals(0, way.getTagList().size());
 						}
 					}
 					assertEquals(1, outerCnt);

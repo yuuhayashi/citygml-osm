@@ -12,7 +12,6 @@ object "-16 : Way" as Way_16 {
   nd = [5 .. 14]
 }
 object "-246 : Way" as Way_246 {
-  survey:date = 2016
   building => yes
   height = 7.1
   ele = 2.5
@@ -44,7 +43,6 @@ Way_113 .[#blue] Way_179 : share node[116,111]
 package "Building (A+B+C)" {
   map "-1 : Relation" as Relation_1 {
     type => building
-    survey:date => 2016
     building => yes
     building:levels => 3
     building:levels:underground => 2

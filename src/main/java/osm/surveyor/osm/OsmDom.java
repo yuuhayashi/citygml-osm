@@ -374,7 +374,7 @@ public class OsmDom  implements BoxcellMappable {
     }
     
     /**
-     * "name"を解決する
+     * USAGEを解決する
      */
 	public void fixTagset() {
 		List<ElementRelation> relations = this.getRelations();
@@ -407,21 +407,27 @@ public class OsmDom  implements BoxcellMappable {
 						}
 					}
 					if (maxway != null) {
-						ElementWay way = maxway.clone();
+						String usage = null;
 						TagBean tag = maxway.getTag("building:part");
 						if (tag != null) {
-							way.removeTag("building:part");
-							way.addTag(new TagBean("building", tag.getValue()));
+							usage = tag.v;
 						}
-						way.removeTag("building:levels");
-						way.removeTag("height");
-						way.removeTag("MLIT_PLATEAU:fixme");
-						way.removeTag("ref:MLIT_PLATEAU");
-						way.removeTag("start_date");		// Issue #39 複合ビルでの”建築年”の扱い
+						else {
+							tag = maxway.getTag("building");
+							if (tag != null) {
+								usage = tag.v;
+							}
+						}
+						if (usage == null) {
+							usage = "yes";
+						}
+						
 						if (outline != null) {
-							outline.copyTag(way);
+							outline.replaceTag("building:part", new TagBean("building", usage));
+							outline.replaceTag("building", new TagBean("building", usage));
 						}
-						relation.copyTag(way);
+						relation.replaceTag("building:part", new TagBean("building", usage));
+						relation.replaceTag("building", new TagBean("building", usage));
 					}
 				}
 			}

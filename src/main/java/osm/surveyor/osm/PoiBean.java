@@ -238,32 +238,44 @@ public class PoiBean implements Cloneable,Serializable, Tagable {
 	 * @param k		指定するタグのk
 	 * @return	指定したタグが存在しない場合はNULL
 	 */
-	public static String getMinValue(Map<String,PoiBean> poiMap, String k) {
-		String min = null;
+	public static TagBean getMinValue(Map<String,PoiBean> poiMap, String k) {
+		TagBean min = null;
 		for (PoiBean poi : poiMap.values()) {
 			String v = poi.getTagValue(k);
 			if (v != null) {
 				if (min == null) {
-					min = v;
+					min = poi.getTag(k);
 				}
-				else if (Double.parseDouble(min) > Double.parseDouble(v)) {
-					min = v;
+				else if (Double.parseDouble(min.v) > Double.parseDouble(v)) {
+					min = poi.getTag(k);
 				}
 			}
 		}
 		return min;
 	}
 	
+	/**
+	 * 指定のPOIをこのPOIにマージする
+	 * ・文字列長の長い方の"name"
+	 * ・"height" and "ele"
+	 * ・"building:levels" and "building:levels:underground"
+	 * @param poiMap
+	 */
 	public void margeTagset(Map<String,PoiBean> poiMap) {
 		// 'name='
 		this.margeName(poiMap);
 
-		// 'height' and 'ele'
-		this.margeEleHeight(poiMap);
+		// 'ele' .. 最小値を採用する
+		TagBean minele = PoiBean.getMinValue(poiMap, "ele");
+		if (minele != null) {
+			this.replaceTag("ele", minele);
+		}
+		
+		// 'height' with 'ele'
+		this.margeHeight(poiMap, minele);
 		
 		// 地上階 & 地下階
 		String maxLevels = this.getMaxValue(poiMap, "building:levels");
-		String maxup = this.getMaxValue(poiMap, "building:levels");
 		if ((maxLevels != null) && !maxLevels.equals("0")) {
 			this.addTag("building:levels", maxLevels);
 
@@ -298,33 +310,34 @@ public class PoiBean implements Cloneable,Serializable, Tagable {
 		}
 	}
 	
-	void margeEleHeight(Map<String,PoiBean> poiMap) {
+	/**
+	 * 'height'
+	 * @param poiMap
+	 * @param minele
+	 */
+	void margeHeight(Map<String,PoiBean> poiMap, TagBean minele) {
 		// 'height' and 'ele'
-		String minele = this.getMinValue(poiMap, "ele");
-		String maxele = null;
+		String maxheight = null;
 		for (PoiBean poi : poiMap.values()) {
-			String height = calcHeight(minele, poi.getTagValue("ele"), poi.getTagValue("height"));
+			String height = calcHeight((minele == null ? null : minele.v), poi.getTagValue("ele"), poi.getTagValue("height"));
 			if (height != null) {
-				if (maxele == null) {
-					maxele = height;
+				if (maxheight == null) {
+					maxheight = height;
 				}
 				else {
-					if (Double.parseDouble(maxele) < Double.parseDouble(height)) {
-						maxele = height;
+					if (Double.parseDouble(maxheight) < Double.parseDouble(height)) {
+						maxheight = height;
 					}
 				}
 			}
 		}
-		if (maxele != null) {
-			this.addTag("height", maxele);
-		}
-		if (minele != null) {
-			this.addTag("ele", minele);
+		if (maxheight != null) {
+			this.replaceTag("height", new TagBean("height", maxheight));
 		}
 	}
 
 	/**
-	 * 
+	 * このPOIの"name"と指定のPOIの"name"とを比較して、文字列長の長い方の値をこのPOIに設定する
 	 * @param building
 	 * @param ways
 	 */
