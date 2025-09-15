@@ -39,11 +39,13 @@ public class IndexMap extends HashMap<Integer, BoundsCellBean> implements Clonea
     }
     
     public void removeWayBean(Areable way) {
-    	for (Integer boxcelid : way.getBoxels()) {
-    		BoundsCellBean cell = this.get(boxcelid);
-    		if (cell != null) {
-    			cell.getWayMap().remove(way.getId());
-    		}
+    	if (way != null) {
+        	for (Integer boxcelid : way.getBoxels()) {
+        		BoundsCellBean cell = this.get(boxcelid);
+        		if (cell != null) {
+        			cell.getWayMap().remove(way.getId());
+        		}
+        	}
     	}
     }
     
