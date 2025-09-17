@@ -228,7 +228,6 @@ public class OsmDom  implements BoxcellMappable {
 	}
 
 	public void toOutline() {
-		System.out.println(LocalTime.now() +"\tOsmDom.toOutline()");
 		for (String id : this.relationMap.keySet()) {
 			ElementRelation relation = this.relationMap.get(id);
 			if (relation.isBuilding()) {
@@ -278,7 +277,6 @@ public class OsmDom  implements BoxcellMappable {
 	 * RELATIONに所属していないWAYを削除する
 	 */
 	public void gerbageWay() {
-		System.out.println(LocalTime.now() +"\tOsmDom.gerbageWay()");
 		WayMap filter = new WayMap();
 		for (String id : this.wayMap.keySet()) {
 			ElementWay way = (ElementWay)this.wayMap.get(id);

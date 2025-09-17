@@ -87,6 +87,7 @@ public class CityModelParser extends DefaultHandler {
     BoundsBean bounds = null;					// <gml:boundedBy/>
 	String surveyYear = null;					// <uro:surveyYear/> 測量年
 	RelationBuilding building = null;				// <bldg:Building/>
+	int buildingCount = 10;
 	String buildingId = null;						// <bldg:Building gml:id="buildingId" />
 	String name = null;								// <gml:name/>
 	TagBean usage = null;						// <bldg:usage/>	用途
@@ -237,7 +238,7 @@ public class CityModelParser extends DefaultHandler {
 				NodeBean node = nodes.get(key);
 				osm.nodes.put(node);
 			}
-			System.out.println(LocalTime.now() +"\tparse end ["+ qName +"]");
+			System.out.println();
 		}
 		else if(qName.equals("gml:boundedBy")){
 			osm.setBounds(bounds);
@@ -352,6 +353,11 @@ public class CityModelParser extends DefaultHandler {
 				}
 				building.addTag(usage);
 				osm.relationMap.put(building);
+				buildingCount--;
+				if (buildingCount < 1) {
+					buildingCount = 10;
+					System.out.print(":");
+				}
 			}
 			building = null;
 			usage = null;
