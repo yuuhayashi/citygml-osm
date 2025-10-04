@@ -87,7 +87,7 @@ public class CitygmlFileTest_Issue139 extends GmlLoadRouteTest {
 	        List<WayModel> wayList = dom.getWayList();
 			assertNotNull(wayList);
 			assertNotEquals(0, wayList.size());
-	        assertEquals(192, wayList.size());
+	        assertEquals(194, wayList.size());
 	        assertEquals(9, dom.getRelations().size());
 	        
 			for (ElementRelation relation : dom.getRelations()) {

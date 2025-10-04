@@ -177,11 +177,13 @@ public class OsmDom  implements BoxcellMappable {
 		for (MemberBean member : relation.members) {
 			if (member.isWay()) {
 				ElementWay way = (ElementWay)wayMap.get(member.getRef());
-				if (member.getRole().equals("part") || member.getRole().equals("outline")) {
-					String ele = way.getTagValue("ele");
-					if (ele != null) {
-						if (Double.parseDouble(minele) > Double.parseDouble(ele)) {
-							minele = ele;
+				if (way != null) {
+					if (member.getRole().equals("part") || member.getRole().equals("outline")) {
+						String ele = way.getTagValue("ele");
+						if (ele != null) {
+							if (Double.parseDouble(minele) > Double.parseDouble(ele)) {
+								minele = ele;
+							}
 						}
 					}
 				}
@@ -198,8 +200,10 @@ public class OsmDom  implements BoxcellMappable {
 		for (MemberBean member : relation.members) {
 			if (member.isWay()) {
 				ElementWay way = (ElementWay)wayMap.get(member.getRef());
-				if (member.getRole().equals("part") || member.getRole().equals("outline")) {
-					updateMaxmin(maxmin, way);
+				if (way != null) {
+					if (member.getRole().equals("part") || member.getRole().equals("outline")) {
+						updateMaxmin(maxmin, way);
+					}
 				}
 			}
 		}
