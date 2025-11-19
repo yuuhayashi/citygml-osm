@@ -2,7 +2,6 @@ package osm.surveyor.osm;
 
 import java.io.File;
 import java.io.PrintStream;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +14,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import osm.surveyor.citygml.CityModelParser;
+import osm.surveyor.citygml.ConversionTable;
 import osm.surveyor.gis.point.NdModel;
 import osm.surveyor.osm.boxcel.BoxcellMappable;
 import osm.surveyor.osm.boxcel.IndexMap;
@@ -31,7 +31,12 @@ public class OsmDom  implements BoxcellMappable {
     public OsmDom() {
         super();
         this.idno = 0;
-        bounds = new BoundsBean();
+        
+		ConversionTable conversion = new ConversionTable();
+		generator = conversion.name;
+		version = conversion.version;
+
+		bounds = new BoundsBean();
         idxmap = new IndexMap();
         nodes = new NodeBeans();	// k= node.id
         wayMap = new WayMap();		// k= way.id
@@ -57,10 +62,10 @@ public class OsmDom  implements BoxcellMappable {
     public String srsName = null;
 
 	@XmlAttribute(name="generator")
-	public String generator = "JOSM";
+	public String generator;
 	
 	@XmlAttribute(name="version")
-	public String version = "0.6";
+	public String version;
 	
     @XmlElement(name="node")
     public NodeBeans nodes;	// k= node.id

@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
@@ -14,11 +13,11 @@ import org.json.JSONObject;
 
 public class ConversionTable {
 
-	public static String fileName = "conversion.json";
+	static String fileName = "conversion.json";
 	
 	public static void main(String[] args) {
 		
-		ConversionTable table = new ConversionTable(Paths.get(ConversionTable.fileName).toFile());
+		ConversionTable table = new ConversionTable();
 		if (table.version != null) {
 			System.out.println(LocalTime.now() +"version: "+ table.version + ",\t");
 		}
@@ -33,29 +32,34 @@ public class ConversionTable {
 	 * コンストラクタ
 	 * @param file	JSON source file.
 	 */
-	public ConversionTable(File file) {
-		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+	public ConversionTable() {
+		ClassLoader classLoader = getClass().getClassLoader();
+	    File file = new File(classLoader.getResource(fileName).getFile());
+	    
+	    try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 			String strLine;
 			StringBuilder sbSentence = new StringBuilder();
 			while ((strLine = br.readLine()) != null) {
 				sbSentence.append(strLine);
 			}
-			
 			parseUsage(sbSentence);
-			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public String version = null;
+	public String name = null;
 	public ArrayList<Usage> usageList = new ArrayList<>();
 	
 	void parseUsage(StringBuilder sbSentence) {
 		JSONObject jsonObj = new JSONObject(sbSentence.toString());
 		version = jsonObj.getString("version");
+		name = jsonObj.getString("name");
 		JSONArray usageList = jsonObj.getJSONArray("usage");
 		for (int i = 0; i < usageList.length(); i++) {
 			Usage usage = new Usage(usageList.getJSONObject(i));

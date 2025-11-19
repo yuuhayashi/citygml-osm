@@ -13,6 +13,7 @@ import com.google.common.collect.Lists;
 
 import osm.surveyor.citygml.ConversionTable;
 import osm.surveyor.citygml.GmlFiles;
+import osm.surveyor.citygml.OsmFiles;
 import osm.surveyor.gml.camel.CitygmlLoad;
 import osm.surveyor.tools.geojson.GeoJson;
 
@@ -28,7 +29,7 @@ public class GmlFileListProcessor implements Processor {
 		String path = null;
 		String name = "";
 		GeoJson json = new GeoJson();
-		ConversionTable table = new ConversionTable(Paths.get(ConversionTable.fileName).toFile());
+		ConversionTable table = new ConversionTable();
 		if (table != null) {
 			if (table.version != null) {
 				json.setVersion(table.version);
@@ -53,6 +54,36 @@ public class GmlFileListProcessor implements Processor {
                 if ((surveyYear != null) && !surveyYear.isEmpty()) {
                 	json.setSurveyYear(surveyYear);
                 }
+        	}
+        	catch (Exception e) {
+        		// 何もしない
+        		System.out.println(e.toString());
+        	}
+
+        	// OSMファイルをパースして、<version/> を読み取る
+        	try {
+        		File directory = new File(gmlfile.getParent());
+        		String filename = gmlfile.getName();
+            	String gmlName = new String();
+            	StringTokenizer st = new StringTokenizer(filename, ".");
+            	if (st.countTokens() > 1) {
+                	for (int i = 0; i < (st.countTokens() - 1); i++) {
+                        gmlName = st.nextElement().toString();
+                		break;
+                	}
+            	}
+
+            	String osmName = gmlName + OsmFiles.SUFFIX;
+            	if (CitygmlLoad.isExit(directory, osmName)) {
+                    // OSMファイルをパースする
+            		File osmfile = new File(directory, osmName);
+            		OsmPackFile target = new OsmPackFile(osmfile);
+                    target.parse();
+                    String version = target.osm.version;
+                    if ((version != null) && !version.isEmpty()) {
+                    	json.setVersion(version);
+                    }
+            	}
         	}
         	catch (Exception e) {
         		// 何もしない

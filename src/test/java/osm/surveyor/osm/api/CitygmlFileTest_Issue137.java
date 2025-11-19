@@ -2,12 +2,19 @@ package osm.surveyor.osm.api;
 
 import java.io.File;
 import java.math.BigDecimal;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
+import javax.xml.bind.JAXB;
+
+import org.junit.BeforeClass;
 import org.junit.Test;
 
+import osm.surveyor.PomFile;
 import osm.surveyor.osm.BoundsBean;
 import osm.surveyor.osm.ElementRelation;
+import osm.surveyor.osm.OsmBean;
 import osm.surveyor.osm.OsmDom;
 import osm.surveyor.osm.TagBean;
 import osm.surveyor.osm.way.WayModel;
@@ -18,6 +25,17 @@ import osm.surveyor.osm.way.WayModel;
  * @author hayashi
  */
 public class CitygmlFileTest_Issue137 extends GmlLoadRouteTest {
+	static String version;
+	static String name;
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		Path path = Paths.get("pom.xml");
+        PomFile pom = new PomFile(path.toFile());
+        pom.parse();
+        version = pom.getVersion();
+        name = pom.getName();
+	}
 
 	/**
 	 * Issue #137
@@ -68,7 +86,13 @@ public class CitygmlFileTest_Issue137 extends GmlLoadRouteTest {
 	        dom.export(domfile);
 	        assertTrue(domfile.exists());
 	        
-	        // TODO OSMファイルをパースする
+	        // OSMファイルをパースする
+			OsmBean osm = JAXB.unmarshal(domfile, OsmBean.class);
+			assertNotNull(osm);
+			assertNotNull(osm.getGenerator());
+			assertNotNull(osm.getVersion());
+			assertEquals(name, osm.getGenerator());
+			assertEquals(version, osm.getVersion());
 		} catch (Exception e) {
 			fail(e.toString());
 		}

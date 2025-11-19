@@ -2,8 +2,6 @@ package osm.surveyor.citygml;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.nio.file.Paths;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -65,7 +63,7 @@ public class CityModelParser extends DefaultHandler {
         this.osm = osm;
         this.storeysAboveGround = 0;
         this.storeysBelowGround = 0;
-        this.conversionTable = new ConversionTable(Paths.get(ConversionTable.fileName).toFile());
+        this.conversionTable = new ConversionTable();
     }
     
 	/**

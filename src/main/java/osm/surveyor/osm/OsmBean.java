@@ -35,22 +35,29 @@ import osm.surveyor.osm.way.Areable;
 @XmlRootElement(name="osm")
 public class OsmBean implements Serializable,BoxcellMappable {
 	private static final long serialVersionUID = 1L;
-	public static String VERSION = "0.6";
-	public static String GENERATOR = "JOSM";
 	
 	public OsmBean() {
 		super();
 	}
 	
+	String version = null;
+	String generator = null;
+
 	@XmlAttribute(name="version")
     public String getVersion() {
-        return OsmBean.VERSION;
+        return this.version;
     }
+	public void setVersion(String str) {
+		this.version = str;
+	}
 	
 	@XmlAttribute(name="generator")
     public String getGenerator() {
-        return OsmBean.GENERATOR;
+        return this.generator;
     }
+	public void setGenerator(String str) {
+		this.generator = str;
+	}
 
 	private BoundsBean bounds;
 

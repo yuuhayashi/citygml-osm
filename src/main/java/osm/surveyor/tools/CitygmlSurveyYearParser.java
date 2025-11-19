@@ -1,7 +1,5 @@
 package osm.surveyor.tools;
 
-import java.nio.file.Paths;
-
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -46,7 +44,7 @@ public class CitygmlSurveyYearParser extends DefaultHandler {
 	
     public CitygmlSurveyYearParser() {
         super();
-        this.conversionTable = new ConversionTable(Paths.get(ConversionTable.fileName).toFile());
+        this.conversionTable = new ConversionTable();
     }
     
     /**
