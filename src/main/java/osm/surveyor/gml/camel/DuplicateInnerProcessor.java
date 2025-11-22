@@ -100,7 +100,9 @@ public class DuplicateInnerProcessor implements Processor {
 								if (partMember != null) {
 									partMember.setRole("outline");
 									WayModel way = osm.getWay(partMember.getRef());
-									way.toBuilding();
+									if (way != null) {
+										way.toBuilding();
+									}
 								}
 							}
 							for (WayModel member : partWays) {

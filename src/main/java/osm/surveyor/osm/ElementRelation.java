@@ -296,7 +296,9 @@ public class ElementRelation extends PoiBean implements Cloneable,Serializable {
 				}
 				else if (member.isRelation()) {
 					ElementRelation relation = osm.relationMap.get(member.getRef());
-					parts.put(relation.getIdstr(), relation);
+					if (relation != null) {
+						parts.put(relation.getIdstr(), relation);
+					}
 				}
 			}
 		}

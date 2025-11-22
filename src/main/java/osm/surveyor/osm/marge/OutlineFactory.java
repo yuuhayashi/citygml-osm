@@ -99,10 +99,12 @@ public class OutlineFactory {
 				if (aMember.getRole().equals("part")) {
 					if (aMember.isRelation()) {
 						RelationMultipolygon polygon = (RelationMultipolygon)osm.relationMap.get(aMember.getRef());
-						for (MemberBean polygonMember : polygon.members) {
-							if (polygonMember.getRole().equals("inner")) {
-								hasPart = true;
-								break;
+						if (polygon != null) {
+							for (MemberBean polygonMember : polygon.members) {
+								if (polygonMember.getRole().equals("inner")) {
+									hasPart = true;
+									break;
+								}
 							}
 						}
 					}

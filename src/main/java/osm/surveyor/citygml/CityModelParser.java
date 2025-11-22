@@ -3,7 +3,6 @@ package osm.surveyor.citygml;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.nio.file.Paths;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -100,7 +99,7 @@ public class CityModelParser extends DefaultHandler {
 	RelationBuilding nonLod0 = null; 				// <bldg:lod0RoofEdge/>
 	RelationBuilding roof = null;					// <bldg:lod0RoofEdge/>
 	RelationBuilding footPrint = null;				// <bldg:lod0FootPrint/>
-	boolean solidWay = false;						// 
+	boolean solidWay = false;
 	ArrayList<ElementWay> solids = null;			// <bldg:lod1Solid/>
 	RelationMultipolygon multipolygon = null;		// <gml:Polygon/>
 	MemberBean member = null;					// <gml:exterior/>,<gml:interior/>
