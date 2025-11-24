@@ -44,6 +44,7 @@ import osm.surveyor.DetailTests;
 	CitygmlFileTest_Issue137.class,		// 山口県周南市 Issue#137
 	CitygmlFileTest_Issue138.class,		// 山口県周南市 Issue#138
 	CitygmlFileTest_Issue139.class,		// 山口県周南市 Issue#139
+	CitygmlFileTest_Issue149.class,		// 山口県周南市 Issue#149
 })
 public class AllTests {
 
