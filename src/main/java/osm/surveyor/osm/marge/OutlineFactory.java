@@ -1,6 +1,8 @@
 package osm.surveyor.osm.marge;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+
 import osm.surveyor.osm.MemberBean;
 import osm.surveyor.osm.ElementRelation;
 import osm.surveyor.osm.ElementWay;
@@ -11,6 +13,7 @@ import osm.surveyor.osm.RelationMap;
 import osm.surveyor.osm.RelationMultipolygon;
 import osm.surveyor.osm.TagBean;
 import osm.surveyor.osm.WayMap;
+import osm.surveyor.osm.way.WayModel;
 
 public class OutlineFactory {
 	
@@ -27,9 +30,25 @@ public class OutlineFactory {
 	 * @param relationMap
 	 */
 	public void relationOutline() {
+		while (relationOutlineUnit());
+	}
+
+	/**
+	 * - Relation->member:role=port のoutlineを作成する
+	 * すべてのリレーションの中から一つのリレーションのアウトラインを合成する
+	 * 
+	 * @return	アウトラインの合成を行ったときはTrue,すべてのリレーションのアウトライン合成が完了している場合はFalse
+	 */
+	boolean relationOutlineUnit() {
 		RelationMap map = new RelationMap();
-				
-		for (ElementRelation relation : osm.relationMap.values()) {
+		
+		Iterator<ElementRelation> iterator = osm.relationMap.values().iterator();
+		//for (ElementRelation relation : osm.relationMap.values()) {
+		while (iterator.hasNext()) {
+			ElementRelation relation = iterator.next();
+			if (relation.isComplete()) {
+				continue;
+			}
 			if (relation.isBuilding()) {
 				boolean hasOutline = false;
 				for (MemberBean member : relation.members) {
@@ -51,23 +70,33 @@ public class OutlineFactory {
 								memberways.put(osm.getWayMap().get(member.getRef()).clone());
 							}
 							else if (member.isRelation()) {
-								ElementRelation polygon = osm.relationMap.get(member.getRef());
+								ElementRelation polygon = osm.relationMap.get(member.getRef()).clone();
 								if (polygon != null) {
-									for (MemberBean polygonMember : polygon.members) {
-										if (polygonMember.getRole().equals("outer")) {
-											memberways.put(osm.getWayMap().get(polygonMember.getRef()).clone());
+									if (!polygon.isMarged()) {
+										for (MemberBean polygonMember : polygon.members) {
+											if (polygonMember.getRole().equals("outer")) {
+												if (polygonMember.isWay()) {
+													WayModel memberway = osm.getWayMap().get(polygonMember.getRef()).clone();
+													memberways.put(memberway);
+												}
+											}
 										}
+										polygon.setMarged(true);
 									}
 								}
 							}
 						}
 					}
-					map.put(createOutline((RelationBuilding)relation, memberways));
+					ElementRelation newOutline = createOutline((RelationBuilding)relation, memberways);
+					newOutline.removeTag("ref:MLIT_PLATEAU");
+					map.put(newOutline);
+					while (outlineRelation(map));
+					return true;
 				}
+				relation.setComplete(true);
 			}
 		}
-		
-		while (outlineRelation(map));
+		return false;
 	}
 	
 	/**
@@ -221,7 +250,7 @@ public class OutlineFactory {
 				osm.relationMap.put(multi);
 			}
 		}
-		
+		building.removeTag("ref:MLIT_PLATEAU");
 		return building;
 	}
 	
